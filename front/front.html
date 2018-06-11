@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <meta>
+
+  </meta>
+  <head>
+    <script src="../lib/jquery-3.3.1.min.js"></script>
+    <script src="front.js"></script>
+
+    <link rel="stylesheet" href="front.css">
+  </head>
+  <body>
+    <h1>Linguistics Project</h1>
+    <div>
+      <!-- Radio button for selecting 1/2 features -->
+      <button onclick="handleSingleTrait()">Single trait</button>
+      <button onclick="handleDoubleTrait()">Two traits</button>
+      <!-- one / two dropdowns for these features -->
+      <div id="trait-div-1">
+        <select>
+          <option>Contains phoneme: </option>
+        </select>
+        <input type="text" size="5">
+      </div>
+
+      <div id="trait-div-2" class="hidden">
+        <select>
+          <option>Contains phoneme: </option>
+        </select>
+        <input type="text" size="5">
+      </div>
+
+    </div>
+  </body>
+</html>
