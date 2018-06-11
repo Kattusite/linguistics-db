@@ -3,3 +3,12 @@
 .hidden {
   display: none;
 }
+
+body {
+  padding: 20px;
+  background-color: #999;
+}
+
+div {
+  padding: 10px;
+}
