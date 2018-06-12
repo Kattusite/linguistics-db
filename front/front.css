@@ -1,4 +1,4 @@
-/* Need to get a css preprocessor */
+/* Need to get a css preprocessor like SASS*/
 
 .hidden {
   display: none;
@@ -6,9 +6,20 @@
 
 body {
   padding: 20px;
-  background-color: #999;
+  background-color: #eee;
 }
 
-div {
-  padding: 10px;
+/* Checkboxes in the phoneme selector */
+.pbox-check {
+  display: none;
+}
+
+.pbox-label {
+  width: 40px;
+  height: 40px;
+  background-color: #c0c0c0;
+  border: 1px solid #909090;
+  margin: 0px;
+  text-align: center;
+  vertical-align: center;
 }

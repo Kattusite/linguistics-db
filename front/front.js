@@ -20,6 +20,54 @@ function handleDoubleTrait() {
   unhideElement($("#trait-div-2")[0]);
 }
 
+// On click handler for select phonemes
+function handleSelectPhonemes() {
+   // Possibly use the selector attribute of popovers to initialize them here
+   var domStr =`
+
+   `;
+
+   this.setAttribute("data-content", domStr);
+}
+
+// Phoneme List functions
+var PHONEME_GLYPHS = {
+  "n":"n",
+  "t":"t",
+  "m":"m",
+  "k":"k",
+  "j":"j",
+  "s":"s",
+  "p":"p",
+  "l":"l",
+  "w":"w",
+  "h":"h",
+  "b":"b",
+  "d":"d",
+  "g":"g",
+  "engma":"ŋ",
+  "esh":"ʃ",
+  "glottal stop":"ʔ",
+  "voiceless postalveolar affricate":"tʃ",
+  "f":"f",
+  "r":"r",
+  "palatal nasal":"ɲ",
+  "z":"z",
+  "voiceless alveolar affricate":"ts",
+  "voiced postalveolar affricate":"dʒ",
+  "x":"x",
+  "v":"v",
+}
+
+// Given a string identifying a phoneme, get the glyph for that phoneme. 
+function getGlyph(phoneme) {
+  if (!phoneme in PHONEME_GLYPHS) {
+    console.err("Phoneme " + phoneme + " has no associated glyph.");
+  }
+  return PHONEME_GLYPHS[phoneme];
+}
+
+
 // Add the display: none style to the given DOM element
 function hideElement(element) {
   element.classList.add("hidden");
@@ -30,11 +78,9 @@ function unhideElement(element) {
   element.classList.remove("hidden");
 }
 
-// Create and return a new phoneme list DOM element
-function createPhonemeList() {
-  // Create a phoneme input box (an input element)
+// Create and return a new phoneme selector DOM element as a string
+function createPhonemeSelectorString() {
 
-  // Create a + button to add another phoneme box
 }
 
 // Create a popup in which users can click the phoneme to select/unselect it

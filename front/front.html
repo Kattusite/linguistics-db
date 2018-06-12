@@ -19,7 +19,8 @@
   </head>
   <body onload="frontInit()">
     <h1>Linguistics Project</h1>
-    <div>
+
+    <div id="metrics-div">
       <!-- Radio button for selecting 1/2 features -->
       <button onclick="handleSingleTrait()">Single trait</button>
       <button onclick="handleDoubleTrait()">Two traits</button>
@@ -38,6 +39,7 @@
              data-trigger="click"
              title="<b>Select phonemes</b>"
              data-content="Loading...">Select Phonemes...</a>
+
         </div>
         <!--  -->
       </div>
@@ -48,7 +50,71 @@
         </select>
         <input type="text" size="5">
       </div>
-
     </div>
+    <!-- Template for the phoneme selector. -->
+    <div id="phoneme-template">
+      <table>
+        <tablebody>
+          <tr>
+            <td><label class="pbox-label" for="pbox-template-n">n</label>
+                <input id="pbox-template-n" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-t">t</label>
+                <input id="pbox-template-t" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-m">m</label>
+                <input id="pbox-template-m" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-k">k</label>
+                <input id="pbox-template-k" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-j">j</label>
+                <input id="pbox-template-j" type="checkbox" class="pbox-check"></td>
+          </tr>
+            <td><label class="pbox-label" for="pbox-template-s">s</label>
+                <input id="pbox-template-s" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-p">p</label>
+                <input id="pbox-template-p" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-l">l</label>
+                <input id="pbox-template-l" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-w">w</label>
+                <input id="pbox-template-w" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-h">h</label>
+                <input id="pbox-template-h" type="checkbox" class="pbox-check"></td>
+          </tr>
+            <td><label class="pbox-label" for="pbox-template-b">b</label>
+                <input id="pbox-template-b" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-d">d</label>
+                <input id="pbox-template-d" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-g">g</label>
+                <input id="pbox-template-g" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-ŋ">ŋ</label>
+                <input id="pbox-template-ŋ" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-ʃ">ʃ</label>
+                <input id="pbox-template-ʃ" type="checkbox" class="pbox-check"></td>
+          </tr>
+            <td><label class="pbox-label" for="pbox-template-ʔ">ʔ</label>
+                <input id="pbox-template-ʔ" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-tʃ">tʃ</label>
+                <input id="pbox-template-tʃ" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-f">f</label>
+                <input id="pbox-template-f" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-r">r</label>
+                <input id="pbox-template-r" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-ɲ">ɲ</label>
+                <input id="pbox-template-ɲ" type="checkbox" class="pbox-check"></td>
+          </tr>
+            <td><label class="pbox-label" for="pbox-template-z">z</label>
+                <input id="pbox-template-z" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-ts">ts</label>
+                <input id="pbox-template-ts" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-dʒ">dʒ</label>
+                <input id="pbox-template-dʒ" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-x">x</label>
+                <input id="pbox-template-x" type="checkbox" class="pbox-check"></td>
+            <td><label class="pbox-label" for="pbox-template-v">v</label>
+                <input id="pbox-template-v" type="checkbox" class="pbox-check"></td>
+          </tr>
+        </tablebody>
+      </table>
+    </div>
+    <!--  -->
+
   </body>
 </html>
