@@ -35,7 +35,7 @@ body {
 }
 
 .pbox-selector-init {
-
+  border-bottom: 3px solid;
 }
 
 .pbox-label.pbox-label-selected {

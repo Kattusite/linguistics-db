@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="front.css">
   </head>
   <body onload="frontInit()">
-    <h1>Linguistics Project</h1>
+    <h1>Linguistics DB</h1>
 
     <div id="metrics-div">
       <!-- Radio button for selecting 1/2 features -->
@@ -26,14 +26,15 @@
       <button onclick="handleDoubleTrait()">Two traits</button>
       <!-- one / two dropdowns for these features -->
       <div id="trait-div-1">
-        <select>
-          <option>Contains phoneme: </option>
+        <select id="trait-select-1" onchange="handleTraitSelect(this)">
+          <option>Contains consonant: </option>
+          <option>Contains consonant class: </option>
+          <option>Contains vowel: </option>
+          <option>Contains vowel class: </option>
         </select>
         <!-- Phoneme Selector -->
-        <div>Contains <input type="text" size="5" placeholder="1" value="1"> of
-          <a class = "pbox-selector-uninit"
-             tabindex="0"
-             class="btn btn-outline-secondary"
+        <div id="phoneme-selector">Contains <input type="text" size="5" placeholder="1" value="1"> of
+          <a class="pbox-selector-uninit btn btn-outline-secondary"
              role="button"
              data-html="true"
              data-toggle="popover"

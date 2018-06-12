@@ -6,9 +6,13 @@
 function frontInit() {
   console.log("Loading page...");
 
+  // Update the document with selected traits
+  // handleTraitSelect();
+
   // Initialize popovers
   phonemePopoverInit();
   reloadPopovers();
+
 }
 
 // Initialize all uninitialized phoneme selector popovers
@@ -37,6 +41,12 @@ function handleSingleTrait() {
 function handleDoubleTrait() {
   console.log("double clicked");
   unhideElement($("#trait-div-2")[0]);
+}
+
+// On change handler for selecting a trait from dropdown.
+function handleTraitSelect(element) {
+  var sel = $(element).val();
+  console.log("Trait changed to "+ sel);
 }
 
 // On click function for element representing a label in the pbox.
@@ -130,6 +140,11 @@ function createPhonemeSelectorString() {
   return str;
 }
 
+// Write one function for each of the input types.
+// ie create phonemeSelector
+// ie create checkboxes for other traits???
+
+
 /*****************************************************************************/
 /*                                Helpers                                    */
 /*****************************************************************************/
@@ -142,13 +157,6 @@ function hideElement(element) {
 function unhideElement(element) {
   element.classList.remove("hidden");
 }
-
-
-// Attach phoneme selector popovers to
-
-// Write one function for each of the input types.
-// ie create phonemeSelector
-// ie create checkboxes for other traits???
 
 // Reload popovers to ensure proper initialization.
 function reloadPopovers() {
