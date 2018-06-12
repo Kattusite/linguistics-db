@@ -55,6 +55,9 @@ function handlePboxLabel(event, element) {
   // to the glyph list.
   // Special Case: If checkbox is the one that was clicked, it maybe hasn't updated yet.
   // BUG this happens before the box gets checked.
+
+  // TODO Change the whole checkbox thing to be divs with a special class added/removed.
+  // this is gonna be painful otherwise. 
   var glyphList = [];
   var rows = table.children[0].children; // table -> tbody -> array of TRs
   for (var i = 0; i < rows.length; i++) {
