@@ -15,11 +15,12 @@ body {
 }
 
 .pbox-label {
+  display: table-cell;
   width: 40px;
   height: 40px;
   background-color: #c0c0c0;
   border: 1px solid #909090;
   margin: 0px;
   text-align: center;
-  vertical-align: center;
+  vertical-align: middle;
 }
