@@ -13,12 +13,9 @@ body {
   display: none;
 }
 
-/* Checkboxes in the phoneme selector */
-/*
-.pbox-check {
+#pbox-template {
   display: none;
 }
-*/
 
 .pbox-label {
   display: table-cell;
@@ -32,10 +29,15 @@ body {
   cursor: pointer;
 }
 
-.pbox-selector-init {
-
+.pbox-label:hover {
+  background-color: #c0c0c0;
+  border: 1px solid #909090;
 }
 
-input[type="checkbox"]:checked+label {
+.pbox-selector-init {
+  border-bottom: 3px solid;
+}
+
+.pbox-label.pbox-label-selected {
   background-color: #b0b0b0;
 }
