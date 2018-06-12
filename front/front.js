@@ -6,13 +6,21 @@
 function frontInit() {
   console.log("Loading page...");
 
-  // Update the document with selected traits
-  // handleTraitSelect();
+  // Update the document with trait selectors from template
+  traitSelectorInit();
 
   // Initialize popovers
   phonemePopoverInit();
   reloadPopovers();
 
+}
+
+// Initialize trait selector divs
+function traitSelectorInit() {
+  var tgt = $("#trait-divs")[0];
+  for (var i = 0; i < tgt.children.length; i++) {
+    tgt.replaceChild(cloneTraitTemplate(), tgt.children[i]);
+  }
 }
 
 // Initialize all uninitialized phoneme selector popovers
@@ -33,20 +41,27 @@ function phonemePopoverInit() {
 // Hides second trait div
 function handleSingleTrait() {
   console.log("single clicked");
-  hideElement($("#trait-div-2")[0]);
+  hideElement($("#trait-divs").children()[1]);
 }
 
 // On click handler for double trait button
 // Displays second trait div
 function handleDoubleTrait() {
   console.log("double clicked");
-  unhideElement($("#trait-div-2")[0]);
+  unhideElement($("#trait-divs").children()[1]);
 }
 
 // On change handler for selecting a trait from dropdown.
 function handleTraitSelect(element) {
   var sel = $(element).val();
-  console.log("Trait changed to "+ sel);
+  var index = element.selectedIndex;
+  var selElement = element.parentElement.children[index+1];
+
+  // Activate selected element and deactivate others.
+  $(element).parent().children("div").addClass("inactive-trait");
+  $(element).parent().children("div").removeClass("active-trait");
+  $(selElement).removeClass("inactive-trait");
+  $(selElement).addClass("active-trait");
 }
 
 // On click function for element representing a label in the pbox.
@@ -125,19 +140,35 @@ function handlePboxLabel(element) {
 /*                                Creators                                   */
 /*****************************************************************************/
 // Create and return a new phoneme selector DOM element as a string
-function createPhonemeSelectorString() {
+function createPhonemeSelectorString(uid) {
   // NOTE outerHTML not compatible with older browsers!
   var template = $("#pbox-template")[0];
-  var uid = UID();
+  if (!uid) {
+    uid = UID();
+  }
   template.id += "-" + uid;
   var str = template.outerHTML;
 
   // Add a UID to each id= and for= attribute\
-  str = str.replace(/(pbox-template-[^\"0-9][^\"0-9]?)/g, "$1-" + uid);
+  str = str.replace(/(pbox-[^\"0-9][^\"0-9]?-)template/g, "$1" + uid);
 
   // Change the template id back to original
   template.id = "pbox-template";
   return str;
+}
+
+// Create + return a clone of the trait templates
+function cloneTraitTemplate() {
+  var template = $("#trait-div-template").clone()[0];
+  var uid = UID();
+
+  template.id = template.id.replace(/-template/g, uid);
+  var children = template.children;
+  for (var i = 0; i < children.length; i++) {
+    children[i].id = children[i].id.replace(/-template/g, uid);
+  }
+
+  return template;
 }
 
 // Write one function for each of the input types.

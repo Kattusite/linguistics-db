@@ -17,6 +17,18 @@ body {
   display: none;
 }
 
+#trait-div-template {
+   display: none;
+}
+
+.inactive-trait {
+  display: none;
+}
+
+.active-trait {
+  
+}
+
 .pbox-label {
   display: table-cell;
   width: 30px;

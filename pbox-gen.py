@@ -32,7 +32,7 @@ print("<tablebody>")
 for i, phoneme in enumerate(PHONEME_GLYPHS):
     if (i % PER_ROW == 0):
         print("  <tr>")
-    a = '    <td><div id="pbox-template-%(glyph)s" class="pbox-label" onclick=handlePboxLabel(this)>%(glyph)s</div>'
+    a = '    <td><div id="pbox-%(glyph)s-template" class="pbox-label" onclick=handlePboxLabel(this)>%(glyph)s</div>'
     c = (a + '</td>') % {"glyph": PHONEME_GLYPHS[phoneme]}
     print(c)
     if (i % PER_ROW == PER_ROW-1):
