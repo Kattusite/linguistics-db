@@ -22,10 +22,19 @@
 
     <div id="metrics-div">
       <!-- Radio button for selecting 1/2 features -->
-      <button onclick="handleSingleTrait()">Single trait</button>
-      <button onclick="handleDoubleTrait()">Two traits</button>
+      <button class="btn btn-primary" onclick="handleSingleTrait()">Single trait</button>
+      <button class="btn btn-primary" onclick="handleDoubleTrait()">Two traits</button>
+
+      <!-- results display -->
+      <br>
+      <br>
+      <div id="results" class="alert alert-info" role="alert">
+        Most languages have all of p, t, k
+      </div>
+      <br>
       <!-- one / two dropdowns for these features -->
-      <div id="trait-div-1">
+
+      <div id="trait-div-1" class="alert alert-info" role="alert">
         <select id="trait-select-1" onchange="handleTraitSelect(this)">
           <option>Contains consonant: </option>
           <option>Contains consonant class: </option>
@@ -33,13 +42,19 @@
           <option>Contains vowel class: </option>
         </select>
         <!-- Phoneme Selector -->
-        <div id="phoneme-selector">Contains <input type="text" size="5" placeholder="1" value="1"> of
+        <div id="phoneme-selector" class="active-trait">Contains <input type="text" size="5" placeholder="1" value="1"> of
           <a class="pbox-selector-uninit btn btn-outline-secondary"
              role="button"
              data-html="true"
              data-toggle="popover"
              title="<b>Select phonemes</b>"
              data-content="Loading...">Select Phonemes...</a>
+        </div>
+        <div id="consonant-class-selector" class="inactive-trait">
+        </div>
+        <div id="vowel-selector" class="inactive-trait">
+        </div>
+        <div id="consonant-class-selector" class="inactive-trait">
         </div>
         <!--  -->
       </div>
