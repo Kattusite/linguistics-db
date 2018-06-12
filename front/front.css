@@ -14,9 +14,11 @@ body {
 }
 
 /* Checkboxes in the phoneme selector */
+/*
 .pbox-check {
   display: none;
 }
+*/
 
 .pbox-label {
   display: table-cell;
@@ -31,7 +33,7 @@ body {
 }
 
 .pbox-selector-init {
-  
+
 }
 
 input[type="checkbox"]:checked+label {
