@@ -1,3 +1,7 @@
+/*****************************************************************************/
+/*                                Initializers                               */
+/*****************************************************************************/
+
 // On load initializer function
 function frontInit() {
   console.log("Loading page...");
@@ -16,6 +20,10 @@ function phonemePopoverInit() {
   $(".pbox-selector-uninit").addClass("pbox-selector-init");
   $(".pbox-selector-uninit").removeClass("pbox-selector-uninit");
 }
+
+/*****************************************************************************/
+/*                                Event Handlers                             */
+/*****************************************************************************/
 
 // On click handler for single trait button
 // Hides second trait div
@@ -36,7 +44,16 @@ function handleDoubleTrait() {
 // Update link text.
 // NOTE Setting "checked" is not IE friendly
 // NOTE This is a potentially slow function (string concat + iterating over all boxes)
-function handlePboxLabel(event, element) {
+function handlePboxLabel(element) {
+  // (Un)select the pbox label.
+  if ($(element).hasClass("pbox-label-selected")) {
+    $(element).removeClass("pbox-label-selected");
+  }
+  else {
+    $(element).addClass("pbox-label-selected");
+  }
+
+  // Log the click.
   var glyph = element.innerText;
   console.log("Button " + glyph + " clicked.");
 
@@ -48,30 +65,27 @@ function handlePboxLabel(event, element) {
   var table = element.parentElement.parentElement.parentElement.parentElement
   var div = table.parentElement;
   var str = div.outerHTML;
-  console.log(table);
 
   // Iterate over all labels in this table
-  // If checkbox is checked, replace its text with "checked" and add its glyph
-  // to the glyph list.
-  // Special Case: If checkbox is the one that was clicked, it maybe hasn't updated yet.
-  // BUG this happens before the box gets checked.
-
-  // TODO Change the whole checkbox thing to be divs with a special class added/removed.
-  // this is gonna be painful otherwise. 
+  // If checkbox is checked,  add its glyph to the glyph list.
   var glyphList = [];
+  var queryStr  = ""; // To be sent in server request (string of 1s and 0s)
   var rows = table.children[0].children; // table -> tbody -> array of TRs
   for (var i = 0; i < rows.length; i++) {
     var entries = rows[i].children;
     for (var j = 0; j < entries.length; j++) {
       var td = entries[j];
       var box = td.children[0];
-      console.log(box);
-      if (box.checked) {
-        // Does nothing! yay
-        str = str.replace(new RegExp("(" + box.id + ")", "g"), "$1 checked");
+      if ($(box).hasClass("pbox-label-selected")) {
+        glyphList.push($(box).text());
+        queryStr = queryStr + "1";
+      }
+      else {
+        queryStr = queryStr + "0";
       }
     }
   }
+
 
   // Update the link text to be the glyph list, or placeholder if empty.
   var link = $("[aria-describedby]");
@@ -89,26 +103,17 @@ function handlePboxLabel(event, element) {
     link.text(lbl);
   }
 
-
+  // Inform the link text DOM object of its query string.
+  link.attr("queryStr", queryStr);
 
   // Save the content changes in the popover attribute.
   link.attr("data-content", str);
 
-
-
   //reloadPopovers();
 }
-
-// Add the display: none style to the given DOM element
-function hideElement(element) {
-  element.classList.add("hidden");
-}
-
-// Remove the display: none style to the given DOM element
-function unhideElement(element) {
-  element.classList.remove("hidden");
-}
-
+/*****************************************************************************/
+/*                                Creators                                   */
+/*****************************************************************************/
 // Create and return a new phoneme selector DOM element as a string
 function createPhonemeSelectorString() {
   // NOTE outerHTML not compatible with older browsers!
@@ -124,6 +129,20 @@ function createPhonemeSelectorString() {
   template.id = "pbox-template";
   return str;
 }
+
+/*****************************************************************************/
+/*                                Helpers                                    */
+/*****************************************************************************/
+// Add the display: none style to the given DOM element
+function hideElement(element) {
+  element.classList.add("hidden");
+}
+
+// Remove the display: none style to the given DOM element
+function unhideElement(element) {
+  element.classList.remove("hidden");
+}
+
 
 // Attach phoneme selector popovers to
 
