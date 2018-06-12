@@ -29,13 +29,14 @@ PHONEME_GLYPHS = {
 PER_ROW = 5
 
 print("<tablebody>")
-print("  <tr>")
 for i, phoneme in enumerate(PHONEME_GLYPHS):
-    a = '    <td><label class="pbox-label" for="pbox-template-%(glyph)s">%(glyph)s</label>\n'
-    b = '        <input id="pbox-template-%(glyph)s" type="checkbox" class="pbox-check"></td>'   
-    c = (a + b) % {"glyph": PHONEME_GLYPHS[phoneme]}
+    if (i % PER_ROW == 0):
+        print("  <tr>")
+    a = '    <td><input id="pbox-template-%(glyph)s" type="checkbox" class="pbox-check">'
+    b = '        <label onclick="handlePboxLabel(this)" class="pbox-label" for="pbox-template-%(glyph)s">%(glyph)s</label>'
+    c = (a + '\n' + b + '</td>') % {"glyph": PHONEME_GLYPHS[phoneme]}
     print(c)
-    if (i % PER_ROW == 4):
+    if (i % PER_ROW == PER_ROW-1):
         print("  </tr>")
 
 

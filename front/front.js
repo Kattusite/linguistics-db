@@ -3,7 +3,15 @@ function frontInit() {
   console.log("Loading page...");
 
   // Initialize popovers
+  phonemePopoverInit();
   reloadPopovers();
+}
+
+// Initialize all uninitialized phoneme selector popovers
+function phonemePopoverInit() {
+  $(".pbox-selector-uninit").attr("data-content", createPhonemeSelectorString());
+  $(".pbox-selector-uninit").addClass("pbox-selector-init");
+  $(".pbox-selector-uninit").removeClass("pbox-selector-uninit");
 }
 
 // On click handler for single trait button
@@ -20,53 +28,27 @@ function handleDoubleTrait() {
   unhideElement($("#trait-div-2")[0]);
 }
 
-// On click handler for select phonemes
-function handleSelectPhonemes() {
-   // Possibly use the selector attribute of popovers to initialize them here
-   var domStr =`
+// On click function for element representing a label in the pbox.
+// Save the state of the pbox inside the data-content, reload popover
+// Update link text.
+function handlePboxLabel(element) {
+  var glyph = element.innerText;
+  console.log("Button " + glyph + " clicked.");
 
-   `;
+  // Add the checked attribute to the box.
+  $(element.for).attr("checked", "");
 
-   this.setAttribute("data-content", domStr);
+  // Update the link text to be a list of glyphs
+
+  //         label  -->    td     -->     tr    --> tablebody --> table
+  var table = element.parentElement.parentElement.parentElement.parentElement
+  var div = table.parentElement;
+
+  // Save the content changes in the popover attribute.
+  var linkID = $("[aria-describedby]");
+  linkID.attr("data-content", div.outerHTML);
+  reloadPopovers();
 }
-
-// Phoneme List functions
-var PHONEME_GLYPHS = {
-  "n":"n",
-  "t":"t",
-  "m":"m",
-  "k":"k",
-  "j":"j",
-  "s":"s",
-  "p":"p",
-  "l":"l",
-  "w":"w",
-  "h":"h",
-  "b":"b",
-  "d":"d",
-  "g":"g",
-  "engma":"ŋ",
-  "esh":"ʃ",
-  "glottal stop":"ʔ",
-  "voiceless postalveolar affricate":"tʃ",
-  "f":"f",
-  "r":"r",
-  "palatal nasal":"ɲ",
-  "z":"z",
-  "voiceless alveolar affricate":"ts",
-  "voiced postalveolar affricate":"dʒ",
-  "x":"x",
-  "v":"v",
-}
-
-// Given a string identifying a phoneme, get the glyph for that phoneme. 
-function getGlyph(phoneme) {
-  if (!phoneme in PHONEME_GLYPHS) {
-    console.err("Phoneme " + phoneme + " has no associated glyph.");
-  }
-  return PHONEME_GLYPHS[phoneme];
-}
-
 
 // Add the display: none style to the given DOM element
 function hideElement(element) {
@@ -79,25 +61,50 @@ function unhideElement(element) {
 }
 
 // Create and return a new phoneme selector DOM element as a string
+// TODO use incrementing UIDs.
 function createPhonemeSelectorString() {
+  // NOTE Not compatible with older browsers!
+  // BUG each label's IDs are not unique!!!
+  var template = $("#pbox-template")[0];
+  var uid = UID();
+  template.id += "-" + uid;
+  var str = template.outerHTML;
 
+  // Add a UID to each id= and for= attribute
+  // replace("pbox-template-X(X)", "pbox-template-X(X)-uid"
+
+  template.id = "pbox-template";
+  return str;
 }
 
-// Create a popup in which users can click the phoneme to select/unselect it
-// using bootstrap!
-
+// Attach phoneme selector popovers to
 
 // Write one function for each of the input types.
-
 // ie create phonemeSelector
-
 // ie create checkboxes for other traits???
 
 // Reload popovers to ensure proper initialization.
 function reloadPopovers() {
-  // Hide and remove old popover
+  // BUG? Need to hide and remove old popover
   //$("[data-toggle=popover]").popover("dispose");
-
-  // Add new one
   $("[data-toggle=popover]").popover();
+}
+
+// Convert num to base 36 (used for unique ID generation)
+// Not strictly necessary but it makes everything look cooler.
+function numToUID(num) {
+  var b36str = num.toString(36);
+  // Pad with 0 on left until 6 chars long.
+  while (b36str.length < 6) {
+    b36str = "0" + b36str;
+  }
+  return b36str;
+}
+
+// Generate and return a new UID guaranteed to be distinct from all
+// previously generated UIDs created in this session.
+function UID() {
+  var uid = numToUID(UID_count);
+  UID_count++;
+  return uid;
 }
