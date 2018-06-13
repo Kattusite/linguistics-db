@@ -149,10 +149,15 @@ function handleSubmit() {
        );
 }
 
+
+/*****************************************************************************/
+/*                                Callback                                   */
+/*****************************************************************************/
 // Callback function for AJAX -- in development
 function callback(reply) {
   console.log(reply);
-  alert(reply);
+  // alert(reply);
+  $("#results").text(reply)
 }
 
 /*****************************************************************************/

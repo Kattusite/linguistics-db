@@ -60,6 +60,10 @@ CONSONANT_GLYPHS = [
   "v"
 ]
 
+# Substitute Database objects
+# (can be replaced with an actual DB later if the overhead is justified.
+LANG_DB = None
+
 def dummy(request):
     return "SOMETHING HAPPENED!"
 
