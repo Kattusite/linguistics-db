@@ -4,6 +4,7 @@
 #############################################################################
 
 import csv, os, re
+from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 
 # File paths
 PROJ_ROOT_DIR = ""
@@ -31,34 +32,6 @@ VOWELS          = 8
 PHONETIC        = 9
 SYLLABLE        = 10
 
-# should be declared externally and included (also used in pbox-gen.py)
-CONSONANT_GLYPHS = [
-  "n",
-  "t",
-  "m",
-  "k",
-  "j",
-  "s",
-  "p",
-  "l",
-  "w",
-  "h",
-  "b",
-  "d",
-  "g",
-  "ŋ",
-  "ʃ",
-  "ʔ",
-  "tʃ",
-  "f",
-  "r",
-  "ɲ",
-  "z",
-  "ts",
-  "dʒ",
-  "x",
-  "v"
-]
 
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
@@ -80,9 +53,8 @@ def checkConsonants(consonants):
 
 # Read from grammar data into convenient format
 def readGrammarData():
-    # Change directory to project root.
-    # os.chdir(PROJ_ROOT_DIR)
-    print(os.getcwd())
+    print(VOWEL_GLYPHS)
+    print(CONSONANT_GLYPHS)
 
     # Locate the grammar file
     filename = PROJ_ROOT_DIR + GRAMMAR_FILE

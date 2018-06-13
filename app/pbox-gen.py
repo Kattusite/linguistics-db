@@ -1,3 +1,4 @@
+# NOTE Need to revise this to import from phonemes
 PHONEME_GLYPHS = {
   "n":"n",
   "t":"t",
