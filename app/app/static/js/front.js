@@ -20,6 +20,10 @@ function traitSelectorInit() {
   var tgt = $("#trait-divs")[0];
   for (var i = 0; i < tgt.children.length; i++) {
     tgt.replaceChild(cloneTraitTemplate(), tgt.children[i]);
+    // Hide children after the first one.
+    if (i > 0) {
+      hideElement(tgt.children[i]);
+    }
   }
 }
 
