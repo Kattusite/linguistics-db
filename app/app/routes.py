@@ -1,6 +1,6 @@
 from . import app
 from flask import render_template, redirect, request, url_for, flash
-from . import lingdb
+from . import lingdb_client
 
 @app.route("/", methods = ["GET", "POST"])
 def main():
@@ -10,7 +10,7 @@ def main():
         # returnObj = {"results": results, "time":time}
         # return str(returnObj)
         consonants = request.form['consonants']
-        return str(lingdb.checkConsonants(consonants))
+        return str(lingdb_client.checkConsonants(consonants))
     return render_template('front.html')
 
 @app.route('/index.html')
