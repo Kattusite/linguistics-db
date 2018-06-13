@@ -53,11 +53,17 @@
     <!-- Template for trait selector -->
     <div id="trait-div-template" class="alert alert-info" role="alert">
       <!-- consider making a dropdown from bootstrap -->
-      <select id="trait-select-template" onchange="handleTraitSelect(this)">
+      <select class="trait-selector" id="trait-select-template" onchange="handleTraitSelect(this)">
         <option>Contains consonant: </option>
         <option>Contains consonant class: </option>
         <option>Contains vowel: </option>
         <option>Contains vowel class: </option>
+        <option>Has 3+ consonant places</option>
+        <option>Has 2+ consonant manners</option>
+        <option>Has complex consonants</option>
+        <option>Has tone</option>
+        <option>Has predictable stress</option>
+        <option>Allows syllable structure: </option>
       </select>
       <!-- Consonant Selector -->
       <div id="consonant-selector-template" class="active-trait">Contains <input type="text" size="5" placeholder="1" value="1"> of
@@ -76,6 +82,24 @@
       </div>
       <div id="vowel-class-selector-template" class="inactive-trait">
         Vowel class selector - coming soon
+      </div>
+      <div id="consonant-places-template" class="inactive-trait">
+        3+ Places of Consonant Articulation - coming soon
+      </div>
+      <div id="consonant-manners-template" class="inactive-trait">
+        2+ Manners of Consonant Articulation - coming soon
+      </div>
+      <div id="complex-consonant-template" class="inactive-trait">
+        Complex Consonants - coming soon
+      </div>
+      <div id="tone-selector-template" class="inactive-trait">
+        Tone (including "Pitch Accent") - coming soon
+      </div>
+      <div id="tone-selector-template" class="inactive-trait">
+        Predictable Stress - coming soon
+      </div>
+      <div id="syllable-selector-template" class="inactive-trait">
+        Syllable structure selector - coming soon
       </div>
       <!--  -->
     </div>

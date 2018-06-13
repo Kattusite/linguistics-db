@@ -26,7 +26,14 @@ body {
 }
 
 .active-trait {
-  
+
+}
+
+.trait-selector {
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 4px;
+  border-radius: 5px;
 }
 
 .pbox-label {
