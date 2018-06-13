@@ -11,6 +11,6 @@ VOWEL_GLYPHS = [
     "ʌ",
     "ø",
     "ɵ",
-    "ʉ",
-    "N/A" # None of the above
+    "ʉ"
+    # "N/A" # None of the above (remove this and let 0000...000 be implicit)
 ]
