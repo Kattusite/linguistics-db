@@ -136,6 +136,21 @@ function handlePboxLabel(element) {
 
   //reloadPopovers();
 }
+
+// Submission handler to send AJAX requests to server
+function handleSubmit() {
+  $.post("/",
+         "testAttr=testValue&consonants=" + $(".pbox-selector-init").attr("queryStr"),
+         callback
+       );
+}
+
+// Callback function for AJAX -- in development
+function callback(reply) {
+  console.log(reply);
+  alert(reply);
+}
+
 /*****************************************************************************/
 /*                                Creators                                   */
 /*****************************************************************************/

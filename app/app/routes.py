@@ -9,7 +9,8 @@ def main():
         # results = course_search.course_db_query(query, semester)
         # returnObj = {"results": results, "time":time}
         # return str(returnObj)
-        return lingdb.dummy(None)
+        consonants = request.form['consonants']
+        return str(lingdb.checkConsonants(consonants))
     return render_template('front.html')
 
 @app.route('/index.html')
