@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Princeton Planner</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/land.css') }}">
+<script src="https://unpkg.com/json5@^1.0.0"></script>
+<script src="{{ url_for('static', filename = 'js/plan.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/userdata.js') }}"></script>
+<!-- Font import -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Biryani:800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="57x57" href="/static/ico/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/static/ico/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/static/ico/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/static/ico/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/static/ico/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/static/ico/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/static/ico/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/static/ico/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/ico/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/static/ico/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/ico/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/ico/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/ico/favicon-16x16.png">
+<link rel="manifest" href="/static/ico/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/static/ico/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- -->
+</head>
+<body font-family='Biryani' onload = plan_init()>
+  <div id="guest_mode" style="display: none;">{{ guest }}</div>
+
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a font-family='Biryani' class="navbar-brand" height="0px" href="/">P<span class="logo-dec">P</span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a class="pp-navbar-element" href="#" data-toggle="modal" data-target="#aboutModal"><span  class="glyphicon glyphicon-bell"></span>   About</a></li>
+        <li class="active"><a class="pp-navbar-element" href="#" data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-question-sign"></span>   Help</a></li>
+        <!-- At some point the link should be removed, but it removes the icon atm -->
+        <li class="active"><a class="pp-navbar-element" href="#" data-toggle="modal" data-target="#userModal"><span class="glyphicon glyphicon-user"></span>   {{ user.netid }}</a></li>
+        <li class="active"><a class="pp-navbar-element" href="logout"><span class="glyphicon glyphicon-log-out"></span>   Logout</a></li>
+
+        <!-- Help Pop up! -->
+        <div class="modal fade" id="helpModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Help</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Princeton Planner tracks the <em>courses</em> you've taken (or are considering taking), alongside any <em>programs</em> (Majors or Certificates) you would like to pursue.</p>
+                        <p>To get started, simply add a program (like your declared major!) by searching on the right-hand side and selecting a program.</p>
+                        <p>You can then select a semester using the buttons in the top left, and add courses for that semester by searching in the box on the left, and selecting some courses.</p>
+                        <p>If a course you're looking for isn't showing up, try searching in a different semester! Some courses are only offered in the fall/spring, or in alternate years.</p>
+                        <p>Happy planning!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Pop up! -->
+        <div class="modal fade" id="aboutModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About Princeton Planner</h4>
+                </div>
+                <div class="modal-body">
+                    <p>The Princeton Planner is a platform that allows Princeton students to plan their academic careers. You can choose and track your progress through any certificate or BSE major offered at Princeton, and you can add courses that you have enrolled in or plan to enroll in to fill in the requirements for the tracks you select.</p>
+                    <p>Our platform is perfect for students like you trying to figure out what tracks you can feasibly fit into your schedule and for you to easily see what courses you should take to achieve your goals. Click the Help tab at the top of the page for tips on how to get started!</p>
+                    <p>Thank you for using our platform! If you have any questions and/or feedback, feel free to reach out to us at <b>theprincetonplanner@gmail.com!</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- User info Pop up! -->
+        <div class="modal fade" id="userModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">User Settings</h4>
+                  </div>
+                  <div class="modal-body">
+                      <button type="button" onclick="deleteUserHandler()" class="btn btn-default" data-dismiss="modal">Clear User Profile</button>
+                      <button type="button" class="btn btn-default" value="Give Feedback" onclick="location.href = 'feedback';">Give Feedback</button>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+    </div>
+</div>
+</nav>
+
+<div class="container-fluid text-center">
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+
+        <h3>Select semester</h3>
+
+        <!-- Selecting a semester -->
+        <div id="semesterRadioDiv" onclick="semesterChangeHandler()">
+          <!-- Fall -->
+          <span class="radio-row">
+            <span class="radio-row-label">Fall</span>
+            <div class="radio-group">
+              <input type="radio" form="courseSearchForm" id="radioF16" value="F16" name="semester"
+              ><label class="radio-label" for="radioF16">16</label
+              ><input type="radio" form="courseSearchForm" id="radioF17" value="F17" name="semester"
+              ><label class="radio-label" for="radioF17">17</label
+              ><input type="radio" form="courseSearchForm" id="radioF18" value="F18" name="semester" checked="checked"
+              ><label class="radio-label" for="radioF18">18</label
+              ><input type="radio" form="courseSearchForm" id="radioF19" value="F19" name="semester"
+              ><label class="radio-label" for="radioF19">19</label
+              ><input type="radio" form="courseSearchForm" id="radioF20" value="F20" name="semester"
+              ><label class="radio-label" for="radioF20">20</label>
+            </div>
+          </span>
+          <!-- Spring -->
+          <span class="radio-row">
+            <span class="radio-row-label">Spring</span>
+            <div class="radio-group">
+              <input type="radio" form="courseSearchForm" id="radioS16"  value="S16" name="semester"
+              ><label class="radio-label" for="radioS16">16</label
+              ><input type="radio" form="courseSearchForm" id="radioS17" value="S17" name="semester"
+              ><label class="radio-label" for="radioS17">17</label
+              ><input type="radio" form="courseSearchForm" id="radioS18" value="S18" name="semester"
+              ><label class="radio-label" for="radioS18">18</label
+              ><input type="radio" form="courseSearchForm" id="radioS19" value="S19" name="semester"
+              ><label class="radio-label" for="radioS19">19</label
+              ><input type="radio" form="courseSearchForm" id="radioS20" value="S20" name="semester"
+              ><label class="radio-label" for="radioS20">20</label>
+            </div>
+          </span>
+        </div>
+
+        <!-- Searching for courses -->
+        <h3>Find courses</h3>
+        <form onsubmit=courseSearchSubmit id="courseSearchForm" onkeypress="return event.keyCode != 13;">
+            <div class="input-group pull-left" id="sea1">
+                <input type="text" autocomplete="off" class="form-control" placeholder="Search for courses" id="courseSearch" name="course_query"/>
+                <input type="hidden" name="form_name" value="COURSE_QUERY"/>
+                <input id="courseTime" type="hidden" class="timestamp" name="timestamp"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+
+        <div id="courseSearchHeader">
+        </div>
+        <div id="courseSearchResults">
+        </div>
+        <br>
+
+        <h3 id="strawberry">Enrolled courses</h3>
+        <div id = "enrolledCourses">
+          <div id="coursesDivF16" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableF16">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivS16" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableS16">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivF17" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableF17">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivS17" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableS17">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivF18" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableF18">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivS18" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableS18">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivF19" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableF19">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivS19" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableS19">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivF20" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableF20">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <div id="coursesDivS20" class="coursesDiv hidden">
+            <table class="table table-bordered" id="coursesTableS20">
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+          <!--
+        <div id="currentCoursesDiv">
+          <p id="initial">Choose some courses to put here!</p>
+        </div>
+      -->
+    </div>
+    </div>
+
+    <div id="programInfoDiv">
+      <div id="programHelpDiv" class="hidden">It looks like you haven't added any programs yet!<br>Search for some on the right to get started.</div>
+    </div>
+
+    <div id="programSearchDiv" class="col-sm-2 sidenav">
+        <h3>Find majors / certificates</h3>
+        <form action="programSearchSubmit" id="programSearchForm" onkeypress="return event.keyCode != 13;">
+            <div class="input-group pull-left" id="sea1">
+                <input type="text" autocomplete="off" class="form-control" placeholder="Search for programs" id="programSearch" name="program_query"/>
+                <input type="hidden" name="form_name" value="PROGRAM_QUERY"/>
+                <input id="programTime" class="timestamp" type="hidden" name="timestamp"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+
+        <div id = "programSearchHeader">
+        </div>
+        <div id = "programSearchResults">
+        </div>
+
+        <br>
+        <h3>Selected programs</h3>
+        <table id="currentProgramsTable" class="table table-bordered">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+</body>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({ html : true, container: 'body'});
+});
+$('body').on('click', function (e) {
+    $('[data-toggle="popover"]').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+});
+$('body').on('hidden.bs.popover', function (e) {
+    $(e.target).data("bs.popover").inState = { click: false, hover: false, focus: false }
+});
+</script>
+
+<script type="text/javascript">
+    var csrf_token = "{{ csrf_token() }}";
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
+        }
+    });
+</script>
+
+<!-- Enable mouse wheel scrolling in the central div -->
+<!-- Disable it again because we need vertical scrolling!
+<script>
+(function() {
+    var programInfoDiv = $("#programInfoDiv")[0];
+    function scrollHorizontally(e) {
+        e = window.event || e;
+        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+        programInfoDiv.scrollLeft -= (delta*40); // Multiplied by 40
+        e.preventDefault();
+    }
+    if (programInfoDiv.addEventListener) {
+        // IE9, Chrome, Safari, Opera
+        programInfoDiv.addEventListener("mousewheel", scrollHorizontally, false);
+        // Firefox
+        programInfoDiv.addEventListener("DOMMouseScroll", scrollHorizontally, false);
+    } else {
+        // IE 6/7/8
+        programInfoDiv.attachEvent("onmousewheel", scrollHorizontally);
+    }
+})();
+</script>
+-->
+</html>

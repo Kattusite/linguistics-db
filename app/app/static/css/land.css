@@ -1,0 +1,393 @@
+body {
+    font-family:'Roboto';
+    overflow-y: hidden;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+}
+
+.apple {
+    display:inline-block;
+    width: 250px;
+    margin: 25px;
+}
+
+.glyphicon-remove:hover {
+    color: rgb(255, 79, 79);
+}
+.glyphicon-remove {
+    color: #ff7373;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Fix the navbar coloring */
+.navbar-inverse .navbar-nav>.active>a.pp-navbar-element {
+    background-color: #222222;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-family:'Biryani';
+    height: 0px;
+}
+.navbar-brand .logo-dec {
+    color: #ff8f00;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.table-fixed {
+    width: 100%;
+    background-color: #f3f3f3;
+}
+#courseSearchResults {
+    position:relative;
+    background:white;
+}
+#course-table-scroll {
+    height:150px;
+    overflow:auto;
+    margin-top:20px;
+}
+#courseSearchResults table {
+    width:100%;
+    background:white;
+    border-collapse: collapse;
+}
+#courseSearchResults table * {
+    /*color:black; */
+    text-align: left;
+    padding: 5px 10px 5px 10px;
+    font-size: 12px;
+}
+#courseSearchResults tbody tr:hover td, #courseSearchResults tbody tr:hover th {
+    background-color:rgb(230, 230, 230);
+    cursor: pointer;
+}
+#courseSearchResults table thead th .text {
+    position:absolute;
+    top:-20px;
+    z-index:2;
+    height:20px;
+    width:35%;
+    border:1px solid red;
+}
+#courseSearchResults table, th, td {
+    border: 1px solid rgb(196, 193, 193);
+}
+
+#currentCoursesDiv p {
+    font-style: italic;
+}
+
+/* ------------------------ */
+
+#programSearchResults {
+    position:relative;
+    background:white;
+}
+#programSearchResults table {
+    width:100%;
+    background:white;
+    border-collapse: collapse;
+}
+#programSearchResults table * {
+    background:white;
+    color:black;
+    text-align: left;
+    padding: 5px 10px 5px 10px;
+    font-size: 12px;
+}
+#programSearchResults tbody tr:hover td, .table tbody tr:hover th {
+    background-color:rgb(230, 230, 230);
+    cursor: pointer;
+}
+#programSearchResults table thead th .text {
+    position:absolute;
+    top:-20px;
+    z-index:2;
+    height:20px;
+    width:35%;
+    border:1px solid red;
+}
+#programSearchResults table, th, td {
+    border: 1px solid rgb(196, 193, 193);
+}
+
+#programInfoDiv {
+    width: 66.6%;
+    height: calc(100vh - 52px);
+    border: 10px solid white;
+    overflow-x: auto;
+    white-space: nowrap;
+    display:inline-block;
+    float: left;
+}
+
+@media (max-width: 768px) {
+  #programInfoDiv {
+    width: 100%;
+  }
+}
+
+#semesterRadioDiv {
+    display: grid;
+}
+
+#programInfoDiv div {
+    vertical-align: top;
+}
+
+#programSearchDiv {
+    float: right;
+}
+
+.input-group {
+  padding-bottom: 20px;
+}
+
+.semester-tag {
+    background: greenyellow;
+    margin-right: 5px;
+    padding: 2px;
+    border-radius: 3px;
+    font-size: xx-small;
+    font-weight: bold;
+}
+
+/* Semester radio button styling */
+/*
+$bg: #332f35;
+$fg: lighten($bg,20%);
+$borderWidth: 3px;
+*/
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+label.radio-label {
+  color: #867c8b;
+  color: gray;
+  color: #5c5560;
+  background-color: #f9f9f9;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: unset;
+  padding: 2px;
+  /* make unselectable */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+input[type=radio]:checked + label{
+  color: #5c5560;
+  color: white;
+  background: rgb(247, 169, 2);
+}
+
+label + input[type=radio] + label {
+  border-left: solid 1px #5c5560;
+}
+.radio-group {
+  border: solid 2px #5c5560;
+  display: inline-block;
+  border-radius: 4px;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-bottom: 4px;
+}
+
+.radio-row {
+  display: inline-block;
+  margin: auto;
+  width:120px;
+}
+
+.radio-row-label {
+
+}
+/****************************/
+
+/* Will's ratio styling */
+.completion-ratio.completed-ratio{
+  background: limegreen;
+}
+
+.completion-ratio {
+    float: left;
+    margin-right: 10px;
+    font-size: x-small;
+    font-weight: 800;
+    background: chocolate;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+ratio.completed-ratio {
+    background: limegreen;
+}
+
+/*************************/
+
+/* Will's semester changes */
+
+.hidden {
+  display: none;
+}
+
+#programHelpDiv {
+  padding-top: 30px;
+  font-size: large;
+}
+
+
+/***************************/
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: auto}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: calc(100vh - 52px);
+    overflow-y: auto;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height:auto;}
+}
+
+h3 {
+    font-family: 'Amiko';
+    font-size: 24px;
+    text-align: center
+}
+h4 {
+    font-size: 18px;
+}
+h5 {
+    font-size: 12px;
+}
+.mango {
+    font-family: 'Amiko';
+    font-size: 19px;
+    overflow: hidden;
+    height: auto;
+    width: 250px;
+    display: inline-block;
+    word-wrap: normal;
+    white-space: normal;
+    text-align: center;
+}
+
+.popover{
+    max-width: none; /* Max Width of the popover (depending on the container!) */
+    white-space: pre-wrap;
+    overflow-y:auto;
+}
+.popover-content {
+    font-size: 12px;
+    word-wrap: break-word;
+    max-height: 250px;
+    overflow-y: auto;
+}
+.icon-bad {
+    color: rgb(65, 166, 224);
+}
+.icon-good {
+    color: #5CB85C;
+}
+.accordion-toggle {
+    font-family: 'Arial';
+    text-transform: capitalize;
+}
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;
+    position: static;
+    color: white;
+
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+.accordion-toggle:hover {
+    text-decoration: none;
+}
+.panel .panel-heading {
+    font-family: verdana;
+    border-radius:0;
+    padding: 0px;
+}
+.panel .panel-heading a{
+    display:block;
+    background: rgb(255, 193, 59);
+    color: white;
+    padding:5px 10px 5px 10px;
+    border-radius:0px;
+    text-decoration:none;
+    font-size: 16px;
+    width: 250px;
+    text-align: left;
+    overflow: hidden;
+}
+.panel .panel-heading a:hover {
+    background: rgb(247, 169, 2);
+    color: white;
+    text-decoration:none;
+}
+#accordion .highlight a{
+    background:rgb(255, 193, 59);/* change colour of selected bar here if needed */
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    color:white;
+    transition:background 2s ease;
+}
+.panel-body {
+    font-size: 14px;
+    padding:5px 10px;
+    text-align: left;
+}
+.table td {
+text-align: left;
+font-size: 12px;
+background: white;
+}
