@@ -1,4 +1,10 @@
 /*****************************************************************************/
+/*                               Global Variables                            */
+/*****************************************************************************/
+
+var NUM_TRAITS = 1; // The number of traits currently being queried
+
+/*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
 
@@ -46,6 +52,7 @@ function phonemePopoverInit() {
 function handleSingleTrait() {
   console.log("single clicked");
   hideElement($("#trait-divs").children()[1]);
+  NUM_TRAITS = 1;
 }
 
 // On click handler for double trait button
@@ -53,6 +60,7 @@ function handleSingleTrait() {
 function handleDoubleTrait() {
   console.log("double clicked");
   unhideElement($("#trait-divs").children()[1]);
+  NUM_TRAITS = 2;
 }
 
 // On change handler for selecting a trait from dropdown.
