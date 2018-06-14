@@ -37,9 +37,9 @@ G_STR = [
 ]
 
 # Equality modes
-EQ  = "=="  # Match if the number of phoneme matches == target
-GEQ = ">="  # Match if the number of phoneme matches >= target
-GT  = ">"   # Match if the number of phoneme matches  > target
-LEQ = "<="  # Match if the number of phoneme matches <= target
-LT  = "<"   # Match if the number of phoneme matches  < target
-NEQ = "!="  # Match if the number of phoneme matches != target
+EQ  = "EQ"  # Match if the number of phoneme matches == target
+GEQ = "GEQ"  # Match if the number of phoneme matches >= target
+GT  = "GT"   # Match if the number of phoneme matches  > target
+LEQ = "LEQ"  # Match if the number of phoneme matches <= target
+LT  = "LT"   # Match if the number of phoneme matches  < target
+NEQ = "NEQ"  # Match if the number of phoneme matches != target

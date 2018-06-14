@@ -10,7 +10,11 @@ def main():
         # returnObj = {"results": results, "time":time}
         # return str(returnObj)
         consonants = request.form['consonants']
-        return str(lingdb_client.checkConsonants(consonants))
+        k = request.form['k']
+        mode = request.form['mode']
+        reply = request.form['reply']
+        result = str(lingdb_client.handleQuery(consonants, k, mode))
+        return result + " " + reply
     return render_template('front.html')
 
 @app.route('/index.html')

@@ -39,23 +39,29 @@ class Language:
 
 
 ################################################################################
-#                             Class Constants                                  #
-#                                                                              #
-################################################################################
-
-
-################################################################################
-#                             Query Methods                                    #
+#                            Getters                                           #
 #                                                                              #
 ################################################################################
     def getGrammarAttr(self, query):
         """ Given a query string, return the value associated with that attribute
             if it exists """
-        if (query not in G_NAMES):
+        if (query not in G_STR):
             print("Error! Attribute %s does not exist in grammar" % query)
-            return None
-        return grammar[query]
+            raise IndexError("Attribute %s not a member of grammar" % query)
+        return self.grammar[query]
 
+    def getConsonantBitstring(self):
+        """Returns the consonant bitstring for this language"""
+        return self.getGrammarAttr(G_STR[G_CONSONANTS])
+
+    def getVowelBitstring(self):
+        """Returns the vowel bitstring for this language"""
+        return self.getGrammarAttr(G_STR[G_VOWELS])
+
+################################################################################
+#                             Query Methods                                    #
+#                                                                              #
+################################################################################
     def containsConsonant(self, glyph):
         """Returns true if glyph is a valid consonant in this language"""
         if glyph in CONSONANT_GLYPHS:
@@ -72,9 +78,22 @@ class Language:
         else:
             return False
 
-    def containsConsonants(self, bitstring, k, mode=EQ):
+    def containsConsonants(self, bitstring, k, mode):
         """Returns true if exactly* k of the consonants in bitstring appear
-        in this language."""
+        in this language. If mode is specified, use mode (less than, etc) instead
+        of exact equality checking"""
+        template = self.getConsonantBitstring()
+        matches = compareBitstrings(template, bitstring)
+        return compareByMode(matches, k, mode)
+
+
+    def containsVowels(self, bitstring, k, mode):
+        """Returns true if exactly* k of the vowels in bitstring appear
+        in this language. If mode is specified, use mode (less than, etc) instead
+        of exact equality checking"""
+        template = self.getVowelBitstring()
+        matches = compareBitstrings(template, bitstring)
+        return compareByMode(matches, k, mode)
 
 
 
@@ -89,3 +108,41 @@ class Language:
     def __repr__(self):
         """Returns a string representation of the language (as json)"""
         return __str__(self)
+
+################################################################################
+#                            "Private" Helpers                                 #
+#                                                                              #
+################################################################################
+def compareBitstrings(s1, s2):
+    """Given two bitstrings representing the same canonical phoneme set,
+    return the number of phonemes shared between the two (the number of 1s
+    occurring at the same index)"""
+    len1 = len(s1)
+    len2 = len(s2)
+    if (len1 != len2):
+        raise ValueError("An attempt was made to compare phoneme bitstrings" +
+                         " of differing lengths!")
+    matches = 0
+    for i in range(len1):
+        if (s1[i]=="1" and s2[i]=="1"):
+            matches += 1
+    return matches
+
+def compareByMode(num1, num2, mode):
+    num1 = int(num1)
+    num2 = int(num2)
+    """Given two numbers, compare them numerically: num1 MODE num2, replacing
+    mode by >=, >, <, <=, !=, == as indicated by the value of mode. Return the
+    result of comparison"""
+    if (mode == EQ):
+        return num1 == num2
+    elif (mode == NEQ):
+        return num1 != num2
+    elif (mode == GT):
+        return num1  > num2
+    elif (mode == GEQ):
+        return num1 >= num2
+    elif (mode == LT):
+        return num1  < num2
+    elif (mode == LEQ):
+        return num1 <= num2

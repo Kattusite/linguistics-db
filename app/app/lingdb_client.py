@@ -54,7 +54,7 @@ G_STR = [
 
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
-LING_DB = None
+
 
 # Construct LING_DB
 def init_DB():
@@ -63,12 +63,23 @@ def init_DB():
     # print(LANG_DB)
     # TODO integrate typology data from TYPOLOGY_FILE
 
-def dummy(request):
-    return "SOMETHING HAPPENED!"
+LING_DB = None
+init_DB()
+
+def handleQuery(cons, k, mode):
+    # init_DB()
+    # return consonants + " " + k
+    k = int(k)
+    matches = LING_DB.queryContainsConsonants(cons, k, mode)
+    num = len(matches)
+    glyphs = str(getConsonantGlyphsFromBitstring(cons)).replace("'", "")
+    print(cons, k, mode)
+    return num;
+
 
 # Reconstruct the consonant glyphs provided in the given consonant bitstring
-def checkConsonants(consonants):
-    init_DB()
+def getConsonantGlyphsFromBitstring(consonants):
+    # init_DB()
     results = []
     for i, c in enumerate(consonants):
         if c == "1":

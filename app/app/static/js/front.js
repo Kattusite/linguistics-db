@@ -143,11 +143,29 @@ function handlePboxLabel(element) {
 
 // Submission handler to send AJAX requests to server
 function handleSubmit() {
+  var cons = $(".pbox-selector-init").attr("queryStr")
+  var consStr = $(".pbox-selector-init")[0].innerText;
+  console.log(consStr);
+  var k    = $(".active-trait").children("input").val()
+  var modeStr = $(".active-trait").children(".mode-selector").val()
+  var mode = getModeFromStr(modeStr);
+  var reply = "languages contain " + modeStr + " " + k + " of " + consStr
+
+  var payload =
+    "testAttr=testValue" +
+    "&consonants=" + cons +
+    "&k=" + k +
+    "&mode=" + mode +
+    "&reply=" + reply;
+
+
+  console.log("Sending post with payload: " + payload);
   $.post("/",
-         "testAttr=testValue&consonants=" + $(".pbox-selector-init").attr("queryStr"),
+         payload,
          callback
        );
 }
+
 
 
 /*****************************************************************************/
@@ -155,7 +173,6 @@ function handleSubmit() {
 /*****************************************************************************/
 // Callback function for AJAX -- in development
 function callback(reply) {
-  console.log(reply);
   // alert(reply);
   $("#results").text(reply)
 }
@@ -164,6 +181,7 @@ function callback(reply) {
 /*                                Creators                                   */
 /*****************************************************************************/
 // Create and return a new phoneme selector DOM element as a string
+// BUG Currently all instances share same id
 function createPhonemeSelectorString(uid) {
   // NOTE outerHTML not compatible with older browsers!
   var template = $("#pbox-template")[0];
@@ -219,6 +237,39 @@ function reloadPopovers() {
   //$("[data-toggle=popover]").popover("dispose");
   $("[data-toggle=popover]").popover();
 }
+
+// Returns the shorthand mode string from the long readable form
+// TODO make this into a dict for easier modification
+// TODO move this to python -- not really needed on frontend
+function getModeFromStr(str) {
+  if (str.includes("exactly"))            return "EQ";
+  else if (str.includes("at least"))      return "GEQ";
+  else if (str.includes("at most"))       return "LEQ";
+  else if (str.includes("not equal to"))  return "NEQ";
+  else if (str.includes("less than"))     return "LT";
+  else if (str.includes("more than"))     return "GT";
+  else {
+    console.log("Error! An illegal string was passed to getModeFromStr");
+    return "EQ";
+  }
+}
+
+// Returns the shorthand mode string from the long readable form
+// TODO make this into a dict for easier modification
+function getStrFromMode(mode) {
+  if      (mode == "EQ")  return "exactly";
+  else if (mode == "NEQ") return "not equal to";
+  else if (mode == "LEQ") return "at most";
+  else if (mode == "GEQ") return "at least";
+  else if (mode == "LT")  return "less than";
+  else if (mode == "GT")  return "more than";
+  else {
+    console.log("Error! An illegal string was passed to getStrFromMode");
+    return "exactly";
+  }
+}
+
+
 
 // Convert num to base 36 (used for unique ID generation)
 // Not strictly necessary but it makes everything look cooler.

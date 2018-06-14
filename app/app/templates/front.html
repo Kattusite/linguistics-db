@@ -29,8 +29,8 @@
       <br>
 
       <!-- results display -->
-      <div id="results" class="alert alert-info" role="alert">
-        Most languages have all of p, t, k (template)
+      <div id="results-div" class="alert alert-info" role="alert">
+        <span id="results">Submit a valid query to get started.</span>
       </div>
       <!-- dropdowns for traits -->
       <!-- currently placeholders -->
@@ -66,7 +66,16 @@
         <option>Allows syllable structure: </option>
       </select>
       <!-- Consonant Selector -->
-      <div id="consonant-selector-template" class="active-trait">Contains <input type="text" size="5" placeholder="1" value="1"> of
+      <div id="consonant-selector-template" class="active-trait">Contains
+        <select class="mode-selector">
+          <option>exactly</option>
+          <option>at least</option>
+          <option>at most</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input type="text" size="5" placeholder="1" value="1"> of
         <a class="pbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"

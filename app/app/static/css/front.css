@@ -36,6 +36,10 @@ body {
   border-radius: 5px;
 }
 
+.mode-selector {
+  padding: 3px;
+}
+
 .pbox-label {
   display: table-cell;
   width: 30px;
