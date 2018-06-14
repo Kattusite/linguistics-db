@@ -27,9 +27,9 @@ G_STR = [
     "netid",            # G_NETID
     "name",             # G_NAME
     "language",         # G_LANGUAGE
-    "num_consonants",   # G_NUM_CONSONANTS
-    "num_vowels",       # G_NUM_VOWELS
-    "num_phonemes",     # G_NUM_PHONEMES
+    "num consonants",   # G_NUM_CONSONANTS
+    "num vowels",       # G_NUM_VOWELS
+    "num phonemes",     # G_NUM_PHONEMES
     "consonants",       # G_CONSONANTS
     "vowels",           # G_VOWELS
     "phonetic",         # G_PHONETIC
