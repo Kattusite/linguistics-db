@@ -225,6 +225,16 @@ function cloneTraitTemplate() {
 // ie create phonemeSelector
 // ie create checkboxes for other traits???
 
+/*****************************************************************************/
+/*                                Getters                                    */
+/*****************************************************************************/
+
+// Get a list of active trait div query elements (those traits that would be submitted)
+function getActiveTraits() {
+  // Must first ensure trait-divs get trait-div class (removed on hide)
+  // Then:
+  // var activeList = $(".trait-div:visible")
+}
 
 /*****************************************************************************/
 /*                                Helpers                                    */
