@@ -231,9 +231,9 @@ function cloneTraitTemplate() {
 
 // Get a list of active trait div query elements (those traits that would be submitted)
 function getActiveTraits() {
-  // Must first ensure trait-divs get trait-div class (removed on hide)
-  // Then:
-  // var activeList = $(".trait-div:visible")
+  var activeDivList = $(".trait-div:visible");
+  var activeTraitList = activeDivList.children(".active-trait");
+  console.log(activeTraitList);
 }
 
 /*****************************************************************************/
