@@ -1,5 +1,5 @@
 #############################################################################
-#       lingdb.py
+#       lingdb_client.py
 #
 #############################################################################
 
@@ -7,55 +7,8 @@ import os, re
 from lingdb import LingDB
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 
-# File paths
-PROJ_ROOT_DIR = "" #BUG this changes dependent on which dir app.py is run from
-GRAMMAR_FILE  = "data/anon-grammar.csv"
-TYPOLOGY_FILE = "data/anon-typology.csv"
-
-# CSV format
-ROW_DELIMITER = "\n"   # delimits rows (might need carriage return?)
-COL_DELIMITER = ","    # delimits columns within a row
-INNER_DELIMITER = ";"  # delimits lists within a column
-
-PHONEME_DELIMITER = "/" # Used on either side of a phoneme (e.g. /d/ --> d)
-
-# CSV indices
-# Indices and human-readable strings for each column of the csv
-# NOTE Must be updated every time the csv format changes
-#GRAMMAR_HEADERS
-TIME            = 0
-NETID           = 1
-NAME            = 2
-LANGUAGE        = 3
-NUM_CONSONANTS  = 4
-NUM_VOWELS      = 5
-NUM_PHONEMES    = 6
-CONSONANTS      = 7
-VOWELS          = 8
-PHONETIC        = 9
-SYLLABLE        = 10
-
-#GRAMMAR_HEADERS as string
-G_STR = [
-    "time",             # TIME
-    "netid",            # NETID
-    "name",             # NAME
-    "language",         # LANGUAGE
-    "num_consonants",   # NUM_CONSONANTS
-    "num_vowels",       # NUM_VOWELS
-    "num_phonemes",     # NUM_PHONEMES
-    "consonants",       # CONSONANTS
-    "vowels",           # VOWELS
-    "phonetic",         # PHONETIC
-    "syllable"          # SYLLABLE
-]
-
-
-
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
-
-
 # Construct LING_DB
 def init_DB():
     global LING_DB
@@ -66,7 +19,16 @@ def init_DB():
 LING_DB = None
 init_DB()
 
-def handleQuery(cons, k, mode):
+
+def handleQuery(form):
+    """Given a form f, decide which type of query has been made, and return a
+    list of results corresponding to the languages matching that type of query"""
+
+    # placeholder
+    return queryForConsonants(form["consonants"], form["k"], form["mode"])
+
+
+def queryForConsonants(cons, k, mode):
     # init_DB()
     # return consonants + " " + k
     k = int(k)
@@ -75,7 +37,6 @@ def handleQuery(cons, k, mode):
     glyphs = str(getConsonantGlyphsFromBitstring(cons)).replace("'", "")
     print(cons, k, mode)
     return num;
-
 
 # Reconstruct the consonant glyphs provided in the given consonant bitstring
 def getConsonantGlyphsFromBitstring(consonants):

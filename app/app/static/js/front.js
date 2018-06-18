@@ -246,6 +246,21 @@ function reloadPopovers() {
   $("[data-toggle=popover]").popover();
 }
 
+// Given a dictionary, return it as a serialized string suitable for AJAX requests
+// Incredibly hacky, but robust enough
+function serialize(dict) {
+  var keys = Object.keys(dict);
+  var form = document.createElement("form");
+  for (var i = 0; i < keys.length; i++) {
+    var input = document.createElement("input");
+    input.name = keys[i];
+    input.value = dict[keys[i]];
+    form.appendChild(input);
+  }
+  return $(form).serialize();
+}
+
+
 // Returns the shorthand mode string from the long readable form
 // TODO make this into a dict for easier modification
 // TODO move this to python -- not really needed on frontend

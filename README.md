@@ -4,6 +4,8 @@ Canonical lists of consonant and vowel phonemes are located in app/phonemes/
 
 Language class is defined in app/lingdb/language.py
 
+app/data is capable of converting CSV to JSON but the code is a mess at the moment
+
 
 To-Do
 ========

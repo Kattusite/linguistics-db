@@ -9,11 +9,8 @@ def main():
         # results = course_search.course_db_query(query, semester)
         # returnObj = {"results": results, "time":time}
         # return str(returnObj)
-        consonants = request.form['consonants']
-        k = request.form['k']
-        mode = request.form['mode']
-        reply = request.form['reply']
-        result = str(lingdb_client.handleQuery(consonants, k, mode))
+        f = request.form
+        result = str(lingdb_client.handleQuery(f))
         return result + " " + reply
     return render_template('front.html')
 
