@@ -46,13 +46,22 @@ def handleQuery(query):
 def handleQueries(queries):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
+    # Can be cleaned up with comprehensions
     result_arr = []
     for query in queries:
         result_arr.append(handleQuery(queries))
 
+    if len(result_arr) == 0:
+        print("Error: attempted to handle invalid query")
+        return None # Query invalid
+
+    prev = result_arr[0]
     for result in result_arr:
+        # union the results (one at a time???)
         pass
-        
+
+
+
     return result_arr[0] # placeholder
 
 
@@ -126,9 +135,32 @@ def queryForSyllable(query):
     return num
 
 #############################################################################
-#                              List Query Methods
+#                              Combine Query Methods
 #############################################################################
+# TODO Make these methods members of the LingDB class to make them more sensible
+# (and possibly override __and__, __or__, etc)
+def intersection(a, b):
+    """Given language lists a,b, return a new list c containing the
+    intersection of the two lists (x in c exactly once iff x in a AND x in b)"""
+    setA = set(a)
+    setB = set(b)
+    intersection = setA.intersection(setB)
+    return list(intersection)
 
+def union(a, b):
+    """Given language lists a,b, return a new list c containing the
+    union of the two lists (x in a OR x in b iff x in c exactly once)"""
+    setA = set(a)
+    setB = set(b)
+    union = setA.union(setB)
+    return list(union)
+
+def implication(a, b):
+    """Given language lists a, b, return a new list c containing the elements
+    arising from the relationship if a then b (will sort out details later)"""
+    # I Don't actually think this differs from intersection--maybe edge cases?
+    # Like not in a AND not in B? think about it some more
+    return NotImplemented
 
 #############################################################################
 #                                Helper Methods

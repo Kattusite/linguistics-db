@@ -151,6 +151,19 @@ class Language:
         """Returns a string representation of the language (as json)"""
         return __str__(self)
 
+    def __eq__(self, another):
+        """Returns true if this language equals another"""
+        if type(self) != type(another):
+            return False
+        return self.data == another.data
+
+    def __hash__(self):
+        name  = self.data[G_STR[G_NAME]]
+        netid = self.data[G_STR[G_NETID]]
+        lang  = self.data[G_STR[G_LANGUAGE]]
+        return hash((name, netid, lang))
+
+
 ################################################################################
 #                            "Private" Helpers                                 #
 #                                                                              #

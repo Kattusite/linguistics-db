@@ -13,7 +13,7 @@ class LingDB:
 #                                                                              #
 ################################################################################
     def __init__(self, jsonArr):
-        """Create a lingdb from a jsonArr
+        """Create a lingdb from an array of objects (dicts) read from json
         with the format described in data/csvtojson.py"""
         self.data = []
         for jsonObj in jsonArr:
