@@ -6,14 +6,15 @@
 import os, re
 from lingdb import LingDB
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+from data import language_data
 
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
 # Construct LING_DB
 def init_DB():
     global LING_DB
-    LING_DB = LingDB(GRAMMAR_FILE, TYPOLOGY_FILE)
-    # print(LANG_DB)
+    LING_DB = LingDB(language_data)
+    # print(LING_DB)
     # TODO integrate typology data from TYPOLOGY_FILE
 
 LING_DB = None
@@ -28,6 +29,9 @@ def handleQuery(form):
     return queryForConsonants(form["consonants"], form["k"], form["mode"])
 
 
+#############################################################################
+#                                Query Methods
+#############################################################################
 def queryForConsonants(cons, k, mode):
     # init_DB()
     # return consonants + " " + k

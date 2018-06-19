@@ -151,13 +151,12 @@ function handlePboxLabel(element) {
 
 // Submission handler to send AJAX requests to server
 function handleSubmit() {
-  var cons = $(".pbox-selector-init").attr("queryStr")
-  var consStr = $(".pbox-selector-init")[0].innerText;
-  console.log(consStr);
-  var k    = $(".active-trait").children("input").val()
-  var modeStr = $(".active-trait").children(".mode-selector").val()
-  var mode = getModeFromStr(modeStr);
-  var reply = "languages contain " + modeStr + " " + k + " of " + consStr
+  // var cons = $(".pbox-selector-init").attr("queryStr")
+  // var consStr = $(".pbox-selector-init")[0].innerText;
+  // var k    = $(".active-trait").children("input").val()
+  // var modeStr = $(".active-trait").children(".mode-selector").val()
+  // var mode = getModeFromStr(modeStr);
+  // var reply = "languages contain " + modeStr + " " + k + " of " + consStr
 
   var payload =
     "testAttr=testValue" +
@@ -166,6 +165,33 @@ function handleSubmit() {
     "&mode=" + mode +
     "&reply=" + reply;
 
+  var reqArr = [];
+
+  var traits = getActiveTraits();
+  for (var i = 0; i < traits.length; i++) {
+    var t = $(traits[i]);
+    var reqObj = {};
+    var id = traits[i].id.replace(/-\d+/g, "");
+
+    var cons = t.children(".pbox-selector-init:visible").attr("queryStr");
+    var consStr = t.children(".pbox-selector-init:visible").text();
+    var k = t.children(".k-input").val()
+    var modeStr = t.children(".mode-selector").val();
+    var mode = getModeFromStr(modeStr);
+
+    // TODO generalize this
+    var reply = "contain " + modeStr + " " + k + " of " + consStr;
+
+    reqObj["trait"] = id;
+    reqObj["consonants"] = cons;
+    reqObj["k"] = k;
+    reqObj["mode"] = mode;
+    reqObj["reply"] = reply;
+
+    reqArr.push(reqObj);
+  }
+
+  payload = JSON.stringify(reqArr);
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
@@ -210,7 +236,7 @@ function createPhonemeSelectorString(uid) {
 // Create + return a clone of the trait templates
 function cloneTraitTemplate() {
   var template = $("#trait-div-template").clone()[0];
-  var uid = UID();
+  var uid = "-" + UID();
 
   template.id = template.id.replace(/-template/g, uid);
   var children = template.children;
@@ -234,6 +260,7 @@ function getActiveTraits() {
   var activeDivList = $(".trait-div:visible");
   var activeTraitList = activeDivList.children(".active-trait");
   console.log(activeTraitList);
+  return activeTraitList;
 }
 
 /*****************************************************************************/
@@ -289,6 +316,7 @@ function getModeFromStr(str) {
 
 // Returns the shorthand mode string from the long readable form
 // TODO make this into a dict for easier modification
+// TODO actually just scrap it and make strings exactly equal
 function getStrFromMode(mode) {
   if      (mode == "EQ")  return "exactly";
   else if (mode == "NEQ") return "not equal to";

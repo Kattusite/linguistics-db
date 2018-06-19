@@ -1,6 +1,7 @@
 from . import csv_importer
 from .const import *
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+import json
 
 class Language:
     """An object storing useful information about a language, and query methods
@@ -10,9 +11,9 @@ class Language:
 #                             Constructors                                     #
 #                                                                              #
 ################################################################################
-    def __init__(self, grammarRow, typologyRow):
-        self.grammar = self.createGrammarDictFromRow(grammarRow)
-        # TODO implement typology data
+    def __init__(self, jsonObj):
+        """Create a language object storing the info contained in the given json obj"""
+        self.data = jsonObj
 
 
     # Take the gindex'th element of row, and store it as a value in dict d,
@@ -48,7 +49,7 @@ class Language:
         if (query not in G_STR):
             print("Error! Attribute %s does not exist in grammar" % query)
             raise IndexError("Attribute %s not a member of grammar" % query)
-        return self.grammar[query]
+        return self.data[query]
 
     def getConsonantBitstring(self):
         """Returns the consonant bitstring for this language"""
@@ -103,7 +104,7 @@ class Language:
 ################################################################################
     def __str__(self):
         """Returns a string representation of the language (as json)"""
-        return "Language.__str__ not yet implemented"
+        return json.dumps(self.data, indent=4, ensure_ascii=False)
 
     def __repr__(self):
         """Returns a string representation of the language (as json)"""

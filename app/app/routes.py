@@ -11,6 +11,7 @@ def main():
         # return str(returnObj)
         f = request.form
         result = str(lingdb_client.handleQuery(f))
+        reply = "..."
         return result + " " + reply
     return render_template('front.html')
 

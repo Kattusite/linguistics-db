@@ -66,7 +66,7 @@ def csvToJSON():
 
         if g_list is not None:
             # Extract simple grammar attributes
-            json_obj[G_STR[G_LANGUAGE]]        = g_list[G_LANGUAGE]
+            json_obj[G_STR[G_LANGUAGE]]        = g_list[G_LANGUAGE].strip()
             json_obj[G_STR[G_NAME]]            = g_list[G_NAME]
             json_obj[G_STR[G_NETID]]           = g_list[G_NETID]
             json_obj[G_STR[G_NUM_VOWELS]]      = g_list[G_NUM_VOWELS]
