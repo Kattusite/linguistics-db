@@ -38,3 +38,5 @@ Will need to transmit:
 
 
 * Merging grammar and typology csv's into a single csv, and creating a language object from it
+
+* Investigate vis.js library (visjs.org)
