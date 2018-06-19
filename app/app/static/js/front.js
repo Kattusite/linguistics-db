@@ -161,6 +161,7 @@ function handlePboxLabel(element) {
 
 // Submission handler to send AJAX requests to server
 function handleSubmit() {
+  // TODO Document the fields of the submission
   // var cons = $(".pbox-selector-init").attr("queryStr")
   // var consStr = $(".pbox-selector-init")[0].innerText;
   // var k    = $(".active-trait").children("input").val()

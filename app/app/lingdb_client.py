@@ -40,25 +40,21 @@ def handleQuery(query):
         "syllable-selector":            queryForSyllable
     }
 
-    # The names of the arguments to be passed to the function in function_map
-    # args_map = {
-    #     "consonant-selector":           ["consonants", "k", "mode"],
-    #     "consonant-class-selector":     ["class", "k", "mode"],
-    #     "vowel-selector":               ["vowels", "k", "mode"],
-    #     "vowel-class-selector":         ["class", "k", "mode"],
-    #     "consonant-places":             [],
-    #     "consonant-manners":            [],
-    #     "complex-consonant":            [],
-    #     "tone-selector":                [],
-    #     "stress-selector":              [],
-    #     "syllable-selector":            ["syllable"]
-    # }
-
     result = function_map[trait](query)
     return result
 
-    # placeholder
-    # return queryForConsonants(form["consonants"], form["k"], form["mode"])
+def handleQueries(queries):
+    """Process multiple queries and direct them as appropriate, according to the
+    trait each one represents."""
+    result_arr = []
+    for query in queries:
+        result_arr.append(handleQuery(queries))
+
+    for result in result_arr:
+        pass
+        
+    return result_arr[0] # placeholder
+
 
 
 #############################################################################
