@@ -39,4 +39,4 @@ Will need to transmit:
 
 * Merging grammar and typology csv's into a single csv, and creating a language object from it
 
-* Investigate vis.js library (visjs.org)
+* Investigate vis.js library (visjs.org) or D3.js (d3js.org)
