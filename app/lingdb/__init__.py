@@ -1,6 +1,6 @@
 from . import csv_importer, language, const
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
-from .const import *
+from data.const import *
 import json
 
 # LingDB class
@@ -44,6 +44,9 @@ class LingDB:
                 results.append(lang)
         return results
 
+    def queryContainsConsonantClasses(self, classStr, k, mode):
+        return "TBD"
+
     def queryContainsVowels(self, bitstring, k, mode):
         """Returns a list of the languages that contain "exactly" k of the
         consonants specified by bitstring, replacing "exactly" with the specified
@@ -51,7 +54,54 @@ class LingDB:
         results = []
         for lang in self.data:
             if (lang.containsVowels(bitstring, k, mode)):
-                results.add(lang)
+                results.append(lang)
+        return results
+
+    def queryContainsVowelClasses(self, classStr, k, mode):
+        return "TBD"
+
+    def queryContainsConsonantPlaces(self):
+        """Returns a list of the languages that contain 3+ places of consonant
+        articulation"""
+        results = []
+        for lang in self.data:
+            if(lang.containsConsonantPlaces()):
+                results.append(lang)
+        return results
+
+    def queryContainsConsonantManners(self):
+        results = []
+        for lang in self.data:
+            if(lang.containsConsonantManners()):
+                results.append(lang)
+        return results
+
+    def queryContainsComplexConsonants(self):
+        results = []
+        for lang in self.data:
+            if(lang.containsComplexConsonants()):
+                results.append(lang)
+        return results
+
+    def queryContainsTone(self):
+        results = []
+        for lang in self.data:
+            if(lang.containsTone()):
+                results.append(lang)
+        return results
+
+    def queryContainsStress(self):
+        results = []
+        for lang in self.data:
+            if(lang.containsStress()):
+                results.append(lang)
+        return results
+
+    def queryContainsSyllable(self, syllable):
+        results = []
+        for lang in self.data:
+            if(lang.containsSyllable(syllable)):
+                results.append(lang)
         return results
 
 ################################################################################

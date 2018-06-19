@@ -13,10 +13,11 @@ def main():
         f = request.form
         data = json.loads(f["payload"])
         for query in data:
-            print(query)
-        result = str(lingdb_client.handleQuery(f))
-        reply = "..."
-        return result + " " + reply
+            result = str(lingdb_client.handleQuery(query))
+            reply = query["reply"]
+
+        # TODO: result, reply get overwritten at each step
+        return result + " languages " + reply
     return render_template('front.html')
 
 @app.route('/index.html')

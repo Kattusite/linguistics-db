@@ -1,5 +1,5 @@
 from . import csv_importer
-from .const import *
+from data.const import *
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 import json
 
@@ -43,13 +43,13 @@ class Language:
 #                            Getters                                           #
 #                                                                              #
 ################################################################################
-    def getGrammarAttr(self, query):
+    def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists """
-        if (query not in G_STR):
-            print("Error! Attribute %s does not exist in grammar" % query)
-            raise IndexError("Attribute %s not a member of grammar" % query)
-        return self.data[query]
+        if (key not in G_STR):
+            print("Error! Attribute %s does not exist in grammar" % key)
+            raise IndexError("Attribute %s not a member of grammar" % key)
+        return self.data[key]
 
     def getConsonantBitstring(self):
         """Returns the consonant bitstring for this language"""
@@ -95,6 +95,34 @@ class Language:
         template = self.getVowelBitstring()
         matches = compareBitstrings(template, bitstring)
         return compareByMode(matches, k, mode)
+
+    def containsVowelClasses(self, classStr, k, mode):
+        return "TBD"
+
+    def containsConsonantPlaces(self):
+        """Returns true if the language has 3+ places of consonant articulation"""
+        return self.getGrammarAttr(G_STR[G_P_3PLUS_PLACES])
+
+    def containsConsonantManners(self):
+        """Returns true if the language has 2+ manners of consonant articulation"""
+        return self.getGrammarAttr(G_STR[G_P_2PLUS_MANNERS])
+
+    def containsComplexConsonants(self):
+        """Returns true if the language has complex consonants"""
+        return self.getGrammarAttr(G_STR[G_P_COMPLEX_CONSONANTS])
+
+    def containsTone(self):
+        """Returns true if the language has tone"""
+        return self.getGrammarAttr(G_STR[G_P_TONE])
+
+    def containsStress(self):
+        """Returns true if the language has stress"""
+        return self.getGrammarAttr(G_STR[G_P_STRESS])
+
+    def containsSyllable(self, syllable):
+        """Returns true if the given syllable is legal in this language"""
+        return "TBD"
+
 
 
 

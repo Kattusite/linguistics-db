@@ -2,7 +2,17 @@
 /*                               Global Variables                            */
 /*****************************************************************************/
 
-var NUM_TRAITS = 1; // The number of traits currently being queried
+var CONSONANT_ID            = "consonant-selector";
+var CONSONANT_CLASS_ID      = "consonant-class-selector";
+var VOWEL_ID                = "vowel-selector";
+var VOWEL_CLASS_ID          = "vowel-class-selector";
+var CONSONANT_PLACES_ID      = "consonant-places";
+var CONSONANT_MANNERS_ID     = "consonant-manners";
+var COMPLEX_CONSONANT_ID    = "complex-consonant";
+var TONE_ID                 = "tone-selector";
+var STRESS_ID               = "stress-selector";
+var SYLLABLE_ID             = "syllable-selector";
+
 
 /*****************************************************************************/
 /*                                Initializers                               */
@@ -179,8 +189,42 @@ function handleSubmit() {
     var modeStr = t.children(".mode-selector").val();
     var mode = getModeFromStr(modeStr);
 
-    // TODO generalize this
-    var reply = "contain " + modeStr + " " + k + " of " + consStr;
+    // Generate the correct reply string based on the trait type
+    var reply;
+    switch (id) {
+      case CONSONANT_ID:
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case CONSONANT_CLASS_ID:
+      // TODO
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case VOWEL_ID:
+      // TODO
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case VOWEL_CLASS_ID:
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case CONSONANT_PLACES_ID:
+        reply = "contain 3+ places of articulation for consonants";
+        break;
+      case CONSONANT_MANNERS_ID:
+        reply = "contain 2+ manners of articulation for consonants";
+        break;
+      case COMPLEX_CONSONANT_ID:
+        reply = "contain complex consonants";
+        break;
+      case TONE_ID:
+        reply = "have tone";
+        break;
+      case STRESS_ID:
+        reply = "have stress";
+        break;
+      case SYLLABLE_ID:
+        reply = "allow the syllable structure" + syllable;
+        break;
+    }
 
     reqObj["trait"] = id;
     reqObj["consonants"] = cons;
@@ -303,6 +347,7 @@ function serialize(dict) {
 // TODO make this into a dict for easier modification
 // TODO move this to python -- not really needed on frontend
 function getModeFromStr(str) {
+  if (!str) return null;
   if (str.includes("exactly"))            return "EQ";
   else if (str.includes("at least"))      return "GEQ";
   else if (str.includes("at most"))       return "LEQ";
