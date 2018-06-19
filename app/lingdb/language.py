@@ -3,6 +3,19 @@ from data.const import *
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 import json
 
+
+################################################################################
+#                             Constants                                        #
+#                                                                              #
+################################################################################
+# Equality modes
+EQ  = "EQ"  # Match if the number of phoneme matches == target
+GEQ = "GEQ"  # Match if the number of phoneme matches >= target
+GT  = "GT"   # Match if the number of phoneme matches  > target
+LEQ = "LEQ"  # Match if the number of phoneme matches <= target
+LT  = "LT"   # Match if the number of phoneme matches  < target
+NEQ = "NEQ"  # Match if the number of phoneme matches != target
+
 class Language:
     """An object storing useful information about a language, and query methods
     to access that information"""
