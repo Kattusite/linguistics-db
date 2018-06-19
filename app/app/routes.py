@@ -1,6 +1,7 @@
 from . import app
 from flask import render_template, redirect, request, url_for, flash
 from . import lingdb_client
+import json
 
 @app.route("/", methods = ["GET", "POST"])
 def main():
@@ -10,6 +11,9 @@ def main():
         # returnObj = {"results": results, "time":time}
         # return str(returnObj)
         f = request.form
+        data = json.loads(f["payload"])
+        for query in data:
+            print(query)
         result = str(lingdb_client.handleQuery(f))
         reply = "..."
         return result + " " + reply

@@ -191,7 +191,8 @@ function handleSubmit() {
     reqArr.push(reqObj);
   }
 
-  payload = JSON.stringify(reqArr);
+  payload = "payload=" + JSON.stringify(reqArr);
+
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
