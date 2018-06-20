@@ -2,7 +2,17 @@
 /*                               Global Variables                            */
 /*****************************************************************************/
 
-var NUM_TRAITS = 1; // The number of traits currently being queried
+var CONSONANT_ID            = "consonant-selector";
+var CONSONANT_CLASS_ID      = "consonant-class-selector";
+var VOWEL_ID                = "vowel-selector";
+var VOWEL_CLASS_ID          = "vowel-class-selector";
+var CONSONANT_PLACES_ID      = "consonant-places";
+var CONSONANT_MANNERS_ID     = "consonant-manners";
+var COMPLEX_CONSONANT_ID    = "complex-consonant";
+var TONE_ID                 = "tone-selector";
+var STRESS_ID               = "stress-selector";
+var SYLLABLE_ID             = "syllable-selector";
+
 
 /*****************************************************************************/
 /*                                Initializers                               */
@@ -151,13 +161,13 @@ function handlePboxLabel(element) {
 
 // Submission handler to send AJAX requests to server
 function handleSubmit() {
-  var cons = $(".pbox-selector-init").attr("queryStr")
-  var consStr = $(".pbox-selector-init")[0].innerText;
-  console.log(consStr);
-  var k    = $(".active-trait").children("input").val()
-  var modeStr = $(".active-trait").children(".mode-selector").val()
-  var mode = getModeFromStr(modeStr);
-  var reply = "languages contain " + modeStr + " " + k + " of " + consStr
+  // TODO Document the fields of the submission
+  // var cons = $(".pbox-selector-init").attr("queryStr")
+  // var consStr = $(".pbox-selector-init")[0].innerText;
+  // var k    = $(".active-trait").children("input").val()
+  // var modeStr = $(".active-trait").children(".mode-selector").val()
+  // var mode = getModeFromStr(modeStr);
+  // var reply = "languages contain " + modeStr + " " + k + " of " + consStr
 
   var payload =
     "testAttr=testValue" +
@@ -165,6 +175,68 @@ function handleSubmit() {
     "&k=" + k +
     "&mode=" + mode +
     "&reply=" + reply;
+
+  var reqArr = [];
+
+  var traits = getActiveTraits();
+  for (var i = 0; i < traits.length; i++) {
+    var t = $(traits[i]);
+    var reqObj = {};
+    var id = traits[i].id.replace(/-\d+/g, "");
+
+    var cons = t.children(".pbox-selector-init:visible").attr("queryStr");
+    var consStr = t.children(".pbox-selector-init:visible").text();
+    var k = t.children(".k-input").val()
+    var modeStr = t.children(".mode-selector").val();
+    var mode = getModeFromStr(modeStr);
+
+    // Generate the correct reply string based on the trait type
+    var reply;
+    switch (id) {
+      case CONSONANT_ID:
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case CONSONANT_CLASS_ID:
+      // TODO
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case VOWEL_ID:
+      // TODO
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case VOWEL_CLASS_ID:
+        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        break;
+      case CONSONANT_PLACES_ID:
+        reply = "contain 3+ places of articulation for consonants";
+        break;
+      case CONSONANT_MANNERS_ID:
+        reply = "contain 2+ manners of articulation for consonants";
+        break;
+      case COMPLEX_CONSONANT_ID:
+        reply = "contain complex consonants";
+        break;
+      case TONE_ID:
+        reply = "have tone";
+        break;
+      case STRESS_ID:
+        reply = "have stress";
+        break;
+      case SYLLABLE_ID:
+        reply = "allow the syllable structure" + syllable;
+        break;
+    }
+
+    reqObj["trait"] = id;
+    reqObj["consonants"] = cons;
+    reqObj["k"] = k;
+    reqObj["mode"] = mode;
+    reqObj["reply"] = reply;
+
+    reqArr.push(reqObj);
+  }
+
+  payload = "payload=" + JSON.stringify(reqArr);
 
 
   console.log("Sending post with payload: " + payload);
@@ -182,7 +254,8 @@ function handleSubmit() {
 // Callback function for AJAX -- in development
 function callback(reply) {
   // alert(reply);
-  $("#results").text(reply)
+  // $("#results").text(reply)
+  $("#results").html(reply)
 }
 
 /*****************************************************************************/
@@ -210,7 +283,7 @@ function createPhonemeSelectorString(uid) {
 // Create + return a clone of the trait templates
 function cloneTraitTemplate() {
   var template = $("#trait-div-template").clone()[0];
-  var uid = UID();
+  var uid = "-" + UID();
 
   template.id = template.id.replace(/-template/g, uid);
   var children = template.children;
@@ -225,6 +298,17 @@ function cloneTraitTemplate() {
 // ie create phonemeSelector
 // ie create checkboxes for other traits???
 
+/*****************************************************************************/
+/*                                Getters                                    */
+/*****************************************************************************/
+
+// Get a list of active trait div query elements (those traits that would be submitted)
+function getActiveTraits() {
+  var activeDivList = $(".trait-div:visible");
+  var activeTraitList = activeDivList.children(".active-trait");
+  console.log(activeTraitList);
+  return activeTraitList;
+}
 
 /*****************************************************************************/
 /*                                Helpers                                    */
@@ -246,10 +330,26 @@ function reloadPopovers() {
   $("[data-toggle=popover]").popover();
 }
 
+// Given a dictionary, return it as a serialized string suitable for AJAX requests
+// Incredibly hacky, but robust enough
+function serialize(dict) {
+  var keys = Object.keys(dict);
+  var form = document.createElement("form");
+  for (var i = 0; i < keys.length; i++) {
+    var input = document.createElement("input");
+    input.name = keys[i];
+    input.value = dict[keys[i]];
+    form.appendChild(input);
+  }
+  return $(form).serialize();
+}
+
+
 // Returns the shorthand mode string from the long readable form
 // TODO make this into a dict for easier modification
 // TODO move this to python -- not really needed on frontend
 function getModeFromStr(str) {
+  if (!str) return null;
   if (str.includes("exactly"))            return "EQ";
   else if (str.includes("at least"))      return "GEQ";
   else if (str.includes("at most"))       return "LEQ";
@@ -264,6 +364,7 @@ function getModeFromStr(str) {
 
 // Returns the shorthand mode string from the long readable form
 // TODO make this into a dict for easier modification
+// TODO actually just scrap it and make strings exactly equal
 function getStrFromMode(mode) {
   if      (mode == "EQ")  return "exactly";
   else if (mode == "NEQ") return "not equal to";
