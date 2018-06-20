@@ -149,7 +149,7 @@ class Language:
 
     def __repr__(self):
         """Returns a string representation of the language (as json)"""
-        return __str__(self)
+        return self.__str__()
 
     def __eq__(self, another):
         """Returns true if this language equals another"""

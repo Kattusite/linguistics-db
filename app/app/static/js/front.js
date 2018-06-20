@@ -254,7 +254,8 @@ function handleSubmit() {
 // Callback function for AJAX -- in development
 function callback(reply) {
   // alert(reply);
-  $("#results").text(reply)
+  // $("#results").text(reply)
+  $("#results").html(reply)
 }
 
 /*****************************************************************************/

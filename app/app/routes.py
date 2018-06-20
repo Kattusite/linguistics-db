@@ -17,6 +17,7 @@ def main():
             reply = query["reply"]
 
         # TODO: result, reply get overwritten at each step
+        return lingdb_client.handleQueries(data)
         return result + " languages " + reply
     return render_template('front.html')
 

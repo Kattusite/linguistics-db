@@ -48,21 +48,39 @@ def handleQueries(queries):
     trait each one represents."""
     # Can be cleaned up with comprehensions
     result_arr = []
+    reply_arr  = []
     for query in queries:
-        result_arr.append(handleQuery(queries))
+        r = handleQuery(query)
+        s = set(r)
+        reply_arr.append(query["reply"])
+        result_arr.append(s)
 
     if len(result_arr) == 0:
         print("Error: attempted to handle invalid query")
         return None # Query invalid
 
-    prev = result_arr[0]
-    for result in result_arr:
-        # union the results (one at a time???)
-        pass
+    # Combine the results
+    # Use the union (OR)
+    uList = [x for x in set.union(*result_arr)]
+    uLen  = len(uList)
+    uStr  = " OR ".join(reply_arr)
 
+    # Use the intersection (AND)
+    iList = [x for x in set.intersection(*result_arr)]
+    iLen  = len(iList)
+    iStr  = " AND ".join(reply_arr)
 
+    # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
+    langStr = " languages "
 
-    return result_arr[0] # placeholder
+    # Merge multiple queries
+    if len(reply_arr) > 1:
+        print(len(reply_arr), " queries detected. Merging...")
+        return str(uLen) + langStr + uStr + "\n<br>\n" + str(iLen) + langStr + iStr
+
+    # If only one query, just return a single one.
+    return str(uLen) + langStr + uStr
+
 
 
 
@@ -76,18 +94,14 @@ def queryForConsonants(query):
     k = int(query["k"])
     mode = query["mode"]
     matches = LING_DB.queryContainsConsonants(cons, k, mode)
-    num = len(matches)
-    # glyphs = str(getConsonantGlyphsFromBitstring(cons)).replace("'", "") # debug
-    # print(cons, k, mode)
-    return num
+    return matches
 
 def queryForConsonantClasses(query):
     classStr = query["class"]
     k = int(query["k"])
     mode = query["mode"]
     matches = LING_DB.queryContainsConsonantClasses(classStr, k, mode)
-    num = len(matches)
-    return num
+    return matches
 
 def queryForVowels(query):
     vowels = query["vowels"]
@@ -100,45 +114,40 @@ def queryforVowelClasses(query):
     k = int(query["k"])
     mode = query["mode"]
     matches = LING_DB.queryContainsVowelClasses(classStr, k, mode)
-    num = len(matches)
-    return num
+    return matches
 
 def queryForConsonantPlaces(query):
     matches = LING_DB.queryContainsConsonantPlaces()
-    num = len(matches)
-    return num
+    return matches
 
 def queryForConsonantManners(query):
     matches = LING_DB.queryContainsConsonantManners()
-    num = len(matches)
-    return num
+    return matches
 
 def queryForComplexConsonants(query):
     matches = LING_DB.queryContainsComplexConsonants()
-    num = len(matches)
-    return num
+    return matches
 
 def queryForTone(query):
     matches = LING_DB.queryContainsTone()
-    num = len(matches)
-    return num
+    return matches
 
 def queryForStress(query):
     matches = LING_DB.queryContainsStress()
-    num = len(matches)
-    return num
+    return matches
 
 def queryForSyllable(query):
     syllable = query["syllable"]
     matches = LING_DB.queryContainsSyllable(syllable)
-    num = len(matches)
-    return num
+    return matches
 
 #############################################################################
 #                              Combine Query Methods
 #############################################################################
 # TODO Make these methods members of the LingDB class to make them more sensible
 # (and possibly override __and__, __or__, etc)
+# also right now they don't provide enough additional functionality compared to
+# set.union and the like
 def intersection(a, b):
     """Given language lists a,b, return a new list c containing the
     intersection of the two lists (x in c exactly once iff x in a AND x in b)"""
