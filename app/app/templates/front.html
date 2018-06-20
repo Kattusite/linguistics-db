@@ -51,7 +51,7 @@
     </div>
 
     <!-- Template for trait selector -->
-    <div id="trait-div-template" class="alert alert-info" role="alert">
+    <div id="trait-div-template" class="alert alert-info trait-div" role="alert">
       <!-- consider making a dropdown from bootstrap -->
       <select class="trait-selector" id="trait-select-template" onchange="handleTraitSelect(this)">
         <option>Contains consonant: </option>
@@ -75,7 +75,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input type="text" size="5" placeholder="1" value="1"> of
+        <input class="k-input" type="text" size="5" placeholder="1" value="1"> of
         <a class="pbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -92,7 +92,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input type="text" size="5" placeholder="1" value="1"> of
+        <input class="k-input" type="text" size="5" placeholder="1" value="1"> of
         <select class="">
           <option>plosives</option>
           <option>fricatives</option>
@@ -118,7 +118,7 @@
       <div id="tone-selector-template" class="inactive-trait">
         Tone (including "Pitch Accent") - coming soon
       </div>
-      <div id="tone-selector-template" class="inactive-trait">
+      <div id="stress-selector-template" class="inactive-trait">
         Predictable Stress - coming soon
       </div>
       <div id="syllable-selector-template" class="inactive-trait">

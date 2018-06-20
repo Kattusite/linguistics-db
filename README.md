@@ -4,6 +4,8 @@ Canonical lists of consonant and vowel phonemes are located in app/phonemes/
 
 Language class is defined in app/lingdb/language.py
 
+app/data is capable of converting CSV to JSON but the code is a mess at the moment
+
 
 To-Do
 ========
@@ -36,3 +38,5 @@ Will need to transmit:
 
 
 * Merging grammar and typology csv's into a single csv, and creating a language object from it
+
+* Investigate vis.js library (visjs.org) or D3.js (d3js.org)

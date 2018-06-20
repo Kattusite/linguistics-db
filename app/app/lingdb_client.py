@@ -1,82 +1,179 @@
 #############################################################################
-#       lingdb.py
+#       lingdb_client.py
 #
 #############################################################################
 
 import os, re
 from lingdb import LingDB
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
-
-# File paths
-PROJ_ROOT_DIR = "" #BUG this changes dependent on which dir app.py is run from
-GRAMMAR_FILE  = "data/anon-grammar.csv"
-TYPOLOGY_FILE = "data/anon-typology.csv"
-
-# CSV format
-ROW_DELIMITER = "\n"   # delimits rows (might need carriage return?)
-COL_DELIMITER = ","    # delimits columns within a row
-INNER_DELIMITER = ";"  # delimits lists within a column
-
-PHONEME_DELIMITER = "/" # Used on either side of a phoneme (e.g. /d/ --> d)
-
-# CSV indices
-# Indices and human-readable strings for each column of the csv
-# NOTE Must be updated every time the csv format changes
-#GRAMMAR_HEADERS
-TIME            = 0
-NETID           = 1
-NAME            = 2
-LANGUAGE        = 3
-NUM_CONSONANTS  = 4
-NUM_VOWELS      = 5
-NUM_PHONEMES    = 6
-CONSONANTS      = 7
-VOWELS          = 8
-PHONETIC        = 9
-SYLLABLE        = 10
-
-#GRAMMAR_HEADERS as string
-G_STR = [
-    "time",             # TIME
-    "netid",            # NETID
-    "name",             # NAME
-    "language",         # LANGUAGE
-    "num_consonants",   # NUM_CONSONANTS
-    "num_vowels",       # NUM_VOWELS
-    "num_phonemes",     # NUM_PHONEMES
-    "consonants",       # CONSONANTS
-    "vowels",           # VOWELS
-    "phonetic",         # PHONETIC
-    "syllable"          # SYLLABLE
-]
-
-
+from data import language_data
 
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
-
-
 # Construct LING_DB
 def init_DB():
     global LING_DB
-    LING_DB = LingDB(GRAMMAR_FILE, TYPOLOGY_FILE)
-    # print(LANG_DB)
+    LING_DB = LingDB(language_data)
+    # print(LING_DB)
     # TODO integrate typology data from TYPOLOGY_FILE
 
 LING_DB = None
 init_DB()
 
-def handleQuery(cons, k, mode):
+
+def handleQuery(query):
+    """Given a query dict, decide which type of query has been made, and return a
+    list of results corresponding to the languages matching that type of query"""
+
+    trait = query["trait"]
+
+    function_map = {
+        "consonant-selector":           queryForConsonants,
+        "consonant-class-selector":     queryForConsonantClasses,
+        "vowel-selector":               queryForVowels,
+        "vowel-class-selector":         queryforVowelClasses,
+        "consonant-places":             queryForConsonantPlaces,
+        "consonant-manners":            queryForConsonantManners,
+        "complex-consonant":            queryForComplexConsonants,
+        "tone-selector":                queryForTone,
+        "stress-selector":              queryForStress,
+        "syllable-selector":            queryForSyllable
+    }
+
+    result = function_map[trait](query)
+    return result
+
+def handleQueries(queries):
+    """Process multiple queries and direct them as appropriate, according to the
+    trait each one represents."""
+    # Can be cleaned up with comprehensions
+    result_arr = []
+    reply_arr  = []
+    for query in queries:
+        r = handleQuery(query)
+        s = set(r)
+        reply_arr.append(query["reply"])
+        result_arr.append(s)
+
+    if len(result_arr) == 0:
+        print("Error: attempted to handle invalid query")
+        return None # Query invalid
+
+    # Combine the results
+    # Use the union (OR)
+    uList = [x for x in set.union(*result_arr)]
+    uLen  = len(uList)
+    uStr  = " OR ".join(reply_arr)
+
+    # Use the intersection (AND)
+    iList = [x for x in set.intersection(*result_arr)]
+    iLen  = len(iList)
+    iStr  = " AND ".join(reply_arr)
+
+    # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
+    langStr = " languages "
+
+    # Merge multiple queries
+    if len(reply_arr) > 1:
+        print(len(reply_arr), " queries detected. Merging...")
+        return str(uLen) + langStr + uStr + "\n<br>\n" + str(iLen) + langStr + iStr
+
+    # If only one query, just return a single one.
+    return str(uLen) + langStr + uStr
+
+
+
+
+#############################################################################
+#                                Query Methods
+#############################################################################
+def queryForConsonants(query):
     # init_DB()
     # return consonants + " " + k
-    k = int(k)
+    cons = query["consonants"]
+    k = int(query["k"])
+    mode = query["mode"]
     matches = LING_DB.queryContainsConsonants(cons, k, mode)
-    num = len(matches)
-    glyphs = str(getConsonantGlyphsFromBitstring(cons)).replace("'", "")
-    print(cons, k, mode)
-    return num;
+    return matches
 
+def queryForConsonantClasses(query):
+    classStr = query["class"]
+    k = int(query["k"])
+    mode = query["mode"]
+    matches = LING_DB.queryContainsConsonantClasses(classStr, k, mode)
+    return matches
 
+def queryForVowels(query):
+    vowels = query["vowels"]
+    k = int(query["k"])
+    mode = query["mode"]
+    return "TBD"
+
+def queryforVowelClasses(query):
+    classStr = query["class"]
+    k = int(query["k"])
+    mode = query["mode"]
+    matches = LING_DB.queryContainsVowelClasses(classStr, k, mode)
+    return matches
+
+def queryForConsonantPlaces(query):
+    matches = LING_DB.queryContainsConsonantPlaces()
+    return matches
+
+def queryForConsonantManners(query):
+    matches = LING_DB.queryContainsConsonantManners()
+    return matches
+
+def queryForComplexConsonants(query):
+    matches = LING_DB.queryContainsComplexConsonants()
+    return matches
+
+def queryForTone(query):
+    matches = LING_DB.queryContainsTone()
+    return matches
+
+def queryForStress(query):
+    matches = LING_DB.queryContainsStress()
+    return matches
+
+def queryForSyllable(query):
+    syllable = query["syllable"]
+    matches = LING_DB.queryContainsSyllable(syllable)
+    return matches
+
+#############################################################################
+#                              Combine Query Methods
+#############################################################################
+# TODO Make these methods members of the LingDB class to make them more sensible
+# (and possibly override __and__, __or__, etc)
+# also right now they don't provide enough additional functionality compared to
+# set.union and the like
+def intersection(a, b):
+    """Given language lists a,b, return a new list c containing the
+    intersection of the two lists (x in c exactly once iff x in a AND x in b)"""
+    setA = set(a)
+    setB = set(b)
+    intersection = setA.intersection(setB)
+    return list(intersection)
+
+def union(a, b):
+    """Given language lists a,b, return a new list c containing the
+    union of the two lists (x in a OR x in b iff x in c exactly once)"""
+    setA = set(a)
+    setB = set(b)
+    union = setA.union(setB)
+    return list(union)
+
+def implication(a, b):
+    """Given language lists a, b, return a new list c containing the elements
+    arising from the relationship if a then b (will sort out details later)"""
+    # I Don't actually think this differs from intersection--maybe edge cases?
+    # Like not in a AND not in B? think about it some more
+    return NotImplemented
+
+#############################################################################
+#                                Helper Methods
+#############################################################################
 # Reconstruct the consonant glyphs provided in the given consonant bitstring
 def getConsonantGlyphsFromBitstring(consonants):
     # init_DB()

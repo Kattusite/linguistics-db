@@ -1,6 +1,20 @@
 from . import csv_importer
-from .const import *
+from data.const import *
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+import json
+
+
+################################################################################
+#                             Constants                                        #
+#                                                                              #
+################################################################################
+# Equality modes
+EQ  = "EQ"  # Match if the number of phoneme matches == target
+GEQ = "GEQ"  # Match if the number of phoneme matches >= target
+GT  = "GT"   # Match if the number of phoneme matches  > target
+LEQ = "LEQ"  # Match if the number of phoneme matches <= target
+LT  = "LT"   # Match if the number of phoneme matches  < target
+NEQ = "NEQ"  # Match if the number of phoneme matches != target
 
 class Language:
     """An object storing useful information about a language, and query methods
@@ -10,9 +24,9 @@ class Language:
 #                             Constructors                                     #
 #                                                                              #
 ################################################################################
-    def __init__(self, grammarRow, typologyRow):
-        self.grammar = self.createGrammarDictFromRow(grammarRow)
-        # TODO implement typology data
+    def __init__(self, jsonObj):
+        """Create a language object storing the info contained in the given json obj"""
+        self.data = jsonObj
 
 
     # Take the gindex'th element of row, and store it as a value in dict d,
@@ -42,13 +56,13 @@ class Language:
 #                            Getters                                           #
 #                                                                              #
 ################################################################################
-    def getGrammarAttr(self, query):
+    def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists """
-        if (query not in G_STR):
-            print("Error! Attribute %s does not exist in grammar" % query)
-            raise IndexError("Attribute %s not a member of grammar" % query)
-        return self.grammar[query]
+        if (key not in G_STR):
+            print("Error! Attribute %s does not exist in grammar" % key)
+            raise IndexError("Attribute %s not a member of grammar" % key)
+        return self.data[key]
 
     def getConsonantBitstring(self):
         """Returns the consonant bitstring for this language"""
@@ -95,6 +109,34 @@ class Language:
         matches = compareBitstrings(template, bitstring)
         return compareByMode(matches, k, mode)
 
+    def containsVowelClasses(self, classStr, k, mode):
+        return "TBD"
+
+    def containsConsonantPlaces(self):
+        """Returns true if the language has 3+ places of consonant articulation"""
+        return self.getGrammarAttr(G_STR[G_P_3PLUS_PLACES])
+
+    def containsConsonantManners(self):
+        """Returns true if the language has 2+ manners of consonant articulation"""
+        return self.getGrammarAttr(G_STR[G_P_2PLUS_MANNERS])
+
+    def containsComplexConsonants(self):
+        """Returns true if the language has complex consonants"""
+        return self.getGrammarAttr(G_STR[G_P_COMPLEX_CONSONANTS])
+
+    def containsTone(self):
+        """Returns true if the language has tone"""
+        return self.getGrammarAttr(G_STR[G_P_TONE])
+
+    def containsStress(self):
+        """Returns true if the language has stress"""
+        return self.getGrammarAttr(G_STR[G_P_STRESS])
+
+    def containsSyllable(self, syllable):
+        """Returns true if the given syllable is legal in this language"""
+        return "TBD"
+
+
 
 
 ################################################################################
@@ -103,11 +145,24 @@ class Language:
 ################################################################################
     def __str__(self):
         """Returns a string representation of the language (as json)"""
-        return "Language.__str__ not yet implemented"
+        return json.dumps(self.data, indent=4, ensure_ascii=False)
 
     def __repr__(self):
         """Returns a string representation of the language (as json)"""
-        return __str__(self)
+        return self.__str__()
+
+    def __eq__(self, another):
+        """Returns true if this language equals another"""
+        if type(self) != type(another):
+            return False
+        return self.data == another.data
+
+    def __hash__(self):
+        name  = self.data[G_STR[G_NAME]]
+        netid = self.data[G_STR[G_NETID]]
+        lang  = self.data[G_STR[G_LANGUAGE]]
+        return hash((name, netid, lang))
+
 
 ################################################################################
 #                            "Private" Helpers                                 #
