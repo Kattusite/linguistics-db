@@ -6,18 +6,16 @@ var CONSONANT_ID            = "consonant-selector";
 var CONSONANT_CLASS_ID      = "consonant-class-selector";
 var VOWEL_ID                = "vowel-selector";
 var VOWEL_CLASS_ID          = "vowel-class-selector";
-var CONSONANT_PLACES_ID      = "consonant-places";
-var CONSONANT_MANNERS_ID     = "consonant-manners";
+var CONSONANT_PLACES_ID     = "consonant-places";
+var CONSONANT_MANNERS_ID    = "consonant-manners";
 var COMPLEX_CONSONANT_ID    = "complex-consonant";
 var TONE_ID                 = "tone-selector";
 var STRESS_ID               = "stress-selector";
 var SYLLABLE_ID             = "syllable-selector";
 
-
 /*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
-
 // On load initializer function
 function frontInit() {
   console.log("Loading page...");
@@ -29,7 +27,6 @@ function frontInit() {
   consonantPopoverInit();
   vowelPopoverInit();
   reloadPopovers();
-
 }
 
 // Initialize trait selector divs
@@ -169,6 +166,7 @@ function handlePboxLabel(element) {
 
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
+// TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
 function handleSubmit() {
   var reqArr = [];
 
@@ -235,7 +233,6 @@ function handleSubmit() {
 
   var payload = "payload=" + JSON.stringify(reqArr);
 
-
   console.log("Sending post with payload: " + payload);
   $.post("/",
          payload,
@@ -243,14 +240,11 @@ function handleSubmit() {
        );
 }
 
-
-
 /*****************************************************************************/
 /*                                Callback                                   */
 /*****************************************************************************/
 // Callback function for AJAX -- in development
 function callback(reply) {
-  // alert(reply);
   // $("#results").text(reply)
   $("#results").html(reply)
 }
@@ -342,21 +336,6 @@ function reloadPopovers() {
   $("[data-toggle=popover]").popover();
 }
 
-// Given a dictionary, return it as a serialized string suitable for AJAX requests
-// Incredibly hacky, but robust enough
-function serialize(dict) {
-  var keys = Object.keys(dict);
-  var form = document.createElement("form");
-  for (var i = 0; i < keys.length; i++) {
-    var input = document.createElement("input");
-    input.name = keys[i];
-    input.value = dict[keys[i]];
-    form.appendChild(input);
-  }
-  return $(form).serialize();
-}
-
-
 // Returns the shorthand mode string from the long readable form
 // TODO make this into a dict for easier modification
 // TODO move this to python -- not really needed on frontend
@@ -389,8 +368,6 @@ function getStrFromMode(mode) {
     return "exactly";
   }
 }
-
-
 
 // Convert num to base 36 (used for unique ID generation)
 // Not strictly necessary but it makes everything look cooler.
