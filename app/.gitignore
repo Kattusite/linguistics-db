@@ -1,3 +1,2 @@
-mongolab_credentials
-mongolab_credentials.bat
-planner/__pycache__/**
+__pycache__
+__pycache__/**
