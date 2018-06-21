@@ -4,6 +4,12 @@ HASH_SIZE = 16
 
 DATA_PATH = "data/"
 
+# CSV format
+ROW_DELIMITER = "\n"    # delimits rows (might need carriage return?)
+COL_DELIMITER = ","     # delimits columns within a row
+INNER_DELIMITER = ";"   # delimits lists within a column
+PHONEME_DELIMITER = "/" # Used on either side of a phoneme (e.g. /d/ --> d)
+
 # The indices into the G_STR array corresponding to each attribute's name
 G_TIME            = 0
 G_NETID           = 1

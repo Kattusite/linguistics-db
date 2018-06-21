@@ -6,15 +6,14 @@ from operator import itemgetter, attrgetter
 from phonemes import CONSONANT_GLYPHS, VOWEL_GLYPHS
 from lingdb import const as ling_const
 from .const import *
-
-
+#BUG Doesn't read correct encoding from csv, causing nonstandard chars to fail
 # Read in the CSV files from the declared constant filenames, and then
 # Return a JSON object representing that csv data
 def csvToJSON():
-    grammarCSV = open(DATA_PATH + "unanon-grammar.csv", "r", newline='')
+    grammarCSV = open(DATA_PATH + "unanon-grammar.csv", "r", newline='', encoding='utf-8')
     grammarReader = csv.reader(grammarCSV)
 
-    typologyCSV = open(DATA_PATH + "unanon-typology.csv", "r", newline='')
+    typologyCSV = open(DATA_PATH + "unanon-typology.csv", "r", newline='', encoding='utf-8')
     typologyReader = csv.reader(typologyCSV)
 
     t_header = []
@@ -79,8 +78,8 @@ def csvToJSON():
             json_obj[G_STR[G_VOWELS]]          = csvVowelsToBitstring(g_list[G_VOWELS])
 
             # Extract phonetic + syllable info
-            phonetic = g_list[G_PHONETIC].split(ling_const.INNER_DELIMITER)
-            syllable = g_list[G_SYLLABLE].split(ling_const.INNER_DELIMITER)
+            phonetic = g_list[G_PHONETIC].split(INNER_DELIMITER)
+            syllable = g_list[G_SYLLABLE].split(INNER_DELIMITER)
 
             # Process phonetics
             # Offset indices relative to this one
@@ -137,7 +136,7 @@ def main():
     outputCSV = open(DATA_PATH + "anon-combined.csv", "w", newline='')
     outputCSVWriter = csv.writer(outputCSV)
 
-    outputJSON = open(DATA_PATH + "anon-combined.json", "w")
+    outputJSON = open(DATA_PATH + "anon-combined.json", "w", encoding='utf-8')
 
     json.dump(json_array,
               outputJSON,
@@ -155,10 +154,10 @@ def asciify(str):
 # phonemeList[i] is found in csvStr
 # phonemeList is a canonical list of the canonical phonemes to be used to create the string
 def csvPhonemesToBitstring(csvStr, phonemeList):
-    csvStr = csvStr.replace(ling_const.PHONEME_DELIMITER, "")
-    csvList = csvStr.split(ling_const.INNER_DELIMITER)
+    csvStr  = csvStr.replace(PHONEME_DELIMITER, "")
+    csvList = csvStr.split(INNER_DELIMITER)
     bitList = []
-
+    print(csvList)
     # Iterate over canonical list and match against csvList
     for phoneme in phonemeList:
         if phoneme in csvList:
