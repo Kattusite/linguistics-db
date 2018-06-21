@@ -79,3 +79,7 @@ body {
 .pbox-label.pbox-label-selected {
   background-color: #b0b0b0;
 }
+
+span[data-toggle=tooltip] {
+  border-bottom: 1px dotted #000;
+}
