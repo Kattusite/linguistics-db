@@ -50,6 +50,7 @@ function frontInit() {
   consonantPopoverInit();
   vowelPopoverInit();
   reloadPopovers();
+  reloadTooltips();
 }
 
 // Initialize trait selector divs
@@ -270,6 +271,7 @@ function handleSubmit() {
 function callback(reply) {
   // $("#results").text(reply)
   $("#results").html(reply)
+  reloadTooltips();
 }
 
 /*****************************************************************************/
@@ -357,6 +359,10 @@ function reloadPopovers() {
   // BUG? Need to hide and remove old popover
   //$("[data-toggle=popover]").popover("dispose");
   $("[data-toggle=popover]").popover();
+}
+
+function reloadTooltips() {
+  $("[data-toggle=tooltip]").tooltip();
 }
 
 // Returns the shorthand mode string from the long readable form

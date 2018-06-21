@@ -59,47 +59,112 @@ def handleQueries(queries):
 
     # Combine the results
     # TODO Clean this whole section up (add HTML styling + a separate formatter function)
-    langStr = " languages "
+    # langStr = " languages "
+
     nlStr   = "\n<br>\n"
 
-    dbLen = len(LING_DB)
-
-    # Use the union (OR)
-    uList = [x for x in set.union(*result_arr)]
-    uLen  = len(uList)
-    uStr  = " OR ".join(reply_arr)
-
-    # Use the intersection (AND)
-    iList = [x for x in set.intersection(*result_arr)]
-    iLen  = len(iList)
-    iStr  = " AND ".join(reply_arr)
-
-    # Use a conditional intersection (IMPLIES)
-    # TODO WIP
-    # If Language has X, then language has Y
-    #
-    #   X    Y   X --> Y
-    #   0    0      1
-    #   0    1      1
-    #   1    0      0
-    #   1    1      1
-    cList  = [x for x in set.intersection(*result_arr)]
-    cLen1  = len(result_arr[0])  # How many satisfy the "IF" condition
-    cLen2  = len(cList)          # How many satisfy the "THEN" condition
-    cStr   = " that " + reply_arr[0] + " also " + " AND ".join(reply_arr[1:])
-    cRet   = str(cLen2) + " of the " + str(cLen1) + langStr + cStr
+    uRep = createUnionReply(result_arr, reply_arr, LING_DB)
+    iRep = createIntersectionReply(result_arr, reply_arr, LING_DB)
+    cRep = createConditionalReply(result_arr, reply_arr, LING_DB)
 
     # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
+    # TODO also allow for displaying the results of each subquery alone--
+    # If I query for A & B & C, also display just A, just B, just C. 
 
     # Merge multiple queries
     if len(reply_arr) > 1:
         # print(len(reply_arr), " queries detected. Merging...")
-        return (str(uLen) + " / " + str(dbLen) + langStr + uStr + nlStr +
-                str(iLen) + " / " + str(dbLen) + langStr + iStr + nlStr +
-                cRet)
+        return nlStr.join([uRep, iRep, cRep])
 
     # If only one query, just return a single one.
-    return str(uLen) + " / " + str(dbLen) + langStr + uStr
+    return uRep
+
+#############################################################################
+#                          Formatted Reply Methods
+#############################################################################
+
+def mergeReplies(replies, joinWord):
+    """Join together the strings in replies, using joinWord as a semantic separator
+    (e.g. "and", "or")"""
+    # TODO implement this for more modularity in the createReply functions
+    return NotImplemented
+
+def createUnionReply(results, replies, db):
+    """Return a string of HTML representing the formatted results to be
+    displayed for the given results list and replies list, and containing db,
+    assuming the queries are joined together using union (OR)"""
+    matches = [x.getLanguage() for x in set.union(*results)]
+    num = len(matches)
+    den = len(db)
+    reply = "".join(["<b>", "</b><i> or </i><b>".join(replies), "</b>"])
+    frac  = createFractionHTML(num, den)
+    return " ".join([frac, reply])
+
+def createIntersectionReply(results, replies, db):
+    """Return a string of HTML representing the formatted results to be
+    displayed for the given results list and replies list, and containing db,
+    assuming the queries are joined together using intersection (AND)"""
+    matches = [x.getLanguage() for x in set.intersection(*results)]
+    num = len(matches)
+    den = len(db)
+    reply = "".join(["<b>", "</b> and <b>".join(replies), "</b>"])
+    frac  = createFractionHTML(num, den)
+    return " ".join([frac, reply])
+
+def createConditionalReply(results, replies, db):
+    """Return a string of HTML representing the formatted results to be
+    displayed for the given results list and replies list, and containing db,
+    assuming the queries are joined together using conditional (R[0] implies R[1,2,3,...])"""
+    matches = [x.getLanguage() for x in set.intersection(*results)]
+    num = len(matches)
+    den = len(results[0])
+    ifReply   = "".join([" that <b>", replies[0], "</b> also "])
+    thenReply = "".join(["<b>", "</b> and <b>".join(replies[1:]), "</b>"])
+    frac  = createFractionHTML(num, den)
+    return " ".join([frac, ifReply, thenReply])
+
+
+def createFractionHTML(num, den):
+    float = num / den
+    quantifier = floatToQuantifier(float)
+    frac = "".join(["<span style='font-size: x-small;'>",
+                    "(%d / %d)" % (num, den),
+                    "</span>"])
+    text = "".join([quantifier, " languages ", frac])
+    ret  = "".join(["<span ",
+                    "data-toggle='tooltip' ",
+                    "title='%d%% of languages matched'" % round(float * 100),
+                    ">",
+                    text,
+                    "</span>"])
+    return ret
+
+
+def floatToQuantifier(float):
+    """Given a floating point number float in the range 0 to 1, return a quantifier
+    string like "all", "nearly all", "few", "no" to represent it"""
+    if float < 0 or float > 1:
+        raise ValueError("Error: Float %f is not in the range [0,1]!" % float)
+    elif float == 0:
+        return "No"
+    elif float < 0.10:
+        return "Hardly any"
+    elif float < 0.20:
+        return "Few"
+    elif float < 0.30:
+        return "Not many"
+    elif float < 0.40:
+        return "Some"
+    elif float < 0.55:
+        return "A lot of"
+    elif float < 0.65:
+        return "Many"
+    elif float < 0.85:
+        return "Most"
+    elif float < 1:
+        return "Nearly all"
+    else:
+        return "All"
 
 #############################################################################
 #                                Query Methods

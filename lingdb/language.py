@@ -55,6 +55,9 @@ class Language:
 #                            Getters                                           #
 #                                                                              #
 ################################################################################
+    def getLanguage(self):
+        return self.getGrammarAttr(G_STR[G_LANGUAGE])
+
     def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists """
