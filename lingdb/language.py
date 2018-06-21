@@ -1,4 +1,3 @@
-from . import csv_importer
 from data.const import *
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 import json
