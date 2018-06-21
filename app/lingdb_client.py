@@ -69,7 +69,7 @@ def handleQueries(queries):
 
     # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
     # TODO also allow for displaying the results of each subquery alone--
-    # If I query for A & B & C, also display just A, just B, just C. 
+    # If I query for A & B & C, also display just A, just B, just C.
 
     # Merge multiple queries
     if len(reply_arr) > 1:
@@ -141,6 +141,7 @@ def createFractionHTML(num, den):
 
 
 def floatToQuantifier(float):
+    # TODO Cut down on the number of quantifiers -- they are oversaturated and lose some meaning
     """Given a floating point number float in the range 0 to 1, return a quantifier
     string like "all", "nearly all", "few", "no" to represent it"""
     if float < 0 or float > 1:
