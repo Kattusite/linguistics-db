@@ -1,3 +1,6 @@
+# Canonical Consonant Order v1.0
+# Be sure to check carefully before & after changing this list, as it may have
+# unintended consequences.
 CONSONANT_GLYPHS = [
   "n",
   "t",

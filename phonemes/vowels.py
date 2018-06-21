@@ -1,3 +1,6 @@
+# Canonical Vowel Order v1.0 
+# Be sure to check carefully before & after changing this list, as it may have
+# unintended consequences.
 VOWEL_GLYPHS = [
     "a",
     "e",

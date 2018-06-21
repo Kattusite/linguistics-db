@@ -115,4 +115,4 @@ class LingDB:
         return json.dumps(self.data)
 
     def __len__(self):
-        return size(self)
+        return self.size()

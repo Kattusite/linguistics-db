@@ -58,6 +58,12 @@ def handleQueries(queries):
         return None # Query invalid
 
     # Combine the results
+    # TODO Clean this whole section up (add HTML styling + a separate formatter function)
+    langStr = " languages "
+    nlStr   = "\n<br>\n"
+
+    dbLen = len(LING_DB)
+
     # Use the union (OR)
     uList = [x for x in set.union(*result_arr)]
     uLen  = len(uList)
@@ -68,16 +74,32 @@ def handleQueries(queries):
     iLen  = len(iList)
     iStr  = " AND ".join(reply_arr)
 
+    # Use a conditional intersection (IMPLIES)
+    # TODO WIP
+    # If Language has X, then language has Y
+    #
+    #   X    Y   X --> Y
+    #   0    0      1
+    #   0    1      1
+    #   1    0      0
+    #   1    1      1
+    cList  = [x for x in set.intersection(*result_arr)]
+    cLen1  = len(result_arr[0])  # How many satisfy the "IF" condition
+    cLen2  = len(cList)          # How many satisfy the "THEN" condition
+    cStr   = " that " + reply_arr[0] + " also " + " AND ".join(reply_arr[1:])
+    cRet   = str(cLen2) + " of the " + str(cLen1) + langStr + cStr
+
     # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
-    langStr = " languages "
 
     # Merge multiple queries
     if len(reply_arr) > 1:
         # print(len(reply_arr), " queries detected. Merging...")
-        return str(uLen) + langStr + uStr + "\n<br>\n" + str(iLen) + langStr + iStr
+        return (str(uLen) + " / " + str(dbLen) + langStr + uStr + nlStr +
+                str(iLen) + " / " + str(dbLen) + langStr + iStr + nlStr +
+                cRet)
 
     # If only one query, just return a single one.
-    return str(uLen) + langStr + uStr
+    return str(uLen) + " / " + str(dbLen) + langStr + uStr
 
 #############################################################################
 #                                Query Methods
