@@ -157,7 +157,7 @@ def csvPhonemesToBitstring(csvStr, phonemeList):
     csvStr  = csvStr.replace(PHONEME_DELIMITER, "")
     csvList = csvStr.split(INNER_DELIMITER)
     bitList = []
-    print(csvList)
+
     # Iterate over canonical list and match against csvList
     for phoneme in phonemeList:
         if phoneme in csvList:

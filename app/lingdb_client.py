@@ -124,7 +124,8 @@ def queryForVowels(query):
     vowels = query["vowels"]
     k = int(query["k"])
     mode = query["mode"]
-    return "TBD"
+    matches = LING_DB.queryContainsVowels(vowels, k, mode)
+    return matches
 
 def queryforVowelClasses(query):
     classStr = query["class"]
