@@ -168,9 +168,8 @@ function handlePboxLabel(element) {
 }
 
 // Submission handler to send AJAX requests to server
+// TODO Document the fields of the submission
 function handleSubmit() {
-  // TODO Document the fields of the submission
-
   var reqArr = [];
 
   var traits = getActiveTraits();
@@ -179,11 +178,13 @@ function handleSubmit() {
     var reqObj = {};
     var id = traits[i].id.replace(/-\d+/g, "");
 
-    var cons = t.children(".pbox-selector-init:visible").attr("queryStr");
-    var consStr = t.children(".pbox-selector-init:visible").text();
-    var k = t.children(".k-input").val()
-    var modeStr = t.children(".mode-selector").val();
-    var mode = getModeFromStr(modeStr);
+    var cons      = t.children(".cbox-selector-init:visible").attr("queryStr");
+    var vowel     = t.children(".vbox-selector-init:visible").attr("queryStr");
+    var consStr   = t.children(".cbox-selector-init:visible").text();
+    var vowelStr  = t.children(".vbox-selector-init:visible").text();
+    var k         = t.children(".k-input").val()
+    var modeStr   = t.children(".mode-selector").val();
+    var mode      = getModeFromStr(modeStr);
 
     // Generate the correct reply string based on the trait type
     var reply;
@@ -197,10 +198,10 @@ function handleSubmit() {
         break;
       case VOWEL_ID:
       // TODO
-        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case VOWEL_CLASS_ID:
-        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case CONSONANT_PLACES_ID:
         reply = "contain 3+ places of articulation for consonants";
@@ -222,11 +223,12 @@ function handleSubmit() {
         break;
     }
 
-    reqObj["trait"] = id;
-    reqObj["consonants"] = cons;
-    reqObj["k"] = k;
-    reqObj["mode"] = mode;
-    reqObj["reply"] = reply;
+    reqObj["trait"]       = id;
+    reqObj["consonants"]  = cons;
+    reqObj["vowels"]      = vowel;
+    reqObj["k"]           = k;
+    reqObj["mode"]        = mode;
+    reqObj["reply"]       = reply;
 
     reqArr.push(reqObj);
   }

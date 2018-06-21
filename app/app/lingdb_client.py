@@ -24,7 +24,7 @@ init_DB()
 def handleQuery(query):
     """Given a query dict, decide which type of query has been made, and return a
     list of results corresponding to the languages matching that type of query"""
-
+    print(query)
     trait = query["trait"]
 
     function_map = {
