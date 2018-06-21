@@ -26,7 +26,8 @@ function frontInit() {
   traitSelectorInit();
 
   // Initialize popovers
-  phonemePopoverInit();
+  consonantPopoverInit();
+  vowelPopoverInit();
   reloadPopovers();
 
 }
@@ -43,14 +44,27 @@ function traitSelectorInit() {
   }
 }
 
-// Initialize all uninitialized phoneme selector popovers
-function phonemePopoverInit() {
-  var str = createPhonemeSelectorString();
+// Initialize all uninitialized consonant selector popovers
+function consonantPopoverInit() {
+  // TODO the first two lines are basically useless right now as the UID is mishandled
+  // Try using jQuery.each() for "more correct" iteration
+  var str = createConsonantSelectorString();
   var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
-  $(".pbox-selector-uninit").attr("data-content", createPhonemeSelectorString());
-  $(".pbox-selector-uninit").attr("id", "pbox-selector-" + uid);
-  $(".pbox-selector-uninit").addClass("pbox-selector-init");
-  $(".pbox-selector-uninit").removeClass("pbox-selector-uninit");
+  $(".cbox-selector-uninit").attr("data-content", createConsonantSelectorString());
+  $(".cbox-selector-uninit").attr("id", "cbox-selector-" + uid);
+  $(".cbox-selector-uninit").addClass("cbox-selector-init");
+  $(".cbox-selector-uninit").removeClass("cbox-selector-uninit");
+}
+
+// Initialize all uninitialized vowel selector popovers
+function vowelPopoverInit() {
+  // TODO the first two lines are basically useless right now as the UID is mishandled
+  var str = createVowelSelectorString();
+  var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
+  $(".vbox-selector-uninit").attr("data-content", createVowelSelectorString());
+  $(".vbox-selector-uninit").attr("id", "vbox-selector-" + uid);
+  $(".vbox-selector-uninit").addClass("vbox-selector-init");
+  $(".vbox-selector-uninit").removeClass("vbox-selector-uninit");
 }
 
 /*****************************************************************************/
@@ -62,7 +76,6 @@ function phonemePopoverInit() {
 function handleSingleTrait() {
   console.log("single clicked");
   hideElement($("#trait-divs").children()[1]);
-  NUM_TRAITS = 1;
 }
 
 // On click handler for double trait button
@@ -70,7 +83,6 @@ function handleSingleTrait() {
 function handleDoubleTrait() {
   console.log("double clicked");
   unhideElement($("#trait-divs").children()[1]);
-  NUM_TRAITS = 2;
 }
 
 // On change handler for selecting a trait from dropdown.
@@ -89,7 +101,6 @@ function handleTraitSelect(element) {
 // On click function for element representing a label in the pbox.
 // Save the state of the pbox inside the data-content, reload popover
 // Update link text.
-// NOTE Setting "checked" is not IE friendly
 // NOTE This is a potentially slow function (string concat + iterating over all boxes)
 function handlePboxLabel(element) {
   // (Un)select the pbox label.
@@ -102,11 +113,7 @@ function handlePboxLabel(element) {
 
   // Log the click.
   var glyph = element.innerText;
-  console.log("Button " + glyph + " clicked.");
-
-  // Find the checkbox and table
-  var tgt = "#" + element.getAttribute("for");
-  var checkbox = $(tgt)[0];
+  // console.log("Button " + glyph + " clicked.");
 
   //         label  -->    td     -->     tr    --> tablebody --> table
   var table = element.parentElement.parentElement.parentElement.parentElement
@@ -123,6 +130,9 @@ function handlePboxLabel(element) {
     for (var j = 0; j < entries.length; j++) {
       var td = entries[j];
       var box = td.children[0];
+      if ($(box).hasClass("pbox-label-empty")) {
+        continue;
+      }
       if ($(box).hasClass("pbox-label-selected")) {
         glyphList.push($(box).text());
         queryStr = queryStr + "1";
@@ -133,8 +143,8 @@ function handlePboxLabel(element) {
     }
   }
 
-
   // Update the link text to be the glyph list, or placeholder if empty.
+  // NOTE [aria-describedby] might misbehave for multiple phoneme selectors present on the document at once
   var link = $("[aria-describedby]");
   if (glyphList.length == 0) {
     link.text("Select phonemes...");
@@ -155,27 +165,11 @@ function handlePboxLabel(element) {
 
   // Save the content changes in the popover attribute.
   link.attr("data-content", str);
-
-  //reloadPopovers();
 }
 
 // Submission handler to send AJAX requests to server
+// TODO Document the fields of the submission
 function handleSubmit() {
-  // TODO Document the fields of the submission
-  // var cons = $(".pbox-selector-init").attr("queryStr")
-  // var consStr = $(".pbox-selector-init")[0].innerText;
-  // var k    = $(".active-trait").children("input").val()
-  // var modeStr = $(".active-trait").children(".mode-selector").val()
-  // var mode = getModeFromStr(modeStr);
-  // var reply = "languages contain " + modeStr + " " + k + " of " + consStr
-
-  var payload =
-    "testAttr=testValue" +
-    "&consonants=" + cons +
-    "&k=" + k +
-    "&mode=" + mode +
-    "&reply=" + reply;
-
   var reqArr = [];
 
   var traits = getActiveTraits();
@@ -184,11 +178,13 @@ function handleSubmit() {
     var reqObj = {};
     var id = traits[i].id.replace(/-\d+/g, "");
 
-    var cons = t.children(".pbox-selector-init:visible").attr("queryStr");
-    var consStr = t.children(".pbox-selector-init:visible").text();
-    var k = t.children(".k-input").val()
-    var modeStr = t.children(".mode-selector").val();
-    var mode = getModeFromStr(modeStr);
+    var cons      = t.children(".cbox-selector-init:visible").attr("queryStr");
+    var vowel     = t.children(".vbox-selector-init:visible").attr("queryStr");
+    var consStr   = t.children(".cbox-selector-init:visible").text();
+    var vowelStr  = t.children(".vbox-selector-init:visible").text();
+    var k         = t.children(".k-input").val()
+    var modeStr   = t.children(".mode-selector").val();
+    var mode      = getModeFromStr(modeStr);
 
     // Generate the correct reply string based on the trait type
     var reply;
@@ -202,10 +198,10 @@ function handleSubmit() {
         break;
       case VOWEL_ID:
       // TODO
-        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case VOWEL_CLASS_ID:
-        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case CONSONANT_PLACES_ID:
         reply = "contain 3+ places of articulation for consonants";
@@ -227,16 +223,17 @@ function handleSubmit() {
         break;
     }
 
-    reqObj["trait"] = id;
-    reqObj["consonants"] = cons;
-    reqObj["k"] = k;
-    reqObj["mode"] = mode;
-    reqObj["reply"] = reply;
+    reqObj["trait"]       = id;
+    reqObj["consonants"]  = cons;
+    reqObj["vowels"]      = vowel;
+    reqObj["k"]           = k;
+    reqObj["mode"]        = mode;
+    reqObj["reply"]       = reply;
 
     reqArr.push(reqObj);
   }
 
-  payload = "payload=" + JSON.stringify(reqArr);
+  var payload = "payload=" + JSON.stringify(reqArr);
 
 
   console.log("Sending post with payload: " + payload);
@@ -261,22 +258,37 @@ function callback(reply) {
 /*****************************************************************************/
 /*                                Creators                                   */
 /*****************************************************************************/
+// Create and return a new consonant selector DOM element as a string
+function createConsonantSelectorString(uid) {
+  return createPhonemeSelectorString("c", uid);
+}
+
+// Create and return a new vowel selector DOM element as a string
+function createVowelSelectorString(uid) {
+  return createPhonemeSelectorString("v", uid);
+}
+
 // Create and return a new phoneme selector DOM element as a string
+// Use the string type to choose between consonant ("c") or vowel ("v")
 // BUG Currently all instances share same id
-function createPhonemeSelectorString(uid) {
-  // NOTE outerHTML not compatible with older browsers!
-  var template = $("#pbox-template")[0];
+// NOTE outerHTML not compatible with older browsers!
+function createPhonemeSelectorString(type, uid) {
+  if (!type) {
+    console.err("Error: creating a typeless phoneme selector")
+    type = "c";
+  }
   if (!uid) {
     uid = UID();
   }
+  var template = $("#" + type + "box-template")[0];
   template.id += "-" + uid;
   var str = template.outerHTML;
 
   // Add a UID to each id= and for= attribute\
-  str = str.replace(/(pbox-[^\"0-9][^\"0-9]?-)template/g, "$1" + uid);
+  str = str.replace(/(box-[^\"0-9][^\"0-9]?-)template/g, "$1" + uid);
 
   // Change the template id back to original
-  template.id = "pbox-template";
+  template.id = type + "box-template";
   return str;
 }
 

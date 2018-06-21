@@ -1,43 +1,46 @@
-# NOTE Need to revise this to import from phonemes
-PHONEME_GLYPHS = {
-  "n":"n",
-  "t":"t",
-  "m":"m",
-  "k":"k",
-  "j":"j",
-  "s":"s",
-  "p":"p",
-  "l":"l",
-  "w":"w",
-  "h":"h",
-  "b":"b",
-  "d":"d",
-  "g":"g",
-  "engma":"ŋ",
-  "esh":"ʃ",
-  "glottal stop":"ʔ",
-  "voiceless postalveolar affricate":"tʃ",
-  "f":"f",
-  "r":"r",
-  "palatal nasal":"ɲ",
-  "z":"z",
-  "voiceless alveolar affricate":"ts",
-  "voiced postalveolar affricate":"dʒ",
-  "x":"x",
-  "v":"v",
-}
+from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 
 PER_ROW = 5
 
+
+# TODO modularize into a single function that takes a glyph list and v/c selector to indicate vowel or consonant
+
+# Generate consonant table (cbox)
+print("\n\n\n")
 print("<tablebody>")
-for i, phoneme in enumerate(PHONEME_GLYPHS):
+for i, phoneme in enumerate(CONSONANT_GLYPHS):
     if (i % PER_ROW == 0):
         print("  <tr>")
-    a = '    <td><div id="pbox-%(glyph)s-template" class="pbox-label" onclick=handlePboxLabel(this)>%(glyph)s</div>'
-    c = (a + '</td>') % {"glyph": PHONEME_GLYPHS[phoneme]}
+    a = '    <td><div id="cbox-%(glyph)s-template" class="pbox-label" onclick=handlePboxLabel(this)>%(glyph)s</div>'
+    c = (a + '</td>') % {"glyph": phoneme}
     print(c)
     if (i % PER_ROW == PER_ROW-1):
         print("  </tr>")
+print("</tablebody>")
 
 
+# Generate vowel table (vbox)
+print("\n\n\n")
+print("<tablebody>")
+for i, phoneme in enumerate(VOWEL_GLYPHS):
+    # if on first element in row, start a new <tr>
+    if (i % PER_ROW == 0):
+        print("  <tr>")
+
+    # if on last row, attempt to center
+    if (i // PER_ROW == len(VOWEL_GLYPHS) // PER_ROW):
+        howManyOnThisRow = len(VOWEL_GLYPHS) % PER_ROW
+        howManyPadding = PER_ROW - howManyOnThisRow
+        howManyPaddingLeft = howManyPadding // 2
+        # Pad on the left with empty td
+        if i % PER_ROW < howManyPaddingLeft:
+            print('    <td><div class="pbox-label-empty"></div></td>')
+
+    a = '    <td><div id="vbox-%(glyph)s-template" class="pbox-label" onclick=handlePboxLabel(this)>%(glyph)s</div>'
+    c = (a + '</td>') % {"glyph": phoneme}
+    print(c)
+
+    # if on last element in row, terminate <tr>
+    if (i % PER_ROW == PER_ROW-1):
+        print("  </tr>")
 print("</tablebody>")
