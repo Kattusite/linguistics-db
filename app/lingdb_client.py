@@ -14,7 +14,6 @@ from data import language_data
 def init_DB():
     global LING_DB
     LING_DB = LingDB(language_data)
-    # print(LING_DB)
     # TODO integrate typology data from TYPOLOGY_FILE
 
 LING_DB = None
@@ -24,7 +23,6 @@ init_DB()
 def handleQuery(query):
     """Given a query dict, decide which type of query has been made, and return a
     list of results corresponding to the languages matching that type of query"""
-    print(query)
     trait = query["trait"]
 
     function_map = {
@@ -75,14 +73,11 @@ def handleQueries(queries):
 
     # Merge multiple queries
     if len(reply_arr) > 1:
-        print(len(reply_arr), " queries detected. Merging...")
+        # print(len(reply_arr), " queries detected. Merging...")
         return str(uLen) + langStr + uStr + "\n<br>\n" + str(iLen) + langStr + iStr
 
     # If only one query, just return a single one.
     return str(uLen) + langStr + uStr
-
-
-
 
 #############################################################################
 #                                Query Methods
@@ -140,36 +135,6 @@ def queryForSyllable(query):
     syllable = query["syllable"]
     matches = LING_DB.queryContainsSyllable(syllable)
     return matches
-
-#############################################################################
-#                              Combine Query Methods
-#############################################################################
-# TODO Make these methods members of the LingDB class to make them more sensible
-# (and possibly override __and__, __or__, etc)
-# also right now they don't provide enough additional functionality compared to
-# set.union and the like
-def intersection(a, b):
-    """Given language lists a,b, return a new list c containing the
-    intersection of the two lists (x in c exactly once iff x in a AND x in b)"""
-    setA = set(a)
-    setB = set(b)
-    intersection = setA.intersection(setB)
-    return list(intersection)
-
-def union(a, b):
-    """Given language lists a,b, return a new list c containing the
-    union of the two lists (x in a OR x in b iff x in c exactly once)"""
-    setA = set(a)
-    setB = set(b)
-    union = setA.union(setB)
-    return list(union)
-
-def implication(a, b):
-    """Given language lists a, b, return a new list c containing the elements
-    arising from the relationship if a then b (will sort out details later)"""
-    # I Don't actually think this differs from intersection--maybe edge cases?
-    # Like not in a AND not in B? think about it some more
-    return NotImplemented
 
 #############################################################################
 #                                Helper Methods
