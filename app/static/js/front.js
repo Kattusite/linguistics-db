@@ -13,6 +13,16 @@ var TONE_ID                 = "tone-selector";
 var STRESS_ID               = "stress-selector";
 var SYLLABLE_ID             = "syllable-selector";
 
+// Canonical lists of vowel + consonant classes
+// Consonants:   n,t,m,k,j,s,p,l,w,h,b,d,g,ŋ,ʃ,ʔ,tʃ,f,r,ɲ,z,ts,dʒ,x,v
+var CONSONANT_CLASSES  = {
+  "plosives": "000000000...1111111"
+};
+// Vowels:  a,e,o,i,u,ə,ɨ,ɯ,y,ʌ,ø,ɵ,ʉ
+var VOWEL_CLASSES = {
+  "high": "000...111"
+};
+
 /*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
@@ -214,7 +224,7 @@ function handleSubmit() {
         reply = "have tone";
         break;
       case STRESS_ID:
-        reply = "have stress";
+        reply = "have predictable stress";
         break;
       case SYLLABLE_ID:
         reply = "allow the syllable structure" + syllable;
