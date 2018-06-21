@@ -96,7 +96,7 @@ def createUnionReply(results, replies, db):
     matches = [x.getLanguage() for x in set.union(*results)]
     num = len(matches)
     den = len(db)
-    reply = "".join(["<b>", "</b><i> or </i><b>".join(replies), "</b>"])
+    reply = "".join(["<b>", "</b> or <b>".join(replies), "</b>"])
     frac  = createFractionHTML(num, den)
     return " ".join([frac, reply])
 
