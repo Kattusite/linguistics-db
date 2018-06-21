@@ -15,12 +15,25 @@ var SYLLABLE_ID             = "syllable-selector";
 
 // Canonical lists of vowel + consonant classes
 // Consonants:   n,t,m,k,j,s,p,l,w,h,b,d,g,ŋ,ʃ,ʔ,tʃ,f,r,ɲ,z,ts,dʒ,x,v
+// NOTE To save future headache, please delegate this to a python script that
+// compares a list of phonemes to the canonical list and generates the bitstrings accordingly.
+// Much easier to work with lists of phonemes than bitstrings, as they are less change-sensitive
 var CONSONANT_CLASSES  = {
+  "consonant": "",
+  "consonantal": "",
+  "sonorant": "",
+  "fricative": "",
+  "labial":"",
   "plosives": "000000000...1111111"
 };
 // Vowels:  a,e,o,i,u,ə,ɨ,ɯ,y,ʌ,ø,ɵ,ʉ
 var VOWEL_CLASSES = {
-  "high": "000...111"
+  "high": "000...111",
+  "mid": "",
+  "low": "",
+  "front": "",
+  "back": "",
+  "open": ""
 };
 
 /*****************************************************************************/
