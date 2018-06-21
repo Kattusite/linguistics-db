@@ -13,7 +13,11 @@ body {
   display: none;
 }
 
-#pbox-template {
+#cbox-template {
+  display: none;
+}
+
+#vbox-template {
   display: none;
 }
 
@@ -57,7 +61,18 @@ body {
   border: 1px solid #909090;
 }
 
-.pbox-selector-init {
+.pbox-label-empty {
+  display: table-cell;
+  width: 30px;
+  height: 30px;
+  margin: 0px;
+}
+
+.cbox-selector-init {
+  border-bottom: 3px solid;
+}
+
+.vbox-selector-init {
   border-bottom: 3px solid;
 }
 
