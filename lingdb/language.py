@@ -56,11 +56,12 @@ class Language:
 #                                                                              #
 ################################################################################
     def getLanguage(self):
+        """ Return the name of this language"""
         return self.getGrammarAttr(G_STR[G_LANGUAGE])
 
     def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
-            if it exists """
+            if it exists; else raise an error"""
         if (key not in G_STR):
             print("Error! Attribute %s does not exist in grammar" % key)
             raise IndexError("Attribute %s not a member of grammar" % key)
@@ -111,8 +112,11 @@ class Language:
         matches = compareBitstrings(template, bitstring)
         return compareByMode(matches, k, mode)
 
+    def containsCosnonantClasses(self, classStr, k, mode):
+        return NotImplemented
+
     def containsVowelClasses(self, classStr, k, mode):
-        return "TBD"
+        return NotImplemented
 
     def containsConsonantPlaces(self):
         """Returns true if the language has 3+ places of consonant articulation"""

@@ -1,6 +1,11 @@
 # Canonical Consonant Order v1.0
 # Be sure to check carefully before & after changing this list, as it may have
 # unintended consequences.
+# Areas this list affects:
+# Generating the clickable phoneme selector GUI elements
+# Checking for phoneme membership in language.py
+# ...
+
 CONSONANT_GLYPHS = [
   "n",
   "t",
@@ -28,3 +33,5 @@ CONSONANT_GLYPHS = [
   "x",
   "v"
 ]
+
+# Canonical Consonant Classes
