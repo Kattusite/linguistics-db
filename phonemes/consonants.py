@@ -195,16 +195,16 @@ def getBitstringFromClass(className):
     # else If natural class not recognized, return a string of all zeroes
     className = className.lower()
     if "Any ".lower() in className:
-        return "1" * len(CONSONANT_GLYPHS)
-    elif className not in CONSONANT_CLASSES:
+        return "1" * len(GLYPHS)
+    elif className not in CLASSES:
         raise ValueError("Class " + className + " not recognized as a natural class")
-        return "0" * len(CONSONANT_GLYPHS)
+        return "0" * len(GLYPHS)
 
-    classList = CONSONANT_CLASSES[className]
+    classList = CLASSES[className]
 
     # Otherwise generate the string by iterating through the glpyh list
     bitList = []
-    for p in CONSONANT_GLYPHS:
+    for p in GLYPHS:
         if p in classList:
             bitList.append("1")
         else:

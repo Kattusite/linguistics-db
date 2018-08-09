@@ -13,6 +13,7 @@ body {
   display: none;
 }
 
+/* Hide the selector popover templates at the bottom of the page */
 #cbox-template {
   display: none;
 }
@@ -25,15 +26,14 @@ body {
   display: none;
 }
 
-/*
 #vcbox-template {
   display: none;
 }
-*/
 
 #trait-div-template {
    display: none;
 }
+/* ----------------------------------------------------------- */
 
 .inactive-trait {
   display: none;

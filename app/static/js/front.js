@@ -292,32 +292,27 @@ function handleSubmit() {
 
     // Obtain the three natural classes selected
     // TODO make this less hacky and more stable
-    var classElem = t.children(".class-selector")[0];
-    var classArr = [];
+    var classArr =  []
     var classStr = "";
-    if (classElem) {
-      classArr  = [ classElem.children[0].value,
-                        classElem.children[1].value,
-                        classElem.children[2].value ];
-      var classType = id.includes("consonant") ? "consonant" : "vowel"
-      classStr  = getStrFromClasses(classArr, classType);
-    }
 
     // Generate the correct reply string based on the trait type
+    // Some cases have special other info that must be calculated (ie for natural class arrays)
     var reply;
     switch (id) {
       case CONSONANT_ID:
         reply = "contain " + modeStr + " " + k + " of " + consStr;
         break;
       case CONSONANT_CLASS_ID:
-      // TODO
+        classArr = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
+        classStr = getStrFromClasses(classArr, "consonant");
         reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
       case VOWEL_ID:
-      // TODO
         reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case VOWEL_CLASS_ID:
+        classArr = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
+        classStr = getStrFromClasses(classArr, "vowel");
         reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
       case CONSONANT_PLACES_ID:
