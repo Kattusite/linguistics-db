@@ -311,7 +311,7 @@ function handleSubmit() {
         reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case VOWEL_CLASS_ID:
-        classArr = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
+        classArr = t.children(".vcbox-selector-init:visible").attr("queryArr").split(",");
         classStr = getStrFromClasses(classArr, "vowel");
         reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
