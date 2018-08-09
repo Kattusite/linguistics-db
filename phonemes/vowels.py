@@ -122,16 +122,17 @@ CLASSES = {
     ]
 }
 
+#TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
 def getBitstringFromClass(className):
     # If natural class not recognized, return a string of all zeroes
-    if className not in VOWEL_CLASSES:
-        return "0" * len(VOWEL_GLYPHS)
+    if className not in CLASSES:
+        return "0" * len(GLYPHS)
 
-    classList = VOWEL_CLASSES[className]
+    classList = CLASSES[className]
 
     # Otherwise generate the string by iterating through the glpyh list
     bitList = []
-    for p in VOWEL_GLYPHS:
+    for p in GLYPHS:
         if p in classList:
             bitList.append("1")
         else:
@@ -140,4 +141,11 @@ def getBitstringFromClass(className):
     return "".join(bitList)
 
 def getBitstringFromClasses(classArr):
-    return NotImplemented
+    bitstring = ""
+    for i, natClass in enumerate(classArr):
+        tempBitstring = getBitstringFromClass(natClass)
+        if i == 0:
+            bitstring = tempBitstring
+        else:
+            bitstring = bitstrings.AND(bitstring, tempBitstring)
+    return bitstring

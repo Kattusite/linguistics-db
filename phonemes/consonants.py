@@ -190,6 +190,7 @@ CLASSES = {
     ]
 }
 
+#TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
 def getBitstringFromClass(className):
     # If this is a special bypass class ("Any...") return all ones
     # else If natural class not recognized, return a string of all zeroes
