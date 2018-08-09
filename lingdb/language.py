@@ -83,7 +83,7 @@ class Language:
         """Returns true if glyph is a valid consonant in this language"""
         if glyph in CONSONANT_GLYPHS:
             index = CONSONANT_GLYPHS.index(glyph)
-            return getGrammarAttr(self, G_STR[G_CONS])[index] == "1"
+            return self.getConsonantBitstring[index] == "1"
         else:
             return False
 
@@ -91,7 +91,7 @@ class Language:
         """Returns true if glyph is a valid vowel in this language"""
         if glyph in VOWEL_GLYPHS:
             index = VOWEL_GLYPHS.index(glyph)
-            return getGrammarAttr(self, G_STR[G_VOWEL])[index] == "1"
+            return self.getVowelBitstring[index] == "1"
         else:
             return False
 
@@ -112,7 +112,7 @@ class Language:
         matches = compareBitstrings(template, bitstring)
         return compareByMode(matches, k, mode)
 
-    def containsCosnonantClasses(self, classStr, k, mode):
+    def containsConsonantClasses(self, classStr, k, mode):
         return NotImplemented
 
     def containsVowelClasses(self, classStr, k, mode):
