@@ -193,6 +193,13 @@ function handlePboxLabel(element) {
   link.attr("data-content", str);
 }
 
+/* On click handler for the natural class selector. On a click, deselect the
+ * currently selected element of this type, and select this one instead.
+ * Update the associated link text for the popover. */
+function handleClboxLabel(element) {
+  console.log("thing should do");
+}
+
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
 // TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
