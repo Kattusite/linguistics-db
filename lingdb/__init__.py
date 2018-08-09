@@ -44,9 +44,6 @@ class LingDB:
                 results.append(lang)
         return results
 
-    def queryContainsConsonantClasses(self, classStr, k, mode):
-        return "TBD"
-
     def queryContainsVowels(self, bitstring, k, mode):
         """Returns a list of the languages that contain "exactly" k of the
         consonants specified by bitstring, replacing "exactly" with the specified
@@ -56,9 +53,6 @@ class LingDB:
             if (lang.containsVowels(bitstring, k, mode)):
                 results.append(lang)
         return results
-
-    def queryContainsVowelClasses(self, classStr, k, mode):
-        return "TBD"
 
     def queryContainsConsonantPlaces(self):
         """Returns a list of the languages that contain 3+ places of consonant

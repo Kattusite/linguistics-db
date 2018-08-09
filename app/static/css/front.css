@@ -40,7 +40,13 @@ body {
   border-radius: 5px;
 }
 
+/* Used to select the mode of equality check (>=, <, etc) */
 .mode-selector {
+  padding: 3px;
+}
+
+/* Used to select natural classes of phonemes */
+.class-selector {
   padding: 3px;
 }
 

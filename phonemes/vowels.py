@@ -7,6 +7,8 @@
 # Generating the clickable phoneme selector GUI elements
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
+from . import bitstrings
+
 VOWEL_GLYPHS = [
     "a",
     "e",
@@ -34,11 +36,17 @@ VOWEL_CLASSES = {
     ],
     "mid" : [
 
-    ]
+    ],
     "low" : [
 
     ],
     # Manner
+    "open": [
+
+    ],
+    "closed": [
+
+    ],
 
     # Voicing
     "voiced": [
@@ -49,7 +57,7 @@ VOWEL_CLASSES = {
     ]
 }
 
-def getClassBitstring(className):
+def getBitstringFromClass(className):
     # If natural class not recognized, return a string of all zeroes
     if className not in VOWEL_CLASSES:
         return "0" * len(VOWEL_GLYPHS)
@@ -65,3 +73,6 @@ def getClassBitstring(className):
             bitList.append("0")
 
     return "".join(bitList)
+
+def getBitstringFromClasses(classArr):
+    return NotImplemented

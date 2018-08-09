@@ -18,7 +18,12 @@ var SYLLABLE_ID             = "syllable-selector";
 // NOTE To save future headache, please delegate this to a python script that
 // compares a list of phonemes to the canonical list and generates the bitstrings accordingly.
 // Much easier to work with lists of phonemes than bitstrings, as they are less change-sensitive
-var CONSONANT_CLASSES  = {
+
+var VOICING = 0;
+var PLACE   = 1;
+var MANNER  = 2;
+
+/*var CONSONANT_CLASSES  = {
   "consonant": "",
   "consonantal": "",
   "sonorant": "",
@@ -34,7 +39,7 @@ var VOWEL_CLASSES = {
   "front": "",
   "back": "",
   "open": ""
-};
+}; */
 
 /*****************************************************************************/
 /*                                Initializers                               */
@@ -208,6 +213,20 @@ function handleSubmit() {
     var modeStr   = t.children(".mode-selector").val();
     var mode      = getModeFromStr(modeStr);
 
+
+    // Obtain the three natural classes selected
+    // TODO make this less hacky and more stable
+    var classElem = t.children(".class-selector")[0];
+    var classArr = [];
+    var classStr = "";
+    if (classElem) {
+      classArr  = [ classElem.children[0].value,
+                        classElem.children[1].value,
+                        classElem.children[2].value ];
+      var classType = id.includes("consonant") ? "consonant" : "vowel"
+      classStr  = getStrFromClasses(classArr, classType);
+    }
+
     // Generate the correct reply string based on the trait type
     var reply;
     switch (id) {
@@ -216,14 +235,14 @@ function handleSubmit() {
         break;
       case CONSONANT_CLASS_ID:
       // TODO
-        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
       case VOWEL_ID:
       // TODO
         reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case VOWEL_CLASS_ID:
-        reply = "contain " + modeStr + " " + k + " of " + vowelStr;
+        reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
       case CONSONANT_PLACES_ID:
         reply = "contain 3+ places of articulation for consonants";
@@ -251,6 +270,7 @@ function handleSubmit() {
     reqObj["k"]           = k;
     reqObj["mode"]        = mode;
     reqObj["reply"]       = reply;
+    reqObj["classes"]     = classArr;
 
     reqArr.push(reqObj);
   }
@@ -396,6 +416,41 @@ function getStrFromMode(mode) {
     console.log("Error! An illegal string was passed to getStrFromMode");
     return "exactly";
   }
+}
+
+// Given an array of the natural classes desired, prettify a string that combines
+// all requested classes in a human readable way.
+function getStrFromClasses(arr, type) {
+  var str = "";
+  // Was the given trait filtered?
+  //         VOICING, PLACE, MANNER
+  var flags = [false, false, false];
+  type = (type == "consonant") ? "consonant" : "vowel";
+  for (var i = 0; i < arr.length; i++) {
+    if (typeof arr[i] != typeof "") {
+      console.err("Improper array element passed to natural class parser!");
+      return "error";
+    }
+    // If the selected class isn't a placeholder ("Any ...")
+    // Then append a lowercase version of the corresponding class
+    if (!arr[i].includes("Any ")) {
+      str += " " + arr[i].toLowerCase();
+      flags[i] = true;
+    }
+  }
+
+  // If there is no place or manner, just add the broadest possible phoneme class (consonant/vowel)
+  if (!flags[PLACE] && !flags[MANNER]) {
+    str += " " + type;
+  }
+
+  // If no filtering was done, just return "consonants" or "vowels" as appropriate
+  if (str.length == 0) {
+    str = type;
+  }
+
+  // Trim whitespace and return (with an "s" appended to the end to make plural)
+  return str.trim() + "s";
 }
 
 // Convert num to base 36 (used for unique ID generation)

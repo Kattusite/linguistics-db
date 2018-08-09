@@ -7,6 +7,7 @@ import os, re
 from lingdb import LingDB
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 from data import language_data
+import phonemes
 
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
@@ -125,7 +126,9 @@ def createConditionalReply(results, replies, db):
 
 
 def createFractionHTML(num, den):
-    float = num / den
+    float = 0
+    if (den != 0):
+        float = num / den
     quantifier = floatToQuantifier(float)
     frac = "".join(["<span style='font-size: x-small;'>",
                     "(%d / %d)" % (num, den),
@@ -180,10 +183,11 @@ def queryForConsonants(query):
     return matches
 
 def queryForConsonantClasses(query):
-    classStr = query["class"]
+    classArr = query["classes"]
+    bitstring = phonemes.consonants.getBitstringFromClasses(classArr)
     k = int(query["k"])
     mode = query["mode"]
-    matches = LING_DB.queryContainsConsonantClasses(classStr, k, mode)
+    matches = LING_DB.queryContainsConsonants(bitstring, k, mode)
     return matches
 
 def queryForVowels(query):
@@ -194,10 +198,11 @@ def queryForVowels(query):
     return matches
 
 def queryforVowelClasses(query):
-    classStr = query["class"]
+    classArr = query["classes"]
+    bitstring = phonemes.vowels.getBitstringFromClasses(classArr)
     k = int(query["k"])
     mode = query["mode"]
-    matches = LING_DB.queryContainsVowelClasses(classStr, k, mode)
+    matches = LING_DB.queryContainsVowels(bitstring, k, mode)
     return matches
 
 def queryForConsonantPlaces(query):

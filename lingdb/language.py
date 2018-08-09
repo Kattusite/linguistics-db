@@ -182,7 +182,7 @@ def compareBitstrings(s1, s2):
     len2 = len(s2)
     if (len1 != len2):
         raise ValueError("An attempt was made to compare phoneme bitstrings" +
-                         " of differing lengths!")
+                         " of differing lengths!" + "\n" + s1 + "\n" + s2)
     matches = 0
     for i in range(len1):
         if (s1[i]=="1" and s2[i]=="1"):

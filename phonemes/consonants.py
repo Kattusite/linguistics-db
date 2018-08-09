@@ -8,6 +8,8 @@
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
 
+from . import bitstrings
+
 # NOTE! The order of this list is not arbitrary and strongly affects other
 # parts of the program
 CONSONANT_GLYPHS = [
@@ -50,7 +52,7 @@ CONSONANT_CLASSES = {
     "labiodental" : [
         "f",
         "v"
-    ]
+    ],
     "dental" : [
         # Both english "th" belong here but are not contained in 1.0
     ],
@@ -74,11 +76,11 @@ CONSONANT_CLASSES = {
         "g",
         "x",
         "w"
-    ]
+    ],
     "glottal": [
         "ʔ",
         "h"
-    ]
+    ],
     # Manner
     "plosive" : [
         "p",
@@ -96,28 +98,28 @@ CONSONANT_CLASSES = {
         "z",
         "ʃ",
         "x"
-    ]
+    ],
     "affricate": [
         "ts",
         "dʒ",
         "tʃ"
-    ]
+    ],
     "nasal": [
         "n",
         "m",
         "ŋ",
         "ɲ"
-    ]
+    ],
     "liquid": [
         "l"
-    ]
+    ],
     "trill": [
         "r"
-    ]
+    ],
     "glide": [
         "j",
         "w"
-    ]
+    ],
     # Voicing
     "voiced": [
         "n",
@@ -151,9 +153,14 @@ CONSONANT_CLASSES = {
     ]
 }
 
-def getClassBitstring(className):
-    # If natural class not recognized, return a string of all zeroes
-    if className not in CONSONANT_CLASSES:
+def getBitstringFromClass(className):
+    # If this is a special bypass class ("Any...") return all ones
+    # else If natural class not recognized, return a string of all zeroes
+    className = className.lower()
+    if "Any ".lower() in className:
+        return "1" * len(CONSONANT_GLYPHS)
+    elif className not in CONSONANT_CLASSES:
+        raise ValueError("Class " + className + " not recognized as a natural class")
         return "0" * len(CONSONANT_GLYPHS)
 
     classList = CONSONANT_CLASSES[className]
@@ -167,3 +174,13 @@ def getClassBitstring(className):
             bitList.append("0")
 
     return "".join(bitList)
+
+def getBitstringFromClasses(classArr):
+    bitstring = ""
+    for i, natClass in enumerate(classArr):
+        tempBitstring = getBitstringFromClass(natClass)
+        if i == 0:
+            bitstring = tempBitstring
+        else:
+            bitstring = bitstrings.AND(bitstring, tempBitstring)
+    return bitstring
