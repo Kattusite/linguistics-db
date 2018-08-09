@@ -1,5 +1,5 @@
 from data.const import *
-from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+from phonemes import vowels, consonants
 import json
 
 
@@ -81,16 +81,16 @@ class Language:
 ################################################################################
     def containsConsonant(self, glyph):
         """Returns true if glyph is a valid consonant in this language"""
-        if glyph in CONSONANT_GLYPHS:
-            index = CONSONANT_GLYPHS.index(glyph)
+        if glyph in consonants.GLYPHS:
+            index = consonants.GLYPHS.index(glyph)
             return self.getConsonantBitstring[index] == "1"
         else:
             return False
 
     def containsVowel(self, glyph):
         """Returns true if glyph is a valid vowel in this language"""
-        if glyph in VOWEL_GLYPHS:
-            index = VOWEL_GLYPHS.index(glyph)
+        if glyph in vowels.GLYPHS:
+            index = vowels.GLYPHS.index(glyph)
             return self.getVowelBitstring[index] == "1"
         else:
             return False

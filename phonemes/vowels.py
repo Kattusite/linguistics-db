@@ -9,7 +9,7 @@
 # Creating and comparing phoneme bitstrings
 from . import bitstrings
 
-VOWEL_GLYPHS = [
+GLYPHS = [
     "a",
     "e",
     "o",
@@ -26,34 +26,99 @@ VOWEL_GLYPHS = [
     # "N/A" # None of the above (remove this and let 0000...000 be implicit)
 ]
 
+# Order of the list is arbitrary from this line down
+# Canonical vowel roundness/height/backness
+ROUNDEDNESSES = [
+    "any roundedness",
+    "rounded",
+    "unrounded"
+]
+
+HEIGHTS = [
+    "any height",
+    "high",
+    "mid-high",
+    "mid",
+    "mid-low",
+    "low"
+]
+
+BACKNESSES = [
+    "any backness",
+    "front",
+    "central",
+    "back"
+]
+
+CLASS_MATRIX = [
+    ROUNDEDNESSES,
+    HEIGHTS,
+    BACKNESSES
+]
 
 # Canonical Vowel Classes
-# Order of the list is arbitrary from this line down
-VOWEL_CLASSES = {
-    # Place
+CLASSES = {
+    # Height
     "high" : [
-
+        "i",
+        "u",
+        "ɨ",
+        "ɯ",
+        "y",
+        "ʉ"
     ],
-    "mid" : [
-
+    "mid-high" : [
+        "e",
+        "o",
+        "ø",
+        "ɵ"
+    ],
+    "mid": [
+        "ə"
+    ],
+    "mid-low": [
+        "ʌ"
     ],
     "low" : [
-
+        "a"
     ],
-    # Manner
-    "open": [
-
+    # Backness
+    "front": [
+        "a",
+        "e",
+        "i",
+        "y",
+        "ø",
     ],
-    "closed": [
-
+    "central": [
+        "i",
+        "ə",
+        "ɵ",
+        "ʉ"
+    ],
+    "back": [
+        "o",
+        "u",
+        "ɯ",
+        "ʌ"
     ],
 
-    # Voicing
-    "voiced": [
-        "",
+    # Roundedness
+    "rounded": [
+        "o",
+        "u",
+        "y",
+        "ø",
+        "ɵ",
+        "ʉ"
     ],
-    "voiceless": [
-        "",
+    "unrounded": [
+        "a",
+        "e",
+        "i",
+        "ɨ",
+        "ɯ",
+        "ʌ"
     ]
 }
 

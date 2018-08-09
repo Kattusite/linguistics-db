@@ -5,7 +5,7 @@
 
 import os, re
 from lingdb import LingDB
-from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+from phonemes import vowels, consonants
 from data import language_data
 import phonemes
 
@@ -234,6 +234,8 @@ def queryForSyllable(query):
 #                                Helper Methods
 #############################################################################
 # Reconstruct the consonant glyphs provided in the given consonant bitstring
+# This function is deprecated (I'm not sure what it was ever useful for, and it's outdated)
+"""
 def getConsonantGlyphsFromBitstring(consonants):
     # init_DB()
     results = []
@@ -241,3 +243,4 @@ def getConsonantGlyphsFromBitstring(consonants):
         if c == "1":
             results.append(CONSONANT_GLYPHS[i])
     return results
+"""

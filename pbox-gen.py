@@ -9,7 +9,7 @@ PER_ROW = 5
 
 # Generate consonant table (cbox)
 print("\n\n\n")
-print("<tablebody>")
+print("<tbody>")
 for i, phoneme in enumerate(CONSONANT_GLYPHS):
     if (i % PER_ROW == 0):
         print("  <tr>")
@@ -18,12 +18,12 @@ for i, phoneme in enumerate(CONSONANT_GLYPHS):
     print(c)
     if (i % PER_ROW == PER_ROW-1):
         print("  </tr>")
-print("</tablebody>")
+print("</tbody>")
 
 
 # Generate vowel table (vbox)
 print("\n\n\n")
-print("<tablebody>")
+print("<tbody>")
 for i, phoneme in enumerate(VOWEL_GLYPHS):
     # if on first element in row, start a new <tr>
     if (i % PER_ROW == 0):
@@ -45,4 +45,4 @@ for i, phoneme in enumerate(VOWEL_GLYPHS):
     # if on last element in row, terminate <tr>
     if (i % PER_ROW == PER_ROW-1):
         print("  </tr>")
-print("</tablebody>")
+print("</tbody>")

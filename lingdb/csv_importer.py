@@ -1,5 +1,5 @@
 from . import language
-from phonemes import CONSONANT_GLYPHS, VOWEL_GLYPHS
+from phonemes import consonants, vowels
 from .const import *
 import csv
 

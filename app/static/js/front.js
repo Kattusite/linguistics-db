@@ -51,9 +51,12 @@ function frontInit() {
   // Update the document with trait selectors from template
   traitSelectorInit();
 
-  // Initialize popovers
-  consonantPopoverInit();
-  vowelPopoverInit();
+  // Initialize popovers (consonant, vowel, consonant classes, vowel classes)
+  initPopovers("cbox-selector",  createConsonantSelectorString);
+  initPopovers("vbox-selector",  createVowelSelectorString);
+  initPopovers("ccbox-selector", createConsonantClassSelectorString);
+  initPopovers("vcbox-selector", createVowelClassSelectorString);
+
   reloadPopovers();
   reloadTooltips();
 }
@@ -70,27 +73,25 @@ function traitSelectorInit() {
   }
 }
 
-// Initialize all uninitialized consonant selector popovers
-function consonantPopoverInit() {
-  // TODO the first two lines are basically useless right now as the UID is mishandled
-  // Try using jQuery.each() for "more correct" iteration
-  var str = createConsonantSelectorString();
-  var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
-  $(".cbox-selector-uninit").attr("data-content", createConsonantSelectorString());
-  $(".cbox-selector-uninit").attr("id", "cbox-selector-" + uid);
-  $(".cbox-selector-uninit").addClass("cbox-selector-init");
-  $(".cbox-selector-uninit").removeClass("cbox-selector-uninit");
-}
+/* Target all uninitialized popovers of class tgtClass.
+ * Create each of these a unique popover with content determined by contentFn
+ * For instance initPopover("dummy-class") will replace all ".dummy-class-uninit"
+ * with ".dummy-class-init", and update the data-content with the return value
+ * of contentFn.
+ */
+ // TODO the first two UID lines are basically useless right now as the UID is mishandled
+ // Try using jQuery.each() for "more correct" iteration
+ // The current way leads to a minor BUG in which popover UIDs mismatch enclosing div UIDs
+function initPopovers(tgtClass, contentFn) {
+  var uninit = tgtClass + "-uninit";  // e.g. ".cbox-selector-uninit"
+  var init   = tgtClass + "-init";    // e.g. ".cbox-selector-init"
 
-// Initialize all uninitialized vowel selector popovers
-function vowelPopoverInit() {
-  // TODO the first two lines are basically useless right now as the UID is mishandled
-  var str = createVowelSelectorString();
+  var str = contentFn();
   var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
-  $(".vbox-selector-uninit").attr("data-content", createVowelSelectorString());
-  $(".vbox-selector-uninit").attr("id", "vbox-selector-" + uid);
-  $(".vbox-selector-uninit").addClass("vbox-selector-init");
-  $(".vbox-selector-uninit").removeClass("vbox-selector-uninit");
+  $("." + uninit).attr("data-content", contentFn());
+  $("." + uninit).attr("id", tgtClass + "-" + uid);
+  $("." + uninit).addClass(init);
+  $("." + uninit).removeClass(uninit);
 }
 
 /*****************************************************************************/
@@ -171,6 +172,7 @@ function handlePboxLabel(element) {
 
   // Update the link text to be the glyph list, or placeholder if empty.
   // NOTE [aria-describedby] might misbehave for multiple phoneme selectors present on the document at once
+  // it works by finding the popovers that are *currently* visibly popped open, so there *should* be only one
   var link = $("[aria-describedby]");
   if (glyphList.length == 0) {
     link.text("Select phonemes...");
@@ -196,8 +198,75 @@ function handlePboxLabel(element) {
 /* On click handler for the natural class selector. On a click, deselect the
  * currently selected element of this type, and select this one instead.
  * Update the associated link text for the popover. */
+ /* This function assumes that at no point will more or less than one natural
+  * class of each type be selected. */
 function handleClboxLabel(element) {
-  console.log("thing should do");
+  // Figure out if element is voicing/place/manner
+  var type = "";
+  for (var i = 0; i < element.classList.length; i++) {
+    if (element.classList[i] == "clbox-label")          continue;
+    if (element.classList[i] == "clbox-label-selected") continue;
+    type = element.classList[i];
+    break;
+  }
+
+  var tablebody = element.parentElement.parentElement; // td --> tr --> tablebody
+  var rows = tablebody.children;
+
+  // Find number of rows and columns
+  var numRows = rows.length;
+  var numCols = rows[0].children.length;
+
+  // If the clicked element was already selected, deselect it and select "Any ..." instead
+  // If the clicked element was not selected, deselect all others and select this instead.
+  var isSel = $(element).hasClass("clbox-label-selected");
+
+  // iterate through all elements of this type of natural class, and deselect them
+  for (var i = 0; i < numRows; i++) {
+    // (the following two steps could be combined into a single jquery expression)
+    // Find the correct type of element on this row.
+    var el = $(rows[i]).children("."+type);
+    // If it is selected, unselect it
+    if (el.hasClass("clbox-label-selected")) {
+      el.removeClass("clbox-label-selected");
+    }
+  }
+
+  // Select the clicked element, or default (select first row) if it was already selected.
+  if (isSel) {
+    $(tablebody.children[0]).find("."+type).addClass("clbox-label-selected");
+  }
+  else {
+    $(element).addClass("clbox-label-selected");
+  }
+
+
+  // Now that all changes are made, changes can be saved to data-content
+  var link = $("[aria-describedby]");
+  var table = tablebody.parentElement;
+  var div = table.parentElement;
+  var str = div.outerHTML;
+
+  // Save the content changes in the popover attribute.
+  link.attr("data-content", str);
+
+  // Update the label text and store the queryArr
+  var queryArr = [];
+  for (var i = 0; i < numCols; i++) {
+    var sel = $(tablebody).find("td.clbox-label-selected.clbox-label-"+i).text();
+    queryArr.push(sel);
+  }
+
+  // Figure out if we want consonants or vowels
+  var ctype = tablebody.classList.contains("consonant-class-selector") ? "consonant" : "vowel";
+
+  // Inform the link text DOM object of its query string.
+  link.attr("queryArr", queryArr);
+
+  // update the link text to reflect new changes
+  link.text(getStrFromClasses(queryArr, ctype));
+
+  // console.log(v, p, m);
 }
 
 // Submission handler to send AJAX requests to server
@@ -314,10 +383,19 @@ function createVowelSelectorString(uid) {
   return createPhonemeSelectorString("v", uid);
 }
 
+function createConsonantClassSelectorString(uid) {
+  return createPhonemeSelectorString("cc", uid);
+}
+
+function createVowelClassSelectorString(uid) {
+  return createPhonemeSelectorString("vc", uid);
+}
+
 // Create and return a new phoneme selector DOM element as a string
 // Use the string type to choose between consonant ("c") or vowel ("v")
 // BUG Currently all instances share same id
-// NOTE outerHTML not compatible with older browsers!
+// NOTE outerHTML not compatible with older browsers!'
+// TODO rename copySelectorFromTemplate
 function createPhonemeSelectorString(type, uid) {
   if (!type) {
     console.err("Error: creating a typeless phoneme selector")
@@ -429,9 +507,12 @@ function getStrFromMode(mode) {
 // all requested classes in a human readable way.
 function getStrFromClasses(arr, type) {
   var str = "";
+
   // Was the given trait filtered?
-  //         VOICING, PLACE, MANNER
-  var flags = [false, false, false];
+  var flags = [];
+  for (var i = 0; i < flags.length; i++) {
+    flags.push(false);
+  }
   type = (type == "consonant") ? "consonant" : "vowel";
   for (var i = 0; i < arr.length; i++) {
     if (typeof arr[i] != typeof "") {
@@ -440,10 +521,18 @@ function getStrFromClasses(arr, type) {
     }
     // If the selected class isn't a placeholder ("Any ...")
     // Then append a lowercase version of the corresponding class
-    if (!arr[i].includes("Any ")) {
+    if (!arr[i].toLowerCase().includes("Any ".toLowerCase())) {
       str += " " + arr[i].toLowerCase();
       flags[i] = true;
     }
+  }
+
+  // Done appending the pieces. Now we clean up the string to make it sound natural.
+
+  // If we are dealing with a vowel, just append " vowels" to the end and return.
+  if (type == "vowel") {
+    str += " vowels";
+    return str;
   }
 
   // If there is no place or manner, just add the broadest possible phoneme class (consonant/vowel)

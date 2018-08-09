@@ -12,7 +12,7 @@ from . import bitstrings
 
 # NOTE! The order of this list is not arbitrary and strongly affects other
 # parts of the program
-CONSONANT_GLYPHS = [
+GLYPHS = [
   "n",
   "t",
   "m",
@@ -42,13 +42,13 @@ CONSONANT_GLYPHS = [
 
 # Order of the list is arbitrary from this line down
 # Canonical Consonant Voicings/Places/Manners
-CONSONANT_VOICINGS = [
+VOICINGS = [
     "any voicing",
     "voiced",
     "voiceless"
 ]
 
-CONSONANT_PLACES = [
+PLACES = [
     "any place",
     "bilabial",
     "labiodental",
@@ -59,7 +59,7 @@ CONSONANT_PLACES = [
     "glottal"
 ]
 
-CONSONANT_MANNERS = [
+MANNERS = [
     "any manner",
     "plosive",
     "fricative",
@@ -70,10 +70,16 @@ CONSONANT_MANNERS = [
     "glide"
 ]
 
+CLASS_MATRIX = [
+    VOICINGS,
+    PLACES,
+    MANNERS
+]
+
 
 
 # Canonical Consonant Classes
-CONSONANT_CLASSES = {
+CLASSES = {
     # Place
     "bilabial" : [
         "m",

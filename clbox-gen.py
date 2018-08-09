@@ -5,40 +5,38 @@ from phonemes import consonants, vowels
 TYPES = 3
 
 
-# Given voicing, place, manner lists, generate the associated table
-# NOTE TODO Plz do this first
-# NOTE NOTE NOTE Future me, after you wake up, remove clbox-label entirely (or largely)
-# and split into three separate categories (voicings, places, manners)
-# this will make it easier to select/deselect choices. think abuot it
-# maybe use radio buttons instead
-def generateTables(voicings, places, manners):
+# Given matrix of classes (a 2d array of all properties), generate the associated table
+# Designate phonemeType as "consonant" or "vowel" for
+def generateTables(matrix, phonemeType):
     print("\n\n\n")
-    print("<tablebody>")
-    n = max(len(voicings), len(places), len(manners))
+    print('<tbody class="%s-class-selector">' % phonemeType)
+
+    # Find longest list
+    lengths = [len(entry) for entry in matrix]
+    n = max(lengths)
+
+    # For each row:
     for i in range(n):
         print("  <tr>")
         cssClass = "clbox-label clbox-label-selected" if i==0 else "clbox-label"
-        if (i < len(voicings)):
-            print('    <td class="%s %s" onclick="handleClboxLabel(this)">%s</td>' % (cssClass, "clbox-label-voicing", voicings[i]))
-        else:
-            printEmptyCell()
-        if (i < len(places)):
-            print('    <td class="%s %s" onclick="handleClboxLabel(this)">%s</td>' % (cssClass, "clbox-label-place", places[i]))
-        else:
-            printEmptyCell()
-        if (i < len(manners)):
-            print('    <td class="%s %s" onclick="handleClboxLabel(this)">%s</td>' % (cssClass, "clbox-label-manner", manners[i]))
-        else:
-            printEmptyCell()
-        print("  </tr>")
 
-    print("</tablebody>")
+        # For each column:
+        for j, entry in enumerate(matrix):
+            if i < len(entry):
+                print('    <td class="%s %s" onclick="handleClboxLabel(this)">%s</td>' %
+                        (cssClass, "clbox-label-" + str(j), entry[i]))
+            else:
+                printEmptyCell()
+        print("  </tr>")
+    print("</tbody>")
 
 def printEmptyCell():
     print('    <td class="clbox-label-empty"></td>')
 
 # Generate consonant class table (ccbox)
-generateTables(consonants.CONSONANT_VOICINGS, consonants.CONSONANT_PLACES, consonants.CONSONANT_MANNERS)
+generateTables(consonants.CLASS_MATRIX, "consonant")
+
+generateTables(vowels.CLASS_MATRIX, "vowel")
 
 # generate vowel class table (vcbox)
 #generateTables(vowe)

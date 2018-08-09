@@ -21,6 +21,16 @@ body {
   display: none;
 }
 
+#ccbox-template {
+  display: none;
+}
+
+/*
+#vcbox-template {
+  display: none;
+}
+*/
+
 #trait-div-template {
    display: none;
 }
@@ -77,6 +87,14 @@ body {
 }
 
 .vbox-selector-init {
+  border-bottom: 3px solid;
+}
+
+.ccbox-selector-init {
+  border-bottom: 3px solid;
+}
+
+.vcbox-selector-init {
   border-bottom: 3px solid;
 }
 
