@@ -1,3 +1,5 @@
+# A helper program that generates HTML for the phoneme selector tables
+
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 
 PER_ROW = 5

@@ -40,8 +40,39 @@ CONSONANT_GLYPHS = [
   "v"
 ]
 
-# Canonical Consonant Classes
 # Order of the list is arbitrary from this line down
+# Canonical Consonant Voicings/Places/Manners
+CONSONANT_VOICINGS = [
+    "any voicing",
+    "voiced",
+    "voiceless"
+]
+
+CONSONANT_PLACES = [
+    "any place",
+    "bilabial",
+    "labiodental",
+    "dental",
+    "alveolar",
+    "palatal",
+    "velar",
+    "glottal"
+]
+
+CONSONANT_MANNERS = [
+    "any manner",
+    "plosive",
+    "fricative",
+    "affricate",
+    "nasal",
+    "liquid",
+    "trill",
+    "glide"
+]
+
+
+
+# Canonical Consonant Classes
 CONSONANT_CLASSES = {
     # Place
     "bilabial" : [
