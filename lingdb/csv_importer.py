@@ -1,3 +1,8 @@
+#####
+##### NOTE: As far as I am aware, this file is no longer used anywhere
+##### It is outdated and should never be used. It should eventually be deleted
+#####
+
 from . import language
 from phonemes import consonants, vowels
 from .const import *
