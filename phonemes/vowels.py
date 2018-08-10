@@ -124,8 +124,13 @@ CLASSES = {
 
 #TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
 def getBitstringFromClass(className):
-    # If natural class not recognized, return a string of all zeroes
-    if className not in CLASSES:
+    # If this is a special bypass class ("Any...") return all ones
+    # else If natural class not recognized, return a string of all zeroes
+    className = className.lower()
+    if "Any ".lower() in className:
+        return "1" * len(GLYPHS)
+    elif className not in CLASSES:
+        raise ValueError("Class " + className + " not recognized as a natural class")
         return "0" * len(GLYPHS)
 
     classList = CLASSES[className]
