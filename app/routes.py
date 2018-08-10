@@ -12,13 +12,16 @@ def main():
         # return str(returnObj)
         f = request.form
         data = json.loads(f["payload"])
-        for query in data:
-            result = str(lingdb_client.handleQuery(query))
-            reply = query["reply"]
+        verbose = f["verbose"]
 
+        # TODO I think this whole block is deprecated -- remove if so
         # TODO: result, reply get overwritten at each step
-        return lingdb_client.handleQueries(data)
-        return result + " languages " + reply
+        #for query in data:
+        #    result = str(lingdb_client.handleQuery(query))
+        #    reply = query["reply"]
+
+        return lingdb_client.handleQueries(data, verbose)
+        # return result + " languages " + reply
     return render_template('front.html')
 
 @app.route('/index.html')

@@ -41,6 +41,8 @@ var VOWEL_CLASSES = {
   "open": ""
 }; */
 
+var verbose = false;
+
 /*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
@@ -347,12 +349,27 @@ function handleSubmit() {
   }
 
   var payload = "payload=" + JSON.stringify(reqArr);
+  // TODO write this more rigorously
+  // For now it is a global variable
+  payload  += "&verbose=" + verbose;
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
          payload,
          callback
        );
+}
+
+// Toggles list mdoe on or off, and updates the button text.
+// TODO eliminate global variable
+function handleListToggle(btn) {
+  verbose = !verbose;
+  if (verbose) {
+    $(btn).text("Disable list mode (WIP)");
+  }
+  else {
+    $(btn).text("Enable list mode (WIP)");
+  }
 }
 
 /*****************************************************************************/

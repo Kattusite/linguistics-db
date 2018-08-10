@@ -42,7 +42,7 @@ def handleQuery(query):
     result = function_map[trait](query)
     return result
 
-def handleQueries(queries):
+def handleQueries(queries, verbose):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
     # Can be cleaned up with comprehensions
@@ -64,20 +64,30 @@ def handleQueries(queries):
 
     nlStr   = "\n<br>\n"
 
+    # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
     uRep = createUnionReply(result_arr, reply_arr, LING_DB)
     iRep = createIntersectionReply(result_arr, reply_arr, LING_DB)
     cRep = createConditionalReply(result_arr, reply_arr, LING_DB)
 
-    # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
     # TODO also allow for displaying the results of each subquery alone--
     # If I query for A & B & C, also display just A, just B, just C.
+    cmpRep = createComparisonTable(result_arr, reply_arr)
+
+    retArr = [uRep, iRep, cRep]
+
+    # NOTE this is "true" (a string), not True, a boolean literal
+    if verbose == "true":
+        retArr.append(cmpRep)
 
     # Merge multiple queries
     if len(reply_arr) > 1:
         # print(len(reply_arr), " queries detected. Merging...")
-        return nlStr.join([uRep, iRep, cRep])
+        return nlStr.join(retArr)
+        # TODO also add a small table with a list of languages matching just A, just B, or A and B
 
     # If only one query, just return a single one.
+    if verbose == "true":
+        return nlStr.join([uRep, cmpRep])
     return uRep
 
 #############################################################################
@@ -123,6 +133,41 @@ def createConditionalReply(results, replies, db):
     thenReply = "".join(["<b>", "</b> and <b>".join(replies[1:]), "</b>"])
     frac  = createFractionHTML(num, den)
     return " ".join([frac, ifReply, thenReply])
+
+def createComparisonTable(results, replies):
+    # Define table template
+    table = """
+    <br>
+    <table>
+        <tbody>
+            <tr>%s</tr>
+        </tbody>
+    </table>"""
+
+    # Define the columns
+    hideHeaders = len(results) <= 1
+    cols = "".join([createComparisonRow(results[i], replies[i], hideHeaders) for i in range(len(results))])
+    print(len(results), hideHeaders)
+    return table % cols
+
+
+
+def createComparisonRow(result, reply, hideHeaders):
+    header = "" if hideHeaders else str(len(result)) + " languages " + reply
+    row = """
+    <td>
+        <h5>%s</h5>
+        <ul>
+            %s
+        </ul>
+    </td>"""
+
+    mid = "</li>\n<li>".join([lang.getLanguage() for lang in result])
+    bodyList = ["<li>", mid, "</li>"]
+    body = "".join(bodyList)
+
+    return row % (header, body)
+
 
 
 def createFractionHTML(num, den):
