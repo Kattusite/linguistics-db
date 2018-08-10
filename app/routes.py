@@ -20,7 +20,6 @@ def main():
         #    result = str(lingdb_client.handleQuery(query))
         #    reply = query["reply"]
         ret = lingdb_client.handleQueries(data, verbose)
-        print(ret)
         return ret
         # return result + " languages " + reply
     return render_template('front.html')
