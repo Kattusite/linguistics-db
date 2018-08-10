@@ -9,6 +9,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Prevent users from sending invalid requests (querying for consonants when none are selected, invalid # for k value)
 * Don't let users highlight the text in phoneme/class selector popovers. 
 * Allow arbitrarily many traits to be selected. (but for usability artificially limit to 3-5 for now)
 * Reorder the default options in dropdowns to be more useful... People will be more likely to select "at least 1" than they are to select "exactly 1"
