@@ -9,8 +9,13 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
-* Prevent users from sending invalid requests (querying for consonants when none are selected, invalid # for k value)
-* Don't let users highlight the text in phoneme/class selector popovers. 
+* Add more trait selections such as:
+1. number of consonants/vowels/phonemes
+2. word order
+3. morphological types
+4. word formation (and freq)
+* Prevent users from sending invalid requests (querying for consonants when none are selected, invalid # for k value) and notify the user of the failed attempt
+* Don't let users highlight the text in phoneme/class selector popovers.
 * Allow arbitrarily many traits to be selected. (but for usability artificially limit to 3-5 for now)
 * Reorder the default options in dropdowns to be more useful... People will be more likely to select "at least 1" than they are to select "exactly 1"
 * Create a "related queries" div containing info about other things the user could have asked. For instance, if a user searches for A and B, inform them about what would have happened if they searched for just A or just B. If a user searches for Exactly 1 of x, y, z, inform them what would have happened if they searched for at least 1 (and so on)

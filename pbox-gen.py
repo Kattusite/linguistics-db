@@ -1,4 +1,5 @@
 # A helper program that generates HTML for the phoneme selector tables
+# The P stands for Phoneme
 
 from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
 
