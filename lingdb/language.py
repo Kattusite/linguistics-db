@@ -1,5 +1,5 @@
 from data.const import *
-from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+from phonemes import vowels, consonants
 import json
 
 
@@ -56,11 +56,12 @@ class Language:
 #                                                                              #
 ################################################################################
     def getLanguage(self):
+        """ Return the name of this language"""
         return self.getGrammarAttr(G_STR[G_LANGUAGE])
 
     def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
-            if it exists """
+            if it exists; else raise an error"""
         if (key not in G_STR):
             print("Error! Attribute %s does not exist in grammar" % key)
             raise IndexError("Attribute %s not a member of grammar" % key)
@@ -80,17 +81,17 @@ class Language:
 ################################################################################
     def containsConsonant(self, glyph):
         """Returns true if glyph is a valid consonant in this language"""
-        if glyph in CONSONANT_GLYPHS:
-            index = CONSONANT_GLYPHS.index(glyph)
-            return getGrammarAttr(self, G_STR[G_CONS])[index] == "1"
+        if glyph in consonants.GLYPHS:
+            index = consonants.GLYPHS.index(glyph)
+            return self.getConsonantBitstring[index] == "1"
         else:
             return False
 
     def containsVowel(self, glyph):
         """Returns true if glyph is a valid vowel in this language"""
-        if glyph in VOWEL_GLYPHS:
-            index = VOWEL_GLYPHS.index(glyph)
-            return getGrammarAttr(self, G_STR[G_VOWEL])[index] == "1"
+        if glyph in vowels.GLYPHS:
+            index = vowels.GLYPHS.index(glyph)
+            return self.getVowelBitstring[index] == "1"
         else:
             return False
 
@@ -111,8 +112,11 @@ class Language:
         matches = compareBitstrings(template, bitstring)
         return compareByMode(matches, k, mode)
 
+    def containsConsonantClasses(self, classStr, k, mode):
+        return NotImplemented
+
     def containsVowelClasses(self, classStr, k, mode):
-        return "TBD"
+        return NotImplemented
 
     def containsConsonantPlaces(self):
         """Returns true if the language has 3+ places of consonant articulation"""
@@ -178,7 +182,9 @@ def compareBitstrings(s1, s2):
     len2 = len(s2)
     if (len1 != len2):
         raise ValueError("An attempt was made to compare phoneme bitstrings" +
-                         " of differing lengths!")
+                         " of differing lengths!" +
+                         "\na:" + s1 + ":a len=" + str(len(s1)) +
+                         "\nb:" + s2 + ":b len=" + str(len(s2)) )
     matches = 0
     for i in range(len1):
         if (s1[i]=="1" and s2[i]=="1"):

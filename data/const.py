@@ -21,24 +21,13 @@ G_NUM_PHONEMES    = 6
 G_CONSONANTS      = 7
 G_VOWELS          = 8
 G_PHONETIC        = 9
-G_SYLLABLE        = 10
+G_SYLLABLES       = 10
 
 G_P_3PLUS_PLACES       = 11
 G_P_2PLUS_MANNERS      = 12
 G_P_COMPLEX_CONSONANTS = 13
 G_P_TONE               = 14
 G_P_STRESS             = 15
-
-# TODO Ask if e.g. VCCC is possible if VCC was not.
-G_S_CV      = 16
-G_S_V       = 17
-G_S_CVC     = 18
-G_S_CCV     = 19
-G_S_CCCV    = 20
-G_S_CCCCV   = 21
-G_S_VCC     = 22
-G_S_VCCC    = 23
-G_S_VCCCC   = 24
 
 #The strings to be added as fields in the JSON blob
 G_STR = [
@@ -52,21 +41,12 @@ G_STR = [
     "consonants",       # G_CONSONANTS
     "vowels",           # G_VOWELS
     "phonetic",         # G_PHONETIC
-    "syllable",          # G_SYLLABLE
+    "syllables",        # G_SYLLABLE
     "3+ places",
     "2+ manners",
     "complex consonants",
     "tone",
     "stress",
-    "CV",
-    "V",
-    "CVC",
-    "CCV",
-    "CCCV",
-    "CCCCV",
-    "VCC",
-    "VCCC",
-    "VCCCC"
 ]
 
 # The strings to be searched for in the raw CSV data for phonetic properties
@@ -77,11 +57,6 @@ G_P_STR = [
     "tone",
     "stress"
 ]
-# The strings to be searched for in the raw CSV data for syllabic properties
-# A slice off the end of the G_STR list
-G_S_STR = G_STR[G_S_CV:]
-
-
 
 T_TIME            = 0
 T_NETID           = 1

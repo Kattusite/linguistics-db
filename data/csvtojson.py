@@ -1,11 +1,21 @@
 # Merge and anonymize the grammar/typology csv,
 # Then convert it to a json file
+# NOTE: I apologize in advance to any future developer (including myself)
+# This whole file is a glorious mess, but last I checked it does work
+# It would probably be worth streamlining significantly at some point
+# (or rewriting entirely), as this is far from the best way
 
 import csv, json, hashlib, re
 from operator import itemgetter, attrgetter
-from phonemes import CONSONANT_GLYPHS, VOWEL_GLYPHS
+from phonemes import consonants, vowels
 from lingdb import const as ling_const
 from .const import *
+
+########################################
+DEBUG = False
+VERBOSE = False
+#########################################
+
 #BUG Doesn't read correct encoding from csv, causing nonstandard chars to fail
 # Read in the CSV files from the declared constant filenames, and then
 # Return a JSON object representing that csv data
@@ -16,6 +26,7 @@ def csvToJSON():
     typologyCSV = open(DATA_PATH + "unanon-typology.csv", "r", newline='', encoding='utf-8')
     typologyReader = csv.reader(typologyCSV)
 
+    # Anonymize netids and names
     t_header = []
     t_data = {}
     t_netid = []
@@ -57,11 +68,17 @@ def csvToJSON():
     json_array = []
     # For each anon netid, print a row of csv and create a JSON blob
     for id in netidSet:
-        # For the time being ignore the csv because it's really annoying
         # Just construct the JSON for now
         g_list = g_data.get(id)
         t_list = t_data.get(id)
         json_obj = {}
+
+        # Decide on the language name
+        language = g_list[G_LANGUAGE] if g_list else (t_list[T_LANGUAGE] if t_list else "unknown")
+
+        # Print info about currently parsing language
+        if (VERBOSE):
+            print("\n======== Parsing %s with netid %s =========" % (language, id))
 
         if g_list is not None:
             # Extract simple grammar attributes
@@ -79,7 +96,7 @@ def csvToJSON():
 
             # Extract phonetic + syllable info
             phonetic = g_list[G_PHONETIC].split(INNER_DELIMITER)
-            syllable = g_list[G_SYLLABLE].split(INNER_DELIMITER)
+            syllables = g_list[G_SYLLABLES].split(INNER_DELIMITER)
 
             # Process phonetics
             # Offset indices relative to this one
@@ -96,29 +113,142 @@ def csvToJSON():
                     if str in p:
                         json_obj[G_STR[offset + i]] = True
 
-            # Process syllable
-            offset = G_S_CV
-            # Initialize all json fields to False
-            for i, str in enumerate(G_S_STR):
-                json_obj[G_STR[offset + i]] = False
+            # Process syllables
 
             # Search raw CSV fields for containing correct attribute names
             # (but not containing other names e.g. CV matches CV not CCV)
 
             # Construct Regexps for syllables
-            syllable_RE = []
-            for i, str in enumerate(G_S_STR):
-                # BUG: This depends on assumption that VCC follows VC in CSV.
-                syllable_RE.append("\W?" + str + "\W?") # e.g. \W?CV\W?
+            sylDict = {
+                "CV":    [],
+                "V":     [],
+                "CVC":   [],
+                "CCV":   [],
+                "CCCV":  [],
+                "CCCCV": [],
+                "VCC":   [],
+                "VCCC":  [],
+                "VCCCC": []
+            }
+            sylList = [parsePhrase(s, sylDict, ["VC", "CV"]) for s in syllables]
+            json_obj[G_STR[G_SYLLABLES]] = sylList
 
-            # On match, set corresponding field to True
-            for s in syllable:
-                for i, str in enumerate(G_S_STR):
-                    if re.search(syllable_RE[i], s):
-                        json_obj[G_STR[offset + i]] = True
 
         if t_list is not None:
-            pass
+            # NOTE: "Language" field may be overwritten, so if data is inconsistent on
+            # spelling there will be potential issues
+            # Extract simple typology attributes
+            json_obj[T_STR[T_LANGUAGE]]        = t_list[T_LANGUAGE].strip()
+            json_obj[T_STR[T_CITATION]]        = t_list[T_CITATION]
+            json_obj[T_STR[T_RECOMMEND]]       = t_list[T_RECOMMEND]
+
+            ### Parse morphological type into a list of short-names
+            morph = t_list[T_MORPHOLOGY].split(INNER_DELIMITER)
+            morphDict = {
+                "isolating": [],
+                "analytic": ["analytic", "not isolating"], # this is a toughie
+                "fusional": [],
+                "agglutinating": [],
+                "polysynthetic": []
+            }
+            morphList = [parsePhrase(m, morphDict, None) for m in morph]
+            json_obj[T_STR[T_MORPHOLOGY]] = morphList
+
+
+            ### Parse word formation into a list of short-names
+            wf = t_list[T_WORD_FORMATION].split(INNER_DELIMITER)
+            wfDict = {
+                "affixation": ["affixation", "prefixation or suffixation"],
+                "suffixation": [],
+                "prefixation": [],
+                "infixation": [],
+                "compounding": [],
+                "root-and-pattern": [],
+                "internal change": [],
+                "suppleton": [],
+                "stress or tone shift": [],
+                "reduplication": [],
+                "conversion": [],
+                "purely isolating": ["none", "purely isolating"]
+            }
+            wfList = [parsePhrase(w, wfDict, None) for w in wf]
+            json_obj[T_STR[T_WORD_FORMATION]] = wfList
+
+            ### Parse word formation freq into a short-name
+            #json_obj[T_STR[G_NUM_CONSONANTS]]  = t_list[G_NUM_CONSONANTS]
+            wfFreq = t_list[T_FORMATION_FREQ].lower()
+
+            # extract frequency from morph
+            freqDict = {
+                "exclusively" : ["exclusive", "purely"],
+                "mostly": ["mostly"],
+                "equal": ["equal ","even ","mix "]
+            }
+            freq = parsePhrase(wfFreq, freqDict, None)
+            if freq is None:
+                raise ValueError("Failed to parse morphological type")
+
+            modeDict = {
+                "prefixing and suffixing":  ["prefixing and suffixing"],
+                "affixation and other":     ["affixation and other"],
+                "suffixing":                ["suffixing"],
+                "prefixing":                ["prefixing"],
+                "non-affixal":              ["non-affixal"],
+                "isolating":                ["isolating"]
+            }
+            mode = parsePhrase(wfFreq, modeDict, [" and "])
+            if mode is None:
+                raise ValueError("Failed to parse morphological type")
+
+            json_obj[T_STR[T_FORMATION_FREQ]] = "%s %s" % (freq, mode)
+
+            ### Parse word order into a short-name
+            order = t_list[T_WORD_ORDER]
+            orderDict = {
+                "SVO": [],
+                "SOV": [],
+                "VSO": [],
+                "VOS": [],
+                "OVS": [],
+                "OSV": [],
+                "multiple": ["more than one", "multiple", "several"],
+                "none":     ["no basic", "none"]
+            }
+            parsedOrder = parsePhrase(order, orderDict, ["free", "seemingly free"])
+            json_obj[T_STR[T_WORD_ORDER]] = parsedOrder
+
+            ### Parse headedness into a short-name
+            # NOTE "mixed" & "headedness" must occur together-  "mixed head-initial" (eg) makes no sense
+            head = t_list[T_HEADEDNESS]
+            hFreqDict = {
+                "consistently": [],
+                "mostly": [],
+                "mixed": ["mixed", "equal", "roughly equal"]
+            }
+            hFreq = parsePhrase(head, hFreqDict, None)
+
+            hModeDict = {
+                "head-initial": [],
+                "head-final": [],
+                "headedness": ["mixed", "equal", "roughly equal"]
+            }
+            hMode = parsePhrase(head, hModeDict, None)
+            json_obj[T_STR[T_HEADEDNESS]] = "%s %s" % (hFreq, hMode)
+
+            ### Parse case and agreement into short-names
+            case = t_list[T_CASE]
+            agree = t_list[T_AGREEMENT]
+
+            caDict = {
+                "none": ["doesn't have", "none"],
+                "ergative/absolutive": [],
+                "nominative/accusative": [],
+                "other": ["other", "some other", "other sort"]
+            }
+
+            json_obj[T_STR[T_CASE]]      = parsePhrase(case,  caDict, ["Has case"])
+            json_obj[T_STR[T_AGREEMENT]] = parsePhrase(agree, caDict, ["Has agreement"])
+
 
         json_array.append(json_obj)
         # print(json_obj)
@@ -133,8 +263,8 @@ def main():
     json_array = csvToJSON()
 
     # Open output files (CSV currently unused)
-    outputCSV = open(DATA_PATH + "anon-combined.csv", "w", newline='')
-    outputCSVWriter = csv.writer(outputCSV)
+    # outputCSV = open(DATA_PATH + "anon-combined.csv", "w", newline='')
+    # outputCSVWriter = csv.writer(outputCSV)
 
     outputJSON = open(DATA_PATH + "anon-combined.json", "w", encoding='utf-8')
 
@@ -169,16 +299,74 @@ def csvPhonemesToBitstring(csvStr, phonemeList):
     return "".join(bitList)
 
 # Given a csvStr representing a csv formatted list of consonants, return
-# the corresponding bitstring of consonants, using CONSONANT_GLYPHS as the
+# the corresponding bitstring of consonants, using consonants.GLYPHS as the
 # canonical list
 def csvConsonantsToBitstring(csvStr):
-    return csvPhonemesToBitstring(csvStr, CONSONANT_GLYPHS)
+    return csvPhonemesToBitstring(csvStr, consonants.GLYPHS)
 
 # Given a csvStr representing a csv formatted list of vowels, return
-# the corresponding bitstring of vowels, using VOWEL_GLYPHS as the
+# the corresponding bitstring of vowels, using vowels.GLYPHS as the
 # canonical list
 def csvVowelsToBitstring(csvStr):
-    return csvPhonemesToBitstring(csvStr, VOWEL_GLYPHS)
+    return csvPhonemesToBitstring(csvStr, vowels.GLYPHS)
 
+
+# A better metric to use than "longest match" might be "largest percentage of phrase matched
+##
+# A function for reducing complex phrases into a predefined set of strings...wwwwww
+# Given phrase, a string, and matchDict (a str-> list dictionary), search phrase
+# for occurences of any of the strings in the lists of matchDict.
+# Return the key associated with the list of the longest match detected
+# If no match is detected, ensure that none of the strings in failList are matched
+# If they are, raise an error indicating the parsing dict was not strong enough
+# Syntactic sugar: If matchDict contains:
+#  str: []   (a string associated with an empty list), then the key str will be
+# added to that list automatically (to save typing)
+## Could probably be reframed to work with regexps, but that seems a bit much
+# The purpose of this function is to protect against needing to change the code every
+# time a tiny change is made to the data
+# failList: Things that *should* have matched but did not.
+def parsePhrase(phrase, matchDict, failList):
+    keys = matchDict.keys()
+    bestNum = 0
+    bestStr = None
+    for key in keys:
+        matchList = matchDict[key]
+        # Add key itself to empty lists (a shorthand to save typing)
+        if len(matchList) == 0:
+            matchList.append(key)
+        matchLen = matchAnyInList(phrase, matchList)
+        # Cannot resolve ambiguous matches! Programmer needs better matchDict
+        if matchLen != 0 and matchLen == bestNum:
+            raise ValueError("Strongly ambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
+        # If this match is unambiguously stronger, it is the new match
+        if matchLen > bestNum:
+            if bestNum != 0 and VERBOSE:
+                print("Resolving semiambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
+            bestNum = matchLen
+            bestStr = key
+    # Ensure the fail-deadly list was not triggered
+    # The fail-deadly acts as a primitive canary for changing data
+    # If the program detects unfamiliar situations that it knows it *should* be able to handle,
+    # it fails immediately to alert the programmer
+    if bestStr is None and failList is not None:
+        for f in failList:
+            if f in phrase:
+                raise ValueError("Fail-deadly triggered during phrase parsing: '%s' in '%s'" % (f, phrase))
+    if (DEBUG):
+        print("Parsing... %s \n==> %s" % (phrase, bestStr))
+    return bestStr
+
+
+# Given a string str and list lst, return the length of the longest string in lst
+# that was contained in str, or 0 if no match was found.
+# Comparisons are case insensitive
+def matchAnyInList(str, lst):
+    str = str.lower()
+    best = 0
+    for s in lst:
+        if s.lower() in str:
+            best = max(best, len(s))
+    return best
 
 main()

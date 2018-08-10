@@ -1,7 +1,15 @@
-# Canonical Vowel Order v1.0 
+# Canonical Vowel Order v1.0
 # Be sure to check carefully before & after changing this list, as it may have
-# unintended consequences.
-VOWEL_GLYPHS = [
+# unintended consequences, and is used throughout the program in various places
+# as the authoritative, canonical list of phonemes.
+
+# (Some) Areas this list affects:
+# Generating the clickable phoneme selector GUI elements
+# Checking for phoneme membership in language.py
+# Creating and comparing phoneme bitstrings
+from . import bitstrings
+
+GLYPHS = [
     "a",
     "e",
     "o",
@@ -17,3 +25,132 @@ VOWEL_GLYPHS = [
     "ʉ"
     # "N/A" # None of the above (remove this and let 0000...000 be implicit)
 ]
+
+# Order of the list is arbitrary from this line down
+# Canonical vowel roundness/height/backness
+ROUNDEDNESSES = [
+    "any roundedness",
+    "rounded",
+    "unrounded"
+]
+
+HEIGHTS = [
+    "any height",
+    "high",
+    "mid-high",
+    "mid",
+    "mid-low",
+    "low"
+]
+
+BACKNESSES = [
+    "any backness",
+    "front",
+    "central",
+    "back"
+]
+
+CLASS_MATRIX = [
+    ROUNDEDNESSES,
+    HEIGHTS,
+    BACKNESSES
+]
+
+# Canonical Vowel Classes
+CLASSES = {
+    # Height
+    "high" : [
+        "i",
+        "u",
+        "ɨ",
+        "ɯ",
+        "y",
+        "ʉ"
+    ],
+    "mid-high" : [
+        "e",
+        "o",
+        "ø",
+        "ɵ"
+    ],
+    "mid": [
+        "ə"
+    ],
+    "mid-low": [
+        "ʌ"
+    ],
+    "low" : [
+        "a"
+    ],
+    # Backness
+    "front": [
+        "a",
+        "e",
+        "i",
+        "y",
+        "ø",
+    ],
+    "central": [
+        "i",
+        "ə",
+        "ɵ",
+        "ʉ"
+    ],
+    "back": [
+        "o",
+        "u",
+        "ɯ",
+        "ʌ"
+    ],
+
+    # Roundedness
+    "rounded": [
+        "o",
+        "u",
+        "y",
+        "ø",
+        "ɵ",
+        "ʉ"
+    ],
+    "unrounded": [
+        "a",
+        "e",
+        "i",
+        "ɨ",
+        "ɯ",
+        "ʌ"
+    ]
+}
+
+#TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
+def getBitstringFromClass(className):
+    # If this is a special bypass class ("Any...") return all ones
+    # else If natural class not recognized, return a string of all zeroes
+    className = className.lower()
+    if "Any ".lower() in className:
+        return "1" * len(GLYPHS)
+    elif className not in CLASSES:
+        raise ValueError("Class " + className + " not recognized as a natural class")
+        return "0" * len(GLYPHS)
+
+    classList = CLASSES[className]
+
+    # Otherwise generate the string by iterating through the glpyh list
+    bitList = []
+    for p in GLYPHS:
+        if p in classList:
+            bitList.append("1")
+        else:
+            bitList.append("0")
+
+    return "".join(bitList)
+
+def getBitstringFromClasses(classArr):
+    bitstring = ""
+    for i, natClass in enumerate(classArr):
+        tempBitstring = getBitstringFromClass(natClass)
+        if i == 0:
+            bitstring = tempBitstring
+        else:
+            bitstring = bitstrings.AND(bitstring, tempBitstring)
+    return bitstring

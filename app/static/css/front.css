@@ -13,6 +13,7 @@ body {
   display: none;
 }
 
+/* Hide the selector popover templates at the bottom of the page */
 #cbox-template {
   display: none;
 }
@@ -21,9 +22,18 @@ body {
   display: none;
 }
 
+#ccbox-template {
+  display: none;
+}
+
+#vcbox-template {
+  display: none;
+}
+
 #trait-div-template {
    display: none;
 }
+/* ----------------------------------------------------------- */
 
 .inactive-trait {
   display: none;
@@ -40,7 +50,13 @@ body {
   border-radius: 5px;
 }
 
+/* Used to select the mode of equality check (>=, <, etc) */
 .mode-selector {
+  padding: 3px;
+}
+
+/* Used to select natural classes of phonemes */
+.class-selector {
   padding: 3px;
 }
 
@@ -63,8 +79,6 @@ body {
 
 .pbox-label-empty {
   display: table-cell;
-  width: 30px;
-  height: 30px;
   margin: 0px;
 }
 
@@ -76,6 +90,14 @@ body {
   border-bottom: 3px solid;
 }
 
+.ccbox-selector-init {
+  border-bottom: 3px solid;
+}
+
+.vcbox-selector-init {
+  border-bottom: 3px solid;
+}
+
 .pbox-label.pbox-label-selected {
   background-color: #b0b0b0;
 }
@@ -83,3 +105,30 @@ body {
 span[data-toggle=tooltip] {
   border-bottom: 1px dotted #000;
 }
+
+/* Phoneme natural class selectors */
+.clbox-label {
+  display: table-cell;
+  background-color: #d0d0d0;
+  border: 1px solid #909090;
+  margin: 0px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.clbox-label:hover {
+  background-color: #c0c0c0;
+  border: 1px solid #909090;
+}
+
+.clbox-label-empty {
+  display: table-cell;
+  margin: 0px;
+}
+
+.clbox-label.clbox-label-selected {
+  background-color: #b0b0b0;
+}
+/*  */

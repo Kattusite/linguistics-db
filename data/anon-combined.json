@@ -13,15 +13,31 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV",
+            "VCC"
+        ],
+        "citation": "Chirikba, V. A. Abkhaz. München: LINCOM, 2003. ",
+        "recommend": "It's a tiny grammar, so it's very concise (almost too concise and dense, if you ask me) so if the student has a linguistics background then it should be fine ",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": "multiple",
+        "headedness": "consistently head-final",
+        "case": "none",
+        "agreement": "ergative/absolutive"
     },
     {
         "language": "Aguaruna",
@@ -37,18 +53,30 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC"
+        ],
+        "citation": "A Grammar of Aguaruna (Iiniá Chicham), Simon E Overall, De Gruyter Mouton, 2015.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
-        "language": "Apurinà",
+        "language": "Apurinã",
         "name": "d7435e92054ca53d",
         "netid": "04df888e819f734f",
         "num vowels": "20",
@@ -61,15 +89,27 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V"
+        ],
+        "citation": "(The Language Of The Apurinã People of Brazil, Sidney Da Silva Facundes, SUNY Buffalo, 2000)",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SVO",
+        "headedness": "mostly head-initial",
+        "case": "none",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Arapaho",
@@ -85,39 +125,33 @@
         "complex consonants": true,
         "tone": true,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
-    },
-    {
-        "language": "Bardi",
-        "name": "573bcc800467e808",
-        "netid": "ce0f31e997fab73a",
-        "num vowels": "7",
-        "num consonants": "17",
-        "num phonemes": "24",
-        "consonants": "1111101110001100001100000",
-        "vowels": "1011100000000",
-        "3+ places": true,
-        "2+ manners": true,
-        "complex consonants": false,
-        "tone": false,
-        "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": true,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "VCC"
+        ],
+        "citation": "Cowell, A., & Moss Sr, A. (2008). The Arapaho Language. University Press of Colorado.",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "internal change",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SVO",
+        "headedness": "consistently head-initial",
+        "case": "none",
+        "agreement": "other"
     },
     {
         "language": "Berbice Dutch Creole",
@@ -133,18 +167,33 @@
         "complex consonants": false,
         "tone": true,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV",
+            "VCC"
+        ],
+        "citation": "Kouwenberg, Silva. (1994). A grammar of Berbice Dutch Creole. Berlin: Mouton de Gruyter.",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            null,
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SVO",
+        "headedness": "mixed headedness",
+        "case": "none",
+        "agreement": "none"
     },
     {
-        "language": "Chalcatonga Mixtec",
+        "language": "Chalcatongo Mixtec",
         "name": "712f8e3e7ecf9d64",
         "netid": "b9fea6da80862c8b",
         "num vowels": "12",
@@ -157,15 +206,30 @@
         "complex consonants": true,
         "tone": true,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CCV"
+        ],
+        "citation": "\"A Grammar of Chalcatongo Mixtec,\" Monica Macaulay. University of California Press, 1996. ",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change",
+            "stress or tone shift",
+            "conversion"
+        ],
+        "word formation frequency": "mostly prefixing",
+        "word order": "VSO",
+        "headedness": "consistently head-initial",
+        "case": "none",
+        "agreement": "none"
     },
     {
         "language": "Choctaw",
@@ -181,15 +245,29 @@
         "complex consonants": true,
         "tone": true,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "VCC"
+        ],
+        "citation": "A Choctaw Reference Grammar, George Aaron Broadwell, 2006, University of Nebraska Press",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "stress or tone shift"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": "SOV",
+        "headedness": "mostly head-final",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Comanche",
@@ -205,15 +283,29 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC"
+        ],
+        "citation": "A grammar of Comanche, Jean Ormandy Charney",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "nominative/accusative",
+        "agreement": "none"
     },
     {
         "language": "Creek",
@@ -229,15 +321,12 @@
         "complex consonants": true,
         "tone": true,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC",
+            "CCV",
+            "VCC"
+        ]
     },
     {
         "language": "Crow",
@@ -253,15 +342,26 @@
         "complex consonants": true,
         "tone": true,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV",
+            "VCC"
+        ],
+        "citation": "Graczyk, R. (2007). A grammar of Crow. Lincoln: Univ. of Nebraska Press.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "polysynthetic"
+        ],
+        "word formation": [
+            "affixation"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "other",
+        "agreement": "none"
     },
     {
         "language": "Cupeño",
@@ -277,15 +377,30 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC"
+        ],
+        "citation": "Hill, Jane H. A Grammar of Cupeño. Vol. 136, University of California Publications, 2006.",
+        "recommend": "No, my grammar was hard to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "root-and-pattern",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "mixed headedness",
+        "case": "other",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Daakaka",
@@ -301,15 +416,64 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV"
+        ],
+        "citation": "Von Prince, Kilu. 2015. A Grammar of Daakaka. Walter de Gruyter: Germany.",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "isolating",
+            "fusional",
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": "SVO",
+        "headedness": "consistently head-initial",
+        "case": "none",
+        "agreement": "none"
+    },
+    {
+        "language": "Evenki",
+        "name": "5b6abe29e943849f",
+        "netid": "e5673f0a3458f544",
+        "num vowels": "13",
+        "num consonants": "18 ",
+        "num phonemes": "31",
+        "consonants": "1011111101101100101100001",
+        "vowels": "1010000100000",
+        "3+ places": true,
+        "2+ manners": true,
+        "complex consonants": true,
+        "tone": false,
+        "stress": false,
+        "syllables": [
+            "CV",
+            "V",
+            "CVC"
+        ],
+        "citation": "Evenki, Igor Nedjalkov, Routledge, 1997.",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation"
+        ],
+        "word formation frequency": "exclusively suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Hainan Cham",
@@ -325,15 +489,29 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC",
+            "VCC"
+        ],
+        "citation": "Thurgood, Graham, Thurgood, Ela, and Fengxiang, Li. 2014. A Grammatical Sketch of Hainan Cham : History, Contact, and Phonology. Boston: De Gruyter.",
+        "recommend": "No, my grammar was hard to work with",
+        "morphological type": [
+            "isolating",
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly isolating",
+        "word order": "SVO",
+        "headedness": "mostly head-initial",
+        "case": "none",
+        "agreement": "none"
     },
     {
         "language": "Hualapai",
@@ -349,15 +527,34 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": true,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV",
+            "VCC",
+            "VCCC"
+        ],
+        "citation": "Watahomigie, L., Bender, J., Watahomigie, P., Sr., & Yamamoto, A. Y. (2001). Hualapai Reference Grammar (Endangered Languages of the Pacific Rim). Osaka, Japan: Faculty of Informatics, Osaka Gakuin University.",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "root-and-pattern",
+            "internal change",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Ingush",
@@ -373,15 +570,28 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC",
+            "CCV"
+        ],
+        "citation": " Ingush grammar, Nichols, Johanna. Berkeley, Calif.: University of California Press, 2011",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            null,
+            "stress or tone shift"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "nominative/accusative",
+        "agreement": "ergative/absolutive"
     },
     {
         "language": "Jingulu",
@@ -397,15 +607,28 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC",
+            "VCC"
+        ],
+        "citation": "Pensalfini, Robert J. A Grammar of Jingulu: An Aboriginal Language of the Northern Territory. Pacific Linguistics, 2003.",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional",
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "infixation",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "none",
+        "headedness": "mixed headedness",
+        "case": "other",
+        "agreement": "other"
     },
     {
         "language": "Kabardian",
@@ -421,15 +644,29 @@
         "complex consonants": true,
         "tone": false,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CCV",
+            "VCC"
+        ],
+        "citation": "A Grammar of the Kabardian Language, John Colarusso, London: University of Calgary Press, 1992) ",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "ergative/absolutive",
+        "agreement": "ergative/absolutive"
     },
     {
         "language": "Kawaiisu",
@@ -445,15 +682,31 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "VCC"
+        ],
+        "citation": "Zigmond, Maurice L, et al. Kawaiisu: A Grammar and Dictionary with Texts. Edited by Pamela Munro, vol. 119, University of California Press, 1991.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change",
+            null,
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "multiple",
+        "headedness": "mostly head-final",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Kotiria",
@@ -469,15 +722,26 @@
         "complex consonants": false,
         "tone": true,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V"
+        ],
+        "citation": "Stenzel, Kristine. 2013. A Reference Grammar of Kotiria (Wanano). Lincoln and London: University of Nebraska Press",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            null
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "other",
+        "agreement": "other"
     },
     {
         "language": "Kukama-Kukamaria",
@@ -493,15 +757,12 @@
         "complex consonants": false,
         "tone": false,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV"
+        ]
     },
     {
         "language": "Kulina",
@@ -517,15 +778,27 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V"
+        ],
+        "citation": "A Grammar of Kulina, Stefan Dienst, De Gruyter Mouton, 2014",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            null,
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "none",
+        "agreement": "other"
     },
     {
         "language": "Manchu",
@@ -541,15 +814,28 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC"
+        ],
+        "citation": "Gorelova, L. M. (2002). Manchu grammar. Leiden: Brill.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": "exclusively suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "nominative/accusative",
+        "agreement": "none"
     },
     {
         "language": "Marquesan",
@@ -565,15 +851,26 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V"
+        ],
+        "citation": "Cablitz, Gabriele H. Marquesan a Grammar of Space. W. De Gruyter, 2006. ",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly prefixing",
+        "word order": "VSO",
+        "headedness": "consistently head-initial",
+        "case": "nominative/accusative",
+        "agreement": "none"
     },
     {
         "language": "Osage",
@@ -589,39 +886,28 @@
         "complex consonants": true,
         "tone": false,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": false,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
-    },
-    {
-        "language": "Pelts",
-        "name": "5b6abe29e943849f",
-        "netid": "e5673f0a3458f544",
-        "num vowels": "13",
-        "num consonants": "18 ",
-        "num phonemes": "31",
-        "consonants": "1011111101101100101100001",
-        "vowels": "1010000100000",
-        "3+ places": true,
-        "2+ manners": true,
-        "complex consonants": true,
-        "tone": false,
-        "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CCV"
+        ],
+        "citation": " Quintero, Carolyn. Osage Grammar. Lincoln: University of Nebraska Press, 2004.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "none",
+        "agreement": "other"
     },
     {
         "language": "Pipil",
@@ -637,15 +923,29 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV"
+        ],
+        "citation": "Campbell, Lyle. The Pipil Language of El Salvador. Berlin: Mouton, 1985.",
+        "recommend": "No, my grammar was hard to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": "VOS",
+        "headedness": "consistently head-initial",
+        "case": "none",
+        "agreement": "other"
     },
     {
         "language": "Pipil",
@@ -661,15 +961,31 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV"
+        ],
+        "citation": "The Pipil Language of El Salvador, Lyle Campbell, Mouton, 1985",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            null,
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": "VOS",
+        "headedness": "mostly head-initial",
+        "case": "none",
+        "agreement": "other"
     },
     {
         "language": "Pite Saami",
@@ -685,15 +1001,33 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": true,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": true,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC",
+            "CCV",
+            "CCCV",
+            "VCC",
+            "VCCC"
+        ],
+        "citation": "Wilbur, J. (2014). A grammar of Pite Saami. Berlin: Language Science Press.",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional",
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "internal change",
+            null,
+            "stress or tone shift"
+        ],
+        "word formation frequency": "exclusively suffixing",
+        "word order": "SVO",
+        "headedness": "mostly head-initial",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Tommo So",
@@ -709,15 +1043,32 @@
         "complex consonants": false,
         "tone": true,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "V",
+            "CVC"
+        ],
+        "citation": "A Grammar of Tommo So, Laura McPherson, Walter de Gruyter GmbH (Berlin/Boston), 2013",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "root-and-pattern",
+            "internal change",
+            null,
+            "stress or tone shift",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": "SOV",
+        "headedness": "mostly head-final",
+        "case": "other",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Tundra Nenets",
@@ -733,15 +1084,27 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC"
+        ],
+        "citation": "Nikolaeva, Irina. 2014. A Grammar of Tundra Nenets. Walter de Gruyter GmbH: Berlin/ Boston.",
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "internal change",
+            null
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "mostly head-final",
+        "case": "nominative/accusative",
+        "agreement": "nominative/accusative"
     },
     {
         "language": "Wangkajunga",
@@ -757,15 +1120,28 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": false,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC"
+        ],
+        "citation": "Jones, Barbara. 2011. A grammar of Wangkajunga: a language of the Great Sandy Desert. Canberra: Pacific Linguistics at the Australian National University.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "root-and-pattern",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "ergative/absolutive",
+        "agreement": "ergative/absolutive"
     },
     {
         "language": "Wardaman",
@@ -781,15 +1157,71 @@
         "complex consonants": true,
         "tone": false,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": true,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": true,
-        "VCCCC": true
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV",
+            "VCC",
+            "VCCC",
+            "VCCCC"
+        ],
+        "citation": "Merlan, Francesca. A Grammar of Wardaman: a Language of the Northern Territory of Australia. Mouton De Gruyter, 1994.",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "none",
+        "headedness": "mixed headedness",
+        "case": "ergative/absolutive",
+        "agreement": "nominative/accusative"
+    },
+    {
+        "language": "Warrongo",
+        "name": "573bcc800467e808",
+        "netid": "ce0f31e997fab73a",
+        "num vowels": "7",
+        "num consonants": "17",
+        "num phonemes": "24",
+        "consonants": "1111101110001100001100000",
+        "vowels": "1011100000000",
+        "3+ places": true,
+        "2+ manners": true,
+        "complex consonants": false,
+        "tone": false,
+        "stress": false,
+        "syllables": [
+            "CV",
+            "V",
+            "CVC",
+            "CCV",
+            "VCC",
+            "VCCC"
+        ],
+        "citation": "A Grammar of Warrongo, Tasaku, Tsunoda, De Gruyter, 2011-12-23",
+        "recommend": "My grammar was great in that the EBook was very organized, but I feel that having a hard copy on hand would have been very nice. (I didn't see one in the libraries)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": "SOV",
+        "headedness": "consistently head-final",
+        "case": "other",
+        "agreement": "none"
     },
     {
         "language": "Yuki",
@@ -805,14 +1237,25 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
-        "CV": true,
-        "V": true,
-        "CVC": true,
-        "CCV": false,
-        "CCCV": false,
-        "CCCCV": false,
-        "VCC": true,
-        "VCCC": false,
-        "VCCCC": false
+        "syllables": [
+            "CV",
+            "CVC",
+            "VCC"
+        ],
+        "citation": "Yuki Grammar: With Sketches of Huchnom and Coast Yuki, Uldis Balodis, University of California Publications, 2016",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "compounding"
+        ],
+        "word formation frequency": "exclusively suffixing",
+        "word order": "multiple",
+        "headedness": "consistently head-final",
+        "case": "ergative/absolutive",
+        "agreement": "none"
     }
 ]
