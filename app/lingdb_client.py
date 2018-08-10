@@ -5,8 +5,9 @@
 
 import os, re
 from lingdb import LingDB
-from phonemes import VOWEL_GLYPHS, CONSONANT_GLYPHS
+from phonemes import vowels, consonants
 from data import language_data
+import phonemes
 
 # Substitute Database objects
 # (can be replaced with an actual DB later if the overhead is justified.
@@ -41,7 +42,7 @@ def handleQuery(query):
     result = function_map[trait](query)
     return result
 
-def handleQueries(queries):
+def handleQueries(queries, verbose):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
     # Can be cleaned up with comprehensions
@@ -63,20 +64,30 @@ def handleQueries(queries):
 
     nlStr   = "\n<br>\n"
 
+    # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
     uRep = createUnionReply(result_arr, reply_arr, LING_DB)
     iRep = createIntersectionReply(result_arr, reply_arr, LING_DB)
     cRep = createConditionalReply(result_arr, reply_arr, LING_DB)
 
-    # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
     # TODO also allow for displaying the results of each subquery alone--
     # If I query for A & B & C, also display just A, just B, just C.
+    cmpRep = createComparisonTable(result_arr, reply_arr)
+
+    retArr = [uRep, iRep, cRep]
+
+    # NOTE this is "true" (a string), not True, a boolean literal
+    if verbose == "true":
+        retArr.append(cmpRep)
 
     # Merge multiple queries
     if len(reply_arr) > 1:
         # print(len(reply_arr), " queries detected. Merging...")
-        return nlStr.join([uRep, iRep, cRep])
+        return nlStr.join(retArr)
+        # TODO also add a small table with a list of languages matching just A, just B, or A and B
 
     # If only one query, just return a single one.
+    if verbose == "true":
+        return nlStr.join([uRep, cmpRep])
     return uRep
 
 #############################################################################
@@ -123,9 +134,46 @@ def createConditionalReply(results, replies, db):
     frac  = createFractionHTML(num, den)
     return " ".join([frac, ifReply, thenReply])
 
+def createComparisonTable(results, replies):
+    # Define table template
+    table = """
+    <br>
+    <table>
+        <tbody>
+            <tr>%s</tr>
+        </tbody>
+    </table>"""
+
+    # Define the columns
+    hideHeaders = len(results) <= 1
+    cols = "".join([createComparisonRow(results[i], replies[i], hideHeaders) for i in range(len(results))])
+    print(len(results), hideHeaders)
+    return table % cols
+
+
+
+def createComparisonRow(result, reply, hideHeaders):
+    header = "" if hideHeaders else str(len(result)) + " languages " + reply
+    row = """
+    <td>
+        <h5>%s</h5>
+        <ul>
+            %s
+        </ul>
+    </td>"""
+
+    mid = "</li>\n<li>".join([lang.getLanguage() for lang in result])
+    bodyList = ["<li>", mid, "</li>"]
+    body = "".join(bodyList)
+
+    return row % (header, body)
+
+
 
 def createFractionHTML(num, den):
-    float = num / den
+    float = 0
+    if (den != 0):
+        float = num / den
     quantifier = floatToQuantifier(float)
     frac = "".join(["<span style='font-size: x-small;'>",
                     "(%d / %d)" % (num, den),
@@ -180,10 +228,11 @@ def queryForConsonants(query):
     return matches
 
 def queryForConsonantClasses(query):
-    classStr = query["class"]
+    classArr = query["classes"]
+    bitstring = phonemes.consonants.getBitstringFromClasses(classArr)
     k = int(query["k"])
     mode = query["mode"]
-    matches = LING_DB.queryContainsConsonantClasses(classStr, k, mode)
+    matches = LING_DB.queryContainsConsonants(bitstring, k, mode)
     return matches
 
 def queryForVowels(query):
@@ -194,10 +243,11 @@ def queryForVowels(query):
     return matches
 
 def queryforVowelClasses(query):
-    classStr = query["class"]
+    classArr = query["classes"]
+    bitstring = phonemes.vowels.getBitstringFromClasses(classArr)
     k = int(query["k"])
     mode = query["mode"]
-    matches = LING_DB.queryContainsVowelClasses(classStr, k, mode)
+    matches = LING_DB.queryContainsVowels(bitstring, k, mode)
     return matches
 
 def queryForConsonantPlaces(query):
@@ -229,6 +279,8 @@ def queryForSyllable(query):
 #                                Helper Methods
 #############################################################################
 # Reconstruct the consonant glyphs provided in the given consonant bitstring
+# This function is deprecated (I'm not sure what it was ever useful for, and it's outdated)
+"""
 def getConsonantGlyphsFromBitstring(consonants):
     # init_DB()
     results = []
@@ -236,3 +288,4 @@ def getConsonantGlyphsFromBitstring(consonants):
         if c == "1":
             results.append(CONSONANT_GLYPHS[i])
     return results
+"""
