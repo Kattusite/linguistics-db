@@ -9,6 +9,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Fix the response-generation function to work for edge cases. For example, instead of "Few languages contain at least one of a" could just say "Few languages contain a". Or instead of "Few languages contain at most 0 of p" --> "Few languages do not contain p"/"Few languages contain none of x, y, z"; "languages contain at least/exactly 3 of p,t,k" --> languages contain all of p, t, k
 * Add more trait selections such as:
 1. number of consonants/vowels/phonemes
 2. word order
