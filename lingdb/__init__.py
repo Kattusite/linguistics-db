@@ -30,7 +30,7 @@ class LingDB:
 
 ################################################################################
 #                             Query Methods                                    #
-#                                                                              #
+#   (these appear largely redundant; directly use language methods instead? )   #
 ################################################################################
 
     def queryContainsConsonants(self, bitstring, k, mode):
