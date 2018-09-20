@@ -30,8 +30,17 @@ class LingDB:
 
 ################################################################################
 #                             Query Methods                                    #
-#   (these appear largely redundant; directly use language methods instead? )   #
+#   (these appear largely redundant; directly use language methods instead? )  #
 ################################################################################
+
+    # This one is tricky. Where fn is a *function* (not a method) from the
+    # Language class, and args is a list of args to be passed to that function,
+    # apply fn to all languages lang in the DB. Then if lang.fn(*args) is True,
+    # or returns a True type (ie a nonempty list), append that language's results
+    # to a list.
+    # Return the entire list after all matching languages have contributed results
+    def query(self, fn, args):
+        return [lang for lang in self.data if fn(lang, *args)]
 
     def queryContainsConsonants(self, bitstring, k, mode):
         """Returns a list of the languages that contain "exactly" k of the

@@ -1,6 +1,5 @@
-from . import app
+from . import app, lingdb_client
 from flask import render_template, redirect, request, url_for, flash
-from . import lingdb_client
 import json
 
 @app.route("/", methods = ["GET", "POST"])
@@ -12,7 +11,9 @@ def main():
         # return str(returnObj)
         f = request.form
         data = json.loads(f["payload"])
-        verbose = f["verbose"]
+
+        # TODO Change verbose to a boolean like a normal person.
+        listMode = (f["listMode"]) == "true")
 
         # TODO I think this whole block is deprecated -- remove if so
         # TODO: result, reply get overwritten at each step

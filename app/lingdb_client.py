@@ -4,7 +4,7 @@
 #############################################################################
 
 import os, re
-from lingdb import LingDB
+from lingdb import LingDB, Language
 from phonemes import vowels, consonants
 from data import language_data
 import phonemes
@@ -17,6 +17,7 @@ def init_DB():
     LING_DB = LingDB(language_data)
     # TODO integrate typology data from TYPOLOGY_FILE
 
+# TODO This is a terrible piece of code. Fix it so this doesn't get reinitialized all the time
 LING_DB = None
 init_DB()
 
@@ -37,6 +38,19 @@ def handleQuery(query):
         "tone-selector":                queryForTone,
         "stress-selector":              queryForStress,
         "syllable-selector":            queryForSyllable
+    }
+
+    function_map2 = {
+        "consonant-selector":           Language.containsConsonants,
+        "consonant-class-selector":     Language.containsConsonantClasses,
+        "vowel-selector":               Language.containsVowels,
+        "vowel-class-selector":         Language.containsVowelClasses,
+        "consonant-places":             Language.containsConsonantPlaces,
+        "consonant-manners":            Language.containsConsonantManners,
+        "complex-consonant":            Language.containsComplexConsonants,
+        "tone-selector":                Language.containsTone,
+        "stress-selector":              Language.containsStress,
+        "syllable-selector":            Language.containsSyllable
     }
 
     result = function_map[trait](query)
@@ -76,6 +90,7 @@ def handleQueries(queries, verbose):
     retArr = [uRep, iRep, cRep]
 
     # NOTE this is "true" (a string), not True, a boolean literal
+    # Where is verbose defined?
     if verbose == "true":
         retArr.append(cmpRep)
 
