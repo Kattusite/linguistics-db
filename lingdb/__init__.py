@@ -43,7 +43,6 @@ class LingDB:
         # Get the argument list for the selected function # WARNING (hacky)
         argList = inspect.getargspec(fn)[0][1:]
         argsToPass = [allArgs[a] for a in argList]
-        print("lingdb.__init__",fn, argsToPass)
         return [lang for lang in self.data if fn(lang, *argsToPass)]
 
 ################################################################################
