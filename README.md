@@ -9,6 +9,9 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Add Headings to the results pane (and generally reorganize - perhaps split into a query tab on the left and a results tab on the right. ) -- Headings for "implicational", "logical", "list"
+* BUG: Clicking ".. languages matched .." now RESUBMITS the post request, even if the query terms have changed, so it replaces the entire pane with possibly new (undesired) results.
+Instead I should make it so that the language lists are always generated and sent, but they are hidden until the ".. languages matched .." button is clicked. The "Toggle List Mode" button can probably be eliminated entirely.
 * Add more info to the replies (Have the server help generate them dynamically) -- FOr instance,
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels -->
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels (like [a, e, i, o, u])

@@ -362,14 +362,17 @@ function handleSubmit() {
 
 // Toggles list mdoe on or off, and updates the button text.
 // TODO eliminate global variable
-function handleListToggle(btn) {
+function handleListToggle() {
+  var btn = $(".list-toggle");
   listMode = !listMode;
   if (listMode) {
-    $(btn).text("Disable list mode (WIP)");
+    btn.text("Disable list mode (WIP)");
   }
   else {
-    $(btn).text("Enable list mode (WIP)");
+    btn.text("Enable list mode (WIP)");
   }
+  // Send a POST request to receive updated results
+  handleSubmit();
 }
 
 /*****************************************************************************/

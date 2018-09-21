@@ -209,6 +209,7 @@ def createFractionHTML(num, den):
                     "</span>"])
     text = "".join([quantifier, " languages ", frac])
     ret  = "".join(["<span ",
+                    "onclick='handleListToggle() '"
                     "data-toggle='tooltip' ",
                     "title='%d%% of languages matched'" % round(float * 100),
                     ">",
