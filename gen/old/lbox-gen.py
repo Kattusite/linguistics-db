@@ -1,5 +1,7 @@
 # A helper program for generating selectors for a list of generic characteristics
 # The L stands for List
+
+# NOTE DEPRECATED
 from data import const
 
 # Use the strings in arr to generate a table
