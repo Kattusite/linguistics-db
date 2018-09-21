@@ -1,5 +1,7 @@
 # linguistics-db
 
+Pardon the mess! This is a work in progress...
+
 Canonical lists of consonant and vowel phonemes are located in app/phonemes/
 
 Language class is defined in app/lingdb/language.py
@@ -9,6 +11,9 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* csvtojson.py uses a different set of dicts than const.py does -- why?? Should use only a single dict shared between both. Also add a hidden field
+"__multi__" --> True/False to decide whether or not we should allow multiple
+items to be selected. 
 * Condense my awful CSS structure into a more concise description -- e.g.
 Use .pbox.label.active instead of .pbox-label.pbox-label-active  -- Many of my CSS classes should overlap but I end up copy-pasting them instead
 * Add Headings to the results pane (and generally reorganize - perhaps split into a query tab on the left and a results tab on the right. ) -- Headings for "implicational", "logical", "list"
