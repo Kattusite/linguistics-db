@@ -15,6 +15,9 @@ var SYLLABLE_ID             = "syllable-selector";
 
 // TODO Declare constants for class names here (e.g. .vbox-template)
 
+var VOICING = 0;
+var PLACE   = 1;
+var MANNER  = 2;
 
 var listMode = false;
 
@@ -394,15 +397,21 @@ function createPhonemeSelectorString(type, uid) {
   if (!uid) {
     uid = UID();
   }
+  // Locate the template
   var template = $("#" + type + "box-template")[0];
+
+  // Alter template so it can be displayed (remove template markings)
   template.id += "-" + uid;
+  template.classList.remove("template");
   var str = template.outerHTML;
 
   // Add a UID to each id= and for= attribute\
   str = str.replace(/(box-[^\"0-9][^\"0-9]?-)template/g, "$1" + uid);
 
-  // Change the template id back to original
+  // Undo alterations to template so it is suitable for copying again
   template.id = type + "box-template";
+  template.classList.add("template");
+
   return str;
 }
 

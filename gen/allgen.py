@@ -104,7 +104,8 @@ def pboxgen(pType, glyphList):
     """Generate the html for a phoneme selector table, using glyphList as source
     glyphList is a str[] containing all valid glyphs. pType is either "consonant"/"vowel"
     depending on whether these are consonants or vowels."""
-
+    if pType not in ["consonant", "vowel"]:
+        raise ValueError("Invalid phoneme type! %s not recognized" % pType)
     abbrev = "cbox" if pType == "consonant" else "vbox"
     tprint("")
     tprint(comment("Auto-generated template for the {0} phoneme selector."
@@ -142,7 +143,7 @@ def pboxgen(pType, glyphList):
         div = tag(
             "div",
             body=p,
-            id="{0}-{1}-template".format(pType, p),
+            id="{0}-{1}-template".format(abbrev, p),
             classList=["pbox-label"],
             onclick="handlePboxLabel(this)"
         )
@@ -165,15 +166,19 @@ def clboxgen(pType, metaclasses):
     """Generate the html for a natural class selector table, using metaclasses as source.
     metaclasses is a str[][] containing a list of (lists of possible classes for each type).
     pType is either "consonant" or "vowel" depending on the type being used"""
+    if pType not in ["consonant", "vowel"]:
+        raise ValueError("Invalid phoneme type! %s not recognized" % pType)
+    abbrev = "ccbox" if pType == "consonant" else "vcbox"
+
     tprint("")
     tprint(comment("Auto-generated template for the {0} class selector."
                         .format(pType)))
 
-    tprint(tag("div", classList=["template"], id="{0}-template".format(pType), type=OPEN))
+    tprint(tag("div", classList=["template"], id="{0}-template".format(abbrev), type=OPEN))
     indent()
     tprint(tag("table", type=OPEN))
     indent()
-    tprint(tag("tbody", type=OPEN))
+    tprint(tag("tbody", classList=["{0}-class-selector".format(pType)], type=OPEN))
     indent()
 
     n = max([len(cls) for cls in metaclasses])
@@ -190,7 +195,7 @@ def clboxgen(pType, metaclasses):
 
             if i < len(metaclass):
                 htmlClasses += ["clbox-label", "clbox-label-%d" % j]
-                onclick="handleClboxLabel(this)"
+                clickFn="handleClboxLabel(this)"
                 b=metaclass[i]
             else:
                 htmlClasses += ["clbox-label-empty"]
@@ -254,8 +259,8 @@ def main():
     tprint(comment("  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###"))
 
     # Generate phoneme selectors
-    pboxgen("cbox", consonants.GLYPHS)
-    pboxgen("vbox", vowels.GLYPHS)
+    pboxgen("consonant", consonants.GLYPHS)
+    pboxgen("vowel", vowels.GLYPHS)
 
     # Generate phoneme class selectors
     clboxgen("consonant", consonants.CLASS_MATRIX)

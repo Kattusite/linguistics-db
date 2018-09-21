@@ -1,3 +1,6 @@
+/* TODO: Refactor so I get things like .pbox.label.active
+ instead of .pbox-label.pbox-label-active so I have less than a million
+ css classes defined */
 /* Need to get a css preprocessor like SASS*/
 html, body {
   min-height: 100%;
@@ -136,6 +139,27 @@ span[data-toggle=tooltip] {
 }
 
 .clbox-label.clbox-label-selected {
+  background-color: #b0b0b0;
+}
+
+/* Generic list selectors */
+.lbox-label {
+  display: table-cell;
+  background-color: #d0d0d0;
+  border: 1px solid #909090;
+  margin: 0px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.lbox-label:hover {
+  background-color: #c0c0c0;
+  border: 1px solid #909090;
+}
+
+.lbox-label.lbox-label-selected {
   background-color: #b0b0b0;
 }
 /*  */

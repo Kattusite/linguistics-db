@@ -9,6 +9,8 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Condense my awful CSS structure into a more concise description -- e.g.
+Use .pbox.label.active instead of .pbox-label.pbox-label-active  -- Many of my CSS classes should overlap but I end up copy-pasting them instead
 * Add Headings to the results pane (and generally reorganize - perhaps split into a query tab on the left and a results tab on the right. ) -- Headings for "implicational", "logical", "list"
 Also add prefix-type headings to each result so it is immediately obvious which each does-- for instance (AND), (OR), (A->B), (B->A)
 * BUG: Clicking ".. languages matched .." now RESUBMITS the post request, even if the query terms have changed, so it replaces the entire pane with possibly new (undesired) results.
