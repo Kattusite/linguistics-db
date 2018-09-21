@@ -7,7 +7,6 @@
 # Generating the clickable phoneme selector GUI elements
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
-from . import bitstrings
 
 GLYPHS = [
     "a",
