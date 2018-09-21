@@ -1,7 +1,14 @@
 # Generate all of the tables needed for front.html, in order
+#
+# Usage:
+#   From cmd line in project root: (type in cmd after $)
+#        > linguistics-db/ $ set PYTHONIOENCODING=utf-8
+#        > linguistics-db/ $ python -m gen > gen/out.html
 
 from phonemes import vowels, consonants
 from data import const
+
+
 
 ################################################################################
 #                                                                              #
@@ -10,13 +17,13 @@ from data import const
 ################################################################################
 
 indent_lvl = 0    # current indent level
-TAB_WIDTH = 2 # spaces per tab
+TAB_WIDTH = 2     # spaces per indentation level
 
 OPEN  = 0   # <body>
 CLOSE = 1   # </body>
 BOTH  = 2   # <body>...</body>
 
-PBOX_PER_ROW = 5
+ROW_SZ = 5  # How many columns per row in pboxgen
 
 ################################################################################
 #                                                                              #
@@ -102,7 +109,7 @@ def pboxgen(pType, glyphList):
     tprint("")
     tprint(comment("Auto-generated template for the {0} phoneme selector."
                         .format(pType)))
-    tprint(tag("div", id="{0}-template".format(abbrev), type=OPEN))
+    tprint(tag("div", classList=["template"], id="{0}-template".format(abbrev), type=OPEN))
     indent()
     tprint(tag("table", type=OPEN))
     indent()
@@ -110,24 +117,39 @@ def pboxgen(pType, glyphList):
     indent()
 
     n = len(glyphList)
-    for i, p in enumerate(glyphList):
-        # Are we in the last row? If so, special code needed
-        # TODO: BUG: Last row may be underfull. Add special cases for this
-        # SEVERE BUG: IF last row is underful, closing td tag is omitted!!!
-        if i / PBOX_PER_ROW == n / PBOX_PER_ROW: # -1?
-            pass # TODO
 
-        # First in new row: print new row and indent
-        if i % PBOX_PER_ROW == 0:
+    # Calculate padding needed for last row:
+    howManyOnLastRow = n % ROW_SZ
+    howManyPadding = ROW_SZ - howManyOnLastRow
+    howManyPaddingLeft = howManyPadding // 2
+
+    for i, p in enumerate(glyphList):
+
+        # Start a new tr tag for each row
+        if i % ROW_SZ == 0:
             tprint(tag("tr", type=OPEN))
             indent()
 
-        # Add a cell to this row
-        tprint(tag("div", body=p, id="{0}-{1}-template".format(pType, p),
-                   classList=["pbox-label"], onclick="handlePboxLabel(this)"))
+        # Are we in the last row? If so, print empty cells until "centered"
+        if (i // ROW_SZ == n // ROW_SZ):
+            while(howManyPaddingLeft > 0):
+                emptyDiv = tag("div", classList=["pbox-label-empty"])
+                tprint(tag("td", body=emptyDiv))
+                howManyPaddingLeft -= 1
 
-        # Last in row: close row and dedent
-        if (i % PBOX_PER_ROW) == PBOX_PER_ROW-1:
+
+        # Add a cell to this row, wrapping <div> in a <td>
+        div = tag(
+            "div",
+            body=p,
+            id="{0}-{1}-template".format(pType, p),
+            classList=["pbox-label"],
+            onclick="handlePboxLabel(this)"
+        )
+        tprint(tag("td", body=div))
+
+        # Last in row, or last in list: close row and dedent
+        if (i % ROW_SZ) == ROW_SZ-1 or i == n-1:
             dedent()
             tprint(tag("tr", type=CLOSE))
 
@@ -147,7 +169,7 @@ def clboxgen(pType, metaclasses):
     tprint(comment("Auto-generated template for the {0} class selector."
                         .format(pType)))
 
-    tprint(tag("div", id="{0}-template".format(pType), type=OPEN))
+    tprint(tag("div", classList=["template"], id="{0}-template".format(pType), type=OPEN))
     indent()
     tprint(tag("table", type=OPEN))
     indent()
@@ -194,7 +216,7 @@ def lboxgen(lType, otherList):
     tprint(comment("Auto-generated template for the {0} list selector."
                         .format(lType)))
 
-    tprint(tag("div", id="%s-template" % lType, type=OPEN))
+    tprint(tag("div", classList=["template"], id="%s-template" % lType, type=OPEN))
     indent()
     tprint(tag("table", type=OPEN))
     indent()
