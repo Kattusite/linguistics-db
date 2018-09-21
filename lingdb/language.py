@@ -101,14 +101,15 @@ class Language:
         """Returns the consonant glyphs in this language that are part of a metaclass in
         classList"""
         thisSet = set(self.getConsonants())
-        thatSet = None
-        return list(set(glyphList).intersection(cset))
+        thatSet = consonants.getGlyphListFromClasses(classList)
+        return list(thatSet.intersection(thisSet))
 
-    def matchVowels(self, classList):
+    def matchVowelClasses(self, classList):
         """Returns the vowel glyphs in this language that are part of a metaclass in
         classList"""
         thisSet = set(self.getVowels())
-        return list(set(glyphList).intersection(vset))
+        thatSet = vowels.getGlyphListFromClasses(classList)
+        return list(thatSet.intersection(thisSet))
 
 
 
