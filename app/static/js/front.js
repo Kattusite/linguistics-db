@@ -41,7 +41,7 @@ var VOWEL_CLASSES = {
   "open": ""
 }; */
 
-var verbose = false;
+var listMode = false;
 
 /*****************************************************************************/
 /*                                Initializers                               */
@@ -152,7 +152,6 @@ function handlePboxLabel(element) {
   // Iterate over all labels in this table
   // If checkbox is checked,  add its glyph to the glyph list.
   var glyphList = [];
-  var queryStr  = ""; // To be sent in server request (string of 1s and 0s)
   var rows = table.children[0].children; // table -> tbody -> array of TRs
   for (var i = 0; i < rows.length; i++) {
     var entries = rows[i].children;
@@ -164,10 +163,6 @@ function handlePboxLabel(element) {
       }
       if ($(box).hasClass("pbox-label-selected")) {
         glyphList.push($(box).text());
-        queryStr = queryStr + "1";
-      }
-      else {
-        queryStr = queryStr + "0";
       }
     }
   }
@@ -190,8 +185,8 @@ function handlePboxLabel(element) {
     link.text(lbl);
   }
 
-  // Inform the link text DOM object of its query string.
-  link.attr("queryStr", queryStr);
+  // Inform the link-text DOM object of its query for the server.
+  link.attr("glyphList", glyphList);
 
   // Save the content changes in the popover attribute.
   link.attr("data-content", str);
@@ -281,10 +276,12 @@ function handleSubmit() {
   for (var i = 0; i < traits.length; i++) {
     var t = $(traits[i]);
     var reqObj = {};
-    var id = traits[i].id.replace(/-\d+/g, "");
+    var trait = traits[i].id.replace(/-\d+/g, "");
 
-    var cons      = t.children(".cbox-selector-init:visible").attr("queryStr");
-    var vowel     = t.children(".vbox-selector-init:visible").attr("queryStr");
+    // Move most of this into the switch statement
+    var cons      = t.children(".cbox-selector-init:visible").attr("glyphList");
+    if (cons) cons = cons.split(",");
+
     var consStr   = t.children(".cbox-selector-init:visible").text();
     var vowelStr  = t.children(".vbox-selector-init:visible").text();
     var k         = t.children(".k-input").val()
@@ -294,27 +291,30 @@ function handleSubmit() {
 
     // Obtain the three natural classes selected
     // TODO make this less hacky and more stable
-    var classArr =  []
+    var glyphList;
+    var classList =  [];
     var classStr = "";
 
     // Generate the correct reply string based on the trait type
     // Some cases have special other info that must be calculated (ie for natural class arrays)
     var reply;
-    switch (id) {
+    switch (trait) {
       case CONSONANT_ID:
+        glyphList = t.children(".cbox-selector-init:visible").attr("glyphList").split(",");
         reply = "contain " + modeStr + " " + k + " of " + consStr;
         break;
       case CONSONANT_CLASS_ID:
-        classArr = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
-        classStr = getStrFromClasses(classArr, "consonant");
+        classList = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
+        classStr  = getStrFromClasses(classList, "consonant");
         reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
       case VOWEL_ID:
+        glyphList = t.children(".vbox-selector-init:visible").attr("glyphList").split(",");
         reply = "contain " + modeStr + " " + k + " of " + vowelStr;
         break;
       case VOWEL_CLASS_ID:
-        classArr = t.children(".vcbox-selector-init:visible").attr("queryArr").split(",");
-        classStr = getStrFromClasses(classArr, "vowel");
+        classList = t.children(".vcbox-selector-init:visible").attr("queryArr").split(",");
+        classStr  = getStrFromClasses(classList, "vowel");
         reply = "contain " + modeStr + " " + k + " of " + classStr;
         break;
       case CONSONANT_PLACES_ID:
@@ -337,13 +337,13 @@ function handleSubmit() {
         break;
     }
 
-    reqObj["trait"]       = id;
-    reqObj["consonants"]  = cons;
-    reqObj["vowels"]      = vowel;
+    // Insert query data into the query list
+    reqObj["trait"]       = trait;
+    reqObj["glyphList"]   = glyphList;
     reqObj["k"]           = k;
     reqObj["mode"]        = mode;
     reqObj["reply"]       = reply;
-    reqObj["classes"]     = classArr;
+    reqObj["classList"]   = classList;
 
     reqArr.push(reqObj);
   }
@@ -351,7 +351,7 @@ function handleSubmit() {
   var payload = "payload=" + JSON.stringify(reqArr);
   // TODO write this more rigorously
   // For now it is a global variable
-  payload  += "&verbose=" + verbose;
+  payload  += "&listMode=" + listMode;
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
@@ -362,14 +362,17 @@ function handleSubmit() {
 
 // Toggles list mdoe on or off, and updates the button text.
 // TODO eliminate global variable
-function handleListToggle(btn) {
-  verbose = !verbose;
-  if (verbose) {
-    $(btn).text("Disable list mode (WIP)");
+function handleListToggle() {
+  var btn = $(".list-toggle");
+  listMode = !listMode;
+  if (listMode) {
+    btn.text("Disable list mode (WIP)");
   }
   else {
-    $(btn).text("Enable list mode (WIP)");
+    btn.text("Enable list mode (WIP)");
   }
+  // Send a POST request to receive updated results
+  handleSubmit();
 }
 
 /*****************************************************************************/

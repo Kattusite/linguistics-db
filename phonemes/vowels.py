@@ -123,34 +123,28 @@ CLASSES = {
 }
 
 #TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
-def getBitstringFromClass(className):
+def getGlyphListFromClass(className):
     # If this is a special bypass class ("Any...") return all ones
     # else If natural class not recognized, return a string of all zeroes
     className = className.lower()
     if "Any ".lower() in className:
-        return "1" * len(GLYPHS)
+        return GLYPHS.copy()
     elif className not in CLASSES:
         raise ValueError("Class " + className + " not recognized as a natural class")
-        return "0" * len(GLYPHS)
+        return []
 
     classList = CLASSES[className]
 
-    # Otherwise generate the string by iterating through the glpyh list
-    bitList = []
-    for p in GLYPHS:
-        if p in classList:
-            bitList.append("1")
-        else:
-            bitList.append("0")
+    # Otherwise return a copy of the glyphlist for this class
+    return classList.copy()
 
-    return "".join(bitList)
-
-def getBitstringFromClasses(classArr):
-    bitstring = ""
-    for i, natClass in enumerate(classArr):
-        tempBitstring = getBitstringFromClass(natClass)
+def getGlyphListFromClasses(classList):
+    glyphSet = set([])
+    for i, natClass in enumerate(classList):
         if i == 0:
-            bitstring = tempBitstring
+            glyphList = getGlyphListFromClass(natClass)
+            glyphSet = set(glyphList)
         else:
-            bitstring = bitstrings.AND(bitstring, tempBitstring)
-    return bitstring
+            glyphList = getGlyphListFromClass(natClass)
+            glyphSet = set(glyphList).intersection(glyphSet)
+    return list(glyphSet)

@@ -1,4 +1,5 @@
 # A helper program that generates a HTML table to be used for selecting natural classes
+# The CL stands for natural CLass 
 
 from phonemes import consonants, vowels
 
