@@ -27,20 +27,8 @@ def handleQuery(query):
     list of results corresponding to the languages matching that type of query"""
     trait = query["trait"]
 
+    # Map each query string to its function and that function's arguments
     function_map = {
-        "consonant-selector":           queryForConsonants,
-        "consonant-class-selector":     queryForConsonantClasses,
-        "vowel-selector":               queryForVowels,
-        "vowel-class-selector":         queryforVowelClasses,
-        "consonant-places":             queryForConsonantPlaces,
-        "consonant-manners":            queryForConsonantManners,
-        "complex-consonant":            queryForComplexConsonants,
-        "tone-selector":                queryForTone,
-        "stress-selector":              queryForStress,
-        "syllable-selector":            queryForSyllable
-    }
-
-    function_map2 = {
         "consonant-selector":           Language.containsConsonants,
         "consonant-class-selector":     Language.containsConsonantClasses,
         "vowel-selector":               Language.containsVowels,
@@ -53,15 +41,17 @@ def handleQuery(query):
         "syllable-selector":            Language.containsSyllable
     }
 
-    result = function_map[trait](query)
-    return result
+    fn = function_map[trait]
+    return LING_DB.query(fn, query)
 
-def handleQueries(queries, verbose):
+def handleQueries(queries, listMode):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
     # Can be cleaned up with comprehensions
     result_arr = []
     reply_arr  = []
+
+    # Obtain a list of the languages matching each query
     for query in queries:
         r = handleQuery(query)
         s = set(r)
@@ -85,13 +75,11 @@ def handleQueries(queries, verbose):
 
     # TODO also allow for displaying the results of each subquery alone--
     # If I query for A & B & C, also display just A, just B, just C.
-    cmpRep = createComparisonTable(result_arr, reply_arr)
 
     retArr = [uRep, iRep, cRep]
 
-    # NOTE this is "true" (a string), not True, a boolean literal
-    # Where is verbose defined?
-    if verbose == "true":
+    if listMode:
+        cmpRep = createComparisonTable(result_arr, reply_arr)
         retArr.append(cmpRep)
 
     # Merge multiple queries
@@ -101,7 +89,7 @@ def handleQueries(queries, verbose):
         # TODO also add a small table with a list of languages matching just A, just B, or A and B
 
     # If only one query, just return a single one.
-    if verbose == "true":
+    if listMode:
         return nlStr.join([uRep, cmpRep])
     return uRep
 

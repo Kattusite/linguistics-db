@@ -5,24 +5,24 @@ import json
 @app.route("/", methods = ["GET", "POST"])
 def main():
     if request.method == 'POST':
-        # time = request.form['timestamp']
-        # results = course_search.course_db_query(query, semester)
-        # returnObj = {"results": results, "time":time}
-        # return str(returnObj)
+        # Extract the payload from the request form
         f = request.form
         data = json.loads(f["payload"])
 
-        # TODO Change verbose to a boolean like a normal person.
-        listMode = (f["listMode"]) == "true")
+        # data is a list of query dicts, each containing:
+        # "consonants" -> A (stringified) list of the consonants to query
+        # "vowels"     -> A (stringified) list of the vowels to query
+        # "k"          -> A (stringified) int of how many matches to find
+        # "mode"       -> A string of which comparison mode to apply to k
+        # "syllable"   -> A string of a syllable structure to query
+        # "classes"    -> A (stringified) list of which metaclasses to query
 
-        # TODO I think this whole block is deprecated -- remove if so
-        # TODO: result, reply get overwritten at each step
-        #for query in data:
-        #    result = str(lingdb_client.handleQuery(query))
-        #    reply = query["reply"]
-        ret = lingdb_client.handleQueries(data, verbose)
+        # Parse the boolean string to a proper bool
+        listMode = (f["listMode"] == "true")
+
+        # Send all queries to client for processsing
+        ret = lingdb_client.handleQueries(data, listMode)
         return ret
-        # return result + " languages " + reply
     return render_template('front.html')
 
 @app.route('/index.html')
