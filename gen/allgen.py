@@ -11,6 +11,7 @@ BOTH_TAG  = 2   # <body>...</body>
 
 PBOX_PER_ROW = 5
 
+
 # increase the current indent level
 def indent():
     global indent_lvl
@@ -47,6 +48,27 @@ def tag(t, b="", id=None, classList=None, onclick=None, other=None, type=BOTH_TA
     else:
         raise ValueError("Invalid tag type! Must specify either open tag, close tag, or both!")
 
+# Use function decorations to print start/end of table
+# BUG: wrong syntax
+def tablegen(fn, divID):
+    tprint(tag("div", id="%s-template" % divID, type=OPEN_TAG))
+    indent()
+    tprint(tag("table", type=OPEN_TAG))
+    indent()
+    tprint(tag("tbody", type=OPEN_TAG))
+    indent()
+
+    fn()
+
+    dedent()
+    tprint(tag("tbody", type=CLOSE_TAG))
+    dedent()
+    tprint(tag("table", type=CLOSE_TAG))
+    dedent()
+    tprint(tag("div", type=CLOSE_TAG))
+
+
+
 def pboxgen(glyphList):
     """Generate the html for a phoneme selector table, using glyphList as source"""
     tprint(tag("div", id="cbox-template", type=OPEN_TAG))
@@ -56,7 +78,12 @@ def pboxgen(glyphList):
     tprint(tag("tbody", type=OPEN_TAG))
     indent()
 
-    for i, p in enumerate(consonants.GLYPHS):
+    n = len(glyphList)
+    for i, p in enumerate(glyphList):
+        # Are we in the last row? If so, special code needed
+        if i / PBOX_PER_ROW == n / PBOX_PER_ROW: # -1?
+            pass # TODO
+
         # First in new row: print new row and indent
         if i % PBOX_PER_ROW == 0:
             tprint(tag("tr", type=OPEN_TAG))
@@ -82,6 +109,21 @@ def pboxgen(glyphList):
 
 def clboxgen(classList):
     """Generate the html for a natural class selector table, using classList as source"""
+    tprint(tag("div", id="%s-template" % divID, type=OPEN_TAG))
+    indent()
+    tprint(tag("table", type=OPEN_TAG))
+    indent()
+    tprint(tag("tbody", type=OPEN_TAG))
+    indent()
+
+
+
+    dedent()
+    tprint(tag("tbody", type=CLOSE_TAG))
+    dedent()
+    tprint(tag("table", type=CLOSE_TAG))
+    dedent()
+    tprint(tag("div", type=CLOSE_TAG))
 
 def lboxgen(otherList):
     """Generate the html for a generic list selector table, using otherList as source"""
