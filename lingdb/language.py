@@ -101,14 +101,14 @@ class Language:
         """Returns the consonant glyphs in this language that are part of a metaclass in
         classList"""
         thisSet = set(self.getConsonants())
-        thatSet = consonants.getGlyphListFromClasses(classList)
+        thatSet = set(consonants.getGlyphListFromClasses(classList))
         return list(thatSet.intersection(thisSet))
 
     def matchVowelClasses(self, classList):
         """Returns the vowel glyphs in this language that are part of a metaclass in
         classList"""
         thisSet = set(self.getVowels())
-        thatSet = vowels.getGlyphListFromClasses(classList)
+        thatSet = set(vowels.getGlyphListFromClasses(classList))
         return list(thatSet.intersection(thisSet))
 
 
@@ -133,7 +133,7 @@ class Language:
         return compareByMode(len(matches), k, mode)
 
 
-    def containsVowels(self, bitstring, k, mode):
+    def containsVowels(self, glyphList, k, mode):
         """Returns true if exactly* k of the vowels in bitstring appear
         in this language. Use mode (less than, etc) instead of exact equality
         checking"""
@@ -141,10 +141,12 @@ class Language:
         return compareByMode(len(matches), k, mode)
 
     def containsConsonantClasses(self, classList, k, mode):
-        return NotImplemented
+        matches = self.matchConsonantClasses(classList)
+        return compareByMode(len(matches), k, mode)
 
     def containsVowelClasses(self, classList, k, mode):
-        return NotImplemented
+        matches = self.matchVowelClasses(classList)
+        return compareByMode(len(matches), k, mode)
 
     def containsConsonantPlaces(self):
         """Returns true if the language has 3+ places of consonant articulation"""

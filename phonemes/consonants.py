@@ -208,7 +208,7 @@ def getGlyphListFromClass(className):
 
 def getGlyphListFromClasses(classList):
     glyphSet = set([])
-    for i, natClass in enumerate(classArr):
+    for i, natClass in enumerate(classList):
         if i == 0:
             glyphList = getGlyphListFromClass(natClass)
             glyphSet = set(glyphList)
