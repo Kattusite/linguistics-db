@@ -11,9 +11,21 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Fix up the frontend - split the viewport in half so there is a query pane and a results pane. 
+* Long term style goal: Go through all files and standardize debugging statements (possibly w debug logger). Standardize all return types, add type annotations, ensure that exceptions are raised in the appropriate places when
+bad data is passed. (Possibly use asserts)
+* Simplify the process of adding/parsing new questions.  In data.const, create
+a master list of all "question" objects, where each object contains some useful data:
+  - What type of question? (pick k phonemes, pick k from a list, pick 1 from a list, open response, enter a single value, etc. )
+  - What is the name of the variable/value being obtained? (How should we refer to it in the JSON?)
+  - If picking from a list, should we allow multiple selections to be chosen? This can be used in allgen.py to automatically create the list popovers.
+  - If a parse-dict is necessary to read the question/answers from the data,
+  provide the parse-dict.
+Ideally we can iterate over all registered question objects, and auto-generate
+the HTML for the selector boxes. We can also use this to simplify the parsing of the data.
 * csvtojson.py uses a different set of dicts than const.py does -- why?? Should use only a single dict shared between both. Also add a hidden field
 "__multi__" --> True/False to decide whether or not we should allow multiple
-items to be selected. 
+items to be selected.
 * Condense my awful CSS structure into a more concise description -- e.g.
 Use .pbox.label.active instead of .pbox-label.pbox-label-active  -- Many of my CSS classes should overlap but I end up copy-pasting them instead
 * Add Headings to the results pane (and generally reorganize - perhaps split into a query tab on the left and a results tab on the right. ) -- Headings for "implicational", "logical", "list"
