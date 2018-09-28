@@ -243,7 +243,7 @@ def floatToQuantifier(frac):
         (0.10, "Almost no"),
         (0.25, "Very few"),
         (0.40, "Few"),
-        (0.60, "About half"),
+        (0.60, "About half of"),
         (0.75, "Many"),
         (0.90, "Very many"),
         (0.99, "Almost all"),
