@@ -18,10 +18,9 @@ def main():
         # "classes"    -> A (stringified) list of which metaclasses to query
 
         # Parse the boolean string to a proper bool
-        listMode = (f["listMode"] == "true")
 
         # Send all queries to client for processsing
-        ret = lingdb_client.handleQueries(data, listMode)
+        ret = lingdb_client.handleQueries(data)
         return ret
     return render_template('front.html')
 

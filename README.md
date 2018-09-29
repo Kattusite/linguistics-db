@@ -11,7 +11,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
-* Fix up the frontend - split the viewport in half so there is a query pane and a results pane. 
+* Fix up the frontend - split the viewport in half so there is a query pane and a results pane.
 * Long term style goal: Go through all files and standardize debugging statements (possibly w debug logger). Standardize all return types, add type annotations, ensure that exceptions are raised in the appropriate places when
 bad data is passed. (Possibly use asserts)
 * Simplify the process of adding/parsing new questions.  In data.const, create
@@ -31,7 +31,7 @@ Use .pbox.label.active instead of .pbox-label.pbox-label-active  -- Many of my C
 * Add Headings to the results pane (and generally reorganize - perhaps split into a query tab on the left and a results tab on the right. ) -- Headings for "implicational", "logical", "list"
 Also add prefix-type headings to each result so it is immediately obvious which each does-- for instance (AND), (OR), (A->B), (B->A)
 * BUG: Clicking ".. languages matched .." now RESUBMITS the post request, even if the query terms have changed, so it replaces the entire pane with possibly new (undesired) results.
-Instead I should make it so that the language lists are always generated and sent, but they are hidden until the ".. languages matched .." button is clicked. The "Toggle List Mode" button can probably be eliminated entirely.
+Instead I should make it so that the language lists are always generated and sent, but they are hidden until the ".. languages matched .." button is clicked. The "Toggle List Mode" button can probably be eliminated entirely. Also give the "... languages matched..." button a pointer cursor instead of select pointer. 
 * Add more info to the replies (Have the server help generate them dynamically) -- FOr instance,
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels -->
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels (like [a, e, i, o, u])

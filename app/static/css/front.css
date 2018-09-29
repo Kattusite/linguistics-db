@@ -163,3 +163,8 @@ span[data-toggle=tooltip] {
   background-color: #b0b0b0;
 }
 /*  */
+
+
+table.lang-list-table td {
+  padding-right: 20px;
+}

@@ -19,8 +19,6 @@ var VOICING = 0;
 var PLACE   = 1;
 var MANNER  = 2;
 
-var listMode = false;
-
 /*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
@@ -327,9 +325,6 @@ function handleSubmit() {
   }
 
   var payload = "payload=" + JSON.stringify(reqArr);
-  // TODO write this more rigorously
-  // For now it is a global variable
-  payload  += "&listMode=" + listMode;
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
@@ -338,19 +333,15 @@ function handleSubmit() {
        );
 }
 
-// Toggles list mdoe on or off, and updates the button text.
-// TODO eliminate global variable
+// Hides / Unhides the long language lists in the results box
 function handleListToggle() {
-  var btn = $(".list-toggle");
-  listMode = !listMode;
-  if (listMode) {
-    btn.text("Disable list mode (WIP)");
+  langlist = $(".lang-list");
+  if (langlist.hasClass("hidden")) {
+    langlist.removeClass("hidden");
   }
   else {
-    btn.text("Enable list mode (WIP)");
+    langlist.addClass("hidden");
   }
-  // Send a POST request to receive updated results
-  handleSubmit();
 }
 
 /*****************************************************************************/
