@@ -242,6 +242,13 @@ function handleClboxLabel(element) {
   // console.log(v, p, m);
 }
 
+// Handle clicks on an Lbox element. Select the clicked on box.
+// If multiple selections are prohibited, deselect all other boxes.
+// mutli = true ==> multiple selections allowed
+function handleLboxLabel(element, multi) {
+  console.log("lbox clicked");
+}
+
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
 // TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
