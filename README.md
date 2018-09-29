@@ -11,7 +11,11 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
-* Reintroduce the global listmode variable so that new queries will have the same list-display setting as the previous one. If I just expanded a query and make a new one, expand it by default next time so I don't have to keep clicking the button. 
+* In the long term, I should try to reduce reliance on things like cbox/pbox classes... it is confusing to have so many HTML classes. Just rely on primitive ones like pbox/clbox/lbox, or if possible, a single class encapsulating all three. ("trait-box")
+* While we're on the front.js train, also rewrite to minimize reliance on manual DOM manipulations and use jquery instead.
+* Refactor front.js 2.0: In this same vein, introduce way more modularity + abstraction --> A function just for selecting/deselecting, a function just for generating the link text to be displayed, a function just for getting/setting the popover HTML from outerHTML.
+* Refactor front.js so that the pbox/clbox/lbox handlers share significantly more code. The current form is unmaintinable. Side note: The HTML structure of pbox differs from the other clbox/lbox for no good reason... It is currently <tr><td><div></div></td></tr>, but clbox/lbox lack the innermost div as it serves no real purpose.
+* Reintroduce the global listmode variable so that new queries will have the same list-display setting as the previous one. If I just expanded a query and make a new one, expand it by default next time so I don't have to keep clicking the button.
 * Fix up the frontend - split the viewport in half so there is a query pane and a results pane.
 * Long term style goal: Go through all files and standardize debugging statements (possibly w debug logger). Standardize all return types, add type annotations, ensure that exceptions are raised in the appropriate places when
 bad data is passed. (Possibly use asserts)

@@ -214,9 +214,16 @@ def clboxgen(pType, metaclasses):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-def lboxgen(lType, otherList):
-    """Generate the html for a generic list selector table, using otherList as source.
-    lType will be a str containing the name of the property being listed"""
+def lboxgen(lType, listData):
+    """Generate the html for a generic list selector table, using listData as
+    a source. listData will be a dict with two fields: const.DICT: containing
+    a parseDict, whose keys are the elements of the list, and const.MULTI, a bool
+    signifying whether it is possible to select multiple elements from the list"""
+
+    otherList = listData[const.DICT]
+    multi     = listData[const.MULTI]
+    multStr = str(multi).lower()
+
     tprint("")
     tprint(comment("Auto-generated template for the {0} list selector."
                         .format(lType)))
@@ -231,7 +238,9 @@ def lboxgen(lType, otherList):
     for s in otherList:
         tprint(tag("tr", type=OPEN))
         indent()
-        tprint(tag("td", body=s, classList=["lbox-label"], onclick="handleLboxLabel(this)"))
+        tprint(tag("td", body=s,
+                         classList=["lbox-label"],
+                         onclick="handleLboxLabel(this, %s)" % multStr))
         dedent()
         tprint(tag("tr", type=CLOSE))
 
@@ -267,12 +276,12 @@ def main():
     clboxgen("vowel", vowels.CLASS_MATRIX)
 
     # Generate general list selectors
-    lboxgen("morphology", const.MORPHOLOGY_DICT.keys())
-    lboxgen("word-formation", const.WORD_FORMATION_DICT.keys())
-    lboxgen("formation-freq", const.FORMATION_DICT.keys())
-    lboxgen("word-order", const.WORD_ORDER_DICT.keys())
-    lboxgen("headedness", const.HEADEDNESS_DICT.keys())
-    lboxgen("agreement", const.CASE_AGREEMENT_DICT.keys())
-    lboxgen("case", const.CASE_AGREEMENT_DICT.keys())
+    lboxgen("morphology", const.MORPHOLOGY)
+    lboxgen("word-formation", const.WORD_FORMATION)
+    lboxgen("formation-freq", const.FORMATION)
+    lboxgen("word-order", const.WORD_ORDER)
+    lboxgen("headedness", const.HEADEDNESS)
+    lboxgen("agreement", const.CASE_AGREEMENT)
+    lboxgen("case", const.CASE_AGREEMENT)
 
     tprint(comment("  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###"))

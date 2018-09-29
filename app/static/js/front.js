@@ -107,6 +107,7 @@ function handleTraitSelect(element) {
 // Save the state of the pbox inside the data-content, reload popover
 // Update link text.
 // NOTE This is a potentially slow function (string concat + iterating over all boxes)
+// (But in practice all numbers are small constants)
 function handlePboxLabel(element) {
   // (Un)select the pbox label.
   if ($(element).hasClass("pbox-label-selected")) {
@@ -147,19 +148,14 @@ function handlePboxLabel(element) {
   // NOTE [aria-describedby] might misbehave for multiple phoneme selectors present on the document at once
   // it works by finding the popovers that are *currently* visibly popped open, so there *should* be only one
   var link = $("[aria-describedby]");
+  var lbl = "";
   if (glyphList.length == 0) {
-    link.text("Select phonemes...");
+    lbl = "Select phonemes...";
   }
   else {
-    var lbl = "";
-    for (var i = 0; i < glyphList.length; i++) {
-      lbl += glyphList[i];
-      if (i != glyphList.length - 1) {
-        lbl += ", ";
-      }
-    }
-    link.text(lbl);
+    lbl = glyphList.join(", ");
   }
+  link.text(lbl);
 
   // Inform the link-text DOM object of its query for the server.
   link.attr("glyphList", glyphList);
@@ -246,7 +242,61 @@ function handleClboxLabel(element) {
 // If multiple selections are prohibited, deselect all other boxes.
 // mutli = true ==> multiple selections allowed
 function handleLboxLabel(element, multi) {
-  console.log("lbox clicked");
+  // Find the containing table.
+  //         label  -->    td     -->     tr    --> tablebody --> table
+  var table = element.parentElement.parentElement.parentElement.parentElement
+
+  // (Un)select the lbox label that was clicked.
+  if ($(element).hasClass("lbox-label-selected")) {
+    $(element).removeClass("lbox-label-selected");
+  }
+  else {
+    // If multiple selections disallowed, deselect all other labels in table
+    if (!multi) {
+      $(table).children(".lbox-label").removeClass("lbox-label-selected");
+    }
+    $(element).addClass("lbox-label-selected");
+  }
+
+  // Save the contents of the table in a string so the popover will be updated
+  var div = table.parentElement;
+  var outerHTML = div.outerHTML;
+
+  // Iterate over all labels in this table
+  // If selected, add its text to the displayed link.
+  var selList = [];
+  var rows = table.children[0].children; // table -> tbody -> array of TRs
+  for (var i = 0; i < rows.length; i++) {
+    var cols = rows[i].children;
+    for (var j = 0; j < cols.length; j++) {
+      var td = cols[j];
+      if ($(td).hasClass("lbox-label-empty")) {
+        continue;
+      }
+      if ($(td).hasClass("lbox-label-selected")) {
+        selList.push($(td).text());
+      }
+    }
+  }
+
+  // Update the link text to be the sel list, or placeholder if empty.
+  // NOTE [aria-describedby] might misbehave for multiple phoneme selectors present on the document at once
+  // it works by finding the popovers that are *currently* visibly popped open, so there *should* be only one
+  var link = $("[aria-describedby]");
+  var lbl = "";
+  if (selList.length == 0) {
+    lbl = "Select trait..."
+  }
+  else {
+    lbl = selList.join(", ");
+  }
+  link.text(lbl);
+
+  // Inform the link-text DOM object of its query for the server.
+  link.attr("selList", selList);
+
+  // Save the content changes in the popover attribute.
+  link.attr("data-content", outerHTML);
 }
 
 // Submission handler to send AJAX requests to server
