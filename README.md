@@ -11,8 +11,6 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
-* Still a fairly major bug... "No languages (0 / 34) contain less than 1 of tʃ"
-It seems that if a language matches exactly 0 elements it is treated as False, because the empty array is a Falsy type, despite the empty array satisfying the comparebymode condition.
 * Put the query boxes above the result box? So it is easy to submit a new query,
 and all the important info in the result box is in the top three lines anyway, so
 screen size will be less of an issue
@@ -52,7 +50,7 @@ Instead I should make it so that the language lists are always generated and sen
 * Add more info to the replies (Have the server help generate them dynamically) -- FOr instance,
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels -->
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels (like [a, e, i, o, u])
-* Fix the response-generation function to work for edge cases. For example, instead of "Few languages contain at least one of a" could just say "Few languages contain a". Or instead of "Few languages contain at most 0 of p" --> "Few languages do not contain p"/"Few languages contain none of x, y, z"; "languages contain at least/exactly 3 of p,t,k" --> languages contain all of p, t, k
+* Fix the response-generation function to work for edge cases. For example, instead of "Few languages contain at least one of a" could just say "Few languages contain a". Or instead of "Few languages contain at most 0 of p" --> "Few languages do not contain p"/"Few languages contain none of x, y, z"; "languages contain at least/exactly 3 of p,t,k" --> languages contain all of p, t, k; "Few languages contain less than one of [...]" --> Few languages do not contain any of [...]
 * Add more trait selections such as:
 1. number of consonants/vowels/phonemes
 2. word order
