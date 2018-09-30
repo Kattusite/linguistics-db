@@ -56,7 +56,7 @@ def handleQuery(query):
     fn = function_map[trait]
     return LING_DB.query(fn, query)
 
-def handleQueries(queries):
+def handleQueries(queries, listMode=False):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
     # Can be cleaned up with comprehensions
@@ -67,7 +67,6 @@ def handleQueries(queries):
     # Create a result set, lang set, and reply for each query
     for query in queries:
         queryResults = handleQuery(query)
-        print(queryResults)
 
         # Convert to sets so we can use set ops like intersect and union later.
         # resultSet = set of (language, matchingProperty) pairs
@@ -111,7 +110,7 @@ def handleQueries(queries):
         "list":             []
     }
 
-    listRep = createLangLists(result_arr, reply_arr)
+    listRep = createLangLists(result_arr, reply_arr, listMode=listMode)
     response["list"].append(listRep)
 
     if n >= 1:
@@ -189,10 +188,10 @@ def createConditionalReply(langs, replies, which, db):
 # Create HTML for a table representing one or more lists of tabulated results,
 # of the form "language" : "result" (if result is not a bool)
 # Use bootstrap layout instead of the actual HTML <table> tags
-def createLangLists(results, replies):
+def createLangLists(results, replies, listMode=False):
     # Define table template
     table = """
-    <div class="lang-list hidden">
+    <div class="lang-list %s">
         <hr>
         <div class="container-fluid">
             <div class="row">
@@ -200,6 +199,8 @@ def createLangLists(results, replies):
             </div>
         </div>
     </div>"""
+
+    listClass = "hidden" if not listMode else ""
 
     # Sort the result list lexicographically by the name of the language.
     getLangName = lambda x: x[LingDB.QUERY_LANG].getLanguage()
@@ -211,7 +212,7 @@ def createLangLists(results, replies):
     langLists = [createLangList(orderedResults[i], replies[i], hideHeaders) for i in range(n)]
     cols = "".join(langLists)
     # print(n, hideHeaders)
-    return table % cols
+    return table % (listClass, cols)
 
 # BUG: Handling of wrapping each list element in /.../ is poor. I assume that
 # all things are phonemes (if <= 2 chars, but a boolean flag might be better)

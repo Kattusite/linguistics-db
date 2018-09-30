@@ -20,6 +20,10 @@ var HEADEDNESS_ID           = "headedness-selector";
 var AGREEMENT_ID            = "agreement-selector";
 var CASE_ID                 = "case-selector";
 
+// Should we list all members of the matching language set?
+// Changed by handleListToggle
+var listMode = false;
+
 // TODO Declare constants for class names here (e.g. .vbox-template)
 
 // TODO make these local to the one function that uses them to keep namespace
@@ -450,6 +454,7 @@ function handleSubmit() {
   }
 
   var payload = "payload=" + JSON.stringify(reqArr);
+  payload += "&listMode=" + listMode; // Hacky
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
@@ -460,6 +465,7 @@ function handleSubmit() {
 
 // Hides / Unhides the long language lists in the results box
 function handleListToggle() {
+  listMode = !listMode;
   langlist = $(".lang-list");
   if (langlist.hasClass("hidden")) {
     langlist.removeClass("hidden");

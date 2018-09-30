@@ -11,12 +11,9 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
-* Fix severe bug in lingdb_client.py in which functions relying on "match" ignore
-mode and k completely. The API of all match functions will certainly have to change
-to include k, mode at the very least.
+* Change "Few languages have none agreement" -> "Few languages have no agreement"
 * Standardize the names of functions in the Language.py class. contains should be
 reserved for phonemes/natural classes. "has" should be for booleans? or perhaps "is"
-
 * Move a lot of the functionality of handleSubmit from front.js to the python, so it can rely much more heavily on defined constants in data.const.py. For example, it would be dramatically easier if the client did not generate its own reply string, but instead let the server do so.
 * Split front.js into two pieces. One that needs to be changed to add new traits and one that doesn't.
 * Make it easier to add new questions. Currently the following must all be done: Add an item to the HTML dropdown. Add a corresponding template div. Initialize the popovers (if needed). Add a language.py function. Add a handler in routes/lingdbclient. Add functions to querySubmit / handleSubmit in front.js. front.js need new constants to support submitting queries.
