@@ -127,6 +127,8 @@ class Language:
 #                                Match Methods                                 #
 #               (What elements of this language fulfill criterion x?)          #
 ################################################################################
+
+# TODO Abstract these better. Lots of reused code.
     def matchConsonants(self, glyphList, k, mode):
         """Returns the consonant glyphs in this language present in glyphList,
         if the number of matches is at least* (or mode) k"""
@@ -136,7 +138,10 @@ class Language:
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
-        return list(thatSet.intersection(thisSet))
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
 
     def matchVowels(self, glyphList, k, mode):
         """Returns the vowel glyphs in this language present in glyphList,
@@ -147,7 +152,10 @@ class Language:
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
-        return list(thatSet.intersection(thisSet))
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
 
     def matchConsonantClasses(self, classList, k, mode):
         """Returns the consonant glyphs in this language that are part of a metaclass in
@@ -158,7 +166,10 @@ class Language:
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
-        return list(thatSet.intersection(thisSet))
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
 
     def matchVowelClasses(self, classList, k, mode):
         """Returns the vowel glyphs in this language that are part of a metaclass in
@@ -169,7 +180,10 @@ class Language:
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
-        return list(thatSet.intersection(thisSet))
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
 
     def matchMorphologicalType(self, selList, k, mode):
         """Returns the morphological types in this language that are part of selList,
@@ -180,7 +194,10 @@ class Language:
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
-        return list(thatSet.intersection(thisSet))
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
 
     def matchWordFormation(self, selList, k, mode):
         """Return the word formation strategies in this language that are part of selList,
@@ -191,7 +208,10 @@ class Language:
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
-        return list(thatSet.intersection(thisSet))
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
 
 
 

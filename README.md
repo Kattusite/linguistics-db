@@ -11,6 +11,11 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Still a fairly major bug... "No languages (0 / 34) contain less than 1 of tʃ"
+It seems that if a language matches exactly 0 elements it is treated as False, because the empty array is a Falsy type, despite the empty array satisfying the comparebymode condition.
+* Put the query boxes above the result box? So it is easy to submit a new query,
+and all the important info in the result box is in the top three lines anyway, so
+screen size will be less of an issue
 * Change "Few languages have none agreement" -> "Few languages have no agreement"
 * Standardize the names of functions in the Language.py class. contains should be
 reserved for phonemes/natural classes. "has" should be for booleans? or perhaps "is"
