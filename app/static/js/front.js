@@ -12,9 +12,18 @@ var COMPLEX_CONSONANT_ID    = "complex-consonant";
 var TONE_ID                 = "tone-selector";
 var STRESS_ID               = "stress-selector";
 var SYLLABLE_ID             = "syllable-selector";
+var MORPHOLOGY_ID           = "morphological-selector";
+var WORD_FORMATION_ID       = "word-formation-selector";
+var FORMATION_FREQ_ID       = "formation-freq-selector";
+var WORD_ORDER_ID           = "word-order-selector";
+var HEADEDNESS_ID           = "headedness-selector";
+var AGREEMENT_ID            = "agreement-selector";
+var CASE_ID                 = "case-selector";
 
 // TODO Declare constants for class names here (e.g. .vbox-template)
 
+// TODO make these local to the one function that uses them to keep namespace
+// relatively clean.
 var VOICING = 0;
 var PLACE   = 1;
 var MANNER  = 2;
@@ -30,10 +39,18 @@ function frontInit() {
   traitSelectorInit();
 
   // Initialize popovers (consonant, vowel, consonant classes, vowel classes)
-  initPopovers("cbox-selector",  createConsonantSelectorString);
-  initPopovers("vbox-selector",  createVowelSelectorString);
-  initPopovers("ccbox-selector", createConsonantClassSelectorString);
-  initPopovers("vcbox-selector", createVowelClassSelectorString);
+  // Plus all of the list-based popovers
+  initPopovers("cbox-selector",     "#cbox-template");
+  initPopovers("vbox-selector",     "#vbox-template");
+  initPopovers("ccbox-selector",    "#ccbox-template");
+  initPopovers("vcbox-selector",    "#vcbox-template");
+  initPopovers("m-lbox-selector",   "#morphology-template");
+  initPopovers("wf-lbox-selector",  "#word-formation-template");
+  initPopovers("ff-lbox-selector",  "#formation-freq-template");
+  initPopovers("wo-lbox-selector",  "#word-order-template");
+  initPopovers("h-lbox-selector",   "#headedness-template");
+  initPopovers("a-lbox-selector",   "#agreement-template");
+  initPopovers("c-lbox-selector",   "#case-template");
 
   reloadPopovers();
   reloadTooltips();
@@ -52,21 +69,22 @@ function traitSelectorInit() {
 }
 
 /* Target all uninitialized popovers of class tgtClass.
- * Create each of these a unique popover with content determined by contentFn
+ * Create each of these a unique popover with content determined copied from the
+ * template located by the jquery string template
  * For instance initPopover("dummy-class") will replace all ".dummy-class-uninit"
  * with ".dummy-class-init", and update the data-content with the return value
- * of contentFn.
+ * of createSelectorString(templateID).
  */
  // TODO the first two UID lines are basically useless right now as the UID is mishandled
  // Try using jQuery.each() for "more correct" iteration
  // The current way leads to a minor BUG in which popover UIDs mismatch enclosing div UIDs
-function initPopovers(tgtClass, contentFn) {
+function initPopovers(tgtClass, templateID) {
   var uninit = tgtClass + "-uninit";  // e.g. ".cbox-selector-uninit"
   var init   = tgtClass + "-init";    // e.g. ".cbox-selector-init"
 
-  var str = contentFn();
+  var str = createSelectorString(templateID);
   var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
-  $("." + uninit).attr("data-content", contentFn());
+  $("." + uninit).attr("data-content", createSelectorString(templateID));
   $("." + uninit).attr("id", tgtClass + "-" + uid);
   $("." + uninit).addClass(init);
   $("." + uninit).removeClass(uninit);
@@ -243,8 +261,8 @@ function handleClboxLabel(element) {
 // mutli = true ==> multiple selections allowed
 function handleLboxLabel(element, multi) {
   // Find the containing table.
-  //         label  -->    td     -->     tr    --> tablebody --> table
-  var table = element.parentElement.parentElement.parentElement.parentElement
+  //         label  -->     tr    --> tablebody --> table
+  var table = element.parentElement.parentElement.parentElement;
 
   // (Un)select the lbox label that was clicked.
   if ($(element).hasClass("lbox-label-selected")) {
@@ -253,7 +271,7 @@ function handleLboxLabel(element, multi) {
   else {
     // If multiple selections disallowed, deselect all other labels in table
     if (!multi) {
-      $(table).children(".lbox-label").removeClass("lbox-label-selected");
+      $(table).children().children().children(".lbox-label").removeClass("lbox-label-selected");
     }
     $(element).addClass("lbox-label-selected");
   }
@@ -293,7 +311,12 @@ function handleLboxLabel(element, multi) {
   link.text(lbl);
 
   // Inform the link-text DOM object of its query for the server.
-  link.attr("selList", selList);
+  // If multiple selections allowed, this is a list, else a single element (str)
+  if (multi) {
+    link.attr("selList", selList);
+  } else {
+    link.attr("sel", selList[0]);
+  }
 
   // Save the content changes in the popover attribute.
   link.attr("data-content", outerHTML);
@@ -302,6 +325,9 @@ function handleLboxLabel(element, multi) {
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
 // TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
+// TODO selList and classList/queryArr seem to be suspiciously similar...
+// TODO consStr, vowelStr, classStr, all also seem suspiciously similar
+// Try to revise to use just one of these.
 function handleSubmit() {
   var reqArr = [];
 
@@ -321,34 +347,43 @@ function handleSubmit() {
     var modeStr   = t.children(".mode-selector").val();
     var mode      = getModeFromStr(modeStr);
 
+    // If the selection list attr exists visibly, grab its info and split str->arr
+    var selList = t.children("a[selList]:visible").attr("selList");
+    if (selList) selList = selList.split(",");
+
+    var sel       = t.children("a[sel]:visible").attr("sel");
+
 
     // Obtain the three natural classes selected
     // TODO make this less hacky and more stable
     var glyphList;
     var classList =  [];
     var classStr = "";
+    var prettifiedStr = ""; // A string representing the pretty-printed matchList
 
     // Generate the correct reply string based on the trait type
     // Some cases have special other info that must be calculated (ie for natural class arrays)
     var reply;
     switch (trait) {
       case CONSONANT_ID:
+        prettifiedStr = t.children(".cbox-selector-init:visible").text();
         glyphList = t.children(".cbox-selector-init:visible").attr("glyphList").split(",");
-        reply = "contain " + modeStr + " " + k + " of " + consStr;
+        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
         break;
       case CONSONANT_CLASS_ID:
         classList = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
-        classStr  = getStrFromClasses(classList, "consonant");
-        reply = "contain " + modeStr + " " + k + " of " + classStr;
+        prettifiedStr  = getStrFromClasses(classList, "consonant");
+        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
         break;
       case VOWEL_ID:
+        prettifiedStr = t.children(".vbox-selector-init:visible").text();
         glyphList = t.children(".vbox-selector-init:visible").attr("glyphList").split(",");
-        reply = "contain " + modeStr + " " + k + " of " + vowelStr;
+        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
         break;
       case VOWEL_CLASS_ID:
         classList = t.children(".vcbox-selector-init:visible").attr("queryArr").split(",");
-        classStr  = getStrFromClasses(classList, "vowel");
-        reply = "contain " + modeStr + " " + k + " of " + classStr;
+        prettifiedStr  = getStrFromClasses(classList, "vowel");
+        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
         break;
       case CONSONANT_PLACES_ID:
         reply = "contain 3+ places of articulation for consonants";
@@ -368,15 +403,48 @@ function handleSubmit() {
       case SYLLABLE_ID:
         reply = "allow the syllable structure" + syllable;
         break;
+      case MORPHOLOGY_ID:
+        prettifiedStr = t.children(".m-lbox-selector-init:visible").text();
+        reply = "use " + modeStr + " " + k +
+                " of the morphological types " + prettifiedStr;
+        break;
+      case WORD_FORMATION_ID:
+        prettifiedStr = t.children(".wf-lbox-selector-init:visible").text();
+        reply = "use " + modeStr + " " + k + " of " +
+                prettifiedStr + " to form words";
+        break;
+      case FORMATION_FREQ_ID:
+        reply = "use " + sel + " to form words";
+        break;
+      case WORD_ORDER_ID:
+        reply = "have " + sel + " word order";
+        break;
+      case HEADEDNESS_ID:
+        reply = "are " + sel;
+        break;
+      case AGREEMENT_ID:
+        reply = "have " + sel + " agreement";
+        break;
+      case CASE_ID:
+        reply = "have " + sel + " case";
+        break;
+      default:
+        console.err("Error! Tried to submit a query of unknown trait:" + trait);
+        break;
     }
 
     // Insert query data into the query list
+    // TODO glyphList, classList, selList will never all be used at once...
+    // so just simplify the three down into a single "list" type.
+    // TODO Call it matchList for lists and matchItem for single item.  (!)
     reqObj["trait"]       = trait;
     reqObj["glyphList"]   = glyphList;
     reqObj["k"]           = k;
     reqObj["mode"]        = mode;
     reqObj["reply"]       = reply;
     reqObj["classList"]   = classList;
+    reqObj["selList"]     = selList;
+    reqObj["sel"]         = sel;
 
     reqArr.push(reqObj);
   }
@@ -414,41 +482,42 @@ function callback(reply) {
 /*****************************************************************************/
 /*                                Creators                                   */
 /*****************************************************************************/
-// Create and return a new consonant selector DOM element as a string
-function createConsonantSelectorString(uid) {
-  return createPhonemeSelectorString("c", uid);
-}
+// // Create and return a new consonant selector DOM element as a string
+// function createConsonantSelectorString(uid) {
+//   return createPhonemeSelectorString("c", uid);
+// }
+//
+// // Create and return a new vowel selector DOM element as a string
+// function createVowelSelectorString(uid) {
+//   return createPhonemeSelectorString("v", uid);
+// }
+//
+// function createConsonantClassSelectorString(uid) {
+//   return createPhonemeSelectorString("cc", uid);
+// }
+//
+// function createVowelClassSelectorString(uid) {
+//   return createPhonemeSelectorString("vc", uid);
+// }
 
-// Create and return a new vowel selector DOM element as a string
-function createVowelSelectorString(uid) {
-  return createPhonemeSelectorString("v", uid);
-}
-
-function createConsonantClassSelectorString(uid) {
-  return createPhonemeSelectorString("cc", uid);
-}
-
-function createVowelClassSelectorString(uid) {
-  return createPhonemeSelectorString("vc", uid);
-}
-
-// Create and return a new phoneme selector DOM element as a string
-// Use the string type to choose between consonant ("c") or vowel ("v")
+// Create and return a new selector DOM element as a string
+// Use the string jqueryStr to locate the selector template to be copied.
 // BUG Currently all instances share same id
 // NOTE outerHTML not compatible with older browsers!'
 // TODO rename copySelectorFromTemplate
-function createPhonemeSelectorString(type, uid) {
-  if (!type) {
-    console.err("Error: creating a typeless phoneme selector")
-    type = "c";
+function createSelectorString(jqueryStr, uid) {
+  if (!jqueryStr) {
+    console.err("Error: creating selector string without ID!");
+    jqueryStr = "#cbox-template";
   }
   if (!uid) {
     uid = UID();
   }
   // Locate the template
-  var template = $("#" + type + "box-template")[0];
+  var template = $(jqueryStr)[0];
 
   // Alter template so it can be displayed (remove template markings)
+  var oldID = template.id;
   template.id += "-" + uid;
   template.classList.remove("template");
   var str = template.outerHTML;
@@ -457,7 +526,7 @@ function createPhonemeSelectorString(type, uid) {
   str = str.replace(/(box-[^\"0-9][^\"0-9]?-)template/g, "$1" + uid);
 
   // Undo alterations to template so it is suitable for copying again
-  template.id = type + "box-template";
+  template.id = oldID;
   template.classList.add("template");
 
   return str;

@@ -63,7 +63,6 @@ class LingDB:
               if type(queryResult) == type([]):
                   queryResult = tuple(queryResult)
 
-              print(queryResult)
               matches.append((lang, queryResult))
 
         return matches

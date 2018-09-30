@@ -72,6 +72,32 @@ def tag(t, body=None, id=None, classList=None, onclick=None, other=None, type=BO
 def comment(com):
     """Wraps com in HTML comment tags and returns it as a string"""
     return "<!--{0}-->".format(com)
+
+################################################################################
+#                                                                              #
+#                        SELECTOR GENERATORS                                   #
+#                                                                              #
+################################################################################
+
+# Prints a k-selector
+def kselectorgen():
+    return
+
+# Prints a mode selector
+def modeselectorgen():
+    return
+
+# Prints a popover
+def popovergen():
+    return
+
+# Given a list of traits and their info, print out the complete HTML representing:
+# 1) An <option> selector containing each
+# 2) An associated div to be shown when each <option> is active
+# 3) An associated popover to be copied as needed.
+def traitselectorgen():
+    return
+
 ################################################################################
 #                                                                              #
 #                        TABLE GENERATORS                                      #
@@ -80,22 +106,22 @@ def comment(com):
 
 # Use function decorations to print start/end of table
 # BUG: wrong syntax
-def tablegen(fn, divID):
-    tprint(tag("div", id="%s-template" % divID, type=OPEN))
-    indent()
-    tprint(tag("table", type=OPEN))
-    indent()
-    tprint(tag("tbody", type=OPEN))
-    indent()
-
-    fn()
-
-    dedent()
-    tprint(tag("tbody", type=CLOSE))
-    dedent()
-    tprint(tag("table", type=CLOSE))
-    dedent()
-    tprint(tag("div", type=CLOSE))
+# def tablegen(fn, divID):
+#     tprint(tag("div", id="%s-template" % divID, type=OPEN))
+#     indent()
+#     tprint(tag("table", type=OPEN))
+#     indent()
+#     tprint(tag("tbody", type=OPEN))
+#     indent()
+#
+#     fn()
+#
+#     dedent()
+#     tprint(tag("tbody", type=CLOSE))
+#     dedent()
+#     tprint(tag("table", type=CLOSE))
+#     dedent()
+#     tprint(tag("div", type=CLOSE))
 
 # TODO: Poor style to have "consonant"/"vowel" magic strings
 # I propose a constant (int?) consonant.CONSONANT or phoneme.CONSONANT to use

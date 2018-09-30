@@ -63,23 +63,65 @@ class Language:
 ################################################################################
     def getLanguage(self):
         """ Return the name of this language"""
-        return self.getGrammarAttr(G_STR[G_LANGUAGE])
+        ret = self.getGrammarAttr(G_STR[G_LANGUAGE])
+        if ret is None:
+            raise ValueError("A language object was created without a name!")
+        return ret
 
+    # TODO Merge getGrammarAttr/getTypologyAttr into getAttr or similar
     def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists; else raise an error"""
         if (key not in G_STR):
             print("Error! Attribute %s does not exist in grammar" % key)
-            raise IndexError("Attribute %s not a member of grammar" % key)
+            raise KeyError("Attribute %s not a member of grammar" % key)
+        if key not in self.data:
+            print("Warning: Requested %s from language %s but it doesn't exist" %
+                  (key, self.getLanguage()))
+            return None
+        return self.data[key]
+
+    def getTypologyAttr(self, key):
+        """ Given a query string, return the value associated with that attribute
+            if it exists; else raise an error"""
+        if (key not in T_STR):
+            print("Error! Attribute %s does not exist in typology" % key)
+            raise KeyError("Attribute %s not a member of typology" % key)
+        if key not in self.data:
+            print("Warning: Requested %s from language %s but it doesn't exist" %
+                  (key, self.getLanguage()))
+            return None
         return self.data[key]
 
     def getConsonants(self):
         """Returns the list of consonants for this language"""
-        return self.getGrammarAttr(G_STR[G_CONSONANTS])
+        ret = self.getGrammarAttr(G_STR[G_CONSONANTS])
+        if ret is None:
+            ret = []
+        return ret
 
     def getVowels(self):
         """Returns the list of vowels for this language"""
-        return self.getGrammarAttr(G_STR[G_VOWELS])
+        ret = self.getGrammarAttr(G_STR[G_VOWEL])
+        if ret is None:
+            ret = []
+        return ret
+
+    def getMorphologicalTypes(self):
+        """Returns the list of morphological types for this language"""
+        ret = self.getTypologyAttr(T_STR[T_MORPHOLOGY])
+        if ret is None:
+            ret = []
+        return ret
+
+    def getWordFormations(self):
+        """Returns the list of word formations for this language"""
+        ret = self.getTypologyAttr(T_STR[T_WORD_FORMATION])
+        if ret is None:
+            ret = []
+        return ret
+
+
 
 ################################################################################
 #                                Match Methods                                 #
@@ -109,6 +151,18 @@ class Language:
         classList"""
         thisSet = set(self.getVowels())
         thatSet = set(vowels.getGlyphListFromClasses(classList))
+        return list(thatSet.intersection(thisSet))
+
+    def matchMorphologicalType(self, selList):
+        """Returns the morphological types in this language that are part of selList"""
+        thisSet = set(self.getMorphologicalTypes())
+        thatSet = set(selList)
+        return list(thatSet.intersection(thisSet))
+
+    def matchWordFormation(self, selList):
+        """Return the word formation strategies in this language that are part of selList"""
+        thisSet = set(self.getWordFormations())
+        thatSet = set(selList)
         return list(thatSet.intersection(thisSet))
 
 
@@ -150,29 +204,77 @@ class Language:
 
     def containsConsonantPlaces(self):
         """Returns true if the language has 3+ places of consonant articulation"""
-        return self.getGrammarAttr(G_STR[G_P_3PLUS_PLACES])
+        attr = self.getGrammarAttr(G_STR[G_P_3PLUS_PLACES])
+        if attr is None:
+            return False
+        return attr
 
     def containsConsonantManners(self):
         """Returns true if the language has 2+ manners of consonant articulation"""
-        return self.getGrammarAttr(G_STR[G_P_2PLUS_MANNERS])
+        attr = self.getGrammarAttr(G_STR[G_P_2PLUS_MANNERS])
+        if attr is None:
+            return False
+        return attr
 
     def containsComplexConsonants(self):
         """Returns true if the language has complex consonants"""
-        return self.getGrammarAttr(G_STR[G_P_COMPLEX_CONSONANTS])
+        attr = self.getGrammarAttr(G_STR[G_P_COMPLEX_CONSONANTS])
+        if attr is None:
+            return False
+        return attr
 
     def containsTone(self):
         """Returns true if the language has tone"""
-        return self.getGrammarAttr(G_STR[G_P_TONE])
+        attr = self.getGrammarAttr(G_STR[G_P_TONE])
+        if attr is None:
+            return False
+        return attr
 
     def containsStress(self):
         """Returns true if the language has stress"""
-        return self.getGrammarAttr(G_STR[G_P_STRESS])
+        attr = self.getGrammarAttr(G_STR[G_P_STRESS])
+        if attr is None:
+            return False
+        return attr
 
     def containsSyllable(self, syllable):
         """Returns true if the given syllable is legal in this language"""
-        return NotImplemented
+        thisList = self.getGrammarAttr(G_STR[G_SYLLABLE])
+        if thisList is None:
+            return False
+        return syllable in thisList
 
+    def hasMorphologicalType(self, selList, k, mode):
+        """Returns true if *mode* k of the given morphological types are
+        present in this language"""
+        matches = self.matchMorphologialType(selList)
+        return compareByMode(len(matches), k, mode)
 
+    def hasWordFormation(self, selList, k, mode):
+        """Returns true if *mode* k of the given word formation types are
+        present in this language"""
+        matches = self.matchWordFormation(selList)
+        return compareByMode(len(matches), k, mode)
+
+    def hasFormationFreq(self, sel):
+        """Returns true if sel is the word formation frequency of this language"""
+        return sel == self.getTypologyAttr(T_STR[T_FORMATION_FREQ])
+
+    def hasWordOrder(self, sel):
+        """Returns true if sel is the word order of this language"""
+        return sel == self.getTypologyAttr(T_STR[T_WORD_ORDER])
+
+    def hasHeadedness(self, sel):
+        """Returns true if sel is the word formation frequency of this language"""
+        return sel == self.getTypologyAttr(T_STR[T_HEADEDNESS])
+
+    def hasAgreement(self, sel):
+        """Returns true if sel is the agreement frequency of this language"""
+        return sel == self.getTypologyAttr(T_STR[T_AGREEMENT])
+
+    def hasCase(self, sel):
+        """Returns true if sel is the case of this language"""
+        return sel == self.getTypologyAttr(T_STR[T_CASE])
 
 
 ################################################################################

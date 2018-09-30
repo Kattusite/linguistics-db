@@ -49,13 +49,13 @@
           <select>
             <option>Contains phoneme: </option>
           </select>
-          <input type="text" size="5">
+          <input type="text" size="2">
         </div>
         <div id="trait-div-2" class="alert alert-success hidden">
           <select>
             <option>Contains phoneme: </option>
           </select>
-          <input type="text" size="5">
+          <input type="text" size="2">
         </div>
       </div>
     </div>
@@ -74,6 +74,13 @@
         <option>Has tone</option>
         <option>Has predictable stress</option>
         <option>Allows syllable structure: </option>
+        <option>Morphological type: </option>
+        <option>Word formation strategy: </option>
+        <option>Word formation frequency: </option>
+        <option>Basic word order: </option>
+        <option>Headedness: </option>
+        <option>Agreement: </option>
+        <option>Case: </option>
       </select>
       <!-- Consonant Selector -->
       <div id="consonant-selector-template" class="active-trait">Contains
@@ -85,7 +92,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="5" placeholder="1" value="1"> of
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
         <a class="cbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -102,7 +109,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="5" placeholder="1" value="1"> of
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
         <a class="ccbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -119,7 +126,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="5" placeholder="1" value="1"> of
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
         <a class="vbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -136,7 +143,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="5" placeholder="1" value="1"> of
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
         <a class="vcbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -160,28 +167,95 @@
         Predictable Stress
       </div>
       <div id="syllable-selector-template" class="inactive-trait">
-        Syllable structure selector - coming soon!
+        <select class="mode-selector">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <a class="s-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select syllables</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="morphological-selector-template" class="inactive-trait">
-        Morphological type selector - coming soon!
+        <select class="mode-selector">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <a class="m-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select morphological type</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="word-formation-selector-template" class="inactive-trait">
-        Word formation selector - coming soon!
+        <select class="mode-selector">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <a class="wf-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select word formation</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="formation-freq-selector-template" class="inactive-trait">
-        Word formation freq selector - coming soon!
+        <a class="ff-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select frequency</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="word-order-selector-template" class="inactive-trait">
-        Word order selector - coming soon!
+        <a class="wo-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select headedness</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="headedness-selector-template" class="inactive-trait">
-        Headedness selector - coming soon!
+        <a class="h-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select headedness</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="agreement-selector-template" class="inactive-trait">
-        Agreement selector - coming soon!
+        <a class="a-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select agreement</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <div id="case-selector-template" class="inactive-trait">
-        Case selector - coming soon!
+        <a class="c-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select case</b>"
+           data-content="Loading...">Select...</a>
       </div>
       <!--  -->
     </div>

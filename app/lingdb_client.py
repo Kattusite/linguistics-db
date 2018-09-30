@@ -28,6 +28,11 @@ def handleQuery(query):
     trait = query["trait"]
 
     # Map each query string to its function and that function's arguments
+    # TODO Export this mapping to either language.py or const.py
+    # So all changes can be made in a single places
+    # HUGE BUG: Any function using "match" completely ignores mode and k,
+    # and instead always defaults to "at least 1".
+    # Not sure how to fix this.
     function_map = {
         "consonant-selector":           Language.matchConsonants,
         "consonant-class-selector":     Language.matchConsonantClasses,
@@ -38,7 +43,14 @@ def handleQuery(query):
         "complex-consonant":            Language.containsComplexConsonants,
         "tone-selector":                Language.containsTone,
         "stress-selector":              Language.containsStress,
-        "syllable-selector":            Language.containsSyllable
+        "syllable-selector":            Language.containsSyllable,
+        "morphological-selector":       Language.matchMorphologicalType,
+        "word-formation-selector":      Language.matchWordFormation,
+        "formation-freq-selector":      Language.hasFormationFreq,
+        "word-order-selector":          Language.hasWordOrder,
+        "headedness-selector":          Language.hasHeadedness,
+        "agreement-selector":           Language.hasAgreement,
+        "case-selector":                Language.hasCase
     }
 
     fn = function_map[trait]
@@ -200,6 +212,8 @@ def createLangLists(results, replies):
     # print(n, hideHeaders)
     return table % cols
 
+# BUG: Handling of wrapping each list element in /.../ is poor. I assume that
+# all things are phonemes (if <= 2 chars, but a boolean flag might be better)
 def createLangList(results, reply, hideHeaders):
     header = "" if hideHeaders else str(len(results)) + " languages " + reply
     ls = """
@@ -225,8 +239,13 @@ def createLangList(results, reply, hideHeaders):
             matchedStr = ""
         elif type(matchedProperty) == type(tuple([])):
             matchedList = sorted(list(matchedProperty))
+
+            # Workaround for wrapping phonemes and only phonemes in /.../
+            matchedList = ["/%s/" % s if len(s) <= 2 else s for s in matchedList]
             matchedStr = str(matchedList)
-            matchedStr = matchedStr.replace("\'","/")
+
+            # Eliminate special array characters so it is human readable
+            matchedStr = matchedStr.replace("\'","")
             matchedStr = matchedStr.replace("[", "")
             matchedStr = matchedStr.replace("]", "")
         else:

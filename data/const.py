@@ -92,6 +92,28 @@ T_STR = [
     "case"
 ]
 
+# ======================== Survey Question Data ===============================
+# Each question in the survey or variable being measured should have an object
+# of the following form, specifying how that question should be parsed and how
+# its data should be stored.
+# Fields:
+# DICT: See below. A parseDict mapping arbitrary words in the question statement to
+#       legal values of the accompanying variable
+# MULTI: Whether or not multiple selections are allowed
+# MODE:  (?) Maybe use this to specify if it is a "Pick K of <x, y,z>" or
+#            "Simple boolean" or "Pick one"
+# REPLY: A format string containing information on how the results of a query
+#        for this field should be described in plain english
+#        E.G. "contain at least one of %s" where %s is [p,t,k]
+# REPLY_VARS:  Describes what variables are needed to fill the format string
+#              E.G. a list of strings, a single string, a mode string, a k-value
+# FUNC: A function in the language class that is used to query for this trait.
+#       e.g. Language.matchConsonants
+# HTML_ID: A string used to represent either the prefix of the ID, or the class,
+#          of HTML elements responsible for handling this trait.
+# 
+
+# Format for the DICT: entries...
 # Dictionaries for use in csvtojson.parsePhrase()
 # Generally speaking, the format is:
 # The keys in the dict (left side) are the values you would like to store in the json
