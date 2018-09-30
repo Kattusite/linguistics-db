@@ -58,6 +58,8 @@ class LingDB:
         matches = []  # Array of (lang, result) tuples
         for lang in self.data:
            queryResult = fn(lang, *argsToPass)
+
+           # Check if query result is an empty list or other falsey type
            if queryResult:
               # Convert result lists to tuples so we can hash them (and make sets!)
               if type(queryResult) == type([]):

@@ -67,6 +67,7 @@ def handleQueries(queries):
     # Create a result set, lang set, and reply for each query
     for query in queries:
         queryResults = handleQuery(query)
+        print(queryResults)
 
         # Convert to sets so we can use set ops like intersect and union later.
         # resultSet = set of (language, matchingProperty) pairs

@@ -13,7 +13,7 @@ To-Do
 ========
 * Fix severe bug in lingdb_client.py in which functions relying on "match" ignore
 mode and k completely. The API of all match functions will certainly have to change
-to include k, mode at the very least. 
+to include k, mode at the very least.
 * Standardize the names of functions in the Language.py class. contains should be
 reserved for phonemes/natural classes. "has" should be for booleans? or perhaps "is"
 

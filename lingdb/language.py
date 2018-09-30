@@ -127,42 +127,70 @@ class Language:
 #                                Match Methods                                 #
 #               (What elements of this language fulfill criterion x?)          #
 ################################################################################
-    def matchConsonants(self, glyphList):
-        """Returns the consonant glyphs in this language present in glyphList"""
+    def matchConsonants(self, glyphList, k, mode):
+        """Returns the consonant glyphs in this language present in glyphList,
+        if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getConsonants())
         thatSet = set(glyphList)
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
         return list(thatSet.intersection(thisSet))
 
-    def matchVowels(self, glyphList):
-        """Returns the vowel glyphs in this language present in glyphList"""
+    def matchVowels(self, glyphList, k, mode):
+        """Returns the vowel glyphs in this language present in glyphList,
+        if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getVowels())
         thatSet = set(glyphList)
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
         return list(thatSet.intersection(thisSet))
 
-    def matchConsonantClasses(self, classList):
+    def matchConsonantClasses(self, classList, k, mode):
         """Returns the consonant glyphs in this language that are part of a metaclass in
-        classList"""
+        classList, if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getConsonants())
         thatSet = set(consonants.getGlyphListFromClasses(classList))
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
         return list(thatSet.intersection(thisSet))
 
-    def matchVowelClasses(self, classList):
+    def matchVowelClasses(self, classList, k, mode):
         """Returns the vowel glyphs in this language that are part of a metaclass in
-        classList"""
+        classList, if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getVowels())
         thatSet = set(vowels.getGlyphListFromClasses(classList))
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
         return list(thatSet.intersection(thisSet))
 
-    def matchMorphologicalType(self, selList):
-        """Returns the morphological types in this language that are part of selList"""
+    def matchMorphologicalType(self, selList, k, mode):
+        """Returns the morphological types in this language that are part of selList,
+        if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getMorphologicalTypes())
         thatSet = set(selList)
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
         return list(thatSet.intersection(thisSet))
 
-    def matchWordFormation(self, selList):
-        """Return the word formation strategies in this language that are part of selList"""
+    def matchWordFormation(self, selList, k, mode):
+        """Return the word formation strategies in this language that are part of selList,
+        if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getWordFormations())
         thatSet = set(selList)
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
         return list(thatSet.intersection(thisSet))
 
 
