@@ -2,6 +2,9 @@ NETID = 1
 NAME  = 2
 HASH_SIZE = 16
 
+DICT = "dict"
+MULTI = "multi"
+
 DATA_PATH = "data/"
 
 # CSV format
@@ -89,113 +92,168 @@ T_STR = [
     "case"
 ]
 
+# ======================== Survey Question Data ===============================
+# Each question in the survey or variable being measured should have an object
+# of the following form, specifying how that question should be parsed and how
+# its data should be stored.
+# Fields:
+# DICT: See below. A parseDict mapping arbitrary words in the question statement to
+#       legal values of the accompanying variable
+# MULTI: Whether or not multiple selections are allowed
+# MODE:  (?) Maybe use this to specify if it is a "Pick K of <x, y,z>" or
+#            "Simple boolean" or "Pick one"
+# REPLY: A format string containing information on how the results of a query
+#        for this field should be described in plain english
+#        E.G. "contain at least one of %s" where %s is [p,t,k]
+# REPLY_VARS:  Describes what variables are needed to fill the format string
+#              E.G. a list of strings, a single string, a mode string, a k-value
+# FUNC: A function in the language class that is used to query for this trait.
+#       e.g. Language.matchConsonants
+# HTML_ID: A string used to represent either the prefix of the ID, or the class,
+#          of HTML elements responsible for handling this trait.
+# 
+
+# Format for the DICT: entries...
 # Dictionaries for use in csvtojson.parsePhrase()
 # Generally speaking, the format is:
 # The keys in the dict (left side) are the values you would like to store in the json
 # The values in the lists (right side) are the values in the raw data you would like to
 # be replaced by the key on the left
 # If the right-hand-side list is [], it is treated as the left-hand-side string itself
-SYLLABLE_DICT = {
-    "CV":    [],
-    "V":     [],
-    "CVC":   [],
-    "CCV":   [],
-    "CCCV":  [],
-    "CCCCV": [],
-    "VCC":   [],
-    "VCCC":  [],
-    "VCCCC": []
+SYLLABLE = {
+    DICT: {
+        "CV":    [],
+        "V":     [],
+        "CVC":   [],
+        "CCV":   [],
+        "CCCV":  [],
+        "CCCCV": [],
+        "VCC":   [],
+        "VCCC":  [],
+        "VCCCC": []
+    },
+    MULTI: True
 }
 
-MORPHOLOGY_DICT = {
-    "isolating": [],
-    "analytic": ["analytic", "not isolating"], # this is a toughie
-    "fusional": [],
-    "agglutinating": [],
-    "polysynthetic": []
+MORPHOLOGY = {
+    DICT: {
+        "isolating": [],
+        "analytic": ["analytic", "not isolating"], # this is a toughie
+        "fusional": [],
+        "agglutinating": [],
+        "polysynthetic": []
+    },
+    MULTI: True
 }
 
-WORD_FORMATION_DICT = {
-    "affixation": ["affixation", "prefixation or suffixation"],
-    "suffixation": [],
-    "prefixation": [],
-    "infixation": [],
-    "compounding": [],
-    "root-and-pattern": [],
-    "internal change": [],
-    "suppleton": [],
-    "stress or tone shift": [],
-    "reduplication": [],
-    "conversion": [],
-    "purely isolating": ["none", "purely isolating"]
+WORD_FORMATION = {
+    DICT: {
+        "affixation": ["affixation", "prefixation or suffixation"],
+        "suffixation": [],
+        "prefixation": [],
+        "infixation": [],
+        "compounding": [],
+        "root-and-pattern": [],
+        "internal change": [],
+        "suppleton": [],
+        "stress or tone shift": [],
+        "reduplication": [],
+        "conversion": [],
+        "purely isolating": ["none", "purely isolating"]
+    },
+    MULTI: True
 }
 
-FORMATION_FREQ_DICT = {
-    "exclusively" : ["exclusive", "purely"],
-    "mostly": ["mostly"],
-    "equal": ["equal ","even ","mix "]
+FORMATION_FREQ = {
+    DICT: {
+        "exclusively" : ["exclusive", "purely"],
+        "mostly": ["mostly"],
+        "equal": ["equal ","even ","mix "]
+    },
+    MULTI: False
 }
 
-FORMATION_MODE_DICT = {
-    "prefixing and suffixing":  ["prefixing and suffixing"],
-    "affixation and other":     ["affixation and other"],
-    "suffixing":                ["suffixing"],
-    "prefixing":                ["prefixing"],
-    "non-affixal":              ["non-affixal"],
-    "isolating":                ["isolating"]
-}
-
-# The following dict is not tested for parsePhrase. It is simply a collection
-# of all legal combinations of the corresponding freq/mode dicts
-FORMATION_DICT = {
-    "exclusively suffixing": [],
-    "mostly suffixing": [],
-    "exclusively prefixing": [],
-    "mostly prefixing": [],
-    "equal prefixing and suffixing": ["prefixing and suffixing"],
-    "exclusively non-affixal": [],
-    "mostly non-affixal": [],
-    "equal affixation and other": ["affixation and other"],
-    "mostly isolating": [],
-    "exclusively isolating": ["exclusively isolating", "purely isolating"]
-}
-
-WORD_ORDER_DICT = {
-    "SVO": [],
-    "SOV": [],
-    "VSO": [],
-    "VOS": [],
-    "OVS": [],
-    "OSV": [],
-    "multiple": ["more than one", "multiple", "several"],
-    "none":     ["no basic", "none"]
-}
-
-HEADEDNESS_FREQ_DICT = {
-    "consistently": [],
-    "mostly": [],
-    "mixed": ["mixed", "equal", "roughly equal"]
-}
-
-HEADEDNESS_MODE_DICT = {
-    "head-initial": [],
-    "head-final": [],
-    "headedness": ["mixed", "equal", "roughly equal"]
+FORMATION_MODE = {
+    DICT: {
+        "prefixing and suffixing":  ["prefixing and suffixing"],
+        "affixation and other":     ["affixation and other"],
+        "suffixing":                ["suffixing"],
+        "prefixing":                ["prefixing"],
+        "non-affixal":              ["non-affixal"],
+        "isolating":                ["isolating"]
+    },
+    MULTI: False
 }
 
 # The following dict is not tested for parsePhrase. It is simply a collection
 # of all legal combinations of the corresponding freq/mode dicts
-HEADEDNESS_DICT = {
-    "consistently head-initial": [],
-    "consistently head-final": [],
-    "mostly head-initial": [],
-    "mostly head-final": [],
-    "mixed headedness": []
+FORMATION = {
+    DICT: {
+        "exclusively suffixing": [],
+        "mostly suffixing": [],
+        "exclusively prefixing": [],
+        "mostly prefixing": [],
+        "equal prefixing and suffixing": ["prefixing and suffixing"],
+        "exclusively non-affixal": [],
+        "mostly non-affixal": [],
+        "equal affixation and other": ["affixation and other"],
+        "mostly isolating": [],
+        "exclusively isolating": ["exclusively isolating", "purely isolating"]
+    },
+    MULTI: False
 }
 
-CASE_AGREEMENT_DICT = {
-    "none": ["doesn't have", "none"],
-    "ergative/absolutive": [],
-    "nominative/accusative": [],
-    "other": ["other", "some other", "other sort"]
+WORD_ORDER = {
+    DICT: {
+        "SVO": [],
+        "SOV": [],
+        "VSO": [],
+        "VOS": [],
+        "OVS": [],
+        "OSV": [],
+        "multiple": ["more than one", "multiple", "several"],
+        "none":     ["no basic", "none"]
+    },
+    MULTI: False
+}
+
+HEADEDNESS_FREQ = {
+    DICT: {
+        "consistently": [],
+        "mostly": [],
+        "mixed": ["mixed", "equal", "roughly equal"]
+    },
+    MULTI: False
+}
+
+HEADEDNESS_MODE = {
+    DICT: {
+        "head-initial": [],
+        "head-final": [],
+        "headedness": ["mixed", "equal", "roughly equal"]
+    },
+    MULTI: False
+}
+
+# The following dict is not tested for parsePhrase. It is simply a collection
+# of all legal combinations of the corresponding freq/mode dicts
+HEADEDNESS = {
+    DICT: {
+        "consistently head-initial": [],
+        "consistently head-final": [],
+        "mostly head-initial": [],
+        "mostly head-final": [],
+        "mixed headedness": []
+    },
+    MULTI: False
+}
+
+CASE_AGREEMENT = {
+    DICT: {
+        "none": ["doesn't have", "none"],
+        "ergative/absolutive": [],
+        "nominative/accusative": [],
+        "other": ["other", "some other", "other sort"]
+    },
+    MULTI: False
 }

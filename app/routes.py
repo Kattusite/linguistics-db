@@ -8,7 +8,7 @@ def main():
         # Extract the payload from the request form
         f = request.form
         data = json.loads(f["payload"])
-
+        listMode = True if f["listMode"].lower() == "true" else False
         # data is a list of query dicts, each containing:
         # "consonants" -> A (stringified) list of the consonants to query
         # "vowels"     -> A (stringified) list of the vowels to query
@@ -18,10 +18,9 @@ def main():
         # "classes"    -> A (stringified) list of which metaclasses to query
 
         # Parse the boolean string to a proper bool
-        listMode = (f["listMode"] == "true")
 
         # Send all queries to client for processsing
-        ret = lingdb_client.handleQueries(data, listMode)
+        ret = lingdb_client.handleQueries(data, listMode=listMode)
         return ret
     return render_template('front.html')
 

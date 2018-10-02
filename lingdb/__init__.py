@@ -8,6 +8,13 @@ class LingDB:
     collection of language objects"""
 
 ################################################################################
+#                             Constants                                        #
+#                                                                              #
+################################################################################
+    QUERY_LANG = 0
+    QUERY_RESULT = 1
+
+################################################################################
 #                             Constructor                                      #
 #                                                                              #
 ################################################################################
@@ -36,14 +43,32 @@ class LingDB:
     # This one is tricky. Where fn is a *function* (not a method) from the
     # Language class, and args is a list of args to be passed to that function,
     # apply fn to all languages lang in the DB. Then if lang.fn(*args) is True,
-    # or returns a True type (ie a nonempty list), append that language's results
-    # to a list.
-    # Return the entire list after all matching languages have contributed results
+    # or returns a True type (ie a nonempty list), this language is added to a
+    # tuple, containing 1) the language that matched and 2) the return value of
+    # lang.fn
+    # Return the entire list of tuples after all matching languages have
+    # contributed results
     def query(self, fn, allArgs):
         # Get the argument list for the selected function # WARNING (hacky)
         argList = inspect.getargspec(fn)[0][1:]
         argsToPass = [allArgs[a] for a in argList]
-        return [lang for lang in self.data if fn(lang, *argsToPass)]
+
+        # For each language that matches this query, return a tuple of the
+        # matching language, and the list of properties in the language that matched
+        matches = []  # Array of (lang, result) tuples
+        for lang in self.data:
+           queryResult = fn(lang, *argsToPass)
+
+           # Check if query result is an empty list or other falsey type
+           if queryResult:
+              # Convert result lists to tuples so we can hash them (and make sets!)
+              if type(queryResult) == type([]):
+                  queryResult = tuple(queryResult)
+
+              matches.append((lang, queryResult))
+
+        return matches
+        # return [lang for lang in self.data if fn(lang, *argsToPass)]
 
 ################################################################################
 #                            Built-ins                                    #

@@ -28,56 +28,79 @@ def handleQuery(query):
     trait = query["trait"]
 
     # Map each query string to its function and that function's arguments
+    # TODO Export this mapping to either language.py or const.py
+    # So all changes can be made in a single places
+    # HUGE BUG: Any function using "match" completely ignores mode and k,
+    # and instead always defaults to "at least 1".
+    # Not sure how to fix this.
     function_map = {
-        "consonant-selector":           Language.containsConsonants,
-        "consonant-class-selector":     Language.containsConsonantClasses,
-        "vowel-selector":               Language.containsVowels,
-        "vowel-class-selector":         Language.containsVowelClasses,
+        "consonant-selector":           Language.matchConsonants,
+        "consonant-class-selector":     Language.matchConsonantClasses,
+        "vowel-selector":               Language.matchVowels,
+        "vowel-class-selector":         Language.matchVowelClasses,
         "consonant-places":             Language.containsConsonantPlaces,
         "consonant-manners":            Language.containsConsonantManners,
         "complex-consonant":            Language.containsComplexConsonants,
         "tone-selector":                Language.containsTone,
         "stress-selector":              Language.containsStress,
-        "syllable-selector":            Language.containsSyllable
+        "syllable-selector":            Language.containsSyllable,
+        "morphological-selector":       Language.matchMorphologicalType,
+        "word-formation-selector":      Language.matchWordFormation,
+        "formation-freq-selector":      Language.hasFormationFreq,
+        "word-order-selector":          Language.hasWordOrder,
+        "headedness-selector":          Language.hasHeadedness,
+        "agreement-selector":           Language.hasAgreement,
+        "case-selector":                Language.hasCase
     }
 
     fn = function_map[trait]
     return LING_DB.query(fn, query)
 
-def handleQueries(queries, listMode):
+def handleQueries(queries, listMode=False):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
     # Can be cleaned up with comprehensions
-    result_arr = []   # List of sets of Languages
-    reply_arr  = []   # List of strings (?)
+    result_arr = []   # List of sets of (Language, queryResult) pairs
+    lang_arr   = []   # list of sets of languages
+    reply_arr  = []   # List of strings to be rendered on frontend
 
-    # Obtain a list of the languages matching each query
+    # Create a result set, lang set, and reply for each query
     for query in queries:
-        r = handleQuery(query)
-        s = set(r)  # The set of all language objects that matched
-        reply_arr.append(query["reply"])
-        result_arr.append(s)
+        queryResults = handleQuery(query)
 
+        # Convert to sets so we can use set ops like intersect and union later.
+        # resultSet = set of (language, matchingProperty) pairs
+        resultTuple = tuple(queryResults)
+        resultSet = set(resultTuple)
+
+
+        # langSet = set of language objects
+        langSet = set([res[LingDB.QUERY_LANG] for res in queryResults])
+
+        reply_arr.append(query["reply"])
+        result_arr.append(resultSet)
+        lang_arr.append(langSet)
+
+    # Define some constants
     n = len(result_arr)
+    nlStr   = "\n<br>\n"
+    hrStr   = "\n<hr>\n"
+
+    # If no queries were handled, something went wrong!
     if n == 0:
         print("Error: attempted to handle invalid query")
         return None # Query invalid
 
-    # Combine the results
+    # Combine the results of the n queries
     # TODO Clean this whole section up (add HTML styling + a separate formatter function)
-    # langStr = " languages "
-
-    nlStr   = "\n<br>\n"
-    hrStr   = "\n<hr>\n"
-
     # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded
     # TODO Magic numbers 0, 1, 2 are bad
     # TODO also allow for displaying the results of each subquery alone--
     # If I query for A & B & C, also display just A, just B, just C.
     # TODO also add a small table with a list of languages matching just A, just B, or A and B
-    uRep = createUnionReply(result_arr, reply_arr, LING_DB)
-    iRep = createIntersectionReply(result_arr, reply_arr, LING_DB)
-    cRep = createConditionalReply(result_arr, reply_arr, 0, LING_DB)
+    uRep = createUnionReply(lang_arr, reply_arr, LING_DB)
+    iRep = createIntersectionReply(lang_arr, reply_arr, LING_DB)
+    cRep = createConditionalReply(lang_arr, reply_arr, 0, LING_DB)
 
     # The response structure partitions results with newlines and horizontal rules
     # so that the data is returned in a nice format
@@ -87,10 +110,8 @@ def handleQueries(queries, listMode):
         "list":             []
     }
 
-    if listMode:
-        orderedResults = [sorted(list(s), key=lambda x: x.getLanguage()) for s in result_arr]
-        cmpRep = createComparisonTable(orderedResults, reply_arr)
-        response["list"].append(cmpRep)
+    listRep = createLangLists(result_arr, reply_arr, listMode=listMode)
+    response["list"].append(listRep)
 
     if n >= 1:
         response["logical"].append(uRep)   # A (or B (or C...))
@@ -100,20 +121,22 @@ def handleQueries(queries, listMode):
 
         # If exactly two query terms, throw in B --> A
         if n == 2:
-            cRep2 = createConditionalReply(result_arr, reply_arr, 1, LING_DB)
+            cRep2 = createConditionalReply(lang_arr, reply_arr, 1, LING_DB)
             response["implicational"].append(cRep2)
 
     # Format the response structure with newlines and rules
     sections = []
-    # NOTE More elegant way?
     sections.append(nlStr.join(response["logical"]))
     sections.append(nlStr.join(response["implicational"]))
-    sections.append(nlStr.join(response["list"]))
 
     # Filter out empty strings (sections without any content added)
     sections = [s for s in sections if len(s) > 0]
 
-    return hrStr.join(sections)
+    # Add the list section onto the bottom (it has its own <hr> element)
+    joinedSections = hrStr.join(sections)
+    listSection = nlStr.join(response["list"])
+
+    return "".join([joinedSections, listSection])
 
 
 #############################################################################
@@ -126,64 +149,130 @@ def mergeReplies(replies, joinWord):
     # TODO implement this for more modularity in the createReply functions
     return NotImplemented
 
-def createUnionReply(results, replies, db):
+def createUnionReply(langs, replies, db):
     """Return a string of HTML representing the formatted results to be
     displayed for the given results list and replies list, and containing db,
     assuming the queries are joined together using union (OR)"""
-    matches = [x.getLanguage() for x in set.union(*results)]
+    matches = [x.getLanguage() for x in set.union(*langs)]
     num = len(matches)
     den = len(db)
     reply = "".join(["<b>", "</b> or <b>".join(replies), "</b>"])
     frac  = createFractionHTML(num, den)
     return " ".join([frac, reply])
 
-def createIntersectionReply(results, replies, db):
+def createIntersectionReply(langs, replies, db):
     """Return a string of HTML representing the formatted results to be
     displayed for the given results list and replies list, and containing db,
     assuming the queries are joined together using intersection (AND)"""
-    matches = [x.getLanguage() for x in set.intersection(*results)]
+    matches = [x.getLanguage() for x in set.intersection(*langs)]
     num = len(matches)
     den = len(db)
     reply = "".join(["<b>", "</b> and <b>".join(replies), "</b>"])
     frac  = createFractionHTML(num, den)
     return " ".join([frac, reply])
 
-def createConditionalReply(results, replies, which, db):
+def createConditionalReply(langs, replies, which, db):
     """Return a string of HTML representing the formatted results to be
     displayed for the given results list and replies list, and containing db,
     assuming the queries are joined together using conditional (R[which] implies R[1,2,3,...])
     The parameter which specifies the index of the item implying the others"""
-    matches = [x.getLanguage() for x in set.intersection(*results)]
+    matches = [x.getLanguage() for x in set.intersection(*langs)]
     num = len(matches)
-    den = len(results[which])
+    den = len(langs[which])
     ifReply   = "".join([" that <b>", replies[which], "</b> also "])
     thenReply = "".join(["<b>", "</b> and <b>".join(replies[:which] + replies[which+1:]), "</b>"])
     frac  = createFractionHTML(num, den)
     condStr = " ".join([frac, ifReply, thenReply])
     return condStr
 
-# TODO rename to create lang list
-# TODO Sort the languages!!
-def createComparisonTable(results, replies):
+# Create HTML for a table representing one or more lists of tabulated results,
+# of the form "language" : "result" (if result is not a bool)
+# Use bootstrap layout instead of the actual HTML <table> tags
+def createLangLists(results, replies, listMode=False):
     # Define table template
     table = """
-    <table>
-        <tbody>
-            <tr>%s</tr>
-        </tbody>
-    </table>"""
+    <div class="lang-list %s">
+        <hr>
+        <div class="container-fluid">
+            <div class="row">
+                %s
+            </div>
+        </div>
+    </div>"""
+
+    # WARNING: Bootstrap v3.0 ONLY. If transition to v4.0, "in" becomes "show"
+    listClass = "collapse" if not listMode else "collapse in"
+
+    # Sort the result list lexicographically by the name of the language.
+    getLangName = lambda x: x[LingDB.QUERY_LANG].getLanguage()
+    orderedResults = [sorted(list(s), key=getLangName) for s in results]
 
     # Define the columns
-    hideHeaders = len(results) <= 1
-    cols = "".join([createComparisonRow(results[i], replies[i], hideHeaders) for i in range(len(results))])
-    print(len(results), hideHeaders)
-    return table % cols
+    n = len(results)
+    hideHeaders = n <= 1
+    langLists = [createLangList(orderedResults[i], replies[i], hideHeaders) for i in range(n)]
+    cols = "".join(langLists)
+    # print(n, hideHeaders)
+    return table % (listClass, cols)
+
+# BUG: Handling of wrapping each list element in /.../ is poor. I assume that
+# all things are phonemes (if <= 2 chars, but a boolean flag might be better)
+def createLangList(results, reply, hideHeaders):
+    header = "" if hideHeaders else str(len(results)) + " languages " + reply
+    ls = """
+    <div class="col-md-4">
+        <h5>%s</h5>
+        <table class="lang-list-table">
+            <tbody>
+                %s
+            </tbody>
+        </table>
+    </div>"""
+
+    rows = []
+    for res in results:
+        lang = res[LingDB.QUERY_LANG].getLanguage()
+
+        matchedProperty = res[LingDB.QUERY_RESULT]
+
+        # The type of matchedProperty is tuple or bool. Figure out which.
+        # If bool, display nothing (the query had no additional info to report)
+        # If tuple, it is a list of matching glyphs. Sort and prettify it
+        if type(matchedProperty) == type(True):
+            matchedStr = ""
+        elif type(matchedProperty) == type(tuple([])):
+            matchedList = sorted(list(matchedProperty))
+
+            # Workaround for wrapping phonemes and only phonemes in /.../
+            matchedList = ["/%s/" % s if len(s) <= 2 else s for s in matchedList]
+            matchedStr = str(matchedList)
+
+            # Eliminate special array characters so it is human readable
+            matchedStr = matchedStr.replace("\'","")
+            matchedStr = matchedStr.replace("[", "")
+            matchedStr = matchedStr.replace("]", "")
+        else:
+            raise TypeError(("Passed a matchedProperty %s of incorrect type!"
+                             % matchedProperty) +
+                             "\nMust be tuple or bool!")
+
+        tr = """
+        <tr>
+            <td>%s</td>
+            <td>%s</td>
+        </tr>"""
+
+        rows.append(tr % (lang, matchedStr))
+
+    return ls % (header, "".join(rows))
 
 
 
-def createComparisonRow(result, reply, hideHeaders):
+
+# Deprecated.. just here in case I mess up too badly
+def createOldLangList(results, reply, hideHeaders):
     header = "" if hideHeaders else str(len(result)) + " languages " + reply
-    row = """
+    td = """
     <td>
         <h5>%s</h5>
         <ul>
@@ -191,12 +280,12 @@ def createComparisonRow(result, reply, hideHeaders):
         </ul>
     </td>"""
 
-    mid = "</li>\n<li>".join([lang.getLanguage() for lang in result])
+    langs = [ res[LingDB.QUERY_LANG].getLanguage() for res in results ]
+    mid = "</li>\n<li>".join(langs)
     bodyList = ["<li>", mid, "</li>"]
     body = "".join(bodyList)
 
     return row % (header, body)
-
 
 
 def createFractionHTML(num, den):
@@ -207,15 +296,22 @@ def createFractionHTML(num, den):
     frac = "".join(["<span style='font-size: x-small;'>",
                     "(%d / %d)" % (num, den),
                     "</span>"])
-    text = "".join([quantifier, " languages ", frac])
-    ret  = "".join(["<span ",
-                    "onclick='handleListToggle() '"
-                    "data-toggle='tooltip' ",
-                    "title='%d%% of languages matched'" % round(float * 100),
-                    ">",
-                    text,
-                    "</span>"])
-    return ret
+    text =     "".join([quantifier, " languages ", frac])
+    tooltip =  "".join(["<span ",
+                        "onclick='handleListToggle() '"
+                        "data-toggle='tooltip' ",
+                        "style='cursor: pointer;'",
+                        "title='%d%% of languages matched'" % round(float * 100),
+                        ">",
+                        text,
+                        "</span>"])
+    collapse = "".join(["<span ",
+                        "data-toggle='collapse'",
+                        "data-target='.lang-list'"
+                        ">",
+                        tooltip,
+                        "</span>"])
+    return collapse
 
 
 def floatToQuantifier(frac):
@@ -243,7 +339,7 @@ def floatToQuantifier(frac):
         (0.10, "Almost no"),
         (0.25, "Very few"),
         (0.40, "Few"),
-        (0.60, "About half"),
+        (0.60, "About half of"),
         (0.75, "Many"),
         (0.90, "Very many"),
         (0.99, "Almost all"),

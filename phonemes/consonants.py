@@ -8,8 +8,6 @@
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
 
-from . import bitstrings
-
 # NOTE! The order of this list is not arbitrary and strongly affects other
 # parts of the program
 GLYPHS = [

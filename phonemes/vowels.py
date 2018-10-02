@@ -7,7 +7,6 @@
 # Generating the clickable phoneme selector GUI elements
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
-from . import bitstrings
 
 GLYPHS = [
     "a",
@@ -23,7 +22,6 @@ GLYPHS = [
     "ø",
     "ɵ",
     "ʉ"
-    # "N/A" # None of the above (remove this and let 0000...000 be implicit)
 ]
 
 # Order of the list is arbitrary from this line down
