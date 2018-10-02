@@ -346,7 +346,18 @@ def floatToQuantifier(frac):
         (1.00, "All")
     ]
 
-    for quant in succinctQuantifiers:
+    revisedQuantifiers = [
+        (0.00, "No"),
+        (0.15, "Few"),
+        (0.30, "Some"),
+        (0.40, "Many"),
+        (0.60, "About half of"),
+        (0.90, "Most"),
+        (0.99, "Almost all"),
+        (1.00, "All")
+    ]
+
+    for quant in revisedQuantifiers:
         if frac <= quant[0]:
             return quant[1]
 

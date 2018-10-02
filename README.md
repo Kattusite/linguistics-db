@@ -11,6 +11,8 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Add a favicon
+* Add a proper navbar, meager as it may be (with an about / contact info page)
 * Fix "languages are mixed headedness" --> "languages use mixed headedness"
 * Split the frequency selectors into two separate categories for smarter querying. i.e. allow queries for "languages that use exclusively a single strategy to form words" no matter the strategy, or queries for "languages that use prefixing to form words, regardless of exclusivity"
 * BUG: There is currently no way to tell the difference between "No Data Available" and "Query matched available data, but no context / additional info is available" in the list display.
