@@ -11,6 +11,13 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Fix "languages are mixed headedness" --> "languages use mixed headedness"
+* Split the frequency selectors into two separate categories for smarter querying. i.e. allow queries for "languages that use exclusively a single strategy to form words" no matter the strategy, or queries for "languages that use prefixing to form words, regardless of exclusivity"
+* BUG: There is currently no way to tell the difference between "No Data Available" and "Query matched available data, but no context / additional info is available" in the list display.
+* BUG: For k-mode comparisons, results are not always accurate for < or <=. For example, 0 is always <= k, but languages with 0 matches are NOT returned as results (?). Actually investigate this further.
+It seems as though 0 is in fact handled correctly, and this effect only happens for languages with missing data, making it a subset of the bug described immediately below.
+* BUG: Creek & Kukama-Kukamaria	yield surprising (perhaps inaccurate) results. For example, "About half of languages (15 / 34) use at most 1 of affixation, prefixation to form words" even though these two languages use neither (They have missing data).
+* BUG: Language lists are truncated / drop down awkwardly to the next line if they contain strings that are too long.
 * Change "Contains 3+ consonant manners" to "contains {mode} {k} consonant {manners|places}"
 * The data is imperfect. (Pipil occurs twice, Creek & Kukama-Kukamaria lack typology)
 * Put the query boxes above the result box? So it is easy to submit a new query,

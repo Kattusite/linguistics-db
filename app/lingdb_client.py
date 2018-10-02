@@ -200,7 +200,8 @@ def createLangLists(results, replies, listMode=False):
         </div>
     </div>"""
 
-    listClass = "hidden" if not listMode else ""
+    # WARNING: Bootstrap v3.0 ONLY. If transition to v4.0, "in" becomes "show"
+    listClass = "collapse" if not listMode else "collapse in"
 
     # Sort the result list lexicographically by the name of the language.
     getLangName = lambda x: x[LingDB.QUERY_LANG].getLanguage()
@@ -295,16 +296,22 @@ def createFractionHTML(num, den):
     frac = "".join(["<span style='font-size: x-small;'>",
                     "(%d / %d)" % (num, den),
                     "</span>"])
-    text = "".join([quantifier, " languages ", frac])
-    ret  = "".join(["<span ",
-                    "onclick='handleListToggle() '"
-                    "data-toggle='tooltip' ",
-                    "style='cursor: pointer;'",
-                    "title='%d%% of languages matched'" % round(float * 100),
-                    ">",
-                    text,
-                    "</span>"])
-    return ret
+    text =     "".join([quantifier, " languages ", frac])
+    tooltip =  "".join(["<span ",
+                        "onclick='handleListToggle() '"
+                        "data-toggle='tooltip' ",
+                        "style='cursor: pointer;'",
+                        "title='%d%% of languages matched'" % round(float * 100),
+                        ">",
+                        text,
+                        "</span>"])
+    collapse = "".join(["<span ",
+                        "data-toggle='collapse'",
+                        "data-target='.lang-list'"
+                        ">",
+                        tooltip,
+                        "</span>"])
+    return collapse
 
 
 def floatToQuantifier(frac):

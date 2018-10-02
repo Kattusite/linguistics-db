@@ -464,16 +464,9 @@ function handleSubmit() {
        );
 }
 
-// Hides / Unhides the long language lists in the results box
+// Toggles the setting of listMode -- are lists shown/hidden by default?
 function handleListToggle() {
   listMode = !listMode;
-  langlist = $(".lang-list");
-  if (langlist.hasClass("hidden")) {
-    langlist.removeClass("hidden");
-  }
-  else {
-    langlist.addClass("hidden");
-  }
 }
 
 /*****************************************************************************/
