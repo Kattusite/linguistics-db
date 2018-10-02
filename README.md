@@ -11,6 +11,8 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Change "Contains 3+ consonant manners" to "contains {mode} {k} consonant {manners|places}"
+* The data is imperfect. (Pipil occurs twice, Creek & Kukama-Kukamaria lack typology)
 * Put the query boxes above the result box? So it is easy to submit a new query,
 and all the important info in the result box is in the top three lines anyway, so
 screen size will be less of an issue
@@ -25,7 +27,6 @@ reserved for phonemes/natural classes. "has" should be for booleans? or perhaps 
 * While we're on the front.js train, also rewrite to minimize reliance on manual DOM manipulations and use jquery instead.
 * Refactor front.js 2.0: In this same vein, introduce way more modularity + abstraction --> A function just for selecting/deselecting, a function just for generating the link text to be displayed, a function just for getting/setting the popover HTML from outerHTML.
 * Refactor front.js so that the pbox/clbox/lbox handlers share significantly more code. The current form is unmaintinable. Side note: The HTML structure of pbox differs from the other clbox/lbox for no good reason... It is currently <tr><td><div></div></td></tr>, but clbox/lbox lack the innermost div as it serves no real purpose.
-* Reintroduce the global listmode variable so that new queries will have the same list-display setting as the previous one. If I just expanded a query and make a new one, expand it by default next time so I don't have to keep clicking the button.
 * Fix up the frontend - split the viewport in half so there is a query pane and a results pane.
 * Long term style goal: Go through all files and standardize debugging statements (possibly w debug logger). Standardize all return types, add type annotations, ensure that exceptions are raised in the appropriate places when
 bad data is passed. (Possibly use asserts)
@@ -45,8 +46,6 @@ items to be selected.
 Use .pbox.label.active instead of .pbox-label.pbox-label-active  -- Many of my CSS classes should overlap but I end up copy-pasting them instead
 * Add Headings to the results pane (and generally reorganize - perhaps split into a query tab on the left and a results tab on the right. ) -- Headings for "implicational", "logical", "list"
 Also add prefix-type headings to each result so it is immediately obvious which each does-- for instance (AND), (OR), (A->B), (B->A)
-* BUG: Clicking ".. languages matched .." now RESUBMITS the post request, even if the query terms have changed, so it replaces the entire pane with possibly new (undesired) results.
-Instead I should make it so that the language lists are always generated and sent, but they are hidden until the ".. languages matched .." button is clicked. The "Toggle List Mode" button can probably be eliminated entirely. Also give the "... languages matched..." button a pointer cursor instead of select pointer.
 * Add more info to the replies (Have the server help generate them dynamically) -- FOr instance,
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels -->
 Most languages (28 / 34) contain at least 1 of unrounded high central vowels (like [a, e, i, o, u])

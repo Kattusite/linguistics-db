@@ -102,7 +102,7 @@ class Language:
 
     def getVowels(self):
         """Returns the list of vowels for this language"""
-        ret = self.getGrammarAttr(G_STR[G_VOWEL])
+        ret = self.getGrammarAttr(G_STR[G_VOWELS])
         if ret is None:
             ret = []
         return ret

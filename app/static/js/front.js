@@ -91,6 +91,7 @@ function initPopovers(tgtClass, templateID) {
   $("." + uninit).attr("data-content", createSelectorString(templateID));
   $("." + uninit).attr("id", tgtClass + "-" + uid);
   $("." + uninit).addClass(init);
+  $("." + uninit).addClass("selector-init");
   $("." + uninit).removeClass(uninit);
 }
 
@@ -418,7 +419,7 @@ function handleSubmit() {
                 prettifiedStr + " to form words";
         break;
       case FORMATION_FREQ_ID:
-        reply = "use " + sel + " to form words";
+        reply = "use " + sel + " strategies to form words";
         break;
       case WORD_ORDER_ID:
         reply = "have " + sel + " word order";

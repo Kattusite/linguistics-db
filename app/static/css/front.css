@@ -92,6 +92,10 @@ body {
   margin: 0px;
 }
 
+
+/* These classes still exist for jQuery selections, but their styling has been
+   subsumed by .selector-init */
+/*
 .cbox-selector-init {
   border-bottom: 3px solid;
 }
@@ -105,6 +109,11 @@ body {
 }
 
 .vcbox-selector-init {
+  border-bottom: 3px solid;
+}
+*/
+
+.selector-init {
   border-bottom: 3px solid;
 }
 
