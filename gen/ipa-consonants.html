@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html>
+  <!-- This is a dummy test bench for creating/modifying the consonant IPA selector -->
+  <!-- Note to future me: DO NOT DO THIS BY HAND! -->
+  <!-- Write up a nice little python script to generate it -->
+  <style>
+    td {
+      text-align: center;
+      border: 1px solid black;
+      width: 20px;
+      height: 20px;
+      max-width: 20px;
+      max-height: 20px;
+      margin: 0px;
+    }
+    th {
+      display: none;
+    }
+    td.ipa-cell {
+
+    }
+    .ipa-cell-impossible {
+      background-color: gray;
+    }
+    .ipa-cell-empty {
+      border-width: 0;
+    }
+  </style>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <th scope="col" colspan="1"></td>
+          <th scope="col" colspan="2">Bilabial</td>
+          <th scope="col" colspan="2">Labiodental</td>
+          <th scope="col" colspan="2">Dental</td>
+          <th scope="col" colspan="2">Alveolar</td>
+          <th scope="col" colspan="2">Postalveolar</td>
+          <th scope="col" colspan="2">Retroflex</td>
+          <th scope="col" colspan="2">Palatal</td>
+          <th scope="col" colspan="2">Velar</td>
+          <th scope="col" colspan="2">Uvular</td>
+          <th scope="col" colspan="2">Pharyngeal</td>
+          <th scope="col" colspan="2">Glottal</td>
+        </tr>
+        <tr>
+          <th scope="row">Plosive</td>
+          <td class="ipa-cell">p</td>
+          <td class="ipa-cell">b</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">t</td>
+          <td class="ipa-cell">d</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʈ</td>
+          <td class="ipa-cell">ɖ</td>
+          <td class="ipa-cell">c</td>
+          <td class="ipa-cell">ɟ</td>
+          <td class="ipa-cell">k</td>
+          <td class="ipa-cell">g</td>
+          <td class="ipa-cell">q</td>
+          <td class="ipa-cell">ɢ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell">?</td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Nasal</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">m</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɱ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">n</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɳ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɲ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ŋ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɴ</td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Trill</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʙ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">r</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʀ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Tap or Flap</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ⱱ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɾ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɽ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Fricative</td>
+          <td class="ipa-cell">ɸ</td>
+          <td class="ipa-cell">β</td>
+          <td class="ipa-cell">f</td>
+          <td class="ipa-cell">v</td>
+          <td class="ipa-cell">θ</td>
+          <td class="ipa-cell">ð</td>
+          <td class="ipa-cell">s</td>
+          <td class="ipa-cell">z</td>
+          <td class="ipa-cell">ʃ</td>
+          <td class="ipa-cell">ʒ</td>
+          <td class="ipa-cell">ʂ</td>
+          <td class="ipa-cell">ʐ</td>
+          <td class="ipa-cell">ç</td>
+          <td class="ipa-cell">ʝ</td>
+          <td class="ipa-cell">x</td>
+          <td class="ipa-cell">ɣ</td>
+          <td class="ipa-cell">χ</td>
+          <td class="ipa-cell">ʁ</td>
+          <td class="ipa-cell">ħ</td>
+          <td class="ipa-cell">ʕ</td>
+          <td class="ipa-cell">h</td>
+          <td class="ipa-cell">ɦ</td>
+        </tr>
+        <tr>
+          <th scope="row">Lateral Fricative</td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɬ</td>
+          <td class="ipa-cell">ɮ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Approximant</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʋ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɹ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɻ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">j</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ɰ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Lateral approximant</td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">l</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ȴ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʎ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʟ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+          <td class="ipa-cell-impossible"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

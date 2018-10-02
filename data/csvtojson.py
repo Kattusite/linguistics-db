@@ -8,7 +8,6 @@
 import csv, json, hashlib, re
 from operator import itemgetter, attrgetter
 from phonemes import consonants, vowels
-from lingdb import const as ling_const
 from .const import *
 
 ########################################
@@ -91,8 +90,8 @@ def csvToJSON():
             json_obj[G_STR[G_NUM_PHONEMES]]    = g_list[G_NUM_PHONEMES]
 
             # Extract phoneme lists
-            json_obj[G_STR[G_CONSONANTS]]      = csvConsonantsToBitstring(g_list[G_CONSONANTS])
-            json_obj[G_STR[G_VOWELS]]          = csvVowelsToBitstring(g_list[G_VOWELS])
+            json_obj[G_STR[G_CONSONANTS]]      = csvConsonantsToGlyphList(g_list[G_CONSONANTS])
+            json_obj[G_STR[G_VOWELS]]          = csvVowelsToGlyphList(g_list[G_VOWELS])
 
             # Extract phonetic + syllable info
             phonetic = g_list[G_PHONETIC].split(INNER_DELIMITER)
@@ -279,36 +278,27 @@ def asciify(str):
     return re.sub(r'[^\x00-\x7F]',' ', str)
 
 
-# Given a CSV phoneme string, return a corresponding phoneme bitstring
-# That is, a string of 0s and 1s such that a 1 occurs at index i if and only if
-# phonemeList[i] is found in csvStr
+# Given a CSV phoneme string, return a corresponding phoneme list
 # phonemeList is a canonical list of the canonical phonemes to be used to create the string
-def csvPhonemesToBitstring(csvStr, phonemeList):
+def csvPhonemesToGlyphList(csvStr, phonemeList):
     csvStr  = csvStr.replace(PHONEME_DELIMITER, "")
     csvList = csvStr.split(INNER_DELIMITER)
-    bitList = []
 
     # Iterate over canonical list and match against csvList
-    for phoneme in phonemeList:
-        if phoneme in csvList:
-            bitList.append("1")
-        else:
-            bitList.append("0")
-
-    # Construct string from list of matches
-    return "".join(bitList)
+    glyphList = [p for p in csvList if p in phonemeList]
+    return glyphList
 
 # Given a csvStr representing a csv formatted list of consonants, return
-# the corresponding bitstring of consonants, using consonants.GLYPHS as the
+# the corresponding list of consonants, using consonants.GLYPHS as the
 # canonical list
-def csvConsonantsToBitstring(csvStr):
-    return csvPhonemesToBitstring(csvStr, consonants.GLYPHS)
+def csvConsonantsToGlyphList(csvStr):
+    return csvPhonemesToGlyphList(csvStr, consonants.GLYPHS)
 
 # Given a csvStr representing a csv formatted list of vowels, return
-# the corresponding bitstring of vowels, using vowels.GLYPHS as the
+# the corresponding list of vowels, using vowels.GLYPHS as the
 # canonical list
-def csvVowelsToBitstring(csvStr):
-    return csvPhonemesToBitstring(csvStr, vowels.GLYPHS)
+def csvVowelsToGlyphList(csvStr):
+    return csvPhonemesToGlyphList(csvStr, vowels.GLYPHS)
 
 
 # A better metric to use than "longest match" might be "largest percentage of phrase matched

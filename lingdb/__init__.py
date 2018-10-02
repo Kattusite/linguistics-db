@@ -1,11 +1,18 @@
-from . import csv_importer, language, const
+from .language import Language
 from data.const import *
-import json
+import json, inspect
 
 # LingDB class
 class LingDB:
     """An object encapsulating useful lingDB queries and properties. A
     collection of language objects"""
+
+################################################################################
+#                             Constants                                        #
+#                                                                              #
+################################################################################
+    QUERY_LANG = 0
+    QUERY_RESULT = 1
 
 ################################################################################
 #                             Constructor                                      #
@@ -16,7 +23,7 @@ class LingDB:
         with the format described in data/csvtojson.py"""
         self.data = []
         for jsonObj in jsonArr:
-            self.data.append(language.Language(jsonObj))
+            self.data.append(Language(jsonObj))
 
 
 ################################################################################
@@ -30,72 +37,38 @@ class LingDB:
 
 ################################################################################
 #                             Query Methods                                    #
-#                                                                              #
+#   (these appear largely redundant; directly use language methods instead? )  #
 ################################################################################
 
-    def queryContainsConsonants(self, bitstring, k, mode):
-        """Returns a list of the languages that contain "exactly" k of the
-        consonants specified by bitstring, replacing "exactly" with the specified
-        mode"""
-        results = []
-        for lang in self.data:
-            if (lang.containsConsonants(bitstring, k, mode)):
-                results.append(lang)
-        return results
+    # This one is tricky. Where fn is a *function* (not a method) from the
+    # Language class, and args is a list of args to be passed to that function,
+    # apply fn to all languages lang in the DB. Then if lang.fn(*args) is True,
+    # or returns a True type (ie a nonempty list), this language is added to a
+    # tuple, containing 1) the language that matched and 2) the return value of
+    # lang.fn
+    # Return the entire list of tuples after all matching languages have
+    # contributed results
+    def query(self, fn, allArgs):
+        # Get the argument list for the selected function # WARNING (hacky)
+        argList = inspect.getargspec(fn)[0][1:]
+        argsToPass = [allArgs[a] for a in argList]
 
-    def queryContainsVowels(self, bitstring, k, mode):
-        """Returns a list of the languages that contain "exactly" k of the
-        consonants specified by bitstring, replacing "exactly" with the specified
-        mode"""
-        results = []
+        # For each language that matches this query, return a tuple of the
+        # matching language, and the list of properties in the language that matched
+        matches = []  # Array of (lang, result) tuples
         for lang in self.data:
-            if (lang.containsVowels(bitstring, k, mode)):
-                results.append(lang)
-        return results
+           queryResult = fn(lang, *argsToPass)
 
-    def queryContainsConsonantPlaces(self):
-        """Returns a list of the languages that contain 3+ places of consonant
-        articulation"""
-        results = []
-        for lang in self.data:
-            if(lang.containsConsonantPlaces()):
-                results.append(lang)
-        return results
+           # Check if query result is an empty list or other falsey type
+           if queryResult:
+              # Convert result lists to tuples so we can hash them (and make sets!)
+              if type(queryResult) == type([]):
+                  queryResult = tuple(queryResult)
 
-    def queryContainsConsonantManners(self):
-        results = []
-        for lang in self.data:
-            if(lang.containsConsonantManners()):
-                results.append(lang)
-        return results
+              matches.append((lang, queryResult))
 
-    def queryContainsComplexConsonants(self):
-        results = []
-        for lang in self.data:
-            if(lang.containsComplexConsonants()):
-                results.append(lang)
-        return results
-
-    def queryContainsTone(self):
-        results = []
-        for lang in self.data:
-            if(lang.containsTone()):
-                results.append(lang)
-        return results
-
-    def queryContainsStress(self):
-        results = []
-        for lang in self.data:
-            if(lang.containsStress()):
-                results.append(lang)
-        return results
-
-    def queryContainsSyllable(self, syllable):
-        results = []
-        for lang in self.data:
-            if(lang.containsSyllable(syllable)):
-                results.append(lang)
-        return results
+        return matches
+        # return [lang for lang in self.data if fn(lang, *argsToPass)]
 
 ################################################################################
 #                            Built-ins                                    #

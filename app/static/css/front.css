@@ -1,3 +1,6 @@
+/* TODO: Refactor so I get things like .pbox.label.active
+ instead of .pbox-label.pbox-label-active so I have less than a million
+ css classes defined */
 /* Need to get a css preprocessor like SASS*/
 html, body {
   min-height: 100%;
@@ -14,6 +17,12 @@ body {
 }
 
 /* Hide the selector popover templates at the bottom of the page */
+
+.template {
+  display: none;
+}
+
+/*
 #cbox-template {
   display: none;
 }
@@ -29,6 +38,7 @@ body {
 #vcbox-template {
   display: none;
 }
+*/
 
 #trait-div-template {
    display: none;
@@ -82,6 +92,10 @@ body {
   margin: 0px;
 }
 
+
+/* These classes still exist for jQuery selections, but their styling has been
+   subsumed by .selector-init */
+/*
 .cbox-selector-init {
   border-bottom: 3px solid;
 }
@@ -95,6 +109,11 @@ body {
 }
 
 .vcbox-selector-init {
+  border-bottom: 3px solid;
+}
+*/
+
+.selector-init {
   border-bottom: 3px solid;
 }
 
@@ -131,4 +150,30 @@ span[data-toggle=tooltip] {
 .clbox-label.clbox-label-selected {
   background-color: #b0b0b0;
 }
+
+/* Generic list selectors */
+.lbox-label {
+  display: table-cell;
+  background-color: #d0d0d0;
+  border: 1px solid #909090;
+  margin: 0px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.lbox-label:hover {
+  background-color: #c0c0c0;
+  border: 1px solid #909090;
+}
+
+.lbox-label.lbox-label-selected {
+  background-color: #b0b0b0;
+}
 /*  */
+
+
+table.lang-list-table td {
+  padding-right: 20px;
+}
