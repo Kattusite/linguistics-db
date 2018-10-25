@@ -188,30 +188,61 @@ CLASSES = {
     ]
 }
 
-# IPA row headers:
+# IPA row headers (specifies the ordering)
 IPA_ROWS = [
-    "Plosive",
-    "Nasal",
-    "Trill",
-    "Tap or Flap",
-    "Affricate"
-    "Fricative",
-    "Lateral Fricative",
-    "Approximant",
-    "Lateral Approximant"
+    "plosive",
+    "aspirated",
+    "nasal",
+    "trill",
+    "tap or flap",
+    "fricative",
+    "affricate",
+    "lateral fricative",
+    "approximant",
+    "lateral approximant"
 ]
 
-# IPA chart glyphs
+# IPA col headers (specifies the ordering)
+IPA_COLS = [
+    "bilabial",
+    "labiodental",
+    "dental",
+    "alveolar",
+    "postalveolar",
+    "retroflex",
+    "palatal",
+    "velar",
+    "uvular",
+    "pharyngeal",
+    "glottal"
+]
+
+# Specifies left/right ordering of voiced/unvoiced phoneme pairs
+IPA_VOICE = [
+    "unvoiced",
+    "voiced"
+]
+# IPA chart glyphs (specifies the contents)
+# Consider defining each phoneme on its own in the following way:
+# t = {
+#   "glyph" : "t" # None if not allowed to be selected / unsupported
+#   "manner" : "plosive"
+#   "place": "alveolar"
+#   "voice": "unvoiced"
+#   "possible": True # False if should be greyed out
+# }
+# and then using these definitions to fill in the IPA chart, instead of hardcoding
+
 IPA = {
-    "Plosive":              [],
-    "Aspirated":            [],
-    "Nasal":                [],
-    "Trill":                [],
-    "Tap or Flap":          [],
-    "Fricative":            [],
-    "Lateral Fricative":    [],
-    "Approximant":          [],
-    "Lateral Approximant":  [],
+    "plosive":              [],
+    "aspirated":            [],
+    "nasal":                [],
+    "trill":                [],
+    "tap or flap":          [],
+    "fricative":            [],
+    "lateral fricative":    [],
+    "approximant":          [],
+    "lateral approximant":  [],
 }
 
 
