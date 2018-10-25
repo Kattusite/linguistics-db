@@ -188,6 +188,33 @@ CLASSES = {
     ]
 }
 
+# IPA row headers:
+IPA_ROWS = [
+    "Plosive",
+    "Nasal",
+    "Trill",
+    "Tap or Flap",
+    "Affricate"
+    "Fricative",
+    "Lateral Fricative",
+    "Approximant",
+    "Lateral Approximant"
+]
+
+# IPA chart glyphs
+IPA = {
+    "Plosive":              [],
+    "Aspirated":            [],
+    "Nasal":                [],
+    "Trill":                [],
+    "Tap or Flap":          [],
+    "Fricative":            [],
+    "Lateral Fricative":    [],
+    "Approximant":          [],
+    "Lateral Approximant":  [],
+}
+
+
 #TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
 def getGlyphListFromClass(className):
     # If this is a special bypass class ("Any...") return all ones
