@@ -8,6 +8,8 @@
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
 
+import json
+
 # NOTE! The order of this list is not arbitrary and strongly affects other
 # parts of the program
 GLYPHS = [
@@ -188,6 +190,9 @@ CLASSES = {
     ]
 }
 
+# Reorganizing all the data above into a wordier, more robust format
+
+
 # IPA row headers (specifies the ordering)
 IPA_ROWS = [
     "plosive",
@@ -232,6 +237,10 @@ IPA_VOICE = [
 #   "possible": True # False if should be greyed out
 # }
 # and then using these definitions to fill in the IPA chart, instead of hardcoding
+# This will be 22 data entries per row though.
+# Might be worth it in the long run, because it will save the trouble of having
+# to hardcode metaclasses -- e.g,
+# labials = [c.get("glyph") in consonants if c.get("place") in ["bilabial", "labiodental"]]
 
 IPA = {
     "plosive":              [],

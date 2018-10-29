@@ -1,0 +1,37 @@
+[
+  {
+    "glyph":    "p",
+    "manner":   "plosive",
+    "place":    "bilabial",
+    "voicing":  "voiceless",
+    "producible": true
+  },
+  {
+    "glyph":    "b",
+    "manner":   "plosive",
+    "place":    "bilabial",
+    "voicing":  "voiced",
+    "producible": true
+  },
+  {
+    "glyph":    "t",
+    "manner":   "plosive",
+    "place":    "alveolar",
+    "voicing":  "voiceless",
+    "producible": true
+  },
+  {
+    "glyph":    "d",
+    "manner":   "plosive",
+    "place":    "alveolar",
+    "voicing":  "voiced",
+    "producible": true
+  },
+  {
+    "glyph":    "ʈ",
+    "manner":   "plosive",
+    "place":    "retroflex",
+    "voicing":  "voiceless",
+    "producible": true
+  },
+]

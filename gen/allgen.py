@@ -280,6 +280,7 @@ def lboxgen(lType, listData):
 def ipacboxgen(glyphList):
     """Generate the html for a IPA consonant chart table, using glyphList as source"""
 
+
 def ipavboxgen(glyphList):
     """Generate the html for a IPA vowel chart table, using glyphList as source"""
 
