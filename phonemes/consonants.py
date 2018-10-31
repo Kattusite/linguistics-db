@@ -260,7 +260,7 @@ def createIPATable(data, headers):
     # Get the number of rows and cols (including headers + doubling for voicing)
     num_rows = len(headers["manner"]) + 1
     num_cols = len(headers["place"]) * 2 + 1
-    table = [[None] * num_cols] * num_rows
+    table = [["" for i in range(num_cols)] for j in range(num_rows)]
 
     for p in data:
         # Get the target row / column
@@ -270,17 +270,16 @@ def createIPATable(data, headers):
 
         if p["producible"]:
             table[row][col] = p["glyph"]
-            print("%s -> (row: %d, col: %d)" % (p["glyph"], row, col))
         else:
             table[row][col] = ""
 
     # Add in the headers
-    # for (i, head) in enumerate(headers["manner"]):
-    #     table[i+1][0] = head
-    #
-    # for (i, head) in enumerate(headers["place"]):
-    #     table[0][2*i+1] = head
-    #     table[0][2*i+2] = head
+    for (i, head) in enumerate(headers["manner"]):
+        table[i+1][0] = head
+
+    for (i, head) in enumerate(headers["place"]):
+        table[0][2*i+1] = head
+        table[0][2*i+2] = head
 
     return table
 
