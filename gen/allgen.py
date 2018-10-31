@@ -277,8 +277,44 @@ def lboxgen(lType, listData):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-def ipacboxgen(glyphList):
-    """Generate the html for a IPA consonant chart table, using glyphList as source"""
+def ipacboxgen(phonemes):
+    """Generate the html for a IPA consonant chart table, using phonemes as source,
+    where phonemes is a list of dicts with fields: "glyph", 'manner', 'place',
+    'voicing', 'producible'.  """
+
+    # Generate the table as a 2D array.
+    manners = consonants.IPA["manners"]
+    places  = consonants.IPA["places"]
+    table = [][]
+
+
+    # Print the table as HTML
+    tprint()
+    tprint(comment("Auto-generated template for the IPA consonant chart"))
+
+    tprint(tag("div", classList=["template"], id="ipacbox-template", type=OPEN))
+    indent()
+    tprint(tag("table", type=OPEN))
+    indent()
+    tprint(tag("tbody", type=OPEN))
+    indent()
+
+    for p in phonemes:
+        tprint(tag("tr", type=OPEN))
+        indent()
+        tprint(tag("td", body=s,
+                         classList=["lbox-label"],
+                         onclick="handleLboxLabel(this, %s)" % multStr))
+        dedent()
+        tprint(tag("tr", type=CLOSE))
+
+    dedent()
+    tprint(tag("tbody", type=CLOSE))
+    dedent()
+    tprint(tag("table", type=CLOSE))
+    dedent()
+    tprint(tag("div", type=CLOSE))
+
 
 
 def ipavboxgen(glyphList):

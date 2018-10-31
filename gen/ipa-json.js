@@ -50,9 +50,11 @@ function scrape() {
       var td = tds[j];
       var glyph = tds[j].innerText.trim();
 
-      var place = places[j / 2];
+      var place = places[Math.floor(j / 2)];
       var manner = manners[i-1];
       var voicing = voicings[j % 2];
+
+      console.log("places: j=" + j + "  j/2=" + j/2);
 
       ipa_obj["glyph"] = glyph;
       ipa_obj["manner"] = manner;
@@ -73,14 +75,10 @@ function scrape() {
         ipa_arr.push(ipa_obj);
       }
 
-      // If empty, do not add to arr
-
-
-
+      // If empty, do not add to arr (do nothing)
     }
   }
 
   console.log("\n\n\n\n==========================\n\n");
   console.log(JSON.stringify(ipa_arr, null, 4));
-
 }
