@@ -8,6 +8,8 @@
 from phonemes import vowels, consonants
 from data import const
 
+import sys
+
 
 
 ################################################################################
@@ -317,20 +319,35 @@ def ipacboxgen():
                     classList=["ipa-header"]
 
                 # print the header for this col
-                tprint(tag("th", classList=classList, body=col, type=BOTH, other=oth))
+                tprint(tag("th",
+                            classList=classList,
+                            onclick="handleIpacboxLabel(this)",
+                            body=col,
+                            type=BOTH,
+                            other="%s category=%s trait=%s" % (oth, "place", col)))
+                            # WARNING: Hardcoded "place" to be along the horizontal axis
+
 
             # Print all other rows after the first one
             else:
                 # Print first col as a header
                 if x == 0:
                     assert type(col) == type("str")
-                    tprint(tag("th", classList=["ipa-header"], body=col, type=BOTH, other="scope='row'"))
+                    tprint(tag("th",
+                                classList=["ipa-header"],
+                                onclick="handleIpacboxLabel(this)",
+                                body=col,
+                                type=BOTH,
+                                other="scope='row' category=%s trait='%s'" % ("manner", col)))
+                                # WARNING: Hardcoded "manner" to be along the vertical axis
+
                 # Non header cols: make an IPA cell
                 else:
                     # For non-header rows the col should be a dict or empty str
                     body = ""
                     classList = []
                     onclick = None
+                    other = None
 
                     if not col:  # col == "" or None
                         classList.append("ipa-box-empty")
@@ -340,10 +357,13 @@ def ipacboxgen():
                         classList.append("ipa-box")
                         body = col["glyph"]
                         onclick = "handleIpacboxLabel(this)"
+                        other = ("manner='%s' place='%s' voicing='%s'" %
+                            (col["manner"], col["place"], col["voicing"]))
 
                     tprint(tag("td", body=body,
                                 classList=classList,
                                 onclick=onclick,
+                                other=other,
                                 type=BOTH))
 
 
@@ -369,7 +389,14 @@ def ipavboxgen(glyphList):
 #                                                                              #
 ################################################################################
 
-def main():
+# Prints the auto generated html to stdout, or a file named output if specified
+def main(output=None):
+
+    # Redirect to file if desired
+    if output:
+        file = open(output, "w", encoding="utf-8")
+        sys.stdout = file
+
     tprint(comment("  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###"))
 
     # Generate phoneme selectors
@@ -393,3 +420,6 @@ def main():
     ipacboxgen()
 
     tprint(comment("  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###"))
+
+    # Make sure we're really done printing
+    sys.stdout.flush()

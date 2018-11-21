@@ -337,6 +337,24 @@ function toggleClass(el, cls) {
   }
 }
 
+// If el already has class cls, remove cls from el and all elements in els
+// Else, add cls to el and all elements in els
+function toggleClasses(el, els, cls) {
+  if ($(el).hasClass(cls)) {
+    $(el).removeClass(cls);
+    for (var i = 0; i < els.length; i++) {
+      $(els[i]).removeClass(cls);
+    }
+  } else {
+    $(el).addClass(cls);
+    for (var i = 0; i < els.length; i++) {
+      $(els[i]).addClass(cls);
+    }
+  }
+}
+
+//
+
 // Click handler for ipa consonant box labels
 function handleIpacboxLabel(element) {
   // Get the enclosing table.
@@ -347,11 +365,36 @@ function handleIpacboxLabel(element) {
   var $el = $(element);
   if ($el.hasClass("ipa-header")) {
 
+    // Figure out which trait this header represents
+    var category = $el.attr("category");
+    var trait = $el.attr("trait");
+
+    // Get a list of the matching phonemes
+    // i.e. by getting all phonemes that have an attr matching the trait string
+    var matches = $(table).children().children().children(`[${category}='${trait}']`);
+
+    // Select or unselect ALL the elements in the list as a group.
+    // Afterwards, either ALL matching phonemes are selected, or ALL are not.
+    toggleClasses(element, matches.toArray(), "ipa-box-selected");
 
   }
+  // Else, toggle just that element
+  // Decide selecting this element causes a header category to be (un)selected
   else {
-    // Else, toggle just that element
-    toggleClass(element, "ipa-box-selected")
+    // Get the traits associated with this glyphs
+    var place = $el.attr("place");
+    var manner = $el.attr("manner");
+
+    // For each trait, check if all are selected before the toggle
+    // This means we need to deselect the category header.
+
+    // Carry out the toggle.
+    toggleClass(element, "ipa-box-selected");
+
+    // For each trait, check if all are selected after the toggle.
+    // This means we need to select the category header.
+
+
   }
 
   // Save the contents of the table in a string so the popover will be updated
@@ -359,7 +402,7 @@ function handleIpacboxLabel(element) {
   var outerHTML = div.outerHTML;
 
   // Find all selected glyphs in the table.
-  $(table).children("")
+  var selList = $(table).children(".ipa-box-selected").arr();
 
   // Update the link text to be the sel list, or placeholder if empty
 

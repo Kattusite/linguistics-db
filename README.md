@@ -11,6 +11,11 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Consider whether it is a good idea to put the entire IPA table into a popover.
+It is absolutely massive and there is no way it will look good. Instead maybe I should
+try to just embed the entire IPA table directly into the trait div.
+This would need some extra code to get off the ground but would probably be
+nicer in the long run...
 * Add a favicon
 * Add a proper navbar, meager as it may be (with an about / contact info page)
 * Fix "languages are mixed headedness" --> "languages use mixed headedness"

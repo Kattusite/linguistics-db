@@ -105,6 +105,8 @@ span[data-toggle=tooltip] {
 .ipa-header {
   @extend %box-label;
   font-size: xx-small;
+  font-weight: normal;
+  font-style: italic;
 }
 
 .ipa-box {
