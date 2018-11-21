@@ -1,0 +1,135 @@
+/*
+ *
+ */
+
+/* Colors for selector box labels */
+$unselected-color: #d0d0d0;
+$selected-color: #b0b0b0;
+$hover-color: #c0c0c0;
+$border-color: #909090;
+$border-style: 1px solid $border-color;
+$ipa-box-size: 25px;
+
+/* =========== Placeholder Classes ========== */
+/* a basic, unselected selector box label */
+%box-label {
+  display: table-cell;
+  background-color: $unselected-color;
+  border: $border-style;
+  margin: 0px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 3px;
+}
+
+/* a selected selector box label */
+%box-label-selected {
+  background-color: $selected-color;
+}
+
+/* box labels that are hovered over */
+%box-label:hover {
+  background-color: $hover-color;
+  /* border: $border-style; */
+}
+
+/* box labels with no content inside */
+%box-label-empty {
+  display: table-cell;
+  margin: 0px;
+}
+
+/* ========== Specific Classes ============ */
+/* Make website fill entire viewing area */
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  padding: 20px;
+  background-color: #eee;
+}
+
+/* Hie certain elements from being shown */
+.hidden, .template, #trait-div-template, .inactive-trait {
+  display: none;
+}
+
+.active-trait {
+}
+
+/* dropdown selector for which trait to query */
+.trait-selector {
+  margin-bottom: 20px;
+  border: $border-style;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+/* select mode of inequality check, natural classes */
+.mode-selector, .class-selector {
+  padding: 3px;
+}
+
+/* The button that is clicked to activate popovers */
+.selector-init {
+  border-bottom: 3px solid;
+}
+
+/* Underline tooltips */
+span[data-toggle=tooltip] {
+  border-bottom: 1px dotted #000;
+}
+
+
+/* ---------- Selector Box Classes ------------ */
+.pbox-label, .clbox-label, .lbox-label {
+  @extend %box-label;
+}
+
+.pbox-label-selected, .clbox-label-selected, .lbox-label-selected {
+  @extend %box-label-selected;
+}
+
+.pbox-label:hover, .clbox-label:hover, .lbox-label:hover {
+  @extend %box-label:hover;
+}
+
+.pbox-label-empty, .clbox-label-empty, .lbox-label-selected {
+  @extend %box-label-empty;
+}
+
+/*  ......  IPA Box Classes ...... */
+.ipa-header {
+  @extend %box-label;
+  font-size: xx-small;
+}
+
+.ipa-box {
+  @extend %box-label;
+  width: $ipa-box-size;
+  height: $ipa-box-size;
+  max-width: $ipa-box-size;
+  max-height: $ipa-box-size;
+}
+
+.ipa-box-selected {
+  @extend %box-label-selected;
+}
+
+.ipa-box-empty {
+  @extend %box-label-empty;
+}
+
+.ipa-box-impossible {
+  cursor: not-allowed;
+  background-color: #707070;
+  border: $border-style;
+}
+
+/* unsure what this one does */
+table.lang-list-table td {
+  padding-right: 20px;
+}

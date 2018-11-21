@@ -55,8 +55,9 @@ def tag(t, body=None, id=None, classList=None, onclick=None, other=None, type=BO
     classStr = ' class="%s"' % " ".join(classList) if classList else ""
     clickStr = ' onclick="%s"' % onclick if onclick else ""
     idStr = ' id="%s"' % id if id else ""
+    otherStr = " %s" % other if other else ""
 
-    openTag = "<{0}{1}{2}{3}>{4}".format(t, idStr, classStr, clickStr, bodyStr)
+    openTag = "<{0}{1}{2}{3}{5}>{4}".format(t, idStr, classStr, clickStr, bodyStr, otherStr)
     closeTag = "</{0}>".format(t)
 
     if type == BOTH:
@@ -277,19 +278,14 @@ def lboxgen(lType, listData):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-def ipacboxgen(phonemes):
-    """Generate the html for a IPA consonant chart table, using phonemes as source,
-    where phonemes is a list of dicts with fields: "glyph", 'manner', 'place',
-    'voicing', 'producible'.  """
+def ipacboxgen():
+    """Generate the html for a IPA consonant chart table, using the consonant
+    table defined in consanants.py"""
 
     # Generate the table as a 2D array.
-    manners = consonants.IPA["manners"]
-    places  = consonants.IPA["places"]
-    table = [][]
-
+    table = consonants.IPA_TABLE
 
     # Print the table as HTML
-    tprint()
     tprint(comment("Auto-generated template for the IPA consonant chart"))
 
     tprint(tag("div", classList=["template"], id="ipacbox-template", type=OPEN))
@@ -299,12 +295,58 @@ def ipacboxgen(phonemes):
     tprint(tag("tbody", type=OPEN))
     indent()
 
-    for p in phonemes:
+    for (y, row) in enumerate(table):
         tprint(tag("tr", type=OPEN))
         indent()
-        tprint(tag("td", body=s,
-                         classList=["lbox-label"],
-                         onclick="handleLboxLabel(this, %s)" % multStr))
+        for (x, col) in enumerate(row):
+
+            # Print first row specially (all headers)
+            if y == 0:
+                # For the header row the type of the cell should be a string
+                assert type(col) == type("str")
+                if (x % 2 == 1): # skip every other row (headers are 2 col wide)
+                    continue
+                oth = "scope='col' colspan='%d'"
+
+                # print the first col header half as wide as the others
+                if x == 0:
+                    oth = oth % 1
+                    classList = []
+                else:
+                    oth = oth % 2
+                    classList=["ipa-header"]
+
+                # print the header for this col
+                tprint(tag("th", classList=classList, body=col, type=BOTH, other=oth))
+
+            # Print all other rows after the first one
+            else:
+                # Print first col as a header
+                if x == 0:
+                    assert type(col) == type("str")
+                    tprint(tag("th", classList=["ipa-header"], body=col, type=BOTH, other="scope='row'"))
+                # Non header cols: make an IPA cell
+                else:
+                    # For non-header rows the col should be a dict or empty str
+                    body = ""
+                    classList = []
+                    onclick = None
+
+                    if not col:  # col == "" or None
+                        classList.append("ipa-box-empty")
+                    elif not col["producible"]:
+                        classList.append("ipa-box-impossible")
+                    else:
+                        classList.append("ipa-box")
+                        body = col["glyph"]
+                        onclick = "handleIpacboxLabel(this)"
+
+                    tprint(tag("td", body=body,
+                                classList=classList,
+                                onclick=onclick,
+                                type=BOTH))
+
+
         dedent()
         tprint(tag("tr", type=CLOSE))
 
@@ -346,5 +388,8 @@ def main():
     lboxgen("headedness", const.HEADEDNESS)
     lboxgen("agreement", const.CASE_AGREEMENT)
     lboxgen("case", const.CASE_AGREEMENT)
+
+    # Generate IPA selectors
+    ipacboxgen()
 
     tprint(comment("  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###"))

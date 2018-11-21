@@ -327,6 +327,49 @@ function handleLboxLabel(element, multi) {
   link.attr("data-content", outerHTML);
 }
 
+// Toggle a single element's class -- i.e. if element already has class, remove
+// it, and if element lacks class, add it
+function toggleClass(el, cls) {
+  if ($(el).hasClass(cls)) {
+    $(el).removeClass(cls);
+  } else {
+    $(el).addClass(cls);
+  }
+}
+
+// Click handler for ipa consonant box labels
+function handleIpacboxLabel(element) {
+  // Get the enclosing table.
+  var table = element.parentElement.parentElement.parentElement;
+
+  // Toggle the clicked element.
+  // If clicked element was a header, toggle all matching elements.
+  var $el = $(element);
+  if ($el.hasClass("ipa-header")) {
+
+
+  }
+  else {
+    // Else, toggle just that element
+    toggleClass(element, "ipa-box-selected")
+  }
+
+  // Save the contents of the table in a string so the popover will be updated
+  var div = table.parentElement;
+  var outerHTML = div.outerHTML;
+
+  // Find all selected glyphs in the table.
+  $(table).children("")
+
+  // Update the link text to be the sel list, or placeholder if empty
+
+  // Inform the button of its query for the server, as a list of glyphs
+
+  // Save the content changes in the popover attribute.
+  link.attr("data-content", outerHTML);
+
+}
+
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
 // TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)

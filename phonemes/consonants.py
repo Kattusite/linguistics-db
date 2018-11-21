@@ -268,10 +268,7 @@ def createIPATable(data, headers):
         col = headers["place"].index(p["place"]) * 2
         col += headers["voicing"].index(p["voicing"]) + 1
 
-        if p["producible"]:
-            table[row][col] = p["glyph"]
-        else:
-            table[row][col] = ""
+        table[row][col] = p
 
     # Add in the headers
     for (i, head) in enumerate(headers["manner"]):
@@ -303,13 +300,13 @@ GLYPHSv2 = [cons["glyph"] for cons in cons_arr if cons["producible"]]
 
 # Reconstruct IPA table
 IPA_TABLE = createIPATable(cons_arr, IPA_HEADERS)
-print(IPA_TABLE)
+# print(IPA_TABLE)
 
 # Extract manners from json (change this to createTraitDict)
 MANNER_LISTS = createTraitDict(cons_arr, "manner")
-print(MANNER_LISTS)
+# print(MANNER_LISTS)
 CLASSESv2 = {}
-print(GLYPHSv2)
+# print(GLYPHSv2)
 
 
 
