@@ -11,6 +11,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* The front.js file has been itching for a rewrite for some time
 * Consider whether it is a good idea to put the entire IPA table into a popover.
 It is absolutely massive and there is no way it will look good. Instead maybe I should
 try to just embed the entire IPA table directly into the trait div.

@@ -69,6 +69,7 @@
         <option>Contains consonant class: </option>
         <option>Contains vowel: </option>
         <option>Contains vowel class: </option>
+        <option>Contains IPA consonant: </option>
         <option>Has 3+ consonant places</option>
         <option>Has 2+ consonant manners</option>
         <option>Has complex consonants</option>
@@ -151,6 +152,20 @@
            data-toggle="popover"
            title="<b>Select natural classes</b>"
            data-content="Error loading. Sorry!">Select natural classes...</a>
+      </div>
+      <div id="ipa-consonant-selector-template" class="inactive-trait">Contains
+        <select class="mode-selector">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <br>
+        <br>
+        <div class="ipac-selector-uninit">Loading IPA Consonants...</div>
       </div>
       <div id="consonant-places-template" class="inactive-trait">
         3+ Places of Consonant Articulation
@@ -263,7 +278,7 @@
 
     <!-- ANCHOR: AUTOGEN START -->
     <!--  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###-->
-    
+
     <!--Auto-generated template for the consonant phoneme selector.-->
     <div id="cbox-template" class="template">
       <table>
@@ -306,7 +321,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the vowel phoneme selector.-->
     <div id="vbox-template" class="template">
       <table>
@@ -334,7 +349,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the consonant class selector.-->
     <div id="ccbox-template" class="template">
       <table>
@@ -382,7 +397,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the vowel class selector.-->
     <div id="vcbox-template" class="template">
       <table>
@@ -420,7 +435,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the morphology list selector.-->
     <div id="morphology-template" class="template">
       <table>
@@ -443,7 +458,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the word-formation list selector.-->
     <div id="word-formation-template" class="template">
       <table>
@@ -487,7 +502,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the formation-freq list selector.-->
     <div id="formation-freq-template" class="template">
       <table>
@@ -525,7 +540,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the word-order list selector.-->
     <div id="word-order-template" class="template">
       <table>
@@ -557,7 +572,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the headedness list selector.-->
     <div id="headedness-template" class="template">
       <table>
@@ -580,7 +595,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the agreement list selector.-->
     <div id="agreement-template" class="template">
       <table>
@@ -600,7 +615,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <!--Auto-generated template for the case list selector.-->
     <div id="case-template" class="template">
       <table>

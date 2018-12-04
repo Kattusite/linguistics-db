@@ -3,7 +3,7 @@
 #
 #############################################################################
 
-import os, re
+import os, re, sys
 from lingdb import LingDB, Language
 from phonemes import vowels, consonants
 from data import language_data
@@ -50,10 +50,20 @@ def handleQuery(query):
         "word-order-selector":          Language.hasWordOrder,
         "headedness-selector":          Language.hasHeadedness,
         "agreement-selector":           Language.hasAgreement,
-        "case-selector":                Language.hasCase
+        "case-selector":                Language.hasCase,
+        "ipa-consonant-selector":       Language.matchConsonants,
+        "ipa-vowel-selector":           Language.matchVowels
     }
 
-    fn = function_map[trait]
+    try:
+        fn = function_map[trait]
+    except KeyError as e:
+        sys.stderr.write("Unrecognized query type: lingdb_client has no defined function handler for: %s\n" % trait)
+        raise e
+
+
+
+
     return LING_DB.query(fn, query)
 
 def handleQueries(queries, listMode=False):

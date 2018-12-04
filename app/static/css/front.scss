@@ -6,6 +6,7 @@
 $unselected-color: #d0d0d0;
 $selected-color: #b0b0b0;
 $hover-color: #c0c0c0;
+$bg-table-color: #e0e0e0;
 $border-color: #909090;
 $border-style: 1px solid $border-color;
 $ipa-box-size: 25px;
@@ -134,4 +135,8 @@ span[data-toggle=tooltip] {
 /* unsure what this one does */
 table.lang-list-table td {
   padding-right: 20px;
+}
+
+.popover {
+  max-width: 750px;
 }

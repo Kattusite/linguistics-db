@@ -19,6 +19,8 @@ var WORD_ORDER_ID           = "word-order-selector";
 var HEADEDNESS_ID           = "headedness-selector";
 var AGREEMENT_ID            = "agreement-selector";
 var CASE_ID                 = "case-selector";
+var IPA_CONSONANT_ID        = "ipa-consonant-selector";
+var IPA_VOWEL_ID            = "ipa-vowel-selector";
 
 // Should we list all members of the matching language set?
 // Changed by handleListToggle
@@ -55,6 +57,10 @@ function frontInit() {
   initPopovers("h-lbox-selector",   "#headedness-template");
   initPopovers("a-lbox-selector",   "#agreement-template");
   initPopovers("c-lbox-selector",   "#case-template");
+  // initPopovers("ipacbox-selector",  "#ipacbox-template");
+
+  // Replace IPA chart placeholders with actual copies of the IPA chart.
+  initIPAChart("ipac-selector", "#ipacbox-template");
 
   reloadPopovers();
   reloadTooltips();
@@ -94,6 +100,22 @@ function initPopovers(tgtClass, templateID) {
   $("." + uninit).addClass("selector-init");
   $("." + uninit).removeClass(uninit);
 }
+
+/* Given the base name of a tgt class, initialize all uninitialized members of that
+ * class by copying the contents of the element specified by the selector template. */
+ function initIPAChart(tgtClass, template) {
+   var uninit = tgtClass + "-uninit";
+   var init   = tgtClass + "-init";
+
+   var $template = $(template).clone();
+   $template.addClass(init);
+   $template.removeClass("template");
+   $template.removeAttr("id");
+
+   var $uninit = $(`.${uninit}`);
+   $uninit.replaceWith($template);
+ }
+
 
 /*****************************************************************************/
 /*                                Event Handlers                             */
@@ -172,7 +194,8 @@ function handlePboxLabel(element) {
   // it works by finding the popovers that are *currently* visibly popped open, so there *should* be only one
   var link = $("[aria-describedby]");
   var lbl = "";
-  if (glyphList.length == 0) {
+  var isValid = glyphList.length != 0;
+  if (!isValid) {
     lbl = "Select phonemes...";
   }
   else {
@@ -182,6 +205,8 @@ function handlePboxLabel(element) {
 
   // Inform the link-text DOM object of its query for the server.
   link.attr("glyphList", glyphList);
+  // link.attr("isValid", valid);
+
 
   // Save the content changes in the popover attribute.
   link.attr("data-content", str);
@@ -248,6 +273,9 @@ function handleClboxLabel(element) {
     var sel = $(tablebody).find("td.clbox-label-selected.clbox-label-"+i).text();
     queryArr.push(sel);
   }
+
+  // After initial click any query is valid
+  // link.attr("isValid", true);
 
   // Figure out if we want consonants or vowels
   var ctype = tablebody.classList.contains("consonant-class-selector") ? "consonant" : "vowel";
@@ -337,9 +365,10 @@ function toggleClass(el, cls) {
   }
 }
 
+// Toggle all classes together
 // If el already has class cls, remove cls from el and all elements in els
 // Else, add cls to el and all elements in els
-function toggleClasses(el, els, cls) {
+function toggleClassesAll(el, els, cls) {
   if ($(el).hasClass(cls)) {
     $(el).removeClass(cls);
     for (var i = 0; i < els.length; i++) {
@@ -353,7 +382,33 @@ function toggleClasses(el, els, cls) {
   }
 }
 
-//
+// Toggle each class individually
+// If el already has class cls, remove cls from el. Else, add cls to el.
+// Do this same procedure separately for each element in els
+function toggleClassesEach(el, els, cls) {
+  toggleClass(el, cls);
+  for (var i = 0; i < els.length; i++) {
+    toggleClass(els[0], cls);
+  }
+}
+
+// Unset all unselected classes
+// This one is supposed to model intersectivity.
+// I think it's going to be too much of a PITA
+function toggleClassesOthers () {
+}
+
+// Given an IPA Header el, return an array of all the
+// elements falling under that header in that table.
+function getElementsOfHeader(el) {
+  var table = el.parentElement.parentElement.parentElement;
+  var category = $(el).attr("category");
+  var trait = $(el).attr("trait");
+  var matches = $(table).find(`[${category}='${trait}']`);
+  return matches;
+}
+
+
 
 // Click handler for ipa consonant box labels
 function handleIpacboxLabel(element) {
@@ -365,51 +420,74 @@ function handleIpacboxLabel(element) {
   var $el = $(element);
   if ($el.hasClass("ipa-header")) {
 
-    // Figure out which trait this header represents
-    var category = $el.attr("category");
-    var trait = $el.attr("trait");
-
-    // Get a list of the matching phonemes
-    // i.e. by getting all phonemes that have an attr matching the trait string
-    var matches = $(table).children().children().children(`[${category}='${trait}']`);
+    // Get a list of the phonemes matching this header
+    var matches = getElementsOfHeader(element);
 
     // Select or unselect ALL the elements in the list as a group.
     // Afterwards, either ALL matching phonemes are selected, or ALL are not.
-    toggleClasses(element, matches.toArray(), "ipa-box-selected");
+    toggleClassesAll(element, matches.toArray(), "ipa-box-selected");
 
   }
   // Else, toggle just that element
   // Decide selecting this element causes a header category to be (un)selected
   else {
-    // Get the traits associated with this glyphs
-    var place = $el.attr("place");
-    var manner = $el.attr("manner");
-
-    // For each trait, check if all are selected before the toggle
-    // This means we need to deselect the category header.
-
     // Carry out the toggle.
     toggleClass(element, "ipa-box-selected");
 
-    // For each trait, check if all are selected after the toggle.
-    // This means we need to select the category header.
+  }
 
+  // Check if the toggle caused any headers to (no longer) be selected
+  var headers = $(table).find(".ipa-header").toArray();
+  for (var i = 0; i < headers.length; i++) {
+    var matches = getElementsOfHeader(headers[i]);
 
+    // Find out how many matches are not selected.
+    var nonselected = $(matches).not(".ipa-box-selected").length;
+
+    // If all elements are selected, highlight the header.
+    if (nonselected == 0) {
+      $(headers[i]).addClass("ipa-box-selected");
+    }
+    // If some elements are unselected, de-highlight the header.
+    else {
+      $(headers[i]).removeClass("ipa-box-selected");
+    }
   }
 
   // Save the contents of the table in a string so the popover will be updated
+  /*
   var div = table.parentElement;
   var outerHTML = div.outerHTML;
 
+  var link = $("[aria-describedby]");
+  */
+
   // Find all selected glyphs in the table.
-  var selList = $(table).children(".ipa-box-selected").arr();
+  var selList = [];
+  $(table).find(".ipa-box.ipa-box-selected").each(function() {
+      selList.push($(this).text());
+    }
+  )
+  var isValid = selList.length > 0;
 
   // Update the link text to be the sel list, or placeholder if empty
+  /*
+  var lbl = "";
+  if (selList.length == 0) {
+    lbl = "Select trait..."
+  }
+  else {
+    lbl = selList.join(", ");
+  }
+  link.text(lbl);
+  */
 
-  // Inform the button of its query for the server, as a list of glyphs
+  // Inform the table of its query for the server, as a list of glyphs
+  $(table).attr("glyphList", selList);
+  $(table).attr("isValid", isValid);
 
   // Save the content changes in the popover attribute.
-  link.attr("data-content", outerHTML);
+  // link.attr("data-content", outerHTML);
 
 }
 
@@ -519,8 +597,18 @@ function handleSubmit() {
       case CASE_ID:
         reply = "have " + sel + " case";
         break;
+      case IPA_CONSONANT_ID:
+        glyphList = t.find(".ipac-selector-init:visible table").attr("glyphList").split(",");
+        prettifiedStr = glyphList.join(", ");
+        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
+        break;
+      case IPA_VOWEL_ID:
+        glyphList = t.find(".ipav-selector-init:visible table").attr("glyphList").split(",");
+        prettifiedStr = glyphList.join(", ");
+        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
+        break;
       default:
-        console.err("Error! Tried to submit a query of unknown trait:" + trait);
+        console.error("Error! Tried to submit a query of unknown trait:" + trait);
         break;
     }
 
@@ -593,7 +681,7 @@ function callback(reply) {
 // TODO rename copySelectorFromTemplate
 function createSelectorString(jqueryStr, uid) {
   if (!jqueryStr) {
-    console.err("Error: creating selector string without ID!");
+    console.error("Error: creating selector string without ID!");
     jqueryStr = "#cbox-template";
   }
   if (!uid) {
@@ -718,7 +806,7 @@ function getStrFromClasses(arr, type) {
   type = (type == "consonant") ? "consonant" : "vowel";
   for (var i = 0; i < arr.length; i++) {
     if (typeof arr[i] != typeof "") {
-      console.err("Improper array element passed to natural class parser!");
+      console.error("Improper array element passed to natural class parser!");
       return "error";
     }
     // If the selected class isn't a placeholder ("Any ...")

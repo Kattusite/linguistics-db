@@ -202,11 +202,11 @@ span[data-toggle=tooltip] {
   max-height: 25px;
 }
 
-.ipa-box:hover {
+.ipa-box:hover, .ipa-header:hover {
   background-color: #c0c0c0;
 }
 
-.ipa-box-selected {
+.ipa-box.ipa-box-selected, .ipa-header.ipa-box-selected {
   background-color: #b0b0b0;
 }
 
@@ -223,4 +223,8 @@ span[data-toggle=tooltip] {
 
 table.lang-list-table td {
   padding-right: 20px;
+}
+
+.popover {
+  max-width: 500px;
 }
