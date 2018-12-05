@@ -66,7 +66,24 @@ function frontInit() {
   reloadTooltips();
 }
 
-// Initialize trait selector divs
+// Initialize trait selector divs by replacing the placeholder trait selectors
+// with a clone of the template. Hide all but the first of these traitSelectors.
+function traitSelectorInit() {
+  // Clone the template and remove its ID to ensure no duplicates
+  var $template = $("#trait-div-template").clone();
+  $template.removeAttr("id");
+
+  // Strip template class from the cloned template & its children
+  $template.removeClass("template");
+  $template.children().removeClass("template");
+
+  // Replace all placeholders with templates, hiding all but the first.
+  $template.addClass("hidden");
+  $("#trait-divs").children().replaceWith($template);
+  $("#trait-divs").children().eq(0).removeClass("hidden");
+}
+
+/* // Now defunct as part of rewrite.
 function traitSelectorInit() {
   var tgt = $("#trait-divs")[0];
   for (var i = 0; i < tgt.children.length; i++) {
@@ -77,6 +94,7 @@ function traitSelectorInit() {
     }
   }
 }
+*/
 
 /* Target all uninitialized popovers of class tgtClass.
  * Create each of these a unique popover with content determined copied from the
@@ -136,16 +154,17 @@ function handleDoubleTrait() {
 }
 
 // On change handler for selecting a trait from dropdown.
+// Element represents the <select> element that was changed
 function handleTraitSelect(element) {
-  var sel = $(element).val();
-  var index = element.selectedIndex;
-  var selElement = element.parentElement.children[index+1];
+  // Get the index of the trait div to be displayed (+1 to skip <select> itself)
+  var index = element.selectedIndex + 1;
+  var $selElement = $(element).parent().children().eq(index);
 
   // Activate selected element and deactivate others.
-  $(element).parent().children("div").addClass("inactive-trait");
-  $(element).parent().children("div").removeClass("active-trait");
-  $(selElement).removeClass("inactive-trait");
-  $(selElement).addClass("active-trait");
+  $(element).siblings("div").addClass("inactive");
+  $(element).siblings("div").removeClass("active");
+  $selElement.removeClass("inactive");
+  $selElement.addClass("active");
 }
 
 // On click function for element representing a label in the pbox.
@@ -154,25 +173,42 @@ function handleTraitSelect(element) {
 // NOTE This is a potentially slow function (string concat + iterating over all boxes)
 // (But in practice all numbers are small constants)
 function handlePboxLabel(element) {
+  var $el = $(element);
+
   // (Un)select the pbox label.
-  if ($(element).hasClass("pbox-label-selected")) {
-    $(element).removeClass("pbox-label-selected");
-  }
-  else {
-    $(element).addClass("pbox-label-selected");
-  }
+  if ($el.hasClass("pbox-label-selected"))
+    $el.removeClass("pbox-label-selected");
+  else
+    $el.addClass("pbox-label-selected");
 
-  // Log the click.
-  var glyph = element.innerText;
-  // console.log("Button " + glyph + " clicked.");
+  var $table = $el.closest("table");
+  var $div = $table.parent();
+  var popoverContent = $div.outerHTML;
 
-  //         label  -->    td     -->     tr    --> tablebody --> table
-  var table = element.parentElement.parentElement.parentElement.parentElement
-  var div = table.parentElement;
-  var str = div.outerHTML;
+  // Find all selected pbox labels and create a list of their glyphs
+  var glyphList = [];
+  var $sel = $table.find(".pbox-label-selected");
+  $sel.each(function() { glyphList.push($(this).text()); });
+
+  // Update the popoverButton text to be glyph list, or placeholder if empty.
+  // NOTE [aria-describedby] fails if multiple popovers are open concurrently.
+  var $popoverButton = $("[aria-describedby]");
+  var isValid = glyphList.length != 0;
+  var lbl = "Select phonemes...";
+  if (isValid) {
+    lbl = glyphList.join(", ");
+  }
+  $popoverButton.text(lbl);
+
+  // Store the query info to be sent to the server
+  $popoverButton.attr("glyphList", glyphList);
+
+  // Save the state of the popover for the next time it is opened.
+  $popoverButton.attr("data-content", popoverContent);
 
   // Iterate over all labels in this table
   // If checkbox is checked,  add its glyph to the glyph list.
+  /*
   var glyphList = [];
   var rows = table.children[0].children; // table -> tbody -> array of TRs
   for (var i = 0; i < rows.length; i++) {
@@ -210,6 +246,8 @@ function handlePboxLabel(element) {
 
   // Save the content changes in the popover attribute.
   link.attr("data-content", str);
+
+  */
 }
 
 /* On click handler for the natural class selector. On a click, deselect the

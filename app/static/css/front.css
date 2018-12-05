@@ -45,8 +45,13 @@ body {
 }
 /* ----------------------------------------------------------- */
 
-.inactive-trait {
+.inactive, .template {
   display: none;
+}
+
+/* these should all be removed */
+.inactive-trait {
+  border: 3px solid red;
 }
 
 .active-trait {
