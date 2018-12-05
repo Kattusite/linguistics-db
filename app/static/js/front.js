@@ -159,34 +159,34 @@ function handleTraitSelect(element) {
 // Update link text.
 function handlePboxLabel(element) {
   var $el = $(element);
+  var $table = $el.closest("table");
+  var $popoverDiv = $table.parent();
 
   // (Un)select the pbox label.
   toggleClass(element, "pbox-label-selected");
 
-  var $table = $el.closest("table");
-  var $div = $table.parent();
-  var popoverContent = $div[0].outerHTML;
-
   // Save the state of the popover for the next time it is opened.
+  var popoverContent = $popoverDiv[0].outerHTML;
+  var $popoverButton = $("[aria-describedby]");
+  var $traitDiv = $popoverButton.closest("div");
   $popoverButton.attr("data-content", popoverContent);
 
   // Find all selected pbox labels and create a list of their glyphs
-  var glyphList = [];
+  var selList = [];
   var $sel = $table.find(".pbox-label-selected");
-  $sel.each(function() { glyphList.push($(this).text()); });
+  $sel.each(function() { selList.push($(this).text()); });
+
+  // Store the query info to be sent to the server
+  $traitDiv.attr("selList", selList);
 
   // Update the popoverButton text to be glyph list, or placeholder if empty.
   // NOTE [aria-describedby] fails if multiple popovers are open concurrently.
-  var $popoverButton = $("[aria-describedby]");
-  var isValid = glyphList.length > 0;
+  var isValid = selList.length > 0;
   var lbl = "Select phonemes...";
   if (isValid) {
-    lbl = glyphList.join(", ");
+    lbl = selList.join(", ");
   }
   $popoverButton.text(lbl);
-
-  // Store the query info to be sent to the server
-  $popoverButton.attr("glyphList", glyphList);
 }
 
 /* On click handler for the natural class selector. On a click, deselect the
@@ -197,7 +197,7 @@ function handlePboxLabel(element) {
 function handleClboxLabel(element) {
   var $el = $(element);
   var $table = $el.closest("table");
-  var $div = $table.parent();
+  var $popoverDiv = $table.parent();
 
   // Figure the type (column) of element clicked (e.g. voicing, place, manner)
   var type = $el.attr("type");
@@ -217,14 +217,15 @@ function handleClboxLabel(element) {
 
   // Save the state of the popover for the next time it is opened
   var $popoverButton = $("[aria-describedby]");
-  var popoverContent = $div[0].outerHTML;
+  var $traitDiv = $popoverButton.closest("div");
+  var popoverContent = $popoverDiv[0].outerHTML;
   $popoverButton.attr("data-content", popoverContent);
 
   // Get the fields needed for server queries, and store the query info for later
-  var queryArr = [];
+  var selList = [];
   var $sel = $table.find(".selected");
-  $sel.each(function() { queryArr.push($(this).text()); });
-  $popoverButton.attr("queryArr", queryArr);
+  $sel.each(function() { selList.push($(this).text()); });
+  $traitDiv.attr("selList", selList);
 
   // After initial click any query is valid
   // link.attr("isValid", true);
@@ -241,65 +242,41 @@ function handleClboxLabel(element) {
 // mutli = true ==> multiple selections allowed
 function handleLboxLabel(element, multi) {
   // Find the containing table.
-  //         label  -->     tr    --> tablebody --> table
-  var table = element.parentElement.parentElement.parentElement;
+  var $el = $(element);
+  var $table = $el.closest("table");
+  var $popoverDiv = $table.closest("div");
 
   // (Un)select the lbox label that was clicked.
-  if ($(element).hasClass("lbox-label-selected")) {
-    $(element).removeClass("lbox-label-selected");
+  if ($el.hasClass("selected")) {
+    $el.removeClass("selected");
   }
   else {
     // If multiple selections disallowed, deselect all other labels in table
     if (!multi) {
-      $(table).children().children().children(".lbox-label").removeClass("lbox-label-selected");
+      $table.find(".lbox-label").removeClass("selected");
     }
-    $(element).addClass("lbox-label-selected");
+    $el.addClass("selected");
   }
 
-  // Save the contents of the table in a string so the popover will be updated
-  var div = table.parentElement;
-  var outerHTML = div.outerHTML;
+  // Store the popover contents for the next time it is opened
+  var $popoverButton = $("[aria-describedby]");
+  var $traitDiv = $popoverButton.closest("div");
+  var popoverContent = $popoverDiv[0].outerHTML;
+  $popoverButton.attr("data-content", popoverContent);
 
-  // Iterate over all labels in this table
-  // If selected, add its text to the displayed link.
+  // Collect all selected elements from the table into a list
   var selList = [];
-  var rows = table.children[0].children; // table -> tbody -> array of TRs
-  for (var i = 0; i < rows.length; i++) {
-    var cols = rows[i].children;
-    for (var j = 0; j < cols.length; j++) {
-      var td = cols[j];
-      if ($(td).hasClass("lbox-label-empty")) {
-        continue;
-      }
-      if ($(td).hasClass("lbox-label-selected")) {
-        selList.push($(td).text());
-      }
-    }
-  }
+  var $sel = $table.find(".selected");
+  $sel.each(function() { selList.push($(this).text()); });
+
+  // Store the info needed to make a query to the server.
+  $traitDiv.attr("selList", selList);
 
   // Update the link text to be the sel list, or placeholder if empty.
-  // NOTE [aria-describedby] might misbehave for multiple phoneme selectors present on the document at once
-  // it works by finding the popovers that are *currently* visibly popped open, so there *should* be only one
-  var link = $("[aria-describedby]");
-  var lbl = "";
-  if (selList.length == 0) {
-    lbl = "Select trait..."
-  }
-  else {
-    lbl = selList.join(", ");
-  }
-  link.text(lbl);
-
-  // Inform the link-text DOM object of its query for the server.
-  // If multiple selections allowed, this is a list, else a single element (str)
-  if (multi) {
-    link.attr("selList", selList);
-  } else {
-    link.attr("sel", selList[0]);
-  }
-
-  // Save the content changes in the popover attribute.
-  link.attr("data-content", outerHTML);
+  var lbl = "Select trait...";
+  var isValid = selList.length > 0;
+  if (isValid) lbl = selList.join(", ");
+  $popoverButton.text(lbl);
 }
 
 // Toggle a single element's class -- i.e. if element already has class, remove
@@ -348,10 +325,10 @@ function toggleClassesOthers () {
 // Given an IPA Header el, return an array of all the
 // elements falling under that header in that table.
 function getElementsOfHeader(el) {
-  var table = el.parentElement.parentElement.parentElement;
+  var $table = el.closest("table");
   var category = $(el).attr("category");
   var trait = $(el).attr("trait");
-  var matches = $(table).find(`[${category}='${trait}']`);
+  var matches = $table.find(`[${category}='${trait}']`);
   return matches;
 }
 
@@ -360,11 +337,12 @@ function getElementsOfHeader(el) {
 // Click handler for ipa consonant box labels
 function handleIpacboxLabel(element) {
   // Get the enclosing table.
-  var table = element.parentElement.parentElement.parentElement;
+  var $el = $(element);
+  var $table = $el.closest("table");
+  var $traitDiv = $table.parent().parent();
 
   // Toggle the clicked element.
   // If clicked element was a header, toggle all matching elements.
-  var $el = $(element);
   if ($el.hasClass("ipa-header")) {
 
     // Get a list of the phonemes matching this header
@@ -384,7 +362,7 @@ function handleIpacboxLabel(element) {
   }
 
   // Check if the toggle caused any headers to (no longer) be selected
-  var headers = $(table).find(".ipa-header").toArray();
+  var headers = $table.find(".ipa-header").toArray();
   for (var i = 0; i < headers.length; i++) {
     var matches = getElementsOfHeader(headers[i]);
 
@@ -411,7 +389,7 @@ function handleIpacboxLabel(element) {
 
   // Find all selected glyphs in the table.
   var selList = [];
-  $(table).find(".ipa-box.ipa-box-selected").each(function() {
+  $table.find(".ipa-box.ipa-box-selected").each(function() {
       selList.push($(this).text());
     }
   )
@@ -430,8 +408,8 @@ function handleIpacboxLabel(element) {
   */
 
   // Inform the table of its query for the server, as a list of glyphs
-  $(table).attr("glyphList", selList);
-  $(table).attr("isValid", isValid);
+  $traitDiv.attr("selList", selList);
+  $traitDiv.attr("isValid", isValid);
 
   // Save the content changes in the popover attribute.
   // link.attr("data-content", outerHTML);
@@ -441,65 +419,50 @@ function handleIpacboxLabel(element) {
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
 // TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
-// TODO selList and classList/queryArr seem to be suspiciously similar...
-// TODO consStr, vowelStr, classStr, all also seem suspiciously similar
-// Try to revise to use just one of these.
+
+// Extract the information from each of the active trait divs, and send a POST
+// containing a list of requests as the payload
 function handleSubmit() {
-  var reqArr = [];
+  var requests = [];
+  var $traits = getActiveTraits();
+  for (var i = 0; i < $traits.length; i++) {
+    var $t = $traits.eq(i);
+    var requestParams = {};
 
-  var traits = getActiveTraits();
-  for (var i = 0; i < traits.length; i++) {
-    var t = $(traits[i]);
-    var reqObj = {};
-    var trait = traits[i].id.replace(/-\d+/g, "");
+    // Get the list of selected elements from the "selList" attr string
+    var selList = $t.attr("selList");
+    var prettySelList = "prettySelList";
+    if (selList) {
+      selList = selList.split(",");
+      prettySelList = selList.join(", ");
+    }
 
-    // Move most of this into the switch statement
-    var cons      = t.children(".cbox-selector-init:visible").attr("glyphList");
-    if (cons) cons = cons.split(",");
+    // Get the values of k & mode
+    var k       = $t.find(".k-input").val();
+    var modeStr = $t.find(".mode-selector").val();
+    var mode    = getModeFromStr(modeStr);
 
-    var consStr   = t.children(".cbox-selector-init:visible").text();
-    var vowelStr  = t.children(".vbox-selector-init:visible").text();
-    var k         = t.children(".k-input").val()
-    var modeStr   = t.children(".mode-selector").val();
-    var mode      = getModeFromStr(modeStr);
+    var trait = $t.attr("type");
 
-    // If the selection list attr exists visibly, grab its info and split str->arr
-    var selList = t.children("a[selList]:visible").attr("selList");
-    if (selList) selList = selList.split(",");
-
-    var sel       = t.children("a[sel]:visible").attr("sel");
-
-
-    // Obtain the three natural classes selected
-    // TODO make this less hacky and more stable
-    var glyphList;
-    var classList =  [];
-    var classStr = "";
-    var prettifiedStr = ""; // A string representing the pretty-printed matchList
+    // Pick most commonly used values as defaults
+    var reply = `contain ${modeStr} ${k} of ${prettySelList}`;
 
     // Generate the correct reply string based on the trait type
     // Some cases have special other info that must be calculated (ie for natural class arrays)
-    var reply;
     switch (trait) {
       case CONSONANT_ID:
-        prettifiedStr = t.children(".cbox-selector-init:visible").text();
-        glyphList = t.children(".cbox-selector-init:visible").attr("glyphList").split(",");
-        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
+      case VOWEL_ID:
+      case IPA_CONSONANT_ID:
+      case IPA_VOWEL_ID:
+        reply = `contain ${modeStr} ${k} of ${prettySelList}`;
         break;
       case CONSONANT_CLASS_ID:
-        classList = t.children(".ccbox-selector-init:visible").attr("queryArr").split(",");
-        prettifiedStr  = getStrFromClasses(classList, "consonant");
-        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
-        break;
-      case VOWEL_ID:
-        prettifiedStr = t.children(".vbox-selector-init:visible").text();
-        glyphList = t.children(".vbox-selector-init:visible").attr("glyphList").split(",");
-        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
+        prettySelList  = getStrFromClasses(selList, "consonant");
+        reply = `contain ${modeStr} ${k} of ${prettySelList}`;
         break;
       case VOWEL_CLASS_ID:
-        classList = t.children(".vcbox-selector-init:visible").attr("queryArr").split(",");
-        prettifiedStr  = getStrFromClasses(classList, "vowel");
-        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
+        prettySelList  = getStrFromClasses(selList, "vowel");
+        reply = `contain ${modeStr} ${k} of ${prettySelList}`;
         break;
       case CONSONANT_PLACES_ID:
         reply = "contain 3+ places of articulation for consonants";
@@ -520,63 +483,43 @@ function handleSubmit() {
         reply = "allow the syllable structure" + syllable;
         break;
       case MORPHOLOGY_ID:
-        prettifiedStr = t.children(".m-lbox-selector-init:visible").text();
-        reply = "use " + modeStr + " " + k +
-                " of the morphological types " + prettifiedStr;
+        reply = `use ${modeStr} ${k} of the morphological types ${prettySelList}`;
         break;
       case WORD_FORMATION_ID:
-        prettifiedStr = t.children(".wf-lbox-selector-init:visible").text();
-        reply = "use " + modeStr + " " + k + " of " +
-                prettifiedStr + " to form words";
+        reply = `use ${modeStr} ${k} of ${prettySelList} to form words`;
         break;
       case FORMATION_FREQ_ID:
-        reply = "use " + sel + " strategies to form words";
+        reply = `use ${prettySelList} strategies to form words`;
         break;
       case WORD_ORDER_ID:
-        reply = "have " + sel + " word order";
+        reply = `have ${prettySelList} word order`;
         break;
       case HEADEDNESS_ID:
-        reply = "are " + sel;
+        reply = `are ${prettySelList}`;
         break;
       case AGREEMENT_ID:
-        reply = "have " + sel + " agreement";
+        reply = `have ${prettySelList} agreement`;
         break;
       case CASE_ID:
-        reply = "have " + sel + " case";
-        break;
-      case IPA_CONSONANT_ID:
-        glyphList = t.find(".ipac-selector-init:visible table").attr("glyphList").split(",");
-        prettifiedStr = glyphList.join(", ");
-        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
-        break;
-      case IPA_VOWEL_ID:
-        glyphList = t.find(".ipav-selector-init:visible table").attr("glyphList").split(",");
-        prettifiedStr = glyphList.join(", ");
-        reply = "contain " + modeStr + " " + k + " of " + prettifiedStr;
+        reply = `have ${prettySelList} case`;
         break;
       default:
         console.error("Error! Tried to submit a query of unknown trait:" + trait);
         break;
     }
 
-    // Insert query data into the query list
-    // TODO glyphList, classList, selList will never all be used at once...
-    // so just simplify the three down into a single "list" type.
-    // TODO Call it matchList for lists and matchItem for single item.  (!)
-    reqObj["trait"]       = trait;
-    reqObj["glyphList"]   = glyphList;
-    reqObj["k"]           = k;
-    reqObj["mode"]        = mode;
-    reqObj["reply"]       = reply;
-    reqObj["classList"]   = classList;
-    reqObj["selList"]     = selList;
-    reqObj["sel"]         = sel;
+    // Create a request and add it to the request list
+    requestParams["trait"]        = trait;
+    requestParams["selList"] = selList;
+    requestParams["k"]            = k;
+    requestParams["mode"]         = mode;
+    requestParams["reply"]        = reply;
 
-    reqArr.push(reqObj);
+    requests.push(requestParams);
   }
 
-  var payload = "payload=" + JSON.stringify(reqArr);
-  payload += "&listMode=" + listMode; // Hacky
+  var payload = "payload=" + JSON.stringify(requests);
+  payload += `&listMode=${listMode}`; // Hacky
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
@@ -595,7 +538,6 @@ function handleListToggle() {
 /*****************************************************************************/
 // Callback function for AJAX -- in development
 function callback(reply) {
-  // $("#results").text(reply)
   $("#results").html(reply)
   reloadTooltips();
 }
@@ -603,23 +545,6 @@ function callback(reply) {
 /*****************************************************************************/
 /*                                Creators                                   */
 /*****************************************************************************/
-// // Create and return a new consonant selector DOM element as a string
-// function createConsonantSelectorString(uid) {
-//   return createPhonemeSelectorString("c", uid);
-// }
-//
-// // Create and return a new vowel selector DOM element as a string
-// function createVowelSelectorString(uid) {
-//   return createPhonemeSelectorString("v", uid);
-// }
-//
-// function createConsonantClassSelectorString(uid) {
-//   return createPhonemeSelectorString("cc", uid);
-// }
-//
-// function createVowelClassSelectorString(uid) {
-//   return createPhonemeSelectorString("vc", uid);
-// }
 
 // Create and return a new selector DOM element as a string
 // Use the string jqueryStr to locate the selector template to be copied.
@@ -678,7 +603,7 @@ function cloneTraitTemplate() {
 // Get a list of active trait div query elements (those traits that would be submitted)
 function getActiveTraits() {
   var activeDivList = $(".trait-div:visible");
-  var activeTraitList = activeDivList.children(".active-trait");
+  var activeTraitList = activeDivList.children(".active");
   console.log(activeTraitList);
   return activeTraitList;
 }

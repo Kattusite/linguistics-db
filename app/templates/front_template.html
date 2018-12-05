@@ -64,7 +64,7 @@
     <!-- Template for trait selector -->
     <div id="trait-div-template" class="alert alert-info trait-div" role="alert">
       <!-- consider making a dropdown from bootstrap -->
-      <select class="trait-selector template" onchange="handleTraitSelect(this)">
+      <select type="trait-selector" class="trait-selector template " onchange="handleTraitSelect(this)">
         <option>Contains consonant: </option>
         <option>Contains consonant class: </option>
         <option>Contains vowel: </option>
@@ -85,7 +85,7 @@
         <option>Case: </option>
       </select>
       <!-- Consonant Selector -->
-      <div class="consonant-selector template active">Contains
+      <div type="consonant-selector" class="consonant-selector template  active">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -102,7 +102,7 @@
            title="<b>Select phonemes</b>"
            data-content="Error loading. Sorry!">Select Phonemes...</a>
       </div>
-      <div class="consonant-class-selector template inactive">Contains
+      <div type="consonant-class-selector" class="consonant-class-selector template  inactive">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -119,7 +119,7 @@
            title="<b>Select natural classes</b>"
            data-content="Error loading. Sorry!">Select natural classes...</a>
       </div>
-      <div class="vowel-selector template inactive">Contains
+      <div type="vowel-selector" class="vowel-selector template  inactive">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -136,7 +136,7 @@
            title="<b>Select phonemes</b>"
            data-content="Error loading. Sorry!">Select Phonemes...</a>
       </div>
-      <div class="vowel-class-selector template inactive">Contains
+      <div type="vowel-class-selector" class="vowel-class-selector template  inactive">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -153,7 +153,7 @@
            title="<b>Select natural classes</b>"
            data-content="Error loading. Sorry!">Select natural classes...</a>
       </div>
-      <div class="ipa-consonant-selector template inactive">Contains
+      <div type="ipa-consonant-selector" class="ipa-consonant-selector template  inactive">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -167,22 +167,22 @@
         <br>
         <div class="ipac-selector-uninit">Loading IPA Consonants...</div>
       </div>
-      <div class="consonant-places template inactive">
+      <div type="consonant-places" class="consonant-places template  inactive">
         3+ Places of Consonant Articulation
       </div>
-      <div class="consonant-manners template inactive">
+      <div type="consonant-manners" class="consonant-manners template  inactive">
         2+ Manners of Consonant Articulation
       </div>
-      <div class="complex-consonants template inactive">
+      <div type="complex-consonants" class="complex-consonants template  inactive">
         Complex Consonants
       </div>
-      <div class="tone-selector template inactive">
+      <div type="tone-selector" class="tone-selector template  inactive">
         Tone (including "Pitch Accent")
       </div>
-      <div class="stress-selector template inactive">
+      <div type="stress-selector" class="stress-selector template  inactive">
         Predictable Stress
       </div>
-      <div class="syllable-selector template inactive">
+      <div type="syllable-selector" class="syllable-selector template  inactive">
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -199,7 +199,7 @@
            title="<b>Select syllables</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="morphological-selector template inactive">
+      <div type="morphological-selector" class="morphological-selector template  inactive">
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -216,7 +216,7 @@
            title="<b>Select morphological type</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="word-formation-selector template inactive">
+      <div type="word-formation-selector" class="word-formation-selector template  inactive">
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -233,7 +233,7 @@
            title="<b>Select word formation</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="formation-freq-selector template inactive">
+      <div type="formation-freq-selector" class="formation-freq-selector template  inactive">
         <a class="ff-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -241,7 +241,7 @@
            title="<b>Select frequency</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="word-order-selector template inactive">
+      <div type="word-order-selector" class="word-order-selector template  inactive">
         <a class="wo-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -249,7 +249,7 @@
            title="<b>Select headedness</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="headedness-selector template inactive">
+      <div type="headedness-selector" class="headedness-selector template  inactive">
         <a class="h-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -257,7 +257,7 @@
            title="<b>Select headedness</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="agreement-selector template inactive">
+      <div type="agreement-selector" class="agreement-selector template  inactive">
         <a class="a-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -265,7 +265,7 @@
            title="<b>Select agreement</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
-      <div class="case-selector template inactive">
+      <div type="case-selector" class="case-selector template  inactive">
         <a class="c-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
