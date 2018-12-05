@@ -98,7 +98,7 @@ def handleQueries(queries, listMode=False):
 
     # If no queries were handled, something went wrong!
     if n == 0:
-        print("Error: attempted to handle invalid query")
+        print("lingdb_client error: 0 queries were properly handled!")
         return None # Query invalid
 
     # Combine the results of the n queries
