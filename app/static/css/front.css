@@ -50,7 +50,7 @@ body {
 }
 
 /* these should all be removed */
-.inactive-trait {
+.inactive-trait, .clbox-label-selected {
   border: 3px solid red;
 }
 
@@ -152,7 +152,7 @@ span[data-toggle=tooltip] {
   margin: 0px;
 }
 
-.clbox-label.clbox-label-selected {
+.clbox-label.selected {
   background-color: #b0b0b0;
 }
 

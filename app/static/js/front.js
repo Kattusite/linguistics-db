@@ -83,19 +83,6 @@ function traitSelectorInit() {
   $("#trait-divs").children().eq(0).removeClass("hidden");
 }
 
-/* // Now defunct as part of rewrite.
-function traitSelectorInit() {
-  var tgt = $("#trait-divs")[0];
-  for (var i = 0; i < tgt.children.length; i++) {
-    tgt.replaceChild(cloneTraitTemplate(), tgt.children[i]);
-    // Hide children after the first one.
-    if (i > 0) {
-      hideElement(tgt.children[i]);
-    }
-  }
-}
-*/
-
 /* Target all uninitialized popovers of class tgtClass.
  * Create each of these a unique popover with content determined copied from the
  * template located by the jquery string template
@@ -170,20 +157,18 @@ function handleTraitSelect(element) {
 // On click function for element representing a label in the pbox.
 // Save the state of the pbox inside the data-content, reload popover
 // Update link text.
-// NOTE This is a potentially slow function (string concat + iterating over all boxes)
-// (But in practice all numbers are small constants)
 function handlePboxLabel(element) {
   var $el = $(element);
 
   // (Un)select the pbox label.
-  if ($el.hasClass("pbox-label-selected"))
-    $el.removeClass("pbox-label-selected");
-  else
-    $el.addClass("pbox-label-selected");
+  toggleClass(element, "pbox-label-selected");
 
   var $table = $el.closest("table");
   var $div = $table.parent();
-  var popoverContent = $div.outerHTML;
+  var popoverContent = $div[0].outerHTML;
+
+  // Save the state of the popover for the next time it is opened.
+  $popoverButton.attr("data-content", popoverContent);
 
   // Find all selected pbox labels and create a list of their glyphs
   var glyphList = [];
@@ -193,7 +178,7 @@ function handlePboxLabel(element) {
   // Update the popoverButton text to be glyph list, or placeholder if empty.
   // NOTE [aria-describedby] fails if multiple popovers are open concurrently.
   var $popoverButton = $("[aria-describedby]");
-  var isValid = glyphList.length != 0;
+  var isValid = glyphList.length > 0;
   var lbl = "Select phonemes...";
   if (isValid) {
     lbl = glyphList.join(", ");
@@ -202,52 +187,6 @@ function handlePboxLabel(element) {
 
   // Store the query info to be sent to the server
   $popoverButton.attr("glyphList", glyphList);
-
-  // Save the state of the popover for the next time it is opened.
-  $popoverButton.attr("data-content", popoverContent);
-
-  // Iterate over all labels in this table
-  // If checkbox is checked,  add its glyph to the glyph list.
-  /*
-  var glyphList = [];
-  var rows = table.children[0].children; // table -> tbody -> array of TRs
-  for (var i = 0; i < rows.length; i++) {
-    var entries = rows[i].children;
-    for (var j = 0; j < entries.length; j++) {
-      var td = entries[j];
-      var box = td.children[0];
-      if ($(box).hasClass("pbox-label-empty")) {
-        continue;
-      }
-      if ($(box).hasClass("pbox-label-selected")) {
-        glyphList.push($(box).text());
-      }
-    }
-  }
-
-  // Update the link text to be the glyph list, or placeholder if empty.
-  // NOTE [aria-describedby] might misbehave for multiple phoneme selectors present on the document at once
-  // it works by finding the popovers that are *currently* visibly popped open, so there *should* be only one
-  var link = $("[aria-describedby]");
-  var lbl = "";
-  var isValid = glyphList.length != 0;
-  if (!isValid) {
-    lbl = "Select phonemes...";
-  }
-  else {
-    lbl = glyphList.join(", ");
-  }
-  link.text(lbl);
-
-  // Inform the link-text DOM object of its query for the server.
-  link.attr("glyphList", glyphList);
-  // link.attr("isValid", valid);
-
-
-  // Save the content changes in the popover attribute.
-  link.attr("data-content", str);
-
-  */
 }
 
 /* On click handler for the natural class selector. On a click, deselect the
@@ -256,75 +195,45 @@ function handlePboxLabel(element) {
  /* This function assumes that at no point will more or less than one natural
   * class of each type be selected. */
 function handleClboxLabel(element) {
-  // Figure out if element is voicing/place/manner
-  var type = "";
-  for (var i = 0; i < element.classList.length; i++) {
-    if (element.classList[i] == "clbox-label")          continue;
-    if (element.classList[i] == "clbox-label-selected") continue;
-    type = element.classList[i];
-    break;
-  }
+  var $el = $(element);
+  var $table = $el.closest("table");
+  var $div = $table.parent();
 
-  var tablebody = element.parentElement.parentElement; // td --> tr --> tablebody
-  var rows = tablebody.children;
+  // Figure the type (column) of element clicked (e.g. voicing, place, manner)
+  var type = $el.attr("type");
 
-  // Find number of rows and columns
-  var numRows = rows.length;
-  var numCols = rows[0].children.length;
-
-  // If the clicked element was already selected, deselect it and select "Any ..." instead
-  // If the clicked element was not selected, deselect all others and select this instead.
-  var isSel = $(element).hasClass("clbox-label-selected");
-
-  // iterate through all elements of this type of natural class, and deselect them
-  for (var i = 0; i < numRows; i++) {
-    // (the following two steps could be combined into a single jquery expression)
-    // Find the correct type of element on this row.
-    var el = $(rows[i]).children("."+type);
-    // If it is selected, unselect it
-    if (el.hasClass("clbox-label-selected")) {
-      el.removeClass("clbox-label-selected");
-    }
-  }
-
-  // Select the clicked element, or default (select first row) if it was already selected.
+  // If element was already selected, deselect it; select "Any..." instead
+  // Note: assumes "Any..." is the first entry in table with the same type
+  var isSel = $(element).hasClass("selected");
   if (isSel) {
-    $(tablebody.children[0]).find("."+type).addClass("clbox-label-selected");
+    $el.removeClass("selected");
+    $table.find(`[type=${type}]`).eq(0).addClass("selected");
   }
+  // If element was not selected, deselect all others of its type & select this instead
   else {
-    $(element).addClass("clbox-label-selected");
+    $table.find(`[type=${type}]`).removeClass("selected");
+    $el.addClass("selected");
   }
 
+  // Save the state of the popover for the next time it is opened
+  var $popoverButton = $("[aria-describedby]");
+  var popoverContent = $div[0].outerHTML;
+  $popoverButton.attr("data-content", popoverContent);
 
-  // Now that all changes are made, changes can be saved to data-content
-  var link = $("[aria-describedby]");
-  var table = tablebody.parentElement;
-  var div = table.parentElement;
-  var str = div.outerHTML;
-
-  // Save the content changes in the popover attribute.
-  link.attr("data-content", str);
-
-  // Update the label text and store the queryArr
+  // Get the fields needed for server queries, and store the query info for later
   var queryArr = [];
-  for (var i = 0; i < numCols; i++) {
-    var sel = $(tablebody).find("td.clbox-label-selected.clbox-label-"+i).text();
-    queryArr.push(sel);
-  }
+  var $sel = $table.find(".selected");
+  $sel.each(function() { queryArr.push($(this).text()); });
+  $popoverButton.attr("queryArr", queryArr);
 
   // After initial click any query is valid
   // link.attr("isValid", true);
 
   // Figure out if we want consonants or vowels
-  var ctype = tablebody.classList.contains("consonant-class-selector") ? "consonant" : "vowel";
+  var ctype = $table.hasClass("consonant-class-selector") ? "consonant" : "vowel";
 
-  // Inform the link text DOM object of its query string.
-  link.attr("queryArr", queryArr);
-
-  // update the link text to reflect new changes
-  link.text(getStrFromClasses(queryArr, ctype));
-
-  // console.log(v, p, m);
+  // Update the popoverButton text to reflect new selections
+  $popoverButton.text(getStrFromClasses(queryArr, ctype));
 }
 
 // Handle clicks on an Lbox element. Select the clicked on box.

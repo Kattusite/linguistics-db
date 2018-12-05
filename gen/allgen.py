@@ -205,9 +205,9 @@ def clboxgen(pType, metaclasses):
 
     tprint(tag("div", classList=["template"], id="{0}-template".format(abbrev), type=OPEN))
     indent()
-    tprint(tag("table", type=OPEN))
+    tprint(tag("table", classList=["{0}-class-selector".format(pType)], type=OPEN))
     indent()
-    tprint(tag("tbody", classList=["{0}-class-selector".format(pType)], type=OPEN))
+    tprint(tag("tbody", type=OPEN))
     indent()
 
     n = max([len(cls) for cls in metaclasses])
@@ -221,18 +221,20 @@ def clboxgen(pType, metaclasses):
             htmlClasses = []
             clickFn = None
             b=None
+            other=None
 
             if i < len(metaclass):
-                htmlClasses += ["clbox-label", "clbox-label-%d" % j]
+                htmlClasses += ["clbox-label"]
                 clickFn="handleClboxLabel(this)"
+                other = ' type="clbox-label-%d"' % j
                 b=metaclass[i]
             else:
                 htmlClasses += ["clbox-label-empty"]
 
             if i == 0:
-                htmlClasses += ["clbox-label-selected"]
+                htmlClasses += ["selected"]
 
-            tprint(tag("td", body=b, classList=htmlClasses, onclick=clickFn))
+            tprint(tag("td", body=b, classList=htmlClasses, onclick=clickFn, other=other))
 
         dedent()
         tprint(tag("tr", type=CLOSE))
