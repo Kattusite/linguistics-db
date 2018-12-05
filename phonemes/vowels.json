@@ -1,0 +1,198 @@
+[
+    {
+        "glyph": "i",
+        "height": "high",
+        "backness": "front",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "y",
+        "height": "high",
+        "backness": "front",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "e",
+        "height": "mid-high",
+        "backness": "front",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ø",
+        "height": "mid-high",
+        "backness": "front",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɛ",
+        "height": "mid-low",
+        "backness": "front",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "œ",
+        "height": "mid-low",
+        "backness": "front",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "a",
+        "height": "low",
+        "backness": "front",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɶ",
+        "height": "low",
+        "backness": "front",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɨ",
+        "height": "high",
+        "backness": "central",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ʉ",
+        "height": "high",
+        "backness": "central",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɘ",
+        "height": "mid-high",
+        "backness": "central",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɵ",
+        "height": "mid-high",
+        "backness": "central",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ə",
+        "height": "mid",
+        "backness": "central",
+        "roundedness": "any",
+        "producible": true
+    },
+    {
+        "glyph": "ɜ",
+        "height": "mid-low",
+        "backness": "central",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɞ",
+        "height": "mid-low",
+        "backness": "central",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɯ",
+        "height": "high",
+        "backness": "back",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "u",
+        "height": "high",
+        "backness": "back",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɤ",
+        "height": "mid-high",
+        "backness": "back",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "o",
+        "height": "mid-high",
+        "backness": "back",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ʌ",
+        "height": "mid-low",
+        "backness": "back",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɔ",
+        "height": "mid-low",
+        "backness": "back",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɑ",
+        "height": "low",
+        "backness": "back",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɒ",
+        "height": "mid-low",
+        "backness": "back",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɪ",
+        "height": "near-high",
+        "backness": "near-front",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ʏ",
+        "height": "near-high",
+        "backness": "near-front",
+        "roundedness": "rounded",
+        "producible": true
+    },
+    {
+        "glyph": "æ",
+        "height": "near-low",
+        "backness": "front",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ɐ",
+        "height": "near-low",
+        "backness": "central",
+        "roundedness": "unrounded",
+        "producible": true
+    },
+    {
+        "glyph": "ʊ",
+        "height": "near-high",
+        "backness": "near-back",
+        "roundedness": "rounded",
+        "producible": true
+    }
+]

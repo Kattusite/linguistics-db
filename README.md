@@ -11,6 +11,10 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* What exactly are the old PLACES, MANNERS, CLASSES, etc. used for in consonants.py and vowels.py? They seem dangerously outdated
+* Also I need to rewrite the pretty-string to make it shorter for large numbers of Consonants
+e.g. (ptk -> unvoiced stops)
+* also i need to add a button for voiced/unvoiced
 * The front.js file has been itching for a rewrite for some time
 * Consider whether it is a good idea to put the entire IPA table into a popover.
 It is absolutely massive and there is no way it will look good. Instead maybe I should
@@ -106,3 +110,8 @@ Will need to transmit:
 * Merging grammar and typology csv's into a single csv, and creating a language object from it
 
 * Investigate vis.js library (visjs.org) or D3.js (d3js.org)
+
+
+* Acknowledgments: Inspired in part by www.ipachart.com
+ Some phonetics data from https://commons.wikimedia.org/wiki/General_phonetics and https://www.internationalphoneticassociation.org/content/full-ipa-chart
+ 
