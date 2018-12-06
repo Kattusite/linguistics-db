@@ -8,7 +8,7 @@ var VOWEL_ID                = "vowel-selector";
 var VOWEL_CLASS_ID          = "vowel-class-selector";
 var CONSONANT_PLACES_ID     = "consonant-places";
 var CONSONANT_MANNERS_ID    = "consonant-manners";
-var COMPLEX_CONSONANT_ID    = "complex-consonant";
+var COMPLEX_CONSONANT_ID    = "complex-consonants";
 var TONE_ID                 = "tone-selector";
 var STRESS_ID               = "stress-selector";
 var SYLLABLE_ID             = "syllable-selector";
@@ -234,7 +234,7 @@ function handleClboxLabel(element) {
   var ctype = $table.hasClass("consonant-class-selector") ? "consonant" : "vowel";
 
   // Update the popoverButton text to reflect new selections
-  $popoverButton.text(getStrFromClasses(queryArr, ctype));
+  $popoverButton.text(getStrFromClasses(selList, ctype));
 }
 
 // Handle clicks on an Lbox element. Select the clicked on box.
@@ -325,9 +325,10 @@ function toggleClassesOthers () {
 // Given an IPA Header el, return an array of all the
 // elements falling under that header in that table.
 function getElementsOfHeader(el) {
-  var $table = el.closest("table");
-  var category = $(el).attr("category");
-  var trait = $(el).attr("trait");
+  var $el = $(el);
+  var $table = $el.closest("table");
+  var category = $el.attr("category");
+  var trait    = $el.attr("trait");
   var matches = $table.find(`[${category}='${trait}']`);
   return matches;
 }
@@ -357,7 +358,7 @@ function handleIpacboxLabel(element) {
   // Decide selecting this element causes a header category to be (un)selected
   else {
     // Carry out the toggle.
-    toggleClass(element, "ipa-box-selected");
+    toggleClass(element, "selected");
 
   }
 
@@ -367,15 +368,15 @@ function handleIpacboxLabel(element) {
     var matches = getElementsOfHeader(headers[i]);
 
     // Find out how many matches are not selected.
-    var nonselected = $(matches).not(".ipa-box-selected").length;
+    var nonselected = $(matches).not(".selected").length;
 
     // If all elements are selected, highlight the header.
     if (nonselected == 0) {
-      $(headers[i]).addClass("ipa-box-selected");
+      $(headers[i]).addClass("selected");
     }
     // If some elements are unselected, de-highlight the header.
     else {
-      $(headers[i]).removeClass("ipa-box-selected");
+      $(headers[i]).removeClass("selected");
     }
   }
 
@@ -389,7 +390,7 @@ function handleIpacboxLabel(element) {
 
   // Find all selected glyphs in the table.
   var selList = [];
-  $table.find(".ipa-box.ipa-box-selected").each(function() {
+  $table.find(".ipa-box.selected").each(function() {
       selList.push($(this).text());
     }
   )
@@ -436,6 +437,11 @@ function handleSubmit() {
       selList = selList.split(",");
       prettySelList = selList.join(", ");
     }
+
+    // If selList has size 1, additionally set sel to selList[0]
+    var sel = "sel";
+    if (selList && selList.length == 1)
+      sel = selList[0];
 
     // Get the values of k & mode
     var k       = $t.find(".k-input").val();
@@ -510,7 +516,8 @@ function handleSubmit() {
 
     // Create a request and add it to the request list
     requestParams["trait"]        = trait;
-    requestParams["selList"] = selList;
+    requestParams["selList"]      = selList;
+    requestParams["sel"]          = sel;
     requestParams["k"]            = k;
     requestParams["mode"]         = mode;
     requestParams["reply"]        = reply;
@@ -604,7 +611,6 @@ function cloneTraitTemplate() {
 function getActiveTraits() {
   var activeDivList = $(".trait-div:visible");
   var activeTraitList = activeDivList.children(".active");
-  console.log(activeTraitList);
   return activeTraitList;
 }
 

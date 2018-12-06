@@ -173,7 +173,7 @@ span[data-toggle=tooltip] {
   border: 1px solid #909090;
 }
 
-.lbox-label.lbox-label-selected {
+.lbox-label.selected {
   background-color: #b0b0b0;
 }
 /*  */
@@ -211,7 +211,7 @@ span[data-toggle=tooltip] {
   background-color: #c0c0c0;
 }
 
-.ipa-box.ipa-box-selected, .ipa-header.ipa-box-selected {
+.ipa-box.selected, .ipa-header.selected {
   background-color: #b0b0b0;
 }
 
