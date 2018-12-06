@@ -40,7 +40,7 @@ def handleQuery(query):
         "vowel-class-selector":         Language.matchVowelClasses,
         "consonant-places":             Language.containsConsonantPlaces,
         "consonant-manners":            Language.containsConsonantManners,
-        "complex-consonant":            Language.containsComplexConsonants,
+        "complex-consonants":           Language.containsComplexConsonants,
         "tone-selector":                Language.containsTone,
         "stress-selector":              Language.containsStress,
         "syllable-selector":            Language.containsSyllable,
@@ -61,7 +61,7 @@ def handleQuery(query):
         sys.stderr.write("Unrecognized query type: lingdb_client has no defined function handler for: %s\n" % trait)
         raise e
 
-
+    
 
 
     return LING_DB.query(fn, query)
