@@ -164,7 +164,7 @@ function handlePboxLabel(element) {
   var $popoverDiv = $table.parent();
 
   // (Un)select the pbox label.
-  toggleClass(element, "pbox-label-selected");
+  toggleClass(element, "selected");
 
   // Save the state of the popover for the next time it is opened.
   var popoverContent = $popoverDiv[0].outerHTML;
@@ -174,7 +174,7 @@ function handlePboxLabel(element) {
 
   // Find all selected pbox labels and create a list of their glyphs
   var selList = [];
-  var $sel = $table.find(".pbox-label-selected");
+  var $sel = $table.find(".pbox-label.selected");
   $sel.each(function() { selList.push($(this).text()); });
 
   // Store the query info to be sent to the server
@@ -352,7 +352,7 @@ function handleIpacboxLabel(element) {
 
     // Select or unselect ALL the elements in the list as a group.
     // Afterwards, either ALL matching phonemes are selected, or ALL are not.
-    toggleClassesAll(element, matches.toArray(), "ipa-box-selected");
+    toggleClassesAll(element, matches.toArray(), "selected");
 
   }
   // Else, toggle just that element
