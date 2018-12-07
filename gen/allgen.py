@@ -8,6 +8,8 @@
 from phonemes import vowels, consonants
 from data import const
 
+import sys
+
 
 
 ################################################################################
@@ -55,8 +57,9 @@ def tag(t, body=None, id=None, classList=None, onclick=None, other=None, type=BO
     classStr = ' class="%s"' % " ".join(classList) if classList else ""
     clickStr = ' onclick="%s"' % onclick if onclick else ""
     idStr = ' id="%s"' % id if id else ""
+    otherStr = " %s" % other if other else ""
 
-    openTag = "<{0}{1}{2}{3}>{4}".format(t, idStr, classStr, clickStr, bodyStr)
+    openTag = "<{0}{1}{2}{3}{5}>{4}".format(t, idStr, classStr, clickStr, bodyStr, otherStr)
     closeTag = "</{0}>".format(t)
 
     if type == BOTH:
@@ -202,9 +205,9 @@ def clboxgen(pType, metaclasses):
 
     tprint(tag("div", classList=["template"], id="{0}-template".format(abbrev), type=OPEN))
     indent()
-    tprint(tag("table", type=OPEN))
+    tprint(tag("table", classList=["{0}-class-selector".format(pType)], type=OPEN))
     indent()
-    tprint(tag("tbody", classList=["{0}-class-selector".format(pType)], type=OPEN))
+    tprint(tag("tbody", type=OPEN))
     indent()
 
     n = max([len(cls) for cls in metaclasses])
@@ -218,18 +221,20 @@ def clboxgen(pType, metaclasses):
             htmlClasses = []
             clickFn = None
             b=None
+            other=None
 
             if i < len(metaclass):
-                htmlClasses += ["clbox-label", "clbox-label-%d" % j]
+                htmlClasses += ["clbox-label"]
                 clickFn="handleClboxLabel(this)"
+                other = ' type="clbox-label-%d"' % j
                 b=metaclass[i]
             else:
                 htmlClasses += ["clbox-label-empty"]
 
             if i == 0:
-                htmlClasses += ["clbox-label-selected"]
+                htmlClasses += ["selected"]
 
-            tprint(tag("td", body=b, classList=htmlClasses, onclick=clickFn))
+            tprint(tag("td", body=b, classList=htmlClasses, onclick=clickFn, other=other))
 
         dedent()
         tprint(tag("tr", type=CLOSE))
@@ -277,8 +282,104 @@ def lboxgen(lType, listData):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-def ipacboxgen(glyphList):
-    """Generate the html for a IPA consonant chart table, using glyphList as source"""
+def ipacboxgen():
+    """Generate the html for a IPA consonant chart table, using the consonant
+    table defined in consanants.py"""
+
+    # Generate the table as a 2D array.
+    table = consonants.IPA_TABLE
+
+    # Print the table as HTML
+    tprint(comment("Auto-generated template for the IPA consonant chart"))
+
+    tprint(tag("div", classList=["template"], id="ipacbox-template", type=OPEN))
+    indent()
+    tprint(tag("table", type=OPEN))
+    indent()
+    tprint(tag("tbody", type=OPEN))
+    indent()
+
+    for (y, row) in enumerate(table):
+        tprint(tag("tr", type=OPEN))
+        indent()
+        for (x, col) in enumerate(row):
+
+            # Print first row specially (all headers)
+            if y == 0:
+                # For the header row the type of the cell should be a string
+                assert type(col) == type("str")
+                if (x % 2 == 1): # skip every other row (headers are 2 col wide)
+                    continue
+                oth = "scope='col' colspan='%d'"
+
+                # print the first col header half as wide as the others
+                if x == 0:
+                    oth = oth % 1
+                    classList = []
+                else:
+                    oth = oth % 2
+                    classList=["ipa-header"]
+
+                # print the header for this col
+                tprint(tag("th",
+                            classList=classList,
+                            onclick="handleIpacboxLabel(this)",
+                            body=col,
+                            type=BOTH,
+                            other="%s category=%s trait=%s" % (oth, "place", col)))
+                            # WARNING: Hardcoded "place" to be along the horizontal axis
+
+
+            # Print all other rows after the first one
+            else:
+                # Print first col as a header
+                if x == 0:
+                    assert type(col) == type("str")
+                    tprint(tag("th",
+                                classList=["ipa-header"],
+                                onclick="handleIpacboxLabel(this)",
+                                body=col,
+                                type=BOTH,
+                                other="scope='row' category=%s trait='%s'" % ("manner", col)))
+                                # WARNING: Hardcoded "manner" to be along the vertical axis
+
+                # Non header cols: make an IPA cell
+                else:
+                    # For non-header rows the col should be a dict or empty str
+                    body = ""
+                    classList = []
+                    onclick = None
+                    other = None
+
+                    if not col:  # col == "" or None
+                        classList.append("ipa-box-empty")
+                    elif not col["producible"]:
+                        classList.append("ipa-box-impossible")
+                    else:
+                        classList.append("ipa-box")
+                        body = col["glyph"]
+                        onclick = "handleIpacboxLabel(this)"
+                        other = ("manner='%s' place='%s' voicing='%s'" %
+                            (col["manner"], col["place"], col["voicing"]))
+
+                    tprint(tag("td", body=body,
+                                classList=classList,
+                                onclick=onclick,
+                                other=other,
+                                type=BOTH))
+
+
+        dedent()
+        tprint(tag("tr", type=CLOSE))
+
+    dedent()
+    tprint(tag("tbody", type=CLOSE))
+    dedent()
+    tprint(tag("table", type=CLOSE))
+    dedent()
+    tprint(tag("div", type=CLOSE))
+
+
 
 def ipavboxgen(glyphList):
     """Generate the html for a IPA vowel chart table, using glyphList as source"""
@@ -290,7 +391,14 @@ def ipavboxgen(glyphList):
 #                                                                              #
 ################################################################################
 
-def main():
+# Prints the auto generated html to stdout, or a file named output if specified
+def main(output=None):
+
+    # Redirect to file if desired
+    if output:
+        file = open(output, "w", encoding="utf-8")
+        sys.stdout = file
+
     tprint(comment("  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###"))
 
     # Generate phoneme selectors
@@ -302,6 +410,7 @@ def main():
     clboxgen("vowel", vowels.CLASS_MATRIX)
 
     # Generate general list selectors
+    lboxgen("syllable", const.SYLLABLE)
     lboxgen("morphology", const.MORPHOLOGY)
     lboxgen("word-formation", const.WORD_FORMATION)
     lboxgen("formation-freq", const.FORMATION)
@@ -309,5 +418,12 @@ def main():
     lboxgen("headedness", const.HEADEDNESS)
     lboxgen("agreement", const.CASE_AGREEMENT)
     lboxgen("case", const.CASE_AGREEMENT)
+    lboxgen("metaclass")
+
+    # Generate IPA selectors
+    ipacboxgen()
 
     tprint(comment("  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###"))
+
+    # Make sure we're really done printing
+    sys.stdout.flush()

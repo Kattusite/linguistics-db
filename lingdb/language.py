@@ -107,6 +107,13 @@ class Language:
             ret = []
         return ret
 
+    def getSyllables(self):
+        """Returns the list of legal syllables in this language"""
+        ret = self.getGrammarAttr(G_STR[G_SYLLABLES])
+        if ret is None:
+            ret = []
+        return ret
+
     def getMorphologicalTypes(self):
         """Returns the list of morphological types for this language"""
         ret = self.getTypologyAttr(T_STR[T_MORPHOLOGY])
@@ -129,11 +136,11 @@ class Language:
 ################################################################################
 
 # TODO Abstract these better. Lots of reused code.
-    def matchConsonants(self, glyphList, k, mode):
-        """Returns the consonant glyphs in this language present in glyphList,
+    def matchConsonants(self, selList, k, mode):
+        """Returns the consonant glyphs in this language present in selList,
         if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getConsonants())
-        thatSet = set(glyphList)
+        thatSet = set(selList)
         both = list(thatSet.intersection(thisSet))
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
@@ -143,11 +150,11 @@ class Language:
             return True
         return both
 
-    def matchVowels(self, glyphList, k, mode):
-        """Returns the vowel glyphs in this language present in glyphList,
+    def matchVowels(self, selList, k, mode):
+        """Returns the vowel glyphs in this language present in selList,
         if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getVowels())
-        thatSet = set(glyphList)
+        thatSet = set(selList)
         both = list(thatSet.intersection(thisSet))
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
@@ -157,11 +164,11 @@ class Language:
             return True
         return both
 
-    def matchConsonantClasses(self, classList, k, mode):
+    def matchConsonantClasses(self, selList, k, mode):
         """Returns the consonant glyphs in this language that are part of a metaclass in
-        classList, if the number of matches is at least* (or mode) k"""
+        selList, if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getConsonants())
-        thatSet = set(consonants.getGlyphListFromClasses(classList))
+        thatSet = set(consonants.getGlyphListFromClasses(selList))
         both = list(thatSet.intersection(thisSet))
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
@@ -171,11 +178,25 @@ class Language:
             return True
         return both
 
-    def matchVowelClasses(self, classList, k, mode):
+    def matchVowelClasses(self, selList, k, mode):
         """Returns the vowel glyphs in this language that are part of a metaclass in
-        classList, if the number of matches is at least* (or mode) k"""
+        selList, if the number of matches is at least* (or mode) k"""
         thisSet = set(self.getVowels())
-        thatSet = set(vowels.getGlyphListFromClasses(classList))
+        thatSet = set(vowels.getGlyphListFromClasses(selList))
+        both = list(thatSet.intersection(thisSet))
+        # If number of items in both fails the mode-comparison to k, return []
+        if (not compareByMode(len(both), k, mode)):
+            return []
+        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
+        elif both == []:
+            return True
+        return both
+
+    def matchSyllable(self, selList, k, mode):
+        """Returns the syllables in this language that are part of selList, if
+        the number of matches is *mode *k"""
+        thisSet = set(self.getSyllables())
+        thatSet = set(selList)
         both = list(thatSet.intersection(thisSet))
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
@@ -227,27 +248,26 @@ class Language:
         """Returns true if glyph is a valid vowel in this language"""
         return glyph in self.getVowels()
 
-    def containsConsonants(self, glyphList, k, mode):
-        """Returns true if exactly* k of the consonants in glyphList appear
+    def containsConsonants(self, selList, k, mode):
+        """Returns true if exactly* k of the consonants in selList appear
         in this language. Use mode (less than, etc) instead of exact equality
         checking"""
-        matches = self.matchConsonants(glyphList)
+        matches = self.matchConsonants(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
-
-    def containsVowels(self, glyphList, k, mode):
+    def containsVowels(self, selList, k, mode):
         """Returns true if exactly* k of the vowels in bitstring appear
         in this language. Use mode (less than, etc) instead of exact equality
         checking"""
-        matches = self.matchVowels(glyphList)
+        matches = self.matchVowels(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
-    def containsConsonantClasses(self, classList, k, mode):
-        matches = self.matchConsonantClasses(classList)
+    def containsConsonantClasses(self, selList, k, mode):
+        matches = self.matchConsonantClasses(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
-    def containsVowelClasses(self, classList, k, mode):
-        matches = self.matchVowelClasses(classList)
+    def containsVowelClasses(self, selList, k, mode):
+        matches = self.matchVowelClasses(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
     def containsConsonantPlaces(self):
@@ -285,23 +305,21 @@ class Language:
             return False
         return attr
 
-    def containsSyllable(self, syllable):
-        """Returns true if the given syllable is legal in this language"""
-        thisList = self.getGrammarAttr(G_STR[G_SYLLABLE])
-        if thisList is None:
-            return False
-        return syllable in thisList
+    def containsSyllable(self, selList, k, mode):
+        """Returns true if *mode *k of the given syllables are legal in this language"""
+        matches = self.matchSyllable(selList, k, mode)
+        return compareByMode(len(matches), k, mode)
 
     def hasMorphologicalType(self, selList, k, mode):
         """Returns true if *mode* k of the given morphological types are
         present in this language"""
-        matches = self.matchMorphologialType(selList)
+        matches = self.matchMorphologialType(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
     def hasWordFormation(self, selList, k, mode):
         """Returns true if *mode* k of the given word formation types are
         present in this language"""
-        matches = self.matchWordFormation(selList)
+        matches = self.matchWordFormation(selList, k , mode)
         return compareByMode(len(matches), k, mode)
 
     def hasFormationFreq(self, sel):

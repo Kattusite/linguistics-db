@@ -1,0 +1,17 @@
+[
+  {
+    "readable":        "Contains consonants",
+    "selectorID":      "consonant-selector",
+    "genID":           "consonant",
+    "genType":         "lbox",
+    "genSubtype":      { "multi": true },
+    "genSrc":  [
+      "SVO",
+      "OVS",
+      "SOV",
+      "This field should actually be a query dict as in const.py"
+    ],
+    "queryReply": " of languages contain ##mode ##k of ##prettySelList.",
+    "shortCode": "ff",
+  }
+]

@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 
+<!-- Note v2.0 to future me on why I did things this way: -->
+<!-- The idea is that phonemes essentially exist in three dimensional space,
+      with dimensions of:   manner, place, voicing. -->
+<!-- For humans, it is relatively easy to edit and view these in the format of
+     the standard IPA chart, so I'm defining them here in that format.
+     This way the properties of each phoneme are uniquely determined by its
+     position in the table, and they don't have to be inconveniently defined
+     by hand. -->
+<!-- However, it is also convenient for computers to be able to have a file in
+     the form of the json created, where each phoneme has explicitly defined
+     voicing, place and manner. This way, if we want to reorder the table or
+     change the rows around, it is easy to do, instead of having to change
+     each one of the many many rows and reordering all the phonemes in each
+     row every time (slow, error-prone and boring work).  -->
+
+<!-- Long story short, this file defines the DATA for the ipa table, without
+     caring too much about how it is visually represented. Later there will be
+     a different file responsible for reconstructing this table, but in
+     a potentially arbitrary order, or with some columns/rows potentially
+     rearranged or omitted.
+
+      Moreover this saves me the trouble of having to define canonical lists for
+    every single trait I might care about (e.g. a canonical list for bilabials,
+    a list for stops, a list for voiced/voiceless)... There would be a ton of
+  these lists and there would be problems if any ever fell out of sync, which
+might be tough to detect or debug. This way the properties of each phoneme are
+uniquely determined by position and guaranteed to exist for every phoneme. -->
+
 <html>
   <!-- This is a dummy test bench for creating/modifying the consonant IPA selector -->
   <!-- Note to future me: DO NOT DO THIS BY HAND! -->
   <!-- Write up a nice little python script to generate it -->
+
+
+<!-- DEPRECATED - Does not include phonemes like /w/ --> 
+
   <style>
     td {
       text-align: center;
@@ -15,7 +47,8 @@
       margin: 0px;
     }
     th {
-      display: none;
+      /* display: none; */
+      font-size: xx-small;
     }
     td.ipa-cell {
 
@@ -27,7 +60,10 @@
       border-width: 0;
     }
   </style>
-  <body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src = "./ipa-json.js"></script>
+  <!-- This whole scraping thing is a bit circular come to think of it... -->
+  <body onload="scrape()"> <!-- Scrape the contents of the ipa chart into json -->
     <table>
       <tbody>
         <tr>
@@ -66,8 +102,33 @@
           <td class="ipa-cell">ɢ</td>
           <td class="ipa-cell-empty"></td>
           <td class="ipa-cell-impossible"></td>
-          <td class="ipa-cell">?</td>
+          <td class="ipa-cell">ʔ</td>
           <td class="ipa-cell-impossible"></td>
+        </tr>
+        <tr>
+          <th scope="row">Aspirated</td>
+          <td class="ipa-cell">pʰ</td>
+          <td class="ipa-cell">bʰ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">tʰ</td>
+          <td class="ipa-cell">dʰ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ʈʰ</td>
+          <td class="ipa-cell">ɖʰ</td>
+          <td class="ipa-cell">cʰ</td>
+          <td class="ipa-cell">ɟʰ</td>
+          <td class="ipa-cell">kʰ</td>
+          <td class="ipa-cell">gʰ</td>
+          <td class="ipa-cell">qʰ</td>
+          <td class="ipa-cell">ɢʰ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
         </tr>
         <tr>
           <th scope="row">Nasal</td>
@@ -168,6 +229,31 @@
           <td class="ipa-cell">ʕ</td>
           <td class="ipa-cell">h</td>
           <td class="ipa-cell">ɦ</td>
+        </tr>
+        <tr>
+          <th scope="row">Affricate</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell">ts</td>
+          <td class="ipa-cell">dz</td>
+          <td class="ipa-cell">tʃ</td>
+          <td class="ipa-cell">dʒ</td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
+          <td class="ipa-cell-empty"></td>
         </tr>
         <tr>
           <th scope="row">Lateral Fricative</td>
