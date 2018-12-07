@@ -1,31 +1,35 @@
-import json, const
+import json
 
 # ref. https://en.wikipedia.org/wiki/Distinctive_feature
 # ref. https://gawron.sdsu.edu/intro/course_core/lectures/phonology.htm
 
-METACLASSES = {
+DICT = "dict"
+MULTI = "multi"
 
-    const.DICT: {
-        "complex consonant": COMPLEX_CONSONANTS,
-        "stridents": STRIDENTS,
-        "sibilant": SIBILANTS,
 
-        "labial": LABIALS,
+#METACLASSES = {
 
-        "voiced": VOICED,
-        "unvoiced": UNVOICED,
-
-        "sonorant": SONORANTS,
-        "obstruents": OBSTRUENTS,
-
-        "consonantal": CONSONANTALS,
-        "vocalic": VOCALIC,
-
-        "syllabic": SYLLABIC,
-        "nonsyllabic": NONSYLLABIC,
-
-        "continuant": CONTINUANT,
-        "noncontinuant": NONCONTINUANT,
-    },
-    const.MULTI: True
-}
+#    DICT: {
+#        "complex consonant": COMPLEX_CONSONANTS,
+#        "stridents": STRIDENTS,
+#        "sibilant": SIBILANTS,
+#
+#        "labial": LABIALS,
+#
+#         "voiced": VOICED,
+#         "unvoiced": UNVOICED,
+#
+#         "sonorant": SONORANTS,
+#         "obstruents": OBSTRUENTS,
+#
+#         "consonantal": CONSONANTALS,
+#         "vocalic": VOCALIC,
+#
+#         "syllabic": SYLLABIC,
+#         "nonsyllabic": NONSYLLABIC,
+#
+#         "continuant": CONTINUANT,
+#         "noncontinuant": NONCONTINUANT,
+#     },
+#     MULTI: True
+# }
