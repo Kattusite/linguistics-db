@@ -122,7 +122,7 @@ body {
   border-bottom: 3px solid;
 }
 
-.pbox-label.pbox-label-selected {
+.pbox-label.selected {
   background-color: #b0b0b0;
 }
 
