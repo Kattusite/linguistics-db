@@ -57,6 +57,7 @@ function frontInit() {
   initPopovers("h-lbox-selector",   "#headedness-template");
   initPopovers("a-lbox-selector",   "#agreement-template");
   initPopovers("c-lbox-selector",   "#case-template");
+  initPopovers("s-lbox-selector",   "#syllable-template")
   // initPopovers("ipacbox-selector",  "#ipacbox-template");
 
   // Replace IPA chart placeholders with actual copies of the IPA chart.
@@ -486,7 +487,7 @@ function handleSubmit() {
         reply = "have predictable stress";
         break;
       case SYLLABLE_ID:
-        reply = "allow the syllable structure" + syllable;
+        reply = `use ${modeStr} ${k} of the syllable structures ${selList}`;
         break;
       case MORPHOLOGY_ID:
         reply = `use ${modeStr} ${k} of the morphological types ${prettySelList}`;

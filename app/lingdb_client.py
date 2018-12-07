@@ -43,7 +43,7 @@ def handleQuery(query):
         "complex-consonants":           Language.containsComplexConsonants,
         "tone-selector":                Language.containsTone,
         "stress-selector":              Language.containsStress,
-        "syllable-selector":            Language.containsSyllable,
+        "syllable-selector":            Language.matchSyllable,
         "morphological-selector":       Language.matchMorphologicalType,
         "word-formation-selector":      Language.matchWordFormation,
         "formation-freq-selector":      Language.hasFormationFreq,
@@ -61,7 +61,7 @@ def handleQuery(query):
         sys.stderr.write("Unrecognized query type: lingdb_client has no defined function handler for: %s\n" % trait)
         raise e
 
-    
+
 
 
     return LING_DB.query(fn, query)
@@ -254,7 +254,7 @@ def createLangList(results, reply, hideHeaders):
             matchedList = sorted(list(matchedProperty))
 
             # Workaround for wrapping phonemes and only phonemes in /.../
-            matchedList = ["/%s/" % s if len(s) <= 2 else s for s in matchedList]
+            matchedList = ["/%s/" % s if phonemes.isPhoneme(s) else s for s in matchedList]
             matchedStr = str(matchedList)
 
             # Eliminate special array characters so it is human readable

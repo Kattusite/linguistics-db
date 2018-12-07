@@ -410,6 +410,7 @@ def main(output=None):
     clboxgen("vowel", vowels.CLASS_MATRIX)
 
     # Generate general list selectors
+    lboxgen("syllable", const.SYLLABLE)
     lboxgen("morphology", const.MORPHOLOGY)
     lboxgen("word-formation", const.WORD_FORMATION)
     lboxgen("formation-freq", const.FORMATION)
@@ -417,6 +418,7 @@ def main(output=None):
     lboxgen("headedness", const.HEADEDNESS)
     lboxgen("agreement", const.CASE_AGREEMENT)
     lboxgen("case", const.CASE_AGREEMENT)
+    lboxgen("metaclass")
 
     # Generate IPA selectors
     ipacboxgen()

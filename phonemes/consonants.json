@@ -747,5 +747,12 @@
         "place": "glottal",
         "voicing": "voiced",
         "producible": false
+    },
+    {
+        "glyph": "w",
+        "manner": "approximant",
+        "place": "labiovelar",
+        "voicing": "voiced",
+        "producible": true
     }
 ]

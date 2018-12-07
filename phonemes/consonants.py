@@ -264,11 +264,16 @@ def createIPATable(data, headers):
 
     for p in data:
         # Get the target row / column
-        row = headers["manner"].index(p["manner"]) + 1
-        col = headers["place"].index(p["place"]) * 2
-        col += headers["voicing"].index(p["voicing"]) + 1
+        try:
+            row = headers["manner"].index(p["manner"]) + 1
+            col = headers["place"].index(p["place"]) * 2
+            col += headers["voicing"].index(p["voicing"]) + 1
 
-        table[row][col] = p
+            table[row][col] = p
+        except ValueError:
+            print("%s %s %s /%s/ unable to be placed in IPA table - no header exists!" %
+                  (p["voicing"], p["place"], p["manner"], p["glyph"]))
+            continue
 
     # Add in the headers
     for (i, head) in enumerate(headers["manner"]):
@@ -311,6 +316,11 @@ CLASSESv2 = {}
 
 
 # =============== API functions ==================
+
+def isConsonant(s):
+    """Return True iff s is a consonant representable in this system"""
+    return s in GLYPHSv2
+
 #TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
 def getGlyphListFromClass(className):
     # If this is a special bypass class ("Any...") return all ones

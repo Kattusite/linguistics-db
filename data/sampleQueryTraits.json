@@ -12,6 +12,6 @@
       "This field should actually be a query dict as in const.py"
     ],
     "queryReply": " of languages contain ##mode ##k of ##prettySelList.",
-    "shortCode": "ff"
+    "shortCode": "ff",
   }
 ]

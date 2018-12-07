@@ -120,6 +120,10 @@ CLASSES = {
     ]
 }
 
+def isVowel(s):
+    """Returns true iff s is a vowel representable in this system"""
+    return s in GLYPHS
+
 #TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
 def getGlyphListFromClass(className):
     # If this is a special bypass class ("Any...") return all ones
