@@ -50,6 +50,9 @@ class LingDB:
     # contributed results
     def query(self, fn, allArgs):
         # Get the argument list for the selected function # WARNING (hacky)
+        # Be careful: this gets the VARIABLE NAME attached to a given fn argument
+        # so it is sensitive to changes in names of variables, not just types
+
         argList = inspect.getargspec(fn)[0][1:]
         argsToPass = [allArgs[a] for a in argList]
 

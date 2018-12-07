@@ -3,7 +3,7 @@
 #
 #############################################################################
 
-import os, re
+import os, re, sys
 from lingdb import LingDB, Language
 from phonemes import vowels, consonants
 from data import language_data
@@ -40,20 +40,30 @@ def handleQuery(query):
         "vowel-class-selector":         Language.matchVowelClasses,
         "consonant-places":             Language.containsConsonantPlaces,
         "consonant-manners":            Language.containsConsonantManners,
-        "complex-consonant":            Language.containsComplexConsonants,
+        "complex-consonants":           Language.containsComplexConsonants,
         "tone-selector":                Language.containsTone,
         "stress-selector":              Language.containsStress,
-        "syllable-selector":            Language.containsSyllable,
+        "syllable-selector":            Language.matchSyllable,
         "morphological-selector":       Language.matchMorphologicalType,
         "word-formation-selector":      Language.matchWordFormation,
         "formation-freq-selector":      Language.hasFormationFreq,
         "word-order-selector":          Language.hasWordOrder,
         "headedness-selector":          Language.hasHeadedness,
         "agreement-selector":           Language.hasAgreement,
-        "case-selector":                Language.hasCase
+        "case-selector":                Language.hasCase,
+        "ipa-consonant-selector":       Language.matchConsonants,
+        "ipa-vowel-selector":           Language.matchVowels
     }
 
-    fn = function_map[trait]
+    try:
+        fn = function_map[trait]
+    except KeyError as e:
+        sys.stderr.write("Unrecognized query type: lingdb_client has no defined function handler for: %s\n" % trait)
+        raise e
+
+
+
+
     return LING_DB.query(fn, query)
 
 def handleQueries(queries, listMode=False):
@@ -88,7 +98,7 @@ def handleQueries(queries, listMode=False):
 
     # If no queries were handled, something went wrong!
     if n == 0:
-        print("Error: attempted to handle invalid query")
+        print("lingdb_client error: 0 queries were properly handled!")
         return None # Query invalid
 
     # Combine the results of the n queries
@@ -244,7 +254,7 @@ def createLangList(results, reply, hideHeaders):
             matchedList = sorted(list(matchedProperty))
 
             # Workaround for wrapping phonemes and only phonemes in /.../
-            matchedList = ["/%s/" % s if len(s) <= 2 else s for s in matchedList]
+            matchedList = ["/%s/" % s if phonemes.isPhoneme(s) else s for s in matchedList]
             matchedStr = str(matchedList)
 
             # Eliminate special array characters so it is human readable

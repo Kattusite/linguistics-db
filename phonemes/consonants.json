@@ -1,0 +1,758 @@
+[
+    {
+        "glyph": "p",
+        "manner": "plosive",
+        "place": "bilabial",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "b",
+        "manner": "plosive",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "t",
+        "manner": "plosive",
+        "place": "alveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "d",
+        "manner": "plosive",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ʈ",
+        "manner": "plosive",
+        "place": "retroflex",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɖ",
+        "manner": "plosive",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "c",
+        "manner": "plosive",
+        "place": "palatal",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɟ",
+        "manner": "plosive",
+        "place": "palatal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "k",
+        "manner": "plosive",
+        "place": "velar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "g",
+        "manner": "plosive",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "q",
+        "manner": "plosive",
+        "place": "uvular",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɢ",
+        "manner": "plosive",
+        "place": "uvular",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "plosive",
+        "place": "pharyngeal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ʔ",
+        "manner": "plosive",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "plosive",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "pʰ",
+        "manner": "aspirated",
+        "place": "bilabial",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "bʰ",
+        "manner": "aspirated",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "tʰ",
+        "manner": "aspirated",
+        "place": "alveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "dʰ",
+        "manner": "aspirated",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ʈʰ",
+        "manner": "aspirated",
+        "place": "retroflex",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɖʰ",
+        "manner": "aspirated",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "cʰ",
+        "manner": "aspirated",
+        "place": "palatal",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɟʰ",
+        "manner": "aspirated",
+        "place": "palatal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "kʰ",
+        "manner": "aspirated",
+        "place": "velar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "gʰ",
+        "manner": "aspirated",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "qʰ",
+        "manner": "aspirated",
+        "place": "uvular",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɢʰ",
+        "manner": "aspirated",
+        "place": "uvular",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "m",
+        "manner": "nasal",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɱ",
+        "manner": "nasal",
+        "place": "labiodental",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "n",
+        "manner": "nasal",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɳ",
+        "manner": "nasal",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɲ",
+        "manner": "nasal",
+        "place": "palatal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ŋ",
+        "manner": "nasal",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɴ",
+        "manner": "nasal",
+        "place": "uvular",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "nasal",
+        "place": "pharyngeal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "nasal",
+        "place": "pharyngeal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "nasal",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "nasal",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ʙ",
+        "manner": "trill",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "r",
+        "manner": "trill",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "trill",
+        "place": "velar",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "trill",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ʀ",
+        "manner": "trill",
+        "place": "uvular",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "trill",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "trill",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ⱱ",
+        "manner": "tap or flap",
+        "place": "labiodental",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɾ",
+        "manner": "tap or flap",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɽ",
+        "manner": "tap or flap",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "tap or flap",
+        "place": "velar",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "tap or flap",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "tap or flap",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "tap or flap",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ɸ",
+        "manner": "fricative",
+        "place": "bilabial",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "β",
+        "manner": "fricative",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "f",
+        "manner": "fricative",
+        "place": "labiodental",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "v",
+        "manner": "fricative",
+        "place": "labiodental",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "θ",
+        "manner": "fricative",
+        "place": "dental",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ð",
+        "manner": "fricative",
+        "place": "dental",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "s",
+        "manner": "fricative",
+        "place": "alveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "z",
+        "manner": "fricative",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ʃ",
+        "manner": "fricative",
+        "place": "postalveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ʒ",
+        "manner": "fricative",
+        "place": "postalveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ʂ",
+        "manner": "fricative",
+        "place": "retroflex",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ʐ",
+        "manner": "fricative",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ç",
+        "manner": "fricative",
+        "place": "palatal",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ʝ",
+        "manner": "fricative",
+        "place": "palatal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "x",
+        "manner": "fricative",
+        "place": "velar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɣ",
+        "manner": "fricative",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "χ",
+        "manner": "fricative",
+        "place": "uvular",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ʁ",
+        "manner": "fricative",
+        "place": "uvular",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ħ",
+        "manner": "fricative",
+        "place": "pharyngeal",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ʕ",
+        "manner": "fricative",
+        "place": "pharyngeal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "h",
+        "manner": "fricative",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɦ",
+        "manner": "fricative",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ts",
+        "manner": "affricate",
+        "place": "alveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "dz",
+        "manner": "affricate",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "tʃ",
+        "manner": "affricate",
+        "place": "postalveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "dʒ",
+        "manner": "affricate",
+        "place": "postalveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "bilabial",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "labiodental",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "labiodental",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ɬ",
+        "manner": "lateral fricative",
+        "place": "alveolar",
+        "voicing": "voiceless",
+        "producible": true
+    },
+    {
+        "glyph": "ɮ",
+        "manner": "lateral fricative",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "pharyngeal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "pharyngeal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral fricative",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "ʋ",
+        "manner": "approximant",
+        "place": "labiodental",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɹ",
+        "manner": "approximant",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɻ",
+        "manner": "approximant",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "j",
+        "manner": "approximant",
+        "place": "palatal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ɰ",
+        "manner": "approximant",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "approximant",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "approximant",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "bilabial",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "bilabial",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "labiodental",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "labiodental",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "l",
+        "manner": "lateral approximant",
+        "place": "alveolar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ȴ",
+        "manner": "lateral approximant",
+        "place": "retroflex",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ʎ",
+        "manner": "lateral approximant",
+        "place": "palatal",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "ʟ",
+        "manner": "lateral approximant",
+        "place": "velar",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "pharyngeal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "pharyngeal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "glottal",
+        "voicing": "voiceless",
+        "producible": false
+    },
+    {
+        "glyph": "impossible",
+        "manner": "lateral approximant",
+        "place": "glottal",
+        "voicing": "voiced",
+        "producible": false
+    },
+    {
+        "glyph": "w",
+        "manner": "approximant",
+        "place": "labiovelar",
+        "voicing": "voiced",
+        "producible": true
+    }
+]

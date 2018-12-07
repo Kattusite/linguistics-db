@@ -45,8 +45,13 @@ body {
 }
 /* ----------------------------------------------------------- */
 
-.inactive-trait {
+.inactive, .template {
   display: none;
+}
+
+/* these should all be removed */
+.inactive-trait, .clbox-label-selected {
+  border: 3px solid red;
 }
 
 .active-trait {
@@ -147,7 +152,7 @@ span[data-toggle=tooltip] {
   margin: 0px;
 }
 
-.clbox-label.clbox-label-selected {
+.clbox-label.selected {
   background-color: #b0b0b0;
 }
 
@@ -168,12 +173,63 @@ span[data-toggle=tooltip] {
   border: 1px solid #909090;
 }
 
-.lbox-label.lbox-label-selected {
+.lbox-label.selected {
   background-color: #b0b0b0;
 }
 /*  */
 
+.ipa-header {
+  font-weight: normal;
+  font-style: italic;
+  font-size: xx-small;
+  display: table-cell;
+  background-color: #d0d0d0;
+  border: 1px solid #909090;
+  margin: 0px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.ipa-box {
+  display: table-cell;
+  background-color: #d0d0d0;
+  border: 1px solid #909090;
+  margin: 0px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 3px;
+  width: 25px;
+  height: 25px;
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.ipa-box:hover, .ipa-header:hover {
+  background-color: #c0c0c0;
+}
+
+.ipa-box.selected, .ipa-header.selected {
+  background-color: #b0b0b0;
+}
+
+.ipa-box-empty {
+  border-width: 0px;
+}
+
+.ipa-box-impossible {
+  cursor: not-allowed;
+  background-color: #707070;
+  border: 1px solid #909090;
+}
+
 
 table.lang-list-table td {
   padding-right: 20px;
+}
+
+.popover {
+  max-width: 500px;
 }
