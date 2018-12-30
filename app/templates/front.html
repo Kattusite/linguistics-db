@@ -246,7 +246,7 @@
            role="button"
            data-html="true"
            data-toggle="popover"
-           title="<b>Select headedness</b>"
+           title="<b>Select word order</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
       <div type="headedness-selector" class="headedness-selector template  inactive">
@@ -436,497 +436,63 @@
       <table class="consonant-class-selector">
         <tbody>
           <tr>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">f</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">a</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">p</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-3">l</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-4">l</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-5">n</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-6">a</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-7">a</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-8">t</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-9">t</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-10">p</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-11">g</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-12">u</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-13">l</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-14">l</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-15">v</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-16">p</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-17">a</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-18">b</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-19">r</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-20">d</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-21">p</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-22">v</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-23">v</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any voicing</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any place</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any manner</td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">f</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-5">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">p</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">s</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">h</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">v</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-15">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-16">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-20">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-22">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">o</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">voiceless</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">bilabial</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">plosive</td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">f</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-5">s</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">p</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">p</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">p</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">u</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">b</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">b</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-15">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-16">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">v</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-20">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">s</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-22">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">i</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">c</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">s</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-5">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8"> </td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-15">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-16">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-20">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-22">c</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">c</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-5">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">y</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-15">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-16">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">b</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-20">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-22">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">e</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">c</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">v</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">x</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">r</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">v</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">d</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-16">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">f</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-20">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-22">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">l</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8"> </td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">g</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">e</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-16">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">v</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">e</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">v</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">t</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3"> </td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4"> </td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">m</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">f</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">e</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">n</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-17">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-18">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">e</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">e</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">s</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">e</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">f</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">t</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-19">x</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">o</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-23">s</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">voiced</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">labiodental</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">aspirated</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">p</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">r</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">n</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">dental</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">nasal</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">p</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">i</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">t</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">p</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">alveolar</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">trill</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">c</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-21">r</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">postalveolar</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">tap or flap</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">retroflex</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">fricative</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">x</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">t</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">palatal</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">affricate</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">i</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">velar</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">lateral fricative</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">m</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">v</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">uvular</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">approximant</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">e</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">pharyngeal</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">lateral approximant</td>
           </tr>
           <tr>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">n</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">t</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">glottal</td>
             <td class="clbox-label-empty"></td>
           </tr>
         </tbody>
@@ -938,172 +504,42 @@
       <table class="vowel-class-selector">
         <tbody>
           <tr>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">n</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">h</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">m</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-3">n</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-4">l</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-5">m</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-6">m</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-7">f</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-8">c</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-9">n</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-10">b</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-11">n</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-12">u</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-13">r</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-14">v</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any height</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any backness</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any roundedness</td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-5">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">i</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">o</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">high</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">front</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">unrounded</td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">g</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-4">w</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-5">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">c</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">u</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">i</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">near-high</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">near-front</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">rounded</td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">h</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">-</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">r</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">-</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-10">k</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">c</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">-</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">-</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">h</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-7">t</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">-</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">-</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">u</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">e</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">h</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">l</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">i</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">a</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">b</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">f</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">e</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-14">d</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">i</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">w</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">o</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">g</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-8">l</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">a</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">r</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">d</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-13">d</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid-high</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">central</td>
             <td class="clbox-label-empty"></td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">g</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">near-back</td>
             <td class="clbox-label-empty"></td>
+          </tr>
+          <tr>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid-low</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">back</td>
             <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">w</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-6">h</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">c</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">o</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">e</td>
+          </tr>
+          <tr>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">near-low</td>
             <td class="clbox-label-empty"></td>
             <td class="clbox-label-empty"></td>
           </tr>
           <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">h</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-9">k</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">n</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-12">d</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-11">t</td>
-            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">low</td>
             <td class="clbox-label-empty"></td>
             <td class="clbox-label-empty"></td>
           </tr>
@@ -1651,6 +1087,7 @@
             <td class="ipa-box-impossible"></td>
             <td class="ipa-box-impossible"></td>
           </tr>
+          <tr class="other-pad"></tr>
           <tr class="other-row">
             <th class="ipa-header" onclick="handleIpacboxLabel(this)" scope='row' category=manner trait='other'>other</th>
             <td class="ipa-box other" onclick="handleIpacboxLabel(this)" place='labiovelar' manner='approximant' voicing='voiced'>w</td>
@@ -1766,6 +1203,13 @@
     </div>
     <!--  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###-->
     <!-- ANCHOR: AUTOGEN END -->
+
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <a href="/about">About...</a>
+      </div>
+    </footer>
+
 
   </body>
 

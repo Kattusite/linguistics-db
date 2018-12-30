@@ -4,11 +4,11 @@
 #   From cmd line in project root: (type in cmd after $)
 #        > linguistics-db/ $ set PYTHONIOENCODING=utf-8
 #        > linguistics-db/ $ python -m gen > gen/out.html
-import sys
+import sys, copy
 
 from phonemes import vowels, consonants, metaclasses
 from . import ipa_table
-from data import const
+from data import const, selectors
 
 
 
@@ -149,6 +149,7 @@ def modekpopover(selectorID, popoverPrefix, selectWhat, isActive):
 # structure allowing user to pick one trait. The first trait in the list will be
 # active (selected), and the others will be inactive (unselected)
 def traitselector():
+    return
 
 # Given the info for a trait, print out the complete HTML representing:
 # 1) An <option> selector containing each
@@ -157,8 +158,7 @@ def traitselector():
 def traitselectorgen():
     return
 
-
-# Types of selector:
+# Types of selector: (for more info see selectors.py)
 
 # -- input selectors
 # (not quite the same as trait selectors, which is how I typically use the word "selector"
@@ -169,7 +169,9 @@ def traitselectorgen():
 # This is what I mean when I say "selector" in this project.
 # It is the collection of html elements that allow a user to specify a linguistic
 # property, and a set of query parameters.
-# *
+# * modekpopover - selectors of the form: "at least 5 of a, b, c, d..."
+# * binary - binary yes/no selectors: "contains complex consonants"
+# * listpopover - select one (and only 1) from a list: "a, b, c, d..."
 
 
 ################################################################################
@@ -263,14 +265,20 @@ def pboxgen(pType, glyphList):
     tprint(tag("div", type=CLOSE))
 
 
-# TODO: need to change this to take in
-def clboxgen(pType, metaclasses):
-    """Generate the html for a natural class selector table, using metaclasses as source.
-    metaclasses is a str[][] containing a list of (lists of possible classes for each type).
+# TODO: need to change this to take in header dicts instead of [][]
+def clboxgen(pType, headers):
+    """Generate the html for a natural class selector table, using headers as a source.
+    headers is a dict mapping trait types to possible trait values
+    (e.g. "height": ["high", "med", "low", "..."])
+    is a str[][] containing a list of (lists of possible classes for each type).
     pType is either "consonant" or "vowel" depending on the type being used"""
-    if pType not in ["consonant", "vowel"]:
+
+    if pType == CONSONANT:
+        abbrev = "ccbox"
+    elif pType == VOWEL:
+        abbrev = "vcbox"
+    else:
         raise ValueError("Invalid phoneme type! %s not recognized" % pType)
-    abbrev = "ccbox" if pType == "consonant" else "vcbox"
 
     tprint("")
     tprint(comment("Auto-generated template for the {0} class selector."
@@ -283,24 +291,29 @@ def clboxgen(pType, metaclasses):
     tprint(tag("tbody", type=OPEN))
     indent()
 
-    n = max([len(cls) for cls in metaclasses])
+    classNames = headers["word order"]
+
+    # Add "any x" to the front of each list and continue
+    classes = [ (["any " + name]) + headers[name] for name in classNames ]
+
+    n = max([len(cls) for cls in classes])
 
     for i in range(n):
         tprint(tag("tr", type=OPEN))
         indent()
         # Print one element from each of the lists
         # (or a placeholder if the list has ended already)
-        for j, metaclass in enumerate(metaclasses):
+        for j, cls in enumerate(classes):
             htmlClasses = []
             clickFn = None
             b=None
             other=None
 
-            if i < len(metaclass):
+            if i < len(cls):
                 htmlClasses += ["clbox-label"]
                 clickFn="handleClboxLabel(this)"
                 other = ' type="clbox-label-%d"' % j
-                b=metaclass[i]
+                b=cls[i]
             else:
                 htmlClasses += ["clbox-label-empty"]
 
@@ -320,12 +333,12 @@ def clboxgen(pType, metaclasses):
 
 def lboxgen(lType, listData):
     """Generate the html for a generic list selector table, using listData as
-    a source. listData will be a dict with two fields: const.DICT: containing
-    a parseDict, whose keys are the elements of the list, and const.MULTI, a bool
+    a source. listData will be a dict with two fields: selectors.DICT: containing
+    a parseDict, whose keys are the elements of the list, and selectors.MULTI, a bool
     signifying whether it is possible to select multiple elements from the list"""
 
-    otherList = listData[const.DICT]
-    multi     = listData[const.MULTI]
+    otherList = listData[selectors.DICT]
+    multi     = listData[selectors.MULTI]
     multStr = str(multi).lower()
 
     tprint("")
@@ -497,32 +510,32 @@ def main(output=None):
     tprint(comment("  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###"))
 
     # Generate phoneme selectors
-    pboxgen("consonant", consonants.GLYPHS)
-    pboxgen("vowel", vowels.GLYPHS)
+    pboxgen("consonant",    consonants.GLYPHS)
+    pboxgen("vowel",        vowels.GLYPHS)
 
     # Generate phoneme class selectors
-    clboxgen("consonant", consonants.CLASSES_DICT)
-    clboxgen("vowel", vowels.CLASSES_DICT)
+    clboxgen("consonant",   consonants.HEADERS)
+    clboxgen("vowel",       vowels.HEADERS)
 
     # Generate general list selectors
-    lboxgen("syllable", const.SYLLABLE)
-    lboxgen("morphology", const.MORPHOLOGY)
-    lboxgen("word-formation", const.WORD_FORMATION)
-    lboxgen("formation-freq", const.FORMATION)
-    lboxgen("word-order", const.WORD_ORDER)
-    lboxgen("headedness", const.HEADEDNESS)
-    lboxgen("agreement", const.CASE_AGREEMENT)
-    lboxgen("case", const.CASE_AGREEMENT)
-    lboxgen("metaclass", metaclasses.METACLASSES)
+    lboxgen("syllable",         selectors.SYLLABLE)
+    lboxgen("morphology",       selectors.MORPHOLOGY)
+    lboxgen("word-formation",   selectors.WORD_FORMATION)
+    lboxgen("formation-freq",   selectors.FORMATION)
+    lboxgen("word-order",       selectors.WORD_ORDER)
+    lboxgen("headedness",       selectors.HEADEDNESS)
+    lboxgen("agreement",        selectors.AGREEMENT)
+    lboxgen("case",             selectors.CASE)
+    lboxgen("metaclass",        metaclasses.METACLASSES)
 
     # Generate IPA selectors
     #print(ipa_table.CONSONANT_TABLE)
     ipaboxgen(ipa_table.CONSONANT_TABLE,
-              ipa_table.CONSONANT_HEADERS,
+              consonants.HEADERS,
               CONSONANT)
 
     ipaboxgen(ipa_table.VOWEL_TABLE,
-              ipa_table.VOWEL_HEADERS,
+              vowels.HEADERS,
               VOWEL)
 
     tprint(comment("  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###"))

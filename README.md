@@ -11,6 +11,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* The "consonant class" prettified strings are very buggy - "contains at least 1 of voiceds", "...voiced aspirateds", "voicelesss" (sic)
 * What exactly are the old PLACES, MANNERS, CLASSES, etc. used for in consonants.py and vowels.py? They seem dangerously outdated
 * Also I need to rewrite the pretty-string to make it shorter for large numbers of Consonants
 e.g. (ptk -> unvoiced stops)
@@ -114,4 +115,3 @@ Will need to transmit:
 
 * Acknowledgments: Inspired in part by www.ipachart.com
  Some phonetics data from https://commons.wikimedia.org/wiki/General_phonetics and https://www.internationalphoneticassociation.org/content/full-ipa-chart
- 

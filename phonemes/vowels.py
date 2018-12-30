@@ -10,6 +10,44 @@ from . import ipa_json, utils
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
 
+# === IPA Vowel Orderings ===
+# Note that these lists are ONLY used for the ordering of IPA charts, and
+# metaclass selectors (ipacbox/clbox in allgen.py)
+# It is NOT the canonical list of all possible values - see the DICTs below for those
+HEIGHTS = [
+    "high",
+    "near-high",
+    "mid-high",
+    "mid",
+    "mid-low",
+    "near-low",
+    "low"
+]
+
+BACKNESSES = [
+    "front",
+    "near-front",
+    "central",
+    "near-back",
+    "back"
+]
+
+ROUNDEDNESSES = [
+    "unrounded",
+    "rounded"
+]
+
+HEADERS = {
+    "height":   HEIGHTS,
+    "backness": BACKNESSES,
+    "roundedness": ROUNDEDNESSES,
+
+    "word order": ["height", "backness", "roundedness"],
+    "axis order": ["backness", "height", "roundedness"]
+}
+
+
+# ==== General Vowel Data ====
 
 data = ipa_json.readIPAFromJson("phonemes/vowels.json")
 GLYPHS = utils.glyphs(data)
@@ -33,32 +71,11 @@ def isVowel(s):
     """Returns true iff s is a vowel representable in this system"""
     return s in GLYPHS
 
-#TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
-def getGlyphListFromClass(className):
-    # If this is a special bypass class ("Any...") return all ones
-    # else If natural class not recognized, return a string of all zeroes
-    className = className.lower()
-    if "Any ".lower() in className:
-        return GLYPHS.copy()
-    elif className not in CLASSES:
-        raise ValueError("Class " + className + " not recognized as a natural class")
-        return []
+def getGlyphsFromClass(className):
+    return utils.getGlyphsFromClass(data, CLASSES_DICT, className)
 
-    classList = CLASSES[className]
-
-    # Otherwise return a copy of the glyphlist for this class
-    return classList.copy()
-
-def getGlyphListFromClasses(classList):
-    glyphSet = set([])
-    for i, natClass in enumerate(classList):
-        if i == 0:
-            glyphList = getGlyphListFromClass(natClass)
-            glyphSet = set(glyphList)
-        else:
-            glyphList = getGlyphListFromClass(natClass)
-            glyphSet = set(glyphList).intersection(glyphSet)
-    return list(glyphSet)
+def getGlyphsFromClasses(classList):
+    return utils.getGlyphsFromClasses(data, CLASSES_DICT, classList)
 
 def getGlyphsMatching(propertyName, propertyValue):
     """Finds a list of all phonemes from data such that the phoneme's

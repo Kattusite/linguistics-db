@@ -1,13 +1,9 @@
-from data import const
 from . import consonants, vowels, phonemes, utils
 
 # ref. https://en.wikipedia.org/wiki/Distinctive_feature
 # ref. https://gawron.sdsu.edu/intro/course_core/lectures/phonology.htm
 # ref. https://en.wikipedia.org/wiki/Place_of_articulation
 # ref. https://essentialsoflinguistics.pressbooks.com/chapter/4-5-natural-classes/
-
-DICT  = const.DICT
-MULTI = const.MULTI
 
 PHONEMES    = phonemes.GLYPHS
 VOWELS      = vowels.GLYPHS
@@ -73,8 +69,7 @@ CONTINUANTS = utils.unique(FRICATIVES + VOWELS + APPROXIMANTS)
 OCCLUSIVES  = utils.subtract(PHONEMES, CONTINUANTS)
 
 # Dict containing all the lists above
-METACLASSES = {
-   DICT: {
+DICT = {
        #"complex consonant":     COMPLEX_CONSONANTS,
        #"stridents":             STRIDENTS,
        #"sibilant":              SIBILANTS,
@@ -97,6 +92,10 @@ METACLASSES = {
 
         "continuant":           CONTINUANTS,
         "noncontinuant":        OCCLUSIVES,
-    },
-    MULTI: True
 }
+
+def getGlyphsFromClass(className):
+    return utils.getGlyphsFromClass(phonemes.data, DICT, className)
+
+def getGlyphsFromClasses(classList):
+    return utils.getGlyphsFromClasses(phonemes.data, DICT, classList)

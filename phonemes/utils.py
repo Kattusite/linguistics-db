@@ -43,10 +43,39 @@ def enumerateProperty(dataSrc, propertyName):
     satisfying the corresponding property value, using dataSrc as the source of
     phoneme data.
 
-    E.g. {"voiced":    ["b", "d", ...],
+    E.g. enumerateProperty(consonants.data, "voicing") -->
+         {"voiced":    ["b", "d", ...],
           "voiceless": ["p", "t", ...]}"""
 
     # Find all unique values of the given property
     values = unique([p[propertyName] for p in dataSrc])
     dict = {val: getGlyphsMatching(dataSrc, propertyName, val) for val in values}
     return dict
+
+def getGlyphsFromClass(dataSrc, classesDict, propertyValue):
+    """Return a list of glyphs from classesDict who are described by propertyValue
+    (e.g. plosives, voiced consonants, labiodentals, rounded vowels...).
+    If 'any ' appears in propertyValue, return all glyphs in dataSrc instead"""
+
+    if ("any " in propertyValue):
+        return glyphs(dataSrc).copy()
+    elif propertyValue not in classesDict:
+        raise ValueError("Class %s not recognized as a natural class" % propertyValue)
+        return [] # never happens, but whatever
+    else:
+        return classesDict[propertyValue].copy()
+
+def getGlyphsFromClasses(dataSrc, classesDict, propertyValues):
+    """Return a list of glyphs satisfying the intersection of getGlyphsFromClass
+    called on every propertyValue (natural class) in propertyValues.
+    e.g. "voiced bilabial plosive" --> 'b'  """
+
+    if len(propertyValues) == 0:
+        return []
+
+    glyphSet = set(getGlyphsFromClass(dataSrc, classesDict, propertyValues[0]))
+    for propertyValue in propertyValues[1:]:
+        glyphList = getGlyphsFromClass(dataSrc, classesDict, propertyValue)
+        glyphSet = set(glyphList).intersection(glyphSet)
+
+    return list(glyphSet)

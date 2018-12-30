@@ -4,12 +4,64 @@ from . import ipa_json, utils
 # Be sure to check carefully before & after changing this list, as it may have
 # unintended consequences, and is used throughout the program in various places
 # as the authoritative, canonical list of phonemes.
+# (i.e. something will break if you aren't careful)
 
 # (Some) Areas this list affects:
 # Generating the clickable phoneme selector GUI elements
 # Checking for phoneme membership in language.py
 
+# IPA row headers (specifies the ordering)
+# Note this list excludes things like liquids / glides (from v1.0)
+# And excludes things like rhotics that were not in any prev. version
+# Note that this list is ONLY used for the ordering of IPA charts, and
+# metaclass selectors (ipacbox/clbox in allgen.py)
+# It is NOT the canonical list of all possible values - see the DICTs below for those
+MANNERS = [
+    "plosive",
+    "aspirated",
+    "nasal",
+    "trill",
+    "tap or flap",
+    "fricative",
+    "affricate",
+    "lateral fricative",
+    "approximant",
+    "lateral approximant"
+]
 
+# IPA col headers (specifies the ordering)
+PLACES = [
+    "bilabial",
+    "labiodental",
+    "dental",
+    "alveolar",
+    "postalveolar",
+    "retroflex",
+    "palatal",
+    "velar",
+    "uvular",
+    "pharyngeal",
+    "glottal"
+]
+
+# Specifies left/right ordering of voiced/unvoiced phoneme pairs
+VOICINGS = [
+    "voiceless",
+    "voiced"
+]
+
+HEADERS = {
+    "manner":  MANNERS,
+    "place":   PLACES,
+    "voicing": VOICINGS,
+
+    # In what order should they be arranged when used to write out phonemes
+    # e.g. voiceless bilabial fricative NOT fricative voiced bilabial
+    "word order":  ["voicing", "place", "manner"],
+
+    # What order are the axes? x = 0, y = 1, z = 2
+    "axis order":  ["place", "manner", "voicing"]
+}
 
 # IPA chart glyphs (specifies the contents)
 # Consider defining each phoneme on its own in the following way:
@@ -51,37 +103,17 @@ CLASSES_DICT = {**MANNER_DICT, **PLACE_DICT, **VOICING_DICT}
 # print(CLASSES_DICT)
 
 
+
 # =============== API functions ==================
 def isConsonant(s):
     """Return True iff s is a consonant representable in this system"""
     return s in GLYPHS
 
-#TODO unify these two functions with the identical ones in the accompanying vowel/consanant file
-def getGlyphListFromClass(className):
-    # If this is a special bypass class ("Any...") return all ones
-    # else If natural class not recognized, return a string of all zeroes
-    className = className.lower()
-    if "Any ".lower() in className:
-        return GLYPHS.copy()
-    elif className not in CLASSES:
-        raise ValueError("Class " + className + " not recognized as a natural class")
-        return []
+def getGlyphsFromClass(className):
+    return utils.getGlyphsFromClass(data, CLASSES_DICT, className)
 
-    classList = CLASSES[className]
-
-    # Otherwise return a copy of the glyphlist for this class
-    return classList.copy()
-
-def getGlyphListFromClasses(classList):
-    glyphSet = set([])
-    for i, natClass in enumerate(classList):
-        if i == 0:
-            glyphList = getGlyphListFromClass(natClass)
-            glyphSet = set(glyphList)
-        else:
-            glyphList = getGlyphListFromClass(natClass)
-            glyphSet = set(glyphList).intersection(glyphSet)
-    return list(glyphSet)
+def getGlyphsFromClasses(classList):
+    return utils.getGlyphsFromClasses(data, CLASSES_DICT, classList)
 
 def getGlyphsMatching(propertyName, propertyValue):
     """Finds a list of all phonemes from data such that the phoneme's

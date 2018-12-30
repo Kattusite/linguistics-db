@@ -7,91 +7,13 @@ from phonemes import consonants, vowels
 # It is NOT the canonical list of possible characteristics.
 
 # ============== CONSONANT CONSTANTS =================
-
-# IPA row headers (specifies the ordering)
-# Note this list excludes things like liquids / glides (from v1.0)
-# And excludes things like rhotics that were not in any prev. version
-CONSONANT_MANNERS = [
-    "plosive",
-    "aspirated",
-    "nasal",
-    "trill",
-    "tap or flap",
-    "fricative",
-    "affricate",
-    "lateral fricative",
-    "approximant",
-    "lateral approximant"
-]
-
-# IPA col headers (specifies the ordering)
-CONSONANT_PLACES = [
-    "bilabial",
-    "labiodental",
-    "dental",
-    "alveolar",
-    "postalveolar",
-    "retroflex",
-    "palatal",
-    "velar",
-    "uvular",
-    "pharyngeal",
-    "glottal"
-]
-
-# Specifies left/right ordering of voiced/unvoiced phoneme pairs
-CONSONANT_VOICINGS = [
-    "voiceless",
-    "voiced"
-]
+# see consonants.py
 
 
-CONSONANT_HEADERS = {
-    "manner":  CONSONANT_MANNERS,
-    "place":   CONSONANT_PLACES,
-    "voicing": CONSONANT_VOICINGS,
-
-    # In what order should they be arranged when used to write out phonemes
-    # e.g. voiceless bilabial fricative NOT fricative voiced bilabial
-    "word order":  ["voicing", "place", "manner"],
-
-    # What order are the axes? x = 0, y = 1, z = 2
-    "axis order":  ["place", "manner", "voicing"]
-}
 
 
 # =============== VOWEL CONSTANTS ================
-VOWEL_HEIGHTS = [
-    "high",
-    "near-high",
-    "mid-high",
-    "mid",
-    "mid-low",
-    "near-low",
-    "low"
-]
-
-VOWEL_BACKNESSES = [
-    "front",
-    "near-front",
-    "central",
-    "near-back",
-    "back"
-]
-
-VOWEL_ROUNDEDNESSES = [
-    "unrounded",
-    "rounded"
-]
-
-VOWEL_HEADERS = {
-    "height":   VOWEL_HEIGHTS,
-    "backness": VOWEL_BACKNESSES,
-    "roundedness": VOWEL_ROUNDEDNESSES,
-
-    "word order": ["height", "backness", "roundedness"],
-    "axis order": ["backness", "height", "roundedness"]
-}
+# see vowels.py
 
 X = 0
 Y = 1
@@ -158,5 +80,5 @@ def createIPATable(data, headers):
     return table
 
 # Reconstruct IPA tables
-CONSONANT_TABLE = createIPATable(consonants.data, CONSONANT_HEADERS)
-VOWEL_TABLE     = createIPATable(vowels.data, VOWEL_HEADERS)
+CONSONANT_TABLE = createIPATable(consonants.data, consonants.HEADERS)
+VOWEL_TABLE     = createIPATable(vowels.data, vowels.HEADERS)
