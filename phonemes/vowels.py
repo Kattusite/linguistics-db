@@ -1,4 +1,6 @@
-# Canonical Vowel Order v1.0
+from . import ipa_json, utils
+
+# Canonical Vowel Order v2.0
 # Be sure to check carefully before & after changing this list, as it may have
 # unintended consequences, and is used throughout the program in various places
 # as the authoritative, canonical list of phonemes.
@@ -8,117 +10,24 @@
 # Checking for phoneme membership in language.py
 # Creating and comparing phoneme bitstrings
 
-GLYPHS = [
-    "a",
-    "e",
-    "o",
-    "i",
-    "u",
-    "ə",
-    "ɨ",
-    "ɯ",
-    "y",
-    "ʌ",
-    "ø",
-    "ɵ",
-    "ʉ"
-]
 
-# Order of the list is arbitrary from this line down
-# Canonical vowel roundness/height/backness
-ROUNDEDNESSES = [
-    "any roundedness",
-    "rounded",
-    "unrounded"
-]
+data = ipa_json.readIPAFromJson("phonemes/vowels.json")
+GLYPHS = utils.glyphs(data)
 
-HEIGHTS = [
-    "any height",
-    "high",
-    "mid-high",
-    "mid",
-    "mid-low",
-    "low"
-]
+# Create dicts mapping all possible property values to the glyphs satisfying
+# those properties
+# E.g. {"voiced":    ["b", "d", ...],
+#       "voiceless": ["p", "t", ...], ...}"""
+HEIGHT_DICT         = utils.enumerateProperty(data, "height")
+BACKNESS_DICT       = utils.enumerateProperty(data, "backness")
+ROUNDEDNESS_DICT    = utils.enumerateProperty(data, "roundedness")
+VOICING_DICT        = utils.enumerateProperty(data, "voicing")
 
-BACKNESSES = [
-    "any backness",
-    "front",
-    "central",
-    "back"
-]
-
-CLASS_MATRIX = [
-    ROUNDEDNESSES,
-    HEIGHTS,
-    BACKNESSES
-]
-
-# Canonical Vowel Classes
-CLASSES = {
-    # Height
-    "high" : [
-        "i",
-        "u",
-        "ɨ",
-        "ɯ",
-        "y",
-        "ʉ"
-    ],
-    "mid-high" : [
-        "e",
-        "o",
-        "ø",
-        "ɵ"
-    ],
-    "mid": [
-        "ə"
-    ],
-    "mid-low": [
-        "ʌ"
-    ],
-    "low" : [
-        "a"
-    ],
-    # Backness
-    "front": [
-        "a",
-        "e",
-        "i",
-        "y",
-        "ø",
-    ],
-    "central": [
-        "i",
-        "ə",
-        "ɵ",
-        "ʉ"
-    ],
-    "back": [
-        "o",
-        "u",
-        "ɯ",
-        "ʌ"
-    ],
-
-    # Roundedness
-    "rounded": [
-        "o",
-        "u",
-        "y",
-        "ø",
-        "ɵ",
-        "ʉ"
-    ],
-    "unrounded": [
-        "a",
-        "e",
-        "i",
-        "ɨ",
-        "ɯ",
-        "ʌ"
-    ]
-}
+# Combine these dicts together
+CLASSES_DICT = {**HEIGHT_DICT,
+                **BACKNESS_DICT,
+                **ROUNDEDNESS_DICT,
+                **VOICING_DICT}
 
 def isVowel(s):
     """Returns true iff s is a vowel representable in this system"""
@@ -150,3 +59,9 @@ def getGlyphListFromClasses(classList):
             glyphList = getGlyphListFromClass(natClass)
             glyphSet = set(glyphList).intersection(glyphSet)
     return list(glyphSet)
+
+def getGlyphsMatching(propertyName, propertyValue):
+    """Finds a list of all phonemes from data such that the phoneme's
+    property named propertyName has the value specified by propertyValue. Return
+    a list of the glyphs of all matching phonemes"""
+    return utils.getGlyphsMatching(data, propertyName, propertyValue)

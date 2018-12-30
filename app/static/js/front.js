@@ -330,7 +330,14 @@ function getElementsOfHeader(el) {
   var $table = $el.closest("table");
   var category = $el.attr("category");
   var trait    = $el.attr("trait");
+
   var matches = $table.find(`[${category}='${trait}']`);
+
+  // If in "other" row, search for special class instead of an attr
+  if (trait == "other") {
+    matches = $table.find(".ipa-box.other");
+  }
+
   return matches;
 }
 
@@ -445,7 +452,7 @@ function handleSubmit() {
       sel = selList[0];
 
     // Get the values of k & mode
-    var k       = $t.find(".k-input").val();
+    var k       = $t.find(".k-selector").val();
     var modeStr = $t.find(".mode-selector").val();
     var mode    = getModeFromStr(modeStr);
 
