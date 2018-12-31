@@ -41,18 +41,25 @@
       <!-- dropdowns for traits -->
       <!-- currently placeholders -->
       <div id="trait-divs">
-        <div id="trait-div-1" class="alert alert-success">
+
+        <!-- First selector block -->
+        <div id="trait-div-1" class="alert alert-info">
           <select>
             <option>Contains phoneme: </option>
           </select>
-          <input type="text" size="2">
+          <br><br>
+          <p>Loading...</p>
         </div>
-        <div id="trait-div-2" class="alert alert-success hidden">
+
+        <!-- Second selector block (initially hidden) -->
+        <div id="trait-div-2" class="alert alert-info hidden">
           <select>
             <option>Contains phoneme: </option>
           </select>
-          <input type="text" size="2">
+          <br><br>
+          <p>Loading...</p>
         </div>
+
       </div>
     </div>
 
@@ -60,6 +67,17 @@
     <div id="results-div" class="alert alert-info" role="alert">
       <span id="results">Submit a valid query to get started.</span>
     </div>
+
+    <!-- About button in bottom right. Placed here for convenience -->
+    <!-- so you don't have to scroll all the way down to edit it -->
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <a href="/about">About...</a>
+      </div>
+    </footer>
+
+    <!-- ANCHOR: AUTOGEN START -->
+    <!--  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###-->
 
     <!-- Template for trait selector -->
     <div id="trait-div-template" class="alert alert-info trait-div" role="alert">
@@ -94,7 +112,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="cbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -111,7 +129,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="ccbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -128,7 +146,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="vbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -145,7 +163,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="vcbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -162,7 +180,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <br>
         <br>
         <div class="ipac-selector-uninit">Loading IPA Consonants...</div>
@@ -191,7 +209,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="s-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -208,7 +226,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="m-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -225,7 +243,7 @@
           <option>more than</option>
           <option>not equal to</option>
         </select>
-        <input class="k-input" type="text" size="2" placeholder="1" value="1"> of
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="wf-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
@@ -246,7 +264,7 @@
            role="button"
            data-html="true"
            data-toggle="popover"
-           title="<b>Select headedness</b>"
+           title="<b>Select word order</b>"
            data-content="Error loading. Sorry!">Select...</a>
       </div>
       <div type="headedness-selector" class="headedness-selector template  inactive">
@@ -275,9 +293,6 @@
       </div>
       <!--  -->
     </div>
-
-    <!-- ANCHOR: AUTOGEN START -->
-    <!--  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###-->
 
     <!--Auto-generated template for the consonant phoneme selector.-->
     <div id="cbox-template" class="template">
@@ -908,7 +923,6 @@
     </div>
     <!--  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###-->
     <!-- ANCHOR: AUTOGEN END -->
-
   </body>
 
   <!-- Hide popovers when clicking body -->
