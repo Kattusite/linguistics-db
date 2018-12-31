@@ -9,6 +9,7 @@ import csv, json, hashlib, re
 from operator import itemgetter, attrgetter
 from phonemes import consonants, vowels
 from .const import *
+from .selectors import *
 
 ########################################
 DEBUG = False

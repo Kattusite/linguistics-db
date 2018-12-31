@@ -5,7 +5,7 @@
 #
 
 from data.const import *
-from phonemes import vowels, consonants
+from phonemes import vowels, consonants, metaclasses
 import json
 
 
@@ -107,6 +107,10 @@ class Language:
             ret = []
         return ret
 
+    def getPhonemes(self):
+        """Returns the list of phonemes for this language"""
+        return self.getConsonants() + self.getVowels()
+
     def getSyllables(self):
         """Returns the list of legal syllables in this language"""
         ret = self.getGrammarAttr(G_STR[G_SYLLABLES])
@@ -135,13 +139,11 @@ class Language:
 #               (What elements of this language fulfill criterion x?)          #
 ################################################################################
 
-# TODO Abstract these better. Lots of reused code.
-    def matchConsonants(self, selList, k, mode):
-        """Returns the consonant glyphs in this language present in selList,
-        if the number of matches is at least* (or mode) k"""
-        thisSet = set(self.getConsonants())
+    def match(self, ls, selList, k, mode):
+        thisSet = set(ls)
         thatSet = set(selList)
         both = list(thatSet.intersection(thisSet))
+
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
@@ -149,90 +151,53 @@ class Language:
         elif both == []:
             return True
         return both
+
+    def matchConsonants(self, selList, k, mode):
+        """Returns the consonant glyphs in this language present in selList,
+        if the number of matches is at least* (or mode) k"""
+        return self.match(self.getConsonants(), selList, k, mode)
 
     def matchVowels(self, selList, k, mode):
         """Returns the vowel glyphs in this language present in selList,
         if the number of matches is at least* (or mode) k"""
-        thisSet = set(self.getVowels())
-        thatSet = set(selList)
-        both = list(thatSet.intersection(thisSet))
-        # If number of items in both fails the mode-comparison to k, return []
-        if (not compareByMode(len(both), k, mode)):
-            return []
-        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
-        elif both == []:
-            return True
-        return both
+        return self.match(self.getVowels(), selList, k, mode)
 
     def matchConsonantClasses(self, selList, k, mode):
         """Returns the consonant glyphs in this language that are part of a metaclass in
         selList, if the number of matches is at least* (or mode) k"""
-        thisSet = set(self.getConsonants())
-        thatSet = set(consonants.getGlyphListFromClasses(selList))
-        both = list(thatSet.intersection(thisSet))
-        # If number of items in both fails the mode-comparison to k, return []
-        if (not compareByMode(len(both), k, mode)):
-            return []
-        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
-        elif both == []:
-            return True
-        return both
+        ls = consonants.getGlyphsFromClasses(selList)
+        print("ls", ls)
+        return self.matchConsonants(ls, k, mode)
 
     def matchVowelClasses(self, selList, k, mode):
         """Returns the vowel glyphs in this language that are part of a metaclass in
         selList, if the number of matches is at least* (or mode) k"""
-        thisSet = set(self.getVowels())
-        thatSet = set(vowels.getGlyphListFromClasses(selList))
-        both = list(thatSet.intersection(thisSet))
-        # If number of items in both fails the mode-comparison to k, return []
-        if (not compareByMode(len(both), k, mode)):
-            return []
-        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
-        elif both == []:
-            return True
-        return both
+        ls = vowels.getGlyphsFromClasses(selList)
+        return self.matchVowels(ls, k, mode)
+
+    def matchMetaclasses(self, selList, k, mode):
+        """Returns the phoneme glyphs in this language that are part of a metaclass in
+        selList, if the number of matches is at least* (or mode) k"""
+        # BUG: in utils.py, this might relies on the wrong class dict -
+        # also it uses intersection, rather than union. bug?
+        ls = metaclasses.getGlyphsFromClasses(selList)
+        phonemes = self.getPhonemes()
+        return self.match(phonemes, ls, k, mode)
 
     def matchSyllable(self, selList, k, mode):
         """Returns the syllables in this language that are part of selList, if
         the number of matches is *mode *k"""
-        thisSet = set(self.getSyllables())
-        thatSet = set(selList)
-        both = list(thatSet.intersection(thisSet))
-        # If number of items in both fails the mode-comparison to k, return []
-        if (not compareByMode(len(both), k, mode)):
-            return []
-        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
-        elif both == []:
-            return True
-        return both
+        return self.match(self.getSyllables(), selList, k, mode)
 
     def matchMorphologicalType(self, selList, k, mode):
         """Returns the morphological types in this language that are part of selList,
         if the number of matches is at least* (or mode) k"""
-        thisSet = set(self.getMorphologicalTypes())
-        thatSet = set(selList)
-        both = list(thatSet.intersection(thisSet))
-        # If number of items in both fails the mode-comparison to k, return []
-        if (not compareByMode(len(both), k, mode)):
-            return []
-        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
-        elif both == []:
-            return True
-        return both
+        return self.match(self.getMorphologicalTypes(), selList, k, mode)
 
     def matchWordFormation(self, selList, k, mode):
         """Return the word formation strategies in this language that are part of selList,
         if the number of matches is at least* (or mode) k"""
-        thisSet = set(self.getWordFormations())
-        thatSet = set(selList)
-        both = list(thatSet.intersection(thisSet))
-        # If number of items in both fails the mode-comparison to k, return []
-        if (not compareByMode(len(both), k, mode)):
-            return []
-        # Prevent [] from being treated as Falsy if it satisfies the compareByMode
-        elif both == []:
-            return True
-        return both
+        return self.match(self.getWordFormations(), selList, k, mode)
 
 
 
@@ -313,7 +278,7 @@ class Language:
     def hasMorphologicalType(self, selList, k, mode):
         """Returns true if *mode* k of the given morphological types are
         present in this language"""
-        matches = self.matchMorphologialType(selList, k, mode)
+        matches = self.matchMorphologicalType(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
     def hasWordFormation(self, selList, k, mode):

@@ -12,6 +12,29 @@ body {
   background-color: #eee;
 }
 
+footer {
+  font-size: small;
+  width: 70px;
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+footer a {
+  color: #bbb;
+}
+
+footer a:visited {
+  color: #bbb;
+}
+
+footer a:hover {
+  color: #999;
+}
+
 .hidden {
   display: none;
 }
@@ -192,19 +215,42 @@ span[data-toggle=tooltip] {
   padding: 3px;
 }
 
+/* ipa boxes with glyphs in them */
 .ipa-box {
   display: table-cell;
   background-color: #d0d0d0;
-  border: 1px solid #909090;
   margin: 0px;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
+  border: 1px solid #909090;
   padding: 3px;
   width: 25px;
   height: 25px;
   max-width: 25px;
   max-height: 25px;
+}
+
+.ipa-box-empty {
+  width: 25px;
+  height: 25px;
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.ipa-box-impossible {
+  cursor: not-allowed;
+  background-color: #707070;
+  border: 1px solid #909090;
+}
+
+/* temporarily disable highlighting the "other" label */
+tr.other-row th {
+  background-color: #d0d0d0;
+}
+
+tr.other-pad {
+  height:20px;
 }
 
 .ipa-box:hover, .ipa-header:hover {
@@ -214,17 +260,6 @@ span[data-toggle=tooltip] {
 .ipa-box.selected, .ipa-header.selected {
   background-color: #b0b0b0;
 }
-
-.ipa-box-empty {
-  border-width: 0px;
-}
-
-.ipa-box-impossible {
-  cursor: not-allowed;
-  background-color: #707070;
-  border: 1px solid #909090;
-}
-
 
 table.lang-list-table td {
   padding-right: 20px;

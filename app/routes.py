@@ -8,7 +8,7 @@ def main():
         # Extract the payload from the request form
         f = request.form
         data = json.loads(f["payload"])
-        listMode = True if f["listMode"].lower() == "true" else False
+        listMode = (f["listMode"].lower() == "true")
         # data is a list of query dicts, each containing:
         # "consonants" -> A (stringified) list of the consonants to query
         # "vowels"     -> A (stringified) list of the vowels to query
@@ -31,3 +31,7 @@ def index():
 @app.route('/index')
 def index1():
     return redirect('/')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')

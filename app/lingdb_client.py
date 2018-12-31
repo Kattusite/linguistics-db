@@ -6,7 +6,8 @@
 import os, re, sys
 from lingdb import LingDB, Language
 from phonemes import vowels, consonants
-from data import language_data
+import data
+from data import selectors
 import phonemes
 
 # Substitute Database objects
@@ -14,7 +15,7 @@ import phonemes
 # Construct LING_DB
 def init_DB():
     global LING_DB
-    LING_DB = LingDB(language_data)
+    LING_DB = LingDB(data.language_data)
     # TODO integrate typology data from TYPOLOGY_FILE
 
 # TODO This is a terrible piece of code. Fix it so this doesn't get reinitialized all the time
@@ -27,43 +28,14 @@ def handleQuery(query):
     list of results corresponding to the languages matching that type of query"""
     trait = query["trait"]
 
-    # Map each query string to its function and that function's arguments
-    # TODO Export this mapping to either language.py or const.py
-    # So all changes can be made in a single places
-    # HUGE BUG: Any function using "match" completely ignores mode and k,
-    # and instead always defaults to "at least 1".
-    # Not sure how to fix this.
-    function_map = {
-        "consonant-selector":           Language.matchConsonants,
-        "consonant-class-selector":     Language.matchConsonantClasses,
-        "vowel-selector":               Language.matchVowels,
-        "vowel-class-selector":         Language.matchVowelClasses,
-        "consonant-places":             Language.containsConsonantPlaces,
-        "consonant-manners":            Language.containsConsonantManners,
-        "complex-consonants":           Language.containsComplexConsonants,
-        "tone-selector":                Language.containsTone,
-        "stress-selector":              Language.containsStress,
-        "syllable-selector":            Language.matchSyllable,
-        "morphological-selector":       Language.matchMorphologicalType,
-        "word-formation-selector":      Language.matchWordFormation,
-        "formation-freq-selector":      Language.hasFormationFreq,
-        "word-order-selector":          Language.hasWordOrder,
-        "headedness-selector":          Language.hasHeadedness,
-        "agreement-selector":           Language.hasAgreement,
-        "case-selector":                Language.hasCase,
-        "ipa-consonant-selector":       Language.matchConsonants,
-        "ipa-vowel-selector":           Language.matchVowels
-    }
-
+    # Look up this query's function in the mapping table (from selectors.py)
     try:
-        fn = function_map[trait]
+        fn = selectors.function_map[trait]
     except KeyError as e:
         sys.stderr.write("Unrecognized query type: lingdb_client has no defined function handler for: %s\n" % trait)
         raise e
 
-
-
-
+    # Pass the function into query() to be called with its arguments
     return LING_DB.query(fn, query)
 
 def handleQueries(queries, listMode=False):
