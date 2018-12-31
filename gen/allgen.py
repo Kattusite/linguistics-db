@@ -38,6 +38,10 @@ VOWEL = "vowel"
 ACTIVE = True
 INACTIVE = False
 
+IPA_TRAPEZOID_ASPECT_RATIO = 1000 / 700
+IPA_TRAPEZOID_H = 300
+IPA_TRAPEZOID_W = int(IPA_TRAPEZOID_ASPECT_RATIO * IPA_TRAPEZOID_H)
+
 ################################################################################
 #                                                                              #
 #                        HELPERS                                               #
@@ -62,15 +66,16 @@ def tprint(str):
 
 # Wrap str in an HTML tag t and return it, with optional classList
 # NOTE this needs a lot of work (making it work w/ indenting, and allowing embedding)
-def tag(t, body=None, id=None, classList=None, onclick=None, other=None, type=BOTH):
+def tag(t, body=None, id=None, classList=None, onclick=None, style=None, other=None, type=BOTH):
     # If parameters aren't None, build them into strings
     bodyStr  = body if body else ""
     classStr = ' class="%s"' % " ".join(classList) if classList else ""
     clickStr = ' onclick="%s"' % onclick if onclick else ""
     idStr = ' id="%s"' % id if id else ""
+    styleStr = ' style="%s"' % style if style else ""
     otherStr = " %s" % other if other else ""
 
-    openTag = "<{0}{1}{2}{3}{5}>{4}".format(t, idStr, classStr, clickStr, bodyStr, otherStr)
+    openTag = "<{0}{1}{2}{3}{5}{6}>{4}".format(t, idStr, classStr, clickStr, bodyStr, otherStr, styleStr)
     closeTag = "</{0}>".format(t)
 
     if type == BOTH:
@@ -517,9 +522,28 @@ def ipaboxgen(table, headers, ptype):
     # Print the table as HTML
     tprint(comment("Auto-generated template for the IPA %s chart" % ptype))
 
-    tprint(tag("div", classList=["template"], id=id, type=OPEN))
+    tprint(tag("div",
+               classList=["template"],
+               id=id,
+               type=OPEN,
+               style='position: relative;'))
     indent()
-    tprint(tag("table", type=OPEN))
+
+    # if VOWEL, add a background image.
+    if ptype == VOWEL:
+        src_str = "src='/static/img/Blank_vowel_trapezoid.png'"
+        w_str = "width={0}px".format(IPA_TRAPEZOID_W)
+        h_str = "height={0}px".format(IPA_TRAPEZOID_H)
+        imgdata = "{0} {1} {2}".format(src_str, w_str, h_str)
+        img = tag("img", other=imgdata, type=OPEN)
+        tprint(img)
+
+    # Positioning used to get table on top of img
+    table_style = None
+    if ptype == VOWEL:
+        table_style = "position: absolute; top: 0px;"
+
+    tprint(tag("table", type=OPEN, style=table_style))
     indent()
     tprint(tag("tbody", type=OPEN))
     indent()
@@ -582,6 +606,7 @@ def ipaboxgen(table, headers, ptype):
                     classList = []
                     onclick = None
                     other = None
+                    style = None
 
                     if not col:  # col == "" or None
                         classList.append("ipa-box-empty")
@@ -602,10 +627,34 @@ def ipaboxgen(table, headers, ptype):
                              axes[ipa_table.Y], col[axes[ipa_table.Y]],
                              axes[ipa_table.Z], col[axes[ipa_table.Z]]))
 
+                        # For vowels add extra CSS for positioning
+                        # In the future, make this a helper function
+                        # Coord (1,1) is the top left cell
+                        if ptype == VOWEL:
+                            max_x = len(table[1])
+                            max_y = len(table)
+
+                            x_ratio = x / max_x
+                            y_ratio = y / max_y
+
+                            x_px = x_ratio * IPA_TRAPEZOID_W
+                            y_px = y_ratio * IPA_TRAPEZOID_H
+
+                            x_trans = x_px + (y_ratio * IPA_TRAPEZOID_W * (0.5 * (1 - x_ratio)))
+                            y_trans = y_px
+
+                            x_str = "left: {0}px;".format(x_trans)
+                            y_str = "top: {0}px;".format(y_trans)
+
+                            pos_str = "position: absolute;"
+
+                            style = "{0} {1} {2}".format(pos_str, x_str, y_str)
+
                     tprint(tag("td", body=body,
                                 classList=classList,
                                 onclick=onclick,
                                 other=other,
+                                style=style,
                                 type=BOTH))
 
 
