@@ -34,6 +34,10 @@ ROW_SZ = 8  # How many columns per row in pboxgen
 CONSONANT = "consonant"
 VOWEL = "vowel"
 
+# Used for deciding if selectors are activated (Shown) or inactive (hidden)
+ACTIVE = True
+INACTIVE = False
+
 ################################################################################
 #                                                                              #
 #                        HELPERS                                               #
@@ -78,6 +82,9 @@ def tag(t, body=None, id=None, classList=None, onclick=None, other=None, type=BO
     else:
         raise ValueError("Invalid tag type! Must specify either open tag, close tag, or both!")
 
+def br():
+    tprint(tag("br", type=OPEN))
+
 
 def comment(com):
     """Wraps com in HTML comment tags and returns it as a string"""
@@ -121,18 +128,25 @@ def popovertemplate(popoverPrefix, selectWhat):
     tprint('   title="<b>Select {0}</b>"'.format(selectWhat))
     tprint('   data-content="Error loading. Sorry!">Select {0}...</a>'.format(selectWhat))
 
-# Given the info for a trait, print out the complete HTML representing:
-# 1) A mode selector (<select>at least, at most...</select>)
-# 2) A k selector    (<input>)
-# 3) A placeholder template to be overwritten by JS later.
-def modekpopover(selectorID, popoverPrefix, selectWhat, isActive):
-    cls = [selectorID, "template"]
+def getSelectorClassList(htmlID, isActive):
+    cls = [htmlID, "template"]
     if isActive:
         cls.append("active")
+    else:
+        cls.append("inactive")
+    return cls
+
+# Given the info for a trait, print out the complete HTML representing:
+# 1)   A mode selector (<select>at least, at most...</select>)
+# 2)   A k selector    (<input>)
+# 2.5) Some optional number of <br> tags
+# 3)   A placeholder template to be overwritten by JS later.
+def modekpopoverdiv(htmlID, popoverPrefix, selectWhat, isActive, num_br=0):
+    cls = getSelectorClassList(htmlID, isActive)
 
     div = tag("div",
               classList=cls,
-              other='type="{0}"'.format(selectorID),
+              other='type="{0}"'.format(htmlID),
               type=OPEN)
 
     tprint(div + "Contains")
@@ -140,22 +154,142 @@ def modekpopover(selectorID, popoverPrefix, selectWhat, isActive):
 
     modeselector()
     kselector()
-    popovertemplate(popoverPrefix, selectWhat, isActive)
+
+    for i in range(num_br):
+        br()
+
+    popovertemplate(popoverPrefix, selectWhat)
 
     dedent()
     tprint(tag("div", type=CLOSE))
 
+def popoverdiv(htmlID, popoverPrefix, selectWhat, isActive):
+    cls = getSelectorClassList(htmlID, isActive)
+
+    tprint(tag("div", classList=cls, other='type="%s"' % htmlID, type=OPEN))
+    indent()
+    popovertemplate(popoverPrefix, selectWhat)
+    dedent()
+    tprint(tag("div", type=CLOSE))
+
+# Print out the complete HTML representing a simple boolean selector,
+# consisting of a div whose contents are the string provided as argument
+def booldiv(htmlID, body, isActive):
+    cls = getSelectorClassList(htmlID, isActive)
+
+    tprint(tag("div", classList=cls, other='type="%s"' % htmlID, type=OPEN))
+    indent()
+    tprint(body)
+    dedent()
+    tprint(tag("div", type=CLOSE))
+
+
+# Given a single selector dictionary (From selectors.py), print out the entire
+# HTML of that selector's body. This is the HTML that will be shown to the user
+# when a selector is picked from the dropdown.
+def selectorbody(sel, isActive):
+    mode    = sel[selectors.MODE]
+    htmlID  = sel[selectors.HTML_ID]
+
+    # If this is an inline IPA body, print a mode/k/popover div with extra spacing
+    if mode in [selectors.PICK_K_IPA]:
+        popoverPrefix   = sel[selectors.POPOVER_PREFIX]
+        selWhat         = sel[selectors.SELECT_WHAT]
+        modekpopoverdiv(htmlID, popoverPrefix, selWhat, isActive, num_br=2)
+    # If this is a popover-based body with multiple selections, print mode/k/popover div
+    elif mode in [selectors.PICK_K, selectors.PICK_CLASS, selectors.PICK_MULTI]:
+        popoverPrefix   = sel[selectors.POPOVER_PREFIX]
+        selWhat         = sel[selectors.SELECT_WHAT]
+        modekpopoverdiv(htmlID, popoverPrefix, selWhat, isActive)
+    # If this is a popover-based body with one selection, print popover div
+    elif mode == selectors.PICK_ONE:
+        popoverPrefix   = sel[selectors.POPOVER_PREFIX]
+        selWhat         = sel[selectors.SELECT_WHAT]
+        popoverdiv(htmlID, popoverPrefix, selWhat, isActive)
+    # If there is nothing to select, print basic bool div
+    elif mode == selectors.BOOLEAN:
+        body = sel[selectors.BOOL_BODY]
+        booldiv(htmlID, body, isActive)
+
 # Given a list of traits, print the HTML representing a <select>/<option>
-# structure allowing user to pick one trait. The first trait in the list will be
-# active (selected), and the others will be inactive (unselected)
-def traitselector():
+# structure allowing user to pick one trait.
+# Raise an exception if the provided argument is Falsy (None or [])
+def selectdropdowndiv(selectorList):
+    if not selectorList:
+        raise ValueError("Cannot create selectdropdown of an empty list!")
+
+
+    tprint(comment("Auto-generated template for the selectors dropdown"))
+    tprint(tag("div",
+               classList = ["alert", "alert-info", "trait-div"],
+               other = 'id="trait-div-template" role="alert"',
+               type=OPEN))
+    indent()
+
+    # == Print out the dropdown selector==
+    htmlID = "trait-selector"
+    tprint(tag("select",
+               classList=[htmlID, "template"],
+               type=OPEN,
+               other='type=%s onchange="handleTraitSelect(this)"' % htmlID))
+    indent()
+    for sel in selectorList:
+        tprint(tag("option", body=sel[selectors.SELECT_NAME], type=BOTH))
+    dedent()
+    tprint(tag("select", type=CLOSE))
+
+    # == Print out the bodies of each selector ==
+
+    # The first is activated, and the others are not
+    selectorbody(selectorList[0], ACTIVE)
+    for sel in selectorList[1:]:
+        selectorbody(sel, INACTIVE)
+
+    dedent()
+    tprint(tag("div", type=CLOSE))
+
+# Print out the popover bodies (templates) for every selector in selectorList
+# These are the templates that will be copied into the document by JS
+def popoverbodiesdiv(selectorList):
+
+    for sel in selectorList:
+        mode = sel[selectors.MODE]
+
+        # currently just a program sketch
+
+        if mode in [selectors.PICK_K]:
+            # pboxgen(..., ...)
+            pass
+        elif mode in "[selectors.PICK_K_IPA]": # not yet defined
+            # ipaboxgen (...)
+            pass
+        elif mode in [selectors.PICK_CLASS]:
+            # clboxgen(..., ...)
+            pass
+        elif mode in [selectors.PICK_ONE, selectors.PICK_MULTI]:
+            # lboxgen(..., ...)
+            pass
+        elif mode in [selectors.BOOLEAN]:
+            # No popover to print!
+            continue
+        else:
+            raise ValueError("Unexpected mode in popoverbodiesdiv: %s" % mode)
+
+
     return
 
-# Given the info for a trait, print out the complete HTML representing:
+
+# Given the info for a list of selectors, print out the complete HTML representing
+# the following for every selector in the list:
 # 1) An <option> selector containing each
 # 2) An associated div to be shown when each <option> is active
 # 3) An associated popover to be copied as needed.
 def traitselectorgen():
+    # This isn't yet implemented - other functions do the job and it would take
+    # more code to get this to auto-generate the popovers. Steps 1) and 2) are
+    # completed by the above function (selectdropdown).
+    # Step 3) requires additional info in the selectors.py definition (e.g glyph lists)
+    raise NotImplementedError("Not yet written")
     return
 
 # Types of selector: (for more info see selectors.py)
@@ -200,8 +334,6 @@ def traitselectorgen():
 #     tprint(tag("div", type=CLOSE))
 
 # TODO: Poor style to have "consonant"/"vowel" magic strings
-# I propose a constant (int?) consonant.CONSONANT or phoneme.CONSONANT to use
-# here instead, and then the str values are mapped from there
 def pboxgen(pType, glyphList):
     """Generate the html for a phoneme selector table, using glyphList as source
     glyphList is a str[] containing all valid glyphs. pType is either "consonant"/"vowel"
@@ -264,8 +396,6 @@ def pboxgen(pType, glyphList):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-
-# TODO: need to change this to take in header dicts instead of [][]
 def clboxgen(pType, headers):
     """Generate the html for a natural class selector table, using headers as a source.
     headers is a dict mapping trait types to possible trait values
@@ -353,13 +483,10 @@ def lboxgen(lType, listData):
     indent()
 
     for s in otherList:
-        tprint(tag("tr", type=OPEN))
-        indent()
-        tprint(tag("td", body=s,
-                         classList=["lbox-label"],
-                         onclick="handleLboxLabel(this, %s)" % multStr))
-        dedent()
-        tprint(tag("tr", type=CLOSE))
+        td = tag("td", body=s,
+                       classList=["lbox-label"],
+                       onclick="handleLboxLabel(this, %s)" % multStr)
+        tprint(tag("tr", body=td, type=BOTH))
 
     dedent()
     tprint(tag("tbody", type=CLOSE))
@@ -509,6 +636,9 @@ def main(output=None):
 
     tprint(comment("  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###"))
 
+    # Generate the dropdown menu and its associated divs
+    selectdropdowndiv(selectors.SELECTORS)
+
     # Generate phoneme selectors
     pboxgen("consonant",    consonants.GLYPHS)
     pboxgen("vowel",        vowels.GLYPHS)
@@ -526,7 +656,7 @@ def main(output=None):
     lboxgen("headedness",       selectors.HEADEDNESS)
     lboxgen("agreement",        selectors.AGREEMENT)
     lboxgen("case",             selectors.CASE)
-    lboxgen("metaclass",        metaclasses.METACLASSES)
+    lboxgen("metaclass",        selectors.METACLASS)
 
     # Generate IPA selectors
     #print(ipa_table.CONSONANT_TABLE)

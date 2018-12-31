@@ -21,6 +21,7 @@ var AGREEMENT_ID            = "agreement-selector";
 var CASE_ID                 = "case-selector";
 var IPA_CONSONANT_ID        = "ipa-consonant-selector";
 var IPA_VOWEL_ID            = "ipa-vowel-selector";
+var METACLASS_ID            = "metaclass-selector";
 
 // Should we list all members of the matching language set?
 // Changed by handleListToggle
@@ -33,6 +34,12 @@ var listMode = false;
 var VOICING = 0;
 var PLACE   = 1;
 var MANNER  = 2;
+
+// COLORS
+var DANGER  = "alert-danger";
+var INFO    = "alert-info";
+var WARN    = "alert-warning";
+var SUCCESS = "alert-success";
 
 /*****************************************************************************/
 /*                                Initializers                               */
@@ -57,11 +64,16 @@ function frontInit() {
   initPopovers("h-lbox-selector",   "#headedness-template");
   initPopovers("a-lbox-selector",   "#agreement-template");
   initPopovers("c-lbox-selector",   "#case-template");
-  initPopovers("s-lbox-selector",   "#syllable-template")
+  initPopovers("s-lbox-selector",   "#syllable-template");
+  initPopovers("mc-lbox-selector",  "#metaclass-template");
+
   // initPopovers("ipacbox-selector",  "#ipacbox-template");
+
+
 
   // Replace IPA chart placeholders with actual copies of the IPA chart.
   initIPAChart("ipac-selector", "#ipacbox-template");
+  initIPAChart("ipav-selector", "#ipavbox-template");
 
   reloadPopovers();
   reloadTooltips();
@@ -122,6 +134,26 @@ function initPopovers(tgtClass, templateID) {
    $uninit.replaceWith($template);
  }
 
+/*****************************************************************************/
+/*                               Output Functions                            */
+/*****************************************************************************/
+
+/* Set mode (color palette) of the output alert box to be the mode specified
+ * as an argument (WARN = yellow, ERROR = red, INFO = blue, SUCCESS = green) */
+function setOutputMode(mode) {
+  if (![DANGER, INFO, WARN, SUCCESS].includes(mode))
+    console.log("Attempted to set unexpected output mode for the results alert div.");
+
+  var $resultDiv = $("#results-div");
+  $resultDiv.removeClass(`${DANGER} ${INFO} ${WARN} ${SUCCESS}`);
+  $resultDiv.addClass(mode);
+}
+
+function displayError(err) {
+  var $result = $("#results");
+  setOutputMode(DANGER);
+  $result.text(err);
+}
 
 /*****************************************************************************/
 /*                                Event Handlers                             */
@@ -319,7 +351,7 @@ function toggleClassesEach(el, els, cls) {
 
 // Unset all unselected classes
 // This one is supposed to model intersectivity.
-// I think it's going to be too much of a PITA
+// I think it's going to be too much of a pain
 function toggleClassesOthers () {
 }
 
@@ -341,7 +373,10 @@ function getElementsOfHeader(el) {
   return matches;
 }
 
-
+// Click handler for ipa vowel vox labels
+function handleIpavboxLabel(element) {
+  handleIpacboxLabel(element);
+}
 
 // Click handler for ipa consonant box labels
 function handleIpacboxLabel(element) {
@@ -425,6 +460,100 @@ function handleIpacboxLabel(element) {
 
 }
 
+// Returns true if the provided request parameters are valid, and false otherwise.
+// E.g. Make sure that if a request requires a selList, that list is provided and
+// nonempty.
+function validateRequest(req) {
+  var trait = req["trait"];
+
+  switch (trait) {
+    case CONSONANT_ID:
+    case VOWEL_ID:
+    case IPA_CONSONANT_ID:
+    case IPA_VOWEL_ID:
+    case CONSONANT_CLASS_ID:
+    case VOWEL_CLASS_ID:
+    case SYLLABLE_ID:
+    case MORPHOLOGY_ID:
+    case WORD_FORMATION_ID:
+    case METACLASS_ID:
+      // For requests that require a mode and k
+      // Ensure mode is valid
+      var mode = req["mode"];
+      if (!mode) {
+        displayError("Request expected equality mode but found none!");
+        console.log("Request expected equality mode but found none!");
+        return false;
+      }
+
+      if (!["EQ", "NEQ", "GT", "GEQ", "LT", "LEQ"].includes(mode)) {
+        displayError("Please enter a valid equality mode.");
+        console.log(`Invalid mode ${mode} was provided to a request.`);
+        return false;
+      }
+      // Ensure k is a nonnegative integer.
+      var k = req["k"];
+      if (!k) {
+        displayError("Please enter a number");
+        console.log("k value expected but not found");
+        return false;
+      }
+
+      // Cast k to a number and keep trying
+      k = Number(k);
+      if (Number.isNaN(k)) {
+        displayError("Please enter a number only");
+        console.log("A number was expected for k, but other text was received.");
+        return false;
+      }
+      if (!Number.isInteger(k)) {
+        displayError("Please enter a whole number");
+        console.log("Requests require whole number values of k.")
+        return false;
+      }
+      if (k < 0) {
+        displayError("Please enter a positive number");
+        console.log("Requests require non-negative values of k.");
+        return false;
+      }
+
+      // FALL THROUGH
+    case FORMATION_FREQ_ID:
+    case WORD_ORDER_ID:
+    case HEADEDNESS_ID:
+    case AGREEMENT_ID:
+    case CASE_ID:
+      // For requests that require a selList
+      // Ensure the selList is defined and nonempty
+      var selList = req["selList"];
+      if (!selList) {
+        displayError("Please select something");
+        console.log("Request expected selList but found none!");
+        return false;
+      }
+
+      if (selList.length == 0) {
+        displayError("Please select something");
+        console.log("Nothing was selected!");
+        return false;
+      }
+
+      // FALL THROUGH
+    case CONSONANT_PLACES_ID:
+    case CONSONANT_MANNERS_ID:
+    case COMPLEX_CONSONANT_ID:
+    case TONE_ID:
+    case STRESS_ID:
+      // These queries can't fail because they lack requirements
+      return true;
+
+    default:
+      console.log("Encountered unexpected trait during request validation - Aborting!");
+      return false;
+
+  }
+}
+
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
 // TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
@@ -468,6 +597,7 @@ function handleSubmit() {
       case VOWEL_ID:
       case IPA_CONSONANT_ID:
       case IPA_VOWEL_ID:
+      case METACLASS_ID:
         reply = `contain ${modeStr} ${k} of ${prettySelList}`;
         break;
       case CONSONANT_CLASS_ID:
@@ -494,7 +624,7 @@ function handleSubmit() {
         reply = "have predictable stress";
         break;
       case SYLLABLE_ID:
-        reply = `use ${modeStr} ${k} of the syllable structures ${selList}`;
+        reply = `use ${modeStr} ${k} of the syllable structures ${prettySelList}`;
         break;
       case MORPHOLOGY_ID:
         reply = `use ${modeStr} ${k} of the morphological types ${prettySelList}`;
@@ -530,7 +660,19 @@ function handleSubmit() {
     requestParams["mode"]         = mode;
     requestParams["reply"]        = reply;
 
+    // If this request is invalid, don't consider it.
+    if (!validateRequest(requestParams)) {
+      console.log("Skipping an invalid request...");
+      continue;
+    }
+
     requests.push(requestParams);
+  }
+
+  // If there are no requests to send, don't send anything
+  if (requests.length == 0) {
+    console.log("No valid requests specified, aborting without submitting...");
+    return;
   }
 
   var payload = "payload=" + JSON.stringify(requests);
@@ -553,6 +695,8 @@ function handleListToggle() {
 /*****************************************************************************/
 // Callback function for AJAX -- in development
 function callback(reply) {
+  // Make sure the results div is in the correct mode.
+  setOutputMode(INFO);
   $("#results").html(reply)
   reloadTooltips();
 }

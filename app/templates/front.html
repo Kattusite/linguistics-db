@@ -41,18 +41,25 @@
       <!-- dropdowns for traits -->
       <!-- currently placeholders -->
       <div id="trait-divs">
-        <div id="trait-div-1" class="alert alert-success">
+
+        <!-- First selector block -->
+        <div id="trait-div-1" class="alert alert-info">
           <select>
             <option>Contains phoneme: </option>
           </select>
-          <input type="text" size="2">
+          <br><br>
+          <p>Loading...</p>
         </div>
-        <div id="trait-div-2" class="alert alert-success hidden">
+
+        <!-- Second selector block (initially hidden) -->
+        <div id="trait-div-2" class="alert alert-info hidden">
           <select>
             <option>Contains phoneme: </option>
           </select>
-          <input type="text" size="2">
+          <br><br>
+          <p>Loading...</p>
         </div>
+
       </div>
     </div>
 
@@ -61,31 +68,39 @@
       <span id="results">Submit a valid query to get started.</span>
     </div>
 
-    <!-- Template for trait selector -->
-    <div id="trait-div-template" class="alert alert-info trait-div" role="alert">
-      <!-- consider making a dropdown from bootstrap -->
-      <select type="trait-selector" class="trait-selector template " onchange="handleTraitSelect(this)">
-        <option>Contains consonant: </option>
-        <option>Contains consonant class: </option>
-        <option>Contains vowel: </option>
-        <option>Contains vowel class: </option>
-        <option>Contains IPA consonant: </option>
+    <!-- About button in bottom right. Placed here for convenience -->
+    <!-- so you don't have to scroll all the way down to edit it -->
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <a href="/about">About...</a>
+      </div>
+    </footer>
+
+    <!-- ANCHOR: AUTOGEN START -->
+    <!--  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###-->
+    <!--Auto-generated template for the selectors dropdown-->
+    <div class="alert alert-info trait-div" id="trait-div-template" role="alert">
+      <select class="trait-selector template" type=trait-selector onchange="handleTraitSelect(this)">
+        <option>Contains consonant:</option>
+        <option>Contains vowel:</option>
+        <option>Contains metaclass:</option>
+        <option>Contains consonant class:</option>
+        <option>Contains vowel class:</option>
         <option>Has 3+ consonant places</option>
         <option>Has 2+ consonant manners</option>
         <option>Has complex consonants</option>
         <option>Has tone</option>
-        <option>Has predictable stress</option>
-        <option>Allows syllable structure: </option>
-        <option>Morphological type: </option>
-        <option>Word formation strategy: </option>
-        <option>Word formation frequency: </option>
-        <option>Basic word order: </option>
-        <option>Headedness: </option>
-        <option>Agreement: </option>
-        <option>Case: </option>
+        <option>Has stress</option>
+        <option>Allows syllable structure:</option>
+        <option>Morphological type:</option>
+        <option>Word formation strategy:</option>
+        <option>Word formation frequency:</option>
+        <option>Basic word order:</option>
+        <option>Headedness:</option>
+        <option>Case:</option>
+        <option>Agreement:</option>
       </select>
-      <!-- Consonant Selector -->
-      <div type="consonant-selector" class="consonant-selector template  active">Contains
+      <div class="ipa-consonant-selector template active" type="ipa-consonant-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -95,14 +110,52 @@
           <option>not equal to</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-        <a class="cbox-selector-uninit btn btn-outline-secondary"
+        <br>
+        <br>
+        <a class="ipac-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
            data-toggle="popover"
-           title="<b>Select phonemes</b>"
-           data-content="Error loading. Sorry!">Select Phonemes...</a>
+           title="<b>Select consonants</b>"
+           data-content="Error loading. Sorry!">Select consonants...</a>
       </div>
-      <div type="consonant-class-selector" class="consonant-class-selector template  inactive">Contains
+      <div class="ipa-vowel-selector template inactive" type="ipa-vowel-selector">Contains
+        <select class="mode-selector">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
+        <br>
+        <br>
+        <a class="ipav-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select vowels</b>"
+           data-content="Error loading. Sorry!">Select vowels...</a>
+      </div>
+      <div class="metaclass-selector template inactive" type="metaclass-selector">Contains
+        <select class="mode-selector">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+        </select>
+        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
+        <a class="mc-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select metaclasses</b>"
+           data-content="Error loading. Sorry!">Select metaclasses...</a>
+      </div>
+      <div class="consonant-class-selector template inactive" type="consonant-class-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -119,24 +172,7 @@
            title="<b>Select natural classes</b>"
            data-content="Error loading. Sorry!">Select natural classes...</a>
       </div>
-      <div type="vowel-selector" class="vowel-selector template  inactive">Contains
-        <select class="mode-selector">
-          <option>at least</option>
-          <option>at most</option>
-          <option>exactly</option>
-          <option>less than</option>
-          <option>more than</option>
-          <option>not equal to</option>
-        </select>
-        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-        <a class="vbox-selector-uninit btn btn-outline-secondary"
-           role="button"
-           data-html="true"
-           data-toggle="popover"
-           title="<b>Select phonemes</b>"
-           data-content="Error loading. Sorry!">Select Phonemes...</a>
-      </div>
-      <div type="vowel-class-selector" class="vowel-class-selector template  inactive">Contains
+      <div class="vowel-class-selector template inactive" type="vowel-class-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -153,36 +189,22 @@
            title="<b>Select natural classes</b>"
            data-content="Error loading. Sorry!">Select natural classes...</a>
       </div>
-      <div type="ipa-consonant-selector" class="ipa-consonant-selector template  inactive">Contains
-        <select class="mode-selector">
-          <option>at least</option>
-          <option>at most</option>
-          <option>exactly</option>
-          <option>less than</option>
-          <option>more than</option>
-          <option>not equal to</option>
-        </select>
-        <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-        <br>
-        <br>
-        <div class="ipac-selector-uninit">Loading IPA Consonants...</div>
-      </div>
-      <div type="consonant-places" class="consonant-places template  inactive">
+      <div class="consonant-places template inactive" type="consonant-places">
         3+ Places of Consonant Articulation
       </div>
-      <div type="consonant-manners" class="consonant-manners template  inactive">
+      <div class="consonant-manners template inactive" type="consonant-manners">
         2+ Manners of Consonant Articulation
       </div>
-      <div type="complex-consonants" class="complex-consonants template  inactive">
+      <div class="complex-consonants template inactive" type="complex-consonants">
         Complex Consonants
       </div>
-      <div type="tone-selector" class="tone-selector template  inactive">
-        Tone (including "Pitch Accent")
+      <div class="tone-selector template inactive" type="tone-selector">
+        Tone (Including "Pitch Accent")
       </div>
-      <div type="stress-selector" class="stress-selector template  inactive">
+      <div class="stress-selector template inactive" type="stress-selector">
         Predictable Stress
       </div>
-      <div type="syllable-selector" class="syllable-selector template  inactive">
+      <div class="syllable-selector template inactive" type="syllable-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -197,9 +219,9 @@
            data-html="true"
            data-toggle="popover"
            title="<b>Select syllables</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select syllables...</a>
       </div>
-      <div type="morphological-selector" class="morphological-selector template  inactive">
+      <div class="morphological-selector template inactive" type="morphological-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -214,9 +236,9 @@
            data-html="true"
            data-toggle="popover"
            title="<b>Select morphological type</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select morphological type...</a>
       </div>
-      <div type="word-formation-selector" class="word-formation-selector template  inactive">
+      <div class="word-formation-selector template inactive" type="word-formation-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -231,54 +253,50 @@
            data-html="true"
            data-toggle="popover"
            title="<b>Select word formation</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select word formation...</a>
       </div>
-      <div type="formation-freq-selector" class="formation-freq-selector template  inactive">
+      <div class="formation-freq-selector template inactive" type="formation-freq-selector">
         <a class="ff-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
            data-toggle="popover"
            title="<b>Select frequency</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select frequency...</a>
       </div>
-      <div type="word-order-selector" class="word-order-selector template  inactive">
+      <div class="word-order-selector template inactive" type="word-order-selector">
         <a class="wo-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
            data-toggle="popover"
            title="<b>Select word order</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select word order...</a>
       </div>
-      <div type="headedness-selector" class="headedness-selector template  inactive">
+      <div class="headedness-selector template inactive" type="headedness-selector">
         <a class="h-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
            data-toggle="popover"
            title="<b>Select headedness</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select headedness...</a>
       </div>
-      <div type="agreement-selector" class="agreement-selector template  inactive">
-        <a class="a-lbox-selector-uninit btn btn-outline-secondary"
-           role="button"
-           data-html="true"
-           data-toggle="popover"
-           title="<b>Select agreement</b>"
-           data-content="Error loading. Sorry!">Select...</a>
-      </div>
-      <div type="case-selector" class="case-selector template  inactive">
+      <div class="case-selector template inactive" type="case-selector">
         <a class="c-lbox-selector-uninit btn btn-outline-secondary"
            role="button"
            data-html="true"
            data-toggle="popover"
            title="<b>Select case</b>"
-           data-content="Error loading. Sorry!">Select...</a>
+           data-content="Error loading. Sorry!">Select case...</a>
       </div>
-      <!--  -->
+      <div class="agreement-selector template inactive" type="agreement-selector">
+        <a class="a-lbox-selector-uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select agreement</b>"
+           data-content="Error loading. Sorry!">Select agreement...</a>
+      </div>
     </div>
-
-    <!-- ANCHOR: AUTOGEN START -->
-    <!--  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###-->
-
+    
     <!--Auto-generated template for the consonant phoneme selector.-->
     <div id="cbox-template" class="template">
       <table>
@@ -384,7 +402,7 @@
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the vowel phoneme selector.-->
     <div id="vbox-template" class="template">
       <table>
@@ -430,7 +448,7 @@
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the consonant class selector.-->
     <div id="ccbox-template" class="template">
       <table class="consonant-class-selector">
@@ -498,7 +516,7 @@
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the vowel class selector.-->
     <div id="vcbox-template" class="template">
       <table class="vowel-class-selector">
@@ -546,276 +564,142 @@
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the syllable list selector.-->
     <div id="syllable-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">CV</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">CVC</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">CCV</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCV</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCCV</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">VCC</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCC</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCCC</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CVC</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCCV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCC</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCC</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCCC</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the morphology list selector.-->
     <div id="morphology-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">isolating</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">analytic</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">fusional</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">agglutinating</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">polysynthetic</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">isolating</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">analytic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">fusional</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">agglutinating</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">polysynthetic</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the word-formation list selector.-->
     <div id="word-formation-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">affixation</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">suffixation</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">prefixation</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">infixation</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">compounding</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">root-and-pattern</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">internal change</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">suppleton</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">stress or tone shift</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">reduplication</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">conversion</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">purely isolating</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">affixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suffixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">prefixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">infixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">compounding</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">root-and-pattern</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">internal change</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suppleton</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">stress or tone shift</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">reduplication</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">conversion</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">purely isolating</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the formation-freq list selector.-->
     <div id="formation-freq-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively suffixing</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly suffixing</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively prefixing</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly prefixing</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">equal prefixing and suffixing</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively non-affixal</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly non-affixal</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">equal affixation and other</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly isolating</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively isolating</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively suffixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly suffixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively prefixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly prefixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal prefixing and suffixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively non-affixal</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly non-affixal</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal affixation and other</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly isolating</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively isolating</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the word-order list selector.-->
     <div id="word-order-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">SVO</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">SOV</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">VSO</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">VOS</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">OVS</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">OSV</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">multiple</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">SVO</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">SOV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">VSO</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">VOS</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">OVS</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">OSV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">multiple</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the headedness list selector.-->
     <div id="headedness-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-initial</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-final</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly head-initial</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly head-final</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">mixed headedness</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-initial</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-final</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly head-initial</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly head-final</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mixed headedness</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the agreement list selector.-->
     <div id="agreement-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the case list selector.-->
     <div id="case-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
         </tbody>
       </table>
     </div>
-
+    
     <!--Auto-generated template for the metaclass list selector.-->
     <div id="metaclass-template" class="template">
       <table>
         <tbody>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">voiced</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">voiceless</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">sonorant</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">obstruents</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">consonantal</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">vocalic</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">syllabic</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">nonsyllabic</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">continuant</td>
-          </tr>
-          <tr>
-            <td class="lbox-label" onclick="handleLboxLabel(this, true)">noncontinuant</td>
-          </tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiced</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiceless</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">sonorant</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">obstruents</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consonantal</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">vocalic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">syllabic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">nonsyllabic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">continuant</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">noncontinuant</td></tr>
         </tbody>
       </table>
     </div>
@@ -1203,14 +1087,6 @@
     </div>
     <!--  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###-->
     <!-- ANCHOR: AUTOGEN END -->
-
-    <footer class="footer fixed-bottom">
-      <div class="container">
-        <a href="/about">About...</a>
-      </div>
-    </footer>
-
-
   </body>
 
   <!-- Hide popovers when clicking body -->

@@ -143,6 +143,7 @@ class Language:
         thisSet = set(ls)
         thatSet = set(selList)
         both = list(thatSet.intersection(thisSet))
+
         # If number of items in both fails the mode-comparison to k, return []
         if (not compareByMode(len(both), k, mode)):
             return []
@@ -165,6 +166,7 @@ class Language:
         """Returns the consonant glyphs in this language that are part of a metaclass in
         selList, if the number of matches is at least* (or mode) k"""
         ls = consonants.getGlyphsFromClasses(selList)
+        print("ls", ls)
         return self.matchConsonants(ls, k, mode)
 
     def matchVowelClasses(self, selList, k, mode):
@@ -179,22 +181,23 @@ class Language:
         # BUG: in utils.py, this might relies on the wrong class dict -
         # also it uses intersection, rather than union. bug?
         ls = metaclasses.getGlyphsFromClasses(selList)
-        return self.match(self.getPhonemes(), selList, k, mode)
+        phonemes = self.getPhonemes()
+        return self.match(phonemes, ls, k, mode)
 
     def matchSyllable(self, selList, k, mode):
         """Returns the syllables in this language that are part of selList, if
         the number of matches is *mode *k"""
-        return self.match(self.getSyllables(), k, mode)
+        return self.match(self.getSyllables(), selList, k, mode)
 
     def matchMorphologicalType(self, selList, k, mode):
         """Returns the morphological types in this language that are part of selList,
         if the number of matches is at least* (or mode) k"""
-        return self.match(self.getMorphologicalTypes(), k, mode)
+        return self.match(self.getMorphologicalTypes(), selList, k, mode)
 
     def matchWordFormation(self, selList, k, mode):
         """Return the word formation strategies in this language that are part of selList,
         if the number of matches is at least* (or mode) k"""
-        return(self.getWordFormations(), k, mode)
+        return self.match(self.getWordFormations(), selList, k, mode)
 
 
 

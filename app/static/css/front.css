@@ -232,7 +232,10 @@ span[data-toggle=tooltip] {
 }
 
 .ipa-box-empty {
-
+  width: 25px;
+  height: 25px;
+  max-width: 25px;
+  max-height: 25px;
 }
 
 .ipa-box-impossible {

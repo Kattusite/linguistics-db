@@ -18,12 +18,9 @@
 #              E.G. a list of strings, a single string, a mode string, a k-value
 # FUNCTION: A function in the language class that is used to query for this trait.
 #           e.g. Language.matchConsonants
-# BODY: Some representation of what content goes in the selector div
-#       (i.e. is it a fixed string, or a kmodepopover block, or just a popover?)
-#       Either a string directly representing the value,
-#       or a function that can be called to print that string (From allgen.py)
-#       -- is this needed? it seems like MODE dictates which function to choose.
-#          only if MODE == BOOLEAN would a string be needed
+# BOOL_BODY: Some representation of what content goes in the selector div
+#            Currently used only if MODE==BOOLEAN. In this case, BOOL_BODY will be the
+#            string that should be included as the body of the HTML selector
 # HTML_ID: A string like "syllable selector" used to represent the class and type
 #          attribute of HTML elements responsible for handling this trait.
 # POPOVER_PREFIX: A string like "h-lbox-selector" used as the class for tables
@@ -41,13 +38,14 @@
 # If the right-hand-side list is [], it is treated as the left-hand-side string itself
 
 from phonemes import metaclasses
-from lingdb import language
+from lingdb.language import Language
 
 # Dictionary keys
 NAME            = "name"
 DICT            = "dict"
 MULTI           = "multi"
 MODE            = "mode"
+BOOL_BODY       = "bool body"
 REPLY           = "reply"
 REPLY_VARS      = "reply vars"
 FUNCTION        = "function"
@@ -60,7 +58,8 @@ SELECT_NAME     = "select name"
 PICK_ONE    = "pick one"    # lbox (multi = false)
 PICK_CLASS  = "pick class"  # clboxes
 PICK_MULTI  = "pick multi"  # lbox (multi = true)
-PICK_K      = "pick k"      # ipaboxes, pboxes
+PICK_K      = "pick k"      # pboxes
+PICK_K_IPA  = "pick k ipa"  # ipaboxes (displayed inline, not as popover)
 BOOLEAN     = "boolean"     # no boxes (true/false only)
 
 # ===============================
@@ -75,6 +74,19 @@ CONSONANT = {
     FUNCTION: Language.matchConsonants,
     HTML_ID: "consonant-selector",
     POPOVER_PREFIX: "cbox-selector",
+    SELECT_WHAT: "consonants"
+}
+
+IPA_CONSONANT = {
+    SELECT_NAME: "Contains consonant:",
+    DICT: None,
+    MULTI: None,
+    MODE: PICK_K_IPA,
+    REPLY: "contain %s %s of %s",
+    REPLY_VARS: ["mode", "k", "selList"],
+    FUNCTION: Language.matchConsonants,
+    HTML_ID: "ipa-consonant-selector",
+    POPOVER_PREFIX: "ipac-selector",
     SELECT_WHAT: "consonants"
 }
 
@@ -104,16 +116,29 @@ VOWEL = {
     SELECT_WHAT: "vowels"
 }
 
+IPA_VOWEL = {
+    SELECT_NAME: "Contains vowel:",
+    DICT: None,
+    MULTI: None,
+    MODE: PICK_K_IPA,
+    REPLY: "contain %s %s of %s",
+    REPLY_VARS: ["mode", "k", "selList"],
+    FUNCTION: Language.matchVowels,
+    HTML_ID: "ipa-vowel-selector",
+    POPOVER_PREFIX: "ipav-selector",
+    SELECT_WHAT: "vowels"
+}
+
 VOWEL_CLASS = {
-    SELECT_NAME: "Contains consonant class:",
+    SELECT_NAME: "Contains vowel class:",
     DICT: None,
     MULTI: None,
     MODE: PICK_CLASS,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchConsonantClasses,
-    HTML_ID: "consonant-class-selector",
-    POPOVER_PREFIX: "ccbox-selector",
+    FUNCTION: Language.matchVowelClasses,
+    HTML_ID: "vowel-class-selector",
+    POPOVER_PREFIX: "vcbox-selector",
     SELECT_WHAT: "natural classes",
 }
 
@@ -122,6 +147,7 @@ CONSONANT_PLACES = {
     DICT: None,
     MULTI: None,
     MODE: BOOLEAN,
+    BOOL_BODY: "3+ Places of Consonant Articulation",
     REPLY: "contain 3+ places of consonant articulation",
     REPLY_VARS: None,
     FUNCTION: Language.containsConsonantPlaces,
@@ -135,6 +161,7 @@ CONSONANT_MANNERS = {
     DICT: None,
     MULTI: None,
     MODE: BOOLEAN,
+    BOOL_BODY: "2+ Manners of Consonant Articulation",
     REPLY: "contain 2+ manners of consonant articulation",
     REPLY_VARS: None,
     FUNCTION: Language.containsConsonantManners,
@@ -148,6 +175,7 @@ COMPLEX_CONSONANTS = {
     DICT: None,
     MULTI: None,
     MODE: BOOLEAN,
+    BOOL_BODY: "Complex Consonants",
     REPLY: "contain complex consonants",
     REPLY_VARS: None,
     FUNCTION: Language.containsComplexConsonants,
@@ -161,7 +189,8 @@ TONE = {
     DICT: None,
     MULTI: None,
     MODE: BOOLEAN,
-    REPLY: "have tone (including Pitch Accent)",
+    BOOL_BODY: 'Tone (Including "Pitch Accent")',
+    REPLY: "have tone",
     REPLY_VARS: None,
     FUNCTION: Language.containsComplexConsonants,
     HTML_ID: "tone-selector",
@@ -174,6 +203,7 @@ STRESS = {
     DICT: None,
     MULTI: None,
     MODE: BOOLEAN,
+    BOOL_BODY: "Predictable Stress",
     REPLY: "have stress",
     REPLY_VARS: None,
     FUNCTION: Language.containsStress,
@@ -183,7 +213,7 @@ STRESS = {
 }
 
 SYLLABLE = {
-    SELECT_NAME: "Allows syllable structure:"
+    SELECT_NAME: "Allows syllable structure:",
     DICT: {
         "CV":    [],
         "V":     [],
@@ -197,7 +227,7 @@ SYLLABLE = {
     },
     MULTI: True,
     MODE: PICK_MULTI,
-    REPLY: "contain %s %s of %s",
+    REPLY: "use %s %s of the syllable structures %s",
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchSyllable,
     HTML_ID: "syllable-selector",
@@ -225,7 +255,7 @@ MORPHOLOGY = {
 }
 
 WORD_FORMATION = {
-    SELECT_NAME: "Word formation strategy:"
+    SELECT_NAME: "Word formation strategy:",
     DICT: {
         "affixation": ["affixation", "prefixation or suffixation"],
         "suffixation": [],
@@ -276,7 +306,7 @@ FORMATION_MODE = {
 # The following dict is not tested for parsePhrase. It is simply a collection
 # of all legal combinations of the corresponding freq/mode dicts
 FORMATION = {
-    SELECT_NAME: "Word formation frequency:"
+    SELECT_NAME: "Word formation frequency:",
     DICT: {
         "exclusively suffixing": [],
         "mostly suffixing": [],
@@ -300,7 +330,7 @@ FORMATION = {
 }
 
 WORD_ORDER = {
-    SELECT_NAME: "Basic word order:"
+    SELECT_NAME: "Basic word order:",
     DICT: {
         "SVO": [],
         "SOV": [],
@@ -344,7 +374,7 @@ HEADEDNESS_MODE = {
 # The following dict is not tested for parsePhrase. It is simply a collection
 # of all legal combinations of the corresponding freq/mode dicts
 HEADEDNESS = {
-    SELECT_NAME: "Headedness:"
+    SELECT_NAME: "Headedness:",
     DICT: {
         "consistently head-initial": [],
         "consistently head-final": [],
@@ -381,7 +411,7 @@ CASE = {
 }
 
 AGREEMENT = {
-    SELECT_NAME: "Agreement",
+    SELECT_NAME: "Agreement:",
     DICT: {
         "none": ["doesn't have", "none"],
         "ergative/absolutive": [],
@@ -414,9 +444,11 @@ METACLASS = {
 # The order of this list determines the order in which traits will appear in the
 # selector dropdown on the site.
 SELECTORS = [
-    CONSONANT,
-    VOWEL,
-    METACLASSES,
+    IPA_CONSONANT,
+    IPA_VOWEL,
+    # CONSONANT,
+    # VOWEL,
+    METACLASS,
     CONSONANT_CLASS,
     VOWEL_CLASS,
     CONSONANT_PLACES,
@@ -433,3 +465,6 @@ SELECTORS = [
     CASE,
     AGREEMENT
 ]
+
+# function mappings used by lingdb_client.handleQuery()
+function_map = { sel[HTML_ID]: sel[FUNCTION] for sel in SELECTORS }
