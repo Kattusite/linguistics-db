@@ -530,12 +530,15 @@ def ipaboxgen(table, headers, ptype):
     indent()
 
     # if VOWEL, add a background image.
+    # TODO: Beware unintentional variable reuse/shadowing (make more modular)
     if ptype == VOWEL:
         src_str = "src='/static/img/Blank_vowel_trapezoid.png'"
         w_str = "width={0}px".format(IPA_TRAPEZOID_W)
         h_str = "height={0}px".format(IPA_TRAPEZOID_H)
         imgdata = "{0} {1} {2}".format(src_str, w_str, h_str)
-        img = tag("img", other=imgdata, type=OPEN)
+
+        style_str = "position: relative; top: 12px; left: 20px;"
+        img = tag("img", other=imgdata, style=style_str, type=OPEN)
         tprint(img)
 
     # Positioning used to get table on top of img
