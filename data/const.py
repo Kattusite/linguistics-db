@@ -32,6 +32,9 @@ G_P_COMPLEX_CONSONANTS = 13
 G_P_TONE               = 14
 G_P_STRESS             = 15
 
+G_NUM_PLACES  = 16
+G_NUM_MANNERS = 17
+
 #The strings to be added as fields in the JSON blob
 G_STR = [
     "time",             # G_TIME
@@ -50,6 +53,8 @@ G_STR = [
     "complex consonants",
     "tone",
     "stress",
+    "consonant places",
+    "consonant manners"
 ]
 
 # The strings to be searched for in the raw CSV data for phonetic properties

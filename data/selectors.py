@@ -170,6 +170,19 @@ CONSONANT_MANNERS = {
     SELECT_WHAT: None
 }
 
+CONSONANT_ARTICULATION = {
+    SELECT_NAME: "Has articulation features:",
+    DICT: { "places": [], "manners": [] },
+    MULTI: None,
+    MODE: PICK_K,
+    REPLY: "contain %s %s %s of consonant articulation",
+    REPLY_VARS: None,
+    FUNCTION: Language.containsConsonantArticulation,
+    HTML_ID: "consonant-articulation",
+    POPOVER_PREFIX: "ca-lbox-selector",
+    SELECT_WHAT: "articulation type"
+}
+
 COMPLEX_CONSONANTS = {
     SELECT_NAME: "Has complex consonants",
     DICT: None,
@@ -451,6 +464,7 @@ SELECTORS = [
     METACLASS,
     CONSONANT_CLASS,
     VOWEL_CLASS,
+    CONSONANT_ARTICULATION,
     CONSONANT_PLACES,
     CONSONANT_MANNERS,
     COMPLEX_CONSONANTS,

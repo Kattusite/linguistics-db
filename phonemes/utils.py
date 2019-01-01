@@ -61,7 +61,7 @@ def getGlyphsFromClass(dataSrc, classesDict, propertyValue):
         return glyphs(dataSrc).copy()
     elif propertyValue not in classesDict:
         raise ValueError("Class %s not recognized as a natural class" % propertyValue)
-        return [] # never happens, but whatever
+        return [] # control never reaches this line, but whatever
     else:
         return classesDict[propertyValue].copy()
 
@@ -79,3 +79,14 @@ def getGlyphsFromClasses(dataSrc, classesDict, propertyValues):
         glyphSet = set(glyphList).intersection(glyphSet)
 
     return list(glyphSet)
+
+def getDataFromGlyph(dataSrc, glyph):
+    """Return the phoneme in dataSrc represented by glyph, or None if no such
+    phoneme exists"""
+    # Doing a linear scan like this is algorithmically slow but "fast enough" in practice
+    # If it ever becomes too slow in the future, give consonants.py a dict mapping glyphs to
+    # phoneme dicts
+    for p in dataSrc:
+        if p["glyph"] == glyph:
+            return p
+    return None

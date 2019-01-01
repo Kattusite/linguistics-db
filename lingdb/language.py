@@ -221,7 +221,7 @@ class Language:
         return compareByMode(len(matches), k, mode)
 
     def containsVowels(self, selList, k, mode):
-        """Returns true if exactly* k of the vowels in bitstring appear
+        """Returns true if exactly* k of the vowels in selList appear
         in this language. Use mode (less than, etc) instead of exact equality
         checking"""
         matches = self.matchVowels(selList, k, mode)
@@ -234,6 +234,13 @@ class Language:
     def containsVowelClasses(self, selList, k, mode):
         matches = self.matchVowelClasses(selList, k, mode)
         return compareByMode(len(matches), k, mode)
+
+    def containsConsonantArticulation(self, sel, k, mode):
+        """Returns true if there are exactly* k of the selected articulation types
+        in this language"""
+        articulationType = "consonant %s" % sel
+        num = self.getGrammarAttr(articulationType)
+        return compareByMode(num, k, mode)
 
     def containsConsonantPlaces(self):
         """Returns true if the language has 3+ places of consonant articulation"""
