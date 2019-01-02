@@ -92,7 +92,7 @@ def csvToJSON():
 
             # Extract phoneme lists
             consonantGlyphs = csvConsonantsToGlyphList(g_list[G_CONSONANTS])
-            vowelGlyphs     = csvConsonantsToGlyphList(g_list[G_VOWELS])
+            vowelGlyphs     = csvVowelsToGlyphList(g_list[G_VOWELS])
 
             json_obj[G_STR[G_CONSONANTS]] = consonantGlyphs
             json_obj[G_STR[G_VOWELS]]     = vowelGlyphs

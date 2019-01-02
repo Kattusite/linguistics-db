@@ -51,29 +51,19 @@ function frontInit() {
   // Update the document with trait selectors from template
   traitSelectorInit();
 
-  // Initialize popovers (consonant, vowel, consonant classes, vowel classes)
-  // Plus all of the list-based popovers
-  initPopovers("cbox-selector",     "#cbox-template");
-  initPopovers("vbox-selector",     "#vbox-template");
-  initPopovers("ccbox-selector",    "#ccbox-template");
-  initPopovers("vcbox-selector",    "#vcbox-template");
-  initPopovers("m-lbox-selector",   "#morphology-template");
-  initPopovers("wf-lbox-selector",  "#word-formation-template");
-  initPopovers("ff-lbox-selector",  "#formation-freq-template");
-  initPopovers("wo-lbox-selector",  "#word-order-template");
-  initPopovers("h-lbox-selector",   "#headedness-template");
-  initPopovers("a-lbox-selector",   "#agreement-template");
-  initPopovers("c-lbox-selector",   "#case-template");
-  initPopovers("s-lbox-selector",   "#syllable-template");
-  initPopovers("mc-lbox-selector",  "#metaclass-template");
-
-  // initPopovers("ipacbox-selector",  "#ipacbox-template");
-
-
-
-  // Replace IPA chart placeholders with actual copies of the IPA chart.
-  initIPAChart("ipac-selector", "#ipacbox-template");
-  initIPAChart("ipav-selector", "#ipavbox-template");
+  // Iterate over constants in selectors_const.js, initializing all popovers / selectors
+  for (key in SELECTORS_DICT) {
+    var selector = SELECTORS_DICT[key];
+    var mode = selector["mode"];
+    var cls = selector["popover prefix"];
+    if (mode == "boolean") continue;
+    else if (mode == "pick k ipa") {
+      initIPAChart(cls);
+    }
+    else {
+      initPopovers(cls);
+    }
+  }
 
   reloadPopovers();
   reloadTooltips();
@@ -96,9 +86,9 @@ function traitSelectorInit() {
   $("#trait-divs").children().eq(0).removeClass("hidden");
 }
 
-/* Target all uninitialized popovers of class tgtClass.
- * Create each of these a unique popover with content determined copied from the
- * template located by the jquery string template
+/* Target all uninitialized popovers of class tgtClass.uninit
+ * Create each of these a unique popover with content copied from a template, whose
+ * html id is: `#${tgtClass}-template`
  * For instance initPopover("dummy-class") will replace all ".dummy-class-uninit"
  * with ".dummy-class-init", and update the data-content with the return value
  * of createSelectorString(templateID).
@@ -106,31 +96,29 @@ function traitSelectorInit() {
  // TODO the first two UID lines are basically useless right now as the UID is mishandled
  // Try using jQuery.each() for "more correct" iteration
  // The current way leads to a minor BUG in which popover UIDs mismatch enclosing div UIDs
-function initPopovers(tgtClass, templateID) {
-  var uninit = tgtClass + "-uninit";  // e.g. ".cbox-selector-uninit"
-  var init   = tgtClass + "-init";    // e.g. ".cbox-selector-init"
-
+function initPopovers(tgtClass) {
+  var uninit = `.${tgtClass}.uninit`;
+  var templateID = `#${tgtClass}-template`;
   var str = createSelectorString(templateID);
   var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
-  $("." + uninit).attr("data-content", createSelectorString(templateID));
-  $("." + uninit).attr("id", tgtClass + "-" + uid);
-  $("." + uninit).addClass(init);
-  $("." + uninit).addClass("selector-init");
-  $("." + uninit).removeClass(uninit);
+  $(uninit).attr("data-content", str);
+  $(uninit).attr("id", tgtClass + "-" + uid);
+  $(uninit).addClass("init");
+  $(uninit).addClass("selector-init"); // for CSS styling
+  $(uninit).removeClass("uninit");
 }
 
 /* Given the base name of a tgt class, initialize all uninitialized members of that
  * class by copying the contents of the element specified by the selector template. */
- function initIPAChart(tgtClass, template) {
-   var uninit = tgtClass + "-uninit";
-   var init   = tgtClass + "-init";
-
-   var $template = $(template).clone();
-   $template.addClass(init);
+ function initIPAChart(tgtClass) {
+   var uninit = `.${tgtClass}.uninit`;
+   var templateID = `#${tgtClass}-template`;
+   var $template = $(templateID).clone();
+   $template.addClass("init");
    $template.removeClass("template");
    $template.removeAttr("id");
 
-   var $uninit = $(`.${uninit}`);
+   var $uninit = $(uninit);
    $uninit.replaceWith($template);
  }
 
@@ -264,6 +252,8 @@ function handleClboxLabel(element) {
   // link.attr("isValid", true);
 
   // Figure out if we want consonants or vowels
+  console.log("Unintended class collision - fix me!");
+  // TODO: class "consonant-class-selector" might appear in several places
   var ctype = $table.hasClass("consonant-class-selector") ? "consonant" : "vowel";
 
   // Update the popoverButton text to reflect new selections

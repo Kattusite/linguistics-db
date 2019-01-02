@@ -24,7 +24,10 @@
             "dʒ",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "ə"
+        ],
         "consonant places": 7,
         "consonant manners": 7,
         "3+ places": true,
@@ -80,7 +83,12 @@
             "tʃ",
             "ts"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ɨ"
+        ],
         "consonant places": 7,
         "consonant manners": 5,
         "3+ places": true,
@@ -131,7 +139,12 @@
             "ɲ",
             "ts"
         ],
-        "vowels": [],
+        "vowels": [
+            "e",
+            "o",
+            "u",
+            "ɨ"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
@@ -237,7 +250,13 @@
             "g",
             "f"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 4,
         "consonant manners": 4,
         "3+ places": true,
@@ -292,7 +311,14 @@
             "tʃ",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɨ"
+        ],
         "consonant places": 5,
         "consonant manners": 6,
         "3+ places": true,
@@ -346,7 +372,11 @@
             "ʔ",
             "f"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "o",
+            "i"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
@@ -398,7 +428,14 @@
             "ʔ",
             "ts"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɨ"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
@@ -484,7 +521,13 @@
             "dʒ",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 5,
         "consonant manners": 4,
         "3+ places": true,
@@ -539,7 +582,13 @@
             "ɲ",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "u",
+            "ə"
+        ],
         "consonant places": 8,
         "consonant manners": 6,
         "3+ places": true,
@@ -596,7 +645,14 @@
             "r",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə"
+        ],
         "consonant places": 6,
         "consonant manners": 6,
         "3+ places": true,
@@ -653,7 +709,11 @@
             "ɲ",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "o",
+            "ɯ"
+        ],
         "consonant places": 7,
         "consonant manners": 7,
         "3+ places": true,
@@ -704,7 +764,14 @@
             "ts",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
@@ -760,7 +827,12 @@
             "ɲ",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 7,
         "consonant manners": 5,
         "3+ places": true,
@@ -827,7 +899,15 @@
             "x",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɨ",
+            "ʌ"
+        ],
         "consonant places": 8,
         "consonant manners": 7,
         "3+ places": true,
@@ -878,7 +958,11 @@
             "r",
             "ɲ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "i",
+            "u"
+        ],
         "consonant places": 5,
         "consonant manners": 5,
         "3+ places": true,
@@ -939,7 +1023,10 @@
             "x",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "ə"
+        ],
         "consonant places": 8,
         "consonant manners": 6,
         "3+ places": true,
@@ -1000,7 +1087,15 @@
             "ts",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɯ"
+        ],
         "consonant places": 8,
         "consonant manners": 7,
         "3+ places": true,
@@ -1054,7 +1149,14 @@
             "g",
             "tʃ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ʉ"
+        ],
         "consonant places": 7,
         "consonant manners": 4,
         "3+ places": true,
@@ -1102,7 +1204,12 @@
             "ts",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "u"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
@@ -1135,7 +1242,11 @@
             "d",
             "ts"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "o",
+            "i"
+        ],
         "consonant places": 4,
         "consonant manners": 4,
         "3+ places": true,
@@ -1189,7 +1300,14 @@
             "f",
             "dʒ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
@@ -1240,7 +1358,13 @@
             "ʔ",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 7,
         "consonant manners": 5,
         "3+ places": true,
@@ -1288,7 +1412,13 @@
             "b",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "y"
+        ],
         "consonant places": 5,
         "consonant manners": 5,
         "3+ places": true,
@@ -1346,7 +1476,13 @@
             "r",
             "ts"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 8,
         "consonant manners": 7,
         "3+ places": true,
@@ -1406,7 +1542,13 @@
             "ts",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 8,
         "consonant manners": 7,
         "3+ places": true,
@@ -1466,7 +1608,13 @@
             "ts",
             "v"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 7,
         "consonant manners": 7,
         "3+ places": true,
@@ -1526,7 +1674,13 @@
             "ɲ",
             "dʒ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 7,
         "consonant manners": 6,
         "3+ places": true,
@@ -1583,7 +1737,14 @@
             "r",
             "x"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə"
+        ],
         "consonant places": 5,
         "consonant manners": 6,
         "3+ places": true,
@@ -1632,7 +1793,11 @@
             "ŋ",
             "ɲ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "i",
+            "u"
+        ],
         "consonant places": 5,
         "consonant manners": 4,
         "3+ places": true,
@@ -1683,7 +1848,10 @@
             "r",
             "ɲ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "i"
+        ],
         "consonant places": 5,
         "consonant manners": 5,
         "3+ places": true,
@@ -1738,7 +1906,12 @@
             "r",
             "ɲ"
         ],
-        "vowels": [],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "u"
+        ],
         "consonant places": 5,
         "consonant manners": 5,
         "3+ places": true,
@@ -1792,7 +1965,13 @@
             "h",
             "ʔ"
         ],
-        "vowels": [],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "ʌ"
+        ],
         "consonant places": 6,
         "consonant manners": 5,
         "3+ places": true,
