@@ -189,6 +189,9 @@ function handleTraitSelect(element) {
   $(element).siblings("div").removeClass("active");
   $selElement.removeClass("inactive");
   $selElement.addClass("active");
+
+  // Clear the results
+  resetResults();
 }
 
 // On click function for element representing a label in the pbox.
