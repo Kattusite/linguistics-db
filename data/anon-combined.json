@@ -28,6 +28,8 @@
             "a",
             "ə"
         ],
+        "consonant places": 7,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -87,6 +89,8 @@
             "u",
             "ɨ"
         ],
+        "consonant places": 7,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -141,6 +145,8 @@
             "u",
             "ɨ"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -189,6 +195,8 @@
             "x"
         ],
         "vowels": [],
+        "consonant places": 7,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -249,6 +257,8 @@
             "i",
             "u"
         ],
+        "consonant places": 4,
+        "consonant manners": 4,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -309,6 +319,8 @@
             "u",
             "ɨ"
         ],
+        "consonant places": 5,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -365,6 +377,8 @@
             "o",
             "i"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": false,
         "complex consonants": true,
@@ -422,6 +436,8 @@
             "u",
             "ɨ"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -472,6 +488,8 @@
             "f"
         ],
         "vowels": [],
+        "consonant places": 7,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -510,6 +528,8 @@
             "i",
             "u"
         ],
+        "consonant places": 5,
+        "consonant manners": 4,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -569,6 +589,8 @@
             "u",
             "ə"
         ],
+        "consonant places": 8,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -631,6 +653,8 @@
             "u",
             "ə"
         ],
+        "consonant places": 6,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -690,6 +714,8 @@
             "o",
             "ɯ"
         ],
+        "consonant places": 7,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -746,6 +772,8 @@
             "u",
             "ə"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -805,6 +833,8 @@
             "i",
             "u"
         ],
+        "consonant places": 7,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -878,6 +908,8 @@
             "ɨ",
             "ʌ"
         ],
+        "consonant places": 8,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -931,6 +963,8 @@
             "i",
             "u"
         ],
+        "consonant places": 5,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -993,6 +1027,8 @@
             "a",
             "ə"
         ],
+        "consonant places": 8,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1060,6 +1096,8 @@
             "ə",
             "ɯ"
         ],
+        "consonant places": 8,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1119,6 +1157,8 @@
             "u",
             "ʉ"
         ],
+        "consonant places": 7,
+        "consonant manners": 4,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1170,6 +1210,8 @@
             "i",
             "u"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1205,6 +1247,8 @@
             "o",
             "i"
         ],
+        "consonant places": 4,
+        "consonant manners": 4,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1264,6 +1308,8 @@
             "u",
             "ə"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1319,6 +1365,8 @@
             "i",
             "u"
         ],
+        "consonant places": 7,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1371,6 +1419,8 @@
             "i",
             "y"
         ],
+        "consonant places": 5,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": false,
         "complex consonants": true,
@@ -1433,6 +1483,8 @@
             "i",
             "u"
         ],
+        "consonant places": 8,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1497,6 +1549,8 @@
             "i",
             "u"
         ],
+        "consonant places": 8,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1561,6 +1615,8 @@
             "i",
             "u"
         ],
+        "consonant places": 7,
+        "consonant manners": 7,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1625,6 +1681,8 @@
             "i",
             "u"
         ],
+        "consonant places": 7,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1687,6 +1745,8 @@
             "u",
             "ə"
         ],
+        "consonant places": 5,
+        "consonant manners": 6,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1738,6 +1798,8 @@
             "i",
             "u"
         ],
+        "consonant places": 5,
+        "consonant manners": 4,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1790,6 +1852,8 @@
             "a",
             "i"
         ],
+        "consonant places": 5,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,
@@ -1848,6 +1912,8 @@
             "i",
             "u"
         ],
+        "consonant places": 5,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": false,
@@ -1906,6 +1972,8 @@
             "u",
             "ʌ"
         ],
+        "consonant places": 6,
+        "consonant manners": 5,
         "3+ places": true,
         "2+ manners": true,
         "complex consonants": true,

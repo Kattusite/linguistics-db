@@ -11,6 +11,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Introduce more types to enforce properties of arguments. E.g. phonemes should be a type, queries should be a type
 * The "consonant class" prettified strings are very buggy - "contains at least 1 of voiceds", "...voiced aspirateds", "voicelesss" (sic)
 * What exactly are the old PLACES, MANNERS, CLASSES, etc. used for in consonants.py and vowels.py? They seem dangerously outdated
 * Also I need to rewrite the pretty-string to make it shorter for large numbers of Consonants

@@ -8,8 +8,8 @@
 import csv, json, hashlib, re
 from operator import itemgetter, attrgetter
 from phonemes import consonants, vowels
-from .const import *
-from .selectors import *
+from .const import * # todo make this clutter my namespace less (don't import *)
+from . import selectors
 
 ########################################
 DEBUG = False
@@ -91,8 +91,16 @@ def csvToJSON():
             json_obj[G_STR[G_NUM_PHONEMES]]    = g_list[G_NUM_PHONEMES]
 
             # Extract phoneme lists
-            json_obj[G_STR[G_CONSONANTS]]      = csvConsonantsToGlyphList(g_list[G_CONSONANTS])
-            json_obj[G_STR[G_VOWELS]]          = csvVowelsToGlyphList(g_list[G_VOWELS])
+            consonantGlyphs = csvConsonantsToGlyphList(g_list[G_CONSONANTS])
+            vowelGlyphs     = csvVowelsToGlyphList(g_list[G_VOWELS])
+
+            json_obj[G_STR[G_CONSONANTS]] = consonantGlyphs
+            json_obj[G_STR[G_VOWELS]]     = vowelGlyphs
+
+            # Figure out the manners / places of articulation
+            # TODO remove hardcoded values
+            json_obj[G_STR[G_NUM_PLACES]]  = consonants.getNumPlacesFromGlyphs(consonantGlyphs)
+            json_obj[G_STR[G_NUM_MANNERS]] = consonants.getNumMannersFromGlyphs(consonantGlyphs)
 
             # Extract phonetic + syllable info
             phonetic = g_list[G_PHONETIC].split(INNER_DELIMITER)

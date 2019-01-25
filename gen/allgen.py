@@ -4,7 +4,7 @@
 #   From cmd line in project root: (type in cmd after $)
 #        > linguistics-db/ $ set PYTHONIOENCODING=utf-8
 #        > linguistics-db/ $ python -m gen > gen/out.html
-import sys, copy
+import sys, copy, json
 
 from phonemes import vowels, consonants, metaclasses
 from . import ipa_table
@@ -38,6 +38,10 @@ VOWEL = "vowel"
 ACTIVE = True
 INACTIVE = False
 
+IPA_TRAPEZOID_ASPECT_RATIO = 1000 / 700
+IPA_TRAPEZOID_H = 300
+IPA_TRAPEZOID_W = int(IPA_TRAPEZOID_ASPECT_RATIO * IPA_TRAPEZOID_H)
+
 ################################################################################
 #                                                                              #
 #                        HELPERS                                               #
@@ -62,15 +66,16 @@ def tprint(str):
 
 # Wrap str in an HTML tag t and return it, with optional classList
 # NOTE this needs a lot of work (making it work w/ indenting, and allowing embedding)
-def tag(t, body=None, id=None, classList=None, onclick=None, other=None, type=BOTH):
+def tag(t, body=None, id=None, classList=None, onclick=None, style=None, other=None, type=BOTH):
     # If parameters aren't None, build them into strings
     bodyStr  = body if body else ""
     classStr = ' class="%s"' % " ".join(classList) if classList else ""
     clickStr = ' onclick="%s"' % onclick if onclick else ""
     idStr = ' id="%s"' % id if id else ""
+    styleStr = ' style="%s"' % style if style else ""
     otherStr = " %s" % other if other else ""
 
-    openTag = "<{0}{1}{2}{3}{5}>{4}".format(t, idStr, classStr, clickStr, bodyStr, otherStr)
+    openTag = "<{0}{1}{2}{3}{5}{6}>{4}".format(t, idStr, classStr, clickStr, bodyStr, otherStr, styleStr)
     closeTag = "</{0}>".format(t)
 
     if type == BOTH:
@@ -119,9 +124,9 @@ def kselector():
 
 def popovertemplate(popoverPrefix, selectWhat):
     """Prints a popover placeholder (to be replaced by JS).
-    Use a class of popoverPrefix + "-uninit" and
+    Use a class of popoverPrefix + ".uninit" and
     use a title of "Select " + selectWhat"""
-    tprint('<a class="{0}-uninit btn btn-outline-secondary"'.format(popoverPrefix))
+    tprint('<a class="{0} uninit btn btn-outline-secondary"'.format(popoverPrefix))
     tprint('   role="button"')
     tprint('   data-html="true"')
     tprint('   data-toggle="popover"')
@@ -210,6 +215,11 @@ def selectorbody(sel, isActive):
     elif mode == selectors.BOOLEAN:
         body = sel[selectors.BOOL_BODY]
         booldiv(htmlID, body, isActive)
+    elif mode == selectors.NO_QUERY:
+        body = sel[selectors.BOOL_BODY]
+        booldiv(htmlID, body, isActive)
+    else:
+        sys.stderr.write("Attempted to create selector body for an unknown mode!")
 
 # Given a list of traits, print the HTML representing a <select>/<option>
 # structure allowing user to pick one trait.
@@ -334,6 +344,7 @@ def traitselectorgen():
 #     tprint(tag("div", type=CLOSE))
 
 # TODO: Poor style to have "consonant"/"vowel" magic strings
+# pboxgen (and pbox's in general) are deprecated now that ipaboxes exist
 def pboxgen(pType, glyphList):
     """Generate the html for a phoneme selector table, using glyphList as source
     glyphList is a str[] containing all valid glyphs. pType is either "consonant"/"vowel"
@@ -401,22 +412,25 @@ def clboxgen(pType, headers):
     headers is a dict mapping trait types to possible trait values
     (e.g. "height": ["high", "med", "low", "..."])
     is a str[][] containing a list of (lists of possible classes for each type).
-    pType is either "consonant" or "vowel" depending on the type being used"""
+    popoverPrefix is the popover prefix being created (e.g. "ccbox-selector")"""
 
     if pType == CONSONANT:
-        abbrev = "ccbox"
+        popoverPrefix = selectors.CONSONANT_CLASS[selectors.POPOVER_PREFIX]
     elif pType == VOWEL:
-        abbrev = "vcbox"
+        popoverPrefix = selectors.VOWEL_CLASS[selectors.POPOVER_PREFIX]
     else:
-        raise ValueError("Invalid phoneme type! %s not recognized" % pType)
+        raise ValueError("Illegal phoneme type passed to clboxgen")
 
     tprint("")
     tprint(comment("Auto-generated template for the {0} class selector."
-                        .format(pType)))
+                        .format(popoverPrefix)))
 
-    tprint(tag("div", classList=["template"], id="{0}-template".format(abbrev), type=OPEN))
+    tprint(tag("div",
+               classList=["template"],
+               id="{0}-template".format(popoverPrefix),
+               type=OPEN))
     indent()
-    tprint(tag("table", classList=["{0}-class-selector".format(pType)], type=OPEN))
+    tprint(tag("table", classList=["{0}-table".format(popoverPrefix)], type=OPEN))
     indent()
     tprint(tag("tbody", type=OPEN))
     indent()
@@ -461,11 +475,13 @@ def clboxgen(pType, headers):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-def lboxgen(lType, listData):
+def lboxgen(listData):
     """Generate the html for a generic list selector table, using listData as
-    a source. listData will be a dict with two fields: selectors.DICT: containing
+    a source. listData will be a dict with (at least) two fields: selectors.DICT: containing
     a parseDict, whose keys are the elements of the list, and selectors.MULTI, a bool
     signifying whether it is possible to select multiple elements from the list"""
+
+    lType = listData[selectors.POPOVER_PREFIX]
 
     otherList = listData[selectors.DICT]
     multi     = listData[selectors.MULTI]
@@ -495,31 +511,55 @@ def lboxgen(lType, listData):
     dedent()
     tprint(tag("div", type=CLOSE))
 
-def ipaboxgen(table, headers, ptype):
+def ipaboxgen(table, headers, pType):
     """Generate the html for a IPA vowel chart table,
     where table is a 2D array containing the data to be represented,
     headers is a dict containing the names of the relevant headers (see ipa_table.py),
     and type is either CONSONANT or VOWEL"""
 
-    if ptype == CONSONANT:
-        id = "ipacbox-template"
+    if pType == CONSONANT:
+        selData = selectors.IPA_CONSONANT
         fn = "handleIpacboxLabel(this)"
-    elif ptype == VOWEL:
-        id = "ipavbox-template"
+    elif pType == VOWEL:
+        selData = selectors.IPA_VOWEL
         fn = "handleIpavboxLabel(this)"
     else:
         raise ValueError("ipaboxgen: type %d not consonant/vowel")
+
+    id = "{0}-template".format(selData[selectors.POPOVER_PREFIX])
 
     axes = headers["axis order"]
 
     isOtherRow = table[-1][0] == "other"
 
     # Print the table as HTML
-    tprint(comment("Auto-generated template for the IPA %s chart" % ptype))
+    tprint(comment("Auto-generated template for the IPA %s chart" % pType))
 
-    tprint(tag("div", classList=["template"], id=id, type=OPEN))
+    tprint(tag("div",
+               classList=["template"],
+               id=id,
+               type=OPEN,
+               style='position: relative;'))
     indent()
-    tprint(tag("table", type=OPEN))
+
+    # if VOWEL, add a background image.
+    # TODO: Beware unintentional variable reuse/shadowing (make more modular)
+    if pType == VOWEL:
+        src_str = "src='/static/img/Blank_vowel_trapezoid.png'"
+        w_str = "width={0}px".format(IPA_TRAPEZOID_W)
+        h_str = "height={0}px".format(IPA_TRAPEZOID_H)
+        imgdata = "{0} {1} {2}".format(src_str, w_str, h_str)
+
+        style_str = "position: relative; top: 12px; left: 20px;"
+        img = tag("img", other=imgdata, style=style_str, type=OPEN)
+        tprint(img)
+
+    # Positioning used to get table on top of img
+    table_style = None
+    if pType == VOWEL:
+        table_style = "position: absolute; top: 0px;"
+
+    tprint(tag("table", type=OPEN, style=table_style))
     indent()
     tprint(tag("tbody", type=OPEN))
     indent()
@@ -582,6 +622,7 @@ def ipaboxgen(table, headers, ptype):
                     classList = []
                     onclick = None
                     other = None
+                    style = None
 
                     if not col:  # col == "" or None
                         classList.append("ipa-box-empty")
@@ -602,10 +643,34 @@ def ipaboxgen(table, headers, ptype):
                              axes[ipa_table.Y], col[axes[ipa_table.Y]],
                              axes[ipa_table.Z], col[axes[ipa_table.Z]]))
 
+                        # For vowels add extra CSS for positioning
+                        # In the future, make this a helper function
+                        # Coord (1,1) is the top left cell
+                        if pType == VOWEL:
+                            max_x = len(table[1])
+                            max_y = len(table)
+
+                            x_ratio = x / max_x
+                            y_ratio = y / max_y
+
+                            x_px = x_ratio * IPA_TRAPEZOID_W
+                            y_px = y_ratio * IPA_TRAPEZOID_H
+
+                            x_trans = x_px + (y_ratio * IPA_TRAPEZOID_W * (0.5 * (1 - x_ratio)))
+                            y_trans = y_px
+
+                            x_str = "left: {0}px;".format(x_trans)
+                            y_str = "top: {0}px;".format(y_trans)
+
+                            pos_str = "position: absolute;"
+
+                            style = "{0} {1} {2}".format(pos_str, x_str, y_str)
+
                     tprint(tag("td", body=body,
                                 classList=classList,
                                 onclick=onclick,
                                 other=other,
+                                style=style,
                                 type=BOTH))
 
 
@@ -620,6 +685,32 @@ def ipaboxgen(table, headers, ptype):
     tprint(tag("div", type=CLOSE))
 
 
+# Print the selectors.py constants to a .js file for use
+def exportJavascript():
+    # TODO move these constants elsewhere (__main__ or __init__ perhaps?)
+    JS_PATH = "app/static/js/"
+    JS_NAME = "selectors_const.js"
+
+    filename = "{0}{1}".format(JS_PATH, JS_NAME)
+
+    VAR_NAME = "SELECTORS_DICT"
+
+    # Remove the functions because they aren't transferrable to JS
+    dict = copy.deepcopy(selectors.SELECTORS_DICT)
+    for key in dict:
+        val = dict[key]
+        del val[selectors.FUNCTION]
+
+    VAR_DATA = json.dumps(dict, sort_keys=True, indent=4)
+
+    with open(filename, "w", encoding="utf-8") as js:
+        var = "var {0} = {1};\n".format(VAR_NAME, VAR_DATA)
+
+        js.write("/* Automatically generated by selectors.py. DO NOT EDIT! */\n")
+        js.write(var)
+        js.flush() # "with" should take care of this, but being explicit is nice
+
+
 ################################################################################
 #                                                                              #
 #                        MAIN                                                  #
@@ -628,6 +719,9 @@ def ipaboxgen(table, headers, ptype):
 
 # Prints the auto generated html to stdout, or a file named output if specified
 def main(output=None):
+
+    # Print the js file
+    exportJavascript()
 
     # Redirect to file if desired
     if output:
@@ -648,15 +742,16 @@ def main(output=None):
     clboxgen("vowel",       vowels.HEADERS)
 
     # Generate general list selectors
-    lboxgen("syllable",         selectors.SYLLABLE)
-    lboxgen("morphology",       selectors.MORPHOLOGY)
-    lboxgen("word-formation",   selectors.WORD_FORMATION)
-    lboxgen("formation-freq",   selectors.FORMATION)
-    lboxgen("word-order",       selectors.WORD_ORDER)
-    lboxgen("headedness",       selectors.HEADEDNESS)
-    lboxgen("agreement",        selectors.AGREEMENT)
-    lboxgen("case",             selectors.CASE)
-    lboxgen("metaclass",        selectors.METACLASS)
+    lboxgen(selectors.SYLLABLE)
+    lboxgen(selectors.MORPHOLOGY)
+    lboxgen(selectors.WORD_FORMATION)
+    lboxgen(selectors.FORMATION)
+    lboxgen(selectors.WORD_ORDER)
+    lboxgen(selectors.HEADEDNESS)
+    lboxgen(selectors.AGREEMENT)
+    lboxgen(selectors.CASE)
+    lboxgen(selectors.METACLASS)
+    lboxgen(selectors.CONSONANT_ARTICULATION)
 
     # Generate IPA selectors
     #print(ipa_table.CONSONANT_TABLE)
