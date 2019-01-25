@@ -138,7 +138,7 @@ def csvToJSON():
                 "VCCC":  [],
                 "VCCCC": []
             }
-            sylList = [parsePhrase(s, sylDict, ["VC", "CV"]) for s in syllables]
+            sylList = [parsePhrase(s, selectors.SYLLABLE[selectors.DICT], ["VC", "CV"]) for s in syllables]
             json_obj[G_STR[G_SYLLABLES]] = sylList
 
 
