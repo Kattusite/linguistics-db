@@ -120,3 +120,15 @@ def getGlyphsMatching(propertyName, propertyValue):
     property named propertyName has the value specified by propertyValue. Return
     a list of the glyphs of all matching phonemes"""
     return utils.getGlyphsMatching(data, propertyName, propertyValue)
+
+def getNumMannersFromGlyphs(glyphList):
+    """Finds the number of manners of articulation represented in glyphList"""
+    phonemes = [utils.getDataFromGlyph(data, g) for g in glyphList]
+    matches = utils.enumerateProperty(phonemes, "manner")
+    return len(matches)
+
+def getNumPlacesFromGlyphs(glyphList):
+    """Finds the number of places of articulation represented in glyphList"""
+    phonemes = [utils.getDataFromGlyph(data, g) for g in glyphList]
+    matches = utils.enumerateProperty(phonemes, "place")
+    return len(matches)

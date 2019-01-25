@@ -61,9 +61,22 @@ PICK_MULTI  = "pick multi"  # lbox (multi = true)
 PICK_K      = "pick k"      # pboxes
 PICK_K_IPA  = "pick k ipa"  # ipaboxes (displayed inline, not as popover)
 BOOLEAN     = "boolean"     # no boxes (true/false only)
+NO_QUERY    = "no query"    # placeholder (cannot be submitted as query)
 
 # ===============================
 # ========== SELECTORS ==========
+
+# Note: things will misbehave if FUNCTION,
+
+# The dummy "selector" that is displayed by default if none are selected
+PLACEHOLDER = {
+    SELECT_NAME: "Select trait...",
+    MODE: NO_QUERY,
+    FUNCTION: None,
+    HTML_ID: "placeholder-selector",
+    BOOL_BODY: "Select a trait from the dropdown menu to start submitting queries!"
+}
+
 CONSONANT = {
     SELECT_NAME: "Contains consonant:",
     DICT: None,
@@ -73,7 +86,7 @@ CONSONANT = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchConsonants,
     HTML_ID: "consonant-selector",
-    POPOVER_PREFIX: "cbox-selector",
+    POPOVER_PREFIX: "cbox-popover",
     SELECT_WHAT: "consonants"
 }
 
@@ -86,7 +99,7 @@ IPA_CONSONANT = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchConsonants,
     HTML_ID: "ipa-consonant-selector",
-    POPOVER_PREFIX: "ipac-selector",
+    POPOVER_PREFIX: "ipacbox-popover",
     SELECT_WHAT: "consonants"
 }
 
@@ -99,7 +112,7 @@ CONSONANT_CLASS = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchConsonantClasses,
     HTML_ID: "consonant-class-selector",
-    POPOVER_PREFIX: "ccbox-selector",
+    POPOVER_PREFIX: "ccbox-popover",
     SELECT_WHAT: "natural classes"
 }
 
@@ -112,7 +125,7 @@ VOWEL = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchVowels,
     HTML_ID: "vowel-selector",
-    POPOVER_PREFIX: "vbox-selector",
+    POPOVER_PREFIX: "vbox-popover",
     SELECT_WHAT: "vowels"
 }
 
@@ -125,7 +138,7 @@ IPA_VOWEL = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchVowels,
     HTML_ID: "ipa-vowel-selector",
-    POPOVER_PREFIX: "ipav-selector",
+    POPOVER_PREFIX: "ipavbox-popover",
     SELECT_WHAT: "vowels"
 }
 
@@ -138,7 +151,7 @@ VOWEL_CLASS = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchVowelClasses,
     HTML_ID: "vowel-class-selector",
-    POPOVER_PREFIX: "vcbox-selector",
+    POPOVER_PREFIX: "vcbox-popover",
     SELECT_WHAT: "natural classes",
 }
 
@@ -151,7 +164,7 @@ CONSONANT_PLACES = {
     REPLY: "contain 3+ places of consonant articulation",
     REPLY_VARS: None,
     FUNCTION: Language.containsConsonantPlaces,
-    HTML_ID: "consonant-places",
+    HTML_ID: "consonant-places-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None
 }
@@ -165,9 +178,22 @@ CONSONANT_MANNERS = {
     REPLY: "contain 2+ manners of consonant articulation",
     REPLY_VARS: None,
     FUNCTION: Language.containsConsonantManners,
-    HTML_ID: "consonant-manners",
+    HTML_ID: "consonant-manners-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None
+}
+
+CONSONANT_ARTICULATION = {
+    SELECT_NAME: "Has articulation features:",
+    DICT: { "places": [], "manners": [] },
+    MULTI: False,
+    MODE: PICK_K,
+    REPLY: "contain %s %s %s of consonant articulation",
+    REPLY_VARS: None,
+    FUNCTION: Language.matchConsonantArticulation,
+    HTML_ID: "consonant-articulation-selector",
+    POPOVER_PREFIX: "ca-lbox-popover",
+    SELECT_WHAT: "articulation type"
 }
 
 COMPLEX_CONSONANTS = {
@@ -179,7 +205,7 @@ COMPLEX_CONSONANTS = {
     REPLY: "contain complex consonants",
     REPLY_VARS: None,
     FUNCTION: Language.containsComplexConsonants,
-    HTML_ID: "complex-consonants",
+    HTML_ID: "complex-consonants-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None
 }
@@ -215,15 +241,15 @@ STRESS = {
 SYLLABLE = {
     SELECT_NAME: "Allows syllable structure:",
     DICT: {
-        "CV":    [],
-        "V":     [],
-        "CVC":   [],
-        "CCV":   [],
-        "CCCV":  [],
-        "CCCCV": [],
-        "VCC":   [],
-        "VCCC":  [],
-        "VCCCC": []
+        "onsetless and codaless (V)":     ["V"],
+        "onsets of 1 consonant":          ["CV"],
+        "onsets of 2 consonants":         ["CCV"],
+        "onsets of 3 consonants":         ["CCCV"],
+        "onsets of 4 consonants":         ["CCCCV"],
+        "codas of 1 consonant":           ["CVC", "VC"], # formerly CVC, not "VC"
+        "codas of 2 consonants":          ["VCC"],
+        "codas of 3 consonants":          ["VCCC"],
+        "codas of 4 consonants":          ["VCCCC"]
     },
     MULTI: True,
     MODE: PICK_MULTI,
@@ -231,7 +257,7 @@ SYLLABLE = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchSyllable,
     HTML_ID: "syllable-selector",
-    POPOVER_PREFIX: "s-lbox-selector",
+    POPOVER_PREFIX: "s-lbox-popover",
     SELECT_WHAT: "syllables"
 }
 
@@ -250,7 +276,7 @@ MORPHOLOGY = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchMorphologicalType,
     HTML_ID: "morphological-selector",
-    POPOVER_PREFIX: "m-lbox-selector",
+    POPOVER_PREFIX: "m-lbox-popover",
     SELECT_WHAT: "morphological type"
 }
 
@@ -276,7 +302,7 @@ WORD_FORMATION = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchWordFormation,
     HTML_ID: "word-formation-selector",
-    POPOVER_PREFIX: "wf-lbox-selector",
+    POPOVER_PREFIX: "wf-lbox-popover",
     SELECT_WHAT: "word formation"
 }
 
@@ -325,7 +351,7 @@ FORMATION = {
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasFormationFreq,
     HTML_ID: "formation-freq-selector",
-    POPOVER_PREFIX: "ff-lbox-selector",
+    POPOVER_PREFIX: "ff-lbox-popover",
     SELECT_WHAT: "frequency"
 }
 
@@ -347,7 +373,7 @@ WORD_ORDER = {
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasWordOrder,
     HTML_ID: "word-order-selector",
-    POPOVER_PREFIX: "wo-lbox-selector",
+    POPOVER_PREFIX: "wo-lbox-popover",
     SELECT_WHAT: "word order"
 }
 
@@ -388,7 +414,7 @@ HEADEDNESS = {
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasHeadedness,
     HTML_ID: "headedness-selector",
-    POPOVER_PREFIX: "h-lbox-selector",
+    POPOVER_PREFIX: "h-lbox-popover",
     SELECT_WHAT: "headedness"
 }
 
@@ -406,7 +432,7 @@ CASE = {
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasCase,
     HTML_ID: "case-selector",
-    POPOVER_PREFIX: "c-lbox-selector",
+    POPOVER_PREFIX: "c-lbox-popover",
     SELECT_WHAT: "case"
 }
 
@@ -424,7 +450,7 @@ AGREEMENT = {
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasAgreement,
     HTML_ID: "agreement-selector",
-    POPOVER_PREFIX: "a-lbox-selector",
+    POPOVER_PREFIX: "a-lbox-popover",
     SELECT_WHAT: "agreement"
 }
 
@@ -437,13 +463,14 @@ METACLASS = {
     REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchMetaclasses,
     HTML_ID: "metaclass-selector",
-    POPOVER_PREFIX: "mc-lbox-selector",
+    POPOVER_PREFIX: "mc-lbox-popover",
     SELECT_WHAT: "metaclasses"
 }
 
 # The order of this list determines the order in which traits will appear in the
 # selector dropdown on the site.
 SELECTORS = [
+    PLACEHOLDER,
     IPA_CONSONANT,
     IPA_VOWEL,
     # CONSONANT,
@@ -451,8 +478,9 @@ SELECTORS = [
     METACLASS,
     CONSONANT_CLASS,
     VOWEL_CLASS,
-    CONSONANT_PLACES,
-    CONSONANT_MANNERS,
+    CONSONANT_ARTICULATION,
+    #CONSONANT_PLACES,
+    #CONSONANT_MANNERS,
     COMPLEX_CONSONANTS,
     TONE,
     STRESS,
@@ -465,6 +493,8 @@ SELECTORS = [
     CASE,
     AGREEMENT
 ]
+
+SELECTORS_DICT = { sel[HTML_ID] : sel for sel in SELECTORS }
 
 # function mappings used by lingdb_client.handleQuery()
 function_map = { sel[HTML_ID]: sel[FUNCTION] for sel in SELECTORS }

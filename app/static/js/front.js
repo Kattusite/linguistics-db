@@ -22,6 +22,7 @@ var CASE_ID                 = "case-selector";
 var IPA_CONSONANT_ID        = "ipa-consonant-selector";
 var IPA_VOWEL_ID            = "ipa-vowel-selector";
 var METACLASS_ID            = "metaclass-selector";
+var CONSONANT_ARTICULATION_ID = "consonant-articulation-selector";
 
 // Should we list all members of the matching language set?
 // Changed by handleListToggle
@@ -51,29 +52,22 @@ function frontInit() {
   // Update the document with trait selectors from template
   traitSelectorInit();
 
-  // Initialize popovers (consonant, vowel, consonant classes, vowel classes)
-  // Plus all of the list-based popovers
-  initPopovers("cbox-selector",     "#cbox-template");
-  initPopovers("vbox-selector",     "#vbox-template");
-  initPopovers("ccbox-selector",    "#ccbox-template");
-  initPopovers("vcbox-selector",    "#vcbox-template");
-  initPopovers("m-lbox-selector",   "#morphology-template");
-  initPopovers("wf-lbox-selector",  "#word-formation-template");
-  initPopovers("ff-lbox-selector",  "#formation-freq-template");
-  initPopovers("wo-lbox-selector",  "#word-order-template");
-  initPopovers("h-lbox-selector",   "#headedness-template");
-  initPopovers("a-lbox-selector",   "#agreement-template");
-  initPopovers("c-lbox-selector",   "#case-template");
-  initPopovers("s-lbox-selector",   "#syllable-template");
-  initPopovers("mc-lbox-selector",  "#metaclass-template");
-
-  // initPopovers("ipacbox-selector",  "#ipacbox-template");
-
-
-
-  // Replace IPA chart placeholders with actual copies of the IPA chart.
-  initIPAChart("ipac-selector", "#ipacbox-template");
-  initIPAChart("ipav-selector", "#ipavbox-template");
+  // Iterate over constants in selectors_const.js, initializing all popovers / selectors
+  for (key in SELECTORS_DICT) {
+    var selector = SELECTORS_DICT[key];
+    var mode = selector["mode"];
+    var cls = selector["popover prefix"];
+    if (["boolean", "no query"].includes(mode)) continue;
+    else if (mode == "pick k ipa") {
+      initIPAChart(cls);
+    }
+    else if (["pick one", "pick class", "pick multi", "pick k"].includes(mode)){
+      initPopovers(cls);
+    }
+    else {
+      console.err("Attempted to initialize a selector with unrecognized mode");
+    }
+  }
 
   reloadPopovers();
   reloadTooltips();
@@ -96,9 +90,9 @@ function traitSelectorInit() {
   $("#trait-divs").children().eq(0).removeClass("hidden");
 }
 
-/* Target all uninitialized popovers of class tgtClass.
- * Create each of these a unique popover with content determined copied from the
- * template located by the jquery string template
+/* Target all uninitialized popovers of class tgtClass.uninit
+ * Create each of these a unique popover with content copied from a template, whose
+ * html id is: `#${tgtClass}-template`
  * For instance initPopover("dummy-class") will replace all ".dummy-class-uninit"
  * with ".dummy-class-init", and update the data-content with the return value
  * of createSelectorString(templateID).
@@ -106,31 +100,29 @@ function traitSelectorInit() {
  // TODO the first two UID lines are basically useless right now as the UID is mishandled
  // Try using jQuery.each() for "more correct" iteration
  // The current way leads to a minor BUG in which popover UIDs mismatch enclosing div UIDs
-function initPopovers(tgtClass, templateID) {
-  var uninit = tgtClass + "-uninit";  // e.g. ".cbox-selector-uninit"
-  var init   = tgtClass + "-init";    // e.g. ".cbox-selector-init"
-
+function initPopovers(tgtClass) {
+  var uninit = `.${tgtClass}.uninit`;
+  var templateID = `#${tgtClass}-template`;
   var str = createSelectorString(templateID);
   var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
-  $("." + uninit).attr("data-content", createSelectorString(templateID));
-  $("." + uninit).attr("id", tgtClass + "-" + uid);
-  $("." + uninit).addClass(init);
-  $("." + uninit).addClass("selector-init");
-  $("." + uninit).removeClass(uninit);
+  $(uninit).attr("data-content", str);
+  $(uninit).attr("id", tgtClass + "-" + uid);
+  $(uninit).addClass("init");
+  $(uninit).addClass("selector-init"); // for CSS styling
+  $(uninit).removeClass("uninit");
 }
 
 /* Given the base name of a tgt class, initialize all uninitialized members of that
  * class by copying the contents of the element specified by the selector template. */
- function initIPAChart(tgtClass, template) {
-   var uninit = tgtClass + "-uninit";
-   var init   = tgtClass + "-init";
-
-   var $template = $(template).clone();
-   $template.addClass(init);
+ function initIPAChart(tgtClass) {
+   var uninit = `.${tgtClass}.uninit`;
+   var templateID = `#${tgtClass}-template`;
+   var $template = $(templateID).clone();
+   $template.addClass("init");
    $template.removeClass("template");
    $template.removeAttr("id");
 
-   var $uninit = $(`.${uninit}`);
+   var $uninit = $(uninit);
    $uninit.replaceWith($template);
  }
 
@@ -155,6 +147,12 @@ function displayError(err) {
   $result.text(err);
 }
 
+function displayInfo(info) {
+  var $result = $("#results");
+  setOutputMode(INFO);
+  $result.text(info);
+}
+
 /*****************************************************************************/
 /*                                Event Handlers                             */
 /*****************************************************************************/
@@ -164,6 +162,9 @@ function displayError(err) {
 function handleSingleTrait() {
   console.log("single clicked");
   hideElement($("#trait-divs").children()[1]);
+
+  // Clear the results to avoid confusion
+  resetResults();
 }
 
 // On click handler for double trait button
@@ -171,6 +172,9 @@ function handleSingleTrait() {
 function handleDoubleTrait() {
   console.log("double clicked");
   unhideElement($("#trait-divs").children()[1]);
+
+  // Clear the results to avoid confusion
+  resetResults();
 }
 
 // On change handler for selecting a trait from dropdown.
@@ -185,6 +189,9 @@ function handleTraitSelect(element) {
   $(element).siblings("div").removeClass("active");
   $selElement.removeClass("inactive");
   $selElement.addClass("active");
+
+  // Clear the results
+  resetResults();
 }
 
 // On click function for element representing a label in the pbox.
@@ -264,6 +271,8 @@ function handleClboxLabel(element) {
   // link.attr("isValid", true);
 
   // Figure out if we want consonants or vowels
+  console.log("Unintended class collision - fix me!");
+  // TODO: class "consonant-class-selector" might appear in several places
   var ctype = $table.hasClass("consonant-class-selector") ? "consonant" : "vowel";
 
   // Update the popoverButton text to reflect new selections
@@ -477,6 +486,7 @@ function validateRequest(req) {
     case MORPHOLOGY_ID:
     case WORD_FORMATION_ID:
     case METACLASS_ID:
+    case CONSONANT_ARTICULATION_ID:
       // For requests that require a mode and k
       // Ensure mode is valid
       var mode = req["mode"];
@@ -685,9 +695,51 @@ function handleSubmit() {
        );
 }
 
-// Toggles the setting of listMode -- are lists shown/hidden by default?
+// Handle clicks on the collapsible list button --
+// Currently does nothing but can change in the future.
 function handleListToggle() {
-  listMode = !listMode;
+  // Uncomment to make site remember previous collapse/expand state of the matching list
+  // listMode = !listMode;
+}
+
+/*****************************************************************************/
+/*                                 Resets                                    */
+/*****************************************************************************/
+
+// Reset the selected values of a query.
+function resetQuerySelections() {
+  if (!confirm("Are you sure you wish to clear all selections?")) {
+    return;
+  }
+
+  // Reset all (k-)input fields to be empty
+  $(".k-selector").val("1");
+
+  // Reset all mode fields to be "at least"
+  $(".mode-selector").val("at least");
+
+  // Reset all selected labels (i.e. phonemes)
+  $(".selected").removeClass("selected");
+  $("[selList]").attr("selList", "");
+
+  // Reload the entire page.
+  // I'm pretty sure this makes all the previous things redundant.
+  frontInit(); // this might break things
+
+  // Select the divs that were visible before.
+  // <code would go here if desired>
+}
+
+// Reset the output box to its default state
+function resetResults() {
+  displayInfo("Submit a valid query to get started.");
+}
+
+// Reset the queries and results
+// This involves de-selecting any selected elements, and clearing the results
+function handleReset() {
+  resetQuerySelections();
+  resetResults();
 }
 
 /*****************************************************************************/

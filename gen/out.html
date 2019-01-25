@@ -2,13 +2,13 @@
 <!--Auto-generated template for the selectors dropdown-->
 <div class="alert alert-info trait-div" id="trait-div-template" role="alert">
   <select class="trait-selector template" type=trait-selector onchange="handleTraitSelect(this)">
+    <option>Select trait...</option>
     <option>Contains consonant:</option>
     <option>Contains vowel:</option>
     <option>Contains metaclass:</option>
     <option>Contains consonant class:</option>
     <option>Contains vowel class:</option>
-    <option>Has 3+ consonant places</option>
-    <option>Has 2+ consonant manners</option>
+    <option>Has articulation features:</option>
     <option>Has complex consonants</option>
     <option>Has tone</option>
     <option>Has stress</option>
@@ -21,7 +21,10 @@
     <option>Case:</option>
     <option>Agreement:</option>
   </select>
-  <div class="ipa-consonant-selector template active" type="ipa-consonant-selector">Contains
+  <div class="placeholder-selector template active" type="placeholder-selector">
+    Select a trait from the dropdown menu to start submitting queries!
+  </div>
+  <div class="ipa-consonant-selector template inactive" type="ipa-consonant-selector">Contains
     <select class="mode-selector">
       <option>at least</option>
       <option>at most</option>
@@ -33,7 +36,7 @@
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
     <br>
     <br>
-    <a class="ipac-selector-uninit btn btn-outline-secondary"
+    <a class="ipacbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -52,7 +55,7 @@
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
     <br>
     <br>
-    <a class="ipav-selector-uninit btn btn-outline-secondary"
+    <a class="ipavbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -69,7 +72,7 @@
       <option>not equal to</option>
     </select>
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-    <a class="mc-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="mc-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -86,7 +89,7 @@
       <option>not equal to</option>
     </select>
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-    <a class="ccbox-selector-uninit btn btn-outline-secondary"
+    <a class="ccbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -103,20 +106,31 @@
       <option>not equal to</option>
     </select>
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-    <a class="vcbox-selector-uninit btn btn-outline-secondary"
+    <a class="vcbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
        title="<b>Select natural classes</b>"
        data-content="Error loading. Sorry!">Select natural classes...</a>
   </div>
-  <div class="consonant-places template inactive" type="consonant-places">
-    3+ Places of Consonant Articulation
+  <div class="consonant-articulation-selector template inactive" type="consonant-articulation-selector">Contains
+    <select class="mode-selector">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+    </select>
+    <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
+    <a class="ca-lbox-popover uninit btn btn-outline-secondary"
+       role="button"
+       data-html="true"
+       data-toggle="popover"
+       title="<b>Select articulation type</b>"
+       data-content="Error loading. Sorry!">Select articulation type...</a>
   </div>
-  <div class="consonant-manners template inactive" type="consonant-manners">
-    2+ Manners of Consonant Articulation
-  </div>
-  <div class="complex-consonants template inactive" type="complex-consonants">
+  <div class="complex-consonants-selector template inactive" type="complex-consonants-selector">
     Complex Consonants
   </div>
   <div class="tone-selector template inactive" type="tone-selector">
@@ -135,7 +149,7 @@
       <option>not equal to</option>
     </select>
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-    <a class="s-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="s-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -152,7 +166,7 @@
       <option>not equal to</option>
     </select>
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-    <a class="m-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="m-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -169,7 +183,7 @@
       <option>not equal to</option>
     </select>
     <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
-    <a class="wf-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="wf-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -177,7 +191,7 @@
        data-content="Error loading. Sorry!">Select word formation...</a>
   </div>
   <div class="formation-freq-selector template inactive" type="formation-freq-selector">
-    <a class="ff-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="ff-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -185,7 +199,7 @@
        data-content="Error loading. Sorry!">Select frequency...</a>
   </div>
   <div class="word-order-selector template inactive" type="word-order-selector">
-    <a class="wo-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="wo-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -193,7 +207,7 @@
        data-content="Error loading. Sorry!">Select word order...</a>
   </div>
   <div class="headedness-selector template inactive" type="headedness-selector">
-    <a class="h-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="h-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -201,7 +215,7 @@
        data-content="Error loading. Sorry!">Select headedness...</a>
   </div>
   <div class="case-selector template inactive" type="case-selector">
-    <a class="c-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="c-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -209,7 +223,7 @@
        data-content="Error loading. Sorry!">Select case...</a>
   </div>
   <div class="agreement-selector template inactive" type="agreement-selector">
-    <a class="a-lbox-selector-uninit btn btn-outline-secondary"
+    <a class="a-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
@@ -370,9 +384,9 @@
   </table>
 </div>
 
-<!--Auto-generated template for the consonant class selector.-->
-<div id="ccbox-template" class="template">
-  <table class="consonant-class-selector">
+<!--Auto-generated template for the ccbox-popover class selector.-->
+<div id="ccbox-popover-template" class="template">
+  <table class="ccbox-popover-table">
     <tbody>
       <tr>
         <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any voicing</td>
@@ -438,9 +452,9 @@
   </table>
 </div>
 
-<!--Auto-generated template for the vowel class selector.-->
-<div id="vcbox-template" class="template">
-  <table class="vowel-class-selector">
+<!--Auto-generated template for the vcbox-popover class selector.-->
+<div id="vcbox-popover-template" class="template">
+  <table class="vcbox-popover-table">
     <tbody>
       <tr>
         <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any height</td>
@@ -486,25 +500,25 @@
   </table>
 </div>
 
-<!--Auto-generated template for the syllable list selector.-->
-<div id="syllable-template" class="template">
+<!--Auto-generated template for the s-lbox-popover list selector.-->
+<div id="s-lbox-popover-template" class="template">
   <table>
     <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CVC</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCCV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCC</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCC</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCCC</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsetless and codaless (V)</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 1 consonant</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 2 consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 3 consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 4 consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 1 consonant</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 2 consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 3 consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 4 consonants</td></tr>
     </tbody>
   </table>
 </div>
 
-<!--Auto-generated template for the morphology list selector.-->
-<div id="morphology-template" class="template">
+<!--Auto-generated template for the m-lbox-popover list selector.-->
+<div id="m-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">isolating</td></tr>
@@ -516,8 +530,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the word-formation list selector.-->
-<div id="word-formation-template" class="template">
+<!--Auto-generated template for the wf-lbox-popover list selector.-->
+<div id="wf-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">affixation</td></tr>
@@ -536,8 +550,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the formation-freq list selector.-->
-<div id="formation-freq-template" class="template">
+<!--Auto-generated template for the ff-lbox-popover list selector.-->
+<div id="ff-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively suffixing</td></tr>
@@ -554,8 +568,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the word-order list selector.-->
-<div id="word-order-template" class="template">
+<!--Auto-generated template for the wo-lbox-popover list selector.-->
+<div id="wo-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">SVO</td></tr>
@@ -570,8 +584,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the headedness list selector.-->
-<div id="headedness-template" class="template">
+<!--Auto-generated template for the h-lbox-popover list selector.-->
+<div id="h-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-initial</td></tr>
@@ -583,8 +597,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the agreement list selector.-->
-<div id="agreement-template" class="template">
+<!--Auto-generated template for the a-lbox-popover list selector.-->
+<div id="a-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
@@ -595,8 +609,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the case list selector.-->
-<div id="case-template" class="template">
+<!--Auto-generated template for the c-lbox-popover list selector.-->
+<div id="c-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
@@ -607,8 +621,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the metaclass list selector.-->
-<div id="metaclass-template" class="template">
+<!--Auto-generated template for the mc-lbox-popover list selector.-->
+<div id="mc-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiced</td></tr>
@@ -624,8 +638,18 @@
     </tbody>
   </table>
 </div>
+
+<!--Auto-generated template for the ca-lbox-popover list selector.-->
+<div id="ca-lbox-popover-template" class="template">
+  <table>
+    <tbody>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">places</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">manners</td></tr>
+    </tbody>
+  </table>
+</div>
 <!--Auto-generated template for the IPA consonant chart-->
-<div id="ipacbox-template" class="template">
+<div id="ipacbox-popover-template" class="template" style="position: relative;">
   <table>
     <tbody>
       <tr>
@@ -901,8 +925,9 @@
   </table>
 </div>
 <!--Auto-generated template for the IPA vowel chart-->
-<div id="ipavbox-template" class="template">
-  <table>
+<div id="ipavbox-popover-template" class="template" style="position: relative;">
+  <img src='/static/img/Blank_vowel_trapezoid.png' width=428px height=300px style="position: relative; top: 12px; left: 20px;">
+  <table style="position: absolute; top: 0px;">
     <tbody>
       <tr>
         <th onclick="handleIpavboxLabel(this)" scope='col' colspan='1' category=backness trait=></th>
@@ -914,42 +939,42 @@
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='high'>high</th>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='high' roundedness='unrounded'>i</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='high' roundedness='rounded'>y</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='high' roundedness='unrounded' style="position: absolute; left: 63.227272727272734px; top: 37.5px;">i</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='high' roundedness='rounded' style="position: absolute; left: 99.70454545454547px; top: 37.5px;">y</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='high' roundedness='unrounded'>ɨ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='high' roundedness='rounded'>ʉ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='high' roundedness='unrounded' style="position: absolute; left: 209.13636363636363px; top: 37.5px;">ɨ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='high' roundedness='rounded' style="position: absolute; left: 245.61363636363635px; top: 37.5px;">ʉ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='high' roundedness='unrounded'>ɯ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='high' roundedness='rounded'>u</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='high' roundedness='unrounded' style="position: absolute; left: 355.04545454545456px; top: 37.5px;">ɯ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='high' roundedness='rounded' style="position: absolute; left: 391.52272727272725px; top: 37.5px;">u</td>
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='near-high'>near-high</th>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='near-front' height='near-high' roundedness='unrounded'>ɪ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='near-front' height='near-high' roundedness='rounded'>ʏ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='near-front' height='near-high' roundedness='unrounded' style="position: absolute; left: 155.63636363636363px; top: 75.0px;">ɪ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='near-front' height='near-high' roundedness='rounded' style="position: absolute; left: 189.6818181818182px; top: 75.0px;">ʏ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='near-back' height='near-high' roundedness='rounded'>ʊ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='near-back' height='near-high' roundedness='rounded' style="position: absolute; left: 325.8636363636364px; top: 75.0px;">ʊ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='mid-high'>mid-high</th>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-high' roundedness='unrounded'>e</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-high' roundedness='rounded'>ø</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-high' roundedness='unrounded' style="position: absolute; left: 111.86363636363637px; top: 112.5px;">e</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-high' roundedness='rounded' style="position: absolute; left: 143.47727272727275px; top: 112.5px;">ø</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-high' roundedness='unrounded'>ɘ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-high' roundedness='rounded'>ɵ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-high' roundedness='unrounded' style="position: absolute; left: 238.3181818181818px; top: 112.5px;">ɘ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-high' roundedness='rounded' style="position: absolute; left: 269.9318181818182px; top: 112.5px;">ɵ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-high' roundedness='unrounded'>ɤ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-high' roundedness='rounded'>o</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-high' roundedness='unrounded' style="position: absolute; left: 364.77272727272725px; top: 112.5px;">ɤ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-high' roundedness='rounded' style="position: absolute; left: 396.3863636363636px; top: 112.5px;">o</td>
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='mid'>mid</th>
@@ -957,8 +982,8 @@
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid' roundedness='unrounded'>ə</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid' roundedness='rounded'>ə</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid' roundedness='unrounded' style="position: absolute; left: 252.90909090909088px; top: 150.0px;">ə</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid' roundedness='rounded' style="position: absolute; left: 282.09090909090907px; top: 150.0px;">ə</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
@@ -966,24 +991,24 @@
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='mid-low'>mid-low</th>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-low' roundedness='unrounded'>ɛ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-low' roundedness='rounded'>œ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-low' roundedness='unrounded' style="position: absolute; left: 160.5px; top: 187.5px;">ɛ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='mid-low' roundedness='rounded' style="position: absolute; left: 187.25px; top: 187.5px;">œ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-low' roundedness='unrounded'>ɜ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-low' roundedness='rounded'>ɞ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-low' roundedness='unrounded' style="position: absolute; left: 267.5px; top: 187.5px;">ɜ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='mid-low' roundedness='rounded' style="position: absolute; left: 294.25px; top: 187.5px;">ɞ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-low' roundedness='unrounded'>ʌ</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-low' roundedness='rounded'>ɒ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-low' roundedness='unrounded' style="position: absolute; left: 374.5px; top: 187.5px;">ʌ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='mid-low' roundedness='rounded' style="position: absolute; left: 401.25px; top: 187.5px;">ɒ</td>
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='near-low'>near-low</th>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='near-low' roundedness='unrounded'>æ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='near-low' roundedness='unrounded' style="position: absolute; left: 184.8181818181818px; top: 225.0px;">æ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='near-low' roundedness='unrounded'>ɐ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='near-low' roundedness='unrounded' style="position: absolute; left: 282.09090909090907px; top: 225.0px;">ɐ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
@@ -992,15 +1017,15 @@
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' category=height trait='low'>low</th>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='unrounded'>a</td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='rounded'>ɶ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='unrounded' style="position: absolute; left: 209.13636363636363px; top: 262.5px;">a</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='rounded' style="position: absolute; left: 231.02272727272725px; top: 262.5px;">ɶ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='low' roundedness='unrounded'>ɑ</td>
+        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='low' roundedness='unrounded' style="position: absolute; left: 384.22727272727275px; top: 262.5px;">ɑ</td>
         <td class="ipa-box-empty"></td>
       </tr>
     </tbody>

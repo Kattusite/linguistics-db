@@ -16,3 +16,18 @@ def getGlyphsMatching(propertyName, propertyValue):
     """Returns a list of the glyphs of any producible phoneme that satisfies
     el[propertyName] == propertyValue"""
     return utils.getGlyphsMatching(data, propertyName, propertyValue)
+
+class Phoneme:
+    """A class defining a phoneme object, including several functions for
+    constructing them and extracting information"""
+
+    # This is currently just a sketch of an idea... It needs some serious
+    # design consideration to work out nicely. 
+
+    def __init__(self, data):
+        self.created = True
+        return self
+
+    @classmethod
+    def from_json(cls, json):
+        return cls(json)
