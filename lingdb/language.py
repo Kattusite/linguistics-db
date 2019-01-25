@@ -199,6 +199,18 @@ class Language:
         if the number of matches is at least* (or mode) k"""
         return self.match(self.getWordFormations(), selList, k, mode)
 
+    def matchConsonantArticulation(self, sel, k, mode):
+        """Return the number of 'sel' (sel is 'place' or 'manner')
+        articulation types in this language, if this number is at least*
+        (or mode) k. Else, return False. """
+
+        articulationType = "consonant %s" % sel
+        num = self.getGrammarAttr(articulationType)
+        if compareByMode(num, k, mode):
+            return tuple([num])
+        else:
+            return False
+
 
 
 ################################################################################

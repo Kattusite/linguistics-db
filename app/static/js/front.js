@@ -22,6 +22,7 @@ var CASE_ID                 = "case-selector";
 var IPA_CONSONANT_ID        = "ipa-consonant-selector";
 var IPA_VOWEL_ID            = "ipa-vowel-selector";
 var METACLASS_ID            = "metaclass-selector";
+var CONSONANT_ARTICULATION_ID = "consonant-articulation-selector";
 
 // Should we list all members of the matching language set?
 // Changed by handleListToggle
@@ -56,12 +57,15 @@ function frontInit() {
     var selector = SELECTORS_DICT[key];
     var mode = selector["mode"];
     var cls = selector["popover prefix"];
-    if (mode == "boolean") continue;
+    if (["boolean", "no query"].includes(mode)) continue;
     else if (mode == "pick k ipa") {
       initIPAChart(cls);
     }
-    else {
+    else if (["pick one", "pick class", "pick multi", "pick k"].includes(mode)){
       initPopovers(cls);
+    }
+    else {
+      console.err("Attempted to initialize a selector with unrecognized mode");
     }
   }
 
@@ -143,6 +147,12 @@ function displayError(err) {
   $result.text(err);
 }
 
+function displayInfo(info) {
+  var $result = $("#results");
+  setOutputMode(INFO);
+  $result.text(info);
+}
+
 /*****************************************************************************/
 /*                                Event Handlers                             */
 /*****************************************************************************/
@@ -152,6 +162,9 @@ function displayError(err) {
 function handleSingleTrait() {
   console.log("single clicked");
   hideElement($("#trait-divs").children()[1]);
+
+  // Clear the results to avoid confusion
+  resetResults();
 }
 
 // On click handler for double trait button
@@ -159,6 +172,9 @@ function handleSingleTrait() {
 function handleDoubleTrait() {
   console.log("double clicked");
   unhideElement($("#trait-divs").children()[1]);
+
+  // Clear the results to avoid confusion
+  resetResults();
 }
 
 // On change handler for selecting a trait from dropdown.
@@ -467,6 +483,7 @@ function validateRequest(req) {
     case MORPHOLOGY_ID:
     case WORD_FORMATION_ID:
     case METACLASS_ID:
+    case CONSONANT_ARTICULATION_ID:
       // For requests that require a mode and k
       // Ensure mode is valid
       var mode = req["mode"];
@@ -675,9 +692,51 @@ function handleSubmit() {
        );
 }
 
-// Toggles the setting of listMode -- are lists shown/hidden by default?
+// Handle clicks on the collapsible list button --
+// Currently does nothing but can change in the future.
 function handleListToggle() {
-  listMode = !listMode;
+  // Uncomment to make site remember previous collapse/expand state of the matching list
+  // listMode = !listMode;
+}
+
+/*****************************************************************************/
+/*                                 Resets                                    */
+/*****************************************************************************/
+
+// Reset the selected values of a query.
+function resetQuerySelections() {
+  if (!confirm("Are you sure you wish to clear all selections?")) {
+    return;
+  }
+
+  // Reset all (k-)input fields to be empty
+  $(".k-selector").val("1");
+
+  // Reset all mode fields to be "at least"
+  $(".mode-selector").val("at least");
+
+  // Reset all selected labels (i.e. phonemes)
+  $(".selected").removeClass("selected");
+  $("[selList]").attr("selList", "");
+
+  // Reload the entire page.
+  // I'm pretty sure this makes all the previous things redundant.
+  frontInit(); // this might break things
+
+  // Select the divs that were visible before.
+  // <code would go here if desired>
+}
+
+// Reset the output box to its default state
+function resetResults() {
+  displayInfo("Submit a valid query to get started.");
+}
+
+// Reset the queries and results
+// This involves de-selecting any selected elements, and clearing the results
+function handleReset() {
+  resetQuerySelections();
+  resetResults();
 }
 
 /*****************************************************************************/

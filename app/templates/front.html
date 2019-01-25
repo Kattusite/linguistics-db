@@ -37,6 +37,7 @@
       <button class="btn btn-primary" onclick="handleSingleTrait()">Single trait</button>
       <button class="btn btn-primary" onclick="handleDoubleTrait()">Two traits</button>
       <button class="btn btn-warning" onclick="handleSubmit()">Submit</button>
+      <button class="btn btn-danger"  onclick="handleReset()">Reset</button>
       <br>
       <br>
 
@@ -83,14 +84,13 @@
     <!--Auto-generated template for the selectors dropdown-->
     <div class="alert alert-info trait-div" id="trait-div-template" role="alert">
       <select class="trait-selector template" type=trait-selector onchange="handleTraitSelect(this)">
+        <option>Select trait...</option>
         <option>Contains consonant:</option>
         <option>Contains vowel:</option>
         <option>Contains metaclass:</option>
         <option>Contains consonant class:</option>
         <option>Contains vowel class:</option>
         <option>Has articulation features:</option>
-        <option>Has 3+ consonant places</option>
-        <option>Has 2+ consonant manners</option>
         <option>Has complex consonants</option>
         <option>Has tone</option>
         <option>Has stress</option>
@@ -103,7 +103,10 @@
         <option>Case:</option>
         <option>Agreement:</option>
       </select>
-      <div class="ipa-consonant-selector template active" type="ipa-consonant-selector">Contains
+      <div class="placeholder-selector template active" type="placeholder-selector">
+        Select a trait from the dropdown menu to start submitting queries!
+      </div>
+      <div class="ipa-consonant-selector template inactive" type="ipa-consonant-selector">Contains
         <select class="mode-selector">
           <option>at least</option>
           <option>at most</option>
@@ -208,12 +211,6 @@
            data-toggle="popover"
            title="<b>Select articulation type</b>"
            data-content="Error loading. Sorry!">Select articulation type...</a>
-      </div>
-      <div class="consonant-places-selector template inactive" type="consonant-places-selector">
-        3+ Places of Consonant Articulation
-      </div>
-      <div class="consonant-manners-selector template inactive" type="consonant-manners-selector">
-        2+ Manners of Consonant Articulation
       </div>
       <div class="complex-consonants-selector template inactive" type="complex-consonants-selector">
         Complex Consonants
@@ -589,15 +586,15 @@
     <div id="s-lbox-popover-template" class="template">
       <table>
         <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CV</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CVC</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCV</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCV</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCCV</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCC</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCC</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VCCCC</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsetless and codaless (V)</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 1 consonant</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 2 consonants</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 3 consonants</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 4 consonants</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 1 consonant</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 2 consonants</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 3 consonants</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 4 consonants</td></tr>
         </tbody>
       </table>
     </div>

@@ -61,9 +61,22 @@ PICK_MULTI  = "pick multi"  # lbox (multi = true)
 PICK_K      = "pick k"      # pboxes
 PICK_K_IPA  = "pick k ipa"  # ipaboxes (displayed inline, not as popover)
 BOOLEAN     = "boolean"     # no boxes (true/false only)
+NO_QUERY    = "no query"    # placeholder (cannot be submitted as query)
 
 # ===============================
 # ========== SELECTORS ==========
+
+# Note: things will misbehave if FUNCTION,
+
+# The dummy "selector" that is displayed by default if none are selected
+PLACEHOLDER = {
+    SELECT_NAME: "Select trait...",
+    MODE: NO_QUERY,
+    FUNCTION: None,
+    HTML_ID: "placeholder-selector",
+    BOOL_BODY: "Select a trait from the dropdown menu to start submitting queries!"
+}
+
 CONSONANT = {
     SELECT_NAME: "Contains consonant:",
     DICT: None,
@@ -177,7 +190,7 @@ CONSONANT_ARTICULATION = {
     MODE: PICK_K,
     REPLY: "contain %s %s %s of consonant articulation",
     REPLY_VARS: None,
-    FUNCTION: Language.containsConsonantArticulation,
+    FUNCTION: Language.matchConsonantArticulation,
     HTML_ID: "consonant-articulation-selector",
     POPOVER_PREFIX: "ca-lbox-popover",
     SELECT_WHAT: "articulation type"
@@ -228,15 +241,15 @@ STRESS = {
 SYLLABLE = {
     SELECT_NAME: "Allows syllable structure:",
     DICT: {
-        "CV":    [],
-        "V":     [],
-        "CVC":   [],
-        "CCV":   [],
-        "CCCV":  [],
-        "CCCCV": [],
-        "VCC":   [],
-        "VCCC":  [],
-        "VCCCC": []
+        "onsetless and codaless (V)":     ["V"],
+        "onsets of 1 consonant":          ["CV"],
+        "onsets of 2 consonants":         ["CCV"],
+        "onsets of 3 consonants":         ["CCCV"],
+        "onsets of 4 consonants":         ["CCCCV"],
+        "codas of 1 consonant":           ["CVC", "VC"], # formerly CVC, not "VC"
+        "codas of 2 consonants":          ["VCC"],
+        "codas of 3 consonants":          ["VCCC"],
+        "codas of 4 consonants":          ["VCCCC"]
     },
     MULTI: True,
     MODE: PICK_MULTI,
@@ -457,6 +470,7 @@ METACLASS = {
 # The order of this list determines the order in which traits will appear in the
 # selector dropdown on the site.
 SELECTORS = [
+    PLACEHOLDER,
     IPA_CONSONANT,
     IPA_VOWEL,
     # CONSONANT,
@@ -465,8 +479,8 @@ SELECTORS = [
     CONSONANT_CLASS,
     VOWEL_CLASS,
     CONSONANT_ARTICULATION,
-    CONSONANT_PLACES,
-    CONSONANT_MANNERS,
+    #CONSONANT_PLACES,
+    #CONSONANT_MANNERS,
     COMPLEX_CONSONANTS,
     TONE,
     STRESS,

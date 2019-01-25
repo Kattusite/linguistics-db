@@ -215,6 +215,11 @@ def selectorbody(sel, isActive):
     elif mode == selectors.BOOLEAN:
         body = sel[selectors.BOOL_BODY]
         booldiv(htmlID, body, isActive)
+    elif mode == selectors.NO_QUERY:
+        body = sel[selectors.BOOL_BODY]
+        booldiv(htmlID, body, isActive)
+    else:
+        sys.stderr.write("Attempted to create selector body for an unknown mode!")
 
 # Given a list of traits, print the HTML representing a <select>/<option>
 # structure allowing user to pick one trait.
