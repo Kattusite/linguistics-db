@@ -36,11 +36,11 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants"
         ],
         "citation": "Chirikba, V. A. Abkhaz. München: LINCOM, 2003. ",
         "recommend": "It's a tiny grammar, so it's very concise (almost too concise and dense, if you ask me) so if the student has a linguistics background then it should be fine ",
@@ -97,9 +97,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant"
         ],
         "citation": "A Grammar of Aguaruna (Iiniá Chicham), Simon E Overall, De Gruyter Mouton, 2015.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -153,8 +153,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)"
         ],
         "citation": "(The Language Of The Apurinã People of Brazil, Sidney Da Silva Facundes, SUNY Buffalo, 2000)",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -203,10 +203,10 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "codas of 2 consonants"
         ],
         "citation": "Cowell, A., & Moss Sr, A. (2008). The Arapaho Language. University Press of Colorado.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -265,11 +265,11 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants"
         ],
         "citation": "Kouwenberg, Silva. (1994). A grammar of Berbice Dutch Creole. Berlin: Mouton de Gruyter.",
         "recommend": "Yes, my grammar was great to work with",
@@ -327,9 +327,9 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CCV"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "onsets of 2 consonants"
         ],
         "citation": "\"A Grammar of Chalcatongo Mixtec,\" Monica Macaulay. University of California Press, 1996. ",
         "recommend": "Yes, my grammar was great to work with",
@@ -385,10 +385,10 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "codas of 2 consonants"
         ],
         "citation": "A Choctaw Reference Grammar, George Aaron Broadwell, 2006, University of Nebraska Press",
         "recommend": "Yes, my grammar was great to work with",
@@ -444,9 +444,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant"
         ],
         "citation": "A grammar of Comanche, Jean Ormandy Charney",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -496,10 +496,10 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "CV",
-            "CVC",
-            "CCV",
-            "VCC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants"
         ]
     },
     {
@@ -536,11 +536,11 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants"
         ],
         "citation": "Graczyk, R. (2007). A grammar of Crow. Lincoln: Univ. of Nebraska Press.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -597,9 +597,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant"
         ],
         "citation": "Hill, Jane H. A Grammar of Cupeño. Vol. 136, University of California Publications, 2006.",
         "recommend": "No, my grammar was hard to work with",
@@ -661,10 +661,10 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants"
         ],
         "citation": "Von Prince, Kilu. 2015. A Grammar of Daakaka. Walter de Gruyter: Germany.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -722,9 +722,9 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant"
         ],
         "citation": "Evenki, Igor Nedjalkov, Routledge, 1997.",
         "recommend": "Yes, my grammar was great to work with",
@@ -780,9 +780,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "CV",
-            "CVC",
-            "VCC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant",
+            "codas of 2 consonants"
         ],
         "citation": "Thurgood, Graham, Thurgood, Ela, and Fengxiang, Li. 2014. A Grammatical Sketch of Hainan Cham : History, Contact, and Phonology. Boston: De Gruyter.",
         "recommend": "No, my grammar was hard to work with",
@@ -841,12 +841,12 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV",
-            "VCC",
-            "VCCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants",
+            "codas of 3 consonants"
         ],
         "citation": "Watahomigie, L., Bender, J., Watahomigie, P., Sr., & Yamamoto, A. Y. (2001). Hualapai Reference Grammar (Endangered Languages of the Pacific Rim). Osaka, Japan: Faculty of Informatics, Osaka Gakuin University.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -916,9 +916,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "CVC",
-            "CCV"
+            "onsets of 1 consonant",
+            "codas of 1 consonant",
+            "onsets of 2 consonants"
         ],
         "citation": " Ingush grammar, Nichols, Johanna. Berkeley, Calif.: University of California Press, 2011",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -971,9 +971,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "CVC",
-            "VCC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant",
+            "codas of 2 consonants"
         ],
         "citation": "Pensalfini, Robert J. A Grammar of Jingulu: An Aboriginal Language of the Northern Territory. Pacific Linguistics, 2003.",
         "recommend": "Yes, my grammar was great to work with",
@@ -1035,10 +1035,10 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CCV",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "onsets of 2 consonants",
+            "codas of 2 consonants"
         ],
         "citation": "A Grammar of the Kabardian Language, John Colarusso, London: University of Calgary Press, 1992) ",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1104,10 +1104,10 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "VCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "codas of 2 consonants"
         ],
         "citation": "Zigmond, Maurice L, et al. Kawaiisu: A Grammar and Dictionary with Texts. Edited by Pamela Munro, vol. 119, University of California Press, 1991.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1165,8 +1165,8 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "CV",
-            "V"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)"
         ],
         "citation": "Stenzel, Kristine. 2013. A Reference Grammar of Kotiria (Wanano). Lincoln and London: University of Nebraska Press",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -1218,10 +1218,10 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants"
         ]
     },
     {
@@ -1255,8 +1255,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)"
         ],
         "citation": "A Grammar of Kulina, Stefan Dienst, De Gruyter Mouton, 2014",
         "recommend": "Yes, my grammar was great to work with",
@@ -1316,9 +1316,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant"
         ],
         "citation": "Gorelova, L. M. (2002). Manchu grammar. Leiden: Brill.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1373,8 +1373,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)"
         ],
         "citation": "Cablitz, Gabriele H. Marquesan a Grammar of Space. W. De Gruyter, 2006. ",
         "recommend": "Yes, my grammar was great to work with",
@@ -1427,9 +1427,9 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CCV"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "onsets of 2 consonants"
         ],
         "citation": " Quintero, Carolyn. Osage Grammar. Lincoln: University of Nebraska Press, 2004.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1491,10 +1491,10 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants"
         ],
         "citation": "Campbell, Lyle. The Pipil Language of El Salvador. Berlin: Mouton, 1985.",
         "recommend": "No, my grammar was hard to work with",
@@ -1557,10 +1557,10 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants"
         ],
         "citation": "The Pipil Language of El Salvador, Lyle Campbell, Mouton, 1985",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -1623,12 +1623,12 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "CVC",
-            "CCV",
-            "CCCV",
-            "VCC",
-            "VCCC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "onsets of 3 consonants",
+            "codas of 2 consonants",
+            "codas of 3 consonants"
         ],
         "citation": "Wilbur, J. (2014). A grammar of Pite Saami. Berlin: Language Science Press.",
         "recommend": "Yes, my grammar was great to work with",
@@ -1689,9 +1689,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant"
         ],
         "citation": "A Grammar of Tommo So, Laura McPherson, Walter de Gruyter GmbH (Berlin/Boston), 2013",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1753,8 +1753,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "CVC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant"
         ],
         "citation": "Nikolaeva, Irina. 2014. A Grammar of Tundra Nenets. Walter de Gruyter GmbH: Berlin/ Boston.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -1806,8 +1806,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "CV",
-            "CVC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant"
         ],
         "citation": "Jones, Barbara. 2011. A grammar of Wangkajunga: a language of the Great Sandy Desert. Canberra: Pacific Linguistics at the Australian National University.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1860,13 +1860,13 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV",
-            "VCC",
-            "VCCC",
-            "VCCCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants",
+            "codas of 3 consonants",
+            "codas of 4 consonants"
         ],
         "citation": "Merlan, Francesca. A Grammar of Wardaman: a Language of the Northern Territory of Australia. Mouton De Gruyter, 1994.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1920,12 +1920,12 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "CV",
-            "V",
-            "CVC",
-            "CCV",
-            "VCC",
-            "VCCC"
+            "onsets of 1 consonant",
+            "onsetless and codaless (V)",
+            "codas of 1 consonant",
+            "onsets of 2 consonants",
+            "codas of 2 consonants",
+            "codas of 3 consonants"
         ],
         "citation": "A Grammar of Warrongo, Tasaku, Tsunoda, De Gruyter, 2011-12-23",
         "recommend": "My grammar was great in that the EBook was very organized, but I feel that having a hard copy on hand would have been very nice. (I didn't see one in the libraries)",
@@ -1980,9 +1980,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "CV",
-            "CVC",
-            "VCC"
+            "onsets of 1 consonant",
+            "codas of 1 consonant",
+            "codas of 2 consonants"
         ],
         "citation": "Yuki Grammar: With Sketches of Huchnom and Coast Yuki, Uldis Balodis, University of California Publications, 2016",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
