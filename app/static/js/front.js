@@ -202,23 +202,24 @@ function handleModeSelect(el) {
 
   var sel = $el.val();
   // None not currently supported, but might be in the future
-  if (sel == "all" || sel == "none")  $ksel.attr("disabled", "");
-  else                                $ksel.removeAttr("disabled");
-
-  // Update the value of k based on selList.length
-  var $traitDiv = $el.closest("div");
-  var selList = $traitDiv.attr("selList");
-
-  // Get list from selList attr string, or assume 0 length if it doesnt exist
-  if (selList) {
-    selList = selList.split(",");
-    $ksel.val(selList.length);
+  if (!["all","none"].includes(sel)) {
+    $ksel.removeAttr("disabled");
   }
   else {
-    $ksel.val(0);
+    $ksel.attr("disabled", "");
+    // Update the value of k based on selList.length, if mode is all
+    var $traitDiv = $el.closest("div");
+    var selList = $traitDiv.attr("selList");
+
+    // Get list from selList attr string, or assume 0 length if it doesnt exist
+    if (selList) {
+      selList = selList.split(",");
+      $ksel.val(selList.length);
+    }
+    else {
+      $ksel.val(0);
+    }
   }
-
-
 }
 
 // Returns true iff the provided jQuery wrapper has a child of class .k-selector
