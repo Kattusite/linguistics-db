@@ -20,6 +20,7 @@ GT  = "more than"     # Match if the number of phoneme matches  > target
 LEQ = "at most"       # Match if the number of phoneme matches <= target
 LT  = "less than"     # Match if the number of phoneme matches  < target
 NEQ = "not equal to"  # Match if the number of phoneme matches != target
+ALL = "all"
 
 class Language:
     """An object storing useful information about a language, and query methods
@@ -401,3 +402,7 @@ def compareByMode(num1, num2, mode):
         return num1  < num2
     elif (mode == LEQ):
         return num1 <= num2
+    elif (mode == ALL):
+        return num1 >= num2  
+    else:
+        raise ValueError("Unexpected comparison mode: %s" % mode)

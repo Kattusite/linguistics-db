@@ -103,10 +103,14 @@ def comment(com):
 
 # Prints a mode selector
 def modeselector():
-    tprint(tag("select", classList=["mode-selector"], type=OPEN))
+    tprint(tag("select",
+               classList=["mode-selector"],
+               other='onchange="handleModeSelect(this)"',
+               type=OPEN))
     indent()
     modes = ["at least",  "at most",   "exactly",
-             "less than", "more than", "not equal to"]
+             "less than", "more than", "not equal to",
+             "all"]
 
     for mode in modes:
         tprint(tag("option", body=mode, type=BOTH))
