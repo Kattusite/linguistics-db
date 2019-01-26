@@ -107,13 +107,14 @@
         Select a trait from the dropdown menu to start submitting queries!
       </div>
       <div class="ipa-consonant-selector template inactive" type="ipa-consonant-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <br>
@@ -126,13 +127,14 @@
            data-content="Error loading. Sorry!">Select consonants...</a>
       </div>
       <div class="ipa-vowel-selector template inactive" type="ipa-vowel-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <br>
@@ -145,13 +147,14 @@
            data-content="Error loading. Sorry!">Select vowels...</a>
       </div>
       <div class="metaclass-selector template inactive" type="metaclass-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="mc-lbox-popover uninit btn btn-outline-secondary"
@@ -162,13 +165,14 @@
            data-content="Error loading. Sorry!">Select metaclasses...</a>
       </div>
       <div class="consonant-class-selector template inactive" type="consonant-class-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="ccbox-popover uninit btn btn-outline-secondary"
@@ -179,13 +183,14 @@
            data-content="Error loading. Sorry!">Select natural classes...</a>
       </div>
       <div class="vowel-class-selector template inactive" type="vowel-class-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="vcbox-popover uninit btn btn-outline-secondary"
@@ -196,13 +201,14 @@
            data-content="Error loading. Sorry!">Select natural classes...</a>
       </div>
       <div class="consonant-articulation-selector template inactive" type="consonant-articulation-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="ca-lbox-popover uninit btn btn-outline-secondary"
@@ -222,13 +228,14 @@
         Predictable Stress
       </div>
       <div class="syllable-selector template inactive" type="syllable-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="s-lbox-popover uninit btn btn-outline-secondary"
@@ -239,13 +246,14 @@
            data-content="Error loading. Sorry!">Select syllables...</a>
       </div>
       <div class="morphological-selector template inactive" type="morphological-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="m-lbox-popover uninit btn btn-outline-secondary"
@@ -256,13 +264,14 @@
            data-content="Error loading. Sorry!">Select morphological type...</a>
       </div>
       <div class="word-formation-selector template inactive" type="word-formation-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="wf-lbox-popover uninit btn btn-outline-secondary"
@@ -281,13 +290,14 @@
            data-content="Error loading. Sorry!">Select frequency...</a>
       </div>
       <div class="word-order-selector template inactive" type="word-order-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="wo-lbox-popover uninit btn btn-outline-secondary"
@@ -298,13 +308,14 @@
            data-content="Error loading. Sorry!">Select word order...</a>
       </div>
       <div class="headedness-selector template inactive" type="headedness-selector">Contains
-        <select class="mode-selector">
+        <select class="mode-selector" onchange="handleModeSelect(this)">
           <option>at least</option>
           <option>at most</option>
           <option>exactly</option>
           <option>less than</option>
           <option>more than</option>
           <option>not equal to</option>
+          <option>all</option>
         </select>
         <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
         <a class="h-lbox-popover uninit btn btn-outline-secondary"

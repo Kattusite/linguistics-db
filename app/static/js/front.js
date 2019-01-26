@@ -194,6 +194,39 @@ function handleTraitSelect(element) {
   resetResults();
 }
 
+// Handle changes to the mode selector.
+// Disable k input if "all" selected, else enable it.
+function handleModeSelect(el) {
+  var $el = $(el);
+  var $ksel = $el.siblings(".k-selector");
+
+  var sel = $el.val();
+  // None not currently supported, but might be in the future
+  if (sel == "all" || sel == "none")  $ksel.attr("disabled", "");
+  else                                $ksel.removeAttr("disabled");
+
+  // Update the value of k based on selList.length
+  var $traitDiv = $el.closest("div");
+  var selList = $traitDiv.attr("selList");
+
+  // Get list from selList attr string, or assume 0 length if it doesnt exist
+  if (selList) {
+    selList = selList.split(",");
+    $ksel.val(selList.length);
+  }
+  else {
+    $ksel.val(0);
+  }
+
+
+}
+
+// Returns true iff the provided jQuery wrapper has a child of class .k-selector
+// that is disabled.
+function isKDisabled($el) {
+  return $el.find(".k-selector[disabled]").length > 0;
+}
+
 // On click function for element representing a label in the pbox.
 // Save the state of the pbox inside the data-content, reload popover
 // Update link text.
@@ -227,6 +260,12 @@ function handlePboxLabel(element) {
     lbl = selList.join(", ");
   }
   $popoverButton.text(lbl);
+
+  // Update the k-selector's value if it is disabled (i.e. mode="all")
+  if (isKDisabled($traitDiv)) {
+    $ksel = $traitDiv.find(".k-selector");
+    $ksel.val(selList.length);
+  }
 }
 
 /* On click handler for the natural class selector. On a click, deselect the
@@ -280,6 +319,12 @@ function handleClboxLabel(element) {
 
   // Update the popoverButton text to reflect new selections
   $popoverButton.text(getStrFromClasses(selList, ctype));
+
+  // Update the k-selector's value if it is disabled (i.e. mode="all")
+  if (isKDisabled($traitDiv)) {
+    $ksel = $traitDiv.find(".k-selector");
+    $ksel.val(selList.length);
+  }
 }
 
 // Handle clicks on an Lbox element. Select the clicked on box.
@@ -322,6 +367,12 @@ function handleLboxLabel(element, multi) {
   var isValid = selList.length > 0;
   if (isValid) lbl = selList.join(", ");
   $popoverButton.text(lbl);
+
+  // Update the k-selector's value if it is disabled (i.e. mode="all")
+  if (isKDisabled($traitDiv)) {
+    $ksel = $traitDiv.find(".k-selector");
+    $ksel.val(selList.length);
+  }
 }
 
 // Toggle a single element's class -- i.e. if element already has class, remove
@@ -471,6 +522,11 @@ function handleIpacboxLabel(element) {
   // Save the content changes in the popover attribute.
   // link.attr("data-content", outerHTML);
 
+  // Update the k-selector's value if it is disabled (i.e. mode="all")
+  if (isKDisabled($traitDiv)) {
+    $ksel = $traitDiv.find(".k-selector");
+    $ksel.val(selList.length);
+  }
 }
 
 // Returns true if the given mode is valid, else return false,
@@ -485,7 +541,8 @@ function validateMode(mode) {
 
   // Ensure mode is an acceptable value
   var validModes = ["at least", "at most", "less than",
-                    "more than", "exactly", "not equal to"];
+                    "more than", "exactly", "not equal to",
+                    "all"];
   if (!validModes.includes(mode)) {
     displayError("Please enter a valid equality mode.");
     console.log(`Invalid mode ${mode} was provided to a request.`);
