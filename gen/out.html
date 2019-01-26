@@ -198,7 +198,16 @@
        title="<b>Select frequency</b>"
        data-content="Error loading. Sorry!">Select frequency...</a>
   </div>
-  <div class="word-order-selector template inactive" type="word-order-selector">
+  <div class="word-order-selector template inactive" type="word-order-selector">Contains
+    <select class="mode-selector">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+    </select>
+    <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
     <a class="wo-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
@@ -206,7 +215,16 @@
        title="<b>Select word order</b>"
        data-content="Error loading. Sorry!">Select word order...</a>
   </div>
-  <div class="headedness-selector template inactive" type="headedness-selector">
+  <div class="headedness-selector template inactive" type="headedness-selector">Contains
+    <select class="mode-selector">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+    </select>
+    <input class="k-selector" type="text" size="2" placeholder="1" value="1"> of
     <a class="h-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
@@ -504,15 +522,15 @@
 <div id="s-lbox-popover-template" class="template">
   <table>
     <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsetless and codaless (V)</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 1 consonant</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 2 consonants</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 3 consonants</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">onsets of 4 consonants</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 1 consonant</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 2 consonants</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 3 consonants</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">codas of 4 consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">C onset</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CC onset</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCC onset</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCC onset</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">C coda</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CC coda</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCC coda</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCC coda</td></tr>
     </tbody>
   </table>
 </div>
@@ -572,14 +590,13 @@
 <div id="wo-lbox-popover-template" class="template">
   <table>
     <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">SVO</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">SOV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">VSO</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">VOS</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">OVS</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">OSV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">multiple</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SVO</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SOV</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VSO</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VOS</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OVS</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OSV</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">free</td></tr>
     </tbody>
   </table>
 </div>
@@ -588,11 +605,11 @@
 <div id="h-lbox-popover-template" class="template">
   <table>
     <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-initial</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consistently head-final</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly head-initial</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly head-final</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mixed headedness</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-initial</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-final</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-initial</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-final</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mixed headedness</td></tr>
     </tbody>
   </table>
 </div>
