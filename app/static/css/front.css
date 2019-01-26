@@ -88,8 +88,26 @@ footer a:hover {
   border-radius: 5px;
 }
 
+/* Make mode, k, selList selectors appear visually consistent */
+.mode-selector, .k-selector {
+  border: 0px;
+  border-radius: 5px;
+  border-bottom: 3px solid;
+  height: 36px;
+}
+
+/* Used to select the number k */
+.k-selector {
+  text-align:center;
+}
+
+/*.k-selector[disabled] {
+  background: #ebebe4;
+}*/
+
 /* Used to select the mode of equality check (>=, <, etc) */
 .mode-selector {
+  background: transparent;
   padding: 3px;
 }
 

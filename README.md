@@ -11,6 +11,13 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+*     background: transparent;
+    border: 0px;
+    border-radius: 5px;
+    border-bottom: 3px solid;
+    Can be applied to mode / k inputs for a more consistent visual style.
+    text-align:center; // for k inputs
+    background: #ebebe4; // for .k-input[disabled]
 * More constants need to be shared btwn js/python. Specificially mode list (at least, all, none..) and some others I'll add as I remember
 * Introduce more types to enforce properties of arguments. E.g. phonemes should be a type, queries should be a type
 * The "consonant class" prettified strings are very buggy - "contains at least 1 of voiceds", "...voiced aspirateds", "voicelesss" (sic)
