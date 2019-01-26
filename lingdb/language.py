@@ -14,12 +14,12 @@ import json
 #                                                                              #
 ################################################################################
 # Equality modes TODO move to const or eliminate (possible pass a function)
-EQ  = "EQ"  # Match if the number of phoneme matches == target
-GEQ = "GEQ"  # Match if the number of phoneme matches >= target
-GT  = "GT"   # Match if the number of phoneme matches  > target
-LEQ = "LEQ"  # Match if the number of phoneme matches <= target
-LT  = "LT"   # Match if the number of phoneme matches  < target
-NEQ = "NEQ"  # Match if the number of phoneme matches != target
+EQ  = "exactly"       # Match if the number of phoneme matches == target
+GEQ = "at least"      # Match if the number of phoneme matches >= target
+GT  = "more than"     # Match if the number of phoneme matches  > target
+LEQ = "at most"       # Match if the number of phoneme matches <= target
+LT  = "less than"     # Match if the number of phoneme matches  < target
+NEQ = "not equal to"  # Match if the number of phoneme matches != target
 
 class Language:
     """An object storing useful information about a language, and query methods

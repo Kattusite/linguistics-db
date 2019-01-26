@@ -160,7 +160,8 @@ function displayInfo(info) {
 // On click handler for single trait button
 // Hides second trait div
 function handleSingleTrait() {
-  console.log("single clicked");
+  // Do nothing if 2 already visible.
+  if ($("#trait-divs").children(":visible").length == 1) return;
   hideElement($("#trait-divs").children()[1]);
 
   // Clear the results to avoid confusion
@@ -170,7 +171,8 @@ function handleSingleTrait() {
 // On click handler for double trait button
 // Displays second trait div
 function handleDoubleTrait() {
-  console.log("double clicked");
+  // Do nothing if 2 already visible.
+  if ($("#trait-divs").children(":visible").length == 2) return;
   unhideElement($("#trait-divs").children()[1]);
 
   // Clear the results to avoid confusion
@@ -273,7 +275,7 @@ function handleClboxLabel(element) {
   // Figure out if we want consonants or vowels
   console.log("Unintended class collision - fix me!");
   // TODO: class "consonant-class-selector" might appear in several places
-  var ctype = $table.hasClass("consonant-class-selector") ? "consonant" : "vowel";
+  var ctype = $table.hasClass("ccbox-popover-table") ? "consonant" : "vowel";
 
   // Update the popoverButton text to reflect new selections
   $popoverButton.text(getStrFromClasses(selList, ctype));
@@ -469,205 +471,254 @@ function handleIpacboxLabel(element) {
 
 }
 
+// Returns true if the given mode is valid, else return false,
+// and display an error message.
+function validateMode(mode) {
+  // Ensure mode exists
+  if (!mode) {
+    displayError("Request expected equality mode but found none!");
+    console.log("Request expected equality mode but found none!");
+    return false;
+  }
+
+  // Ensure mode is an acceptable value
+  var validModes = ["at least", "at most", "less than",
+                    "more than", "exactly", "not equal to"];
+  if (!validModes.includes(mode)) {
+    displayError("Please enter a valid equality mode.");
+    console.log(`Invalid mode ${mode} was provided to a request.`);
+    return false;
+  }
+
+  return true;
+}
+
+// Returns true if the given k is valid, else return false,
+// and display an error message.
+function validateK(k) {
+  // Ensure k exists
+  if (!k) {
+    displayError("Please enter a number");
+    console.log("k value expected but not found");
+    return false;
+  }
+
+  // k must be a purely numerical value.
+  k = Number(k);
+  if (Number.isNaN(k)) {
+    displayError("Please enter a number only");
+    console.log("A number was expected for k, but other text was received.");
+    return false;
+  }
+
+  // k must be an integer.
+  if (!Number.isInteger(k)) {
+    displayError("Please enter a whole number");
+    console.log("Requests require whole number values of k.")
+    return false;
+  }
+
+  // k must be positive
+  if (k < 0) {
+    displayError("Please enter a positive number");
+    console.log("Requests require non-negative values of k.");
+    return false;
+  }
+
+  return true;
+}
+
+// Returns true if the given selList is valid, else return false,
+// and display an error message.
+function validateSelList(selList) {
+  if (!selList) {
+    displayError("Please select something");
+    console.log("Request expected selList but found none!");
+    return false;
+  }
+
+  // Ensure selList is nonempty
+  if (selList.length == 0) {
+    displayError("Please select something");
+    console.log("Nothing was selected!");
+    return false;
+  }
+  return true;
+}
+
+// Returns true if the given sel is valid, else return false,
+// and display an error message.
+// Note: sel is an array (valid if length 1)
+function validateSel(sel) {
+  // Ensure sel is a valid selList.
+  if (!validateSelList(sel)) return false;
+
+  // Ensure sel is of length 1 (a single selection)
+  var n = sel.length;
+  if (n != 1) {
+    displayError("Exactly one item must be selected.");
+    console.log(`Request expected sel, but found array of size ${n}!`);
+    return false;
+  }
+
+  return true;
+}
+
+// Return true if the requirements list contains only recognized requirements
+// Else return false and pritn an error msg.
+function validateRequirements(requirements) {
+  for (var r of requirements) {
+    if (!["mode", "k", "selList", "sel"].includes(r)) {
+      console.error(`Unexpected request requirement: ${r}. Aborting...`);
+      return false;
+    }
+  }
+  return true;
+}
+
 // Returns true if the provided request parameters are valid, and false otherwise.
 // E.g. Make sure that if a request requires a selList, that list is provided and
 // nonempty.
-function validateRequest(req) {
-  var trait = req["trait"];
+function validateRequest(request) {
+  // Find out the request type, and get its archetypal definition from selectors_const.js
+  var trait = request["trait"];
+  var def = SELECTORS_DICT[trait];
 
-  switch (trait) {
-    case CONSONANT_ID:
-    case VOWEL_ID:
-    case IPA_CONSONANT_ID:
-    case IPA_VOWEL_ID:
-    case CONSONANT_CLASS_ID:
-    case VOWEL_CLASS_ID:
-    case SYLLABLE_ID:
-    case MORPHOLOGY_ID:
-    case WORD_FORMATION_ID:
-    case METACLASS_ID:
-    case CONSONANT_ARTICULATION_ID:
-      // For requests that require a mode and k
-      // Ensure mode is valid
-      var mode = req["mode"];
-      if (!mode) {
-        displayError("Request expected equality mode but found none!");
-        console.log("Request expected equality mode but found none!");
-        return false;
-      }
-
-      if (!["EQ", "NEQ", "GT", "GEQ", "LT", "LEQ"].includes(mode)) {
-        displayError("Please enter a valid equality mode.");
-        console.log(`Invalid mode ${mode} was provided to a request.`);
-        return false;
-      }
-      // Ensure k is a nonnegative integer.
-      var k = req["k"];
-      if (!k) {
-        displayError("Please enter a number");
-        console.log("k value expected but not found");
-        return false;
-      }
-
-      // Cast k to a number and keep trying
-      k = Number(k);
-      if (Number.isNaN(k)) {
-        displayError("Please enter a number only");
-        console.log("A number was expected for k, but other text was received.");
-        return false;
-      }
-      if (!Number.isInteger(k)) {
-        displayError("Please enter a whole number");
-        console.log("Requests require whole number values of k.")
-        return false;
-      }
-      if (k < 0) {
-        displayError("Please enter a positive number");
-        console.log("Requests require non-negative values of k.");
-        return false;
-      }
-
-      // FALL THROUGH
-    case FORMATION_FREQ_ID:
-    case WORD_ORDER_ID:
-    case HEADEDNESS_ID:
-    case AGREEMENT_ID:
-    case CASE_ID:
-      // For requests that require a selList
-      // Ensure the selList is defined and nonempty
-      var selList = req["selList"];
-      if (!selList) {
-        displayError("Please select something");
-        console.log("Request expected selList but found none!");
-        return false;
-      }
-
-      if (selList.length == 0) {
-        displayError("Please select something");
-        console.log("Nothing was selected!");
-        return false;
-      }
-
-      // FALL THROUGH
-    case CONSONANT_PLACES_ID:
-    case CONSONANT_MANNERS_ID:
-    case COMPLEX_CONSONANT_ID:
-    case TONE_ID:
-    case STRESS_ID:
-      // These queries can't fail because they lack requirements
-      return true;
-
-    default:
-      console.log("Encountered unexpected trait during request validation - Aborting!");
-      return false;
-
+  // Abort with an error msg if the provided trait lacks a definition in selectors_const.js
+  if (!def) {
+    console.log("Encountered unexpected trait during request validation - Aborting!");
+    return false;
   }
+
+  // If the request does not have any required reply variables, skip validation.
+  var requirements = def["reply vars"];
+  if (!requirements) {
+    console.log("No query requirements found... Skipping validation.");
+    return true;
+  }
+
+  // If the request has an unexpected requirement, abort with an error msg.
+  if (!validateRequirements(requirements)) return false;
+
+  // Ensure a (legal) mode is defined, if required
+  if (requirements.includes("mode")) {
+    var mode = request["mode"];
+    if (!validateMode(mode)) return false;
+  }
+
+  // Ensure a (legal) k value is defined, if required
+  if (requirements.includes("k")) {
+    var k = request["k"];
+    if  (!validateK(k)) return false;
+  }
+
+  // Ensure a (legal) selList value is defined, if required
+  if (requirements.includes("selList")) {
+    var selList = request["selList"];
+    if (!validateSelList(selList)) return false;
+  }
+  // Ensure a (legal) sel value is defined, if required
+  // (this just means selList is legal, and has length 1)
+  if (requirements.includes("sel")) {
+    var selList = request["selList"];
+    if (!validateSel(selList)) return false;
+  }
+
+  // All checks passed, query is valid!
+  return true;
 }
 
 // Submission handler to send AJAX requests to server
 // TODO Document the fields of the submission
-// TODO Make sure the query is valid (i.e. at least 1 phoneme selected, a syllable was entered)
 
 // Extract the information from each of the active trait divs, and send a POST
 // containing a list of requests as the payload
 function handleSubmit() {
   var requests = [];
+
+  // Build a request (dict/object) for each active trait
   var $traits = getActiveTraits();
   for (var i = 0; i < $traits.length; i++) {
     var $t = $traits.eq(i);
-    var requestParams = {};
+    var requestParams = {}; // stores vars to be sent to server for query
 
-    // Get the list of selected elements from the "selList" attr string
-    var selList = $t.attr("selList");
-    var prettySelList = "prettySelList";
-    if (selList) {
-      selList = selList.split(",");
-      prettySelList = selList.join(", ");
+    // Obtain the definition of this query type from selectors_const.js
+    var trait = $t.attr("type");
+    var def = SELECTORS_DICT[trait];
+
+    // Abort with an error msg if the provided trait lacks a definition in selectors_const.js
+    if (!def) {
+      console.log("Encountered unexpected trait while building request - Aborting!");
+      return false;
     }
 
-    // If selList has size 1, additionally set sel to selList[0]
-    var sel = "sel";
-    if (selList && selList.length == 1)
+    // Get the required variables for this query type, or [] if none are found.
+    var requirements = def["reply vars"];
+    if (!requirements) requirements = [];
+
+    // If the request has unexpected requirement, skip this query; show err msg
+    if (!validateRequirements(requirements)) continue;
+
+    // TODO: Consider integrating validation directly in this step.
+    // No need to validate the query as a whole if we validate all its subparts
+    // directly.
+
+    var replyParams = {}; // stores vars to be inserted into reply str.
+
+    // Extract and process the mode info from trait div
+    if (requirements.includes("mode")) {
+      var mode = $t.find(".mode-selector").val();
+      replyParams["mode"] = mode;
+      requestParams["mode"] = mode;
+    }
+
+    // Extract and process the k info from trait div
+    if (requirements.includes("k")) {
+      var k = $t.find(".k-selector").val();
+      replyParams["k"] = k;
+      requestParams["k"] = k;
+    }
+
+    // Extract and process the selList info from trait div
+    if (requirements.includes("selList")) {
+      var selList = $t.attr("selList");
+      var prettySelList = "prettySelList";
+      if (selList) {
+        selList = selList.split(",");
+        prettySelList = selList.join(", ");
+      }
+      replyParams["selList"] = prettySelList;
+      requestParams["selList"] = selList;
+    }
+
+    // Extract and process the sel info from trait div
+    if (requirements.includes("sel")) {
+      var selList = $t.attr("selList");
+      if (selList) selList = selList.split(",");
+      if (!(selList && selList.length == 1)) {
+        console.error("Malformed sel (replace this err with proper validation)");
+        continue;
+      }
       sel = selList[0];
+      replyParams["sel"] = sel;
+      requestParams["selList"] = selList;
+      requestParams["sel"] = sel;
+    }
 
-    // Get the values of k & mode
-    var k       = $t.find(".k-selector").val();
-    var modeStr = $t.find(".mode-selector").val();
-    var mode    = getModeFromStr(modeStr);
+    // Generate the reply string.
+    // TODO: no reason to keep this clientside, might as well do in py.
+    var reply = def["reply"];
+    if (!reply) {
+      console.error(`No reply string defined for ${trait}`);
+      continue;
+    }
 
-    var trait = $t.attr("type");
-
-    // Pick most commonly used values as defaults
-    var reply = `contain ${modeStr} ${k} of ${prettySelList}`;
-
-    // Generate the correct reply string based on the trait type
-    // Some cases have special other info that must be calculated (ie for natural class arrays)
-    switch (trait) {
-      case CONSONANT_ID:
-      case VOWEL_ID:
-      case IPA_CONSONANT_ID:
-      case IPA_VOWEL_ID:
-      case METACLASS_ID:
-        reply = `contain ${modeStr} ${k} of ${prettySelList}`;
-        break;
-      case CONSONANT_CLASS_ID:
-        prettySelList  = getStrFromClasses(selList, "consonant");
-        reply = `contain ${modeStr} ${k} of ${prettySelList}`;
-        break;
-      case VOWEL_CLASS_ID:
-        prettySelList  = getStrFromClasses(selList, "vowel");
-        reply = `contain ${modeStr} ${k} of ${prettySelList}`;
-        break;
-      case CONSONANT_PLACES_ID:
-        reply = "contain 3+ places of articulation for consonants";
-        break;
-      case CONSONANT_MANNERS_ID:
-        reply = "contain 2+ manners of articulation for consonants";
-        break;
-      case COMPLEX_CONSONANT_ID:
-        reply = "contain complex consonants";
-        break;
-      case TONE_ID:
-        reply = "have tone";
-        break;
-      case STRESS_ID:
-        reply = "have predictable stress";
-        break;
-      case SYLLABLE_ID:
-        reply = `use ${modeStr} ${k} of the syllable structures ${prettySelList}`;
-        break;
-      case MORPHOLOGY_ID:
-        reply = `use ${modeStr} ${k} of the morphological types ${prettySelList}`;
-        break;
-      case WORD_FORMATION_ID:
-        reply = `use ${modeStr} ${k} of ${prettySelList} to form words`;
-        break;
-      case FORMATION_FREQ_ID:
-        reply = `use ${prettySelList} strategies to form words`;
-        break;
-      case WORD_ORDER_ID:
-        reply = `have ${prettySelList} word order`;
-        break;
-      case HEADEDNESS_ID:
-        reply = `are ${prettySelList}`;
-        break;
-      case AGREEMENT_ID:
-        reply = `have ${prettySelList} agreement`;
-        break;
-      case CASE_ID:
-        reply = `have ${prettySelList} case`;
-        break;
-      default:
-        console.error("Error! Tried to submit a query of unknown trait:" + trait);
-        break;
+    for (var r of requirements) {
+      reply = reply.replace("%s", replyParams[r]);
     }
 
     // Create a request and add it to the request list
     requestParams["trait"]        = trait;
-    requestParams["selList"]      = selList;
-    requestParams["sel"]          = sel;
-    requestParams["k"]            = k;
-    requestParams["mode"]         = mode;
     requestParams["reply"]        = reply;
 
     // If this request is invalid, don't consider it.
@@ -840,39 +891,6 @@ function reloadPopovers() {
 
 function reloadTooltips() {
   $("[data-toggle=tooltip]").tooltip();
-}
-
-// Returns the shorthand mode string from the long readable form
-// TODO make this into a dict for easier modification
-// TODO move this to python -- not really needed on frontend
-function getModeFromStr(str) {
-  if (!str) return null;
-  if (str.includes("exactly"))            return "EQ";
-  else if (str.includes("at least"))      return "GEQ";
-  else if (str.includes("at most"))       return "LEQ";
-  else if (str.includes("not equal to"))  return "NEQ";
-  else if (str.includes("less than"))     return "LT";
-  else if (str.includes("more than"))     return "GT";
-  else {
-    console.log("Error! An illegal string was passed to getModeFromStr");
-    return "EQ";
-  }
-}
-
-// Returns the shorthand mode string from the long readable form
-// TODO make this into a dict for easier modification
-// TODO actually just scrap it and make strings exactly equal
-function getStrFromMode(mode) {
-  if      (mode == "EQ")  return "exactly";
-  else if (mode == "NEQ") return "not equal to";
-  else if (mode == "LEQ") return "at most";
-  else if (mode == "GEQ") return "at least";
-  else if (mode == "LT")  return "less than";
-  else if (mode == "GT")  return "more than";
-  else {
-    console.log("Error! An illegal string was passed to getStrFromMode");
-    return "exactly";
-  }
 }
 
 // Given an array of the natural classes desired, prettify a string that combines

@@ -189,7 +189,7 @@ CONSONANT_ARTICULATION = {
     MULTI: False,
     MODE: PICK_K,
     REPLY: "contain %s %s %s of consonant articulation",
-    REPLY_VARS: None,
+    REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.matchConsonantArticulation,
     HTML_ID: "consonant-articulation-selector",
     POPOVER_PREFIX: "ca-lbox-popover",
@@ -241,15 +241,15 @@ STRESS = {
 SYLLABLE = {
     SELECT_NAME: "Allows syllable structure:",
     DICT: {
-        "onsetless and codaless (V)":     ["V"],
-        "onsets of 1 consonant":          ["CV"],
-        "onsets of 2 consonants":         ["CCV"],
-        "onsets of 3 consonants":         ["CCCV"],
-        "onsets of 4 consonants":         ["CCCCV"],
-        "codas of 1 consonant":           ["CVC", "VC"], # formerly CVC, not "VC"
-        "codas of 2 consonants":          ["VCC"],
-        "codas of 3 consonants":          ["VCCC"],
-        "codas of 4 consonants":          ["VCCCC"]
+        "V":            ["V"],
+        "C onset":      ["CV"],
+        "CC onset":     ["CCV"],
+        "CCC onset":    ["CCCV"],
+        "CCCC onset":   ["CCCCV"],
+        "C coda":       ["CVC", "VC"], # formerly CVC, not "VC"
+        "CC coda":      ["VCC"],
+        "CCC coda":     ["VCCC"],
+        "CCCC coda":    ["VCCCC"]
     },
     MULTI: True,
     MODE: PICK_MULTI,
@@ -364,13 +364,13 @@ WORD_ORDER = {
         "VOS": [],
         "OVS": [],
         "OSV": [],
-        "multiple": ["more than one", "multiple", "several"],
-        "none":     ["no basic", "none"]
+        # "multiple": ["more than one", "multiple", "several"],
+        "free":     ["no basic", "none", "free"]
     },
-    MULTI: False,
-    MODE: PICK_ONE,
-    REPLY: "have %s word order",
-    REPLY_VARS: ["sel"],
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have %s %s of %s word orders",
+    REPLY_VARS: ["mode", "k", "sel"],
     FUNCTION: Language.hasWordOrder,
     HTML_ID: "word-order-selector",
     POPOVER_PREFIX: "wo-lbox-popover",
@@ -408,10 +408,10 @@ HEADEDNESS = {
         "mostly head-final": [],
         "mixed headedness": []
     },
-    MULTI: False,
-    MODE: PICK_ONE,
-    REPLY: "are %s",
-    REPLY_VARS: ["sel"],
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "are %s %s of %s",
+    REPLY_VARS: ["mode", "k", "selList"],
     FUNCTION: Language.hasHeadedness,
     HTML_ID: "headedness-selector",
     POPOVER_PREFIX: "h-lbox-popover",
