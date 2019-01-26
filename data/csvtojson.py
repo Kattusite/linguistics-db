@@ -171,42 +171,33 @@ def csvToJSON():
             json_obj[T_STR[T_FORMATION_FREQ]] = "%s %s" % (freq, mode)
 
             ### Parse word order into a short-name
-            order = t_list[T_WORD_ORDER]
+            order = t_list[T_WORD_ORDER].split(INNER_DELIMITER)
             orderDict = selectors.WORD_ORDER[DICT]
-            parsedOrder = parsePhrase(order, orderDict, ["free", "seemingly free"])
-            json_obj[T_STR[T_WORD_ORDER]] = parsedOrder
+            orderList = [parsePhrase(o, orderDict, ["free", "seemingly free"]) for o in order]
+            json_obj[T_STR[T_WORD_ORDER]] = orderList
 
             ### Parse headedness into a short-name
             # NOTE "mixed" & "headedness" must occur together-  "mixed head-initial" (eg) makes no sense
             head = t_list[T_HEADEDNESS]
-            hFreqDict = {
-                "consistently": [],
-                "mostly": [],
-                "mixed": ["mixed", "equal", "roughly equal"]
-            }
+            hFreqDict = selectors.HEADEDNESS_FREQ[DICT]
             hFreq = parsePhrase(head, hFreqDict, None)
 
-            hModeDict = {
-                "head-initial": [],
-                "head-final": [],
-                "headedness": ["mixed", "equal", "roughly equal"]
-            }
+            hModeDict = selectors.HEADEDNESS_MODE[DICT]
             hMode = parsePhrase(head, hModeDict, None)
-            json_obj[T_STR[T_HEADEDNESS]] = "%s %s" % (hFreq, hMode)
+            # HACK: This needs to be a list to be able to use Language.matchXxxxYyyy methods naturally
+            # TODO: Find a more elegant way of doing things
+            hList = ["%s %s" % (hFreq, hMode)]
+            json_obj[T_STR[T_HEADEDNESS]] = hList
 
             ### Parse case and agreement into short-names
             case = t_list[T_CASE]
             agree = t_list[T_AGREEMENT]
 
-            caDict = {
-                "none": ["doesn't have", "none"],
-                "ergative/absolutive": [],
-                "nominative/accusative": [],
-                "other": ["other", "some other", "other sort"]
-            }
+            caseDict = selectors.CASE[DICT]
+            agreeDict = selectors.AGREEMENT[DICT]
 
-            json_obj[T_STR[T_CASE]]      = parsePhrase(case,  caDict, ["Has case"])
-            json_obj[T_STR[T_AGREEMENT]] = parsePhrase(agree, caDict, ["Has agreement"])
+            json_obj[T_STR[T_CASE]]      = parsePhrase(case,  caseDict, ["Has case"])
+            json_obj[T_STR[T_AGREEMENT]] = parsePhrase(agree, agreeDict, ["Has agreement"])
 
 
         json_array.append(json_obj)

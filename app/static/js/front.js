@@ -28,6 +28,10 @@ var CONSONANT_ARTICULATION_ID = "consonant-articulation-selector";
 // Changed by handleListToggle
 var listMode = false;
 
+// Should the expanded/collapsed state of the matching language list be
+// remembered between queries?
+var REMEMBER_LIST_STATE = false;
+
 // TODO Declare constants for class names here (e.g. .vbox-template)
 
 // COLORS
@@ -361,6 +365,7 @@ function toggleClassesEach(el, els, cls) {
 // This one is supposed to model intersectivity.
 // I think it's going to be too much of a pain
 function toggleClassesOthers () {
+  console.error("Not yet implemented");
 }
 
 // Given an IPA Header el, return an array of all the
@@ -686,7 +691,8 @@ function handleSubmit() {
 
         // If this is a class query, prettify the string even further.
         if (def["mode"] == "pick class") {
-          prettySelList = getStrFromClasses(prettySelList);
+          var type = (def["html id"] == "consonant-class-selector" ? "consonant" : "vowel");
+          prettySelList = getStrFromClasses(selList, type);
         }
 
       }
@@ -749,11 +755,12 @@ function handleSubmit() {
        );
 }
 
-// Handle clicks on the collapsible list button --
-// Currently does nothing but can change in the future.
+// Handle clicks on the collapsible list button
+// Does nothing unless REMEMBER_LIST_STATE = true.
+// If so, update the state of the matching language list to be either expanded/collapsed
 function handleListToggle() {
-  // Uncomment to make site remember previous collapse/expand state of the matching list
-  // listMode = !listMode;
+  if (!REMEMBER_LIST_STATE) return;
+  listMode = !listMode;
 }
 
 /*****************************************************************************/
@@ -899,6 +906,11 @@ function reloadTooltips() {
 // Given an array of the natural classes desired, prettify a string that combines
 // all requested classes in a human readable way.
 function getStrFromClasses(arr, type) {
+  if (!type || !["consonant", "vowel"].includes(type)) {
+    console.error("Bad type provided to getStrFromClasses!");
+    type = "consonant";
+  }
+
   var VOICING = 0;
   var PLACE   = 1;
   var MANNER  = 2;
@@ -910,7 +922,6 @@ function getStrFromClasses(arr, type) {
   for (var i = 0; i < flags.length; i++) {
     flags.push(false);
   }
-  type = (type == "consonant") ? "consonant" : "vowel";
   for (var i = 0; i < arr.length; i++) {
     if (typeof arr[i] != typeof "") {
       console.error("Improper array element passed to natural class parser!");

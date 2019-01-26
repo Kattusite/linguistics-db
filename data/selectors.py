@@ -66,7 +66,8 @@ NO_QUERY    = "no query"    # placeholder (cannot be submitted as query)
 # ===============================
 # ========== SELECTORS ==========
 
-# Note: things will misbehave if FUNCTION,
+# Note: things will misbehave if FUNCTION, MODE not provided
+# (even if it seems like they aren't needed, e.g. for placeholder)
 
 # The dummy "selector" that is displayed by default if none are selected
 PLACEHOLDER = {
@@ -189,7 +190,7 @@ CONSONANT_ARTICULATION = {
     MULTI: False,
     MODE: PICK_K,
     REPLY: "contain %s %s %s of consonant articulation",
-    REPLY_VARS: ["mode", "k", "selList"],
+    REPLY_VARS: ["mode", "k", "sel"], # not selList
     FUNCTION: Language.matchConsonantArticulation,
     HTML_ID: "consonant-articulation-selector",
     POPOVER_PREFIX: "ca-lbox-popover",
@@ -347,7 +348,7 @@ FORMATION = {
     },
     MULTI: False,
     MODE: PICK_ONE,
-    REPLY: "use %s to form words",
+    REPLY: "use %s strategies to form words",
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasFormationFreq,
     HTML_ID: "formation-freq-selector",
@@ -370,8 +371,8 @@ WORD_ORDER = {
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s word orders",
-    REPLY_VARS: ["mode", "k", "sel"],
-    FUNCTION: Language.hasWordOrder,
+    REPLY_VARS: ["mode", "k", "selList"],
+    FUNCTION: Language.matchWordOrder,
     HTML_ID: "word-order-selector",
     POPOVER_PREFIX: "wo-lbox-popover",
     SELECT_WHAT: "word order"
@@ -412,7 +413,7 @@ HEADEDNESS = {
     MODE: PICK_MULTI,
     REPLY: "are %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.hasHeadedness,
+    FUNCTION: Language.matchHeadedness,
     HTML_ID: "headedness-selector",
     POPOVER_PREFIX: "h-lbox-popover",
     SELECT_WHAT: "headedness"

@@ -56,8 +56,12 @@
             "conversion"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": null,
-        "headedness": "consistently head-final",
+        "word order": [
+            null
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "none",
         "agreement": "ergative/absolutive"
     },
@@ -113,8 +117,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -169,8 +177,12 @@
             "compounding"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SVO",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "none",
         "agreement": "nominative/accusative"
     },
@@ -225,8 +237,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SVO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -284,8 +300,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SVO",
-        "headedness": "mixed headedness",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -346,8 +366,12 @@
             "conversion"
         ],
         "word formation frequency": "mostly prefixing",
-        "word order": "VSO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -403,8 +427,12 @@
             "stress or tone shift"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "mostly head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -462,8 +490,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "none"
     },
@@ -551,8 +583,12 @@
             "affixation"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "other",
         "agreement": "none"
     },
@@ -616,8 +652,12 @@
             "conversion"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "mixed headedness",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "other",
         "agreement": "nominative/accusative"
     },
@@ -680,8 +720,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "SVO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -736,8 +780,12 @@
             "suffixation"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -798,8 +846,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly isolating",
-        "word order": "SVO",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -864,8 +916,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -933,8 +989,12 @@
             "stress or tone shift"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "ergative/absolutive"
     },
@@ -988,8 +1048,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "free",
-        "headedness": "mixed headedness",
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "other",
         "agreement": "other"
     },
@@ -1053,8 +1117,12 @@
             "compounding"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "ergative/absolutive",
         "agreement": "ergative/absolutive"
     },
@@ -1124,8 +1192,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": null,
-        "headedness": "mostly head-final",
+        "word order": [
+            null
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -1180,8 +1252,12 @@
             null
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "other",
         "agreement": "other"
     },
@@ -1271,8 +1347,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1333,8 +1413,12 @@
             "conversion"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "none"
     },
@@ -1388,8 +1472,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly prefixing",
-        "word order": "VSO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "nominative/accusative",
         "agreement": "none"
     },
@@ -1444,8 +1532,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1509,8 +1601,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "VOS",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "VOS"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1577,8 +1673,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "VOS",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "VOS"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1645,8 +1745,12 @@
             "stress or tone shift"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "SVO",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -1710,8 +1814,12 @@
             "conversion"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "SOV",
-        "headedness": "mostly head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "other",
         "agreement": "nominative/accusative"
     },
@@ -1769,8 +1877,12 @@
             null
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "mostly head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -1823,8 +1935,12 @@
             "conversion"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "ergative/absolutive",
         "agreement": "ergative/absolutive"
     },
@@ -1880,8 +1996,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "free",
-        "headedness": "mixed headedness",
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "ergative/absolutive",
         "agreement": "nominative/accusative"
     },
@@ -1940,8 +2060,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "other",
         "agreement": "none"
     },
@@ -1995,8 +2119,12 @@
             "compounding"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": null,
-        "headedness": "consistently head-final",
+        "word order": [
+            null
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "ergative/absolutive",
         "agreement": "none"
     }
