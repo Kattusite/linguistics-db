@@ -101,14 +101,11 @@ footer a:hover {
   text-align:center;
 }
 
-/*.k-selector[disabled] {
-  background: #ebebe4;
-}*/
-
 /* Used to select the mode of equality check (>=, <, etc) */
 .mode-selector {
   background: transparent;
   padding: 3px;
+  cursor: pointer;
 }
 
 /* Used to select natural classes of phonemes */
