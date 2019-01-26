@@ -56,7 +56,7 @@
             "conversion"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "multiple",
+        "word order": null,
         "headedness": "consistently head-final",
         "case": "none",
         "agreement": "ergative/absolutive"
@@ -988,7 +988,7 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "none",
+        "word order": "free",
         "headedness": "mixed headedness",
         "case": "other",
         "agreement": "other"
@@ -1124,7 +1124,7 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "multiple",
+        "word order": null,
         "headedness": "mostly head-final",
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
@@ -1880,7 +1880,7 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "none",
+        "word order": "free",
         "headedness": "mixed headedness",
         "case": "ergative/absolutive",
         "agreement": "nominative/accusative"
@@ -1995,7 +1995,7 @@
             "compounding"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "multiple",
+        "word order": null,
         "headedness": "consistently head-final",
         "case": "ergative/absolutive",
         "agreement": "none"

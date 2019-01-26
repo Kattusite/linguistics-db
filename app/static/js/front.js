@@ -30,12 +30,6 @@ var listMode = false;
 
 // TODO Declare constants for class names here (e.g. .vbox-template)
 
-// TODO make these local to the one function that uses them to keep namespace
-// relatively clean.
-var VOICING = 0;
-var PLACE   = 1;
-var MANNER  = 2;
-
 // COLORS
 var DANGER  = "alert-danger";
 var INFO    = "alert-info";
@@ -265,16 +259,19 @@ function handleClboxLabel(element) {
 
   // Get the fields needed for server queries, and store the query info for later
   var selList = [];
-  var $sel = $table.find(".selected");
-  $sel.each(function() { selList.push($(this).text()); });
+
+  // Push the selected elements onto the selList, one column at a time
+  // WARNING: hardcoded 3
+  for (var i = 0; i < 3; i++) {
+    var sel = $table.find(`[type='clbox-label-${i}'].selected`).text();
+    selList.push(sel);
+  }
   $traitDiv.attr("selList", selList);
 
   // After initial click any query is valid
   // link.attr("isValid", true);
 
   // Figure out if we want consonants or vowels
-  console.log("Unintended class collision - fix me!");
-  // TODO: class "consonant-class-selector" might appear in several places
   var ctype = $table.hasClass("ccbox-popover-table") ? "consonant" : "vowel";
 
   // Update the popoverButton text to reflect new selections
@@ -686,6 +683,12 @@ function handleSubmit() {
       if (selList) {
         selList = selList.split(",");
         prettySelList = selList.join(", ");
+
+        // If this is a class query, prettify the string even further.
+        if (def["mode"] == "pick class") {
+          prettySelList = getStrFromClasses(prettySelList);
+        }
+
       }
       replyParams["selList"] = prettySelList;
       requestParams["selList"] = selList;
@@ -896,6 +899,10 @@ function reloadTooltips() {
 // Given an array of the natural classes desired, prettify a string that combines
 // all requested classes in a human readable way.
 function getStrFromClasses(arr, type) {
+  var VOICING = 0;
+  var PLACE   = 1;
+  var MANNER  = 2;
+
   var str = "";
 
   // Was the given trait filtered?
