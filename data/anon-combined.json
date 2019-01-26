@@ -36,11 +36,11 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda"
         ],
         "citation": "Chirikba, V. A. Abkhaz. München: LINCOM, 2003. ",
         "recommend": "It's a tiny grammar, so it's very concise (almost too concise and dense, if you ask me) so if the student has a linguistics background then it should be fine ",
@@ -56,8 +56,12 @@
             "conversion"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "multiple",
-        "headedness": "consistently head-final",
+        "word order": [
+            null
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "none",
         "agreement": "ergative/absolutive"
     },
@@ -97,9 +101,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant"
+            "C onset",
+            "V",
+            "C coda"
         ],
         "citation": "A Grammar of Aguaruna (Iiniá Chicham), Simon E Overall, De Gruyter Mouton, 2015.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -113,8 +117,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -153,8 +161,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)"
+            "C onset",
+            "V"
         ],
         "citation": "(The Language Of The Apurinã People of Brazil, Sidney Da Silva Facundes, SUNY Buffalo, 2000)",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -169,8 +177,12 @@
             "compounding"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SVO",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "none",
         "agreement": "nominative/accusative"
     },
@@ -203,10 +215,10 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC coda"
         ],
         "citation": "Cowell, A., & Moss Sr, A. (2008). The Arapaho Language. University Press of Colorado.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -225,8 +237,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SVO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -265,11 +281,11 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda"
         ],
         "citation": "Kouwenberg, Silva. (1994). A grammar of Berbice Dutch Creole. Berlin: Mouton de Gruyter.",
         "recommend": "Yes, my grammar was great to work with",
@@ -284,8 +300,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SVO",
-        "headedness": "mixed headedness",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -327,9 +347,9 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "onsets of 2 consonants"
+            "C onset",
+            "V",
+            "CC onset"
         ],
         "citation": "\"A Grammar of Chalcatongo Mixtec,\" Monica Macaulay. University of California Press, 1996. ",
         "recommend": "Yes, my grammar was great to work with",
@@ -346,8 +366,12 @@
             "conversion"
         ],
         "word formation frequency": "mostly prefixing",
-        "word order": "VSO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -385,10 +409,10 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC coda"
         ],
         "citation": "A Choctaw Reference Grammar, George Aaron Broadwell, 2006, University of Nebraska Press",
         "recommend": "Yes, my grammar was great to work with",
@@ -403,8 +427,12 @@
             "stress or tone shift"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "mostly head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -444,9 +472,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant"
+            "C onset",
+            "V",
+            "C coda"
         ],
         "citation": "A grammar of Comanche, Jean Ormandy Charney",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -462,8 +490,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "none"
     },
@@ -496,10 +528,10 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants"
+            "C onset",
+            "C coda",
+            "CC onset",
+            "CC coda"
         ]
     },
     {
@@ -536,11 +568,11 @@
         "tone": true,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda"
         ],
         "citation": "Graczyk, R. (2007). A grammar of Crow. Lincoln: Univ. of Nebraska Press.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -551,8 +583,12 @@
             "affixation"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "other",
         "agreement": "none"
     },
@@ -597,9 +633,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant"
+            "C onset",
+            "V",
+            "C coda"
         ],
         "citation": "Hill, Jane H. A Grammar of Cupeño. Vol. 136, University of California Publications, 2006.",
         "recommend": "No, my grammar was hard to work with",
@@ -616,8 +652,12 @@
             "conversion"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "mixed headedness",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "other",
         "agreement": "nominative/accusative"
     },
@@ -661,10 +701,10 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset"
         ],
         "citation": "Von Prince, Kilu. 2015. A Grammar of Daakaka. Walter de Gruyter: Germany.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -680,8 +720,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "SVO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -722,9 +766,9 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant"
+            "C onset",
+            "V",
+            "C coda"
         ],
         "citation": "Evenki, Igor Nedjalkov, Routledge, 1997.",
         "recommend": "Yes, my grammar was great to work with",
@@ -736,8 +780,12 @@
             "suffixation"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -780,9 +828,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant",
-            "codas of 2 consonants"
+            "C onset",
+            "C coda",
+            "CC coda"
         ],
         "citation": "Thurgood, Graham, Thurgood, Ela, and Fengxiang, Li. 2014. A Grammatical Sketch of Hainan Cham : History, Contact, and Phonology. Boston: De Gruyter.",
         "recommend": "No, my grammar was hard to work with",
@@ -798,8 +846,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly isolating",
-        "word order": "SVO",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "none",
         "agreement": "none"
     },
@@ -841,12 +893,12 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants",
-            "codas of 3 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda",
+            "CCC coda"
         ],
         "citation": "Watahomigie, L., Bender, J., Watahomigie, P., Sr., & Yamamoto, A. Y. (2001). Hualapai Reference Grammar (Endangered Languages of the Pacific Rim). Osaka, Japan: Faculty of Informatics, Osaka Gakuin University.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -864,8 +916,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -916,9 +972,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant",
-            "onsets of 2 consonants"
+            "C onset",
+            "C coda",
+            "CC onset"
         ],
         "citation": " Ingush grammar, Nichols, Johanna. Berkeley, Calif.: University of California Press, 2011",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -933,8 +989,12 @@
             "stress or tone shift"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "ergative/absolutive"
     },
@@ -971,9 +1031,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant",
-            "codas of 2 consonants"
+            "C onset",
+            "C coda",
+            "CC coda"
         ],
         "citation": "Pensalfini, Robert J. A Grammar of Jingulu: An Aboriginal Language of the Northern Territory. Pacific Linguistics, 2003.",
         "recommend": "Yes, my grammar was great to work with",
@@ -988,8 +1048,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "none",
-        "headedness": "mixed headedness",
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "other",
         "agreement": "other"
     },
@@ -1035,10 +1099,10 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "onsets of 2 consonants",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "CC onset",
+            "CC coda"
         ],
         "citation": "A Grammar of the Kabardian Language, John Colarusso, London: University of Calgary Press, 1992) ",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1053,8 +1117,12 @@
             "compounding"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "ergative/absolutive",
         "agreement": "ergative/absolutive"
     },
@@ -1104,10 +1172,10 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "codas of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC coda"
         ],
         "citation": "Zigmond, Maurice L, et al. Kawaiisu: A Grammar and Dictionary with Texts. Edited by Pamela Munro, vol. 119, University of California Press, 1991.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1124,8 +1192,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "multiple",
-        "headedness": "mostly head-final",
+        "word order": [
+            null
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -1165,8 +1237,8 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)"
+            "C onset",
+            "V"
         ],
         "citation": "Stenzel, Kristine. 2013. A Reference Grammar of Kotiria (Wanano). Lincoln and London: University of Nebraska Press",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -1180,8 +1252,12 @@
             null
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "other",
         "agreement": "other"
     },
@@ -1218,10 +1294,10 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset"
         ]
     },
     {
@@ -1255,8 +1331,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)"
+            "C onset",
+            "V"
         ],
         "citation": "A Grammar of Kulina, Stefan Dienst, De Gruyter Mouton, 2014",
         "recommend": "Yes, my grammar was great to work with",
@@ -1271,8 +1347,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1316,9 +1396,9 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant"
+            "C onset",
+            "V",
+            "C coda"
         ],
         "citation": "Gorelova, L. M. (2002). Manchu grammar. Leiden: Brill.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1333,8 +1413,12 @@
             "conversion"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "none"
     },
@@ -1373,8 +1457,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)"
+            "C onset",
+            "V"
         ],
         "citation": "Cablitz, Gabriele H. Marquesan a Grammar of Space. W. De Gruyter, 2006. ",
         "recommend": "Yes, my grammar was great to work with",
@@ -1388,8 +1472,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly prefixing",
-        "word order": "VSO",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "nominative/accusative",
         "agreement": "none"
     },
@@ -1427,9 +1515,9 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "onsets of 2 consonants"
+            "C onset",
+            "V",
+            "CC onset"
         ],
         "citation": " Quintero, Carolyn. Osage Grammar. Lincoln: University of Nebraska Press, 2004.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1444,8 +1532,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1491,10 +1583,10 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset"
         ],
         "citation": "Campbell, Lyle. The Pipil Language of El Salvador. Berlin: Mouton, 1985.",
         "recommend": "No, my grammar was hard to work with",
@@ -1509,8 +1601,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal prefixing and suffixing",
-        "word order": "VOS",
-        "headedness": "consistently head-initial",
+        "word order": [
+            "VOS"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1557,10 +1653,10 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset"
         ],
         "citation": "The Pipil Language of El Salvador, Lyle Campbell, Mouton, 1985",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -1577,8 +1673,12 @@
             "reduplication"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "VOS",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "VOS"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "none",
         "agreement": "other"
     },
@@ -1623,12 +1723,12 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "onsets of 3 consonants",
-            "codas of 2 consonants",
-            "codas of 3 consonants"
+            "C onset",
+            "C coda",
+            "CC onset",
+            "CCC onset",
+            "CC coda",
+            "CCC coda"
         ],
         "citation": "Wilbur, J. (2014). A grammar of Pite Saami. Berlin: Language Science Press.",
         "recommend": "Yes, my grammar was great to work with",
@@ -1645,8 +1745,12 @@
             "stress or tone shift"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "SVO",
-        "headedness": "mostly head-initial",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -1689,9 +1793,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant"
+            "C onset",
+            "V",
+            "C coda"
         ],
         "citation": "A Grammar of Tommo So, Laura McPherson, Walter de Gruyter GmbH (Berlin/Boston), 2013",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1710,8 +1814,12 @@
             "conversion"
         ],
         "word formation frequency": "equal affixation and other",
-        "word order": "SOV",
-        "headedness": "mostly head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "other",
         "agreement": "nominative/accusative"
     },
@@ -1753,8 +1861,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant"
+            "C onset",
+            "C coda"
         ],
         "citation": "Nikolaeva, Irina. 2014. A Grammar of Tundra Nenets. Walter de Gruyter GmbH: Berlin/ Boston.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
@@ -1769,8 +1877,12 @@
             null
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "mostly head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
+        ],
         "case": "nominative/accusative",
         "agreement": "nominative/accusative"
     },
@@ -1806,8 +1918,8 @@
         "tone": false,
         "stress": true,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant"
+            "C onset",
+            "C coda"
         ],
         "citation": "Jones, Barbara. 2011. A grammar of Wangkajunga: a language of the Great Sandy Desert. Canberra: Pacific Linguistics at the Australian National University.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1823,8 +1935,12 @@
             "conversion"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "ergative/absolutive",
         "agreement": "ergative/absolutive"
     },
@@ -1860,13 +1976,13 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants",
-            "codas of 3 consonants",
-            "codas of 4 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda",
+            "CCC coda",
+            "CCCC coda"
         ],
         "citation": "Merlan, Francesca. A Grammar of Wardaman: a Language of the Northern Territory of Australia. Mouton De Gruyter, 1994.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1880,8 +1996,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "none",
-        "headedness": "mixed headedness",
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "mixed headedness"
+        ],
         "case": "ergative/absolutive",
         "agreement": "nominative/accusative"
     },
@@ -1920,12 +2040,12 @@
         "tone": false,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "onsetless and codaless (V)",
-            "codas of 1 consonant",
-            "onsets of 2 consonants",
-            "codas of 2 consonants",
-            "codas of 3 consonants"
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda",
+            "CCC coda"
         ],
         "citation": "A Grammar of Warrongo, Tasaku, Tsunoda, De Gruyter, 2011-12-23",
         "recommend": "My grammar was great in that the EBook was very organized, but I feel that having a hard copy on hand would have been very nice. (I didn't see one in the libraries)",
@@ -1940,8 +2060,12 @@
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
-        "word order": "SOV",
-        "headedness": "consistently head-final",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "other",
         "agreement": "none"
     },
@@ -1980,9 +2104,9 @@
         "tone": true,
         "stress": false,
         "syllables": [
-            "onsets of 1 consonant",
-            "codas of 1 consonant",
-            "codas of 2 consonants"
+            "C onset",
+            "C coda",
+            "CC coda"
         ],
         "citation": "Yuki Grammar: With Sketches of Huchnom and Coast Yuki, Uldis Balodis, University of California Publications, 2016",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
@@ -1995,8 +2119,12 @@
             "compounding"
         ],
         "word formation frequency": "exclusively suffixing",
-        "word order": "multiple",
-        "headedness": "consistently head-final",
+        "word order": [
+            null
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
         "case": "ergative/absolutive",
         "agreement": "none"
     }

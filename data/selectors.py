@@ -66,7 +66,8 @@ NO_QUERY    = "no query"    # placeholder (cannot be submitted as query)
 # ===============================
 # ========== SELECTORS ==========
 
-# Note: things will misbehave if FUNCTION,
+# Note: things will misbehave if FUNCTION, MODE not provided
+# (even if it seems like they aren't needed, e.g. for placeholder)
 
 # The dummy "selector" that is displayed by default if none are selected
 PLACEHOLDER = {
@@ -189,7 +190,7 @@ CONSONANT_ARTICULATION = {
     MULTI: False,
     MODE: PICK_K,
     REPLY: "contain %s %s %s of consonant articulation",
-    REPLY_VARS: None,
+    REPLY_VARS: ["mode", "k", "sel"], # not selList
     FUNCTION: Language.matchConsonantArticulation,
     HTML_ID: "consonant-articulation-selector",
     POPOVER_PREFIX: "ca-lbox-popover",
@@ -241,15 +242,15 @@ STRESS = {
 SYLLABLE = {
     SELECT_NAME: "Allows syllable structure:",
     DICT: {
-        "onsetless and codaless (V)":     ["V"],
-        "onsets of 1 consonant":          ["CV"],
-        "onsets of 2 consonants":         ["CCV"],
-        "onsets of 3 consonants":         ["CCCV"],
-        "onsets of 4 consonants":         ["CCCCV"],
-        "codas of 1 consonant":           ["CVC", "VC"], # formerly CVC, not "VC"
-        "codas of 2 consonants":          ["VCC"],
-        "codas of 3 consonants":          ["VCCC"],
-        "codas of 4 consonants":          ["VCCCC"]
+        "V":            ["V"],
+        "C onset":      ["CV"],
+        "CC onset":     ["CCV"],
+        "CCC onset":    ["CCCV"],
+        "CCCC onset":   ["CCCCV"],
+        "C coda":       ["CVC", "VC"], # formerly CVC, not "VC"
+        "CC coda":      ["VCC"],
+        "CCC coda":     ["VCCC"],
+        "CCCC coda":    ["VCCCC"]
     },
     MULTI: True,
     MODE: PICK_MULTI,
@@ -347,7 +348,7 @@ FORMATION = {
     },
     MULTI: False,
     MODE: PICK_ONE,
-    REPLY: "use %s to form words",
+    REPLY: "use %s strategies to form words",
     REPLY_VARS: ["sel"],
     FUNCTION: Language.hasFormationFreq,
     HTML_ID: "formation-freq-selector",
@@ -364,14 +365,14 @@ WORD_ORDER = {
         "VOS": [],
         "OVS": [],
         "OSV": [],
-        "multiple": ["more than one", "multiple", "several"],
-        "none":     ["no basic", "none"]
+        # "multiple": ["more than one", "multiple", "several"],
+        "free":     ["no basic", "none", "free"]
     },
-    MULTI: False,
-    MODE: PICK_ONE,
-    REPLY: "have %s word order",
-    REPLY_VARS: ["sel"],
-    FUNCTION: Language.hasWordOrder,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have %s %s of %s word orders",
+    REPLY_VARS: ["mode", "k", "selList"],
+    FUNCTION: Language.matchWordOrder,
     HTML_ID: "word-order-selector",
     POPOVER_PREFIX: "wo-lbox-popover",
     SELECT_WHAT: "word order"
@@ -408,11 +409,11 @@ HEADEDNESS = {
         "mostly head-final": [],
         "mixed headedness": []
     },
-    MULTI: False,
-    MODE: PICK_ONE,
-    REPLY: "are %s",
-    REPLY_VARS: ["sel"],
-    FUNCTION: Language.hasHeadedness,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "are %s %s of %s",
+    REPLY_VARS: ["mode", "k", "selList"],
+    FUNCTION: Language.matchHeadedness,
     HTML_ID: "headedness-selector",
     POPOVER_PREFIX: "h-lbox-popover",
     SELECT_WHAT: "headedness"

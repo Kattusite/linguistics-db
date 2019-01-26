@@ -16,6 +16,8 @@ DEBUG = False
 VERBOSE = False
 #########################################
 
+DICT = selectors.DICT
+
 #BUG Doesn't read correct encoding from csv, causing nonstandard chars to fail
 # Read in the CSV files from the declared constant filenames, and then
 # Return a JSON object representing that csv data
@@ -125,20 +127,8 @@ def csvToJSON():
 
             # Search raw CSV fields for containing correct attribute names
             # (but not containing other names e.g. CV matches CV not CCV)
-
-            # Construct Regexps for syllables
-            sylDict = {
-                "CV":    [],
-                "V":     [],
-                "CVC":   [],
-                "CCV":   [],
-                "CCCV":  [],
-                "CCCCV": [],
-                "VCC":   [],
-                "VCCC":  [],
-                "VCCCC": []
-            }
-            sylList = [parsePhrase(s, selectors.SYLLABLE[selectors.DICT], ["VC", "CV"]) for s in syllables]
+            sylDict = selectors.SYLLABLE[DICT]
+            sylList = [parsePhrase(s, sylDict, ["VC", "CV"]) for s in syllables]
             json_obj[G_STR[G_SYLLABLES]] = sylList
 
 
@@ -152,33 +142,14 @@ def csvToJSON():
 
             ### Parse morphological type into a list of short-names
             morph = t_list[T_MORPHOLOGY].split(INNER_DELIMITER)
-            morphDict = {
-                "isolating": [],
-                "analytic": ["analytic", "not isolating"], # this is a toughie
-                "fusional": [],
-                "agglutinating": [],
-                "polysynthetic": []
-            }
+            morphDict = selectors.MORPHOLOGY[DICT]
             morphList = [parsePhrase(m, morphDict, None) for m in morph]
             json_obj[T_STR[T_MORPHOLOGY]] = morphList
 
 
             ### Parse word formation into a list of short-names
             wf = t_list[T_WORD_FORMATION].split(INNER_DELIMITER)
-            wfDict = {
-                "affixation": ["affixation", "prefixation or suffixation"],
-                "suffixation": [],
-                "prefixation": [],
-                "infixation": [],
-                "compounding": [],
-                "root-and-pattern": [],
-                "internal change": [],
-                "suppleton": [],
-                "stress or tone shift": [],
-                "reduplication": [],
-                "conversion": [],
-                "purely isolating": ["none", "purely isolating"]
-            }
+            wfDict = selectors.WORD_FORMATION[DICT]
             wfList = [parsePhrase(w, wfDict, None) for w in wf]
             json_obj[T_STR[T_WORD_FORMATION]] = wfList
 
@@ -187,23 +158,12 @@ def csvToJSON():
             wfFreq = t_list[T_FORMATION_FREQ].lower()
 
             # extract frequency from morph
-            freqDict = {
-                "exclusively" : ["exclusive", "purely"],
-                "mostly": ["mostly"],
-                "equal": ["equal ","even ","mix "]
-            }
+            freqDict = selectors.FORMATION_FREQ[DICT]
             freq = parsePhrase(wfFreq, freqDict, None)
             if freq is None:
                 raise ValueError("Failed to parse morphological type")
 
-            modeDict = {
-                "prefixing and suffixing":  ["prefixing and suffixing"],
-                "affixation and other":     ["affixation and other"],
-                "suffixing":                ["suffixing"],
-                "prefixing":                ["prefixing"],
-                "non-affixal":              ["non-affixal"],
-                "isolating":                ["isolating"]
-            }
+            modeDict = selectors.FORMATION_MODE[DICT]
             mode = parsePhrase(wfFreq, modeDict, [" and "])
             if mode is None:
                 raise ValueError("Failed to parse morphological type")
@@ -211,51 +171,33 @@ def csvToJSON():
             json_obj[T_STR[T_FORMATION_FREQ]] = "%s %s" % (freq, mode)
 
             ### Parse word order into a short-name
-            order = t_list[T_WORD_ORDER]
-            orderDict = {
-                "SVO": [],
-                "SOV": [],
-                "VSO": [],
-                "VOS": [],
-                "OVS": [],
-                "OSV": [],
-                "multiple": ["more than one", "multiple", "several"],
-                "none":     ["no basic", "none"]
-            }
-            parsedOrder = parsePhrase(order, orderDict, ["free", "seemingly free"])
-            json_obj[T_STR[T_WORD_ORDER]] = parsedOrder
+            order = t_list[T_WORD_ORDER].split(INNER_DELIMITER)
+            orderDict = selectors.WORD_ORDER[DICT]
+            orderList = [parsePhrase(o, orderDict, ["free", "seemingly free"]) for o in order]
+            json_obj[T_STR[T_WORD_ORDER]] = orderList
 
             ### Parse headedness into a short-name
             # NOTE "mixed" & "headedness" must occur together-  "mixed head-initial" (eg) makes no sense
             head = t_list[T_HEADEDNESS]
-            hFreqDict = {
-                "consistently": [],
-                "mostly": [],
-                "mixed": ["mixed", "equal", "roughly equal"]
-            }
+            hFreqDict = selectors.HEADEDNESS_FREQ[DICT]
             hFreq = parsePhrase(head, hFreqDict, None)
 
-            hModeDict = {
-                "head-initial": [],
-                "head-final": [],
-                "headedness": ["mixed", "equal", "roughly equal"]
-            }
+            hModeDict = selectors.HEADEDNESS_MODE[DICT]
             hMode = parsePhrase(head, hModeDict, None)
-            json_obj[T_STR[T_HEADEDNESS]] = "%s %s" % (hFreq, hMode)
+            # HACK: This needs to be a list to be able to use Language.matchXxxxYyyy methods naturally
+            # TODO: Find a more elegant way of doing things
+            hList = ["%s %s" % (hFreq, hMode)]
+            json_obj[T_STR[T_HEADEDNESS]] = hList
 
             ### Parse case and agreement into short-names
             case = t_list[T_CASE]
             agree = t_list[T_AGREEMENT]
 
-            caDict = {
-                "none": ["doesn't have", "none"],
-                "ergative/absolutive": [],
-                "nominative/accusative": [],
-                "other": ["other", "some other", "other sort"]
-            }
+            caseDict = selectors.CASE[DICT]
+            agreeDict = selectors.AGREEMENT[DICT]
 
-            json_obj[T_STR[T_CASE]]      = parsePhrase(case,  caDict, ["Has case"])
-            json_obj[T_STR[T_AGREEMENT]] = parsePhrase(agree, caDict, ["Has agreement"])
+            json_obj[T_STR[T_CASE]]      = parsePhrase(case,  caseDict, ["Has case"])
+            json_obj[T_STR[T_AGREEMENT]] = parsePhrase(agree, agreeDict, ["Has agreement"])
 
 
         json_array.append(json_obj)

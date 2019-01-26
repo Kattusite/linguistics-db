@@ -14,12 +14,12 @@ import json
 #                                                                              #
 ################################################################################
 # Equality modes TODO move to const or eliminate (possible pass a function)
-EQ  = "EQ"  # Match if the number of phoneme matches == target
-GEQ = "GEQ"  # Match if the number of phoneme matches >= target
-GT  = "GT"   # Match if the number of phoneme matches  > target
-LEQ = "LEQ"  # Match if the number of phoneme matches <= target
-LT  = "LT"   # Match if the number of phoneme matches  < target
-NEQ = "NEQ"  # Match if the number of phoneme matches != target
+EQ  = "exactly"       # Match if the number of phoneme matches == target
+GEQ = "at least"      # Match if the number of phoneme matches >= target
+GT  = "more than"     # Match if the number of phoneme matches  > target
+LEQ = "at most"       # Match if the number of phoneme matches <= target
+LT  = "less than"     # Match if the number of phoneme matches  < target
+NEQ = "not equal to"  # Match if the number of phoneme matches != target
 
 class Language:
     """An object storing useful information about a language, and query methods
@@ -132,6 +132,23 @@ class Language:
             ret = []
         return ret
 
+    def getWordOrders(self):
+        """Returns the list of word orders of this language"""
+        ret = self.getTypologyAttr(T_STR[T_WORD_ORDER])
+        if ret is None:
+            ret = []
+        return ret
+
+    def getHeadedness(self):
+        """Returns the headedness of this language, as a singleton list for
+        hacky reasons"""
+        # If it were not a list, it would be less intuitive to use the match
+        # methods on it.
+        ret = self.getTypologyAttr(T_STR[T_HEADEDNESS])
+        if ret is None:
+            ret = []
+        return ret
+
 
 
 ################################################################################
@@ -166,7 +183,6 @@ class Language:
         """Returns the consonant glyphs in this language that are part of a metaclass in
         selList, if the number of matches is at least* (or mode) k"""
         ls = consonants.getGlyphsFromClasses(selList)
-        print("ls", ls)
         return self.matchConsonants(ls, k, mode)
 
     def matchVowelClasses(self, selList, k, mode):
@@ -210,6 +226,16 @@ class Language:
             return tuple([num])
         else:
             return False
+
+    def matchWordOrder(self, selList, k, mode):
+        """Return the word orders in this language that are part of selList, if
+        the number of matches is at least* (or mode) k"""
+        return self.match(self.getWordOrders(), selList, k, mode)
+
+    def matchHeadedness(self, selList, k, mode):
+        """Return the headedness of this language that are part of selList, if
+        the number of matches is at least* (or mode) k"""
+        return self.match(self.getHeadedness(), selList, k, mode)
 
 
 
