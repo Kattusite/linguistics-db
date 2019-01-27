@@ -11,6 +11,7 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* More metaclasses! (Especially place-based ones) -- see the cheat sheet
 * More constants need to be shared btwn js/python. Specificially mode list (at least, all, none..) and some others I'll add as I remember
 * Introduce more types to enforce properties of arguments. E.g. phonemes should be a type, queries should be a type
 * Also I need to rewrite the pretty-string to make it shorter for large numbers of Consonants

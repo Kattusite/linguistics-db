@@ -216,7 +216,7 @@ span[data-toggle=tooltip] {
 }
 /*  */
 
-.ipa-vowel-selector .ipa-header {
+div.ipa-vowel-selector th.ipa-header {
   width: 50px;
 }
 

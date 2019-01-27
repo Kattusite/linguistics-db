@@ -672,7 +672,7 @@ def ipaboxgen(table, headers, pType):
                 oth = "scope='%s' colspan='%d'"
                 classList = ["ipa-header"]
                 category = '""'
-                style = getTrapezoidStyle(table, x, y)
+                style = getTrapezoidStyle(table, x, y) if pType == VOWEL else None
 
                 # Set parameters for row headers / col headers differently.
                 if y == 0 and x == 0:
