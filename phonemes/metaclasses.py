@@ -94,6 +94,10 @@ DICT = {
         "noncontinuant":        OCCLUSIVES,
 }
 
+# Sort all of the lists stored in DICT to ensure they are in a deterministic order
+# (and to avoid polluting the git history with a bunch of meaningless order changes)
+DICT = {key : sorted(DICT[key]) for key in DICT}
+
 def getGlyphsFromClass(className):
     return utils.getGlyphsFromClass(phonemes.data, DICT, className)
 
