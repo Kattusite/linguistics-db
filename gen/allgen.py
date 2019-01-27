@@ -123,7 +123,7 @@ def kselector():
     tprint(tag("input",
                classList=["k-selector"],
                type=OPEN,
-               other='type="text" size="2" placeholder="1" value="1"'
+               other='type="number" size="2" placeholder="1" value="1" min=0 max=999 step=1'
                ) + " of")
 
 def popovertemplate(popoverPrefix, selectWhat):
