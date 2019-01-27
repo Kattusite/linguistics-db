@@ -216,6 +216,10 @@ span[data-toggle=tooltip] {
 }
 /*  */
 
+.ipa-vowel-selector .ipa-header {
+  width: 50px;
+}
+
 .ipa-header {
   font-weight: normal;
   font-style: italic;
