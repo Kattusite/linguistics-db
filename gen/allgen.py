@@ -123,7 +123,7 @@ def kselector():
     tprint(tag("input",
                classList=["k-selector"],
                type=OPEN,
-               other='type="text" size="2" placeholder="1" value="1"'
+               other='type="number" size="2" placeholder="1" value="1" min=0 max=999 step=1'
                ) + " of")
 
 def popovertemplate(popoverPrefix, selectWhat):
@@ -515,6 +515,101 @@ def lboxgen(listData):
     dedent()
     tprint(tag("div", type=CLOSE))
 
+def voweltrapezoid():
+    """Print the vowel trapezoid image in an img tag"""
+    src_str = "src='/static/img/Blank_vowel_trapezoid.png'"
+    w_str = "width={0}px".format(IPA_TRAPEZOID_W)
+    h_str = "height={0}px".format(IPA_TRAPEZOID_H)
+    imgdata = "{0} {1} {2}".format(src_str, w_str, h_str)
+
+    style_str = "position: relative; top: 25px; left: 40px; margin-bottom: 25px;"
+    img = tag("img", other=imgdata, style=style_str, type=OPEN)
+    tprint(img)
+
+    # Add a little bit of extra padding to keep the image inside the blue box
+
+def getTrapezoidStyle(table, x, y):
+    """Generate the style string for the cell of a given table at specified x, y
+    coordinates. This generated style string should have the effect of shifting
+    the cell so that it appears in the correct location on the trapezoid (ie
+    mapping from rectangular coordinates to trapezoidal ones)"""
+
+    # WARNING: This function was made through ages of trial and error fine-tuning
+    # constants and magic numbers. It is a pain to modify - small changes might
+    # break things, and some day it should probably all be rewritten in favor
+    # of a better way
+    # If you need to change something here, just tweak one number at a time
+    # until it starts looking right, then move onto the next number and hope
+    # it all still works
+
+    # what number row / column header does this cell fall under?
+    # x  :  0   1   2   3   4   5   6   7   8
+    # col:  0   1   1   2   2   3   3   4   4
+    ytorow = (lambda y : y)
+    xtocol = (lambda x : (x+1) // 2)
+
+    # Coord (1,1) is the top left content cell, (0,0) is the top left header
+    max_x = len(table[1])
+    max_y = len(table)
+
+    max_col = xtocol(max_x) - 1
+    max_row = ytorow(max_y) - 1
+
+    # offset = -1 if on the left side of a column (odd), +1 if on the right side (even)
+    if (x % 2 == 1):
+        offset = -1
+    else:
+        offset = +1
+
+    if (x == 0):
+        offset = 0
+
+    row = ytorow(y)
+    col = xtocol(x)
+
+    # Should be in the range 0.0 .. 1.0 for cells
+    row_ratio = max((row - 1) / (max_row - 1), 0)
+    col_ratio = max((col - 1) / (max_col - 1), 0)
+
+    # Magic Numbers:
+    H_SCALING = 0.85 # How much of trapezoid image is whitespace vertically?
+    W_SCALING = 0.80 # How much of trapezoid image is whitespace horizontally?
+
+    row_px = row_ratio * IPA_TRAPEZOID_H * H_SCALING
+    col_px = col_ratio * IPA_TRAPEZOID_W * W_SCALING
+
+    # Magic Numbers:
+    X_OFFSET = 70      # X coord of the upper left cell
+    Y_OFFSET = 35      # Y coord of the upper left cell
+    SKEW_FACTOR = 0.4  # Magnitude of the skew effect (0 = rectangle, 1 = triangle)
+
+    # how far offset the origin (0,0) should be w.r.t. image
+    x_skew = row_ratio * IPA_TRAPEZOID_W * SKEW_FACTOR * (1 - col_ratio)
+
+    x_trans = col_px + X_OFFSET + x_skew
+    y_trans = row_px + Y_OFFSET
+
+    # Apply the left/right offsets (unrounded = left, rounded = right)
+    # Magic number:
+    OFFSET_SIZE = 13  # How much to offset cells left/right of central position
+    if x != 0 and y != 0:
+        x_trans = x_trans + (offset * OFFSET_SIZE)
+    elif x == 0:
+        # x_trans = x_trans - 70      # labels along diagonal
+        x_trans = 0                 # labels in vertical line
+    elif y == 0:
+        x_trans = x_trans - 13
+        y_trans = y_trans - 40
+
+    x_str = "left: {0}px;".format(x_trans)
+    y_str = "top: {0}px;".format(y_trans)
+
+    pos_str = "position: absolute;"
+
+    style = "{0} {1} {2}".format(pos_str, x_str, y_str)
+
+    return style
+
 def ipaboxgen(table, headers, pType):
     """Generate the html for a IPA vowel chart table,
     where table is a 2D array containing the data to be represented,
@@ -534,11 +629,10 @@ def ipaboxgen(table, headers, pType):
 
     axes = headers["axis order"]
 
-    isOtherRow = table[-1][0] == "other"
+    isOtherRow = (table[-1][0] == "other")
 
     # Print the table as HTML
     tprint(comment("Auto-generated template for the IPA %s chart" % pType))
-
     tprint(tag("div",
                classList=["template"],
                id=id,
@@ -546,21 +640,12 @@ def ipaboxgen(table, headers, pType):
                style='position: relative;'))
     indent()
 
-    # if VOWEL, add a background image.
-    # TODO: Beware unintentional variable reuse/shadowing (make more modular)
-    if pType == VOWEL:
-        src_str = "src='/static/img/Blank_vowel_trapezoid.png'"
-        w_str = "width={0}px".format(IPA_TRAPEZOID_W)
-        h_str = "height={0}px".format(IPA_TRAPEZOID_H)
-        imgdata = "{0} {1} {2}".format(src_str, w_str, h_str)
-
-        style_str = "position: relative; top: 12px; left: 20px;"
-        img = tag("img", other=imgdata, style=style_str, type=OPEN)
-        tprint(img)
-
-    # Positioning used to get table on top of img
     table_style = None
+
+    # if VOWEL, add a background image.
     if pType == VOWEL:
+        voweltrapezoid()
+        # Positioning used to get table on top of img
         table_style = "position: absolute; top: 0px;"
 
     tprint(tag("table", type=OPEN, style=table_style))
@@ -578,104 +663,78 @@ def ipaboxgen(table, headers, pType):
             tprint(tag("tr", type=OPEN))
         indent()
 
-        for (x, col) in enumerate(row):
+        for (x, cell) in enumerate(row):
 
-            # Print first row specially (all headers)
-            if y == 0:
-                # For the header row the type of the cell should be a string
-                assert type(col) == type("str")
-                if (x % 2 == 1): # skip every other row (headers are 2 col wide)
-                    continue
-                oth = "scope='col' colspan='%d'"
+            # Print headers specially.
+            if y == 0 or x == 0:
+                # Header cells should have type string (the contents of header)
+                assert type(cell) == type("str")
+                oth = "scope='%s' colspan='%d'"
+                classList = ["ipa-header"]
+                category = '""'
+                style = getTrapezoidStyle(table, x, y) if pType == VOWEL else None
 
-                # print the first col header half as wide as the others
-                if x == 0:
-                    oth = oth % 1
+                # Set parameters for row headers / col headers differently.
+                if y == 0 and x == 0:
+                    oth = oth % ("col", 1)
                     classList = []
-                else:
-                    oth = oth % 2
-                    classList=["ipa-header"]
+                    style = None
+                elif y == 0:
+                    # skip every other row (headers are 2 col wide)
+                    if (x % 2 == 1):
+                        continue
+                    oth = oth % ("col", 2)
+                    category = axes[ipa_table.X]
+                elif x == 0:
+                    oth = oth % ("row", 1)
+                    category = axes[ipa_table.Y]
 
-                # print the header for this col
-                category = axes[ipa_table.X]
                 tprint(tag("th",
                             classList=classList,
                             onclick=fn,
-                            body=col,
+                            body=cell,
                             type=BOTH,
-                            other="%s category=%s trait=%s" % (oth, category, col)))
+                            style=style,
+                            other="%s category=%s trait=%s" % (oth, category, cell)))
 
-
-            # Print all other rows after the first one
+            # Non header cell: make an IPA cell
             else:
-                # Print first col as a header
-                if x == 0:
-                    assert type(col) == type("str")
-                    category = axes[ipa_table.Y]
-                    tprint(tag("th",
-                                classList=["ipa-header"],
-                                onclick=fn,
-                                body=col,
-                                type=BOTH,
-                                other="scope='row' category=%s trait='%s'" % (category, col)))
+                # For non-header rows the cell should be a dict or empty str
+                body = ""
+                classList = []
+                onclick = None
+                other = None
+                style = None
 
-                # Non header cols: make an IPA cell
+                if not cell:  # cell == "" or None
+                    classList.append("ipa-box-empty")
+                elif not cell["producible"]:
+                    classList.append("ipa-box-impossible")
                 else:
-                    # For non-header rows the col should be a dict or empty str
-                    body = ""
-                    classList = []
-                    onclick = None
-                    other = None
-                    style = None
+                    classList.append("ipa-box")
 
-                    if not col:  # col == "" or None
-                        classList.append("ipa-box-empty")
-                    elif not col["producible"]:
-                        classList.append("ipa-box-impossible")
-                    else:
-                        classList.append("ipa-box")
+                    # if this is in the "other" row, add a class for custom styling / selection
+                    if isOtherRow and y == len(table)-1:
+                        classList.append("other")
 
-                        # if this is in the "other" row, add a class for custom styling / selection
-                        if isOtherRow and y == len(table)-1:
-                            classList.append("other")
+                    body = cell["glyph"]
+                    onclick = fn
+                    # e.g. "manner='plosive' place='labiodental' voicing='voiced'"
+                    other = ("%s='%s' %s='%s' %s='%s'" %
+                        (axes[ipa_table.X], cell[axes[ipa_table.X]],
+                         axes[ipa_table.Y], cell[axes[ipa_table.Y]],
+                         axes[ipa_table.Z], cell[axes[ipa_table.Z]]))
 
-                        body = col["glyph"]
-                        onclick = fn
-                        # e.g. "manner='plosive' place='labiodental' voicing='voiced'"
-                        other = ("%s='%s' %s='%s' %s='%s'" %
-                            (axes[ipa_table.X], col[axes[ipa_table.X]],
-                             axes[ipa_table.Y], col[axes[ipa_table.Y]],
-                             axes[ipa_table.Z], col[axes[ipa_table.Z]]))
+                    # For vowels add extra CSS for positioning
+                    if pType == VOWEL:
+                        style = getTrapezoidStyle(table, x, y)
 
-                        # For vowels add extra CSS for positioning
-                        # In the future, make this a helper function
-                        # Coord (1,1) is the top left cell
-                        if pType == VOWEL:
-                            max_x = len(table[1])
-                            max_y = len(table)
-
-                            x_ratio = x / max_x
-                            y_ratio = y / max_y
-
-                            x_px = x_ratio * IPA_TRAPEZOID_W
-                            y_px = y_ratio * IPA_TRAPEZOID_H
-
-                            x_trans = x_px + (y_ratio * IPA_TRAPEZOID_W * (0.5 * (1 - x_ratio)))
-                            y_trans = y_px
-
-                            x_str = "left: {0}px;".format(x_trans)
-                            y_str = "top: {0}px;".format(y_trans)
-
-                            pos_str = "position: absolute;"
-
-                            style = "{0} {1} {2}".format(pos_str, x_str, y_str)
-
-                    tprint(tag("td", body=body,
-                                classList=classList,
-                                onclick=onclick,
-                                other=other,
-                                style=style,
-                                type=BOTH))
+                tprint(tag("td", body=body,
+                            classList=classList,
+                            onclick=onclick,
+                            other=other,
+                            style=style,
+                            type=BOTH))
 
 
         dedent()
