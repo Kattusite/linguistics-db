@@ -123,7 +123,7 @@ def kselector():
     tprint(tag("input",
                classList=["k-selector"],
                type=OPEN,
-               other='type="number" size="2" placeholder="1" value="1" min=0 max=999 step=1'
+               other='type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1'
                ) + " of")
 
 def popovertemplate(popoverPrefix, selectWhat):
@@ -392,7 +392,7 @@ def pboxgen(pType, glyphList):
         div = tag(
             "div",
             body=p,
-            id="{0}-{1}-template".format(abbrev, p),
+            # id="{0}-{1}-template".format(abbrev, p),
             classList=["pbox-label"],
             onclick="handlePboxLabel(this)"
         )
@@ -695,7 +695,7 @@ def ipaboxgen(table, headers, pType):
                             body=cell,
                             type=BOTH,
                             style=style,
-                            other="%s category=%s trait=%s" % (oth, category, cell)))
+                            other="%s category='%s' trait='%s'" % (oth, category, cell)))
 
             # Non header cell: make an IPA cell
             else:
