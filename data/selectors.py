@@ -55,6 +55,7 @@ SELECT_WHAT     = "select what"
 SELECT_NAME     = "select name"
 
 # Valid modes
+# TODO: Change these names to make sense
 PICK_ONE    = "pick one"    # lbox (multi = false)
 PICK_CLASS  = "pick class"  # clboxes
 PICK_MULTI  = "pick multi"  # lbox (multi = true)

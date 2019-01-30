@@ -268,24 +268,46 @@ def popoverbodiesdiv(selectorList):
 
     for sel in selectorList:
         mode = sel[selectors.MODE]
+        html_id = sel[selectors.HTML_ID]
 
         # currently just a program sketch
 
+        # Generate pbox templates
         if mode in [selectors.PICK_K]:
-            # pboxgen(..., ...)
-            pass
-        elif mode in "[selectors.PICK_K_IPA]": # not yet defined
-            # ipaboxgen (...)
-            pass
+            if "consonant" in html_id:
+                pboxgen("consonant", consonants.GLYPHS)
+            elif "vowel" in html_id:
+                pboxgen("vowel", vowels.GLYPHS)
+            else:
+                ValueError("Unexpected pbox type in popoverbodiesdiv: %s" % html_id)
+
+        # Generate ipabox templates
+        elif mode in [selectors.PICK_K_IPA]:
+            if "consonant" in html_id:
+                ipaboxgen(ipa_table.CONSONANT_TABLE, consonants.HEADERS, CONSONANT)
+            elif "vowel" in html_id:
+                ipaboxgen(ipa_table.VOWEL_TABLE, vowels.HEADERS, VOWEL)
+            else:
+                ValueError("Unexpected ipabox type in popoverbodiesdiv: %s" % html_id)
+
+        # Generate clbox templates
         elif mode in [selectors.PICK_CLASS]:
-            # clboxgen(..., ...)
-            pass
+            if "consonant" in html_id:
+                clboxgen("consonant", consonants.HEADERS)
+            elif "vowel" in html_id:
+                clboxgen("vowel", vowels.HEADERS)
+            else:
+                ValueError("Unexpected clbox type in popoverbodiesdiv: %s" % html_id)
+
+        # Generate lbox templates
         elif mode in [selectors.PICK_ONE, selectors.PICK_MULTI]:
-            # lboxgen(..., ...)
-            pass
-        elif mode in [selectors.BOOLEAN]:
-            # No popover to print!
+            lboxgen(sel)
+
+        # No popover to generate!
+        elif mode in [selectors.BOOLEAN, selectors.NO_QUERY]:
             continue
+
+        # Illegal mode
         else:
             raise ValueError("Unexpected mode in popoverbodiesdiv: %s" % mode)
 
@@ -796,35 +818,8 @@ def main(output=None):
     # Generate the dropdown menu and its associated divs
     selectdropdowndiv(selectors.SELECTORS)
 
-    # Generate phoneme selectors
-    pboxgen("consonant",    consonants.GLYPHS)
-    pboxgen("vowel",        vowels.GLYPHS)
-
-    # Generate phoneme class selectors
-    clboxgen("consonant",   consonants.HEADERS)
-    clboxgen("vowel",       vowels.HEADERS)
-
-    # Generate general list selectors
-    lboxgen(selectors.SYLLABLE)
-    lboxgen(selectors.MORPHOLOGY)
-    lboxgen(selectors.WORD_FORMATION)
-    lboxgen(selectors.FORMATION)
-    lboxgen(selectors.WORD_ORDER)
-    lboxgen(selectors.HEADEDNESS)
-    lboxgen(selectors.AGREEMENT)
-    lboxgen(selectors.CASE)
-    lboxgen(selectors.METACLASS)
-    lboxgen(selectors.CONSONANT_ARTICULATION)
-
-    # Generate IPA selectors
-    #print(ipa_table.CONSONANT_TABLE)
-    ipaboxgen(ipa_table.CONSONANT_TABLE,
-              consonants.HEADERS,
-              CONSONANT)
-
-    ipaboxgen(ipa_table.VOWEL_TABLE,
-              vowels.HEADERS,
-              VOWEL)
+    # Generate popover body templates (pbox, clbox, lbox, ipabox)
+    popoverbodiesdiv(selectors.SELECTORS)
 
     tprint(comment("  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###"))
 
