@@ -189,7 +189,7 @@ CONSONANT_ARTICULATION = {
     SELECT_NAME: "Has articulation features:",
     DICT: { "places": [], "manners": [] },
     MULTI: False,
-    MODE: PICK_K,
+    MODE: PICK_MULTI, # this is a hack - really really need to change all the MODEs
     REPLY: "contain %s %s %s of consonant articulation",
     REPLY_VARS: ["mode", "k", "sel"], # not selList
     FUNCTION: Language.matchConsonantArticulation,

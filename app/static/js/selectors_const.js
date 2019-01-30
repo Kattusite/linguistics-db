@@ -68,7 +68,7 @@ var SELECTORS_DICT = {
             "places": []
         },
         "html id": "consonant-articulation-selector",
-        "mode": "pick k",
+        "mode": "pick multi",
         "multi": false,
         "popover prefix": "ca-lbox-popover",
         "reply": "contain %s %s %s of consonant articulation",
