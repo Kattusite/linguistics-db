@@ -2,28 +2,6 @@
 /*                               Global Variables                            */
 /*****************************************************************************/
 
-var CONSONANT_ID            = "consonant-selector";
-var CONSONANT_CLASS_ID      = "consonant-class-selector";
-var VOWEL_ID                = "vowel-selector";
-var VOWEL_CLASS_ID          = "vowel-class-selector";
-var CONSONANT_PLACES_ID     = "consonant-places";
-var CONSONANT_MANNERS_ID    = "consonant-manners";
-var COMPLEX_CONSONANT_ID    = "complex-consonants";
-var TONE_ID                 = "tone-selector";
-var STRESS_ID               = "stress-selector";
-var SYLLABLE_ID             = "syllable-selector";
-var MORPHOLOGY_ID           = "morphological-selector";
-var WORD_FORMATION_ID       = "word-formation-selector";
-var FORMATION_FREQ_ID       = "formation-freq-selector";
-var WORD_ORDER_ID           = "word-order-selector";
-var HEADEDNESS_ID           = "headedness-selector";
-var AGREEMENT_ID            = "agreement-selector";
-var CASE_ID                 = "case-selector";
-var IPA_CONSONANT_ID        = "ipa-consonant-selector";
-var IPA_VOWEL_ID            = "ipa-vowel-selector";
-var METACLASS_ID            = "metaclass-selector";
-var CONSONANT_ARTICULATION_ID = "consonant-articulation-selector";
-
 // Should we list all members of the matching language set?
 // Changed by handleListToggle
 var listMode = false;
@@ -91,20 +69,15 @@ function traitSelectorInit() {
 /* Target all uninitialized popovers of class tgtClass.uninit
  * Create each of these a unique popover with content copied from a template, whose
  * html id is: `#${tgtClass}-template`
- * For instance initPopover("dummy-class") will replace all ".dummy-class-uninit"
- * with ".dummy-class-init", and update the data-content with the return value
+ * For instance initPopover("dummy-class") will replace all ".dummy-class.uninit"
+ * with ".dummy-class.init", and update the data-content with the return value
  * of createSelectorString(templateID).
  */
- // TODO the first two UID lines are basically useless right now as the UID is mishandled
- // Try using jQuery.each() for "more correct" iteration
- // The current way leads to a minor BUG in which popover UIDs mismatch enclosing div UIDs
 function initPopovers(tgtClass) {
   var uninit = `.${tgtClass}.uninit`;
   var templateID = `#${tgtClass}-template`;
   var str = createSelectorString(templateID);
-  var uid = str.match(/template-[0-9a-fA-F]+/g)[0].replace(/template-/g,"");
   $(uninit).attr("data-content", str);
-  $(uninit).attr("id", tgtClass + "-" + uid);
   $(uninit).addClass("init");
   $(uninit).addClass("selector-init"); // for CSS styling
   $(uninit).removeClass("uninit");
@@ -158,7 +131,7 @@ function displayInfo(info) {
 // On click handler for single trait button
 // Hides second trait div
 function handleSingleTrait() {
-  // Do nothing if 2 already visible.
+  // Do nothing if 1 already visible.
   if ($("#trait-divs").children(":visible").length == 1) return;
   hideElement($("#trait-divs").children()[1]);
 
@@ -228,44 +201,79 @@ function isKDisabled($el) {
   return $el.find(".k-selector[disabled]").length > 0;
 }
 
+// Given a popover div (i.e. containing an lbox table), store its HTML in the
+// associated popover's data attribute.
+// Using the provided selList, set the trait div's selList attribute and popover
+// button's text to reflect the selections, using labelFn as a function to
+// generate the button text
+function updatePopover(popoverDiv, selList, labelFn) {
+  var $popoverDiv = $(popoverDiv);
+  // NOTE [aria-describedby] fails if multiple popovers are open concurrently.
+  var $popoverButton = $("[aria-describedby]");
+  var $traitDiv = $popoverButton.closest("div");
+
+  // Store the state of the popover
+  var popoverContent = $popoverDiv[0].outerHTML;
+  $popoverButton.attr("data-content", popoverContent);
+
+  // Store the selList for use in queries
+  $traitDiv.attr("selList", selList);
+
+  // Update the button text
+  var lbl = labelFn(selList);
+  $popoverButton.text(lbl);
+}
+
+// Get the number of cols in a given table (max # of td's in a single row)
+function numColsInTable(table) {
+  var $rows = $(table).find("tr");
+  var cols = 0;
+  for (row of $rows) {
+    cols = Math.max(cols, $(row).children("td").length);
+  }
+  return cols;
+}
+
+// Given a table, return a list (selList) of all the selected elements in that
+// table, in column-major order (all selected from 1st col, then 2nd col, etc.)
+function getSelectedFromTable(table) {
+  var selList = []
+
+  // NOTE: $(table).find(".selected") won't work because it gives row-major results
+  var numCols = numColsInTable(table);
+  for (var i = 0; i < numCols; i++) {
+    var $rows = $(table).find("tr");
+    for (row of $rows) {
+      var $sel = $(row).children("td").eq(i).filter(".selected");
+      $sel.each(function() { selList.push($(this).text()); });
+    }
+  }
+  return selList;
+}
+
 // On click function for element representing a label in the pbox.
 // Save the state of the pbox inside the data-content, reload popover
 // Update link text.
 function handlePboxLabel(element) {
   var $el = $(element);
-  var $table = $el.closest("table");
-  var $popoverDiv = $table.parent();
+  var $popoverDiv = $el.closest("table").closest("div");
+  var $traitDiv = $("[aria-describedby]").closest("div");
 
   // (Un)select the pbox label.
   toggleClass(element, "selected");
 
-  // Save the state of the popover for the next time it is opened.
-  var popoverContent = $popoverDiv[0].outerHTML;
-  var $popoverButton = $("[aria-describedby]");
-  var $traitDiv = $popoverButton.closest("div");
-  $popoverButton.attr("data-content", popoverContent);
+  var selList = getSelectedFromTable($table[0]);
 
-  // Find all selected pbox labels and create a list of their glyphs
-  var selList = [];
-  var $sel = $table.find(".pbox-label.selected");
-  $sel.each(function() { selList.push($(this).text()); });
-
-  // Store the query info to be sent to the server
-  $traitDiv.attr("selList", selList);
-
-  // Update the popoverButton text to be glyph list, or placeholder if empty.
-  // NOTE [aria-describedby] fails if multiple popovers are open concurrently.
-  var isValid = selList.length > 0;
-  var lbl = "Select phonemes...";
-  if (isValid) {
-    lbl = selList.join(", ");
-  }
-  $popoverButton.text(lbl);
+  // Save the state + values of the popover for next time it opens / queries
+  updatePopover($popoverDiv, selList, function(selLs) {
+    var lbl = "Select phonemes...";
+    if (selLs.length > 0) lbl = selLs.join(", ");
+    return lbl;
+  });
 
   // Update the k-selector's value if it is disabled (i.e. mode="all")
   if (isKDisabled($traitDiv)) {
-    $ksel = $traitDiv.find(".k-selector");
-    $ksel.val(selList.length);
+    $traitDiv.find(".k-selector").val(selList.length);
   }
 }
 
@@ -278,6 +286,7 @@ function handleClboxLabel(element) {
   var $el = $(element);
   var $table = $el.closest("table");
   var $popoverDiv = $table.parent();
+  var $traitDiv = $("[aria-describedby]").closest("div");
 
   // Figure the type (column) of element clicked (e.g. voicing, place, manner)
   var type = $el.attr("type");
@@ -295,36 +304,17 @@ function handleClboxLabel(element) {
     $el.addClass("selected");
   }
 
+  var selList = getSelectedFromTable($table[0]);
+
   // Save the state of the popover for the next time it is opened
-  var $popoverButton = $("[aria-describedby]");
-  var $traitDiv = $popoverButton.closest("div");
-  var popoverContent = $popoverDiv[0].outerHTML;
-  $popoverButton.attr("data-content", popoverContent);
-
-  // Get the fields needed for server queries, and store the query info for later
-  var selList = [];
-
-  // Push the selected elements onto the selList, one column at a time
-  // WARNING: hardcoded 3
-  for (var i = 0; i < 3; i++) {
-    var sel = $table.find(`[type='clbox-label-${i}'].selected`).text();
-    selList.push(sel);
-  }
-  $traitDiv.attr("selList", selList);
-
-  // After initial click any query is valid
-  // link.attr("isValid", true);
-
-  // Figure out if we want consonants or vowels
   var ctype = $table.hasClass("ccbox-popover-table") ? "consonant" : "vowel";
-
-  // Update the popoverButton text to reflect new selections
-  $popoverButton.text(getStrFromClasses(selList, ctype));
+  updatePopover($popoverDiv, selList, function(selLs) {
+    return getStrFromClasses(selLs, ctype);
+  });
 
   // Update the k-selector's value if it is disabled (i.e. mode="all")
   if (isKDisabled($traitDiv)) {
-    $ksel = $traitDiv.find(".k-selector");
-    $ksel.val(selList.length);
+    $traitDiv.find(".k-selector").val(selList.length);
   }
 }
 
@@ -335,7 +325,8 @@ function handleLboxLabel(element, multi) {
   // Find the containing table.
   var $el = $(element);
   var $table = $el.closest("table");
-  var $popoverDiv = $table.closest("div");
+  var $popoverDiv = $el.closest("table").closest("div");
+  var $traitDiv = $("[aria-describedby]").closest("div");
 
   // (Un)select the lbox label that was clicked.
   if ($el.hasClass("selected")) {
@@ -349,30 +340,19 @@ function handleLboxLabel(element, multi) {
     $el.addClass("selected");
   }
 
-  // Store the popover contents for the next time it is opened
-  var $popoverButton = $("[aria-describedby]");
-  var $traitDiv = $popoverButton.closest("div");
-  var popoverContent = $popoverDiv[0].outerHTML;
-  $popoverButton.attr("data-content", popoverContent);
-
   // Collect all selected elements from the table into a list
-  var selList = [];
-  var $sel = $table.find(".selected");
-  $sel.each(function() { selList.push($(this).text()); });
+  var selList = getSelectedFromTable($table[0]);
 
-  // Store the info needed to make a query to the server.
-  $traitDiv.attr("selList", selList);
-
-  // Update the link text to be the sel list, or placeholder if empty.
-  var lbl = "Select trait...";
-  var isValid = selList.length > 0;
-  if (isValid) lbl = selList.join(", ");
-  $popoverButton.text(lbl);
+  // Store the popover contents for the next time it is opened
+  updatePopover($popoverDiv, selList, function(selLs) {
+    var lbl = "Select trait...";
+    if (selList.length > 0) lbl = selList.join(", ");
+    return lbl;
+  });
 
   // Update the k-selector's value if it is disabled (i.e. mode="all")
   if (isKDisabled($traitDiv)) {
-    $ksel = $traitDiv.find(".k-selector");
-    $ksel.val(selList.length);
+    $traitDiv.find(".k-selector").val(selList.length);
   }
 }
 
@@ -453,21 +433,15 @@ function handleIpacboxLabel(element) {
   // Toggle the clicked element.
   // If clicked element was a header, toggle all matching elements.
   if ($el.hasClass("ipa-header")) {
-
     // Get a list of the phonemes matching this header
     var matches = getElementsOfHeader(element);
 
-    // Select or unselect ALL the elements in the list as a group.
-    // Afterwards, either ALL matching phonemes are selected, or ALL are not.
+    // Select / deselect entire matching row/col (e.g. all plosives, all voiceds)
     toggleClassesAll(element, matches.toArray(), "selected");
-
   }
   // Else, toggle just that element
-  // Decide selecting this element causes a header category to be (un)selected
   else {
-    // Carry out the toggle.
     toggleClass(element, "selected");
-
   }
 
   // Check if the toggle caused any headers to (no longer) be selected
@@ -488,45 +462,15 @@ function handleIpacboxLabel(element) {
     }
   }
 
-  // Save the contents of the table in a string so the popover will be updated
-  /*
-  var div = table.parentElement;
-  var outerHTML = div.outerHTML;
-
-  var link = $("[aria-describedby]");
-  */
-
   // Find all selected glyphs in the table.
-  var selList = [];
-  $table.find(".ipa-box.selected").each(function() {
-      selList.push($(this).text());
-    }
-  )
-  var isValid = selList.length > 0;
-
-  // Update the link text to be the sel list, or placeholder if empty
-  /*
-  var lbl = "";
-  if (selList.length == 0) {
-    lbl = "Select trait..."
-  }
-  else {
-    lbl = selList.join(", ");
-  }
-  link.text(lbl);
-  */
+  var selList = getSelectedFromTable($table);
 
   // Inform the table of its query for the server, as a list of glyphs
   $traitDiv.attr("selList", selList);
-  $traitDiv.attr("isValid", isValid);
-
-  // Save the content changes in the popover attribute.
-  // link.attr("data-content", outerHTML);
 
   // Update the k-selector's value if it is disabled (i.e. mode="all")
   if (isKDisabled($traitDiv)) {
-    $ksel = $traitDiv.find(".k-selector");
-    $ksel.val(selList.length);
+    $traitDiv.find(".k-selector").val(selList.length);
   }
 }
 
@@ -825,28 +769,12 @@ function handleListToggle() {
 /*                                 Resets                                    */
 /*****************************************************************************/
 
-// Reset the selected values of a query.
+// Reset all entered values and selections
 function resetQuerySelections() {
-  if (!confirm("Are you sure you wish to clear all selections?")) {
-    return;
-  }
-
-  // Reset all (k-)input fields to be empty
-  $(".k-selector").val("1");
-
-  // Reset all mode fields to be "at least"
-  $(".mode-selector").val("at least");
-
-  // Reset all selected labels (i.e. phonemes)
-  $(".selected").removeClass("selected");
-  $("[selList]").attr("selList", "");
+  if (!confirm("Are you sure you wish to clear all selections?")) return;
 
   // Reload the entire page.
-  // I'm pretty sure this makes all the previous things redundant.
-  frontInit(); // this might break things
-
-  // Select the divs that were visible before.
-  // <code would go here if desired>
+  frontInit(); // hopefully this isn't overkill
 }
 
 // Reset the output box to its default state
@@ -881,25 +809,21 @@ function callback(reply) {
 // BUG Currently all instances share same id
 // NOTE outerHTML not compatible with older browsers!'
 // TODO rename copySelectorFromTemplate
-function createSelectorString(jqueryStr, uid) {
+function createSelectorString(jqueryStr) {
   if (!jqueryStr) {
     console.error("Error: creating selector string without ID!");
     jqueryStr = "#cbox-template";
   }
-  if (!uid) {
-    uid = UID();
-  }
+
   // Locate the template
   var template = $(jqueryStr)[0];
 
   // Alter template so it can be displayed (remove template markings)
   var oldID = template.id;
-  template.id += "-" + uid;
-  template.classList.remove("template");
-  var str = template.outerHTML;
+  $(template).removeClass("template");
+  $(template).attr("id", "");
 
-  // Add a UID to each id= and for= attribute\
-  str = str.replace(/(box-[^\"0-9][^\"0-9]?-)template/g, "$1" + uid);
+  var str = template.outerHTML;
 
   // Undo alterations to template so it is suitable for copying again
   template.id = oldID;
@@ -907,24 +831,6 @@ function createSelectorString(jqueryStr, uid) {
 
   return str;
 }
-
-// Create + return a clone of the trait templates
-function cloneTraitTemplate() {
-  var template = $("#trait-div-template").clone()[0];
-  var uid = "-" + UID();
-
-  template.id = template.id.replace(/-template/g, uid);
-  var children = template.children;
-  for (var i = 0; i < children.length; i++) {
-    children[i].id = children[i].id.replace(/-template/g, uid);
-  }
-
-  return template;
-}
-
-// Write one function for each of the input types.
-// ie create phonemeSelector
-// ie create checkboxes for other traits???
 
 /*****************************************************************************/
 /*                                Getters                                    */
@@ -1013,24 +919,4 @@ function getStrFromClasses(arr, type) {
 
   // Trim whitespace and return (with an "s" appended to the end to make plural)
   return str.trim() + "s";
-}
-
-// Convert num to base 36 (used for unique ID generation)
-// Not strictly necessary but it makes everything look cooler.
-function numToUID(num) {
-  var b36str = num.toString(36);
-  // Pad with 0 on left until 6 chars long.
-  while (b36str.length < 6) {
-    b36str = "0" + b36str;
-  }
-  return b36str;
-}
-
-// Generate and return a new UID guaranteed to be distinct from all
-// previously generated UIDs created in this session.
-var UID_COUNT = 0;
-function UID() {
-  var uid = numToUID(UID_COUNT);
-  UID_COUNT++;
-  return uid;
 }
