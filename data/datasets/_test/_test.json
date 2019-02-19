@@ -1,0 +1,67 @@
+[
+    {
+        "comment": "This file should be ignored (not real data), because it's prefixed with _",
+        "language": "All phonemes",
+        "name": "n/a",
+        "netid": "n/a",
+        "num vowels": "99",
+        "num consonants": "99",
+        "num phonemes": "99",
+        "consonants": [
+          "p", "b", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ",
+          "pʰ", "bʰ", "tʰ", "dʰ", "ʈʰ", "ɖʰ", "cʰ", "ɟʰ", "kʰ", "gʰ", "qʰ", "ɢʰ",
+          "m", "ɱ", "n", "ɳ", "ɲ", "ŋ", "ɴ",
+          "ʙ", "r", "ʀ", "ⱱ", "ɾ", "ɽ", "ɸ", "β",
+          "f", "v", "θ", "ð", "s", "z", "ʃ", "ʒ", "ʂ", "ʐ", "ç", "ʝ", "x", "ɣ", "χ", "ʁ",
+          "ħ", "ʕ", "h", "ɦ",
+          "ts", "dz", "tʃ", "dʒ", "ɬ", "ɮ",
+          "ʋ", "ɹ", "ɻ", "j", "ɰ", "l", "ȴ", "ʎ", "ʟ", "w"
+        ],
+        "vowels": [
+          "i", "y", "e", "ø", "ɛ", "œ", "a", "ɶ",
+          "ɨ", "ʉ", "ɘ", "ɵ", "ə", "ə", "ɜ", "ɞ",
+          "ɯ", "u", "ɤ", "o", "ʌ", "ɔ", "ɑ", "ɒ",
+          "ɪ", "ʏ", "æ", "ɐ", "ʊ"
+        ],
+        "consonant places": 99,
+        "consonant manners": 99,
+        "3+ places": true,
+        "2+ manners": true,
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "V",
+            "C coda",
+            "CC onset",
+            "CC coda",
+            "CCC onset",
+            "CCC coda",
+            "CCCC onset",
+            "CCCC coda"
+        ],
+        "citation": "This data was fabricated for testing",
+        "recommend": "n/a",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "affixation",
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": [
+            "SOV", "SVO", "OVS", "OSV", "VSO", "VOS"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ],
+        "case": "none",
+        "agreement": "ergative/absolutive"
+    }
+  ]
