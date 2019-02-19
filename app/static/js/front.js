@@ -10,7 +10,8 @@ var listMode = false;
 // remembered between queries?
 var REMEMBER_LIST_STATE = false;
 
-// TODO Declare constants for class names here (e.g. .vbox-template)
+// Which dataset should we use for queries?
+var DATASET = "F17";
 
 // COLORS
 var DANGER  = "alert-danger";
@@ -748,7 +749,9 @@ function handleSubmit() {
   }
 
   var payload = "payload=" + JSON.stringify(requests);
-  payload += `&listMode=${listMode}`; // Hacky
+  // Hacky: build a request string from params directly.
+  payload += `&listMode=${listMode}`;
+  payload += `&dataset=${DATASET}`;
 
   console.log("Sending post with payload: " + payload);
   $.post("/",

@@ -10,22 +10,18 @@ import data
 from data import selectors
 import phonemes
 
-# Substitute Database objects
+# Lightweight "Database" objects representing each language dataset
 # (can be replaced with an actual DB later if the overhead is justified.
-# Construct LING_DB
-def init_DB():
-    global LING_DB
-    LING_DB = LingDB(data.language_data)
-    # TODO integrate typology data from TYPOLOGY_FILE
+# One dataset per semester that we have data (duh :P)
+datasets = {
+    name: LingDB(data.getDataset(name)) for name in data.getDatasetNames()
+}
 
-# TODO This is a terrible piece of code. Fix it so this doesn't get reinitialized all the time
-LING_DB = None
-init_DB()
-
-
-def handleQuery(query):
+def handleQuery(query, dataset):
     """Given a query dict, decide which type of query has been made, and return a
     list of results corresponding to the languages matching that type of query"""
+
+    lingDB = datasets[dataset]
     trait = query["trait"]
 
     # Look up this query's function in the mapping table (from selectors.py)
@@ -36,11 +32,14 @@ def handleQuery(query):
         raise e
 
     # Pass the function into query() to be called with its arguments
-    return LING_DB.query(fn, query)
+    return lingDB.query(fn, query)
 
-def handleQueries(queries, listMode=False):
+def handleQueries(queries, dataset, listMode=False):
     """Process multiple queries and direct them as appropriate, according to the
     trait each one represents."""
+
+    lingDB = datasets[dataset]
+
     # Can be cleaned up with comprehensions
     result_arr = []   # List of sets of (Language, queryResult) pairs
     lang_arr   = []   # list of sets of languages
@@ -48,7 +47,7 @@ def handleQueries(queries, listMode=False):
 
     # Create a result set, lang set, and reply for each query
     for query in queries:
-        queryResults = handleQuery(query)
+        queryResults = handleQuery(query, dataset)
 
         # Convert to sets so we can use set ops like intersect and union later.
         # resultSet = set of (language, matchingProperty) pairs
@@ -80,9 +79,9 @@ def handleQueries(queries, listMode=False):
     # TODO also allow for displaying the results of each subquery alone--
     # If I query for A & B & C, also display just A, just B, just C.
     # TODO also add a small table with a list of languages matching just A, just B, or A and B
-    uRep = createUnionReply(lang_arr, reply_arr, LING_DB)
-    iRep = createIntersectionReply(lang_arr, reply_arr, LING_DB)
-    cRep = createConditionalReply(lang_arr, reply_arr, 0, LING_DB)
+    uRep = createUnionReply(lang_arr, reply_arr, lingDB)
+    iRep = createIntersectionReply(lang_arr, reply_arr, lingDB)
+    cRep = createConditionalReply(lang_arr, reply_arr, 0, lingDB)
 
     # The response structure partitions results with newlines and horizontal rules
     # so that the data is returned in a nice format
@@ -103,7 +102,7 @@ def handleQueries(queries, listMode=False):
 
         # If exactly two query terms, throw in B --> A
         if n == 2:
-            cRep2 = createConditionalReply(lang_arr, reply_arr, 1, LING_DB)
+            cRep2 = createConditionalReply(lang_arr, reply_arr, 1, lingDB)
             response["implicational"].append(cRep2)
 
     # Format the response structure with newlines and rules
@@ -295,7 +294,9 @@ def createFractionHTML(num, den):
                         "</span>"])
     return collapse
 
-
+#############################################################################
+#                                Helper Methods
+#############################################################################
 def floatToQuantifier(frac):
     # TODO Move quantifiers into a data class somewhere so they are more easily moddable
     # NOTE Quantifier lists must be kept sorted!
@@ -344,79 +345,3 @@ def floatToQuantifier(frac):
             return quant[1]
 
     raise ValueError("No valid quantifier provided for float %f!" % frac)
-
-
-#############################################################################
-#                                Query Methods
-#############################################################################
-def queryForConsonants(query):
-    # init_DB()
-    # return consonants + " " + k
-    cons = query["consonants"]
-    k = int(query["k"])
-    mode = query["mode"]
-    matches = LING_DB.queryContainsConsonants(cons, k, mode)
-    return matches
-
-def queryForConsonantClasses(query):
-    classArr = query["classes"]
-    bitstring = phonemes.consonants.getBitstringFromClasses(classArr)
-    k = int(query["k"])
-    mode = query["mode"]
-    matches = LING_DB.queryContainsConsonants(bitstring, k, mode)
-    return matches
-
-def queryForVowels(query):
-    vowels = query["vowels"]
-    k = int(query["k"])
-    mode = query["mode"]
-    matches = LING_DB.queryContainsVowels(vowels, k, mode)
-    return matches
-
-def queryforVowelClasses(query):
-    classArr = query["classes"]
-    bitstring = phonemes.vowels.getBitstringFromClasses(classArr)
-    k = int(query["k"])
-    mode = query["mode"]
-    matches = LING_DB.queryContainsVowels(bitstring, k, mode)
-    return matches
-
-def queryForConsonantPlaces(query):
-    matches = LING_DB.queryContainsConsonantPlaces()
-    return matches
-
-def queryForConsonantManners(query):
-    matches = LING_DB.queryContainsConsonantManners()
-    return matches
-
-def queryForComplexConsonants(query):
-    matches = LING_DB.queryContainsComplexConsonants()
-    return matches
-
-def queryForTone(query):
-    matches = LING_DB.queryContainsTone()
-    return matches
-
-def queryForStress(query):
-    matches = LING_DB.queryContainsStress()
-    return matches
-
-def queryForSyllable(query):
-    syllable = query["syllable"]
-    matches = LING_DB.queryContainsSyllable(syllable)
-    return matches
-
-#############################################################################
-#                                Helper Methods
-#############################################################################
-# Reconstruct the consonant glyphs provided in the given consonant bitstring
-# This function is deprecated (I'm not sure what it was ever useful for, and it's outdated)
-"""
-def getConsonantGlyphsFromBitstring(consonants):
-    # init_DB()
-    results = []
-    for i, c in enumerate(consonants):
-        if c == "1":
-            results.append(CONSONANT_GLYPHS[i])
-    return results
-"""

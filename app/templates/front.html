@@ -104,6 +104,7 @@
         <option>Contains consonant class:</option>
         <option>Contains vowel class:</option>
         <option>Has articulation features:</option>
+        <option>Phoneme inventory size:</option>
         <option>Has complex consonants</option>
         <option>Has tone</option>
         <option>Has stress</option>
@@ -231,6 +232,24 @@
            title="<b>Select articulation type</b>"
            data-content="Error loading. Sorry!">Select articulation type...</a>
       </div>
+      <div class="phoneme-inventory-size-selector template inactive" type="phoneme-inventory-size-selector">Contains
+        <select class="mode-selector" onchange="handleModeSelect(this)">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+          <option>all</option>
+        </select>
+        <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
+        <a class="pi-lbox-popover uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select phoneme type</b>"
+           data-content="Error loading. Sorry!">Select phoneme type...</a>
+      </div>
       <div class="complex-consonants-selector template inactive" type="complex-consonants-selector">
         Complex Consonants
       </div>
@@ -354,422 +373,6 @@
            title="<b>Select agreement</b>"
            data-content="Error loading. Sorry!">Select agreement...</a>
       </div>
-    </div>
-    
-    <!--Auto-generated template for the consonant phoneme selector.-->
-    <div id="cbox-template" class="template">
-      <table>
-        <tbody>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">p</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">b</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">t</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">d</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʈ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɖ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">c</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɟ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">k</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">g</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">q</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɢ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʔ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">pʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">bʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">tʰ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">dʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʈʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɖʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">cʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɟʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">kʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">gʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">qʰ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɢʰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">m</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɱ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">n</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɳ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɲ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ŋ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɴ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʙ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">r</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʀ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ⱱ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɾ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɽ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɸ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">β</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">f</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">v</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">θ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ð</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">s</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">z</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʃ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʒ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʂ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʐ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ç</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʝ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">x</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɣ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">χ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʁ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ħ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʕ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">h</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɦ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ts</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">dz</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">tʃ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">dʒ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɬ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɮ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʋ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɹ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɻ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">j</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɰ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">l</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label-empty"></div></td>
-            <td><div class="pbox-label-empty"></div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ȴ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʎ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʟ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">w</div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the vowel phoneme selector.-->
-    <div id="vbox-template" class="template">
-      <table>
-        <tbody>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">i</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">y</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">e</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ø</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɛ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">œ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">a</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɶ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɨ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʉ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɘ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɵ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ə</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ə</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɜ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɞ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɯ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">u</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɤ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">o</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʌ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɔ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɑ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɒ</div></td>
-          </tr>
-          <tr>
-            <td><div class="pbox-label-empty"></div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɪ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʏ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">æ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ɐ</div></td>
-            <td><div class="pbox-label" onclick="handlePboxLabel(this)">ʊ</div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the ccbox-popover class selector.-->
-    <div id="ccbox-popover-template" class="template">
-      <table class="ccbox-popover-table">
-        <tbody>
-          <tr>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any voicing</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any place</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any manner</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">voiceless</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">bilabial</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">plosive</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">voiced</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">labiodental</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">aspirated</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">dental</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">nasal</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">alveolar</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">trill</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">postalveolar</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">tap or flap</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">retroflex</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">fricative</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">palatal</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">affricate</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">velar</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">lateral fricative</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">uvular</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">approximant</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">pharyngeal</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">lateral approximant</td>
-          </tr>
-          <tr>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">glottal</td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the vcbox-popover class selector.-->
-    <div id="vcbox-popover-template" class="template">
-      <table class="vcbox-popover-table">
-        <tbody>
-          <tr>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any height</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any backness</td>
-            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any roundedness</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">high</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">front</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">unrounded</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">near-high</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">near-front</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">rounded</td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid-high</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">central</td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">near-back</td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid-low</td>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">back</td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">near-low</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-          <tr>
-            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">low</td>
-            <td class="clbox-label-empty"></td>
-            <td class="clbox-label-empty"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the s-lbox-popover list selector.-->
-    <div id="s-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">C onset</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CC onset</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCC onset</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCC onset</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">C coda</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CC coda</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCC coda</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCC coda</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the m-lbox-popover list selector.-->
-    <div id="m-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">isolating</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">analytic</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">fusional</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">agglutinating</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">polysynthetic</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the wf-lbox-popover list selector.-->
-    <div id="wf-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">affixation</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suffixation</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">prefixation</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">infixation</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">compounding</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">root-and-pattern</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">internal change</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suppleton</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">stress or tone shift</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">reduplication</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">conversion</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">purely isolating</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the ff-lbox-popover list selector.-->
-    <div id="ff-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively suffixing</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly suffixing</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively prefixing</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly prefixing</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal prefixing and suffixing</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively non-affixal</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly non-affixal</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal affixation and other</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly isolating</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively isolating</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the wo-lbox-popover list selector.-->
-    <div id="wo-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SVO</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SOV</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VSO</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VOS</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OVS</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OSV</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">free</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the h-lbox-popover list selector.-->
-    <div id="h-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-initial</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-final</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-initial</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-final</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mixed headedness</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the a-lbox-popover list selector.-->
-    <div id="a-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the c-lbox-popover list selector.-->
-    <div id="c-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the mc-lbox-popover list selector.-->
-    <div id="mc-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiced</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiceless</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">sonorant</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">obstruents</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consonantal</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">vocalic</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">syllabic</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">nonsyllabic</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">continuant</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">noncontinuant</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the ca-lbox-popover list selector.-->
-    <div id="ca-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">places</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">manners</td></tr>
-        </tbody>
-      </table>
     </div>
     <!--Auto-generated template for the IPA consonant chart-->
     <div id="ipacbox-popover-template" class="template" style="position: relative;">
@@ -1151,6 +754,277 @@
             <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='back' height='low' roundedness='unrounded' style="position: absolute; left: 399.40000000000003px; top: 290.0px;">ɑ</td>
             <td class="ipa-box-empty"></td>
           </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the mc-lbox-popover list selector.-->
+    <div id="mc-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiced</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiceless</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">sonorant</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">obstruents</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consonantal</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">vocalic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">syllabic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">nonsyllabic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">continuant</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">noncontinuant</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the ccbox-popover class selector.-->
+    <div id="ccbox-popover-template" class="template">
+      <table class="ccbox-popover-table">
+        <tbody>
+          <tr>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any voicing</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any place</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any manner</td>
+          </tr>
+          <tr>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">voiceless</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">bilabial</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">plosive</td>
+          </tr>
+          <tr>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">voiced</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">labiodental</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">aspirated</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">dental</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">nasal</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">alveolar</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">trill</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">postalveolar</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">tap or flap</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">retroflex</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">fricative</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">palatal</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">affricate</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">velar</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">lateral fricative</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">uvular</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">approximant</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">pharyngeal</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">lateral approximant</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">glottal</td>
+            <td class="clbox-label-empty"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the vcbox-popover class selector.-->
+    <div id="vcbox-popover-template" class="template">
+      <table class="vcbox-popover-table">
+        <tbody>
+          <tr>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any offset</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any height</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any backness</td>
+            <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-3">any roundedness</td>
+          </tr>
+          <tr>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">upper</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">high</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">front</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">unrounded</td>
+          </tr>
+          <tr>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">lower</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">mid</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">near-front</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">rounded</td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">low</td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">central</td>
+            <td class="clbox-label-empty"></td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">near-back</td>
+            <td class="clbox-label-empty"></td>
+          </tr>
+          <tr>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label-empty"></td>
+            <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">back</td>
+            <td class="clbox-label-empty"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the ca-lbox-popover list selector.-->
+    <div id="ca-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">places</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">manners</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the pi-lbox-popover list selector.-->
+    <div id="pi-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consonants</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">vowels</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">phonemes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the s-lbox-popover list selector.-->
+    <div id="s-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">V</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">C onset</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CC onset</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCC onset</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCC onset</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">C coda</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CC coda</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCC coda</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">CCCC coda</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the m-lbox-popover list selector.-->
+    <div id="m-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">isolating</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">analytic</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">fusional</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">agglutinating</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">polysynthetic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the wf-lbox-popover list selector.-->
+    <div id="wf-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">affixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suffixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">prefixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">infixation</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">compounding</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">root-and-pattern</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">internal change</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suppleton</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">stress or tone shift</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">reduplication</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">conversion</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">purely isolating</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the ff-lbox-popover list selector.-->
+    <div id="ff-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively suffixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly suffixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively prefixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly prefixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal prefixing and suffixing</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively non-affixal</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly non-affixal</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal affixation and other</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly isolating</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively isolating</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the wo-lbox-popover list selector.-->
+    <div id="wo-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SVO</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SOV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VSO</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VOS</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OVS</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OSV</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">free</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the h-lbox-popover list selector.-->
+    <div id="h-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-initial</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-final</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-initial</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-final</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mixed headedness</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the c-lbox-popover list selector.-->
+    <div id="c-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the a-lbox-popover list selector.-->
+    <div id="a-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
         </tbody>
       </table>
     </div>

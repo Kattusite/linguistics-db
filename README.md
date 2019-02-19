@@ -135,6 +135,22 @@ all of the logic for matching requests against the data actually resides. The
 whereas `LingDB` generalizes these single-language methods to work for arbitrarily
 large lists of languages.
 
+### Modifying Selectors (Available Traits)
+I've made an effort to rework the code so that adding or removing traits to query
+for should be as painless as possible. *In theory*, all that must be modified
+in order to add or remove a selector from the list of possible ones shown on
+the website is `/data/selectors.py`, which defines the properties of all
+the different selector types, and the information required to render them
+and handle the query.
+
+*In reality*, it is slightly trickier. If the selector you'd like to add is
+very similar to an existing one, it might be as easy as adding a new entry
+in `/data/selectors.py`, but if the new selector offers significantly
+different functionality, you will likely need (at a minimum) a new
+Language method to handle the query, and in the worst case you may have to
+hand-roll a new type of popover, or a request with more parameters than just
+the typical mode/k/selList trio.
+
 
 ## Acknowledgments
 

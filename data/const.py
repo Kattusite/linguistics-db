@@ -1,7 +1,21 @@
 
+##############################################################################
+#                            Dataset constants                               #
+##############################################################################
+# Where is a dataset named {0} located, relative to the project root?
+DATASET_PATH = "data/datasets/{0}/{1}"
 
-DATA_PATH = "data/"
+# Which named datasets do we have?
+# F = Fall, S = spring, XX = year 20XX
+datasetNames = [
+    "F17",
+    "S19"
+]
 
+
+##############################################################################
+#                          csvtojson constants                               #
+##############################################################################
 # Constants across typology/grammar
 NETID = 1
 NAME  = 2

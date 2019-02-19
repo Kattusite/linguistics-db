@@ -55,6 +55,7 @@ SELECT_WHAT     = "select what"
 SELECT_NAME     = "select name"
 
 # Valid modes
+# TODO: Change these names to make sense
 PICK_ONE    = "pick one"    # lbox (multi = false)
 PICK_CLASS  = "pick class"  # clboxes
 PICK_MULTI  = "pick multi"  # lbox (multi = true)
@@ -188,13 +189,26 @@ CONSONANT_ARTICULATION = {
     SELECT_NAME: "Has articulation features:",
     DICT: { "places": [], "manners": [] },
     MULTI: False,
-    MODE: PICK_K,
+    MODE: PICK_MULTI, # this is a hack - really really need to change all the MODEs
     REPLY: "contain %s %s %s of consonant articulation",
     REPLY_VARS: ["mode", "k", "sel"], # not selList
     FUNCTION: Language.matchConsonantArticulation,
     HTML_ID: "consonant-articulation-selector",
     POPOVER_PREFIX: "ca-lbox-popover",
     SELECT_WHAT: "articulation type"
+}
+
+PHONEME_INVENTORY_SIZE = {
+    SELECT_NAME: "Phoneme inventory size:",
+    DICT: { "consonants": [], "vowels": [], "phonemes": [] },
+    MULTI: False,
+    MODE: PICK_MULTI, # this is a hack - really really need to change all the MODEs
+    REPLY: "have a phoneme inventory with %s %s %s",
+    REPLY_VARS: ["mode", "k", "sel"], # not selList
+    FUNCTION: Language.matchPhonemeInventorySize,
+    HTML_ID: "phoneme-inventory-size-selector",
+    POPOVER_PREFIX: "pi-lbox-popover",
+    SELECT_WHAT: "phoneme type"
 }
 
 COMPLEX_CONSONANTS = {
@@ -482,6 +496,7 @@ SELECTORS = [
     CONSONANT_ARTICULATION,
     #CONSONANT_PLACES,
     #CONSONANT_MANNERS,
+    PHONEME_INVENTORY_SIZE,
     COMPLEX_CONSONANTS,
     TONE,
     STRESS,

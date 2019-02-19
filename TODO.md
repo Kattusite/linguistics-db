@@ -11,6 +11,10 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* The MODE strings defined in selectors.py don't make any sense ... what
+is it that they are actually supposed to be checking? all of the selectors are
+PICK_K, but some are classed as PICK_MULTI instead? If I really meant to say
+PBOX/LBOX/CLBOX/IPABOX, etc. then I should have just defined those instead.
 * More metaclasses! (Especially place-based ones) -- see the cheat sheet
 * More constants need to be shared btwn js/python. Specificially mode list (at least, all, none..) and some others I'll add as I remember
 * Introduce more types to enforce properties of arguments. E.g. phonemes should be a type, queries should be a type

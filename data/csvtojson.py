@@ -5,11 +5,14 @@
 # It would probably be worth streamlining significantly at some point
 # (or rewriting entirely), as this is far from the best way
 
-import csv, json, hashlib, re
+import csv, json, hashlib, re, sys
 from operator import itemgetter, attrgetter
 from phonemes import consonants, vowels
-from .const import * # todo make this clutter my namespace less (don't import *)
+from .const import *
 from . import selectors
+
+# Warning: the import * from .const means the namespace is horribly cluttered
+# I'd like to fix it one day by removing this import
 
 ########################################
 DEBUG = False
@@ -18,59 +21,51 @@ VERBOSE = False
 
 DICT = selectors.DICT
 
-#BUG Doesn't read correct encoding from csv, causing nonstandard chars to fail
 # Read in the CSV files from the declared constant filenames, and then
 # Return a JSON object representing that csv data
-def csvToJSON():
-    grammarCSV = open(DATA_PATH + "unanon-grammar.csv", "r", newline='', encoding='utf-8')
-    grammarReader = csv.reader(grammarCSV)
+def csvToJSON(datasetName):
 
-    typologyCSV = open(DATA_PATH + "unanon-typology.csv", "r", newline='', encoding='utf-8')
-    typologyReader = csv.reader(typologyCSV)
+    noFileErr = "{0} file {1} not found for dataset {2}. Continuing without it..."
+    gFilename = "unanon-grammar.csv"
+    tFilename = "unanon-typology.csv"
+
+    validGrammar = True
+    validTypology = True
+
+    # Locate the grammar CSV file if it exists, and open it for reading
+    try:
+        grammarCSV = open(DATASET_PATH.format(datasetName, gFilename),
+                            "r", newline='', encoding='utf-8')
+        grammarReader = csv.reader(grammarCSV)
+    except FileNotFoundError:
+        print(noFileErr.format("Grammar", gFilename, datasetName), file=sys.stderr)
+        validGrammar = False
+
+    # Locate the typology CSV file if it exists, and open it for reading
+    try:
+        tFilename = "unanon-typology.csv"
+        typologyCSV = open(DATASET_PATH.format(datasetName, tFilename),
+                            "r", newline='', encoding='utf-8')
+        typologyReader = csv.reader(typologyCSV)
+    except FileNotFoundError:
+        print(noFileErr.format("Typology", tFilename, datasetName), file=sys.stderr)
+        validTypology = False
 
     # Anonymize netids and names
-    t_header = []
-    t_data = {}
-    t_netid = []
-    for i, row in enumerate(typologyReader):
-        if i == 0:
-            t_header = row
-            continue
-        netid = asciify(row[NETID]).encode("ASCII")
-        name  = asciify(row[NAME]).encode("ASCII")
-        # Slice off first few chars to make hashes manageable (collisions negligible)
-        anon_netid = hashlib.sha3_256(netid).hexdigest()[:HASH_SIZE]
-        anon_name  = hashlib.sha3_256(name).hexdigest()[:HASH_SIZE]
-        row[NETID] = anon_netid
-        row[NAME]  = anon_name
-        t_data[anon_netid] = row
-        t_netid.append(anon_netid)
+    g_data = anonymize(grammarReader, datasetName, "anon-grammar.csv")   if validGrammar  else {}
+    t_data = anonymize(typologyReader, datasetName, "anon-typology.csv") if validTypology else {}
 
-    g_header = []
-    g_data = {}
-    g_netid = []
-    for i, row in enumerate(grammarReader):
-        if i == 0:
-            g_header = row
-            continue
-        netid = asciify(row[NETID]).encode("ASCII")
-        name  = asciify(row[NAME]).encode("ASCII")
-        # Slice off first few chars to make hashes manageable (collisions negligible)
-        anon_netid = hashlib.sha3_256(netid).hexdigest()[:HASH_SIZE]
-        anon_name  = hashlib.sha3_256(name).hexdigest()[:HASH_SIZE]
-        row[NETID] = anon_netid
-        row[NAME]  = anon_name
-        g_data[anon_netid] = row
-        g_netid.append(anon_netid)
+    # Merge netid lists to get list of all students with any sort of
+    g_netids = set(g_data.keys())
+    t_netids = set(t_data.keys())
+    netidSet = g_netids.union(t_netids)
 
+    # NOTE: If neither grammar/typology file exists, netidSet = (), and we skip the loop
 
-    # Merge netid lists
-    netidSet = set(g_netid).union(set(t_netid))
-
+    # For each anon netid, print a row of csv and create a dict for JSON
     json_array = []
-    # For each anon netid, print a row of csv and create a JSON blob
     for id in netidSet:
-        # Just construct the JSON for now
+        # Just construct the dict for now
         g_list = g_data.get(id)
         t_list = t_data.get(id)
         json_obj = {}
@@ -208,25 +203,8 @@ def csvToJSON():
     return json_array
 
 
-
-def main():
-    json_array = csvToJSON()
-
-    # Open output files (CSV currently unused)
-    # outputCSV = open(DATA_PATH + "anon-combined.csv", "w", newline='')
-    # outputCSVWriter = csv.writer(outputCSV)
-
-    outputJSON = open(DATA_PATH + "anon-combined.json", "w", encoding='utf-8')
-
-    json.dump(json_array,
-              outputJSON,
-              sort_keys=False,
-              ensure_ascii=False,
-              indent=4)
-
-
 def asciify(str):
-    return re.sub(r'[^\x00-\x7F]',' ', str)
+    return re.sub(r'[^\x00-\x7F]',' ', str).encode('ASCII')
 
 
 # Given a CSV phoneme string, return a corresponding phoneme list
@@ -286,14 +264,14 @@ def parsePhrase(phrase, matchDict, failList):
                 print("Resolving semiambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
             bestNum = matchLen
             bestStr = key
-    # Ensure the fail-deadly list was not triggered
-    # The fail-deadly acts as a primitive canary for changing data
+    # Ensure the fail-safe list was not triggered
+    # The fail-safe acts as a primitive canary for changing data
     # If the program detects unfamiliar situations that it knows it *should* be able to handle,
     # it fails immediately to alert the programmer
     if bestStr is None and failList is not None:
         for f in failList:
             if f in phrase:
-                raise ValueError("Fail-deadly triggered during phrase parsing: '%s' in '%s'" % (f, phrase))
+                raise ValueError("Fail-safe triggered during phrase parsing: '%s' in '%s'" % (f, phrase))
     if (DEBUG):
         print("Parsing... %s \n==> %s" % (phrase, bestStr))
     return bestStr
@@ -310,4 +288,78 @@ def matchAnyInList(str, lst):
             best = max(best, len(s))
     return best
 
-main()
+# Given a CSV reader, return a dictionary whose keys are anonymized versions of
+# each student in the CSV's netid, and whose values are the associated student's
+# data
+# Additionally, write the anonymized CSV to the file specified by outFilename,
+# if it is not None
+def anonymize(csvReader, dataset, outFilename=None):
+
+    if (outFilename):
+        outFile = open(DATASET_PATH.format(dataset, outFilename), "w", encoding="utf-8")
+        outCSV = csv.writer(outFile)
+
+    dataDict = {}
+    for i, row in enumerate(csvReader):
+        # If this is the header row, skip anonymization. Print as-is if printing enabled
+        if i == 0:
+            if outFilename:
+                outCSV.writerow(row)
+            continue
+        netid = asciify(row[NETID])
+        name  = asciify(row[NAME])
+
+        # Slice off first few chars to make hashes manageable (collisions negligible)
+        anon_netid = hashlib.sha3_256(netid).hexdigest()[:HASH_SIZE]
+        anon_name  = hashlib.sha3_256(name).hexdigest()[:HASH_SIZE]
+
+        # Replace the original personal info w/ anonymized versions
+        row[NETID] = anon_netid
+        row[NAME]  = anon_name
+
+        # Put each student's data into the dictionary to be returned
+        dataDict[anon_netid] = row
+
+        # If we are writing, write this row to file
+        if outFilename:
+            outCSV.writerow(row)
+
+    # Finish up
+    outFile.flush()
+    outFile.close()
+    return dataDict
+
+def main():
+    """If command line args are provided, treat them as dataset names and convert
+    all these datasets from their raw CSV format to more structured JSON, outputting
+    a file /data/datasets/<datasetName>/<datasetName>.json for each one. By default,
+    if no command line args are provided, convert all known datasets in the same way
+    as described above"""
+
+    # If arguments are provided, treat them as dataset names and parse those files only.
+    # Note: dataset names are like (F17, S19), without a file extension
+    if len(sys.argv) > 1:
+        names = sys.argv[1:]
+    # Otherwise, parse all known datasets
+    else:
+        names = datasetNames # from const
+
+    # Convert each file CSV -> JSON and write it to disk.
+    for name in names:
+        jsonArr = csvToJSON(name)
+
+        # Open output files (CSV currently unused)
+        outName = name + ".json"
+        outFile = open(DATASET_PATH.format(name, outName), "w", encoding='utf-8')
+
+        json.dump(jsonArr,
+                  outFile,
+                  sort_keys=False,
+                  ensure_ascii=False,
+                  indent=4)
+
+        outFile.flush()
+        outFile.close()
+
+if __name__ == '__main__':
+    main()
