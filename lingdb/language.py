@@ -228,6 +228,19 @@ class Language:
         else:
             return False
 
+    def matchPhonemeInventorySize(self, sel, k, mode):
+        """Return the phoneme inventory size of type 'sel'
+        ("consonants", "vowels", "phonemes") if this number is at least*
+        (or mode) k. Else, return False. """
+
+        phonemeInvSize = "num %s" % sel
+        num = self.getGrammarAttr(phonemeInvSize)
+        if compareByMode(num, k, mode):
+            return tuple([num])
+        else:
+            return False
+
+
     def matchWordOrder(self, selList, k, mode):
         """Return the word orders in this language that are part of selList, if
         the number of matches is at least* (or mode) k"""
@@ -321,6 +334,12 @@ class Language:
         matches = self.matchSyllable(selList, k, mode)
         return compareByMode(len(matches), k, mode)
 
+    def hasPhonemeInventorySize(self, sel, k, mode):
+        """Returns true if this language has a phoneme inventory with *mode *k of
+        the sel phoneme type"""
+        matches = self.matchPhonemeInventorySize(selList, k, mode)
+        return compareByMode(len(matches), k, mode)
+
     def hasMorphologicalType(self, selList, k, mode):
         """Returns true if *mode* k of the given morphological types are
         present in this language"""
@@ -403,6 +422,6 @@ def compareByMode(num1, num2, mode):
     elif (mode == LEQ):
         return num1 <= num2
     elif (mode == ALL):
-        return num1 >= num2  
+        return num1 >= num2
     else:
         raise ValueError("Unexpected comparison mode: %s" % mode)
