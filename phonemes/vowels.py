@@ -46,6 +46,12 @@ BACKNESSES = [
     "back"
 ]
 
+BACKNESS_REGIONS = [
+    "front",
+    "central",
+    "back"
+]
+
 ROUNDEDNESSES = [
     "unrounded",
     "rounded"
@@ -64,7 +70,7 @@ HEADERS = {
 CLBOX_HEADERS = {
     "height": HEIGHT_REGIONS,
     "offset": HEIGHT_OFFSETS,
-    "backness": BACKNESSES,
+    "backness": BACKNESS_REGIONS,
     "roundedness": ROUNDEDNESSES,
 
     "word order": ["offset", "height", "backness", "roundedness"],
@@ -81,20 +87,32 @@ GLYPHS = utils.glyphs(data)
 # those properties
 # E.g. {"voiced":    ["b", "d", ...],
 #       "voiceless": ["p", "t", ...], ...}"""
-HEIGHT_DICT         = utils.enumerateProperty(data, "height")
-HEIGHT_REGION_DICT  = utils.enumerateProperty(data, "height region")
-HEIGHT_OFFSET_DICT  = utils.enumerateProperty(data, "height offset")
-BACKNESS_DICT       = utils.enumerateProperty(data, "backness")
-ROUNDEDNESS_DICT    = utils.enumerateProperty(data, "roundedness")
-VOICING_DICT        = utils.enumerateProperty(data, "voicing")
+HEIGHT_DICT             = utils.enumerateProperty(data, "height")
+HEIGHT_REGION_DICT      = utils.enumerateProperty(data, "height region")
+HEIGHT_OFFSET_DICT      = utils.enumerateProperty(data, "height offset")
+BACKNESS_DICT           = utils.enumerateProperty(data, "backness")
+BACKNESS_REGION_DICT    = utils.enumerateProperty(data, "backness region")
+ROUNDEDNESS_DICT        = utils.enumerateProperty(data, "roundedness")
+VOICING_DICT            = utils.enumerateProperty(data, "voicing")
 
 # Combine these dicts together
-CLASSES_DICT = {**HEIGHT_DICT,
-                **HEIGHT_REGION_DICT,
-                **HEIGHT_OFFSET_DICT,
-                **BACKNESS_DICT,
-                **ROUNDEDNESS_DICT,
-                **VOICING_DICT}
+# MAJOR BUG: CLASSES_DICT expects unique keys,
+# but is provided with non-unique keys (e.g. "low" is both a key in height, height region)
+# Which I believe leads to loss of data.
+# Must ensure that the "right" data is not lost
+# e.g. if two key/value pairs exist with a key of "low", one should be a superset of
+# the other -- we would like to keep the superset not the subset.
+# If I'm lucky then later keys will overwrite earlier ones, but this is not
+# something nice to rely on.
+CLASSES_DICT = {
+    **HEIGHT_DICT,
+    **HEIGHT_REGION_DICT,
+    **HEIGHT_OFFSET_DICT,
+    **BACKNESS_DICT,
+    **BACKNESS_REGION_DICT,
+    **ROUNDEDNESS_DICT,
+    **VOICING_DICT
+}
 
 def isVowel(s):
     """Returns true iff s is a vowel representable in this system"""
