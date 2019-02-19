@@ -1,8 +1,10 @@
-# TODO rename to avoid name collision
+# TODO rename to avoid name collision (data is an extremely common name)
 
-from . import const
+from . import const, datasets
 import phonemes
 import json
 
-jsonFile = open("data/anon-combined.json", "r", encoding='utf-8')
-language_data = json.load(jsonFile)
+# data Functions
+getDataset          = datasets.getDataset
+getDatasetNames     = datasets.getDatasetNames
+readDataset         = datasets.readDataset

@@ -14,6 +14,9 @@ from . import ipa_json, utils
 # Note that these lists are ONLY used for the ordering of IPA charts, and
 # metaclass selectors (ipacbox/clbox in allgen.py)
 # It is NOT the canonical list of all possible values - see the DICTs below for those
+# (In fact, side note, those are not canonical + complete either, they just summarize
+# all of the values we've seen so far, not all possible ones. )
+
 HEIGHTS = [
     "high",
     "near-high",
@@ -22,6 +25,17 @@ HEIGHTS = [
     "mid-low",
     "near-low",
     "low"
+]
+
+HEIGHT_REGIONS = [
+    "high",
+    "mid",
+    "low"
+]
+
+HEIGHT_OFFSETS = [
+    "upper",
+    "lower"
 ]
 
 BACKNESSES = [
@@ -46,6 +60,17 @@ HEADERS = {
     "axis order": ["backness", "height", "roundedness"]
 }
 
+# The actual classes to be used in lboxes (more detailed than in IPA trapezoid)
+CLBOX_HEADERS = {
+    "height": HEIGHT_REGIONS,
+    "offset": HEIGHT_OFFSETS,
+    "backness": BACKNESSES,
+    "roundedness": ROUNDEDNESSES,
+
+    "word order": ["offset", "height", "backness", "roundedness"],
+    "axis order": ["offset", "height", "backness", "roundedness"]
+}
+
 
 # ==== General Vowel Data ====
 
@@ -57,12 +82,16 @@ GLYPHS = utils.glyphs(data)
 # E.g. {"voiced":    ["b", "d", ...],
 #       "voiceless": ["p", "t", ...], ...}"""
 HEIGHT_DICT         = utils.enumerateProperty(data, "height")
+HEIGHT_REGION_DICT  = utils.enumerateProperty(data, "height region")
+HEIGHT_OFFSET_DICT  = utils.enumerateProperty(data, "height offset")
 BACKNESS_DICT       = utils.enumerateProperty(data, "backness")
 ROUNDEDNESS_DICT    = utils.enumerateProperty(data, "roundedness")
 VOICING_DICT        = utils.enumerateProperty(data, "voicing")
 
 # Combine these dicts together
 CLASSES_DICT = {**HEIGHT_DICT,
+                **HEIGHT_REGION_DICT,
+                **HEIGHT_OFFSET_DICT,
                 **BACKNESS_DICT,
                 **ROUNDEDNESS_DICT,
                 **VOICING_DICT}

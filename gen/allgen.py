@@ -295,7 +295,7 @@ def popoverbodiesdiv(selectorList):
             if "consonant" in html_id:
                 clboxgen("consonant", consonants.HEADERS)
             elif "vowel" in html_id:
-                clboxgen("vowel", vowels.HEADERS)
+                clboxgen("vowel", vowels.CLBOX_HEADERS)
             else:
                 ValueError("Unexpected clbox type in popoverbodiesdiv: %s" % html_id)
 

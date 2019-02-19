@@ -2,6 +2,8 @@
     {
         "glyph": "i",
         "height": "high",
+        "height region": "high",
+        "height offset": "upper",
         "backness": "front",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -10,6 +12,8 @@
     {
         "glyph": "y",
         "height": "high",
+        "height region": "high",
+        "height offset": "upper",
         "backness": "front",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -18,6 +22,8 @@
     {
         "glyph": "e",
         "height": "mid-high",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "front",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -26,6 +32,8 @@
     {
         "glyph": "ø",
         "height": "mid-high",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "front",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -34,6 +42,8 @@
     {
         "glyph": "ɛ",
         "height": "mid-low",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "front",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -42,6 +52,8 @@
     {
         "glyph": "œ",
         "height": "mid-low",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "front",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -50,6 +62,8 @@
     {
         "glyph": "a",
         "height": "low",
+        "height region": "low",
+        "height offset": "lower",
         "backness": "front",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -58,6 +72,8 @@
     {
         "glyph": "ɶ",
         "height": "low",
+        "height region": "low",
+        "height offset": "lower",
         "backness": "front",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -66,6 +82,8 @@
     {
         "glyph": "ɨ",
         "height": "high",
+        "height region": "high",
+        "height offset": "upper",
         "backness": "central",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -74,6 +92,8 @@
     {
         "glyph": "ʉ",
         "height": "high",
+        "height region": "high",
+        "height offset": "upper",
         "backness": "central",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -82,6 +102,8 @@
     {
         "glyph": "ɘ",
         "height": "mid-high",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "central",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -90,6 +112,8 @@
     {
         "glyph": "ɵ",
         "height": "mid-high",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "central",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -98,6 +122,8 @@
     {
         "glyph": "ə",
         "height": "mid",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "central",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -106,6 +132,8 @@
     {
         "glyph": "ə",
         "height": "mid",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "central",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -114,6 +142,8 @@
     {
         "glyph": "ɜ",
         "height": "mid-low",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "central",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -122,6 +152,8 @@
     {
         "glyph": "ɞ",
         "height": "mid-low",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "central",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -130,6 +162,8 @@
     {
         "glyph": "ɯ",
         "height": "high",
+        "height region": "high",
+        "height offset": "upper",
         "backness": "back",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -138,6 +172,8 @@
     {
         "glyph": "u",
         "height": "high",
+        "height region": "high",
+        "height offset": "upper",
         "backness": "back",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -146,6 +182,8 @@
     {
         "glyph": "ɤ",
         "height": "mid-high",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "back",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -154,6 +192,8 @@
     {
         "glyph": "o",
         "height": "mid-high",
+        "height region": "mid",
+        "height offset": "upper",
         "backness": "back",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -162,6 +202,8 @@
     {
         "glyph": "ʌ",
         "height": "mid-low",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "back",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -170,6 +212,8 @@
     {
         "glyph": "ɔ",
         "height": "mid-low",
+        "height region": "mid",
+        "height offset": "lower",
         "backness": "back",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -178,6 +222,8 @@
     {
         "glyph": "ɑ",
         "height": "low",
+        "height region": "low",
+        "height offset": "lower",
         "backness": "back",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -186,6 +232,8 @@
     {
         "glyph": "ɒ",
         "height": "mid-low",
+        "height region": "low",
+        "height offset": "lower",
         "backness": "back",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -194,6 +242,8 @@
     {
         "glyph": "ɪ",
         "height": "near-high",
+        "height region": "high",
+        "height offset": "lower",
         "backness": "near-front",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -202,6 +252,8 @@
     {
         "glyph": "ʏ",
         "height": "near-high",
+        "height region": "high",
+        "height offset": "lower",
         "backness": "near-front",
         "roundedness": "rounded",
         "voicing": "voiced",
@@ -210,6 +262,8 @@
     {
         "glyph": "æ",
         "height": "near-low",
+        "height region": "low",
+        "height offset": "upper",
         "backness": "front",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -218,6 +272,8 @@
     {
         "glyph": "ɐ",
         "height": "near-low",
+        "height region": "low",
+        "height offset": "upper",
         "backness": "central",
         "roundedness": "unrounded",
         "voicing": "voiced",
@@ -226,6 +282,8 @@
     {
         "glyph": "ʊ",
         "height": "near-high",
+        "height region": "high",
+        "height offset": "lower",
         "backness": "near-back",
         "roundedness": "rounded",
         "voicing": "voiced",

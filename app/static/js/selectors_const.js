@@ -764,6 +764,25 @@ var SELECTORS_DICT = {
         "select name": "Morphological type:",
         "select what": "morphological type"
     },
+    "phoneme-inventory-size-selector": {
+        "dict": {
+            "consonants": [],
+            "phonemes": [],
+            "vowels": []
+        },
+        "html id": "phoneme-inventory-size-selector",
+        "mode": "pick multi",
+        "multi": false,
+        "popover prefix": "pi-lbox-popover",
+        "reply": "have a phoneme inventory with %s %s %s",
+        "reply vars": [
+            "mode",
+            "k",
+            "sel"
+        ],
+        "select name": "Phoneme inventory size:",
+        "select what": "phoneme type"
+    },
     "placeholder-selector": {
         "bool body": "Select a trait from the dropdown menu to start submitting queries!",
         "html id": "placeholder-selector",

@@ -9,6 +9,7 @@
     <option>Contains consonant class:</option>
     <option>Contains vowel class:</option>
     <option>Has articulation features:</option>
+    <option>Phoneme inventory size:</option>
     <option>Has complex consonants</option>
     <option>Has tone</option>
     <option>Has stress</option>
@@ -135,6 +136,24 @@
        data-toggle="popover"
        title="<b>Select articulation type</b>"
        data-content="Error loading. Sorry!">Select articulation type...</a>
+  </div>
+  <div class="phoneme-inventory-size-selector template inactive" type="phoneme-inventory-size-selector">Contains
+    <select class="mode-selector" onchange="handleModeSelect(this)">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+      <option>all</option>
+    </select>
+    <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
+    <a class="pi-lbox-popover uninit btn btn-outline-secondary"
+       role="button"
+       data-html="true"
+       data-toggle="popover"
+       title="<b>Select phoneme type</b>"
+       data-content="Error loading. Sorry!">Select phoneme type...</a>
   </div>
   <div class="complex-consonants-selector template inactive" type="complex-consonants-selector">
     Complex Consonants
@@ -735,43 +754,39 @@
   <table class="vcbox-popover-table">
     <tbody>
       <tr>
-        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any height</td>
-        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any backness</td>
-        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any roundedness</td>
+        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-0">any offset</td>
+        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-1">any height</td>
+        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-2">any backness</td>
+        <td class="clbox-label selected" onclick="handleClboxLabel(this)"  type="clbox-label-3">any roundedness</td>
       </tr>
       <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">high</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">front</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">unrounded</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">upper</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">high</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">front</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">unrounded</td>
       </tr>
       <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">near-high</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">near-front</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">rounded</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">lower</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">mid</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">near-front</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-3">rounded</td>
       </tr>
       <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid-high</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">central</td>
+        <td class="clbox-label-empty"></td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">low</td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">central</td>
         <td class="clbox-label-empty"></td>
       </tr>
       <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">near-back</td>
+        <td class="clbox-label-empty"></td>
+        <td class="clbox-label-empty"></td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">near-back</td>
         <td class="clbox-label-empty"></td>
       </tr>
       <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">mid-low</td>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-1">back</td>
-        <td class="clbox-label-empty"></td>
-      </tr>
-      <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">near-low</td>
         <td class="clbox-label-empty"></td>
         <td class="clbox-label-empty"></td>
-      </tr>
-      <tr>
-        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-0">low</td>
-        <td class="clbox-label-empty"></td>
+        <td class="clbox-label" onclick="handleClboxLabel(this)"  type="clbox-label-2">back</td>
         <td class="clbox-label-empty"></td>
       </tr>
     </tbody>
@@ -784,6 +799,17 @@
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">places</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">manners</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Auto-generated template for the pi-lbox-popover list selector.-->
+<div id="pi-lbox-popover-template" class="template">
+  <table>
+    <tbody>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consonants</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">vowels</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">phonemes</td></tr>
     </tbody>
   </table>
 </div>

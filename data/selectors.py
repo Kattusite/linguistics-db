@@ -198,6 +198,19 @@ CONSONANT_ARTICULATION = {
     SELECT_WHAT: "articulation type"
 }
 
+PHONEME_INVENTORY_SIZE = {
+    SELECT_NAME: "Phoneme inventory size:",
+    DICT: { "consonants": [], "vowels": [], "phonemes": [] },
+    MULTI: False,
+    MODE: PICK_MULTI, # this is a hack - really really need to change all the MODEs
+    REPLY: "have a phoneme inventory with %s %s %s",
+    REPLY_VARS: ["mode", "k", "sel"], # not selList
+    FUNCTION: Language.matchPhonemeInventorySize,
+    HTML_ID: "phoneme-inventory-size-selector",
+    POPOVER_PREFIX: "pi-lbox-popover",
+    SELECT_WHAT: "phoneme type"
+}
+
 COMPLEX_CONSONANTS = {
     SELECT_NAME: "Has complex consonants",
     DICT: None,
@@ -483,6 +496,7 @@ SELECTORS = [
     CONSONANT_ARTICULATION,
     #CONSONANT_PLACES,
     #CONSONANT_MANNERS,
+    PHONEME_INVENTORY_SIZE,
     COMPLEX_CONSONANTS,
     TONE,
     STRESS,
