@@ -346,6 +346,10 @@ def main():
 
     # Convert each file CSV -> JSON and write it to disk.
     for name in names:
+        # Names prefixed with _ are for testing purposes only
+        if (name[0] == "_"):
+            continue
+
         jsonArr = csvToJSON(name)
 
         # Open output files (CSV currently unused)

@@ -8,6 +8,7 @@ DATASET_PATH = "data/datasets/{0}/{1}"
 # Which named datasets do we have?
 # F = Fall, S = spring, XX = year 20XX
 datasetNames = [
+    "_test",
     "F17",
     "S19"
 ]
