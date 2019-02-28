@@ -1,4 +1,6 @@
 from . import app, lingdb_client
+from lingdb.exceptions import QuorumError
+from data import const
 from flask import render_template, redirect, request, url_for, flash
 import json, traceback
 
@@ -20,14 +22,35 @@ def main():
         # Specify which language dataset to use
         dataset = f["dataset"]
 
+        # By default, we will be returning info to the user (blue message box)
+        retCode = const.INFO
+
         # Send all queries to client for processsing
         try:
             ret = lingdb_client.handleQueries(queries, listMode=listMode, dataset=dataset)
+
+        # Not enough data to answer this query. Inform user
+        except QuorumError:
+            ret = "".join([
+                '<span class=quote>',
+                '"There is as yet insufficient data for a meaningful answer."',
+                '</span><br>',
+                '<span class=quoteattrib> -- Isaac Asimov, 1956 </span>',
+                '<br><br>',
+                'Please check back later once more data has been gathered!'
+            ])
+            retCode = const.WARN
+
         # Inform the user that a server error occurred, and log the error.
         except:
-            ret = "Sorry, an unknown server error occurred! If you're seeing this please let the developer know how you got this message so they can fix it."
+            ret = "Sorry, an unknown server error occurred! Please let the developer know how you got this message so they can fix it."
+            retCode = const.DANGER
             traceback.print_exc()
-        return ret
+
+        # Return the status code and response payload to the frontend for display to user
+        return json.dumps({const.RET_CODE: retCode, const.PAYLOAD: ret})
+
+    # Handle normal GET requests
     return render_template('front.html')
 
 @app.route('/index.html')

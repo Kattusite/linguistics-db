@@ -1,7 +1,7 @@
 [
     {
         "comment": "This file should be ignored (not real data), because it's prefixed with _",
-        "language": "All phonemes",
+        "language": "All",
         "name": "n/a",
         "netid": "n/a",
         "num vowels": "99",
@@ -44,24 +44,66 @@
         "citation": "This data was fabricated for testing",
         "recommend": "n/a",
         "morphological type": [
-            "agglutinating"
+            "isolating",
+            "analytic",
+            "fusional",
+            "agglutinating",
+            "polysynthetic"
         ],
         "word formation": [
             "affixation",
             "suffixation",
             "prefixation",
+            "infixation",
             "compounding",
+            "root-and-pattern",
+            "internal-change",
+            "suppleton",
+            "stress or tone shift",
             "reduplication",
-            "conversion"
+            "conversion",
+            "purely isolating"
         ],
         "word formation frequency": "equal affixation and other",
         "word order": [
-            "SOV", "SVO", "OVS", "OSV", "VSO", "VOS"
+            "SOV", "SVO", "OVS", "OSV", "VSO", "VOS", "free"
         ],
         "headedness": [
-            "consistently head-final"
+            "consistently head-initial",
+            "consistently head-final",
+            "mostly head-initial",
+            "mostly head-final",
+            "mixed headedness"
         ],
         "case": "none",
         "agreement": "ergative/absolutive"
+    },
+    {
+      "comment": "This file should be ignored (not real data), because it's prefixed with _",
+      "language": "None",
+      "name": "n/a",
+      "netid": "n/a",
+      "num vowels": "0",
+      "num consonants": "0",
+      "num phonemes": "0",
+      "consonants": [],
+      "vowels": [],
+      "consonant places": 0,
+      "consonant manners": 0,
+      "3+ places": false,
+      "2+ manners": false,
+      "complex consonants": false,
+      "tone": false,
+      "stress": false,
+      "syllables": [],
+      "citation": "This data was fabricated for testing",
+      "recommend": "n/a",
+      "morphological type": [],
+      "word formation": [],
+      "word formation frequency": "equal affixation and other",
+      "word order": [],
+      "headedness": [],
+      "case": "none",
+      "agreement": "none"
     }
-  ]
+]

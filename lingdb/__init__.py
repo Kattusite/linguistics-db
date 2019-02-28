@@ -1,6 +1,8 @@
 from .language import Language
+from .exceptions import *
 from data.const import *
 import json, inspect
+
 
 # LingDB class
 class LingDB:
@@ -11,8 +13,15 @@ class LingDB:
 #                             Constants                                        #
 #                                                                              #
 ################################################################################
+    # move these constants for the module? tbd
     QUERY_LANG = 0
     QUERY_RESULT = 1
+
+    # What proportion of langs must have data for a query to be valid?
+    QUORUM_THRESHOLD = 0.5
+    MATCHES = 'matches'
+    NO_DATA = 'no data'
+
 
 ################################################################################
 #                             Constructor                                      #
@@ -46,8 +55,10 @@ class LingDB:
     # or returns a True type (ie a nonempty list), this language is added to a
     # tuple, containing 1) the language that matched and 2) the return value of
     # lang.fn
-    # Return the entire list of tuples after all matching languages have
-    # contributed results
+    # At the end, return a dict with MATCHES keyed to the entire list of tuples
+    # after all matching languages have contributed results,
+    # and NO_DATA keyed to the list of languages that were unable to contribute
+    # results due to a lack of data.
     def query(self, fn, allArgs):
         # Get the argument list for the selected function # WARNING (hacky)
         # Be careful: this gets the VARIABLE NAME attached to a given fn argument
@@ -59,18 +70,37 @@ class LingDB:
         # For each language that matches this query, return a tuple of the
         # matching language, and the list of properties in the language that matched
         matches = []  # Array of (lang, result) tuples
+        langsWithoutData = []   # Array of langs (those without data)
+
+        # Query each language individually and get their data if they have any
         for lang in self.data:
-           queryResult = fn(lang, *argsToPass)
 
-           # Check if query result is an empty list or other falsey type
-           if queryResult:
-              # Convert result lists to tuples so we can hash them (and make sets!)
-              if type(queryResult) == type([]):
-                  queryResult = tuple(queryResult)
+            hasData = True      # Does lang have any data for this query?
+            try:
+                queryResult = fn(lang, *argsToPass)
+            except NoLanguageDataError:
+                queryResult = None
+                hasData = False
+                langsWithoutData.append(lang)
 
-              matches.append((lang, queryResult))
+            # Avoid treating "no data" as a confirmation of a negative result
+            if not hasData:
+                continue
 
-        return matches
+            # Check if query result is an empty list or other falsey type
+            if queryResult:
+                # Convert result lists to tuples so we can hash them (and make sets!)
+                if type(queryResult) == type([]):
+                    queryResult = tuple(queryResult)
+
+                matches.append((lang, queryResult))
+
+        # If no data for more than half of langs, something is wrong.
+        # (Perhaps csvtojson failed, or query is malformed)
+        if len(langsWithoutData) >= (len(self.data) * LingDB.QUORUM_THRESHOLD):
+            raise QuorumError("Too many languages lacked data for a query!")
+
+        return { LingDB.MATCHES: matches, LingDB.NO_DATA: langsWithoutData }
         # return [lang for lang in self.data if fn(lang, *argsToPass)]
 
 ################################################################################

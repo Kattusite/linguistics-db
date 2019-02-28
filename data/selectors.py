@@ -39,6 +39,7 @@
 
 from phonemes import metaclasses
 from lingdb.language import Language
+from . import const
 
 # Dictionary keys
 NAME            = "name"
@@ -198,6 +199,19 @@ CONSONANT_ARTICULATION = {
     SELECT_WHAT: "articulation type"
 }
 
+VOWEL_TYPES = {
+    SELECT_NAME: "Vowel types:",
+    DICT: const.D_VOWEL_TYPES,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have %s %s of %s vowels",
+    REPLY_VARS: ["mode", "k", "selList"],
+    FUNCTION: Language.matchVowelType,
+    HTML_ID: "vowel-type-selector",
+    POPOVER_PREFIX: "vt-lbox-popover",
+    SELECT_WHAT: "vowel type"
+}
+
 PHONEME_INVENTORY_SIZE = {
     SELECT_NAME: "Phoneme inventory size:",
     DICT: { "consonants": [], "vowels": [], "phonemes": [] },
@@ -253,19 +267,9 @@ STRESS = {
     SELECT_WHAT: None
 }
 
-SYLLABLE = {
+SYLLABLES = {
     SELECT_NAME: "Allows syllable structure:",
-    DICT: {
-        "V":            ["V"],
-        "C onset":      ["CV"],
-        "CC onset":     ["CCV"],
-        "CCC onset":    ["CCCV"],
-        "CCCC onset":   ["CCCCV"],
-        "C coda":       ["CVC", "VC"], # formerly CVC, not "VC"
-        "CC coda":      ["VCC"],
-        "CCC coda":     ["VCCC"],
-        "CCCC coda":    ["VCCCC"]
-    },
+    DICT: const.D_SYLLABLES,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of the syllable structures %s",
@@ -278,13 +282,7 @@ SYLLABLE = {
 
 MORPHOLOGY = {
     SELECT_NAME: "Morphological type:",
-    DICT: {
-        "isolating": [],
-        "analytic": ["analytic", "not isolating"], # this is a toughie
-        "fusional": [],
-        "agglutinating": [],
-        "polysynthetic": []
-    },
+    DICT: const.D_MORPHOLOGY,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of the morphological types %s",
@@ -297,20 +295,7 @@ MORPHOLOGY = {
 
 WORD_FORMATION = {
     SELECT_NAME: "Word formation strategy:",
-    DICT: {
-        "affixation": ["affixation", "prefixation or suffixation"],
-        "suffixation": [],
-        "prefixation": [],
-        "infixation": [],
-        "compounding": [],
-        "root-and-pattern": [],
-        "internal change": [],
-        "suppleton": [],
-        "stress or tone shift": [],
-        "reduplication": [],
-        "conversion": [],
-        "purely isolating": ["none", "purely isolating"]
-    },
+    DICT: const.D_WORD_FORMATION,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of %s to form words",
@@ -321,6 +306,7 @@ WORD_FORMATION = {
     SELECT_WHAT: "word formation"
 }
 
+# These two dicts are now deprecated. Delete once sure they aren't needed.
 # The following two dicts are not meant for use as selectors. They are for
 # parsePhrase only
 FORMATION_FREQ = {
@@ -344,22 +330,9 @@ FORMATION_MODE = {
     MULTI: False
 }
 
-# The following dict is not tested for parsePhrase. It is simply a collection
-# of all legal combinations of the corresponding freq/mode dicts
 FORMATION = {
     SELECT_NAME: "Word formation frequency:",
-    DICT: {
-        "exclusively suffixing": [],
-        "mostly suffixing": [],
-        "exclusively prefixing": [],
-        "mostly prefixing": [],
-        "equal prefixing and suffixing": ["prefixing and suffixing"],
-        "exclusively non-affixal": [],
-        "mostly non-affixal": [],
-        "equal affixation and other": ["affixation and other"],
-        "mostly isolating": [],
-        "exclusively isolating": ["exclusively isolating", "purely isolating"]
-    },
+    DICT: const.D_WORD_FORMATION_FREQ,
     MULTI: False,
     MODE: PICK_ONE,
     REPLY: "use %s strategies to form words",
@@ -372,16 +345,7 @@ FORMATION = {
 
 WORD_ORDER = {
     SELECT_NAME: "Basic word order:",
-    DICT: {
-        "SVO": [],
-        "SOV": [],
-        "VSO": [],
-        "VOS": [],
-        "OVS": [],
-        "OSV": [],
-        # "multiple": ["more than one", "multiple", "several"],
-        "free":     ["no basic", "none", "free"]
-    },
+    DICT: const.D_WORD_ORDER,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s word orders",
@@ -392,6 +356,7 @@ WORD_ORDER = {
     SELECT_WHAT: "word order"
 }
 
+# The following two dicts are now deprecated. Remove once sure not needed
 # The following two dicts are not meant for use as selectors. They are for
 # parsePhrase only
 HEADEDNESS_FREQ = {
@@ -416,13 +381,7 @@ HEADEDNESS_MODE = {
 # of all legal combinations of the corresponding freq/mode dicts
 HEADEDNESS = {
     SELECT_NAME: "Headedness:",
-    DICT: {
-        "consistently head-initial": [],
-        "consistently head-final": [],
-        "mostly head-initial": [],
-        "mostly head-final": [],
-        "mixed headedness": []
-    },
+    DICT: const.D_HEADEDNESS,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "are %s %s of %s",
@@ -435,12 +394,7 @@ HEADEDNESS = {
 
 CASE = {
     SELECT_NAME: "Case:",
-    DICT: {
-        "none": ["doesn't have", "none"],
-        "ergative/absolutive": [],
-        "nominative/accusative": [],
-        "other": ["other", "some other", "other sort"]
-    },
+    DICT: const.D_CASE,
     MULTI: False,
     MODE: PICK_ONE,
     REPLY: "have %s case",
@@ -453,12 +407,7 @@ CASE = {
 
 AGREEMENT = {
     SELECT_NAME: "Agreement:",
-    DICT: {
-        "none": ["doesn't have", "none"],
-        "ergative/absolutive": [],
-        "nominative/accusative": [],
-        "other": ["other", "some other", "other sort"]
-    },
+    DICT: const.D_AGREEMENT,
     MULTI: False,
     MODE: PICK_ONE,
     REPLY: "have %s agreement",
@@ -494,13 +443,14 @@ SELECTORS = [
     CONSONANT_CLASS,
     VOWEL_CLASS,
     CONSONANT_ARTICULATION,
+    VOWEL_TYPES,
     #CONSONANT_PLACES,
     #CONSONANT_MANNERS,
     PHONEME_INVENTORY_SIZE,
     COMPLEX_CONSONANTS,
     TONE,
     STRESS,
-    SYLLABLE,
+    SYLLABLES,
     MORPHOLOGY,
     WORD_FORMATION,
     FORMATION,

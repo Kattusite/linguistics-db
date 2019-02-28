@@ -253,6 +253,7 @@ var SELECTORS_DICT = {
             ],
             "continuant": [
                 "a",
+                "a\u1da0",
                 "e",
                 "f",
                 "h",
@@ -480,6 +481,7 @@ var SELECTORS_DICT = {
             ],
             "sonorant": [
                 "a",
+                "a\u1da0",
                 "e",
                 "i",
                 "j",
@@ -533,6 +535,7 @@ var SELECTORS_DICT = {
             ],
             "syllabic": [
                 "a",
+                "a\u1da0",
                 "e",
                 "i",
                 "l",
@@ -582,6 +585,7 @@ var SELECTORS_DICT = {
             ],
             "vocalic": [
                 "a",
+                "a\u1da0",
                 "e",
                 "h",
                 "i",
@@ -619,6 +623,7 @@ var SELECTORS_DICT = {
             ],
             "voiced": [
                 "a",
+                "a\u1da0",
                 "b",
                 "b\u02b0",
                 "d",
@@ -805,31 +810,40 @@ var SELECTORS_DICT = {
         "dict": {
             "C coda": [
                 "CVC",
-                "VC"
+                "VC",
+                "single coda"
             ],
             "C onset": [
-                "CV"
+                "CV",
+                "single onset"
             ],
             "CC coda": [
-                "VCC"
+                "VCC",
+                "two coda"
             ],
             "CC onset": [
-                "CCV"
+                "CCV",
+                "two onset"
             ],
             "CCC coda": [
-                "VCCC"
+                "VCCC",
+                "three coda"
             ],
             "CCC onset": [
-                "CCCV"
+                "CCCV",
+                "three onset"
             ],
             "CCCC coda": [
-                "VCCCC"
+                "VCCCC",
+                "four coda"
             ],
             "CCCC onset": [
-                "CCCCV"
+                "CCCCV",
+                "four onset"
             ],
             "V": [
-                "V"
+                "V",
+                "onsetless and codaless"
             ]
         },
         "html id": "syllable-selector",
@@ -872,6 +886,30 @@ var SELECTORS_DICT = {
         "select name": "Contains vowel class:",
         "select what": "natural classes"
     },
+    "vowel-type-selector": {
+        "dict": {
+            "breathy": [],
+            "creaky": [],
+            "diphthongs": [],
+            "long": [],
+            "nasalized": [],
+            "pharyngealized": [],
+            "triphthongs": [],
+            "voiceless": []
+        },
+        "html id": "vowel-type-selector",
+        "mode": "pick multi",
+        "multi": true,
+        "popover prefix": "vt-lbox-popover",
+        "reply": "have %s %s of %s vowels",
+        "reply vars": [
+            "mode",
+            "k",
+            "selList"
+        ],
+        "select name": "Vowel types:",
+        "select what": "vowel type"
+    },
     "word-formation-selector": {
         "dict": {
             "affixation": [
@@ -891,7 +929,7 @@ var SELECTORS_DICT = {
             "root-and-pattern": [],
             "stress or tone shift": [],
             "suffixation": [],
-            "suppleton": []
+            "suppletion": []
         },
         "html id": "word-formation-selector",
         "mode": "pick multi",
