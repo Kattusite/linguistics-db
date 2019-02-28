@@ -7,7 +7,7 @@
 
 import csv, json, hashlib, re, sys
 from operator import itemgetter, attrgetter
-from phonemes import consonants, vowels
+from phonemes import consonants, vowels, phonemes
 from .const import *
 from . import selectors
 
@@ -67,7 +67,11 @@ def csvToJSON(datasetName):
     # NOTE: If neither grammar/typology file exists, netidSet = (), and we skip the loop
 
     # Get the CSV -> JSON parameters for this dataset from const.py
-    params = PARAMS[datasetName]
+    # If "test" is in the dataset name, use the params for the non-test version
+    if "test" in datasetName:
+        params = PARAMS[datasetName.replace("test", "")]
+    else:
+        params = PARAMS[datasetName]
 
     # For each anon netid, print a row of csv and create a dict for JSON
     json_array = []
@@ -124,7 +128,9 @@ def convertRow(row, params, old_json=None):
             continue
 
         index = param[INDEX]
-        field = row[index]
+
+        # Get the field if there is a single unique field described
+        field = row[index] if type(index) == type(1) else None
 
         # If one to one mapping, one question ==> one key in json
         if param[MAPPING] == ONE_TO_ONE:
@@ -219,14 +225,11 @@ def convertRow(row, params, old_json=None):
                 val = json_obj.get(key, []) # Get existing list, or new one if none exists
 
                 if DICT not in param or param[DICT] == PHONEMES:
-                    val += csvPhonemesToGlyphList(field, )
 
-                    # delete this , already have a functions
-                    selected = field.replace(PHONEME_DELIMITER, "")
-                    selected = selected.split(INNER_DELIMITER)
-                    # Remove whitespace and "None of the above"
-                    selected = [s.strip() for s in selected if "None" not in s]
-                    val += selected
+                    for i in index:
+                        field = row[i]
+                        val += csvPhonemesToGlyphList(field, phonemes.GLYPHS)
+
                 else:
                     raise NotImplementedError("csvtojson: merge not yet supported for non-phoneme lists")
 
@@ -271,6 +274,18 @@ def csvVowelsToGlyphList(csvStr):
     return csvPhonemesToGlyphList(csvStr, vowels.GLYPHS)
 
 
+def matchSingle(phrase, matchDict, key):
+    """Match a single key's matchDict entry against the given phrase, and
+    return the longest match in the matchDict[key] list"""
+
+    matchList = matchDict[key]
+    # Add key itself to empty lists (a shorthand to save typing)
+    if len(matchList) == 0:
+        matchList.append(key)
+    matchLen = matchAnyInList(phrase, matchList)
+
+    return matchLen
+
 # A better metric to use than "longest match" might be "largest percentage of phrase matched
 ##
 # A function for reducing complex phrases into a predefined set of strings...wwwwww
@@ -291,20 +306,30 @@ def parsePhrase(phrase, matchDict, failList):
     bestNum = 0
     bestStr = None
     for key in keys:
-        matchList = matchDict[key]
-        # Add key itself to empty lists (a shorthand to save typing)
-        if len(matchList) == 0:
-            matchList.append(key)
-        matchLen = matchAnyInList(phrase, matchList)
-        # Cannot resolve ambiguous matches! Programmer needs better matchDict
-        if matchLen != 0 and matchLen == bestNum:
-            raise RuntimeError("Strongly ambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
+
+        # Find longest match for this key
+        matchLen = matchSingle(phrase, matchDict, key)
+
         # If this match is unambiguously stronger, it is the new match
         if matchLen > bestNum:
             if bestNum != 0 and VERBOSE:
                 print("Resolving semiambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
             bestNum = matchLen
             bestStr = key
+
+    # Once a best match was found, make sure there is no tie.
+    # Tie suggests an ambiguously defined parseDict, which this algorithm can't resolve
+    for key in keys:
+        # Skip the current best -- obviously it would tie with itself
+        if key == bestStr:
+            continue
+
+        matchLen = matchSingle(phrase, matchDict, key)
+
+        if matchLen != 0 and matchLen == bestNum:
+            raise RuntimeError("Strongly ambiguous len %s match in parsePhrase('%s') : %s, %s" % (bestNum, phrase, bestStr, key))
+
+
     # Ensure the fail-safe list was not triggered
     # The fail-safe acts as a primitive canary for changing data
     # If the program detects unfamiliar situations that it knows it *should* be able to handle,

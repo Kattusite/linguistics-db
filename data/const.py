@@ -7,6 +7,20 @@ This file (and with any luck only this file) will need to be updated any
 time significant changes are made to the survey questions or format.
 """
 
+#############################################################################
+#                           Return Status Codes
+#############################################################################
+RET_CODE = "code"   # The key for return codes
+PAYLOAD = "payload" # The key for the payload
+
+# What sort of message sort be displayed to the user?
+SUCCESS = "success"        # Green message
+INFO = "info"              # Blue message
+WARN = "warning"              # Yellow message
+DANGER = "danger"          # Red message
+
+
+
 ##############################################################################
 #                            Dataset constants                               #
 ##############################################################################
@@ -17,12 +31,14 @@ DATASET_PATH = "data/datasets/{0}/{1}"
 TEST = "_test"
 F17 = "F17"
 S19 = "S19"
+S19TEST = "S19test"
 
 
 # Which named datasets do we have?
 # F = Fall, S = spring, XX = year 20XX
 datasetNames = [
     TEST,
+    S19TEST,
     F17,
     S19
 ]
@@ -86,6 +102,7 @@ MERGE = "merge"
 # These variables shall all be prefixed with K_ to indicate they are *K*eys
 
 # Possible keys for JSON entry for each language
+
 K_NETID                 = "netid"
 K_NAME                  = "name"
 K_LANGUAGE              = "language"
@@ -113,6 +130,39 @@ K_WORD_ORDER            = "word order"
 K_HEADEDNESS            = "headedness"
 K_CASE                  = "case"
 K_AGREEMENT             = "agreement"
+
+# List of all possible legal keys for a language object.
+# Used for validation in language.py
+VALID_KEYS = set([
+    K_NETID,
+    K_NAME,
+    K_LANGUAGE,
+    K_NUM_VOWELS,
+    K_NUM_CONSONANTS,
+    K_NUM_PHONEMES,
+    K_CONSONANTS,
+    K_VOWELS,
+    K_NUM_CONSONANT_PLACES,
+    K_NUM_CONSONANT_MANNERS,
+    K_VOWEL_TYPES,
+    K_3_PLUS_PLACES,
+    K_2_PLUS_MANNERS,
+    K_COMPLEX_CONSONANTS,
+    K_TONE,
+    K_STRESS,
+    K_SYLLABLES,
+
+    K_CITATION,
+    K_RECOMMEND,
+    K_MORPHOLOGICAL_TYPE,
+    K_WORD_FORMATION,
+    K_WORD_FORMATION_FREQ,
+    K_WORD_ORDER,
+    K_HEADEDNESS,
+    K_CASE,
+    K_AGREEMENT,
+])
+
 
 ##################################################
 #   PARSEDICT DEFINITIONS

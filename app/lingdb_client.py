@@ -5,6 +5,7 @@
 
 import os, re, sys
 from lingdb import LingDB, Language
+from lingdb.exceptions import *
 from phonemes import vowels, consonants
 import data
 from data import selectors
@@ -19,7 +20,9 @@ datasets = {
 
 def handleQuery(query, dataset):
     """Given a query dict, decide which type of query has been made, and return a
-    list of results corresponding to the languages matching that type of query"""
+    dict mapping LingDB.MATCHES to a list of results corresponding to the languages
+    matching that type of query, and NO_DATA to the languages that lacked
+    sufficient data to contribute"""
 
     lingDB = datasets[dataset]
     trait = query["trait"]
@@ -47,7 +50,15 @@ def handleQueries(queries, dataset, listMode=False):
 
     # Create a result set, lang set, and reply for each query
     for query in queries:
+
+        # Might raise QuorumError or some other generic query processing error
         queryResults = handleQuery(query, dataset)
+
+
+        # Extract the query data
+        # Note that langsWithoutData currently unused!!
+        langsWithoutData = queryResults[LingDB.NO_DATA]
+        queryResults = queryResults[LingDB.MATCHES]
 
         # Convert to sets so we can use set ops like intersect and union later.
         # resultSet = set of (language, matchingProperty) pairs
@@ -70,6 +81,7 @@ def handleQueries(queries, dataset, listMode=False):
     # If no queries were handled, something went wrong!
     if n == 0:
         print("lingdb_client error: 0 queries were properly handled!")
+        raise RuntimeError("lingdb_client handled 0 queries properly.")
         return None # Query invalid
 
     # Combine the results of the n queries

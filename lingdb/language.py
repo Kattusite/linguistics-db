@@ -4,6 +4,7 @@
 # should directly correspond with possible fields in the query from the frontend
 #
 
+from .exceptions import NoLanguageDataError
 from data.const import *
 from phonemes import vowels, consonants, metaclasses
 import json
@@ -33,6 +34,9 @@ class Language:
     def __init__(self, jsonObj):
         """Create a language object storing the info contained in the given json obj"""
         self.data = jsonObj
+        if K_LANGUAGE not in jsonObj:
+            raise ValueError("Cannot construct a language without a name!")
+        self.name = self.data[K_LANGUAGE]
 
 
     # Take the gindex'th element of row, and store it as a value in dict d,
@@ -64,101 +68,85 @@ class Language:
 ################################################################################
     def getLanguage(self):
         """ Return the name of this language"""
-        ret = self.getGrammarAttr(G_STR[G_LANGUAGE])
-        if ret is None:
-            raise ValueError("A language object was created without a name!")
-        return ret
+        return self.name
 
-    # WARNING: This function is dangerously outdated and should be replaced ASAP
-    # TODO Merge getGrammarAttr/getTypologyAttr into getAttr or similar
+    def getAttr(self, attr):
+        """Return the attribute of a language with a given name, or raise a
+        NoLanguageDataError and return None if that attr does not exist for this
+        language. If an illegal attr is provided, raise a KeyError"""
+        if attr not in VALID_KEYS:
+            raise KeyError("{0} is not a valid key for languages".format(attr))
+
+        if attr not in self.data:
+            print("Warning! Requested {0} from Language {1} but no such data exists".format(attr, self.name))
+            raise NoLanguageDataError("Language {0} has no data for the {1} attr".format(self.name, attr))
+            return None
+
+        return self.data[attr]
+
+    def hasAttr(self, attr):
+        """Return true if the language has any data for the requested attr, or
+        False if this attr is not represented in this lang"""
+
+        if attr not in VALID_KEYS:
+            raise KeyError("{0} is not a valid key for languages".format(attr))
+
+        return (attr in self.data)
+
+    # Deprecated
     def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists; else raise an error"""
-        if (key not in G_STR):
-            print("Error! Attribute %s does not exist in grammar" % key)
-            raise KeyError("Attribute %s not a member of grammar" % key)
-        if key not in self.data:
-            print("Warning: Requested %s from language %s but it doesn't exist" %
-                  (key, self.getLanguage()))
-            return None
-        return self.data[key]
+        print("Warning! getGrammarAttr is deprecated. Use getAttr instead.")
+        return self.getAttr(key)
 
-    # WARNING: This function is dangerously outdated and should be replaced ASAP
+    # Deprecated
     def getTypologyAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists; else raise an error"""
-        if (key not in T_STR):
-            print("Error! Attribute %s does not exist in typology" % key)
-            raise KeyError("Attribute %s not a member of typology" % key)
-        if key not in self.data:
-            print("Warning: Requested %s from language %s but it doesn't exist" %
-                  (key, self.getLanguage()))
-            return None
-        return self.data[key]
+        print("Warning! getTypologyAttr is deprecated. Use getAttr instead.")
+        return self.getAttr(key)
 
     def getConsonants(self):
         """Returns the list of consonants for this language"""
-        ret = self.getGrammarAttr(G_STR[G_CONSONANTS])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_CONSONANTS)
 
     def getVowels(self):
         """Returns the list of vowels for this language"""
-        ret = self.getGrammarAttr(G_STR[G_VOWELS])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_VOWELS)
 
     def getPhonemes(self):
         """Returns the list of phonemes for this language"""
+        # Should catch NoLanguageDataError ?
         return self.getConsonants() + self.getVowels()
 
-    # TODO: hacky, doesn't work the same as others. Standardize this whole file
     def getVowelTypes(self):
         """Returns the list of vowel types in this language"""
-        ret = self.data[K_VOWEL_TYPES] # hacky? not sure, need to revise style for all methods
-        # Normally I would check if ret is None, but this would just raise a KeyError
-        # Not the most elegant
-        return ret
+        return self.getAttr(K_VOWEL_TYPES)
+
 
     def getSyllables(self):
         """Returns the list of legal syllables in this language"""
-        ret = self.getGrammarAttr(G_STR[G_SYLLABLES])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_SYLLABLES)
 
     def getMorphologicalTypes(self):
         """Returns the list of morphological types for this language"""
-        ret = self.getTypologyAttr(T_STR[T_MORPHOLOGY])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_MORPHOLOGICAL_TYPE)
 
     def getWordFormations(self):
         """Returns the list of word formations for this language"""
-        ret = self.getTypologyAttr(T_STR[T_WORD_FORMATION])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_WORD_FORMATION)
 
     def getWordOrders(self):
         """Returns the list of word orders of this language"""
-        ret = self.getTypologyAttr(T_STR[T_WORD_ORDER])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_WORD_ORDER)
 
     def getHeadedness(self):
         """Returns the headedness of this language, as a singleton list for
         hacky reasons"""
         # If it were not a list, it would be less intuitive to use the match
         # methods on it.
-        ret = self.getTypologyAttr(T_STR[T_HEADEDNESS])
-        if ret is None:
-            ret = []
-        return ret
+        return self.getAttr(K_HEADEDNESS)
 
 
 
@@ -250,7 +238,7 @@ class Language:
         (or mode) k. Else, return False. """
 
         phonemeInvSize = "num %s" % sel
-        num = self.getGrammarAttr(phonemeInvSize)
+        num = self.getAttr(phonemeInvSize)
         if compareByMode(num, k, mode):
             return tuple([num])
         else:
@@ -306,44 +294,36 @@ class Language:
     def containsConsonantArticulation(self, sel, k, mode):
         """Returns true if there are exactly* k of the selected articulation types
         in this language"""
-        articulationType = "consonant %s" % sel
-        num = self.getGrammarAttr(articulationType)
+        articulationType = "num consonant %s" % sel
+        num = self.getAttr(articulationType)
         return compareByMode(num, k, mode)
 
+    # Deprecated
     def containsConsonantPlaces(self):
         """Returns true if the language has 3+ places of consonant articulation"""
-        attr = self.getGrammarAttr(G_STR[G_P_3PLUS_PLACES])
-        if attr is None:
-            return False
-        return attr
+        return self.getAttr(K_3_PLUS_PLACES)
 
+
+    # Deprecated
     def containsConsonantManners(self):
         """Returns true if the language has 2+ manners of consonant articulation"""
-        attr = self.getGrammarAttr(G_STR[G_P_2PLUS_MANNERS])
-        if attr is None:
-            return False
-        return attr
+        return self.getAttr(K_2_PLUS_MANNERS)
+
 
     def containsComplexConsonants(self):
         """Returns true if the language has complex consonants"""
-        attr = self.getGrammarAttr(G_STR[G_P_COMPLEX_CONSONANTS])
-        if attr is None:
-            return False
-        return attr
+        return self.getAttr(K_COMPLEX_CONSONANTS)
+        # return False if NoLanguageDataError ?
 
     def containsTone(self):
         """Returns true if the language has tone"""
-        attr = self.getGrammarAttr(G_STR[G_P_TONE])
-        if attr is None:
-            return False
-        return attr
+        return self.getAttr(K_TONE)
+        # return False if NoLanguageDataError ?
 
     def containsStress(self):
         """Returns true if the language has stress"""
-        attr = self.getGrammarAttr(G_STR[G_P_STRESS])
-        if attr is None:
-            return False
-        return attr
+        return self.getAttr(K_STRESS)
+        # return False if NoLanguageDataError ?
 
     def containsSyllable(self, selList, k, mode):
         """Returns true if *mode *k of the given syllables are legal in this language"""
@@ -370,23 +350,23 @@ class Language:
 
     def hasFormationFreq(self, sel):
         """Returns true if sel is the word formation frequency of this language"""
-        return sel == self.getTypologyAttr(T_STR[T_FORMATION_FREQ])
+        return sel == self.getAttr(K_WORD_FORMATION_FREQ)
 
     def hasWordOrder(self, sel):
         """Returns true if sel is the word order of this language"""
-        return sel == self.getTypologyAttr(T_STR[T_WORD_ORDER])
+        return sel == self.getAttr(K_WORD_ORDER)
 
     def hasHeadedness(self, sel):
-        """Returns true if sel is the word formation frequency of this language"""
-        return sel == self.getTypologyAttr(T_STR[T_HEADEDNESS])
+        """Returns true if sel is the headedness of this language"""
+        return sel == self.getAttr(K_HEADEDNESS)
 
     def hasAgreement(self, sel):
-        """Returns true if sel is the agreement frequency of this language"""
-        return sel == self.getTypologyAttr(T_STR[T_AGREEMENT])
+        """Returns true if sel is the agreement of this language"""
+        return sel == self.getAttr(K_AGREEMENT)
 
     def hasCase(self, sel):
         """Returns true if sel is the case of this language"""
-        return sel == self.getTypologyAttr(T_STR[T_CASE])
+        return sel == self.getAttr(K_CASE)
 
 
 ################################################################################
