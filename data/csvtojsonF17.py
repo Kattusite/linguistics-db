@@ -21,9 +21,6 @@ VERBOSE = False
 
 DICT = selectors.DICT
 
-
-
-
 # Read in the CSV files from the declared constant filenames, and then
 # Return a JSON object representing that csv data
 def csvToJSON(datasetName):
@@ -66,9 +63,6 @@ def csvToJSON(datasetName):
 
     # NOTE: If neither grammar/typology file exists, netidSet = (), and we skip the loop
 
-    # Get the CSV -> JSON parameters for this dataset from const.py
-    params = PARAMS[datasetName]
-
     # For each anon netid, print a row of csv and create a dict for JSON
     json_array = []
     for id in netidSet:
@@ -85,19 +79,121 @@ def csvToJSON(datasetName):
             print("\n======== Parsing %s with netid %s =========" % (language, id))
 
         if g_list is not None:
-            g_params = params[GRAMMAR]
-            json_obj = convertRow(g_list, g_params, json_obj)
+            # Extract simple grammar attributes
+            json_obj[G_STR[G_LANGUAGE]]        = g_list[G_LANGUAGE].strip()
+            json_obj[G_STR[G_NAME]]            = g_list[G_NAME]
+            json_obj[G_STR[G_NETID]]           = g_list[G_NETID]
+            json_obj[G_STR[G_NUM_VOWELS]]      = g_list[G_NUM_VOWELS]
+            json_obj[G_STR[G_NUM_CONSONANTS]]  = g_list[G_NUM_CONSONANTS]
+            json_obj[G_STR[G_NUM_PHONEMES]]    = g_list[G_NUM_PHONEMES]
 
-            # Now this lang's grammar CSV data is all in the standardized JSON format
-            # Set the values of derived fields (e.g. counting # of manners, places)
-            json_obj[K_NUM_CONSONANT_PLACES]  = consonants.getNumPlacesFromGlyphs(json_obj[K_CONSONANTS])
-            json_obj[K_NUM_CONSONANT_MANNERS] = consonants.getNumMannersFromGlyphs(json_obj[K_CONSONANTS])
+            # Extract phoneme lists
+            consonantGlyphs = csvConsonantsToGlyphList(g_list[G_CONSONANTS])
+            vowelGlyphs     = csvVowelsToGlyphList(g_list[G_VOWELS])
+
+            json_obj[G_STR[G_CONSONANTS]] = consonantGlyphs
+            json_obj[G_STR[G_VOWELS]]     = vowelGlyphs
+
+            # Figure out the manners / places of articulation
+            # TODO remove hardcoded values
+            json_obj[G_STR[G_NUM_PLACES]]  = consonants.getNumPlacesFromGlyphs(consonantGlyphs)
+            json_obj[G_STR[G_NUM_MANNERS]] = consonants.getNumMannersFromGlyphs(consonantGlyphs)
+
+            # Extract phonetic + syllable info
+            phonetic = g_list[G_PHONETIC].split(INNER_DELIMITER)
+            syllables = g_list[G_SYLLABLES].split(INNER_DELIMITER)
+
+            # Process phonetics
+            # Offset indices relative to this one
+            offset = G_P_3PLUS_PLACES
+
+            # Initialize all json fields to False
+            for i, str in enumerate(G_P_STR):
+                json_obj[G_STR[offset + i]] = False
+
+            # Search raw CSV fields for containing correct attribute names.
+            # On match, set corresponding field to True
+            for p in phonetic:
+                for i, str in enumerate(G_P_STR):
+                    if str in p:
+                        json_obj[G_STR[offset + i]] = True
+
+            # Process syllables
+
+            # Search raw CSV fields for containing correct attribute names
+            # (but not containing other names e.g. CV matches CV not CCV)
+            sylDict = selectors.SYLLABLE[DICT]
+            sylList = [parsePhrase(s, sylDict, ["VC", "CV"]) for s in syllables]
+            json_obj[G_STR[G_SYLLABLES]] = sylList
+
 
         if t_list is not None:
             # NOTE: "Language" field may be overwritten, so if data is inconsistent on
             # spelling there will be potential issues
-            t_params = params[TYPOLOGY]
-            json_obj = convertRow(t_list, t_params, json_obj)
+            # Extract simple typology attributes
+            json_obj[T_STR[T_LANGUAGE]]        = t_list[T_LANGUAGE].strip()
+            json_obj[T_STR[T_CITATION]]        = t_list[T_CITATION]
+            json_obj[T_STR[T_RECOMMEND]]       = t_list[T_RECOMMEND]
+
+            ### Parse morphological type into a list of short-names
+            morph = t_list[T_MORPHOLOGY].split(INNER_DELIMITER)
+            morphDict = selectors.MORPHOLOGY[DICT]
+            morphList = [parsePhrase(m, morphDict, None) for m in morph]
+            json_obj[T_STR[T_MORPHOLOGY]] = morphList
+
+
+            ### Parse word formation into a list of short-names
+            wf = t_list[T_WORD_FORMATION].split(INNER_DELIMITER)
+            wfDict = selectors.WORD_FORMATION[DICT]
+            wfList = [parsePhrase(w, wfDict, None) for w in wf]
+            json_obj[T_STR[T_WORD_FORMATION]] = wfList
+
+            ### Parse word formation freq into a short-name
+            #json_obj[T_STR[G_NUM_CONSONANTS]]  = t_list[G_NUM_CONSONANTS]
+            wfFreq = t_list[T_FORMATION_FREQ].lower()
+
+            # extract frequency from morph
+            freqDict = selectors.FORMATION_FREQ[DICT]
+            freq = parsePhrase(wfFreq, freqDict, None)
+            if freq is None:
+                raise ValueError("Failed to parse morphological type")
+
+            modeDict = selectors.FORMATION_MODE[DICT]
+            mode = parsePhrase(wfFreq, modeDict, [" and "])
+            if mode is None:
+                raise ValueError("Failed to parse morphological type")
+
+            json_obj[T_STR[T_FORMATION_FREQ]] = "%s %s" % (freq, mode)
+
+            ### Parse word order into a short-name
+            order = t_list[T_WORD_ORDER].split(INNER_DELIMITER)
+            orderDict = selectors.WORD_ORDER[DICT]
+            orderList = [parsePhrase(o, orderDict, ["free", "seemingly free"]) for o in order]
+            json_obj[T_STR[T_WORD_ORDER]] = orderList
+
+            ### Parse headedness into a short-name
+            # NOTE "mixed" & "headedness" must occur together-  "mixed head-initial" (eg) makes no sense
+            head = t_list[T_HEADEDNESS]
+            hFreqDict = selectors.HEADEDNESS_FREQ[DICT]
+            hFreq = parsePhrase(head, hFreqDict, None)
+
+            hModeDict = selectors.HEADEDNESS_MODE[DICT]
+            hMode = parsePhrase(head, hModeDict, None)
+            # HACK: This needs to be a list to be able to use Language.matchXxxxYyyy methods naturally
+            # TODO: Find a more elegant way of doing things
+            hList = ["%s %s" % (hFreq, hMode)]
+            json_obj[T_STR[T_HEADEDNESS]] = hList
+
+            ### Parse case and agreement into short-names
+            case = t_list[T_CASE]
+            agree = t_list[T_AGREEMENT]
+
+            caseDict = selectors.CASE[DICT]
+            agreeDict = selectors.AGREEMENT[DICT]
+
+            json_obj[T_STR[T_CASE]]      = parsePhrase(case,  caseDict, ["Has case"])
+            json_obj[T_STR[T_AGREEMENT]] = parsePhrase(agree, agreeDict, ["Has agreement"])
+
 
         json_array.append(json_obj)
         # print(json_obj)
@@ -107,136 +203,6 @@ def csvToJSON(datasetName):
     return json_array
 
 
-# Convert a single row of a CSV file into a json object, given parameters specifying
-# how to interpret that row, then return the json as a python dictionary.
-# If an old_json is provided, modify the existing one instead of starting from scratch
-def convertRow(row, params, old_json=None):
-
-    json_obj = old_json if old_json else {}
-
-    # Iterate over params for this dataset, building a json obj.
-    for param in params:
-        key   = param[KEY]
-
-        # Add a placeholder key to JSON to keep the output nicely ordered
-        if param[TYPE] == PLACEHOLDER:
-            json_obj[key] = PLACEHOLDER # To be overwritten later
-            continue
-
-        index = param[INDEX]
-        field = row[index]
-
-        # If one to one mapping, one question ==> one key in json
-        if param[MAPPING] == ONE_TO_ONE:
-            assert type(key)   == type("str") # single key
-            assert type(index) == type(1)     # single index
-
-            # If TYPE is string...
-            #     If no DICT provided, store value as is
-            #     If DICT provided, match this string against it, store result
-            if param[TYPE] == STRING:
-                if DICT in param:
-                    failDict = param.get(FAIL_DICT)
-                    parseDict = param[DICT]
-                    val = parsePhrase(field, parseDict, failDict)
-                else:
-                    val = field.strip()
-
-            # If TYPE is num, cast value to int, then store it
-            if param[TYPE] == NUM:
-                val = int(field)
-
-            # If TYPE is bool, undefined (currently unused)
-            if param[TYPE] == BOOL:
-                val = None
-                raise NotImplementedError("csvtojson: one-to-one bools not yet supported")
-
-            # If TYPE is list...
-            #     If DICT is provided, store all keys in DICT whose arrays match value
-            #     If DICT not provided (or == "phonemes"), assume phoneme list
-            if param[TYPE] == LIST:
-                if DICT not in param or param[DICT] == PHONEMES:
-                    # delete this. already have a function
-                    selected = field.replace(PHONEME_DELIMITER, "")
-                    selected = selected.split(INNER_DELIMITER)
-                    # Remove whitespace and "None of the above"
-                    val = [s.strip() for s in selected if "None" not in s]
-                else:
-                    failDict = param.get(FAIL_DICT) # may not exist, thats OK
-                    parseDict = param[DICT]         # should def. exist
-                    selected = field.split(INNER_DELIMITER)
-                    val = [parsePhrase(sel, parseDict, failDict) for sel in selected]
-
-            # Store the result
-            json_obj[key] = val
-
-
-        # If split mapping, one question ==> many keys in json
-        elif param[MAPPING] == SPLIT:
-            assert type(key)   == type([])  # many keys
-            assert type(index) == type(1)   # single index
-
-            # If TYPE is string, undefined (currently unused)
-            # If TYPE is num,    undefined (currently unused)
-            # If TYPE is list,   undefined (currently unused)
-            if param[TYPE] != BOOL:
-                val = None
-                raise NotImplementedError("csvtojson: split not yet supported for non-bools")
-
-            # If TYPE is bool...
-            #     Iterate over keys, setting the ith val to True
-            #     if the ith search term (of DICT?) appears in value
-            if param[TYPE] == BOOL:
-                selected = field.split(INNER_DELIMITER)
-                # All false to start
-                for k in key:
-                    json_obj[k] = False
-
-                # If a key appears in any of the selected strings, set that key's val to true
-                for sel in selected:
-                    for k in key:
-                        if k in sel:
-                            json_obj[k] = True
-
-
-        # If merge mapping many questions ==> one key in json
-        elif param[MAPPING] == MERGE:
-            assert type(key)   == type("str")  # single key
-            assert type(index) == type([])     # many indices
-
-            # If TYPE is string, undefined (currently unused)
-            # If TYPE is num,    undefined (currently unused)
-            # If TYPE is bool,   undefined (currently unused)
-            if param[TYPE] != LIST:
-                val = None
-                raise NotImplementedError("csvtojson: merge not yet supported for non-lists")
-
-            # If TYPE is list...
-            #     If DICT is provided, store all keys in DICT whose arrays match value
-            #     If DICT not provided or == "phonemes", assume phoneme list
-            #     In either case, append the newly added values to the existing val
-            if param[TYPE] == LIST:
-                val = json_obj.get(key, []) # Get existing list, or new one if none exists
-
-                if DICT not in param or param[DICT] == PHONEMES:
-                    val += csvPhonemesToGlyphList(field, )
-
-                    # delete this , already have a functions
-                    selected = field.replace(PHONEME_DELIMITER, "")
-                    selected = selected.split(INNER_DELIMITER)
-                    # Remove whitespace and "None of the above"
-                    selected = [s.strip() for s in selected if "None" not in s]
-                    val += selected
-                else:
-                    raise NotImplementedError("csvtojson: merge not yet supported for non-phoneme lists")
-
-                json_obj[key] = val
-
-    # All params have been read from this row. Return the updated json obj
-    return json_obj
-
-
-
 def asciify(str):
     return re.sub(r'[^\x00-\x7F]',' ', str).encode('ASCII')
 
@@ -244,15 +210,8 @@ def asciify(str):
 # Given a CSV phoneme string, return a corresponding phoneme list
 # phonemeList is a canonical list of the canonical phonemes to be used to create the string
 def csvPhonemesToGlyphList(csvStr, phonemeList):
-    csvStr  = csvStr.replace(PHONEME_DELIMITER, "") # remove /../
-    csvList = csvStr.split(INNER_DELIMITER)         # str --> list
-    csvList = [s.strip() for s in csvList]          # remove whitespace
-
-    # Hardcode special case conversions (/Œ/ ==> /ɶ/)
-    # This is because Google Forms had trouble rendering ɶ, and Œ was a fallback
-    if "Œ" in csvList:
-        csvList.remove("Œ")
-        csvList.append("ɶ")
+    csvStr  = csvStr.replace(PHONEME_DELIMITER, "")
+    csvList = csvStr.split(INNER_DELIMITER)
 
     # Iterate over canonical list and match against csvList
     glyphList = [p for p in csvList if p in phonemeList]
@@ -298,7 +257,7 @@ def parsePhrase(phrase, matchDict, failList):
         matchLen = matchAnyInList(phrase, matchList)
         # Cannot resolve ambiguous matches! Programmer needs better matchDict
         if matchLen != 0 and matchLen == bestNum:
-            raise RuntimeError("Strongly ambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
+            raise ValueError("Strongly ambiguous match in parsePhrase('%s') : %s, %s" % (phrase, bestStr, key))
         # If this match is unambiguously stronger, it is the new match
         if matchLen > bestNum:
             if bestNum != 0 and VERBOSE:
@@ -312,7 +271,7 @@ def parsePhrase(phrase, matchDict, failList):
     if bestStr is None and failList is not None:
         for f in failList:
             if f in phrase:
-                raise RuntimeError("Fail-safe triggered during phrase parsing: '%s' in '%s'" % (f, phrase))
+                raise ValueError("Fail-safe triggered during phrase parsing: '%s' in '%s'" % (f, phrase))
     if (DEBUG):
         print("Parsing... %s \n==> %s" % (phrase, bestStr))
     return bestStr

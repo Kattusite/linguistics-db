@@ -100,15 +100,31 @@ def handleQueries(queries, dataset, listMode=False):
         response["logical"].append(iRep)   # A (and B (and C...))
         response["implicational"].append(cRep)   # A --> B
 
+
+
         # If exactly two query terms, throw in B --> A
         if n == 2:
             cRep2 = createConditionalReply(lang_arr, reply_arr, 1, lingDB)
             response["implicational"].append(cRep2)
 
+
+    logicalResp         = nlStr.join(response["logical"])
+    implicationalResp   = nlStr.join(response["implicational"])
+
+    # Add "Non-implicational", "Implicational" headers
+    if n == 2: # really >= 2, but we are ignoring n > 2 until a major rework
+        # Add a "Non-implicational" heading to the results
+        nonimpHeader = "<h4>Non-implicational</h4>"
+        logicalResp = "".join([nonimpHeader, logicalResp])
+
+        # An an "Implicational" heading to the results
+        impHeader = "<h4>Implicational</h4>"
+        implicationalResp = "".join([impHeader, implicationalResp])
+
     # Format the response structure with newlines and rules
     sections = []
-    sections.append(nlStr.join(response["logical"]))
-    sections.append(nlStr.join(response["implicational"]))
+    sections.append(logicalResp)
+    sections.append(implicationalResp)
 
     # Filter out empty strings (sections without any content added)
     sections = [s for s in sections if len(s) > 0]
@@ -172,14 +188,31 @@ def createConditionalReply(langs, replies, which, db):
 def createLangLists(results, replies, listMode=False):
     # Define table template
     table = """
-    <div class="lang-list %s">
+    <br>
+    <a {2}>{3}</a>
+    <div class="lang-list {0}">
         <hr>
         <div class="container-fluid">
             <div class="row">
-                %s
+                {1}
             </div>
         </div>
     </div>"""
+
+    # Create the show/hide language list text
+    toggleStyles = "style='{0}'".format("".join([
+        "cursor: pointer;",
+        "margin-top: 10px;",
+        "display: inline-block;"
+    ]))
+    toggleAttrs = "".join([
+        "data-toggle='collapse'",
+        "data-target='.lang-list'",
+        "onclick='toggleShowHideText(this)'",
+        toggleStyles
+    ])
+    toggleState = "Show" if not listMode else "Hide"
+    toggleText = "{0} matching languages...".format(toggleState)
 
     # WARNING: Bootstrap v3.0 ONLY. If transition to v4.0, "in" becomes "show"
     listClass = "collapse" if not listMode else "collapse in"
@@ -193,11 +226,15 @@ def createLangLists(results, replies, listMode=False):
     hideHeaders = n <= 1
     langLists = [createLangList(orderedResults[i], replies[i], hideHeaders) for i in range(n)]
     cols = "".join(langLists)
-    # print(n, hideHeaders)
-    return table % (listClass, cols)
 
-# BUG: Handling of wrapping each list element in /.../ is poor. I assume that
-# all things are phonemes (if <= 2 chars, but a boolean flag might be better)
+    # Insert the values into the template:
+    formattedTable = table.format(listClass, cols, toggleAttrs, toggleText)
+
+    return formattedTable
+
+# Given a list of result sets, and a list of reply strings, create HTML representing
+# a table mapping languages to their results (e.g. English /p/, /t/, /k/)
+# If hideHeaders is true, don't offer an explanatory header (X languages have Y)
 def createLangList(results, reply, hideHeaders):
     header = "" if hideHeaders else str(len(results)) + " languages " + reply
     ls = """
@@ -281,14 +318,16 @@ def createFractionHTML(num, den):
     tooltip =  "".join(["<span ",
                         "onclick='handleListToggle() '"
                         "data-toggle='tooltip' ",
-                        "style='cursor: pointer;'",
                         "title='%d%% of languages matched'" % round(float * 100),
                         ">",
                         text,
                         "</span>"])
     collapse = "".join(["<span ",
-                        "data-toggle='collapse'",
-                        "data-target='.lang-list'"
+                        # Temporarily disable toggling the lang. list
+                        # Until I can figure out a better layout.
+                        #"data-toggle='collapse'",
+                        #"data-target='.lang-list'",
+                        #"style='cursor: pointer;'",
                         ">",
                         tooltip,
                         "</span>"])

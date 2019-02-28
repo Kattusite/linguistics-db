@@ -196,6 +196,19 @@ function handleModeSelect(el) {
   }
 }
 
+// Get the text of the calling element, and replace the word "Hide" with "Show"
+// or vice versa
+function toggleShowHideText(el) {
+  var txt = $(el).text();
+  if (txt.includes("Show")) {
+    txt = txt.replace("Show", "Hide");
+  }
+  else if (txt.includes("Hide")) {
+    txt = txt.replace("Hide", "Show");
+  }
+  $(el).text(txt);
+}
+
 // Returns true iff the provided jQuery wrapper has a child of class .k-selector
 // that is disabled.
 function isKDisabled($el) {

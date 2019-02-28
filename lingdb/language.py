@@ -69,6 +69,7 @@ class Language:
             raise ValueError("A language object was created without a name!")
         return ret
 
+    # WARNING: This function is dangerously outdated and should be replaced ASAP
     # TODO Merge getGrammarAttr/getTypologyAttr into getAttr or similar
     def getGrammarAttr(self, key):
         """ Given a query string, return the value associated with that attribute
@@ -82,6 +83,7 @@ class Language:
             return None
         return self.data[key]
 
+    # WARNING: This function is dangerously outdated and should be replaced ASAP
     def getTypologyAttr(self, key):
         """ Given a query string, return the value associated with that attribute
             if it exists; else raise an error"""
@@ -111,6 +113,14 @@ class Language:
     def getPhonemes(self):
         """Returns the list of phonemes for this language"""
         return self.getConsonants() + self.getVowels()
+
+    # TODO: hacky, doesn't work the same as others. Standardize this whole file
+    def getVowelTypes(self):
+        """Returns the list of vowel types in this language"""
+        ret = self.data[K_VOWEL_TYPES] # hacky? not sure, need to revise style for all methods
+        # Normally I would check if ret is None, but this would just raise a KeyError
+        # Not the most elegant
+        return ret
 
     def getSyllables(self):
         """Returns the list of legal syllables in this language"""
@@ -149,6 +159,7 @@ class Language:
         if ret is None:
             ret = []
         return ret
+
 
 
 
@@ -221,12 +232,17 @@ class Language:
         articulation types in this language, if this number is at least*
         (or mode) k. Else, return False. """
 
-        articulationType = "consonant %s" % sel
-        num = self.getGrammarAttr(articulationType)
+        articulationType = "num consonant %s" % sel # hacky, revise to fix magic string
+        num = self.data[articulationType] # hacky and could raise Error, must handle gracefully
         if compareByMode(num, k, mode):
             return tuple([num])
         else:
             return False
+
+    def matchVowelType(self, selList, k, mode):
+        """Return the vowel types in this language that are part of selList,
+        if the number of matches is *at least (mode) *k"""
+        return self.match(self.getVowelTypes(), selList, k, mode)
 
     def matchPhonemeInventorySize(self, sel, k, mode):
         """Return the phoneme inventory size of type 'sel'
