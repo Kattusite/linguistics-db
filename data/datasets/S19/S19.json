@@ -1,1 +1,238 @@
-[]
+[
+    {
+        "language": "Arapaho",
+        "name": "bca5a22d7e6a80e2",
+        "netid": "fa6c1f39227d52a9",
+        "num consonants": 12,
+        "num vowels": 16,
+        "num phonemes": 28,
+        "consonants": [
+            "n",
+            "t",
+            "k",
+            "j",
+            "s",
+            "h",
+            "ʔ",
+            "tʃ",
+            "x",
+            "θ"
+        ],
+        "vowels": [
+            "ɛ",
+            "ɪ",
+            "ʊ",
+            "ɔ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "complex consonants": false,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "language": "Emai",
+        "name": "e80c6165eee15a7f",
+        "netid": "a9a13527e03f2b16",
+        "num consonants": 28,
+        "num vowels": 12,
+        "num phonemes": 40,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "f",
+            "ɲ",
+            "z",
+            "v",
+            "β",
+            "ɹ",
+            "ç",
+            "ʝ",
+            "ɣ",
+            "χ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɛ",
+            "ɔ"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 5,
+        "vowel types": [
+            "nasalized"
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "V"
+        ]
+    },
+    {
+        "language": "Kokota",
+        "name": "6ea216c35cf3e558",
+        "netid": "c87a3cffd87252d3",
+        "num consonants": 22,
+        "num vowels": 5,
+        "num phonemes": 27,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʃ",
+            "f",
+            "v",
+            "ɾ",
+            "ʒ",
+            "ɣ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset"
+        ]
+    },
+    {
+        "language": "Magar",
+        "name": "610ee079a791c14d",
+        "netid": "16970d0d38ee6355",
+        "num consonants": 37,
+        "num vowels": 10,
+        "num phonemes": 47,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "r",
+            "pʰ",
+            "ʈʰ",
+            "kʰ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ʌ"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "vowel types": [
+            "diphthongs"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "C coda"
+        ]
+    },
+    {
+        "language": "Sierra Popoluca",
+        "name": "4e9e2954ad2be5d6",
+        "netid": "67ccf39f9d3cf421",
+        "num consonants": 12,
+        "num vowels": 12,
+        "num phonemes": 24,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "w",
+            "h",
+            "ŋ",
+            "ʔ",
+            "ts"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ɛ",
+            "ɘ",
+            "ɔ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            "long"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda"
+        ]
+    }
+]

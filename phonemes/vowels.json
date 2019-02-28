@@ -66,12 +66,23 @@
         "producible": true
     },
     {
-        "glyph": "a",
+        "glyph": "aᶠ",
         "height": "low",
         "height region": "low",
         "height offset": "lower",
         "backness": "front",
         "backness region": "front",
+        "roundedness": "unrounded",
+        "voicing": "voiced",
+        "producible": true
+    },
+    {
+        "glyph": "a",
+        "height": "low",
+        "height region": "low",
+        "height offset": "lower",
+        "backness": "central",
+        "backness region": "central",
         "roundedness": "unrounded",
         "voicing": "voiced",
         "producible": true

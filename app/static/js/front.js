@@ -11,7 +11,8 @@ var listMode = false;
 var REMEMBER_LIST_STATE = false;
 
 // Which dataset should we use for queries?
-var DATASET = "F17";
+// var DATASET = "F17"
+var DATASET = "S19";
 
 // COLORS
 var DANGER  = "alert-danger";
@@ -194,6 +195,19 @@ function handleModeSelect(el) {
       $ksel.val(0);
     }
   }
+}
+
+// Get the text of the calling element, and replace the word "Hide" with "Show"
+// or vice versa
+function toggleShowHideText(el) {
+  var txt = $(el).text();
+  if (txt.includes("Show")) {
+    txt = txt.replace("Show", "Hide");
+  }
+  else if (txt.includes("Hide")) {
+    txt = txt.replace("Hide", "Show");
+  }
+  $(el).text(txt);
 }
 
 // Returns true iff the provided jQuery wrapper has a child of class .k-selector
@@ -653,7 +667,7 @@ function handleSubmit() {
 
     // Abort with an error msg if the provided trait lacks a definition in selectors_const.js
     if (!def) {
-      console.log("Encountered unexpected trait while building request - Aborting!");
+      console.error("Encountered unexpected trait while building request - Aborting!");
       return false;
     }
 
@@ -707,10 +721,18 @@ function handleSubmit() {
     if (requirements.includes("sel")) {
       var selList = $t.attr("selList");
       if (selList) selList = selList.split(",");
+
+      if (!validateSel(selList)) {
+        // TODO centralize error checking in a nicer way
+        console.log("Skipping an invalid request");
+        continue;
+      }
+      /*
       if (!(selList && selList.length == 1)) {
         console.error("Malformed sel (replace this err with proper validation)");
         continue;
       }
+      */
       sel = selList[0];
       replyParams["sel"] = sel;
       requestParams["selList"] = selList;
@@ -796,10 +818,21 @@ function handleReset() {
 /*                                Callback                                   */
 /*****************************************************************************/
 // Callback function for AJAX -- in development
-function callback(reply) {
+function callback(response) {
+  response = JSON.parse(response);
+
+  // Extract the reply fields
+  // TODO: Remove hardcoded strings, put them in the constants js file
+  var retCode = response["code"];
+  var message = response["payload"];
+
   // Make sure the results div is in the correct mode.
-  setOutputMode(INFO);
-  $("#results").html(reply)
+  var mode = `alert-${retCode}`;
+  setOutputMode(mode)
+
+  // Display the results.
+  $("#results").html(message);
+
   reloadTooltips();
 }
 

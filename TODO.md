@@ -11,6 +11,17 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* To aid with below bulletpoint, should define an exceptions.py file to store all
+ the possible exception classes
+* In language.py, the getters need a total rework. In particular getGrammarAttr and
+getTypologyAttr are totally deprecated despite being used by almost everything.
+Majorly in need of a rewrite.  
+ Instead of raising KeyError, *all* getters should raise a custom
+     NoLanguageDataError, and the query handler should print a special
+     message to the website to indicate this has occurred.
+     Additionally, we should return an HTML response AND a return code
+     to the frontend so that it knows if the request failed and why
+     e.g. returns 0 for success, 1 for NoLanguageDataError, 2 for random errs,et
 * The MODE strings defined in selectors.py don't make any sense ... what
 is it that they are actually supposed to be checking? all of the selectors are
 PICK_K, but some are classed as PICK_MULTI instead? If I really meant to say

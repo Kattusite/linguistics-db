@@ -81,7 +81,7 @@
 
     <!-- results display -->
     <div id="results-div" class="alert alert-info" role="alert">
-      <span id="results">Submit a valid query to get started.</span>
+      <div id="results">Submit a valid query to get started.</div>
     </div>
 
     <!-- About button in bottom right. Placed here for convenience -->
@@ -104,6 +104,7 @@
         <option>Contains consonant class:</option>
         <option>Contains vowel class:</option>
         <option>Has articulation features:</option>
+        <option>Vowel types:</option>
         <option>Phoneme inventory size:</option>
         <option>Has complex consonants</option>
         <option>Has tone</option>
@@ -231,6 +232,24 @@
            data-toggle="popover"
            title="<b>Select articulation type</b>"
            data-content="Error loading. Sorry!">Select articulation type...</a>
+      </div>
+      <div class="vowel-type-selector template inactive" type="vowel-type-selector">Contains
+        <select class="mode-selector" onchange="handleModeSelect(this)">
+          <option>at least</option>
+          <option>at most</option>
+          <option>exactly</option>
+          <option>less than</option>
+          <option>more than</option>
+          <option>not equal to</option>
+          <option>all</option>
+        </select>
+        <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
+        <a class="vt-lbox-popover uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select vowel type</b>"
+           data-content="Error loading. Sorry!">Select vowel type...</a>
       </div>
       <div class="phoneme-inventory-size-selector template inactive" type="phoneme-inventory-size-selector">Contains
         <select class="mode-selector" onchange="handleModeSelect(this)">
@@ -743,11 +762,11 @@
           </tr>
           <tr>
             <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' colspan='1' category='height' trait='low' style="position: absolute; left: 0px; top: 290.0px;">low</th>
-            <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='unrounded' style="position: absolute; left: 228.20000000000002px; top: 290.0px;">a</td>
+            <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='unrounded' style="position: absolute; left: 228.20000000000002px; top: 290.0px;">aᶠ</td>
             <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='rounded' style="position: absolute; left: 254.20000000000002px; top: 290.0px;">ɶ</td>
             <td class="ipa-box-empty"></td>
             <td class="ipa-box-empty"></td>
-            <td class="ipa-box-empty"></td>
+            <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='central' height='low' roundedness='unrounded' style="position: absolute; left: 313.8px; top: 290.0px;">a</td>
             <td class="ipa-box-empty"></td>
             <td class="ipa-box-empty"></td>
             <td class="ipa-box-empty"></td>
@@ -886,6 +905,22 @@
       </table>
     </div>
     
+    <!--Auto-generated template for the vt-lbox-popover list selector.-->
+    <div id="vt-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">nasalized</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">long</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voiceless</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">breathy</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">creaky</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">pharyngealized</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">diphthongs</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">triphthongs</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
     <!--Auto-generated template for the pi-lbox-popover list selector.-->
     <div id="pi-lbox-popover-template" class="template">
       <table>
@@ -938,7 +973,7 @@
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">compounding</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">root-and-pattern</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">internal change</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suppleton</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">suppletion</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">stress or tone shift</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">reduplication</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">conversion</td></tr>

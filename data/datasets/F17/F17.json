@@ -1,11 +1,11 @@
 [
     {
         "language": "Abkhaz",
-        "name": "55da7f272cc1a7c2",
+        "name": "3f71ccd1377ba364",
         "netid": "6162df382d1373b1",
-        "num vowels": "2",
-        "num consonants": "47",
-        "num phonemes": "49",
+        "num consonants": 47,
+        "num vowels": 2,
+        "num phonemes": 49,
         "consonants": [
             "n",
             "t",
@@ -28,10 +28,8 @@
             "a",
             "ə"
         ],
-        "consonant places": 7,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 7,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -42,8 +40,8 @@
             "CC onset",
             "CC coda"
         ],
-        "citation": "Chirikba, V. A. Abkhaz. München: LINCOM, 2003. ",
-        "recommend": "It's a tiny grammar, so it's very concise (almost too concise and dense, if you ask me) so if the student has a linguistics background then it should be fine ",
+        "citation": "Chirikba, V. A. Abkhaz. München: LINCOM, 2003.",
+        "recommend": "It's a tiny grammar, so it's very concise (almost too concise and dense, if you ask me) so if the student has a linguistics background then it should be fine",
         "morphological type": [
             "agglutinating"
         ],
@@ -62,16 +60,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "none",
-        "agreement": "ergative/absolutive"
+        "agreement": "ergative/absolutive",
+        "case": "none"
     },
     {
         "language": "Aguaruna",
         "name": "98f50f38f35d689f",
         "netid": "3a332436fb15cbe0",
-        "num vowels": "8",
-        "num consonants": "15",
-        "num phonemes": "23",
+        "num consonants": 15,
+        "num vowels": 8,
+        "num phonemes": 23,
         "consonants": [
             "n",
             "t",
@@ -93,10 +91,8 @@
             "u",
             "ɨ"
         ],
-        "consonant places": 7,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": true,
         "stress": false,
@@ -123,16 +119,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Apurinã",
         "name": "d7435e92054ca53d",
         "netid": "04df888e819f734f",
-        "num vowels": "20",
-        "num consonants": "15",
-        "num phonemes": "35",
+        "num consonants": 15,
+        "num vowels": 20,
+        "num phonemes": 35,
         "consonants": [
             "n",
             "t",
@@ -153,10 +149,8 @@
             "u",
             "ɨ"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -183,16 +177,16 @@
         "headedness": [
             "mostly head-initial"
         ],
-        "case": "none",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "none"
     },
     {
         "language": "Arapaho",
         "name": "aed8d802bc5911b9",
         "netid": "f21c069ced49f432",
-        "num vowels": "12",
-        "num consonants": "12",
-        "num phonemes": "24",
+        "num consonants": 12,
+        "num vowels": 12,
+        "num phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -207,10 +201,8 @@
             "x"
         ],
         "vowels": [],
-        "consonant places": 7,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": true,
         "stress": true,
@@ -243,16 +235,16 @@
         "headedness": [
             "consistently head-initial"
         ],
-        "case": "none",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "none"
     },
     {
         "language": "Berbice Dutch Creole",
         "name": "626b790991c49e39",
         "netid": "c6c9166077c13539",
-        "num vowels": "6",
-        "num consonants": "13",
-        "num phonemes": "19",
+        "num consonants": 13,
+        "num vowels": 6,
+        "num phonemes": 19,
         "consonants": [
             "n",
             "t",
@@ -273,10 +265,8 @@
             "i",
             "u"
         ],
-        "consonant places": 4,
-        "consonant manners": 4,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 4,
+        "num consonant manners": 4,
         "complex consonants": false,
         "tone": true,
         "stress": true,
@@ -296,7 +286,7 @@
             "affixation",
             "suffixation",
             "compounding",
-            null,
+            "suppletion",
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
@@ -306,16 +296,16 @@
         "headedness": [
             "mixed headedness"
         ],
-        "case": "none",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "none"
     },
     {
         "language": "Chalcatongo Mixtec",
         "name": "712f8e3e7ecf9d64",
         "netid": "b9fea6da80862c8b",
-        "num vowels": "12",
-        "num consonants": "16",
-        "num phonemes": "28",
+        "num consonants": 16,
+        "num vowels": 12,
+        "num phonemes": 28,
         "consonants": [
             "n",
             "t",
@@ -339,10 +329,8 @@
             "u",
             "ɨ"
         ],
-        "consonant places": 5,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 6,
         "complex consonants": true,
         "tone": true,
         "stress": true,
@@ -351,7 +339,7 @@
             "V",
             "CC onset"
         ],
-        "citation": "\"A Grammar of Chalcatongo Mixtec,\" Monica Macaulay. University of California Press, 1996. ",
+        "citation": "\"A Grammar of Chalcatongo Mixtec,\" Monica Macaulay. University of California Press, 1996.",
         "recommend": "Yes, my grammar was great to work with",
         "morphological type": [
             "analytic"
@@ -372,16 +360,16 @@
         "headedness": [
             "consistently head-initial"
         ],
-        "case": "none",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "none"
     },
     {
         "language": "Choctaw",
-        "name": "282edb9ad9256a5c",
+        "name": "124a009c23f8ed34",
         "netid": "bbff32a2110db751",
-        "num vowels": "9",
-        "num consonants": "16",
-        "num phonemes": "25",
+        "num consonants": 16,
+        "num vowels": 9,
+        "num phonemes": 25,
         "consonants": [
             "n",
             "t",
@@ -401,10 +389,8 @@
             "o",
             "i"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": false,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": true,
         "stress": true,
@@ -433,16 +419,16 @@
         "headedness": [
             "mostly head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Comanche",
-        "name": "64b485b9d8b5c9d5",
+        "name": "c420538940f35ea8",
         "netid": "0c857638971e4899",
-        "num vowels": "6",
-        "num consonants": "12",
-        "num phonemes": "18",
+        "num consonants": 12,
+        "num vowels": 6,
+        "num phonemes": 18,
         "consonants": [
             "n",
             "t",
@@ -464,10 +450,8 @@
             "u",
             "ɨ"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -496,16 +480,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "nominative/accusative"
     },
     {
         "language": "Creek",
         "name": "5a6be17c51873895",
         "netid": "1873cb349b522d8f",
-        "num vowels": "15",
-        "num consonants": "13",
-        "num phonemes": "28",
+        "num consonants": 13,
+        "num vowels": 15,
+        "num phonemes": 28,
         "consonants": [
             "n",
             "t",
@@ -520,10 +504,8 @@
             "f"
         ],
         "vowels": [],
-        "consonant places": 7,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 6,
         "complex consonants": true,
         "tone": true,
         "stress": true,
@@ -538,9 +520,9 @@
         "language": "Crow",
         "name": "96acfe603f32ad63",
         "netid": "a775cace3c3c7cda",
-        "num vowels": "5",
-        "num consonants": "11",
-        "num phonemes": "16",
+        "num consonants": 11,
+        "num vowels": 5,
+        "num phonemes": 16,
         "consonants": [
             "n",
             "t",
@@ -560,10 +542,8 @@
             "i",
             "u"
         ],
-        "consonant places": 5,
-        "consonant manners": 4,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 4,
         "complex consonants": true,
         "tone": true,
         "stress": true,
@@ -589,16 +569,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "other",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "other"
     },
     {
         "language": "Cupeño",
         "name": "3382c958280cfc03",
         "netid": "58275fc1b36a7a18",
-        "num vowels": "12",
-        "num consonants": "21",
-        "num phonemes": "33",
+        "num consonants": 21,
+        "num vowels": 12,
+        "num phonemes": 33,
         "consonants": [
             "n",
             "t",
@@ -625,10 +605,8 @@
             "u",
             "ə"
         ],
-        "consonant places": 8,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 8,
+        "num consonant manners": 6,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -658,16 +636,16 @@
         "headedness": [
             "mixed headedness"
         ],
-        "case": "other",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "other"
     },
     {
         "language": "Daakaka",
-        "name": "ab8f0fcd4cd14da9",
+        "name": "b897b0f3e76e5da0",
         "netid": "1f68a3c992a1a6b8",
-        "num vowels": "14",
-        "num consonants": "18",
-        "num phonemes": "32",
+        "num consonants": 18,
+        "num vowels": 14,
+        "num phonemes": 32,
         "consonants": [
             "n",
             "t",
@@ -693,10 +671,8 @@
             "u",
             "ə"
         ],
-        "consonant places": 6,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 6,
         "complex consonants": true,
         "tone": true,
         "stress": false,
@@ -726,16 +702,16 @@
         "headedness": [
             "consistently head-initial"
         ],
-        "case": "none",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "none"
     },
     {
         "language": "Evenki",
-        "name": "5b6abe29e943849f",
+        "name": "3584ec3da792bb96",
         "netid": "e5673f0a3458f544",
-        "num vowels": "13",
-        "num consonants": "18 ",
-        "num phonemes": "31",
+        "num consonants": 18,
+        "num vowels": 13,
+        "num phonemes": 31,
         "consonants": [
             "n",
             "m",
@@ -758,10 +734,8 @@
             "o",
             "ɯ"
         ],
-        "consonant places": 7,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 7,
         "complex consonants": true,
         "tone": false,
         "stress": false,
@@ -786,16 +760,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Hainan Cham",
-        "name": "f8731d5f9e127706",
+        "name": "11ef08fdc0b4998d",
         "netid": "33130919376ab910",
-        "num vowels": "18",
-        "num consonants": "19",
-        "num phonemes": "37",
+        "num consonants": 19,
+        "num vowels": 18,
+        "num phonemes": 37,
         "consonants": [
             "n",
             "t",
@@ -820,10 +794,8 @@
             "u",
             "ə"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": true,
         "stress": false,
@@ -852,16 +824,16 @@
         "headedness": [
             "mostly head-initial"
         ],
-        "case": "none",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "none"
     },
     {
         "language": "Hualapai",
         "name": "72c5e2608735b93e",
         "netid": "f3740991ee95165b",
-        "num vowels": "16",
-        "num consonants": "24",
-        "num phonemes": "30",
+        "num consonants": 24,
+        "num vowels": 16,
+        "num phonemes": 30,
         "consonants": [
             "n",
             "t",
@@ -885,10 +857,8 @@
             "i",
             "u"
         ],
-        "consonant places": 7,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -922,16 +892,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Ingush",
         "name": "057edda2876799a5",
         "netid": "a6c4ac6f129e2927",
-        "num vowels": "23",
-        "num consonants": "39",
-        "num phonemes": "62",
+        "num consonants": 39,
+        "num vowels": 23,
+        "num phonemes": 62,
         "consonants": [
             "n",
             "t",
@@ -964,10 +934,8 @@
             "ɨ",
             "ʌ"
         ],
-        "consonant places": 8,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 8,
+        "num consonant manners": 7,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -976,7 +944,7 @@
             "C coda",
             "CC onset"
         ],
-        "citation": " Ingush grammar, Nichols, Johanna. Berkeley, Calif.: University of California Press, 2011",
+        "citation": "Ingush grammar, Nichols, Johanna. Berkeley, Calif.: University of California Press, 2011",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
         "morphological type": [
             "agglutinating"
@@ -985,7 +953,7 @@
             "affixation",
             "suffixation",
             "prefixation",
-            null,
+            "suppletion",
             "stress or tone shift"
         ],
         "word formation frequency": "mostly suffixing",
@@ -995,16 +963,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "ergative/absolutive"
+        "agreement": "ergative/absolutive",
+        "case": "nominative/accusative"
     },
     {
         "language": "Jingulu",
         "name": "820bf7a5c02879ed",
         "netid": "f92ce16eaf07d117",
-        "num vowels": "3",
-        "num consonants": "17",
-        "num phonemes": "20",
+        "num consonants": 17,
+        "num vowels": 3,
+        "num phonemes": 20,
         "consonants": [
             "n",
             "m",
@@ -1023,10 +991,8 @@
             "i",
             "u"
         ],
-        "consonant places": 5,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 5,
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1054,16 +1020,16 @@
         "headedness": [
             "mixed headedness"
         ],
-        "case": "other",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "other"
     },
     {
         "language": "Kabardian",
         "name": "03596e429de2dff7",
         "netid": "80ffecf5d511138f",
-        "num vowels": "2",
-        "num consonants": "24",
-        "num phonemes": "26",
+        "num consonants": 24,
+        "num vowels": 2,
+        "num phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -1091,10 +1057,8 @@
             "a",
             "ə"
         ],
-        "consonant places": 8,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 8,
+        "num consonant manners": 6,
         "complex consonants": true,
         "tone": false,
         "stress": false,
@@ -1104,7 +1068,7 @@
             "CC onset",
             "CC coda"
         ],
-        "citation": "A Grammar of the Kabardian Language, John Colarusso, London: University of Calgary Press, 1992) ",
+        "citation": "A Grammar of the Kabardian Language, John Colarusso, London: University of Calgary Press, 1992)",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
         "morphological type": [
             "agglutinating",
@@ -1123,16 +1087,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "ergative/absolutive",
-        "agreement": "ergative/absolutive"
+        "agreement": "ergative/absolutive",
+        "case": "ergative/absolutive"
     },
     {
         "language": "Kawaiisu",
         "name": "e06f33c94fd445a7",
         "netid": "aad0769f02b2c0f8",
-        "num vowels": "12",
-        "num consonants": "26",
-        "num phonemes": "38",
+        "num consonants": 26,
+        "num vowels": 12,
+        "num phonemes": 38,
         "consonants": [
             "n",
             "t",
@@ -1164,10 +1128,8 @@
             "ə",
             "ɯ"
         ],
-        "consonant places": 8,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 8,
+        "num consonant manners": 7,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -1188,7 +1150,7 @@
             "prefixation",
             "compounding",
             "internal change",
-            null,
+            "suppletion",
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
@@ -1198,16 +1160,16 @@
         "headedness": [
             "mostly head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Kotiria",
         "name": "702883750365a584",
         "netid": "2f5a7eef6fcdb503",
-        "num vowels": "6",
-        "num consonants": "14",
-        "num phonemes": "20",
+        "num consonants": 14,
+        "num vowels": 6,
+        "num phonemes": 20,
         "consonants": [
             "t",
             "k",
@@ -1229,10 +1191,8 @@
             "u",
             "ʉ"
         ],
-        "consonant places": 7,
-        "consonant manners": 4,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 4,
         "complex consonants": false,
         "tone": true,
         "stress": false,
@@ -1249,7 +1209,7 @@
             "affixation",
             "suffixation",
             "prefixation",
-            null
+            "suppletion"
         ],
         "word formation frequency": "mostly suffixing",
         "word order": [
@@ -1258,16 +1218,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "other",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "other"
     },
     {
         "language": "Kukama-Kukamaria",
         "name": "d20af7c25157592f",
         "netid": "279d5bde60343a16",
-        "num vowels": "5",
-        "num consonants": "11",
-        "num phonemes": "16",
+        "num consonants": 11,
+        "num vowels": 5,
+        "num phonemes": 16,
         "consonants": [
             "n",
             "t",
@@ -1286,10 +1246,8 @@
             "i",
             "u"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": false,
         "tone": false,
         "stress": false,
@@ -1302,11 +1260,11 @@
     },
     {
         "language": "Kulina",
-        "name": "4eed165ad0821067",
+        "name": "85cf1b1158d810cc",
         "netid": "e550c0d494dfa934",
-        "num vowels": "4",
-        "num consonants": "16",
-        "num phonemes": "20",
+        "num consonants": 16,
+        "num vowels": 4,
+        "num phonemes": 20,
         "consonants": [
             "n",
             "t",
@@ -1323,10 +1281,8 @@
             "o",
             "i"
         ],
-        "consonant places": 4,
-        "consonant manners": 4,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 4,
+        "num consonant manners": 4,
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1343,7 +1299,7 @@
             "affixation",
             "suffixation",
             "prefixation",
-            null,
+            "suppletion",
             "reduplication"
         ],
         "word formation frequency": "mostly suffixing",
@@ -1353,16 +1309,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "none",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "none"
     },
     {
         "language": "Manchu",
-        "name": "19dae3d0a7bfa1e5",
+        "name": "795a76bea4d66d5f",
         "netid": "a2498e5fce977d5f",
-        "num vowels": "7",
-        "num consonants": "19",
-        "num phonemes": "26",
+        "num consonants": 19,
+        "num vowels": 7,
+        "num phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -1388,10 +1344,8 @@
             "u",
             "ə"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -1419,16 +1373,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "nominative/accusative"
     },
     {
         "language": "Marquesan",
         "name": "4e366022ca47a5c5",
         "netid": "920e02995fe8808f",
-        "num vowels": "10",
-        "num consonants": "11",
-        "num phonemes": "21",
+        "num consonants": 11,
+        "num vowels": 10,
+        "num phonemes": 21,
         "consonants": [
             "n",
             "t",
@@ -1449,10 +1403,8 @@
             "i",
             "u"
         ],
-        "consonant places": 7,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 5,
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1460,7 +1412,7 @@
             "C onset",
             "V"
         ],
-        "citation": "Cablitz, Gabriele H. Marquesan a Grammar of Space. W. De Gruyter, 2006. ",
+        "citation": "Cablitz, Gabriele H. Marquesan a Grammar of Space. W. De Gruyter, 2006.",
         "recommend": "Yes, my grammar was great to work with",
         "morphological type": [
             "agglutinating"
@@ -1478,16 +1430,16 @@
         "headedness": [
             "consistently head-initial"
         ],
-        "case": "nominative/accusative",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "nominative/accusative"
     },
     {
         "language": "Osage",
         "name": "99ce511176ff801a",
         "netid": "38808baed6493393",
-        "num vowels": "8",
-        "num consonants": "27",
-        "num phonemes": "35",
+        "num consonants": 27,
+        "num vowels": 8,
+        "num phonemes": 35,
         "consonants": [
             "n",
             "t",
@@ -1507,10 +1459,8 @@
             "i",
             "y"
         ],
-        "consonant places": 5,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": false,
+        "num consonant places": 5,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": false,
         "stress": false,
@@ -1519,7 +1469,7 @@
             "V",
             "CC onset"
         ],
-        "citation": " Quintero, Carolyn. Osage Grammar. Lincoln: University of Nebraska Press, 2004.",
+        "citation": "Quintero, Carolyn. Osage Grammar. Lincoln: University of Nebraska Press, 2004.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
         "morphological type": [
             "agglutinating"
@@ -1538,16 +1488,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "none",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "none"
     },
     {
         "language": "Pipil",
         "name": "6fa4f77df07a5b68",
         "netid": "f51a75e184b301c3",
-        "num vowels": "10",
-        "num consonants": "20",
-        "num phonemes": "30",
+        "num consonants": 20,
+        "num vowels": 10,
+        "num phonemes": 30,
         "consonants": [
             "n",
             "t",
@@ -1575,10 +1525,8 @@
             "i",
             "u"
         ],
-        "consonant places": 8,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 8,
+        "num consonant manners": 7,
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1607,16 +1555,16 @@
         "headedness": [
             "consistently head-initial"
         ],
-        "case": "none",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "none"
     },
     {
         "language": "Pipil",
         "name": "d0888af7af5b7768",
         "netid": "9d088aeccbe3e211",
-        "num vowels": "10",
-        "num consonants": "21",
-        "num phonemes": "31",
+        "num consonants": 21,
+        "num vowels": 10,
+        "num phonemes": 31,
         "consonants": [
             "n",
             "t",
@@ -1645,10 +1593,8 @@
             "i",
             "u"
         ],
-        "consonant places": 8,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 8,
+        "num consonant manners": 7,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -1668,7 +1614,7 @@
             "suffixation",
             "prefixation",
             "compounding",
-            null,
+            "suppletion",
             "stress or tone shift",
             "reduplication"
         ],
@@ -1679,16 +1625,16 @@
         "headedness": [
             "mostly head-initial"
         ],
-        "case": "none",
-        "agreement": "other"
+        "agreement": "other",
+        "case": "none"
     },
     {
         "language": "Pite Saami",
         "name": "9872daa3972221c6",
         "netid": "1a93c6fc556aba49",
-        "num vowels": "9",
-        "num consonants": "43",
-        "num phonemes": "52",
+        "num consonants": 43,
+        "num vowels": 9,
+        "num phonemes": 52,
         "consonants": [
             "n",
             "t",
@@ -1715,10 +1661,8 @@
             "i",
             "u"
         ],
-        "consonant places": 7,
-        "consonant manners": 7,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 7,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -1741,7 +1685,7 @@
             "suffixation",
             "compounding",
             "internal change",
-            null,
+            "suppletion",
             "stress or tone shift"
         ],
         "word formation frequency": "exclusively suffixing",
@@ -1751,16 +1695,16 @@
         "headedness": [
             "mostly head-initial"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Tommo So",
-        "name": "b06ecf72e8eb6f26",
+        "name": "6596c676abeab141",
         "netid": "bce34d9805c00c74",
-        "num vowels": "17",
-        "num consonants": "17",
-        "num phonemes": "34",
+        "num consonants": 17,
+        "num vowels": 17,
+        "num phonemes": 34,
         "consonants": [
             "n",
             "t",
@@ -1785,10 +1729,8 @@
             "i",
             "u"
         ],
-        "consonant places": 7,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 7,
+        "num consonant manners": 6,
         "complex consonants": false,
         "tone": true,
         "stress": false,
@@ -1808,7 +1750,7 @@
             "compounding",
             "root-and-pattern",
             "internal change",
-            null,
+            "suppletion",
             "stress or tone shift",
             "reduplication",
             "conversion"
@@ -1820,16 +1762,16 @@
         "headedness": [
             "mostly head-final"
         ],
-        "case": "other",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "other"
     },
     {
         "language": "Tundra Nenets",
         "name": "c3b4528373e00427",
         "netid": "a925b88c4f824d07",
-        "num vowels": "7",
-        "num consonants": "16",
-        "num phonemes": "23",
+        "num consonants": 16,
+        "num vowels": 7,
+        "num phonemes": 23,
         "consonants": [
             "n",
             "t",
@@ -1853,10 +1795,8 @@
             "u",
             "ə"
         ],
-        "consonant places": 5,
-        "consonant manners": 6,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 6,
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -1874,7 +1814,7 @@
             "suffixation",
             "compounding",
             "internal change",
-            null
+            "suppletion"
         ],
         "word formation frequency": "mostly suffixing",
         "word order": [
@@ -1883,16 +1823,16 @@
         "headedness": [
             "mostly head-final"
         ],
-        "case": "nominative/accusative",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "nominative/accusative"
     },
     {
         "language": "Wangkajunga",
         "name": "49bb90db1c483014",
         "netid": "bbd8052519800c13",
-        "num vowels": "3",
-        "num consonants": "17",
-        "num phonemes": "20",
+        "num consonants": 17,
+        "num vowels": 3,
+        "num phonemes": 20,
         "consonants": [
             "n",
             "t",
@@ -1910,10 +1850,8 @@
             "i",
             "u"
         ],
-        "consonant places": 5,
-        "consonant manners": 4,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 4,
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1941,16 +1879,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "ergative/absolutive",
-        "agreement": "ergative/absolutive"
+        "agreement": "ergative/absolutive",
+        "case": "ergative/absolutive"
     },
     {
         "language": "Wardaman",
         "name": "2bd336a43f2129b2",
         "netid": "e3be87372a860719",
-        "num vowels": "5",
-        "num consonants": "17",
-        "num phonemes": "22",
+        "num consonants": 17,
+        "num vowels": 5,
+        "num phonemes": 22,
         "consonants": [
             "n",
             "m",
@@ -1968,10 +1906,8 @@
             "a",
             "i"
         ],
-        "consonant places": 5,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": false,
         "stress": false,
@@ -2002,16 +1938,16 @@
         "headedness": [
             "mixed headedness"
         ],
-        "case": "ergative/absolutive",
-        "agreement": "nominative/accusative"
+        "agreement": "nominative/accusative",
+        "case": "ergative/absolutive"
     },
     {
         "language": "Warrongo",
         "name": "573bcc800467e808",
         "netid": "ce0f31e997fab73a",
-        "num vowels": "7",
-        "num consonants": "17",
-        "num phonemes": "24",
+        "num consonants": 17,
+        "num vowels": 7,
+        "num phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -2032,10 +1968,8 @@
             "i",
             "u"
         ],
-        "consonant places": 5,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 5,
+        "num consonant manners": 5,
         "complex consonants": false,
         "tone": false,
         "stress": false,
@@ -2066,16 +2000,16 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "other",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "other"
     },
     {
         "language": "Yuki",
         "name": "5f4647ddf616f962",
         "netid": "56b4f673eab08ab0",
-        "num vowels": "6",
-        "num consonants": "23",
-        "num phonemes": "29",
+        "num consonants": 23,
+        "num vowels": 6,
+        "num phonemes": 29,
         "consonants": [
             "n",
             "t",
@@ -2096,10 +2030,8 @@
             "u",
             "ʌ"
         ],
-        "consonant places": 6,
-        "consonant manners": 5,
-        "3+ places": true,
-        "2+ manners": true,
+        "num consonant places": 6,
+        "num consonant manners": 5,
         "complex consonants": true,
         "tone": true,
         "stress": false,
@@ -2125,7 +2057,7 @@
         "headedness": [
             "consistently head-final"
         ],
-        "case": "ergative/absolutive",
-        "agreement": "none"
+        "agreement": "none",
+        "case": "ergative/absolutive"
     }
 ]

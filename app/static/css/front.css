@@ -287,3 +287,14 @@ table.lang-list-table td {
 .popover {
   max-width: 500px;
 }
+
+/* Fun CSS for quotes */
+.quote {
+  font-family: serif;
+  font-style: italic;
+}
+
+.quoteattrib {
+  padding-left: 40px;
+  font-family: serif;
+}
