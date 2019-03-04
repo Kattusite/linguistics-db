@@ -46,6 +46,76 @@
         ]
     },
     {
+        "language": "Anong",
+        "name": "6174da66fee5201d",
+        "netid": "c6d59748cd9551cf",
+        "num consonants": 47,
+        "num vowels": 45,
+        "num phonemes": 92,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "f",
+            "ɲ",
+            "z",
+            "ts",
+            "x",
+            "v",
+            "pʰ",
+            "tʰ",
+            "ʈʰ",
+            "kʰ",
+            "dz",
+            "ɬ",
+            "ɹ",
+            "ʈ",
+            "ɖ",
+            "ɳ",
+            "ʂ",
+            "ʐ",
+            "ɣ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "y",
+            "ɛ",
+            "ɐ",
+            "ʊ"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 8,
+        "vowel types": [
+            "nasalized",
+            "diphthongs",
+            "triphthongs"
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "C coda"
+        ]
+    },
+    {
         "language": "Arapaho",
         "name": "bca5a22d7e6a80e2",
         "netid": "fa6c1f39227d52a9",
@@ -678,13 +748,8 @@
             "p",
             "l",
             "w",
-            "b",
-            "d",
-            "g",
             "ŋ",
             "r",
-            "dʒ",
-            "ʙ",
             "β",
             "ɣ"
         ],
@@ -695,8 +760,8 @@
             "i",
             "u"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 7,
+        "num consonant places": 5,
+        "num consonant manners": 6,
         "vowel types": [
             "diphthongs"
         ],
@@ -858,6 +923,143 @@
             "C coda",
             "CC coda",
             "CCC coda"
+        ]
+    },
+    {
+        "language": "Tundra Nenets",
+        "name": "99a7c50dac82a85c",
+        "netid": "2652c4f323e63c60",
+        "num consonants": 26,
+        "num vowels": 10,
+        "num phonemes": 36,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "ŋ",
+            "ʔ",
+            "r",
+            "ɲ",
+            "ts",
+            "x",
+            "c",
+            "ɟ",
+            "ç",
+            "ʎ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "æ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 7,
+        "vowel types": [
+            "long"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "language": "Wardaman",
+        "name": "bae6d04b4b754499",
+        "netid": "b985ef274b6a6e0b",
+        "num consonants": 17,
+        "num vowels": 5,
+        "num phonemes": 22,
+        "consonants": [
+            "n",
+            "m",
+            "j",
+            "l",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ɲ",
+            "ɾ",
+            "ɹ",
+            "ɖ",
+            "ɳ",
+            "ʎ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 5,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset"
+        ]
+    },
+    {
+        "language": "Yimas",
+        "name": "bd469cbe41c77bd7",
+        "netid": "7c74f93736568198",
+        "num consonants": 12,
+        "num vowels": 6,
+        "num phonemes": 18,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "w",
+            "ŋ",
+            "ɾ",
+            "ʎ"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ɨ"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 5,
+        "vowel types": [
+            "diphthongs"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
         ]
     }
 ]
