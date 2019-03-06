@@ -208,6 +208,52 @@
         ]
     },
     {
+        "language": "Berbice Dutch Creole",
+        "name": "c5c85bd9ce76f232",
+        "netid": "6072bb113d3578e1",
+        "num consonants": 14,
+        "num vowels": 6,
+        "num phonemes": 20,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "f",
+            "ɹ",
+            "ç"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɛ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
         "language": "Bilinarra",
         "name": "74c2c178f3a8dd89",
         "netid": "ad09179460bfaf3b",
@@ -339,6 +385,7 @@
             "s",
             "p",
             "l",
+            "w",
             "h",
             "b",
             "d",
@@ -346,13 +393,13 @@
             "f",
             "ɲ",
             "z",
+            "x",
             "v",
             "β",
             "ɹ",
             "ç",
             "ʝ",
-            "ɣ",
-            "χ"
+            "ɣ"
         ],
         "vowels": [
             "a",
@@ -371,6 +418,63 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "language": "Gayo",
+        "name": "100083211992f9eb",
+        "netid": "52fbd8cf08c20587",
+        "num consonants": 23,
+        "num vowels": 13,
+        "num phonemes": 36,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "tʃ",
+            "r",
+            "ɲ",
+            "dʒ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɛ",
+            "ɪ",
+            "ʊ",
+            "ɤ",
+            "ɔ"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "vowel types": [
+            "nasalized",
+            "voiceless",
+            "diphthongs"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -533,6 +637,61 @@
             "C onset",
             "CC onset",
             "C coda"
+        ]
+    },
+    {
+        "language": "Jingulu",
+        "name": "cd47b0d9ba06ad1d",
+        "netid": "0172a6cdc6b99d5f",
+        "num consonants": 5714209257,
+        "num vowels": 10,
+        "num phonemes": 28,
+        "consonants": [
+            "n",
+            "m",
+            "k",
+            "j",
+            "l",
+            "w",
+            "b",
+            "d",
+            "ŋ",
+            "r",
+            "ɲ",
+            "ɖ",
+            "ɳ",
+            "ɻ",
+            "ɟ",
+            "ʎ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɨ",
+            "ʌ",
+            "æ",
+            "ɔ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": false,
+        "tone": true,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "CCCC onset",
+            "CC coda",
+            "CCC coda",
+            "CCCC coda"
         ]
     },
     {
@@ -732,6 +891,154 @@
         ]
     },
     {
+        "language": "Majhi",
+        "name": "75f3b4c5bd03fa53",
+        "netid": "fe394f8bdaf89302",
+        "num consonants": 29,
+        "num vowels": 13,
+        "num phonemes": 42,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "r",
+            "ts",
+            "pʰ",
+            "bʰ",
+            "tʰ",
+            "dʰ",
+            "kʰ",
+            "gʰ",
+            "dz"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɜ"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 8,
+        "vowel types": [
+            "diphthongs"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": false,
+        "syllables": [
+            "C onset",
+            "CC onset"
+        ]
+    },
+    {
+        "language": "Manchu",
+        "name": "73c14a2d85ffcfda",
+        "netid": "d8705294429726b3",
+        "num consonants": 19,
+        "num vowels": 17,
+        "num phonemes": 36,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "f",
+            "r",
+            "v",
+            "c",
+            "ʝ"
+        ],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ʊ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            "diphthongs"
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "language": "Mongsen Ao",
+        "name": "5cbb1f180d633436",
+        "netid": "08d2c67b1da3ebec",
+        "num consonants": 27,
+        "num vowels": 5,
+        "num phonemes": 32,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "ŋ",
+            "tʃ",
+            "z",
+            "ts",
+            "pʰ",
+            "tʰ",
+            "kʰ",
+            "ɹ"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ə"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "vowel types": [
+            "creaky"
+        ],
+        "complex consonants": false,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
         "language": "Neverver",
         "name": "00fd8bb8e37f4aff",
         "netid": "2c83fbe3e7315f08",
@@ -764,6 +1071,103 @@
         "num consonant manners": 6,
         "vowel types": [
             "diphthongs"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "language": "Osage",
+        "name": "239cfead30018dd0",
+        "netid": "872b0c5a7ac7c37f",
+        "num consonants": 31,
+        "num vowels": 8,
+        "num phonemes": 39,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "tʃ",
+            "z",
+            "ts",
+            "pʰ",
+            "tʰ",
+            "kʰ",
+            "ð",
+            "ɹ",
+            "ç",
+            "ɣ"
+        ],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɑ"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 7,
+        "vowel types": [
+            "nasalized",
+            "long"
+        ],
+        "complex consonants": true,
+        "tone": false,
+        "stress": false,
+        "syllables": [
+            "C onset",
+            "CC onset"
+        ]
+    },
+    {
+        "language": "Pendau",
+        "name": "380bd7d80ef035b1",
+        "netid": "e09c678d855f7236",
+        "num consonants": 19,
+        "num vowels": 5,
+        "num phonemes": 24,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "tʃ",
+            "r",
+            "ɲ",
+            "dʒ",
+            "β"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "vowel types": [
+            null
         ],
         "complex consonants": false,
         "tone": false,
@@ -881,6 +1285,61 @@
         ]
     },
     {
+        "language": "Semelai",
+        "name": "8bde585cf17b90ac",
+        "netid": "4221c184650541ae",
+        "num consonants": 32,
+        "num vowels": 20,
+        "num phonemes": 52,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "r",
+            "ɲ",
+            "pʰ",
+            "tʰ",
+            "cʰ",
+            "kʰ",
+            "c",
+            "ç"
+        ],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ʉ",
+            "ɛ",
+            "aᶠ",
+            "ɒ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 7,
+        "vowel types": [
+            "nasalized"
+        ],
+        "complex consonants": true,
+        "tone": false,
+        "stress": false,
+        "syllables": [
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
         "language": "Sierra Popoluca",
         "name": "4e9e2954ad2be5d6",
         "netid": "67ccf39f9d3cf421",
@@ -978,6 +1437,51 @@
         ]
     },
     {
+        "language": "Wangkajunga",
+        "name": "ef123ef61b69a49e",
+        "netid": "a1667f10a46fedec",
+        "num consonants": 17,
+        "num vowels": 6,
+        "num phonemes": 23,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "l",
+            "w",
+            "ŋ",
+            "ɲ",
+            "ɾ",
+            "ʈ",
+            "ɳ",
+            "ɻ",
+            "ɟ",
+            "ʎ"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            "long"
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
         "language": "Wardaman",
         "name": "bae6d04b4b754499",
         "netid": "b985ef274b6a6e0b",
@@ -1058,6 +1562,48 @@
             "V",
             "C onset",
             "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "language": "Yuki",
+        "name": "ea504daf4482d13f",
+        "netid": "bdf6a8e08642bca6",
+        "num consonants": 25,
+        "num vowels": 8,
+        "num phonemes": 33,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "ʔ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            "nasalized",
+            "diphthongs"
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": true,
+        "syllables": [
+            "C onset",
             "C coda",
             "CC coda"
         ]
