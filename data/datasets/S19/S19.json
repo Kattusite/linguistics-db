@@ -33,8 +33,7 @@
         "num consonant manners": 6,
         "vowel types": [
             "nasalized",
-            "diphthongs",
-            "triphthongs"
+            "diphthongs"
         ],
         "complex consonants": false,
         "tone": true,
@@ -205,6 +204,61 @@
             "C onset",
             "CC onset",
             "C coda"
+        ]
+    },
+    {
+        "language": "Bardi",
+        "name": "fc08d7b3621413a8",
+        "netid": "341dc9f921db159b",
+        "num consonants": 17,
+        "num vowels": 7,
+        "num phonemes": 24,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "l",
+            "w",
+            "ŋ",
+            "r",
+            "ɲ",
+            "ʈ",
+            "ɳ",
+            "ɻ",
+            "c",
+            "ʎ"
+        ],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "ɪ",
+            "ʊ",
+            "ɔ",
+            "ɑ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "vowel types": [
+            "nasalized",
+            "long",
+            "voiceless",
+            "diphthongs"
+        ],
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda",
+            "CCCC coda"
         ]
     },
     {
@@ -390,9 +444,12 @@
             "b",
             "d",
             "g",
+            "ŋ",
+            "tʃ",
             "f",
             "ɲ",
             "z",
+            "dʒ",
             "x",
             "v",
             "β",
@@ -410,12 +467,12 @@
             "ɛ",
             "ɔ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
+        "num consonant places": 8,
+        "num consonant manners": 6,
         "vowel types": [
             "nasalized"
         ],
-        "complex consonants": true,
+        "complex consonants": false,
         "tone": true,
         "stress": false,
         "syllables": [
@@ -692,6 +749,106 @@
             "CC coda",
             "CCC coda",
             "CCCC coda"
+        ]
+    },
+    {
+        "language": "Kawaiisu",
+        "name": "e6d6f91dea3bd2c5",
+        "netid": "566f9d8af046e159",
+        "num consonants": 25,
+        "num vowels": 7,
+        "num phonemes": 32,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "ŋ",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "z",
+            "ts",
+            "β",
+            "ɾ",
+            "ʒ",
+            "ɣ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "u",
+            "ə",
+            "ɨ",
+            "ɯ"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "CCC onset"
+        ]
+    },
+    {
+        "language": "Kilmeri",
+        "name": "7b9231da84472ac4",
+        "netid": "5d83f5a13f45acdf",
+        "num consonants": 12,
+        "num vowels": 8,
+        "num phonemes": 20,
+        "consonants": [
+            "n",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "b",
+            "d",
+            "r",
+            "ʙ",
+            "ʋ"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ɛ",
+            "æ",
+            "ɪ",
+            "ʊ",
+            "ɔ"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 6,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
         ]
     },
     {
@@ -1039,6 +1196,62 @@
         ]
     },
     {
+        "language": "Mungbam",
+        "name": "3fcf4c516eb80921",
+        "netid": "dfe5c05840384b32",
+        "num consonants": 23,
+        "num vowels": 11,
+        "num phonemes": 34,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ɲ",
+            "ts",
+            "dʒ",
+            "x",
+            "ɸ",
+            "dz"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɨ",
+            "ɛ"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 6,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
         "language": "Neverver",
         "name": "00fd8bb8e37f4aff",
         "netid": "2c83fbe3e7315f08",
@@ -1079,6 +1292,45 @@
             "V",
             "C onset",
             "C coda"
+        ]
+    },
+    {
+        "language": "Onondaga",
+        "name": "b3d57877cba05059",
+        "netid": "36d0386b42c9f436",
+        "num consonants": 10,
+        "num vowels": 7,
+        "num phonemes": 17,
+        "consonants": [
+            "t",
+            "k",
+            "d",
+            "g",
+            "ʃ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "æ",
+            "ɑ"
+        ],
+        "num consonant places": 3,
+        "num consonant manners": 2,
+        "vowel types": [
+            "nasalized"
+        ],
+        "complex consonants": true,
+        "tone": false,
+        "stress": false,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda",
+            "CCCC coda"
         ]
     },
     {
@@ -1385,6 +1637,116 @@
         ]
     },
     {
+        "language": "Tamashek",
+        "name": "8d6a173b722f37ad",
+        "netid": "70023971edf43f57",
+        "num consonants": 33,
+        "num vowels": 7,
+        "num phonemes": 40,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "f",
+            "r",
+            "ɲ",
+            "z",
+            "x",
+            "ʒ",
+            "ɣ",
+            "q",
+            "ħ",
+            "ʕ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "æ"
+        ],
+        "num consonant places": 10,
+        "num consonant manners": 7,
+        "vowel types": [
+            null
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "C onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "language": "Tommo So",
+        "name": "48e94aeea68a73a7",
+        "netid": "82f515bbb46c586e",
+        "num consonants": 17,
+        "num vowels": 17,
+        "num phonemes": 34,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ɲ",
+            "ɾ"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɛ",
+            "ɔ"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "vowel types": [
+            "nasalized",
+            "long"
+        ],
+        "complex consonants": false,
+        "tone": true,
+        "stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
         "language": "Tundra Nenets",
         "name": "99a7c50dac82a85c",
         "netid": "2652c4f323e63c60",
@@ -1523,6 +1885,49 @@
             "V",
             "C onset",
             "CC onset"
+        ]
+    },
+    {
+        "language": "Warrongo",
+        "name": "b4279f6683bf2fb7",
+        "netid": "a4732f20cc6a639f",
+        "num consonants": 13,
+        "num vowels": 4,
+        "num phonemes": 17,
+        "consonants": [
+            "n",
+            "m",
+            "j",
+            "l",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ɲ",
+            "ɾ",
+            "ɽ",
+            "ɟ",
+            "ɰ"
+        ],
+        "vowels": [
+            "i",
+            "u",
+            "aᶠ"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 5,
+        "vowel types": [
+            "long"
+        ],
+        "complex consonants": false,
+        "tone": true,
+        "stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "C coda"
         ]
     },
     {
