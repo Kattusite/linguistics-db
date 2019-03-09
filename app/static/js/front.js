@@ -137,6 +137,10 @@ function handleSingleTrait() {
   if ($("#trait-divs").children(":visible").length == 1) return;
   hideElement($("#trait-divs").children()[1]);
 
+  // Collapse gracefully - currently buggy b/c trait-divs lack collapsible class
+  // also they are expanding too far and then snapping back instantly. 
+  // $("trait-divs").children().eq(1).collapse("hide");
+
   // Clear the results to avoid confusion
   resetResults();
 }
@@ -147,6 +151,12 @@ function handleDoubleTrait() {
   // Do nothing if 2 already visible.
   if ($("#trait-divs").children(":visible").length == 2) return;
   unhideElement($("#trait-divs").children()[1]);
+
+  // Collapse gracefully - currently buggy b/c trait-divs lack collapsible class
+  // also they are expanding too far and then snapping back instantly.
+  // $("trait-divs").children().eq(1).collapse("show");
+
+
 
   // Clear the results to avoid confusion
   resetResults();
