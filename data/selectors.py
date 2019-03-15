@@ -247,7 +247,7 @@ TONE = {
     BOOL_BODY: 'Tone (Including "Pitch Accent")',
     REPLY: "have tone",
     REPLY_VARS: None,
-    FUNCTION: Language.containsComplexConsonants,
+    FUNCTION: Language.containsTone,
     HTML_ID: "tone-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None
