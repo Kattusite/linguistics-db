@@ -209,8 +209,23 @@ D_MORPHOLOGY = {
     "polysynthetic": []
 }
 
-D_WORD_FORMATION = {
+D_WORD_FORMATION_F17 = {
     "affixation": ["affixation", "prefixation or suffixation"],
+    "suffixation": [],
+    "prefixation": [],
+    "infixation": [],
+    "compounding": [],
+    "root-and-pattern": [],
+    "internal change": [],
+    "suppletion": [],
+    "stress or tone shift": [],
+    "reduplication": [],
+    "conversion": [],
+    "purely isolating": ["none", "purely isolating"]
+}
+
+D_WORD_FORMATION_S19 = {
+    # "affixation": ["affixation", "prefixation or suffixation"], # obsolete as of s19
     "suffixation": [],
     "prefixation": [],
     "infixation": [],
@@ -277,6 +292,10 @@ D_AGREEMENT = {
 ##################################################
 # These are the specifications for parameters that need to be read in and
 # converted in csvtojson.py.
+
+# TODO: INDEX isn't actually super useful -- instead pull index from each
+# parameter's index in the PARAMS list, because they may change from year to
+# year and this should not break the data.
 
 # These variables shall all be prefixed with a P_ to signify they are
 # *P*arameter specifications
@@ -436,12 +455,21 @@ P_MORPHOLOGICAL_TYPE = {
     FAIL_DICT:  None
 }
 
-P_WORD_FORMATION = {
+P_WORD_FORMATION_F17 = {
     KEY:        K_WORD_FORMATION,
     TYPE:       LIST,
     INDEX:      7,
     MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_FORMATION,
+    DICT:       D_WORD_FORMATION_F17,
+    FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
+}
+
+P_WORD_FORMATION_S19 = {
+    KEY:        K_WORD_FORMATION,
+    TYPE:       LIST,
+    INDEX:      7,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_WORD_FORMATION_S19,
     FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
 }
 
@@ -516,7 +544,7 @@ PARAMS = {
             P_CITATION,
             P_RECOMMEND,
             P_MORPHOLOGICAL_TYPE,
-            P_WORD_FORMATION,
+            P_WORD_FORMATION_F17,
             P_WORD_FORMATION_FREQ,
             P_WORD_ORDER,
             P_HEADEDNESS,
@@ -544,10 +572,10 @@ PARAMS = {
             P_LANGUAGE,
             P_NAME,
             P_NETID,
-            P_CITATION,
+            # P_CITATION, # obsolete in s19
             P_RECOMMEND,
             P_MORPHOLOGICAL_TYPE,
-            P_WORD_FORMATION,
+            P_WORD_FORMATION_S19,
             P_WORD_FORMATION_FREQ,
             P_WORD_ORDER,
             P_HEADEDNESS,

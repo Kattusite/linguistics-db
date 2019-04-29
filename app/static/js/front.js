@@ -138,7 +138,7 @@ function handleSingleTrait() {
   hideElement($("#trait-divs").children()[1]);
 
   // Collapse gracefully - currently buggy b/c trait-divs lack collapsible class
-  // also they are expanding too far and then snapping back instantly. 
+  // also they are expanding too far and then snapping back instantly.
   // $("trait-divs").children().eq(1).collapse("hide");
 
   // Clear the results to avoid confusion

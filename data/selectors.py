@@ -295,7 +295,7 @@ MORPHOLOGY = {
 
 WORD_FORMATION = {
     SELECT_NAME: "Word formation strategy:",
-    DICT: const.D_WORD_FORMATION,
+    DICT: const.D_WORD_FORMATION_S19,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of %s to form words",
