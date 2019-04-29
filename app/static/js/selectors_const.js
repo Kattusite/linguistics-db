@@ -659,7 +659,6 @@ var SELECTORS_DICT = {
                 "\u0256\u02b0",
                 "\u0258",
                 "\u0259",
-                "\u0259",
                 "\u025b",
                 "\u025c",
                 "\u025e",
@@ -912,10 +911,6 @@ var SELECTORS_DICT = {
     },
     "word-formation-selector": {
         "dict": {
-            "affixation": [
-                "affixation",
-                "prefixation or suffixation"
-            ],
             "compounding": [],
             "conversion": [],
             "infixation": [],

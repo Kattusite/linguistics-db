@@ -154,17 +154,6 @@
         "producible": true
     },
     {
-        "glyph": "ə",
-        "height": "mid",
-        "height region": "mid",
-        "height offset": "lower",
-        "backness": "central",
-        "backness region": "central",
-        "roundedness": "rounded",
-        "voicing": "voiced",
-        "producible": true
-    },
-    {
         "glyph": "ɜ",
         "height": "mid-low",
         "height region": "mid",
@@ -265,7 +254,7 @@
     },
     {
         "glyph": "ɒ",
-        "height": "mid-low",
+        "height": "low",
         "height region": "low",
         "height offset": "lower",
         "backness": "back",

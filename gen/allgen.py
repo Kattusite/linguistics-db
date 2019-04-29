@@ -550,7 +550,7 @@ def voweltrapezoid():
 
     # Add a little bit of extra padding to keep the image inside the blue box
 
-def getTrapezoidStyle(table, x, y):
+def getTrapezoidStyle(table, x, y, alignCenter=False):
     """Generate the style string for the cell of a given table at specified x, y
     coordinates. This generated style string should have the effect of shifting
     the cell so that it appears in the correct location on the trapezoid (ie
@@ -583,7 +583,7 @@ def getTrapezoidStyle(table, x, y):
     else:
         offset = +1
 
-    if (x == 0):
+    if (x == 0 or alignCenter):
         offset = 0
 
     row = ytorow(y)
@@ -749,7 +749,9 @@ def ipaboxgen(table, headers, pType):
 
                     # For vowels add extra CSS for positioning
                     if pType == VOWEL:
-                        style = getTrapezoidStyle(table, x, y)
+                        # Schwa (ə) is a special case. should be centered in chart
+                        alignCenter = (body == "ə")
+                        style = getTrapezoidStyle(table, x, y, alignCenter)
 
                 tprint(tag("td", body=body,
                             classList=classList,
