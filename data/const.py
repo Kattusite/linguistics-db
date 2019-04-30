@@ -1,4 +1,5 @@
-# No imports (leaf node in any import tree)
+# No imports from project (leaf node in any import tree)
+ # import copy # for if I ever change the parameter definitions to be based on "archetype" definitions
 
 """This file defines constants used throughout the program, primarily relating to
 handling different datasets and parsing datasets from the raw Google Forms CSV data.
@@ -296,6 +297,17 @@ D_AGREEMENT = {
 # TODO: INDEX isn't actually super useful -- instead pull index from each
 # parameter's index in the PARAMS list, because they may change from year to
 # year and this should not break the data.
+# NOTE: this will be more complicated because some have several indices or no
+# index (SPLIT or MERGE)
+
+# alternatively perhaps we could just define the format spec for each semester
+# in its own file in the datasets/X## directories.
+
+# OR, we could define "archetype" parameter definitions that have all the
+# "basic" core properties of that parameter, and then use copy.copy() to
+# construct a new copy, in which we can change one or two parameters.
+# best idea: make the "archetypes" functions that take in arguments and construct the
+# right thing: e.g. P_LANGUAGE(index=4), ...
 
 # These variables shall all be prefixed with a P_ to signify they are
 # *P*arameter specifications
@@ -431,22 +443,22 @@ P_SYLLABLE_S19 = {
 }
 
 
-# Typology Parameters:
-P_CITATION = {
+# Typology Parameters Fall 17:
+P_CITATION_F17 = {
     KEY:        K_CITATION,
     TYPE:       STRING,
     INDEX:      4,
     MAPPING:    ONE_TO_ONE
 }
 
-P_RECOMMEND = {
+P_RECOMMEND_F17 = {
     KEY:        K_RECOMMEND,
     TYPE:       STRING,
     INDEX:      5,
     MAPPING:    ONE_TO_ONE
 }
 
-P_MORPHOLOGICAL_TYPE = {
+P_MORPHOLOGICAL_TYPE_F17 = {
     KEY:        K_MORPHOLOGICAL_TYPE,
     TYPE:       LIST,
     INDEX:      6,
@@ -464,16 +476,7 @@ P_WORD_FORMATION_F17 = {
     FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
 }
 
-P_WORD_FORMATION_S19 = {
-    KEY:        K_WORD_FORMATION,
-    TYPE:       LIST,
-    INDEX:      7,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_FORMATION_S19,
-    FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
-}
-
-P_WORD_FORMATION_FREQ = {
+P_WORD_FORMATION_FREQ_F17 = {
     KEY:        K_WORD_FORMATION_FREQ,
     TYPE:       STRING,
     INDEX:      8,
@@ -482,7 +485,7 @@ P_WORD_FORMATION_FREQ = {
     FAIL_DICT:  ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
 }
 
-P_WORD_ORDER = {
+P_WORD_ORDER_F17 = {
     KEY:        K_WORD_ORDER,
     TYPE:       LIST,
     INDEX:      9,
@@ -491,7 +494,7 @@ P_WORD_ORDER = {
     FAIL_DICT:  ["free", "S", "V", "O"]
 }
 
-P_HEADEDNESS = {
+P_HEADEDNESS_F17 = {
     KEY:        K_HEADEDNESS,
     TYPE:       LIST,
     INDEX:      10,
@@ -500,7 +503,7 @@ P_HEADEDNESS = {
     FAIL_DICT:  ["head", "initial", "final", "most", "consistent", "mixed"]
 }
 
-P_AGREEMENT = {
+P_AGREEMENT_F17 = {
     KEY:        K_AGREEMENT,
     TYPE:       STRING,
     INDEX:      11,
@@ -509,10 +512,81 @@ P_AGREEMENT = {
     FAIL_DICT:  None
 }
 
-P_CASE = {
+P_CASE_F17 = {
     KEY:        K_CASE,
     TYPE:       STRING,
     INDEX:      12,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_CASE,
+    FAIL_DICT:  None
+}
+
+# Spring 19 specific format specification (mostly identical to F17 but re-indexed)
+P_RECOMMEND_S19 = {
+    KEY:        K_RECOMMEND,
+    TYPE:       STRING,
+    INDEX:      4,
+    MAPPING:    ONE_TO_ONE
+}
+
+P_MORPHOLOGICAL_TYPE_S19 = {
+    KEY:        K_MORPHOLOGICAL_TYPE,
+    TYPE:       LIST,
+    INDEX:      5,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_MORPHOLOGY,
+    FAIL_DICT:  None
+}
+
+P_WORD_FORMATION_S19 = {
+    KEY:        K_WORD_FORMATION,
+    TYPE:       LIST,
+    INDEX:      6,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_WORD_FORMATION_S19,
+    FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
+}
+
+P_WORD_FORMATION_FREQ_S19 = {
+    KEY:        K_WORD_FORMATION_FREQ,
+    TYPE:       STRING,
+    INDEX:      7,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_WORD_FORMATION_FREQ, # UNTESTED!!!
+    FAIL_DICT:  ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
+}
+
+P_WORD_ORDER_S19 = {
+    KEY:        K_WORD_ORDER,
+    TYPE:       LIST,
+    INDEX:      8,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_WORD_ORDER,
+    FAIL_DICT:  ["free", "S", "V", "O"]
+}
+
+P_HEADEDNESS_S19 = {
+    KEY:        K_HEADEDNESS,
+    TYPE:       LIST,
+    INDEX:      9,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_HEADEDNESS, # UNTESTED!!!
+    FAIL_DICT:  ["head", "initial", "final", "most", "consistent", "mixed"]
+}
+
+P_AGREEMENT_S19 = {
+    KEY:        K_AGREEMENT,
+    TYPE:       STRING,
+    INDEX:      10,
+    MAPPING:    ONE_TO_ONE,
+    DICT:       D_AGREEMENT,
+    FAIL_DICT:  None
+}
+
+P_CASE_S19 = {
+    KEY:        K_CASE,
+    TYPE:       STRING,
+    INDEX:      11,
     MAPPING:    ONE_TO_ONE,
     DICT:       D_CASE,
     FAIL_DICT:  None
@@ -541,15 +615,15 @@ PARAMS = {
             P_LANGUAGE,
             P_NAME,
             P_NETID,
-            P_CITATION,
-            P_RECOMMEND,
-            P_MORPHOLOGICAL_TYPE,
+            P_CITATION_F17,
+            P_RECOMMEND_F17,
+            P_MORPHOLOGICAL_TYPE_F17,
             P_WORD_FORMATION_F17,
-            P_WORD_FORMATION_FREQ,
-            P_WORD_ORDER,
-            P_HEADEDNESS,
-            P_AGREEMENT,
-            P_CASE
+            P_WORD_FORMATION_FREQ_F17,
+            P_WORD_ORDER_F17,
+            P_HEADEDNESS_F17,
+            P_AGREEMENT_F17,
+            P_CASE_F17
         ]
     },
     S19: {
@@ -568,19 +642,18 @@ PARAMS = {
             P_PHONETIC_S19,
             P_SYLLABLE_S19
         ],
-        TYPOLOGY: [ # Not yet updated for S19
+        TYPOLOGY: [
             P_LANGUAGE,
             P_NAME,
             P_NETID,
-            # P_CITATION, # obsolete in s19
-            P_RECOMMEND,
-            P_MORPHOLOGICAL_TYPE,
+            P_RECOMMEND_S19,
+            P_MORPHOLOGICAL_TYPE_S19,
             P_WORD_FORMATION_S19,
-            P_WORD_FORMATION_FREQ,
-            P_WORD_ORDER,
-            P_HEADEDNESS,
-            P_AGREEMENT,
-            P_CASE
+            P_WORD_FORMATION_FREQ_S19,
+            P_WORD_ORDER_S19,
+            P_HEADEDNESS_S19,
+            P_AGREEMENT_S19,
+            P_CASE_S19
         ]
     }
 }
