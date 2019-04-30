@@ -359,6 +359,9 @@ def matchAnyInList(str, lst):
 # data
 # Additionally, write the anonymized CSV to the file specified by outFilename,
 # if it is not None
+# Slight bug: Note that the anonymized files currently have \r\n line endings
+# instead of \n line endings, which causes minor annoyances when displaying CSVs,
+# but the parsing process is unaffected. 
 def anonymize(csvReader, dataset, outFilename=None):
 
     if (outFilename):
@@ -372,8 +375,11 @@ def anonymize(csvReader, dataset, outFilename=None):
             if outFilename:
                 outCSV.writerow(row)
             continue
-        netid = asciify(row[NETID])
-        name  = asciify(row[NAME])
+
+        # Students sometimes add extra spaces or change capitalization
+        # So we need to normalize for this so the hashes will be the same
+        netid = asciify(row[NETID].strip().lower())
+        name  = asciify(row[NAME].strip().lower())
 
         # Slice off first few chars to make hashes manageable (collisions negligible)
         anon_netid = hashlib.sha3_256(netid).hexdigest()[:HASH_SIZE]
