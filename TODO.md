@@ -11,6 +11,9 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Clarify the syllable selections, and add more syllables
+* Google Forms autofill based on the site inputs
+* Data visualizations (e.g. simple bar charts), possibly with D3.
 * To aid with below bulletpoint, should define an exceptions.py file to store all
  the possible exception classes
 * In language.py, the getters need a total rework. In particular getGrammarAttr and
