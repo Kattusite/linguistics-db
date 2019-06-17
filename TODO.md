@@ -11,6 +11,9 @@ app/data is capable of converting CSV to JSON but the code is a mess at the mome
 
 To-Do
 ========
+* Clarify the syllable selections, and add more syllables
+* Google Forms autofill based on the site inputs
+* Data visualizations (e.g. simple bar charts), possibly with D3. 
 * The MODE strings defined in selectors.py don't make any sense ... what
 is it that they are actually supposed to be checking? all of the selectors are
 PICK_K, but some are classed as PICK_MULTI instead? If I really meant to say
