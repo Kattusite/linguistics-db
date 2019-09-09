@@ -84,6 +84,19 @@ def handleQueries(queries, dataset, listMode=False):
         raise RuntimeError("lingdb_client handled 0 queries properly.")
         return None # Query invalid
 
+    # TODO: Get data needed for graph.
+    #      if 1 query:
+    #   Replace it with a dummy query that returns true for every lang w/ data.
+    #   ie.. ... "at least 0 of []" ...
+    #   all matching lgs are those that match this dummy query
+    #      else at least 2 queries:
+    #   all matching langs are those that match the first n-1 queries.
+    #   then:
+    #     for all matching langs, count up how many times a given feature is
+    # encountered. E.g. count how many times /k/ is seen, /p/ is seen, ...
+    # (ok to omit those that appear 0 times)
+    # Then return a dict {feature: numOccurences}
+
     # Combine the results of the n queries
     # TODO Clean this whole section up (add HTML styling + a separate formatter function)
     # TODO allow AND, OR, etc. to be selected as a request field, not hardcoded

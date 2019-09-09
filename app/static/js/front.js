@@ -20,6 +20,10 @@ var INFO    = "alert-info";
 var WARN    = "alert-warning";
 var SUCCESS = "alert-success";
 
+// Different types of requests to be submitted
+var QUERY = "query"
+var GRAPH = "graph"
+
 /*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
@@ -662,7 +666,11 @@ function validateRequest(request) {
 
 // Extract the information from each of the active trait divs, and send a POST
 // containing a list of requests as the payload
-function handleSubmit() {
+// responseType specifies whether to send a query request (Expects answer as a list)
+// or a graph request (Expects answer as raw data to be plotted)
+function handleSubmit(responseType) {
+  if (!responseType) responseType = QUERY;
+
   var requests = [];
 
   // Build a request (dict/object) for each active trait
@@ -784,6 +792,7 @@ function handleSubmit() {
   // Hacky: build a request string from params directly.
   payload += `&listMode=${listMode}`;
   payload += `&dataset=${DATASET}`;
+  payload += `&responseType=${responseType}`;
 
   console.log("Sending post with payload: " + payload);
   $.post("/",

@@ -20,8 +20,6 @@ INFO = "info"              # Blue message
 WARN = "warning"              # Yellow message
 DANGER = "danger"          # Red message
 
-
-
 ##############################################################################
 #                            Dataset constants                               #
 ##############################################################################
@@ -29,22 +27,22 @@ DANGER = "danger"          # Red message
 DATASET_PATH = "data/datasets/{0}/{1}"
 
 # Dataset Constants
-TEST = "_test"
+TEST  = "_test"
+TEST2 = "_test2"
+
 F17 = "F17"
 S19 = "S19"
 S19TEST = "S19test"
-
 
 # Which named datasets do we have?
 # F = Fall, S = spring, XX = year 20XX
 datasetNames = [
     TEST,
+    TEST2,
     S19TEST,
     F17,
     S19
 ]
-
-
 
 ##############################################################################
 #                          csvtojson constants                               #
@@ -67,11 +65,9 @@ datasetNames = [
 
 # or alternatively:
 
-
 # Which surveys are available?
 GRAMMAR = "grammar"    # From the "Grammar Work 2" survey
 TYPOLOGY = "typology"  # From the final "Typology" survey
-
 
 # Parameter names
 KEY = "key"
@@ -195,10 +191,14 @@ D_SYLLABLES = {
     "CC onset":     ["CCV", "two onset"],
     "CCC onset":    ["CCCV", "three onset"],
     "CCCC onset":   ["CCCCV", "four onset"],
+    "CCCCC onset":  ["CCCCCV", "five onset"],
+    "CCCCCC+ onset":["CCCCCCV", "CCCCCCV+", "six onset", "six or more onset"],
     "C coda":       ["CVC", "VC", "single coda"], # formerly CVC, not "VC"
     "CC coda":      ["VCC", "two coda"],
     "CCC coda":     ["VCCC", "three coda"],
-    "CCCC coda":    ["VCCCC", "four coda"]
+    "CCCC coda":    ["VCCCC", "four coda"],
+    "CCCCC coda":   ["VCCCCC", "five coda"],
+    "CCCCCC+ coda": ["VCCCCCC", "VCCCCCC+", "six coda", "six or more coda"],
 }
 
 # Typology parseDicts
@@ -666,6 +666,11 @@ PARAMS = {
 NETID = 1
 NAME  = 2
 HASH_SIZE = 16
+# NOTE: 16 may be too high (not anonymous enough)
+# - shorter hashes <=6 or 7 give better anonymity properties, but increase risk of
+# - collisions (8 seem too high also)
+# - note that anonymity is less critical than guaranteed correctness for this
+# application so higher values are OK
 
 # CSV format
 ROW_DELIMITER = "\n"    # delimits rows (might need carriage return?)

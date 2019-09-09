@@ -22,6 +22,9 @@ def main():
         # Specify which language dataset to use
         dataset = f["dataset"]
 
+        # Specify whether the expected response is "query" (list) or "graph" (data)
+        responseType = f["responseType"]
+
         # By default, we will be returning info to the user (blue message box)
         retCode = const.INFO
 
@@ -60,6 +63,14 @@ def index():
 @app.route('/index')
 def index1():
     return redirect('/')
+
+@app.route('/survey.html')
+def survey():
+    return render_template('survey.html')
+
+@app.route('/survey.html')
+def survey1():
+    return redirect('/survey')
 
 @app.route('/about')
 def about():

@@ -15,7 +15,7 @@ def initDatasets():
     """Intialize the datasets when they are needed"""
     global datasets
 
-    # Read datasets from json filess
+    # Read datasets from json files
     datasets = { name: readDataset(name) for name in datasetNames }
 
 def readDataset(name):

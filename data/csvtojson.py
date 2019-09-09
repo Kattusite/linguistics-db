@@ -361,11 +361,11 @@ def matchAnyInList(str, lst):
 # if it is not None
 # Slight bug: Note that the anonymized files currently have \r\n line endings
 # instead of \n line endings, which causes minor annoyances when displaying CSVs,
-# but the parsing process is unaffected. 
+# but the parsing process is unaffected.
 def anonymize(csvReader, dataset, outFilename=None):
 
     if (outFilename):
-        outFile = open(DATASET_PATH.format(dataset, outFilename), "w", encoding="utf-8")
+        outFile = open(DATASET_PATH.format(dataset, outFilename), "w", newline='', encoding="utf-8")
         outCSV = csv.writer(outFile)
 
     dataDict = {}
