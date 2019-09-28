@@ -3,7 +3,7 @@ import tinydb
 
 from . import query as Query
 from . import language
-from data import const, selectors
+from data import const, selectors, datasets
 from phonemes import vowels, consonants, metaclasses
 
 """Querier.py defines the functions needed to take in a POST request from the
@@ -17,6 +17,14 @@ QUORUM_THRESHOLD = 0.5
 
 class QuorumError(RuntimeError):
     pass
+
+def dbFromRequest(request):
+    """Given an XHR request from the frontend, return the TinyDB instance that
+    contains the dataset the request is looking for"""
+    form = request.form
+    dataset = form["dataset"]
+    return datasets.getDatabase(dataset)
+
 
 def queriesFromRequest(request):
     """Given an XHR request from the frontend, return a list of Query objects,

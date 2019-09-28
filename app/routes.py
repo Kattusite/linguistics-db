@@ -11,20 +11,23 @@ def main():
 
         # Build queries from request
         queries = querier.queriesFromRequest(request)
+        db = querier.dbFromRequest(request)
 
         # Ask querier to run the query against the DB, and generate HTML response
         HTML = ""
         status = ""
         try:
-            results = querier.handleQueries(queries)
+            results = querier.handleQueries(queries, db)
             HTML = responder.generateHTML(results)
             status = responder.INFO
-        except QuorumError:
-            HTML = responder.QuorumErrorHTML() # TODO
+        except querier.QuorumError as err:
+            HTML = responder.quorumErrorHTML(err)
             status = responder.WARN
+            print(err)
         except Exception as err:
-            HTML = responder.ServerErrorHTML() # TODO
+            HTML = responder.serverErrorHTML(err)
             status = responder.DANGER
+            print(err)
 
         return responder.respond(HTML, status)
 

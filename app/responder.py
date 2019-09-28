@@ -85,6 +85,19 @@ def respond(HTML, status):
 
     return json.dumps({RET_CODE: status, PAYLOAD: HTML})
 
+def quorumErrorHTML(err):
+    HTML = """
+    <span class=quote>There is as yet insufficient data for a meaningful answer.</span>
+    <br>
+    <span class=quoteattrib> -- Isaac Asmiov, 1956 </span>
+    <br><br>
+    Please check back later once more data has been gathered!"""
+    return HTML
+
+def serverErrorHTML(err):
+    HTML = """Sorry, an unknown server error occurred! Please let the developer know how you got this message so they can fix it."""
+    return HTML
+
 def generateHTML(results, listMode=False):
     """Given a list of queries, and a list (of lists) containining one list of
     matches for each of those queries (as tuples, described above),

@@ -5,6 +5,9 @@
 # It would probably be worth streamlining significantly at some point
 # (or rewriting entirely), as this is far from the best way
 
+# Usage:
+# python -m data 
+
 import csv, json, hashlib, re, sys
 from operator import itemgetter, attrgetter
 from phonemes import consonants, vowels, phonemes
