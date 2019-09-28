@@ -8,18 +8,6 @@ This file (and with any luck only this file) will need to be updated any
 time significant changes are made to the survey questions or format.
 """
 
-#############################################################################
-#                           Return Status Codes
-#############################################################################
-RET_CODE = "code"   # The key for return codes
-PAYLOAD = "payload" # The key for the payload
-
-# What sort of message sort be displayed to the user?
-SUCCESS = "success"        # Green message
-INFO = "info"              # Blue message
-WARN = "warning"              # Yellow message
-DANGER = "danger"          # Red message
-
 ##############################################################################
 #                            Dataset constants                               #
 ##############################################################################
@@ -81,10 +69,10 @@ FAIL_DICT = "fail dict"
 PHONEMES = "phonemes"
 
 # Possible types
-STRING = "string"                   # Value will be a string
-BOOL = "bool"                       # Value will be a bool
-NUM = "num"                         # Value will be a number (so far must be int)
-LIST = "list"                       # Value will be a list
+STRING = "String"                   # Value will be a string
+BOOL = "Bool"                       # Value will be a bool
+NUM = "Num"                         # Value will be a number (so far must be int)
+LIST = "List"                       # Value will be a list
 PLACEHOLDER = "placeholder"         # Value will be set by someone else (derived fields like # manners)
 # HASH = "hash" # tbd.. maybe can use?
 

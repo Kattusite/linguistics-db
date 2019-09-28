@@ -1,8 +1,18 @@
 """Define the different possible datasets that we can query, and some common operations
-for datasets"""
+for datasets.
+
+Defines & initializes all of the TinyDB instances that the app will be using.
+
+A note on terminology:
+    A "dataset" is the json/dictionary representation of the data, whereas
+    a "database" is the TinyDB instance this raw JSON data underlies.
+
+"""
 
 import json
+import tinydb
 from . import const
+
 
 # See data/const.py for relevant constants (e.g. dataset names)
 DATASET_PATH = const.DATASET_PATH
@@ -10,6 +20,24 @@ datasetNames = const.datasetNames
 
 # The datasets themselves, uninitialized until needed
 datasets = None
+
+def initDatabases():
+    """Initialize the databases for this application"""
+    global databases
+
+    # Do nothing if DBs already initialized
+    if databases is not None:
+        return
+
+    databases = {
+        dataset: tinydb.TinyDB(DATASET_PATH.format(dataset, "%s.json" % dataset)) for dataset in datasetNames
+    }
+
+# The TinyDB database instances for each dataset
+# TODO: Check if I need to defer the init() until absolutely needed like w/ datasets
+databases = None
+#initDatabases()
+
 
 def initDatasets():
     """Intialize the datasets when they are needed"""

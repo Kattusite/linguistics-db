@@ -311,7 +311,6 @@ def createLangList(results, reply, hideHeaders):
 
 
 
-
 # Deprecated.. just here in case I mess up too badly
 def createOldLangList(results, reply, hideHeaders):
     header = "" if hideHeaders else str(len(result)) + " languages " + reply

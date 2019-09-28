@@ -1,9 +1,12 @@
-import language, tinydb
-import query as Query
-from data import const
+import json
+import tinydb
+
+from . import query as Query
+from . import language
+from data import const, selectors
 
 """Querier.py defines the functions needed to take in a POST request from the
-frontend, and translate the fields of this request into a TinyDB query.
+frontend, and translate the fields of this request's form into a TinyDB query.
 This query will then be executed, and its results will be processed in the
 manner specified by the form fields. Finally, a status code will be returned
 to indicate the status of the query, and a response body will be returned
@@ -14,17 +17,108 @@ QUORUM_THRESHOLD = 0.5
 class QuorumError(RuntimeError):
     pass
 
-def dbFromDataset(dataset):
-    """Given the name of a dataset, return a TinyDB instance representing that
-    dataset's complete data."""
-    # This function may be unnecessary (?)
-    filename = dataset + ".json"
-    return const.DATASET_PATH.format(dataset, filename)
+def queriesFromRequest(request):
+    """Given an XHR request from the frontend, return a list of Query objects,
+    one for each query specified in the XHR request"""
+
+    form = request.form
+
+    queryDatas = json.loads(form["payload"])
+
+    """To make a query, we might need:
+    * Type          (String, Num, Bool, etc.)
+    * Property      (e.g. "num consonants")
+    * Mode          (e.g. GT, LT, etc.)
+    * k             (e.g. 0, 1, 2, 3, ...)
+    * ls            (e.g. [p, t, k])
+    * desc          (optional - e.g. "have {mode} {k} of {property}")
+    * value         (e.g. "Nigeria", False)
+
+    Currently the XHR contains absolutely none of these fields.
+    Instead it has mode, selList, sel, trait, reply
+
+    Maybe we can put some info (e.g. type) into selectors.py and infer the rest...
+
+    """
+
+    queries = []
+    for queryData in queryDatas:
+
+        getData = lambda key: None if key not in queryData else queryData[key]
+
+        # Read fields from request
+        trait   = getData("trait")
+        mode    = getData("mode")
+        ls      = getData("selList")
+        value   = getData("sel")
+        k       = getData("k")
+        if k is not None:
+            k = int(k)
+
+        # TODO: We have already implemented some functionality for generating
+        # the replies from descriptions serverside, but are overriding all this
+        # functionality by setting the desc exactly as provided by the client
+        desc    = getData("reply")
+
+        # Get required data from selector
+        selector = selectors.SELECTORS_DICT[trait]
+
+        type = selector[selectors.TYPE]
+        property = selector[selectors.PROPERTY]
+
+        # Some traits are special, and have parameterized properties.
+        # We must supply the parameter (which is passed in as the "sel" param of the request)
+        if "{value}" in property:
+            property = property.format(**{"value": value})
+
+        # TODO: We must translate some of the fields of some of the requests
+        # into the form they are stored in the database.
+        # For example, consonant class selector:
+        #  "at least one of any voicing, palatal, plosive"
+
+        # If we detect that the selList is of a "special" form like this,
+        # possibly by examining the "trait" field,
+
+        # Use the "phonemes" package to translate these special fields into
+        # lists of phonemes to query against
+
+
+        # Call the appropriate constructor for a query of the given type
+        query = None
+        if type == Query.LIST:
+            query = Query.List(property, mode, k, ls, desc=desc)
+        elif type == Query.NUM:
+            query = Query.Num(property, mode, k, desc=desc)
+        elif type == Query.STRING:
+            query = Query.String(property, mode, value, desc=desc)
+        elif type == Query.BOOL:
+            query = Query.Bool(property, value, desc=desc)
+        elif type == Query.ALWAYS:
+            query = Query.Always()
+        elif type == Query.NEVER:
+            query = Query.Never()
+
+        queries.append(query)
+
+    return queries
+
+    # NOTE about special cases:
+    # There are some requests that are "special cases", where the frontend UI
+    # lies about how the data is really represented.
+    # e.g. Metaclasses are really simultaneous consonant/vowel queries.
+    #   maybe define a separate Query() TYPE = "phoneme" to hardcode this functionality?
+    # e.g. PHONEME_INVENTORY_SIZE and CONSONANT_ARTICULATION are aliases for some other type
+    # For now let's add special cases for these?
+
+    # Idea: Write custom tinydb.test() methods to combine e.g. vowels + consonants.
+    # This will take care of the metaclasses issue.
+
+
 
 def handleQueries(queries, db):
-    # TODO: How are results of different queries merged together?
-    allResults = [handleQuery(q, db) for q in queries]
-    return allResults
+    """Execute each query in queries and return a list of Matches objects indicating
+    the results of running all queries."""
+    return [handleQuery(q, db) for q in queries]
 
 def handleQuery(query, db):
     """handleQuery will run a single query from the frontend against the DB,
@@ -44,13 +138,4 @@ def handleQuery(query, db):
     if len(langsWithData) < QUORUM_THRESHOLD * len(db):
         raise QuorumError("Not enough languages had data for property '%s'" % query.property)
 
-    # TODO: Status
-    # status =
-    # return results, status
-
     return results
-
-def toLanguages(queryResults):
-    """Given a list of results from queries, return a list of Languages, one
-    for each language that appeared in the results."""
-    return [Language(result) for result in queryResults]

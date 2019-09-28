@@ -15,7 +15,7 @@ class Language:
         self.data = data
 
         # Ensure all required fields are provided
-        required = ["language", "student", "netid"]
+        required = ["name", "student", "netid"]
         for req in required:
             if req not in self.data:
                 raise InvalidDataError("The required language field %s was not provided" % req)
@@ -28,15 +28,15 @@ class Language:
         """Return a succinct representation of the language's name"""
         return "<{} language>".format(self.name())
 
-    def __getattr__(self, name):
+    def __getattr__(self, attr):
         """Get the attribute described by name, searching first in the top-level
         for the language, then in the language's data."""
-        if name in self:
-            return self.name
-        else if name in self.data:
-            return self.data.name
+        if attr in vars(self):
+            return vars(self)[attr]
+        elif attr in self.data:
+            return self.data[attr]
         else:
-            raise KeyError("Language has no attribute named '%s'" % name)
+            raise KeyError("Language has no attribute named '%s'" % attr)
 
     def __hash__(self):
         """Return a hash of this language based on the name of the language and
@@ -45,15 +45,15 @@ class Language:
 
     def name(self):
         """Return the name of this language"""
-        return self.data.language
+        return self.data["name"]
 
     def student(self):
         """Return the name of the student responsible for this language's data"""
-        return self.data.student
+        return self.data["student"]
 
     def netid(self):
         """Return the netid of the student responsible for this language's data"""
-        return self.data.netid
+        return self.data["netid"]
 
     def data(self):
         """Return the raw data for this language, as a dictionary"""

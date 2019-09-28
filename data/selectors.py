@@ -15,7 +15,7 @@
 #        for this field should be described in plain english
 #        E.G. "contain at least one of %s" where %s is [p,t,k]
 # REPLY_VARS:  Describes what variables are needed to fill the format string
-#              E.G. a list of strings, a single string, a mode string, a k-value
+#              E.G. a list of strings, a single const.STRING, a mode const.STRING, a k-value
 # FUNCTION: A function in the language class that is used to query for this trait.
 #           e.g. Language.matchConsonants
 # BOOL_BODY: Some representation of what content goes in the selector div
@@ -38,7 +38,7 @@
 # If the right-hand-side list is [], it is treated as the left-hand-side string itself
 
 from phonemes import metaclasses
-from lingdb.language import Language
+# from lingdb.language import Language
 from . import const
 
 # Dictionary keys
@@ -49,11 +49,13 @@ MODE            = "mode"
 BOOL_BODY       = "bool body"
 REPLY           = "reply"
 REPLY_VARS      = "reply vars"
-FUNCTION        = "function"
+FUNCTION        = "function"   # deprecated
 HTML_ID         = "html id"
 POPOVER_PREFIX  = "popover prefix"
 SELECT_WHAT     = "select what"
 SELECT_NAME     = "select name"
+PROPERTY        = "property"        # As required for Query() objects
+TYPE            = "type"            # To determine the type of Query() object
 
 # Valid modes
 # TODO: Change these names to make sense
@@ -87,10 +89,11 @@ CONSONANT = {
     MODE: PICK_K,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchConsonants,
     HTML_ID: "consonant-selector",
     POPOVER_PREFIX: "cbox-popover",
-    SELECT_WHAT: "consonants"
+    SELECT_WHAT: "consonants",
+    PROPERTY: const.K_CONSONANTS,
+    TYPE: const.LIST,
 }
 
 IPA_CONSONANT = {
@@ -100,10 +103,11 @@ IPA_CONSONANT = {
     MODE: PICK_K_IPA,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchConsonants,
     HTML_ID: "ipa-consonant-selector",
     POPOVER_PREFIX: "ipacbox-popover",
-    SELECT_WHAT: "consonants"
+    SELECT_WHAT: "consonants",
+    PROPERTY: const.K_CONSONANTS,
+    TYPE: const.LIST,
 }
 
 CONSONANT_CLASS = {
@@ -113,10 +117,11 @@ CONSONANT_CLASS = {
     MODE: PICK_CLASS,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchConsonantClasses,
     HTML_ID: "consonant-class-selector",
     POPOVER_PREFIX: "ccbox-popover",
-    SELECT_WHAT: "natural classes"
+    SELECT_WHAT: "natural classes",
+    PROPERTY: const.K_CONSONANTS,
+    TYPE: const.LIST,
 }
 
 VOWEL = {
@@ -126,10 +131,11 @@ VOWEL = {
     MODE: PICK_K,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchVowels,
     HTML_ID: "vowel-selector",
     POPOVER_PREFIX: "vbox-popover",
-    SELECT_WHAT: "vowels"
+    SELECT_WHAT: "vowels",
+    PROPERTY: const.K_VOWELS,
+    TYPE: const.LIST,
 }
 
 IPA_VOWEL = {
@@ -139,10 +145,11 @@ IPA_VOWEL = {
     MODE: PICK_K_IPA,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchVowels,
     HTML_ID: "ipa-vowel-selector",
     POPOVER_PREFIX: "ipavbox-popover",
-    SELECT_WHAT: "vowels"
+    SELECT_WHAT: "vowels",
+    PROPERTY: const.K_VOWELS,
+    TYPE: const.LIST,
 }
 
 VOWEL_CLASS = {
@@ -152,10 +159,11 @@ VOWEL_CLASS = {
     MODE: PICK_CLASS,
     REPLY: "contain %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchVowelClasses,
     HTML_ID: "vowel-class-selector",
     POPOVER_PREFIX: "vcbox-popover",
     SELECT_WHAT: "natural classes",
+    PROPERTY: const.K_VOWELS,
+    TYPE: const.LIST,
 }
 
 CONSONANT_PLACES = {
@@ -166,10 +174,11 @@ CONSONANT_PLACES = {
     BOOL_BODY: "3+ Places of Consonant Articulation",
     REPLY: "contain 3+ places of consonant articulation",
     REPLY_VARS: None,
-    FUNCTION: Language.containsConsonantPlaces,
     HTML_ID: "consonant-places-selector",
     POPOVER_PREFIX: None,
-    SELECT_WHAT: None
+    SELECT_WHAT: None,
+    PROPERTY: const.K_3_PLUS_PLACES,
+    TYPE: const.BOOL,
 }
 
 CONSONANT_MANNERS = {
@@ -180,10 +189,11 @@ CONSONANT_MANNERS = {
     BOOL_BODY: "2+ Manners of Consonant Articulation",
     REPLY: "contain 2+ manners of consonant articulation",
     REPLY_VARS: None,
-    FUNCTION: Language.containsConsonantManners,
     HTML_ID: "consonant-manners-selector",
     POPOVER_PREFIX: None,
-    SELECT_WHAT: None
+    SELECT_WHAT: None,
+    PROPERTY: const.K_2_PLUS_MANNERS,
+    TYPE: const.BOOL,
 }
 
 CONSONANT_ARTICULATION = {
@@ -193,10 +203,11 @@ CONSONANT_ARTICULATION = {
     MODE: PICK_MULTI, # this is a hack - really really need to change all the MODEs
     REPLY: "contain %s %s %s of consonant articulation",
     REPLY_VARS: ["mode", "k", "sel"], # not selList
-    FUNCTION: Language.matchConsonantArticulation,
     HTML_ID: "consonant-articulation-selector",
     POPOVER_PREFIX: "ca-lbox-popover",
-    SELECT_WHAT: "articulation type"
+    SELECT_WHAT: "articulation type",
+    PROPERTY: "num consonant {value}", # WARNING: This is not currently supported - need some way to decide which to query
+    TYPE: const.NUM,
 }
 
 VOWEL_TYPES = {
@@ -206,10 +217,11 @@ VOWEL_TYPES = {
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s vowels",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchVowelType,
     HTML_ID: "vowel-type-selector",
     POPOVER_PREFIX: "vt-lbox-popover",
-    SELECT_WHAT: "vowel type"
+    SELECT_WHAT: "vowel type",
+    PROPERTY: const.K_VOWEL_TYPES,
+    TYPE: const.LIST,
 }
 
 PHONEME_INVENTORY_SIZE = {
@@ -219,10 +231,11 @@ PHONEME_INVENTORY_SIZE = {
     MODE: PICK_MULTI, # this is a hack - really really need to change all the MODEs
     REPLY: "have a phoneme inventory with %s %s %s",
     REPLY_VARS: ["mode", "k", "sel"], # not selList
-    FUNCTION: Language.matchPhonemeInventorySize,
     HTML_ID: "phoneme-inventory-size-selector",
     POPOVER_PREFIX: "pi-lbox-popover",
-    SELECT_WHAT: "phoneme type"
+    SELECT_WHAT: "phoneme type",
+    PROPERTY: "num {value}", # WARNING: This is not currently supported - need some way to decide which to query
+    TYPE: const.NUM,
 }
 
 COMPLEX_CONSONANTS = {
@@ -233,10 +246,11 @@ COMPLEX_CONSONANTS = {
     BOOL_BODY: "Complex Consonants",
     REPLY: "contain complex consonants",
     REPLY_VARS: None,
-    FUNCTION: Language.containsComplexConsonants,
     HTML_ID: "complex-consonants-selector",
     POPOVER_PREFIX: None,
-    SELECT_WHAT: None
+    SELECT_WHAT: None,
+    PROPERTY: const.K_COMPLEX_CONSONANTS,
+    TYPE: const.BOOL,
 }
 
 TONE = {
@@ -247,10 +261,11 @@ TONE = {
     BOOL_BODY: 'Tone (Including "Pitch Accent")',
     REPLY: "have tone",
     REPLY_VARS: None,
-    FUNCTION: Language.containsTone,
     HTML_ID: "tone-selector",
     POPOVER_PREFIX: None,
-    SELECT_WHAT: None
+    SELECT_WHAT: None,
+    PROPERTY: const.K_TONE,
+    TYPE: const.BOOL,
 }
 
 STRESS = {
@@ -261,10 +276,11 @@ STRESS = {
     BOOL_BODY: "Predictable Stress",
     REPLY: "have stress",
     REPLY_VARS: None,
-    FUNCTION: Language.containsStress,
     HTML_ID: "stress-selector",
     POPOVER_PREFIX: None,
-    SELECT_WHAT: None
+    SELECT_WHAT: None,
+    PROPERTY: const.K_STRESS,
+    TYPE: const.BOOL,
 }
 
 SYLLABLES = {
@@ -274,10 +290,11 @@ SYLLABLES = {
     MODE: PICK_MULTI,
     REPLY: "use %s %s of the syllable structures %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchSyllable,
     HTML_ID: "syllable-selector",
     POPOVER_PREFIX: "s-lbox-popover",
-    SELECT_WHAT: "syllables"
+    SELECT_WHAT: "syllables",
+    PROPERTY: const.K_SYLLABLES,
+    TYPE: const.LIST,
 }
 
 MORPHOLOGY = {
@@ -287,10 +304,11 @@ MORPHOLOGY = {
     MODE: PICK_MULTI,
     REPLY: "use %s %s of the morphological types %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchMorphologicalType,
     HTML_ID: "morphological-selector",
     POPOVER_PREFIX: "m-lbox-popover",
-    SELECT_WHAT: "morphological type"
+    SELECT_WHAT: "morphological type",
+    PROPERTY: const.K_MORPHOLOGICAL_TYPE,
+    TYPE: const.LIST,
 }
 
 WORD_FORMATION = {
@@ -300,10 +318,11 @@ WORD_FORMATION = {
     MODE: PICK_MULTI,
     REPLY: "use %s %s of %s to form words",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchWordFormation,
     HTML_ID: "word-formation-selector",
     POPOVER_PREFIX: "wf-lbox-popover",
-    SELECT_WHAT: "word formation"
+    SELECT_WHAT: "word formation",
+    PROPERTY: const.K_WORD_FORMATION,
+    TYPE: const.LIST,
 }
 
 # These two dicts are now deprecated. Delete once sure they aren't needed.
@@ -337,10 +356,11 @@ FORMATION = {
     MODE: PICK_ONE,
     REPLY: "use %s strategies to form words",
     REPLY_VARS: ["sel"],
-    FUNCTION: Language.hasFormationFreq,
     HTML_ID: "formation-freq-selector",
     POPOVER_PREFIX: "ff-lbox-popover",
-    SELECT_WHAT: "frequency"
+    SELECT_WHAT: "frequency",
+    PROPERTY: const.K_WORD_FORMATION_FREQ,
+    TYPE: const.STRING, #TODO Double check this is a string not a list
 }
 
 WORD_ORDER = {
@@ -350,10 +370,11 @@ WORD_ORDER = {
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s word orders",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchWordOrder,
     HTML_ID: "word-order-selector",
     POPOVER_PREFIX: "wo-lbox-popover",
-    SELECT_WHAT: "word order"
+    SELECT_WHAT: "word order",
+    PROPERTY: const.K_WORD_ORDER,
+    TYPE: const.LIST,
 }
 
 # The following two dicts are now deprecated. Remove once sure not needed
@@ -386,10 +407,11 @@ HEADEDNESS = {
     MODE: PICK_MULTI,
     REPLY: "are %s %s of %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchHeadedness,
     HTML_ID: "headedness-selector",
     POPOVER_PREFIX: "h-lbox-popover",
-    SELECT_WHAT: "headedness"
+    SELECT_WHAT: "headedness",
+    PROPERTY: const.K_HEADEDNESS,
+    TYPE: const.LIST,
 }
 
 CASE = {
@@ -399,10 +421,11 @@ CASE = {
     MODE: PICK_ONE,
     REPLY: "have %s case",
     REPLY_VARS: ["sel"],
-    FUNCTION: Language.hasCase,
     HTML_ID: "case-selector",
     POPOVER_PREFIX: "c-lbox-popover",
-    SELECT_WHAT: "case"
+    SELECT_WHAT: "case",
+    PROPERTY: const.K_CASE,
+    TYPE: const.STRING,
 }
 
 AGREEMENT = {
@@ -412,10 +435,11 @@ AGREEMENT = {
     MODE: PICK_ONE,
     REPLY: "have %s agreement",
     REPLY_VARS: ["sel"],
-    FUNCTION: Language.hasAgreement,
     HTML_ID: "agreement-selector",
     POPOVER_PREFIX: "a-lbox-popover",
-    SELECT_WHAT: "agreement"
+    SELECT_WHAT: "agreement",
+    PROPERTY: const.K_AGREEMENT,
+    TYPE: const.STRING,
 }
 
 METACLASS = {
@@ -425,10 +449,11 @@ METACLASS = {
     MODE: PICK_MULTI,
     REPLY: "have %s %s phoneme that is %s",
     REPLY_VARS: ["mode", "k", "selList"],
-    FUNCTION: Language.matchMetaclasses,
     HTML_ID: "metaclass-selector",
     POPOVER_PREFIX: "mc-lbox-popover",
-    SELECT_WHAT: "metaclasses"
+    SELECT_WHAT: "metaclasses",
+    PROPERTY: [const.K_CONSONANTS, const.K_VOWELS], # TODO: This is an inferred type and can't be used normally
+    TYPE: const.LIST,
 }
 
 # The order of this list determines the order in which traits will appear in the
@@ -463,4 +488,4 @@ SELECTORS = [
 SELECTORS_DICT = { sel[HTML_ID] : sel for sel in SELECTORS }
 
 # function mappings used by lingdb_client.handleQuery()
-function_map = { sel[HTML_ID]: sel[FUNCTION] for sel in SELECTORS }
+# function_map = { sel[HTML_ID]: sel[FUNCTION] for sel in SELECTORS }
