@@ -4,6 +4,7 @@ import tinydb
 from . import query as Query
 from . import language
 from data import const, selectors
+from phonemes import vowels, consonants, metaclasses
 
 """Querier.py defines the functions needed to take in a POST request from the
 frontend, and translate the fields of this request's form into a TinyDB query.
@@ -71,17 +72,15 @@ def queriesFromRequest(request):
         if "{value}" in property:
             property = property.format(**{"value": value})
 
-        # TODO: We must translate some of the fields of some of the requests
-        # into the form they are stored in the database.
-        # For example, consonant class selector:
-        #  "at least one of any voicing, palatal, plosive"
-
-        # If we detect that the selList is of a "special" form like this,
-        # possibly by examining the "trait" field,
-
-        # Use the "phonemes" package to translate these special fields into
-        # lists of phonemes to query against
-
+        # Some traits signify queries over special "classes" of phonemes,
+        # and we must translate these class descriptions into concrete lists
+        # of phonemes
+        if trait == selectors.CONSONANT_CLASS[selectors.HTML_ID]:
+            ls = consonants.getGlyphsFromClasses(ls)
+        elif trait == selectors.VOWEL_CLASS[selectors.HTML_ID]:
+            ls = vowels.getGlyphsFromClasses(ls)
+        elif trait == selectors.METACLASS[selectors.HTML_ID]:
+            ls = metaclasses.getGlyphsFromClasses(ls)
 
         # Call the appropriate constructor for a query of the given type
         query = None

@@ -27,7 +27,8 @@
 #                 and cells generated for popovers related to this trait.
 # SELECT_WHAT: A string like "phonemes" used in the header of popovers to indicate
 #              what the general type of "thing" being selected actually is.
-
+# PROPERTY: The property of the language to run DB queries against
+# TYPE: The type of Query() object to construct
 
 # Format for the DICT: entries...
 # Dictionaries for use in csvtojson.parsePhrase()
