@@ -11,6 +11,7 @@ data = [
         "netid": "",
         "student": "",
         "consonants": ["p", "t", "k", "b", "d", "g", "m", "n"],
+        "vowels": ["i", "o", "u"],
         "stress": True,
         "tone": False,
         "country": "America",
@@ -21,6 +22,7 @@ data = [
         "netid": "",
         "student": "",
         "consonants": ["k", "b", "d", "g", "m", "n", "l", "r", "s"],
+        "vowels": ["a", "e", "i", "o", "u"],
         "stress": False,
         "tone": False,
         "country": "France",
@@ -31,6 +33,7 @@ data = [
         "netid": "",
         "student": "",
         "consonants": ["p", "t", "m", "n", "j", "v", "z", "x", "w", "q"],
+        "vowels": ["a", "e", "i"],
         "stress": True,
         "tone": True,
         "country": "Spain",
@@ -117,6 +120,15 @@ class TestQuery(unittest.TestCase):
     def testList2(self):
         q = query.List("consonants", query.LT, 3, ["p", "t", "k"])
         self.queryHelper(q, [["k"], ["p", "t"]])
+
+    # Test meta-lists (concatenation of several single-property lists)
+    def testMetalist1(self):
+        q = query.List(["consonants", "vowels"], query.LT, 3, ["a", "e", "p", "b"])
+        self.queryHelper(q, [["p", "b"]])
+
+    def testMetalist2(self):
+        q = query.List(["consonants", "vowels"], query.GEQ, 3, ["a", "e", "p", "b"])
+        self.queryHelper(q, [["a", "e", "b"], ["a", "e", "p"]])
 
     # Bool queries
     def testBool1(self):

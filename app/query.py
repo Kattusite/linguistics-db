@@ -145,12 +145,6 @@ class Query:
     def __init__(self):
         self.descStr = "<Base Query - undefined parameters>"
 
-        # TODO: Insert value into the property name if possible
-        # e.g. property == "num {value}" ==> "num consonants"
-        # TODO: must call super.__init__() from every init
-        # if self.property and self.value:
-        #     self.property = self.property.format({"value": self.value})
-
     def __str__(self):
         """Return a human-readable description of what it would take for this
         query to be satisfied; for example, a List query might look like:
@@ -233,16 +227,7 @@ class List(Query):
 
         # Special case for "meta" properties consisting of several concatenated properties
         if type(self.property) == type([]):
-            matches = db.search(Lang.test(self.metatest))
-            matchingLangs = [Language(m) for m in matches]
-
-            causes = []
-            for lang in matchingLangs:
-                lgCauses = []
-                for metaprop in self.property:
-                    lgCauses += intersect(getattr(lang, self.property), self.ls)
-                causes.append(lgCauses)
-            return createMatches(matchingLangs, causes, db, self)
+            return self.metaquery(db)
 
         matches =  db.search(Lang[self.property].test(self.test))
         matchingLangs = [Language(m) for m in matches]
@@ -254,6 +239,34 @@ class List(Query):
         # Combine each matching langage with its cause
         return createMatches(matchingLangs, causes, db, self)
 
+    def metaquery(self, db):
+        """If our property is of type list, we would like to concatenate the values
+        of all of the properties requested, and then run the query on the resulting
+        aggregate list.
+        """
+
+        if type(self.property) != type([]):
+            raise TypeError("List metaqueries must have property of type list (not %s)" % type(self.property))
+
+        # This is an ugly & potentially inefficient solution but it works
+        allLangs = [Language(a) for a in db.all()]
+
+        matchingLangs = []
+        causes = []
+        for lang in allLangs:
+            # Merge together the lists of all specified properties, removing duplicates
+            metaset = set.union(*[set(getattr(lang, metaprop)) for metaprop in self.property])
+
+            # Find overlap with query's specified ls
+            intersection = metaset.intersection(set(self.ls))
+
+            # If query conditions are satisfied, this lang is a match!
+            if compareByMode(self.mode, len(intersection), self.k):
+                matchingLangs.append(lang)
+                causes.append(list(intersection))
+
+        return createMatches(matchingLangs, causes, db, self)
+
     def test(self, ls):
         """A method to be passed to TinyDB's .test() method to check whether a
         given list ls matches the parameters defined by this query."""
@@ -261,15 +274,15 @@ class List(Query):
         intersection = intersect(ls, self.ls)
         return compareByMode(self.mode, len(intersection), self.k)
 
-    def metatest(self, lg):
-        """A method to be passd to TinyDB's .test() method to check whether a
-        given language lg matches the parameters defined by this special query."""
-
-        sets = [set(lg[metaprop]) for metaprop in self.property]
-        features = set.union(*sets)
-        intersection = intersect(ls, self.ls)
-
-        return compareByMode(self.mode, len(intersection), self.k)
+    # def metatest(self, lg):
+    #     """A method to be passd to TinyDB's .test() method to check whether a
+    #     given language lg matches the parameters defined by this special query."""
+    #
+    #     sets = [set(lg[metaprop]) for metaprop in self.property]
+    #     features = set.union(*sets)
+    #     intersection = intersect(ls, self.ls)
+    #
+    #     return compareByMode(self.mode, len(intersection), self.k)
 
 class Num(Query):
     """Query.Num is a class defining the properties of a numerical query from the
