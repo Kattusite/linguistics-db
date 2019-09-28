@@ -341,6 +341,9 @@ class String(Query):
         to the provided value using the given mode.
         Only == and != are supported as modes for string based queries."""
 
+        if mode is None:
+            mode = EQ
+
         if mode not in [ EQ, NEQ ]:
             raise InvalidModeError("'%s' is not a valid mode for string queries!" % mode)
 

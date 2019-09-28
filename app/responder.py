@@ -44,6 +44,8 @@ A is the implicant, and B is the implicand.
 import json
 from jinja2 import Template
 
+from phonemes import isPhoneme
+
 #############################################################################
 #                           Join Modes
 #############################################################################
@@ -107,6 +109,7 @@ def generateHTML(results, listMode=False):
     n = len(results) # which equals the number of queries
 
     # TODO move long pieces of HTML into separate directory e.g. templates?
+    # TODO oneQueryHTML should not have a col-md-4 - makes no sense
 
     oneQueryHTML = """
     {{ reply }}
@@ -147,7 +150,7 @@ def generateHTML(results, listMode=False):
     <br>
     <hr>
 
-    <h4>Implicational<h4>
+    <h4>Implicational</h4>
     {{ abReply }}
     <br>
     {{ baReply }}
@@ -205,6 +208,20 @@ def generateHTML(results, listMode=False):
     else:
         raise ValueError("Number of concurrent queries must be 1 or 2 (not %d)" % n)
 
+    # Iterate over all results and make the causes "prettier" to render
+    for matches in results:
+        for match in matches:
+
+            # Replace None causes with the empty string
+            if match.cause is None:
+                match.cause = ""
+
+            # Replace list causes with a prettier string.
+            # Phonemes are enclosed in /../ and brackets, quotation marks are removed
+            if type(match.cause) == type([]):
+                match.cause = ["/%s/" % p if isPhoneme(p) else p for p in match.cause ]
+                match.cause = ", ".join(match.cause)
+
     replies = generateRepliesHTML(results)
     replies["results"] = results # not sure if jinja needs this to be passed to use it in the template
 
@@ -232,6 +249,12 @@ def generateRepliesHTML(results):
         intersectionReply
         abReply
         baReply
+
+        aNum
+        aDesc
+
+        bNum
+        bDesc
     """
 
     n = len(results)
@@ -247,6 +270,12 @@ def generateRepliesHTML(results):
         replies["unionReply"] = generateReplyHTML(results, UNION)
         replies["abReply"] = generateReplyHTML(results, A_IMPLIES_B)
         replies["baReply"] = generateReplyHTML(results, B_IMPLIES_A)
+
+        # TODO: add missing fields
+        replies["aNum"] = len(results[0])
+        replies["bNum"] = len(results[1])
+        replies["aDesc"] = results[0].query.desc()
+        replies["bDesc"] = results[1].query.desc()
     else:
         raise ValueError("Number of concurrent queries must be 1 or 2 (not %d)" % n)
 

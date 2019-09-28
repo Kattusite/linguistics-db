@@ -89,8 +89,8 @@ MERGE = "merge"
 # Possible keys for JSON entry for each language
 
 K_NETID                 = "netid"
-K_NAME                  = "name"
-K_LANGUAGE              = "language"
+K_NAME                  = "student"  # formerly "name"
+K_LANGUAGE              = "name"     # formerly "language"
 K_NUM_VOWELS            = "num vowels"
 K_NUM_CONSONANTS        = "num consonants"
 K_NUM_PHONEMES          = "num phonemes"

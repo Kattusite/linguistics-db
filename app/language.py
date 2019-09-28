@@ -18,7 +18,7 @@ class Language:
         required = ["name", "student", "netid"]
         for req in required:
             if req not in self.data:
-                raise InvalidDataError("The required language field %s was not provided" % req)
+                raise InvalidDataError("The required language field '%s' was not provided in data: %s" % (req, data))
 
     def __repr__(self):
         """Return a detailed representation of the language's entire data"""

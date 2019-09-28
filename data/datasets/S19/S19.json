@@ -1,7 +1,7 @@
 [
     {
-        "language": "Aguaruna",
-        "name": "7ce0cf60039d68ed",
+        "name": "Aguaruna",
+        "student": "7ce0cf60039d68ed",
         "netid": "60ecbeff6022767b",
         "num consonants": 15,
         "num vowels": 11,
@@ -64,8 +64,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Anong",
-        "name": "5bd47effc0226456",
+        "name": "Anong",
+        "student": "5bd47effc0226456",
         "netid": "c6d59748cd9551cf",
         "num consonants": 47,
         "num vowels": 45,
@@ -155,8 +155,8 @@
         "case": "none"
     },
     {
-        "language": "Arapaho",
-        "name": "00062e1b23a2a2a0",
+        "name": "Arapaho",
+        "student": "00062e1b23a2a2a0",
         "netid": "fa6c1f39227d52a9",
         "num consonants": 12,
         "num vowels": 16,
@@ -218,8 +218,8 @@
         "case": "none"
     },
     {
-        "language": "Bangime",
-        "name": "9ddba3e576be2e0d",
+        "name": "Bangime",
+        "student": "9ddba3e576be2e0d",
         "netid": "f063cab997da29ca",
         "num consonants": 22,
         "num vowels": 28,
@@ -291,8 +291,8 @@
         "case": "none"
     },
     {
-        "language": "Bardi",
-        "name": "4c981ae1deffd93d",
+        "name": "Bardi",
+        "student": "4c981ae1deffd93d",
         "netid": "341dc9f921db159b",
         "num consonants": 17,
         "num vowels": 7,
@@ -370,8 +370,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Berbice Dutch Creole",
-        "name": "2ffcf8bc09a1e935",
+        "name": "Berbice Dutch Creole",
+        "student": "2ffcf8bc09a1e935",
         "netid": "6072bb113d3578e1",
         "num consonants": 14,
         "num vowels": 6,
@@ -436,8 +436,8 @@
         "case": "none"
     },
     {
-        "language": "Bilinarra",
-        "name": "ab56e65da30e203a",
+        "name": "Bilinarra",
+        "student": "ab56e65da30e203a",
         "netid": "ad09179460bfaf3b",
         "num consonants": 23,
         "num vowels": 3,
@@ -500,8 +500,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Domari",
-        "name": "8891734ad4fa6d34",
+        "name": "Domari",
+        "student": "8891734ad4fa6d34",
         "netid": "ef7abcc70e45a779",
         "num consonants": 34,
         "num vowels": 14,
@@ -591,8 +591,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Emai",
-        "name": "6342f227aa730562",
+        "name": "Emai",
+        "student": "6342f227aa730562",
         "netid": "a9a13527e03f2b16",
         "num consonants": 28,
         "num vowels": 12,
@@ -669,8 +669,8 @@
         "case": "none"
     },
     {
-        "language": "Gayo",
-        "name": "2ffea8992986a0fd",
+        "name": "Gayo",
+        "student": "2ffea8992986a0fd",
         "netid": "52fbd8cf08c20587",
         "num consonants": 23,
         "num vowels": 13,
@@ -749,8 +749,8 @@
         "case": "none"
     },
     {
-        "language": "Goemai",
-        "name": "aa216d1c14c49f05",
+        "name": "Goemai",
+        "student": "aa216d1c14c49f05",
         "netid": "082412a9ff7bb9bf",
         "num consonants": 28,
         "num vowels": 11,
@@ -827,8 +827,8 @@
         "case": "none"
     },
     {
-        "language": "Hainan Cham",
-        "name": "75d57221c8114240",
+        "name": "Hainan Cham",
+        "student": "75d57221c8114240",
         "netid": "8376dfec4d7e2298",
         "num consonants": 19,
         "num vowels": 19,
@@ -896,8 +896,8 @@
         "case": "none"
     },
     {
-        "language": "Jahai",
-        "name": "0eda54a17aa43ff5",
+        "name": "Jahai",
+        "student": "0eda54a17aa43ff5",
         "netid": "bc13397ac7f70cc8",
         "num consonants": 20,
         "num vowels": 16,
@@ -969,8 +969,8 @@
         "case": "none"
     },
     {
-        "language": "Jingulu",
-        "name": "d9060e2bda3a6e41",
+        "name": "Jingulu",
+        "student": "d9060e2bda3a6e41",
         "netid": "0172a6cdc6b99d5f",
         "num consonants": 18,
         "num vowels": 10,
@@ -1043,8 +1043,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Kawaiisu",
-        "name": "fae8bde4d944594e",
+        "name": "Kawaiisu",
+        "student": "fae8bde4d944594e",
         "netid": "566f9d8af046e159",
         "num consonants": 25,
         "num vowels": 7,
@@ -1116,8 +1116,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Kilmeri",
-        "name": "f3328481e71d30b1",
+        "name": "Kilmeri",
+        "student": "f3328481e71d30b1",
         "netid": "5d83f5a13f45acdf",
         "num consonants": 12,
         "num vowels": 8,
@@ -1182,8 +1182,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Kokota",
-        "name": "9e543bae63e5e98c",
+        "name": "Kokota",
+        "student": "9e543bae63e5e98c",
         "netid": "c87a3cffd87252d3",
         "num consonants": 22,
         "num vowels": 5,
@@ -1248,8 +1248,8 @@
         "case": "none"
     },
     {
-        "language": "Kulina",
-        "name": "a212fd6b583b3f7e",
+        "name": "Kulina",
+        "student": "a212fd6b583b3f7e",
         "netid": "b259490ef3ec6258",
         "num consonants": 16,
         "num vowels": 4,
@@ -1321,8 +1321,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Magar",
-        "name": "b9d1942e85d0f05f",
+        "name": "Magar",
+        "student": "b9d1942e85d0f05f",
         "netid": "16970d0d38ee6355",
         "num consonants": 37,
         "num vowels": 10,
@@ -1392,8 +1392,8 @@
         "case": "other"
     },
     {
-        "language": "Maia",
-        "name": "27f339afcd5f7c05",
+        "name": "Maia",
+        "student": "27f339afcd5f7c05",
         "netid": "53e2e183e0682e34",
         "num consonants": 14,
         "num vowels": 5,
@@ -1457,8 +1457,8 @@
         "case": "none"
     },
     {
-        "language": "Majhi",
-        "name": "5f197a94c2715841",
+        "name": "Majhi",
+        "student": "5f197a94c2715841",
         "netid": "fe394f8bdaf89302",
         "num consonants": 29,
         "num vowels": 13,
@@ -1529,8 +1529,8 @@
         "case": "other"
     },
     {
-        "language": "Manchu",
-        "name": "44dc5bf2b58c8be0",
+        "name": "Manchu",
+        "student": "44dc5bf2b58c8be0",
         "netid": "d8705294429726b3",
         "num consonants": 19,
         "num vowels": 17,
@@ -1597,8 +1597,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Mongsen Ao",
-        "name": "0c243d50084437da",
+        "name": "Mongsen Ao",
+        "student": "0c243d50084437da",
         "netid": "08d2c67b1da3ebec",
         "num consonants": 27,
         "num vowels": 5,
@@ -1666,8 +1666,8 @@
         "case": "other"
     },
     {
-        "language": "Mungbam",
-        "name": "d581196874465b42",
+        "name": "Mungbam",
+        "student": "d581196874465b42",
         "netid": "dfe5c05840384b32",
         "num consonants": 23,
         "num vowels": 11,
@@ -1742,8 +1742,8 @@
         "case": "other"
     },
     {
-        "language": "Neverver",
-        "name": "0a9c3c46d0ed8990",
+        "name": "Neverver",
+        "student": "0a9c3c46d0ed8990",
         "netid": "2c83fbe3e7315f08",
         "num consonants": 26,
         "num vowels": 8,
@@ -1805,8 +1805,8 @@
         "case": "none"
     },
     {
-        "language": "Onondaga",
-        "name": "3cc638e85f4d269f",
+        "name": "Onondaga",
+        "student": "3cc638e85f4d269f",
         "netid": "36d0386b42c9f436",
         "num consonants": 10,
         "num vowels": 7,
@@ -1861,8 +1861,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Osage",
-        "name": "1a2c1803f93f7156",
+        "name": "Osage",
+        "student": "1a2c1803f93f7156",
         "netid": "872b0c5a7ac7c37f",
         "num consonants": 31,
         "num vowels": 8,
@@ -1929,8 +1929,8 @@
         "case": "none"
     },
     {
-        "language": "Pendau",
-        "name": "01941da20ee2074d",
+        "name": "Pendau",
+        "student": "01941da20ee2074d",
         "netid": "e09c678d855f7236",
         "num consonants": 19,
         "num vowels": 5,
@@ -1998,8 +1998,8 @@
         "case": "none"
     },
     {
-        "language": "Puyuma",
-        "name": "b2b275b335b276fe",
+        "name": "Puyuma",
+        "student": "b2b275b335b276fe",
         "netid": "5b2330c5dd994529",
         "num consonants": 18,
         "num vowels": 4,
@@ -2064,8 +2064,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Qiang",
-        "name": "c082c6bad7b33ff5",
+        "name": "Qiang",
+        "student": "c082c6bad7b33ff5",
         "netid": "440095b751008753",
         "num consonants": 37,
         "num vowels": 24,
@@ -2145,8 +2145,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Semelai",
-        "name": "7fded5bf05a81b40",
+        "name": "Semelai",
+        "student": "7fded5bf05a81b40",
         "netid": "4221c184650541ae",
         "num consonants": 32,
         "num vowels": 20,
@@ -2224,8 +2224,8 @@
         "case": "other"
     },
     {
-        "language": "Sierra Popoluca",
-        "name": "9174469e28c00715",
+        "name": "Sierra Popoluca",
+        "student": "9174469e28c00715",
         "netid": "67ccf39f9d3cf421",
         "num consonants": 12,
         "num vowels": 12,
@@ -2288,8 +2288,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Tamashek",
-        "name": "8cc2b7ef95a03d4b",
+        "name": "Tamashek",
+        "student": "8cc2b7ef95a03d4b",
         "netid": "d06f8e59347f7c8d",
         "num consonants": 33,
         "num vowels": 7,
@@ -2372,8 +2372,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Tommo So",
-        "name": "2d0a7c8d5db94ec5",
+        "name": "Tommo So",
+        "student": "2d0a7c8d5db94ec5",
         "netid": "82f515bbb46c586e",
         "num consonants": 17,
         "num vowels": 17,
@@ -2444,8 +2444,8 @@
         "case": "none"
     },
     {
-        "language": "Tundra Nenets",
-        "name": "739a5c0492e368dc",
+        "name": "Tundra Nenets",
+        "student": "739a5c0492e368dc",
         "netid": "2652c4f323e63c60",
         "num consonants": 26,
         "num vowels": 10,
@@ -2515,8 +2515,8 @@
         "case": "nominative/accusative"
     },
     {
-        "language": "Wangkajunga",
-        "name": "1986e91d4bf39560",
+        "name": "Wangkajunga",
+        "student": "1986e91d4bf39560",
         "netid": "a1667f10a46fedec",
         "num consonants": 17,
         "num vowels": 6,
@@ -2580,8 +2580,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Wardaman",
-        "name": "73d77337b8a0dc74",
+        "name": "Wardaman",
+        "student": "73d77337b8a0dc74",
         "netid": "b985ef274b6a6e0b",
         "num consonants": 17,
         "num vowels": 5,
@@ -2644,8 +2644,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Warrongo",
-        "name": "68a81f78d4e9f438",
+        "name": "Warrongo",
+        "student": "68a81f78d4e9f438",
         "netid": "a4732f20cc6a639f",
         "num consonants": 13,
         "num vowels": 4,
@@ -2706,8 +2706,8 @@
         "case": "ergative/absolutive"
     },
     {
-        "language": "Yimas",
-        "name": "6f65402a9150c21e",
+        "name": "Yimas",
+        "student": "6f65402a9150c21e",
         "netid": "7c74f93736568198",
         "num consonants": 12,
         "num vowels": 6,
@@ -2768,8 +2768,8 @@
         "case": "other"
     },
     {
-        "language": "Yuki",
-        "name": "ec94447ea1ca4bab",
+        "name": "Yuki",
+        "student": "ec94447ea1ca4bab",
         "netid": "bdf6a8e08642bca6",
         "num consonants": 25,
         "num vowels": 8,

@@ -1,7 +1,7 @@
 [
     {
-        "language": "All",
-        "name": "05f1beb3f3f3b8cb",
+        "name": "All",
+        "student": "05f1beb3f3f3b8cb",
         "netid": "4d339ddb8e8dd3cf",
         "num consonants": 999,
         "num vowels": 999,
@@ -143,8 +143,8 @@
         ]
     },
     {
-        "language": "None",
-        "name": "5fabb09715050a3d",
+        "name": "None",
+        "student": "5fabb09715050a3d",
         "netid": "2e634b914ee70722",
         "num consonants": 0,
         "num vowels": 0,

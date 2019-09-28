@@ -141,8 +141,19 @@ def handleQuery(query, db):
     # Perform a quorum check - did enough of the queried languages have data to
     # provide?
     Lang = tinydb.Query()
-    langsWithData = db.search(Lang[query.property].exists())
-    if len(langsWithData) < QUORUM_THRESHOLD * len(db):
-        raise QuorumError("Not enough languages had data for property '%s'" % query.property)
+
+    # if query.property isn't a list, make it a singleton list
+    properties = query.property
+    if type(properties) != type([]):
+        properties = [properties]
+
+    # query.property is a list of properties.
+    # For each property, check that enough languages have data.
+    # WARNING: This is a poor approximation in general, but works for our specific case.
+    # we really want to check that enough languages have data for EVERY property
+    for p in properties:
+        langsWithData = db.search(Lang[p].exists())
+        if len(langsWithData) < QUORUM_THRESHOLD * len(db):
+            raise QuorumError("Not enough languages had data for property '%s'" % query.property)
 
     return results

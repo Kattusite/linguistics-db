@@ -6,7 +6,7 @@
 # (or rewriting entirely), as this is far from the best way
 
 # Usage:
-# python -m data 
+# python -m data
 
 import csv, json, hashlib, re, sys
 from operator import itemgetter, attrgetter
@@ -110,7 +110,7 @@ def csvToJSON(datasetName):
         # print(json_obj)
 
     # Sort the array by language, then name, netid hashes (for convenience)
-    json_array = sorted(json_array, key=itemgetter("language", "name", "netid"))
+    json_array = sorted(json_array, key=itemgetter("name", "student", "netid"))
     return json_array
 
 

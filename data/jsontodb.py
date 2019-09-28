@@ -27,6 +27,8 @@ def convert(dataset):
         data = json.load(inFile)
 
         db = TinyDB(outPath, encoding="utf-8")
+        # Delete existing records
+        db.purge()
         for d in data:
             db.insert(d)
 
