@@ -17,7 +17,12 @@ def main():
         HTML = ""
         status = ""
         try:
+            print("handling queries...")
             results = querier.handleQueries(queries, db)
+            print("obtaining graph data...")
+            graphData = querier.graphData(results[0])
+            print("graph data:", graphData)
+            print("generating HTML...")
             HTML = responder.generateHTML(results)
             status = responder.INFO
         except querier.QuorumError as err:
@@ -29,7 +34,7 @@ def main():
             status = responder.DANGER
             print(err)
 
-        return responder.respond(HTML, status)
+        return responder.respond(HTML, status, data=graphData)
 
     # Handle normal GET requests
     return render_template('front.html')

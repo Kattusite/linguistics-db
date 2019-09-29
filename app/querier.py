@@ -1,6 +1,8 @@
 import json
 import tinydb
 
+from collections import Counter
+
 from . import query as Query
 from . import language
 from data import const, selectors, datasets
@@ -157,3 +159,30 @@ def handleQuery(query, db):
             raise QuorumError("Not enough languages had data for property '%s'" % query.property)
 
     return results
+
+def graphData(matches):
+    """Given the results of a single query, count up how many times a particular
+    cause has occurred, and return the results, encoded as JSON
+
+    For example, if we have:
+        English [p,t,k]
+        French  [p,t]
+        Spanish [p],
+
+    Return [
+        [p, 3],
+        [t, 2],
+        [k, 1],
+    ]
+
+    Note: Currently only list type data is supported. TODO: Add support for others later.
+    """
+
+    causes = []
+    for match in matches:
+        if type(match.cause) != type([]):
+            return []
+        causes += match.cause
+    counter = Counter(causes)
+    ret = counter.most_common()
+    return ret

@@ -53,6 +53,8 @@ function frontInit() {
 
   reloadPopovers();
   reloadTooltips();
+
+  initGraphs();
 }
 
 // Initialize trait selector divs by replacing the placeholder trait selectors
@@ -844,6 +846,7 @@ function callback(response) {
   // TODO: Remove hardcoded strings, put them in the constants js file
   var retCode = response["code"];
   var message = response["payload"];
+  var data = response["data"];
 
   // Make sure the results div is in the correct mode.
   var mode = `alert-${retCode}`;
@@ -853,6 +856,14 @@ function callback(response) {
   $("#results").html(message);
 
   reloadTooltips();
+
+  if (data != "") {
+    // TODO: Make these headers general.
+    headers = ["phoneme", "occurrences"];
+    options = {};
+
+    drawBarChart(data, headers, options)
+  }
 }
 
 /*****************************************************************************/

@@ -71,6 +71,7 @@ JOIN_MODES = [UNION, INTERSECTION, A_IMPLIES_B, B_IMPLIES_A]
 #############################################################################
 RET_CODE = "code"   # The key for return codes
 PAYLOAD = "payload" # The key for the payload
+DATA = "data"
 
 # What sort of message sort be displayed to the user?
 SUCCESS = "success"        # Green message
@@ -78,14 +79,22 @@ INFO = "info"              # Blue message
 WARN = "warning"           # Yellow message
 DANGER = "danger"          # Red message
 
-def respond(HTML, status):
+def respond(HTML, status, data=None):
     """Given a string of HTML content and a status code, return a dictionary
     as JSON containing the two fields.
 
     The JSON returned should be suitable to send directly back to the client
     for processing."""
 
-    return json.dumps({RET_CODE: status, PAYLOAD: HTML})
+    resp = {
+        RET_CODE: status,
+        PAYLOAD: HTML,
+    }
+
+    if data is not None:
+        resp[DATA] = data
+
+    return json.dumps(resp, ensure_ascii=False)
 
 def quorumErrorHTML(err):
     HTML = """
@@ -140,6 +149,9 @@ def generateHTML(results, listMode=False):
             </div>
         </div>
     </div>
+
+    <!-- Div to hold chart. TODO: make better -->
+    <div id="chart_div"></div>
     """
 
     twoQueryHTML = """
@@ -198,6 +210,9 @@ def generateHTML(results, listMode=False):
             </div>
         </div>
     </div>
+
+    <!-- Div to hold chart. TODO: make better -->
+    <div id="chart_div"></div>
     """
 
     rawHTML = ""
