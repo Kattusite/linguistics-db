@@ -840,6 +840,26 @@ var SELECTORS_DICT = {
                 "CCCCV",
                 "four onset"
             ],
+            "CCCCC coda": [
+                "VCCCCC",
+                "five coda"
+            ],
+            "CCCCC onset": [
+                "CCCCCV",
+                "five onset"
+            ],
+            "CCCCCC+ coda": [
+                "VCCCCCC",
+                "VCCCCCC+",
+                "six coda",
+                "six or more coda"
+            ],
+            "CCCCCC+ onset": [
+                "CCCCCCV",
+                "CCCCCCV+",
+                "six onset",
+                "six or more onset"
+            ],
             "V": [
                 "V",
                 "onsetless and codaless"

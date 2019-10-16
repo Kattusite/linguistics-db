@@ -3,3 +3,4 @@ app/app/__pycache__
 app/phonemes/__pycache__
 venv/
 *.pyc
+ttk.py

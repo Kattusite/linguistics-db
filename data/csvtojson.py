@@ -5,6 +5,9 @@
 # It would probably be worth streamlining significantly at some point
 # (or rewriting entirely), as this is far from the best way
 
+# Usage:
+# python -m data
+
 import csv, json, hashlib, re, sys
 from operator import itemgetter, attrgetter
 from phonemes import consonants, vowels, phonemes
@@ -107,7 +110,7 @@ def csvToJSON(datasetName):
         # print(json_obj)
 
     # Sort the array by language, then name, netid hashes (for convenience)
-    json_array = sorted(json_array, key=itemgetter("language", "name", "netid"))
+    json_array = sorted(json_array, key=itemgetter("name", "student", "netid"))
     return json_array
 
 
@@ -361,11 +364,11 @@ def matchAnyInList(str, lst):
 # if it is not None
 # Slight bug: Note that the anonymized files currently have \r\n line endings
 # instead of \n line endings, which causes minor annoyances when displaying CSVs,
-# but the parsing process is unaffected. 
+# but the parsing process is unaffected.
 def anonymize(csvReader, dataset, outFilename=None):
 
     if (outFilename):
-        outFile = open(DATASET_PATH.format(dataset, outFilename), "w", encoding="utf-8")
+        outFile = open(DATASET_PATH.format(dataset, outFilename), "w", newline='', encoding="utf-8")
         outCSV = csv.writer(outFile)
 
     dataDict = {}

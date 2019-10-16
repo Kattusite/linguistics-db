@@ -1,11 +1,13 @@
 [
     {
-        "netid": "4d339ddb8e8dd3cf",
-        "student": "05f1beb3f3f3b8cb",
+        "netid": "0ab23c3a343beb14",
+        "student": "b27379c9acc302c2",
         "name": "All",
-        "num consonants": 999,
-        "num vowels": 999,
-        "num phonemes": 999,
+        "country": "Everyland",
+        "language family": "Everyfamily",
+        "num consonants": 99,
+        "num vowels": 99,
+        "num phonemes": 99,
         "consonants": [
             "n",
             "t",
@@ -143,9 +145,65 @@
         ]
     },
     {
-        "netid": "2e634b914ee70722",
-        "student": "5fabb09715050a3d",
+        "netid": "9b371072e0f4ac15",
+        "student": "040ab5539b38474f",
+        "name": "English",
+        "country": "America",
+        "language family": "American",
+        "num consonants": 48,
+        "num vowels": 12,
+        "num phonemes": 60,
+        "consonants": [
+            "n",
+            "j",
+            "l",
+            "b",
+            "g",
+            "ʔ",
+            "tʃ",
+            "ɲ",
+            "ʈʰ",
+            "ɟʰ",
+            "gʰ",
+            "ɢʰ",
+            "ɸ",
+            "ⱱ",
+            "ç"
+        ],
+        "vowels": [
+            "e",
+            "o",
+            "u",
+            "ɨ",
+            "ɵ",
+            "œ",
+            "aᶠ",
+            "ɘ",
+            "ɔ",
+            "ɶ"
+        ],
+        "num consonant places": 9,
+        "num consonant manners": 8,
+        "vowel types": [
+            "breathy",
+            "triphthongs"
+        ],
+        "complex consonants": true,
+        "tone": true,
+        "stress": true,
+        "syllables": [
+            "C onset",
+            "CCC onset",
+            "CCCC onset",
+            "CCC coda"
+        ]
+    },
+    {
+        "netid": "626b919096d81a1b",
+        "student": "bbe219878d6b0cb0",
         "name": "None",
+        "country": "Noneland",
+        "language family": "Nonefamily",
         "num consonants": 0,
         "num vowels": 0,
         "num phonemes": 0,
@@ -158,7 +216,7 @@
         "vowel types": [
             null
         ],
-        "complex consonants": true,
+        "complex consonants": false,
         "tone": false,
         "stress": false,
         "syllables": [
