@@ -783,10 +783,11 @@ def exportJavascript():
     VAR_NAME = "SELECTORS_DICT"
 
     # Remove the functions because they aren't transferrable to JS
+    # Note the functions have been removed so this step is no longer necessary
     dict = copy.deepcopy(selectors.SELECTORS_DICT)
     for key in dict:
         val = dict[key]
-        del val[selectors.FUNCTION]
+        # del val[selectors.FUNCTION]
 
     VAR_DATA = json.dumps(dict, sort_keys=True, indent=4)
 

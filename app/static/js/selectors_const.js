@@ -18,12 +18,14 @@ var SELECTORS_DICT = {
         "mode": "pick one",
         "multi": false,
         "popover prefix": "a-lbox-popover",
+        "property": "agreement",
         "reply": "have %s agreement",
         "reply vars": [
             "sel"
         ],
         "select name": "Agreement:",
-        "select what": "agreement"
+        "select what": "agreement",
+        "type": "String"
     },
     "case-selector": {
         "dict": {
@@ -43,12 +45,14 @@ var SELECTORS_DICT = {
         "mode": "pick one",
         "multi": false,
         "popover prefix": "c-lbox-popover",
+        "property": "case",
         "reply": "have %s case",
         "reply vars": [
             "sel"
         ],
         "select name": "Case:",
-        "select what": "case"
+        "select what": "case",
+        "type": "String"
     },
     "complex-consonants-selector": {
         "bool body": "Complex Consonants",
@@ -57,10 +61,12 @@ var SELECTORS_DICT = {
         "mode": "boolean",
         "multi": null,
         "popover prefix": null,
+        "property": "complex consonants",
         "reply": "contain complex consonants",
         "reply vars": null,
         "select name": "Has complex consonants",
-        "select what": null
+        "select what": null,
+        "type": "Bool"
     },
     "consonant-articulation-selector": {
         "dict": {
@@ -71,6 +77,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": false,
         "popover prefix": "ca-lbox-popover",
+        "property": "num consonant {value}",
         "reply": "contain %s %s %s of consonant articulation",
         "reply vars": [
             "mode",
@@ -78,7 +85,8 @@ var SELECTORS_DICT = {
             "sel"
         ],
         "select name": "Has articulation features:",
-        "select what": "articulation type"
+        "select what": "articulation type",
+        "type": "Num"
     },
     "consonant-class-selector": {
         "dict": null,
@@ -86,6 +94,7 @@ var SELECTORS_DICT = {
         "mode": "pick class",
         "multi": null,
         "popover prefix": "ccbox-popover",
+        "property": "consonants",
         "reply": "contain %s %s of %s",
         "reply vars": [
             "mode",
@@ -93,7 +102,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Contains consonant class:",
-        "select what": "natural classes"
+        "select what": "natural classes",
+        "type": "List"
     },
     "formation-freq-selector": {
         "dict": {
@@ -119,12 +129,14 @@ var SELECTORS_DICT = {
         "mode": "pick one",
         "multi": false,
         "popover prefix": "ff-lbox-popover",
+        "property": "word formation frequency",
         "reply": "use %s strategies to form words",
         "reply vars": [
             "sel"
         ],
         "select name": "Word formation frequency:",
-        "select what": "frequency"
+        "select what": "frequency",
+        "type": "String"
     },
     "headedness-selector": {
         "dict": {
@@ -138,6 +150,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "h-lbox-popover",
+        "property": "headedness",
         "reply": "are %s %s of %s",
         "reply vars": [
             "mode",
@@ -145,7 +158,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Headedness:",
-        "select what": "headedness"
+        "select what": "headedness",
+        "type": "List"
     },
     "ipa-consonant-selector": {
         "dict": null,
@@ -153,6 +167,7 @@ var SELECTORS_DICT = {
         "mode": "pick k ipa",
         "multi": null,
         "popover prefix": "ipacbox-popover",
+        "property": "consonants",
         "reply": "contain %s %s of %s",
         "reply vars": [
             "mode",
@@ -160,7 +175,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Contains consonant:",
-        "select what": "consonants"
+        "select what": "consonants",
+        "type": "List"
     },
     "ipa-vowel-selector": {
         "dict": null,
@@ -168,6 +184,7 @@ var SELECTORS_DICT = {
         "mode": "pick k ipa",
         "multi": null,
         "popover prefix": "ipavbox-popover",
+        "property": "vowels",
         "reply": "contain %s %s of %s",
         "reply vars": [
             "mode",
@@ -175,7 +192,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Contains vowel:",
-        "select what": "vowels"
+        "select what": "vowels",
+        "type": "List"
     },
     "metaclass-selector": {
         "dict": {
@@ -735,6 +753,10 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "mc-lbox-popover",
+        "property": [
+            "consonants",
+            "vowels"
+        ],
         "reply": "have %s %s phoneme that is %s",
         "reply vars": [
             "mode",
@@ -742,7 +764,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Contains metaclass:",
-        "select what": "metaclasses"
+        "select what": "metaclasses",
+        "type": "List"
     },
     "morphological-selector": {
         "dict": {
@@ -759,6 +782,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "m-lbox-popover",
+        "property": "morphological type",
         "reply": "use %s %s of the morphological types %s",
         "reply vars": [
             "mode",
@@ -766,7 +790,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Morphological type:",
-        "select what": "morphological type"
+        "select what": "morphological type",
+        "type": "List"
     },
     "phoneme-inventory-size-selector": {
         "dict": {
@@ -778,6 +803,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": false,
         "popover prefix": "pi-lbox-popover",
+        "property": "num {value}",
         "reply": "have a phoneme inventory with %s %s %s",
         "reply vars": [
             "mode",
@@ -785,10 +811,12 @@ var SELECTORS_DICT = {
             "sel"
         ],
         "select name": "Phoneme inventory size:",
-        "select what": "phoneme type"
+        "select what": "phoneme type",
+        "type": "Num"
     },
     "placeholder-selector": {
         "bool body": "Select a trait from the dropdown menu to start submitting queries!",
+        "function": null,
         "html id": "placeholder-selector",
         "mode": "no query",
         "select name": "Select trait..."
@@ -800,10 +828,12 @@ var SELECTORS_DICT = {
         "mode": "boolean",
         "multi": null,
         "popover prefix": null,
+        "property": "stress",
         "reply": "have stress",
         "reply vars": null,
         "select name": "Has stress",
-        "select what": null
+        "select what": null,
+        "type": "Bool"
     },
     "syllable-selector": {
         "dict": {
@@ -869,6 +899,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "s-lbox-popover",
+        "property": "syllables",
         "reply": "use %s %s of the syllable structures %s",
         "reply vars": [
             "mode",
@@ -876,7 +907,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Allows syllable structure:",
-        "select what": "syllables"
+        "select what": "syllables",
+        "type": "List"
     },
     "tone-selector": {
         "bool body": "Tone (Including \"Pitch Accent\")",
@@ -885,10 +917,12 @@ var SELECTORS_DICT = {
         "mode": "boolean",
         "multi": null,
         "popover prefix": null,
+        "property": "tone",
         "reply": "have tone",
         "reply vars": null,
         "select name": "Has tone",
-        "select what": null
+        "select what": null,
+        "type": "Bool"
     },
     "vowel-class-selector": {
         "dict": null,
@@ -896,6 +930,7 @@ var SELECTORS_DICT = {
         "mode": "pick class",
         "multi": null,
         "popover prefix": "vcbox-popover",
+        "property": "vowels",
         "reply": "contain %s %s of %s",
         "reply vars": [
             "mode",
@@ -903,7 +938,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Contains vowel class:",
-        "select what": "natural classes"
+        "select what": "natural classes",
+        "type": "List"
     },
     "vowel-type-selector": {
         "dict": {
@@ -920,6 +956,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "vt-lbox-popover",
+        "property": "vowel types",
         "reply": "have %s %s of %s vowels",
         "reply vars": [
             "mode",
@@ -927,7 +964,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Vowel types:",
-        "select what": "vowel type"
+        "select what": "vowel type",
+        "type": "List"
     },
     "word-formation-selector": {
         "dict": {
@@ -950,6 +988,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "wf-lbox-popover",
+        "property": "word formation",
         "reply": "use %s %s of %s to form words",
         "reply vars": [
             "mode",
@@ -957,7 +996,8 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Word formation strategy:",
-        "select what": "word formation"
+        "select what": "word formation",
+        "type": "List"
     },
     "word-order-selector": {
         "dict": {
@@ -977,6 +1017,7 @@ var SELECTORS_DICT = {
         "mode": "pick multi",
         "multi": true,
         "popover prefix": "wo-lbox-popover",
+        "property": "word order",
         "reply": "have %s %s of %s word orders",
         "reply vars": [
             "mode",
@@ -984,6 +1025,7 @@ var SELECTORS_DICT = {
             "selList"
         ],
         "select name": "Basic word order:",
-        "select what": "word order"
+        "select what": "word order",
+        "type": "List"
     }
 };

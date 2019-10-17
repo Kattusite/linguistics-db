@@ -20,6 +20,10 @@ var INFO    = "alert-info";
 var WARN    = "alert-warning";
 var SUCCESS = "alert-success";
 
+// Different types of requests to be submitted
+var QUERY = "query"
+var GRAPH = "graph"
+
 /*****************************************************************************/
 /*                                Initializers                               */
 /*****************************************************************************/
@@ -49,6 +53,8 @@ function frontInit() {
 
   reloadPopovers();
   reloadTooltips();
+
+  initGraphs();
 }
 
 // Initialize trait selector divs by replacing the placeholder trait selectors
@@ -662,7 +668,11 @@ function validateRequest(request) {
 
 // Extract the information from each of the active trait divs, and send a POST
 // containing a list of requests as the payload
-function handleSubmit() {
+// responseType specifies whether to send a query request (Expects answer as a list)
+// or a graph request (Expects answer as raw data to be plotted)
+function handleSubmit(responseType) {
+  if (!responseType) responseType = QUERY;
+
   var requests = [];
 
   // Build a request (dict/object) for each active trait
@@ -784,6 +794,7 @@ function handleSubmit() {
   // Hacky: build a request string from params directly.
   payload += `&listMode=${listMode}`;
   payload += `&dataset=${DATASET}`;
+  payload += `&responseType=${responseType}`;
 
   console.log("Sending post with payload: " + payload);
   $.post("/",
@@ -835,6 +846,7 @@ function callback(response) {
   // TODO: Remove hardcoded strings, put them in the constants js file
   var retCode = response["code"];
   var message = response["payload"];
+  var data = response["data"];
 
   // Make sure the results div is in the correct mode.
   var mode = `alert-${retCode}`;
@@ -844,6 +856,15 @@ function callback(response) {
   $("#results").html(message);
 
   reloadTooltips();
+
+  // Experimental: Draw the graphs for which data was provided
+  // if (data != "") {
+  //   // TODO: Make these headers general.
+  //   headers = ["phoneme", "occurrences"];
+  //   options = {};
+  //
+  //   drawBarChart(data, headers, options)
+  // }
 }
 
 /*****************************************************************************/

@@ -36,25 +36,19 @@
     <!-- Bootstrap 3 JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- Google Charts JS -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <!-- Custom JS / CSS-->
     <!-- TODO: Use proper flask static paths -->
     <script src="../static/js/selectors_const.js"></script>
     <script src="../static/js/front.js"></script>
-    <script src="../static/js/graphs.js"></script>
+    <script src="../static/js/survey.js"></script>
     <link rel="stylesheet" href="../static/css/front.css">
   </head>
-  <body onload="frontInit()">
+  <body onload="surveyInit()">
     <h1>Linguistics DB</h1>
 
     <div id="metrics-div">
       <!-- Radio button for selecting 1/2 features -->
-      <button class="btn btn-primary" onclick="handleSingleTrait()">Single trait</button>
-      <button class="btn btn-primary" onclick="handleDoubleTrait()">Two traits</button>
-      <button class="btn btn-success" onclick="handleSubmit('query')">Submit</button>
-      <!--<button class="btn btn-success" onclick="handleSubmit('graph')">Graph</button>-->
+      <button class="btn btn-warning" onclick="handleSurveySubmit()">Submit Data</button>
       <button class="btn btn-danger"  onclick="handleReset()">Reset</button>
       <br>
       <br>
@@ -86,7 +80,7 @@
 
     <!-- results display -->
     <div id="results-div" class="alert alert-info" role="alert">
-      <div id="results">Submit a valid query to get started.</div>
+      <div id="results">To get started, fill in some data for your language.</div>
     </div>
 
     <!-- About button in bottom right. Placed here for convenience -->
@@ -1080,5 +1074,7 @@
   $('body').on('hidden.bs.popover', function (e) {
       $(e.target).data("bs.popover").inState = { click: false, hover: false, focus: false }
   });
+
+  // Set things up for the survey
   </script>
 </html>
