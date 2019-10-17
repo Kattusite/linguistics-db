@@ -105,6 +105,7 @@ K_VOWELS                = "vowels"
 K_NUM_CONSONANT_PLACES  = "num consonant places" # note diff than orig
 K_NUM_CONSONANT_MANNERS = "num consonant manners"
 K_VOWEL_TYPES           = "vowel types"
+K_CONSONANT_TYPES       = "consonant types"
 K_3_PLUS_PLACES         = "3+ places"   # deprecated
 K_2_PLUS_MANNERS        = "2+ manners"  # deprecated
 K_COMPLEX_CONSONANTS    = "complex consonants"
@@ -138,6 +139,7 @@ VALID_KEYS = set([
     K_NUM_CONSONANT_PLACES,
     K_NUM_CONSONANT_MANNERS,
     K_VOWEL_TYPES,
+    K_CONSONANT_TYPES,
     K_3_PLUS_PLACES,
     K_2_PLUS_MANNERS,
     K_COMPLEX_CONSONANTS,
@@ -179,6 +181,15 @@ D_VOWEL_TYPES = {
     "pharyngealized":   [],
     "diphthongs":       [],
     "triphthongs":      []
+}
+
+D_CONSONANT_TYPES = {
+    "uvular / retroflex / pharyngeal":    ["uvular", "retroflex", "pharyngeal"],
+    "affricates":                       [],
+    "prenasalized":                     [],
+    "multi-place / secondary articulation": ["multi-place", "secondary articulation"],
+    "geminate":                           : ["geminate", "long"],
+    "glottalized / non-pulmonic":           ["glottalized", "non-pulmonic", "click", "ejective", "implosive"]
 }
 
 D_SYLLABLES = {
@@ -374,6 +385,11 @@ def P_VOWELS_S19(index=[9,10]):
 def P_VOWEL_TYPES_S19(index=11):
     fail_dict = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
     return P(K_VOWEL_TYPES, LIST, index, ONE_TO_ONE, D_VOWEL_TYPES, fail_dict)
+
+# TODO: Add a default index value
+def P_CONSONANT_TYPES_F19(index):
+    fail_dict = None
+    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES, fail_dict)
 
 # Typology Parameters Fall 17:
 def P_CITATION_F17(index=4):
