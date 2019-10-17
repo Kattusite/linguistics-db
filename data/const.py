@@ -21,6 +21,8 @@ TEST2 = "_test2"
 F17 = "F17"
 S19 = "S19"
 S19TEST = "S19test"
+F19 = "F19"
+F19TEST = "F19test"
 
 # Which named datasets do we have?
 # F = Fall, S = spring, XX = year 20XX
@@ -28,8 +30,10 @@ datasetNames = [
     TEST,
     TEST2,
     S19TEST,
+    F19TEST,
     F17,
-    S19
+    S19,
+    F19
 ]
 
 ##############################################################################
@@ -91,6 +95,8 @@ MERGE = "merge"
 K_NETID                 = "netid"
 K_NAME                  = "student"  # formerly "name"
 K_LANGUAGE              = "name"     # formerly "language"
+K_COUNTRY               = "country"
+K_LANGUAGE_FAMILY       = "language family"
 K_NUM_VOWELS            = "num vowels"
 K_NUM_CONSONANTS        = "num consonants"
 K_NUM_PHONEMES          = "num phonemes"
@@ -122,6 +128,8 @@ VALID_KEYS = set([
     K_NETID,
     K_NAME,
     K_LANGUAGE,
+    K_COUNTRY,
+    K_LANGUAGE_FAMILY,
     K_NUM_VOWELS,
     K_NUM_CONSONANTS,
     K_NUM_PHONEMES,
@@ -282,303 +290,123 @@ D_AGREEMENT = {
 # These are the specifications for parameters that need to be read in and
 # converted in csvtojson.py.
 
-# TODO: INDEX isn't actually super useful -- instead pull index from each
-# parameter's index in the PARAMS list, because they may change from year to
-# year and this should not break the data.
-# NOTE: this will be more complicated because some have several indices or no
-# index (SPLIT or MERGE)
-
-# alternatively perhaps we could just define the format spec for each semester
-# in its own file in the datasets/X## directories.
-
-# OR, we could define "archetype" parameter definitions that have all the
-# "basic" core properties of that parameter, and then use copy.copy() to
-# construct a new copy, in which we can change one or two parameters.
-# best idea: make the "archetypes" functions that take in arguments and construct the
-# right thing: e.g. P_LANGUAGE(index=4), ...
+# These are defined as functions that take in arguments and construct the
+# right parameters for a given semester.
+# This is useful because the survey doesn't change much from semester to semester,
+# but the order in which questions are asked might change, so we leave index as
+# a parameter.
+# NOTE: It's tempting to try to extract the indices from the position
+# at which each P_XXX appears in the list for a given semester, but this is
+# not possible. Some indices aren't integers (e.g. lists of integers, or None)
+# so this scheme wouldn't be flexible enough for our needs.
 
 # These variables shall all be prefixed with a P_ to signify they are
 # *P*arameter specifications
 
+def P(key, type, index=None, mapping=None, dict=None, fail_dict=None):
+    p = {
+        KEY: key,
+        TYPE: type,
+        INDEX: index,
+        MAPPING: mapping,
+        DICT: dict,
+        FAIL_DICT: fail_dict
+    }
+    return {k: v for k, v in p.items() if v is not None}
+
 # Common question specifications that won't change much
-P_NETID = {
-    KEY:        K_NETID,
-    TYPE:       STRING, # HASH?
-    INDEX:      1,
-    MAPPING:    ONE_TO_ONE
-}
+def P_NETID(index=1):
+    # replace STRING with a new HASH type?
+    return P(K_NETID, STRING, index, ONE_TO_ONE)
 
-P_NAME = {
-    KEY:        K_NAME,
-    TYPE:       STRING, # HASH?
-    INDEX:      2,
-    MAPPING:    ONE_TO_ONE
-}
+def P_NAME(index=2):
+    # replace STRING with a new HASH type?
+    return P(K_NAME, STRING, index, ONE_TO_ONE)
 
-P_LANGUAGE = {
-    KEY:        K_LANGUAGE,
-    TYPE:       STRING,
-    INDEX:      3,
-    MAPPING:    ONE_TO_ONE
-}
+def P_LANGUAGE(index=3):
+    return P(K_LANGUAGE, STRING, index, ONE_TO_ONE)
 
-P_NUM_CONSONANTS = {
-    KEY:        K_NUM_CONSONANTS,
-    TYPE:       NUM,
-    INDEX:      4,
-    MAPPING:    ONE_TO_ONE
-}
+def P_NUM_CONSONANTS(index=4):
+    return P(K_NUM_CONSONANTS, NUM, index, ONE_TO_ONE)
 
-P_NUM_VOWELS = {
-    KEY:        K_NUM_VOWELS,
-    TYPE:       NUM,
-    INDEX:      5,
-    MAPPING:    ONE_TO_ONE
-}
+def P_NUM_VOWELS(index=5):
+    return P(K_NUM_VOWELS, NUM, index, ONE_TO_ONE)
 
-P_NUM_PHONEMES = {
-    KEY:        K_NUM_PHONEMES,
-    TYPE:       NUM,
-    INDEX:      6,
-    MAPPING:    ONE_TO_ONE
-}
+def P_NUM_PHONEMES(index=6):
+    return P(K_NUM_PHONEMES, NUM, index, ONE_TO_ONE)
 
-P_NUM_CONSONANT_PLACES = {
-    KEY:        K_NUM_CONSONANT_PLACES,
-    TYPE:       PLACEHOLDER,
-}
+def P_NUM_CONSONANT_PLACES():
+    return P(K_NUM_CONSONANT_PLACES, PLACEHOLDER)
 
-P_NUM_CONSONANT_MANNERS = {
-    KEY:        K_NUM_CONSONANT_MANNERS,
-    TYPE:       PLACEHOLDER,
-}
+def P_NUM_CONSONANT_MANNERS():
+    return P(K_NUM_CONSONANT_MANNERS, PLACEHOLDER)
+
+def P_PHONETIC(index=9):
+    return P([K_COMPLEX_CONSONANTS, K_TONE, K_STRESS], BOOL, index, SPLIT)
+
+def P_SYLLABLE(index=10):
+    fail_dict =  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
+    return P(K_SYLLABLES, LIST, index, ONE_TO_ONE, D_SYLLABLES, fail_dict)
+
+# New grammar questions as of F19
+def P_COUNTRY(index=4):
+    return P(K_COUNTRY, STRING, index, ONE_TO_ONE)
+
+def P_LANGUAGE_FAMILY(index=5):
+    return P(K_LANGUAGE_FAMILY, STRING, index, ONE_TO_ONE)
+
 
 # Things that will more likely change
 # Fall 17 specific data format specification
-P_CONSONANTS_F17 = {
-    KEY:        K_CONSONANTS,
-    TYPE:       LIST,
-    INDEX:      7,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       PHONEMES
-}
+def P_CONSONANTS_F17(index=7):
+    return P(K_CONSONANTS, LIST, index, ONE_TO_ONE, PHONEMES)
 
-P_VOWELS_F17 = {
-    KEY:        K_VOWELS,
-    TYPE:       LIST,
-    INDEX:      8,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       PHONEMES
-}
-
-P_PHONETIC_F17 = {
-    KEY:        [K_COMPLEX_CONSONANTS, K_TONE, K_STRESS], # omit 3+ Place, 2+ manner
-    TYPE:       BOOL,
-    INDEX:      9,
-    MAPPING:    SPLIT,
-}
-
-P_SYLLABLE_F17 = {
-    KEY:        K_SYLLABLES,
-    TYPE:       LIST,
-    INDEX:      10,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_SYLLABLES,
-    FAIL_DICT:  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
-}
-
+def P_VOWELS_F17(index=8):
+    return P(K_VOWELS, LIST, index, ONE_TO_ONE, PHONEMES)
 
 # Spring 19 specific format specification
-P_CONSONANTS_S19 = {
-    KEY:        K_CONSONANTS,
-    TYPE:       LIST,
-    INDEX:      [7, 8],
-    MAPPING:    MERGE,
-    DICT:       PHONEMES
-}
+def P_CONSONANTS_S19(index=[7,8]):
+    return P(K_CONSONANTS, LIST, index, MERGE, PHONEMES)
 
-P_VOWELS_S19 = {
-    KEY:        K_VOWELS,
-    TYPE:       LIST,
-    INDEX:      [9, 10],
-    MAPPING:    MERGE,
-    DICT:       PHONEMES
-}
+def P_VOWELS_S19(index=[9,10]):
+    return P(K_VOWELS, LIST, index, MERGE, PHONEMES)
 
-P_VOWEL_TYPES_S19 = {
-    KEY:        K_VOWEL_TYPES,
-    TYPE:       LIST,
-    INDEX:      11,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_VOWEL_TYPES,
-    FAIL_DICT:  ["phthong", "vowel"]
-}
-
-P_PHONETIC_S19 = {
-    KEY:        [K_COMPLEX_CONSONANTS, K_TONE, K_STRESS],
-    TYPE:       BOOL,
-    INDEX:      12,
-    MAPPING:    SPLIT
-}
-
-P_SYLLABLE_S19 = {
-    KEY:        K_SYLLABLES,
-    TYPE:       LIST,
-    INDEX:      13,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_SYLLABLES,
-    FAIL_DICT:  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
-}
-
+def P_VOWEL_TYPES_S19(index=11):
+    fail_dict = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
+    return P(K_VOWEL_TYPES, LIST, index, ONE_TO_ONE, D_VOWEL_TYPES, fail_dict)
 
 # Typology Parameters Fall 17:
-P_CITATION_F17 = {
-    KEY:        K_CITATION,
-    TYPE:       STRING,
-    INDEX:      4,
-    MAPPING:    ONE_TO_ONE
-}
+def P_CITATION_F17(index=4):
+    return P(K_CITATION, STRING, index, ONE_TO_ONE)
 
-P_RECOMMEND_F17 = {
-    KEY:        K_RECOMMEND,
-    TYPE:       STRING,
-    INDEX:      5,
-    MAPPING:    ONE_TO_ONE
-}
+def P_RECOMMEND(index=5):
+    return P(K_RECOMMEND, STRING, index, ONE_TO_ONE)
 
-P_MORPHOLOGICAL_TYPE_F17 = {
-    KEY:        K_MORPHOLOGICAL_TYPE,
-    TYPE:       LIST,
-    INDEX:      6,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_MORPHOLOGY,
-    FAIL_DICT:  None
-}
+def P_MORPHOLOGICAL_TYPE(index=6):
+    return P(K_MORPHOLOGICAL_TYPE, LIST, index, ONE_TO_ONE, D_MORPHOLOGY, None)
 
-P_WORD_FORMATION_F17 = {
-    KEY:        K_WORD_FORMATION,
-    TYPE:       LIST,
-    INDEX:      7,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_FORMATION_F17,
-    FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
-}
+def P_WORD_FORMATION(index=7):
+    fail_dict = ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
+    return P(K_WORD_FORMATION, LIST, index, ONE_TO_ONE, D_WORD_FORMATION_F17, fail_dict)
 
-P_WORD_FORMATION_FREQ_F17 = {
-    KEY:        K_WORD_FORMATION_FREQ,
-    TYPE:       STRING,
-    INDEX:      8,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_FORMATION_FREQ, # UNTESTED!!!
-    FAIL_DICT:  ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
-}
+def P_WORD_FORMATION_FREQ(index=8):
+    fail_dict = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
+    return P(K_WORD_FORMATION_FREQ, STRING, index, ONE_TO_ONE, D_WORD_FORMATION_FREQ, fail_dict)
 
-P_WORD_ORDER_F17 = {
-    KEY:        K_WORD_ORDER,
-    TYPE:       LIST,
-    INDEX:      9,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_ORDER,
-    FAIL_DICT:  ["free", "S", "V", "O"]
-}
+def P_WORD_ORDER(index=9):
+    fail_dict = ["free", "S", "V", "O"]
+    return P(K_WORD_ORDER, LIST, index, ONE_TO_ONE, D_WORD_ORDER, fail_dict)
 
-P_HEADEDNESS_F17 = {
-    KEY:        K_HEADEDNESS,
-    TYPE:       LIST,
-    INDEX:      10,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_HEADEDNESS, # UNTESTED!!!
-    FAIL_DICT:  ["head", "initial", "final", "most", "consistent", "mixed"]
-}
+def P_HEADEDNESS(index=10):
+    fail_dict = ["head", "initial", "final", "most", "consistent", "mixed"]
+    return P(K_HEADEDNESS, LIST, index, ONE_TO_ONE, D_HEADEDNESS, fail_dict)
 
-P_AGREEMENT_F17 = {
-    KEY:        K_AGREEMENT,
-    TYPE:       STRING,
-    INDEX:      11,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_AGREEMENT,
-    FAIL_DICT:  None
-}
+def P_AGREEMENT(index=11):
+    return P(K_AGREEMENT, STRING, index, ONE_TO_ONE, D_AGREEMENT, None)
 
-P_CASE_F17 = {
-    KEY:        K_CASE,
-    TYPE:       STRING,
-    INDEX:      12,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_CASE,
-    FAIL_DICT:  None
-}
+def P_CASE(index=12):
+    return P(K_CASE, STRING, index, ONE_TO_ONE, D_CASE, None)
 
-# Spring 19 specific format specification (mostly identical to F17 but re-indexed)
-P_RECOMMEND_S19 = {
-    KEY:        K_RECOMMEND,
-    TYPE:       STRING,
-    INDEX:      4,
-    MAPPING:    ONE_TO_ONE
-}
-
-P_MORPHOLOGICAL_TYPE_S19 = {
-    KEY:        K_MORPHOLOGICAL_TYPE,
-    TYPE:       LIST,
-    INDEX:      5,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_MORPHOLOGY,
-    FAIL_DICT:  None
-}
-
-P_WORD_FORMATION_S19 = {
-    KEY:        K_WORD_FORMATION,
-    TYPE:       LIST,
-    INDEX:      6,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_FORMATION_S19,
-    FAIL_DICT:  ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
-}
-
-P_WORD_FORMATION_FREQ_S19 = {
-    KEY:        K_WORD_FORMATION_FREQ,
-    TYPE:       STRING,
-    INDEX:      7,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_FORMATION_FREQ, # UNTESTED!!!
-    FAIL_DICT:  ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
-}
-
-P_WORD_ORDER_S19 = {
-    KEY:        K_WORD_ORDER,
-    TYPE:       LIST,
-    INDEX:      8,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_WORD_ORDER,
-    FAIL_DICT:  ["free", "S", "V", "O"]
-}
-
-P_HEADEDNESS_S19 = {
-    KEY:        K_HEADEDNESS,
-    TYPE:       LIST,
-    INDEX:      9,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_HEADEDNESS, # UNTESTED!!!
-    FAIL_DICT:  ["head", "initial", "final", "most", "consistent", "mixed"]
-}
-
-P_AGREEMENT_S19 = {
-    KEY:        K_AGREEMENT,
-    TYPE:       STRING,
-    INDEX:      10,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_AGREEMENT,
-    FAIL_DICT:  None
-}
-
-P_CASE_S19 = {
-    KEY:        K_CASE,
-    TYPE:       STRING,
-    INDEX:      11,
-    MAPPING:    ONE_TO_ONE,
-    DICT:       D_CASE,
-    FAIL_DICT:  None
-}
 
 # Which questions should be read from the CSV files for a given dataset,
 # and how is the data stored in the corresponding CSV?
@@ -586,62 +414,81 @@ P_CASE_S19 = {
 PARAMS = {
     F17: {
         GRAMMAR: [
-            P_LANGUAGE,
-            P_NAME,
-            P_NETID,
-            P_NUM_CONSONANTS,
-            P_NUM_VOWELS,
-            P_NUM_PHONEMES,
-            P_CONSONANTS_F17,
-            P_VOWELS_F17,
-            P_NUM_CONSONANT_PLACES,
-            P_NUM_CONSONANT_MANNERS,
-            P_PHONETIC_F17,
-            P_SYLLABLE_F17
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_NUM_CONSONANTS(),
+            P_NUM_VOWELS(),
+            P_NUM_PHONEMES(),
+            P_CONSONANTS_F17(),
+            P_VOWELS_F17(),
+            P_NUM_CONSONANT_PLACES(),
+            P_NUM_CONSONANT_MANNERS(),
+            P_PHONETIC(9),
+            P_SYLLABLE(10)
         ],
         TYPOLOGY: [
-            P_LANGUAGE,
-            P_NAME,
-            P_NETID,
-            P_CITATION_F17,
-            P_RECOMMEND_F17,
-            P_MORPHOLOGICAL_TYPE_F17,
-            P_WORD_FORMATION_F17,
-            P_WORD_FORMATION_FREQ_F17,
-            P_WORD_ORDER_F17,
-            P_HEADEDNESS_F17,
-            P_AGREEMENT_F17,
-            P_CASE_F17
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_CITATION_F17(4),
+            P_RECOMMEND(5),
+            P_MORPHOLOGICAL_TYPE(6),
+            P_WORD_FORMATION(7),
+            P_WORD_FORMATION_FREQ(8),
+            P_WORD_ORDER(9),
+            P_HEADEDNESS(10),
+            P_AGREEMENT(11),
+            P_CASE(12)
         ]
     },
     S19: {
         GRAMMAR: [
-            P_LANGUAGE,
-            P_NAME,
-            P_NETID,
-            P_NUM_CONSONANTS,
-            P_NUM_VOWELS,
-            P_NUM_PHONEMES,
-            P_CONSONANTS_S19,
-            P_VOWELS_S19,
-            P_NUM_CONSONANT_PLACES,
-            P_NUM_CONSONANT_MANNERS,
-            P_VOWEL_TYPES_S19,
-            P_PHONETIC_S19,
-            P_SYLLABLE_S19
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_NUM_CONSONANTS(),
+            P_NUM_VOWELS(),
+            P_NUM_PHONEMES(),
+            P_CONSONANTS_S19(),
+            P_VOWELS_S19(),
+            P_NUM_CONSONANT_PLACES(),
+            P_NUM_CONSONANT_MANNERS(),
+            P_VOWEL_TYPES_S19(),
+            P_PHONETIC(12),
+            P_SYLLABLE(13)
         ],
         TYPOLOGY: [
-            P_LANGUAGE,
-            P_NAME,
-            P_NETID,
-            P_RECOMMEND_S19,
-            P_MORPHOLOGICAL_TYPE_S19,
-            P_WORD_FORMATION_S19,
-            P_WORD_FORMATION_FREQ_S19,
-            P_WORD_ORDER_S19,
-            P_HEADEDNESS_S19,
-            P_AGREEMENT_S19,
-            P_CASE_S19
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_RECOMMEND(4),
+            P_MORPHOLOGICAL_TYPE(5),
+            P_WORD_FORMATION(6),
+            P_WORD_FORMATION_FREQ(7),
+            P_WORD_ORDER(8),
+            P_HEADEDNESS(9),
+            P_AGREEMENT(10),
+            P_CASE(11)
+        ]
+    },
+    F19: {
+        GRAMMAR: [
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_COUNTRY(4),
+            P_LANGUAGE_FAMILY(5),
+            P_NUM_CONSONANTS(6),
+            P_NUM_VOWELS(7),
+            P_NUM_PHONEMES(8),
+            P_CONSONANTS_S19([9,10]),
+            P_VOWELS_S19([11,12]),
+            P_NUM_CONSONANT_PLACES(),
+            P_NUM_CONSONANT_MANNERS(),
+            P_VOWEL_TYPES_S19(13),
+            P_PHONETIC(14),
+            P_SYLLABLE(15)
         ]
     }
 }
@@ -650,6 +497,9 @@ PARAMS = {
 ##############################################################################
 #                          csvtojson constants (old)                         #
 ##############################################################################
+# In general, avoid using these constants. Use the newer parameter definitions
+# above.
+
 # Constants across typology/grammar
 NETID = 1
 NAME  = 2
@@ -692,8 +542,8 @@ G_NUM_MANNERS = 17
 G_STR = [
     "time",             # G_TIME
     "netid",            # G_NETID
-    "name",             # G_NAME
-    "language",         # G_LANGUAGE
+    "student",          # G_NAME
+    "name",             # G_LANGUAGE
     "num consonants",   # G_NUM_CONSONANTS
     "num vowels",       # G_NUM_VOWELS
     "num phonemes",     # G_NUM_PHONEMES
@@ -737,8 +587,8 @@ T_CASE            = 12
 T_STR = [
     "time",
     "netid",
+    "student",
     "name",
-    "language",
     "citation",
     "recommend",
     "morphological type",
