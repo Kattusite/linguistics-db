@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <head>
+    <title>LingDB</title>
+
+    <!-- Favicons (www.realfavicongenerator.net) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/ico/favicon-16x16.png">
+    <link rel="manifest" href="/static/ico/site.webmanifest">
+    <link rel="mask-icon" href="/static/ico/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="LingDB">
+    <meta name="application-name" content="LingDB">
+    <meta name="msapplication-TileColor" content="#d9edf7">
+    <meta name="theme-color" content="#d9edf7">
+
+    <!-- Bootstrap 4 CSS --> <!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    -->
+    <!-- Bootstrap 3 CSS / JavaScript -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 JavaScript --> <!--
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    -->
+
+    <!-- Bootstrap 3 JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS / CSS-->
+    <!-- TODO: Use proper flask static paths -->
+    <script src="../static/js/selectors_const.js"></script>
+    <script src="../static/js/front.js"></script>
+    <script src="../static/js/survey.js"></script>
+    <link rel="stylesheet" href="../static/css/front.css">
+  </head>
+  <body onload="surveyInit()">
+    <h1>Linguistics DB</h1>
+
+    <div id="metrics-div">
+      <!-- Radio button for selecting 1/2 features -->
+      <button class="btn btn-warning" onclick="handleSurveySubmit()">Submit Data</button>
+      <button class="btn btn-danger"  onclick="handleReset()">Reset</button>
+      <br>
+      <br>
+
+      <!-- dropdowns for traits -->
+      <!-- currently placeholders -->
+      <div id="trait-divs">
+
+        <!-- First selector block -->
+        <div id="trait-div-1" class="alert alert-info">
+          <select>
+            <option>Contains phoneme: </option>
+          </select>
+          <br><br>
+          <p>Loading...</p>
+        </div>
+
+        <!-- Second selector block (initially hidden) -->
+        <div id="trait-div-2" class="alert alert-info hidden">
+          <select>
+            <option>Contains phoneme: </option>
+          </select>
+          <br><br>
+          <p>Loading...</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- results display -->
+    <div id="results-div" class="alert alert-info" role="alert">
+      <div id="results">To get started, fill in some data for your language.</div>
+    </div>
+
+    <!-- About button in bottom right. Placed here for convenience -->
+    <!-- so you don't have to scroll all the way down to edit it -->
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <a href="/about">About...</a>
+      </div>
+    </footer>
+
+    <!-- ANCHOR: AUTOGEN START -->
+    <!--  ### BEGIN AUTO-GENERATED HTML. DO NOT EDIT ###-->
+
+    <!--  ### END AUTO-GENERATED HTML. EDITING IS OK AGAIN ###-->
+    <!-- ANCHOR: AUTOGEN END -->
+  </body>
+
+  <!-- Hide popovers when clicking body -->
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="popover"]').popover({ html : true, container: 'body'});
+  });
+  $('body').on('click', function (e) {
+      $('[data-toggle="popover"]').each(function () {
+          //the 'is' for buttons that trigger popups
+          //the 'has' for icons within a button that triggers a popup
+          if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+              $(this).popover('hide');
+          }
+      });
+  });
+  $('body').on('hidden.bs.popover', function (e) {
+      $(e.target).data("bs.popover").inState = { click: false, hover: false, focus: false }
+  });
+
+  // Set things up for the survey
+  </script>
+</html>

@@ -36,10 +36,14 @@
     <!-- Bootstrap 3 JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Google Charts JS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <!-- Custom JS / CSS-->
     <!-- TODO: Use proper flask static paths -->
     <script src="../static/js/selectors_const.js"></script>
     <script src="../static/js/front.js"></script>
+    <script src="../static/js/graphs.js"></script>
     <link rel="stylesheet" href="../static/css/front.css">
   </head>
   <body onload="frontInit()">
@@ -49,7 +53,8 @@
       <!-- Radio button for selecting 1/2 features -->
       <button class="btn btn-primary" onclick="handleSingleTrait()">Single trait</button>
       <button class="btn btn-primary" onclick="handleDoubleTrait()">Two traits</button>
-      <button class="btn btn-warning" onclick="handleSubmit()">Submit</button>
+      <button class="btn btn-success" onclick="handleSubmit('query')">Submit</button>
+      <!--<button class="btn btn-success" onclick="handleSubmit('graph')">Graph</button>-->
       <button class="btn btn-danger"  onclick="handleReset()">Reset</button>
       <br>
       <br>

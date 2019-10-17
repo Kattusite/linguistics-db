@@ -59,11 +59,19 @@ def splice(template, content, output, startAnchor, endAnchor):
 
 
 def main():
+    # Generate front.html (main LingDB site)
     template = "app/templates/front_template.html"
     content = "gen/out.html"
     output = "app/templates/front.html"
 
     start = "<!-- ANCHOR: AUTOGEN START -->"
     end   = "<!-- ANCHOR: AUTOGEN END -->"
+
+    splice(template, content, output, start, end)
+
+    # Generate survey.html (google docs autofiller site)
+    template = "app/templates/survey_template.html"
+    content = "gen/out.html"
+    output = "app/templates/survey.html"
 
     splice(template, content, output, start, end)

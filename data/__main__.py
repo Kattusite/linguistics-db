@@ -1,4 +1,7 @@
-from . import csvtojson
+from . import csvtojson, jsontodb
 
 csvtojson.main()
-print("data conversion complete.")
+print("csv to json conversion complete.")
+
+jsontodb.main()
+print("json to db conversion complete.")
