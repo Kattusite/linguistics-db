@@ -1,8 +1,8 @@
 [
     {
-        "netid": "0ab23c3a343beb14",
-        "student": "b27379c9acc302c2",
         "name": "All",
+        "student": "b27379c9acc302c2",
+        "netid": "0ab23c3a343beb14",
         "country": "Everyland",
         "language family": "Everyfamily",
         "num consonants": 99,
@@ -145,9 +145,9 @@
         ]
     },
     {
-        "netid": "9b371072e0f4ac15",
-        "student": "040ab5539b38474f",
         "name": "English",
+        "student": "040ab5539b38474f",
+        "netid": "9b371072e0f4ac15",
         "country": "America",
         "language family": "American",
         "num consonants": 48,
@@ -199,9 +199,9 @@
         ]
     },
     {
-        "netid": "626b919096d81a1b",
-        "student": "bbe219878d6b0cb0",
         "name": "None",
+        "student": "bbe219878d6b0cb0",
+        "netid": "626b919096d81a1b",
         "country": "Noneland",
         "language family": "Nonefamily",
         "num consonants": 0,

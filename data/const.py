@@ -428,9 +428,9 @@ def P_CASE(index=12):
 PARAMS = {
     F17: {
         GRAMMAR: [
-            P_NETID(),
-            P_NAME(),
             P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
             P_NUM_CONSONANTS(),
             P_NUM_VOWELS(),
             P_NUM_PHONEMES(),
@@ -442,9 +442,9 @@ PARAMS = {
             P_SYLLABLE(10)
         ],
         TYPOLOGY: [
-            P_NETID(),
-            P_NAME(),
             P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
             P_CITATION_F17(4),
             P_RECOMMEND(5),
             P_MORPHOLOGICAL_TYPE(6),
@@ -458,9 +458,9 @@ PARAMS = {
     },
     S19: {
         GRAMMAR: [
-            P_NETID(),
-            P_NAME(),
             P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
             P_NUM_CONSONANTS(),
             P_NUM_VOWELS(),
             P_NUM_PHONEMES(),
@@ -473,9 +473,9 @@ PARAMS = {
             P_SYLLABLE(13)
         ],
         TYPOLOGY: [
-            P_NETID(),
-            P_NAME(),
             P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
             P_RECOMMEND(4),
             P_MORPHOLOGICAL_TYPE(5),
             P_WORD_FORMATION(6),
@@ -488,9 +488,9 @@ PARAMS = {
     },
     F19: {
         GRAMMAR: [
-            P_NETID(),
-            P_NAME(),
             P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
             P_COUNTRY(4),
             P_LANGUAGE_FAMILY(5),
             P_NUM_CONSONANTS(6),
