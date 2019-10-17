@@ -857,13 +857,14 @@ function callback(response) {
 
   reloadTooltips();
 
-  if (data != "") {
-    // TODO: Make these headers general.
-    headers = ["phoneme", "occurrences"];
-    options = {};
-
-    drawBarChart(data, headers, options)
-  }
+  // Experimental: Draw the graphs for which data was provided
+  // if (data != "") {
+  //   // TODO: Make these headers general.
+  //   headers = ["phoneme", "occurrences"];
+  //   options = {};
+  //
+  //   drawBarChart(data, headers, options)
+  // }
 }
 
 /*****************************************************************************/

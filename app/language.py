@@ -43,6 +43,13 @@ class Language:
         student maintainer"""
         return hash((self.name(), self.student(), self.netid()))
 
+    def __eq__(self, other):
+        if type(self) != type(other):
+            return False
+        # Not *technically* guaranteed to work every time, but failure unlikely
+        # enough for our purposes
+        return hash(self) == hash(other)
+
     def name(self):
         """Return the name of this language"""
         return self.data["name"]
