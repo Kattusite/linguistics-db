@@ -225,6 +225,20 @@ VOWEL_TYPES = {
     TYPE: const.LIST,
 }
 
+CONSONANT_TYPES = {
+    SELECT_NAME: "Consonant types:",
+    DICT: const.D_CONSONANT_TYPES,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have %s %s of %s consonants",
+    REPLY_VARS: ["mode", "k", "selList"],
+    HTML_ID: "consonant-type-selector",
+    POPOVER_PREFIX: "ct-lbox-popover",
+    SELECT_WHAT: "consonant type",
+    PROPERTY: const.K_CONSONANT_TYPES,
+    TYPE: const.LIST,
+}
+
 PHONEME_INVENTORY_SIZE = {
     SELECT_NAME: "Phoneme inventory size:",
     DICT: { "consonants": [], "vowels": [], "phonemes": [] },
@@ -470,12 +484,13 @@ SELECTORS = [
     VOWEL_CLASS,
     CONSONANT_ARTICULATION,
     VOWEL_TYPES,
+    CONSONANT_TYPES,
     #CONSONANT_PLACES,
     #CONSONANT_MANNERS,
     PHONEME_INVENTORY_SIZE,
-    COMPLEX_CONSONANTS,
-    TONE,
-    STRESS,
+    # COMPLEX_CONSONANTS,   # not used in F19
+    # TONE,                 # not used in F19
+    # STRESS,               # not used in F19
     SYLLABLES,
     MORPHOLOGY,
     WORD_FORMATION,

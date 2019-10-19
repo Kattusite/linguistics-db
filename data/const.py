@@ -1,5 +1,4 @@
 # No imports from project (leaf node in any import tree)
- # import copy # for if I ever change the parameter definitions to be based on "archetype" definitions
 
 """This file defines constants used throughout the program, primarily relating to
 handling different datasets and parsing datasets from the raw Google Forms CSV data.
@@ -22,7 +21,6 @@ F17 = "F17"
 S19 = "S19"
 S19TEST = "S19test"
 F19 = "F19"
-F19TEST = "F19test"
 
 # Which named datasets do we have?
 # F = Fall, S = spring, XX = year 20XX
@@ -30,7 +28,6 @@ datasetNames = [
     TEST,
     TEST2,
     S19TEST,
-    F19TEST,
     F17,
     S19,
     F19
@@ -105,6 +102,7 @@ K_VOWELS                = "vowels"
 K_NUM_CONSONANT_PLACES  = "num consonant places" # note diff than orig
 K_NUM_CONSONANT_MANNERS = "num consonant manners"
 K_VOWEL_TYPES           = "vowel types"
+K_CONSONANT_TYPES       = "consonant types"
 K_3_PLUS_PLACES         = "3+ places"   # deprecated
 K_2_PLUS_MANNERS        = "2+ manners"  # deprecated
 K_COMPLEX_CONSONANTS    = "complex consonants"
@@ -138,6 +136,7 @@ VALID_KEYS = set([
     K_NUM_CONSONANT_PLACES,
     K_NUM_CONSONANT_MANNERS,
     K_VOWEL_TYPES,
+    K_CONSONANT_TYPES,
     K_3_PLUS_PLACES,
     K_2_PLUS_MANNERS,
     K_COMPLEX_CONSONANTS,
@@ -179,6 +178,15 @@ D_VOWEL_TYPES = {
     "pharyngealized":   [],
     "diphthongs":       [],
     "triphthongs":      []
+}
+
+D_CONSONANT_TYPES = {
+    "uvular / retroflex / pharyngeal":      ["uvular", "retroflex", "pharyngeal"],
+    "affricates":                           [],
+    "prenasalized":                         [],
+    "multi-place / secondary articulation": ["multi-place", "secondary articulation"],
+    "geminate":                             ["geminate", "long"],
+    "glottalized / non-pulmonic":           ["glottalized", "non-pulmonic", "click", "ejective", "implosive"]
 }
 
 D_SYLLABLES = {
@@ -375,6 +383,11 @@ def P_VOWEL_TYPES_S19(index=11):
     fail_dict = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
     return P(K_VOWEL_TYPES, LIST, index, ONE_TO_ONE, D_VOWEL_TYPES, fail_dict)
 
+# TODO: Add a default index value
+def P_CONSONANT_TYPES_F19(index):
+    fail_dict = None
+    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES, fail_dict)
+
 # Typology Parameters Fall 17:
 def P_CITATION_F17(index=4):
     return P(K_CITATION, STRING, index, ONE_TO_ONE)
@@ -483,11 +496,12 @@ PARAMS = {
             P_NUM_VOWELS(7),
             P_NUM_PHONEMES(8),
             P_CONSONANTS_S19([9,10]),
-            P_VOWELS_S19([11,12]),
+            P_CONSONANT_TYPES_F19(11),
+            P_VOWELS_S19([12,13]),
+            P_VOWEL_TYPES_S19(14),
             P_NUM_CONSONANT_PLACES(),
             P_NUM_CONSONANT_MANNERS(),
-            P_VOWEL_TYPES_S19(13),
-            P_PHONETIC(14),
+            # P_PHONETIC(15), # !!!!
             P_SYLLABLE(15)
         ]
     }

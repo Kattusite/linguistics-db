@@ -74,7 +74,8 @@
         "backness region": "front",
         "roundedness": "unrounded",
         "voicing": "voiced",
-        "producible": true
+        "producible": true,
+        "disabled": true
     },
     {
         "glyph": "a",

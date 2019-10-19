@@ -10,10 +10,8 @@
     <option>Contains vowel class:</option>
     <option>Has articulation features:</option>
     <option>Vowel types:</option>
+    <option>Consonant types:</option>
     <option>Phoneme inventory size:</option>
-    <option>Has complex consonants</option>
-    <option>Has tone</option>
-    <option>Has stress</option>
     <option>Allows syllable structure:</option>
     <option>Morphological type:</option>
     <option>Word formation strategy:</option>
@@ -156,6 +154,24 @@
        title="<b>Select vowel type</b>"
        data-content="Error loading. Sorry!">Select vowel type...</a>
   </div>
+  <div class="consonant-type-selector template inactive" type="consonant-type-selector">Contains
+    <select class="mode-selector" onchange="handleModeSelect(this)">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+      <option>all</option>
+    </select>
+    <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
+    <a class="ct-lbox-popover uninit btn btn-outline-secondary"
+       role="button"
+       data-html="true"
+       data-toggle="popover"
+       title="<b>Select consonant type</b>"
+       data-content="Error loading. Sorry!">Select consonant type...</a>
+  </div>
   <div class="phoneme-inventory-size-selector template inactive" type="phoneme-inventory-size-selector">Contains
     <select class="mode-selector" onchange="handleModeSelect(this)">
       <option>at least</option>
@@ -173,15 +189,6 @@
        data-toggle="popover"
        title="<b>Select phoneme type</b>"
        data-content="Error loading. Sorry!">Select phoneme type...</a>
-  </div>
-  <div class="complex-consonants-selector template inactive" type="complex-consonants-selector">
-    Complex Consonants
-  </div>
-  <div class="tone-selector template inactive" type="tone-selector">
-    Tone (Including "Pitch Accent")
-  </div>
-  <div class="stress-selector template inactive" type="stress-selector">
-    Predictable Stress
   </div>
   <div class="syllable-selector template inactive" type="syllable-selector">Contains
     <select class="mode-selector" onchange="handleModeSelect(this)">
@@ -667,7 +674,7 @@
       </tr>
       <tr>
         <th class="ipa-header" onclick="handleIpavboxLabel(this)" scope='row' colspan='1' category='height' trait='low' style="position: absolute; left: 0px; top: 290.0px;">low</th>
-        <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='unrounded' style="position: absolute; left: 228.20000000000002px; top: 290.0px;">aᶠ</td>
+        <td class="ipa-box-empty"></td>
         <td class="ipa-box" onclick="handleIpavboxLabel(this)" backness='front' height='low' roundedness='rounded' style="position: absolute; left: 254.20000000000002px; top: 290.0px;">ɶ</td>
         <td class="ipa-box-empty"></td>
         <td class="ipa-box-empty"></td>
@@ -822,6 +829,20 @@
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">pharyngealized</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">diphthongs</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">triphthongs</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Auto-generated template for the ct-lbox-popover list selector.-->
+<div id="ct-lbox-popover-template" class="template">
+  <table>
+    <tbody>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">uvular / retroflex / pharyngeal</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">affricates</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">prenasalized</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">multi-place / secondary articulation</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">geminate</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">glottalized / non-pulmonic</td></tr>
     </tbody>
   </table>
 </div>

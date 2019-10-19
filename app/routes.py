@@ -16,6 +16,8 @@ def main():
         # Ask querier to run the query against the DB, and generate HTML response
         HTML = ""
         status = ""
+        results = None
+        graphData = None
         try:
             print("handling queries...")
             results = querier.handleQueries(queries, db)
