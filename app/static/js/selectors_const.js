@@ -54,20 +54,6 @@ var SELECTORS_DICT = {
         "select what": "case",
         "type": "String"
     },
-    "complex-consonants-selector": {
-        "bool body": "Complex Consonants",
-        "dict": null,
-        "html id": "complex-consonants-selector",
-        "mode": "boolean",
-        "multi": null,
-        "popover prefix": null,
-        "property": "complex consonants",
-        "reply": "contain complex consonants",
-        "reply vars": null,
-        "select name": "Has complex consonants",
-        "select what": null,
-        "type": "Bool"
-    },
     "consonant-articulation-selector": {
         "dict": {
             "manners": [],
@@ -103,6 +89,46 @@ var SELECTORS_DICT = {
         ],
         "select name": "Contains consonant class:",
         "select what": "natural classes",
+        "type": "List"
+    },
+    "consonant-type-selector": {
+        "dict": {
+            "affricates": [],
+            "geminate": [
+                "geminate",
+                "long"
+            ],
+            "glottalized / non-pulmonic": [
+                "glottalized",
+                "non-pulmonic",
+                "click",
+                "ejective",
+                "implosive"
+            ],
+            "multi-place / secondary articulation": [
+                "multi-place",
+                "secondary articulation"
+            ],
+            "prenasalized": [],
+            "uvular / retroflex / pharyngeal": [
+                "uvular",
+                "retroflex",
+                "pharyngeal"
+            ]
+        },
+        "html id": "consonant-type-selector",
+        "mode": "pick multi",
+        "multi": true,
+        "popover prefix": "ct-lbox-popover",
+        "property": "consonant types",
+        "reply": "have %s %s of %s consonants",
+        "reply vars": [
+            "mode",
+            "k",
+            "selList"
+        ],
+        "select name": "Consonant types:",
+        "select what": "consonant type",
         "type": "List"
     },
     "formation-freq-selector": {
@@ -271,7 +297,6 @@ var SELECTORS_DICT = {
             ],
             "continuant": [
                 "a",
-                "a\u1da0",
                 "e",
                 "f",
                 "h",
@@ -499,7 +524,6 @@ var SELECTORS_DICT = {
             ],
             "sonorant": [
                 "a",
-                "a\u1da0",
                 "e",
                 "i",
                 "j",
@@ -553,7 +577,6 @@ var SELECTORS_DICT = {
             ],
             "syllabic": [
                 "a",
-                "a\u1da0",
                 "e",
                 "i",
                 "l",
@@ -603,7 +626,6 @@ var SELECTORS_DICT = {
             ],
             "vocalic": [
                 "a",
-                "a\u1da0",
                 "e",
                 "h",
                 "i",
@@ -641,7 +663,6 @@ var SELECTORS_DICT = {
             ],
             "voiced": [
                 "a",
-                "a\u1da0",
                 "b",
                 "b\u02b0",
                 "d",
@@ -821,20 +842,6 @@ var SELECTORS_DICT = {
         "mode": "no query",
         "select name": "Select trait..."
     },
-    "stress-selector": {
-        "bool body": "Predictable Stress",
-        "dict": null,
-        "html id": "stress-selector",
-        "mode": "boolean",
-        "multi": null,
-        "popover prefix": null,
-        "property": "stress",
-        "reply": "have stress",
-        "reply vars": null,
-        "select name": "Has stress",
-        "select what": null,
-        "type": "Bool"
-    },
     "syllable-selector": {
         "dict": {
             "C coda": [
@@ -909,20 +916,6 @@ var SELECTORS_DICT = {
         "select name": "Allows syllable structure:",
         "select what": "syllables",
         "type": "List"
-    },
-    "tone-selector": {
-        "bool body": "Tone (Including \"Pitch Accent\")",
-        "dict": null,
-        "html id": "tone-selector",
-        "mode": "boolean",
-        "multi": null,
-        "popover prefix": null,
-        "property": "tone",
-        "reply": "have tone",
-        "reply vars": null,
-        "select name": "Has tone",
-        "select what": null,
-        "type": "Bool"
     },
     "vowel-class-selector": {
         "dict": null,

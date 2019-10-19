@@ -1,1 +1,724 @@
-[]
+[
+    {
+        "name": "Choctaw",
+        "student": "5b951991693d13e6",
+        "netid": "ab824a03c9e3a651",
+        "country": "United States",
+        "language family": "Muskogean",
+        "num consonants": 16,
+        "num vowels": 9,
+        "num phonemes": 25,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "f",
+            "ɬ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "o",
+            "i"
+        ],
+        "vowel types": [
+            "nasalized",
+            "long"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 7,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Daakaka",
+        "student": "51042dfd7848d80c",
+        "netid": "bbb14152852462da",
+        "country": "Ambrym",
+        "language family": "Oceanic",
+        "num consonants": 18,
+        "num vowels": 14,
+        "num phonemes": 32,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "r",
+            "v"
+        ],
+        "consonant types": [
+            "multi-place / secondary articulation"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɛ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Kurdishh",
+        "student": "5d5efb2d43faa004",
+        "netid": "268c107fdd3f1061",
+        "country": "Iraq, Turkey, Syria",
+        "language family": "Indo-European",
+        "num consonants": 33,
+        "num vowels": 9,
+        "num phonemes": 42,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʃ",
+            "ʔ",
+            "f",
+            "r",
+            "z",
+            "x",
+            "v",
+            "ɾ",
+            "ç",
+            "ʝ",
+            "ɣ",
+            "q",
+            "ħ"
+        ],
+        "consonant types": [
+            "uvular / retroflex / pharyngeal",
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɯ",
+            "ɪ",
+            "ɔ"
+        ],
+        "vowel types": [
+            null
+        ],
+        "num consonant places": 10,
+        "num consonant manners": 7,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Kuuk Thayorre",
+        "student": "f04474a5f78c75ff",
+        "netid": "26483a1f20f0cbe8",
+        "country": "Australia",
+        "language family": "Pama-Nyungan",
+        "num consonants": 16,
+        "num vowels": 10,
+        "num phonemes": 26,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "l",
+            "ŋ",
+            "ʔ",
+            "r",
+            "ɲ",
+            "ɻ",
+            "c",
+            "ɰ"
+        ],
+        "consonant types": [
+            "uvular / retroflex / pharyngeal"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda",
+            "CC coda",
+            "CCC coda"
+        ]
+    },
+    {
+        "name": "Manange",
+        "student": "0096436494b9b210",
+        "netid": "c2b3104824c98edc",
+        "country": "Nepal",
+        "language family": "Sino-Tibetan",
+        "num consonants": 30,
+        "num vowels": 10,
+        "num phonemes": 40,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "h",
+            "ŋ",
+            "ʔ",
+            "tʃ",
+            "ɲ",
+            "ts",
+            "pʰ",
+            "tʰ",
+            "ʈʰ",
+            "kʰ",
+            "ɾ",
+            "ʈ",
+            "ʂ",
+            "ç"
+        ],
+        "consonant types": [
+            "uvular / retroflex / pharyngeal",
+            "affricates",
+            "multi-place / secondary articulation"
+        ],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɜ",
+            "ɐ"
+        ],
+        "vowel types": [
+            "nasalized"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 8,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Maori",
+        "student": "28cd3cc0828232fc",
+        "netid": "7e71a72bfbac289c",
+        "country": "New Zealand",
+        "language family": "Austro-Indonesian",
+        "num consonants": 10,
+        "num vowels": 15,
+        "num phonemes": 25,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "p",
+            "w",
+            "h",
+            "ŋ",
+            "f",
+            "r"
+        ],
+        "consonant types": [
+            null
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "syllables": [
+            "C onset"
+        ]
+    },
+    {
+        "name": "Nuosu",
+        "student": "8ef62b0b01c3db12",
+        "netid": "a08b1d93796a0a3c",
+        "country": "China",
+        "language family": "Sino-Tibetan",
+        "num consonants": 43,
+        "num vowels": 8,
+        "num phonemes": 51,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "f",
+            "z",
+            "ts",
+            "x",
+            "v",
+            "pʰ",
+            "tʰ",
+            "kʰ",
+            "dz",
+            "ʂ",
+            "ʐ",
+            "ɣ"
+        ],
+        "consonant types": [
+            "uvular / retroflex / pharyngeal",
+            "affricates",
+            "prenasalized"
+        ],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "u",
+            "ɯ",
+            "ɛ",
+            "ɔ"
+        ],
+        "vowel types": [
+            null
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "syllables": [
+            "C onset",
+            "CC onset"
+        ]
+    },
+    {
+        "name": "Nzadi",
+        "student": "965011a23da5d967",
+        "netid": "85f83568d73a60fc",
+        "country": "Congo",
+        "language family": "Niger-Congo",
+        "num consonants": 21,
+        "num vowels": 14,
+        "num phonemes": 35,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "f",
+            "r",
+            "z",
+            "ts",
+            "v",
+            "dz"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɜ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 7,
+        "syllables": [
+            "V",
+            "C onset"
+        ]
+    },
+    {
+        "name": "Old Irish",
+        "student": "eedf008f5d66f1ec",
+        "netid": "4fa0c60924922367",
+        "country": "Ireland",
+        "language family": "Indo-European",
+        "num consonants": 40,
+        "num vowels": 21,
+        "num phonemes": 61,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "p",
+            "l",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "f",
+            "r",
+            "x",
+            "θ",
+            "ð",
+            "ɣ"
+        ],
+        "consonant types": [
+            "multi-place / secondary articulation",
+            "geminate"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə"
+        ],
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Qaqet",
+        "student": "26cc7b853e2cc0fc",
+        "netid": "89baa243c23c4135",
+        "country": "Papua New Guinea",
+        "language family": "Baining",
+        "num consonants": 16,
+        "num vowels": 10,
+        "num phonemes": 26,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "l",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "r",
+            "ɲ",
+            "β",
+            "ɽ",
+            "ɣ"
+        ],
+        "consonant types": [
+            "prenasalized"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ə"
+        ],
+        "vowel types": [
+            "diphthongs"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 6,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Sierra Popoluca",
+        "student": "5ff58c5abe00433f",
+        "netid": "3631a33bb26f35d5",
+        "country": "Mexico",
+        "language family": "Mixe-Zoquean",
+        "num consonants": 12,
+        "num vowels": 12,
+        "num phonemes": 24,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "w",
+            "h",
+            "ŋ",
+            "ʔ",
+            "ts"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ɛ",
+            "ɘ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda"
+        ]
+    },
+    {
+        "name": "Tamil",
+        "student": "c3bd81b2cadd7a36",
+        "netid": "51474e000891f722",
+        "country": "India",
+        "language family": "Dravidian",
+        "num consonants": 18,
+        "num vowels": 12,
+        "num phonemes": 30,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "l",
+            "ŋ",
+            "r",
+            "ɲ",
+            "ʋ",
+            "ɾ",
+            "ʈ",
+            "ɖ",
+            "ɳ",
+            "ɻ",
+            "c"
+        ],
+        "consonant types": [
+            "uvular / retroflex / pharyngeal",
+            "geminate"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Tariana",
+        "student": "cc11db56536e2d42",
+        "netid": "c99ad1d0ab7bc277",
+        "country": "Brazil",
+        "language family": "Arawak or Maipurean",
+        "num consonants": 24,
+        "num vowels": 15,
+        "num phonemes": 39,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "tʃ",
+            "ɲ",
+            "pʰ",
+            "tʰ",
+            "dʰ",
+            "ʈʰ",
+            "kʰ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "e",
+            "i",
+            "u",
+            "ɑ",
+            "ɨ",
+            "ɵ"
+        ],
+        "vowel types": [
+            "nasalized",
+            "long"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 7,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Western Garrwa",
+        "student": "c90517195d7898ad",
+        "netid": "99e28e7f10e9eef1",
+        "country": "Australia",
+        "language family": "Australian",
+        "num consonants": 14,
+        "num vowels": 3,
+        "num phonemes": 17,
+        "consonants": [
+            "n",
+            "m",
+            "k",
+            "j",
+            "l",
+            "w",
+            "b",
+            "d",
+            "ŋ",
+            "r",
+            "ɲ",
+            "ɹ",
+            "ɟ",
+            "ʎ"
+        ],
+        "consonant types": [
+            null
+        ],
+        "vowels": [
+            "a",
+            "ɪ",
+            "ʊ"
+        ],
+        "vowel types": [
+            null
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 5,
+        "syllables": [
+            "C onset"
+        ]
+    }
+]

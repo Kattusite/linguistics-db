@@ -2183,7 +2183,6 @@
             "ə",
             "ʉ",
             "ɛ",
-            "aᶠ",
             "ɒ"
         ],
         "num consonant places": 6,
@@ -2667,8 +2666,7 @@
         ],
         "vowels": [
             "i",
-            "u",
-            "aᶠ"
+            "u"
         ],
         "num consonant places": 5,
         "num consonant manners": 5,
