@@ -46,6 +46,58 @@
         ]
     },
     {
+        "name": "Bukawa",
+        "student": "9cadd43cc7cbbc67",
+        "netid": "589788a487cab97d",
+        "country": "Papua New Guinea",
+        "language family": "Austronesian",
+        "num consonants": 34,
+        "num vowels": 8,
+        "num phonemes": 42,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "ɾ",
+            "ʝ"
+        ],
+        "consonant types": [
+            "prenasalized",
+            "multi-place / secondary articulation"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "u",
+            "ø",
+            "ɪ",
+            "ʊ"
+        ],
+        "vowel types": [
+            null
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
         "name": "Cherokee",
         "student": "1c936c304a35951d",
         "netid": "1b5223ffa2a9588d",
