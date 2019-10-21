@@ -356,9 +356,14 @@ def generateFractionHTML(numerator, denominator):
     {{ quantifier }} languages <span style="font-size: x-small;">({{ numerator }} / {{ denominator }})</span>
     </span> {{ desc }}"""
 
+    # avoid division by zero
+    frac = 0
+    if denominator != 0:
+        frac = numerator / denominator
+
     params = {
-        "percent": round(numerator / denominator * 100),
-        "quantifier": floatToQuantifier(numerator / denominator),
+        "percent": round(frac * 100),
+        "quantifier": floatToQuantifier(frac),
         "numerator": numerator,
         "denominator": denominator,
         "desc": "{}", # Placeholder to be replaced in subsequent step.
