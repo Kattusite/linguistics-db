@@ -1,5 +1,99 @@
 [
     {
+        "name": "Alto Perené",
+        "student": "c5a76e2b3b7d2a9f",
+        "netid": "6c17012ad508887e",
+        "country": "Peru",
+        "language family": "Arawak",
+        "num consonants": 16,
+        "num vowels": 12,
+        "num phonemes": 28,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "w",
+            "h",
+            "ʃ",
+            "tʃ",
+            "ɲ",
+            "ts",
+            "ɾ",
+            "ɴ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i"
+        ],
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 6,
+        "syllables": [
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Cherokee",
+        "student": "1c936c304a35951d",
+        "netid": "1b5223ffa2a9588d",
+        "country": "USA (NC/OK)",
+        "language family": "Iroquoian",
+        "num consonants": 10,
+        "num vowels": 6,
+        "num phonemes": 16,
+        "consonants": [
+            "n",
+            "m",
+            "j",
+            "s",
+            "l",
+            "w",
+            "h",
+            "d",
+            "g",
+            "ʔ",
+            "dʒ",
+            "dʰ",
+            "gʰ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɑ",
+            "ʌ"
+        ],
+        "vowel types": [
+            "nasalized",
+            "long"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
         "name": "Choctaw",
         "student": "5b951991693d13e6",
         "netid": "ab824a03c9e3a651",
@@ -46,6 +140,51 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ]
+    },
+    {
+        "name": "Creek (Muskogee)",
+        "student": "f73be0137076ab82",
+        "netid": "c99454ebe711ebe8",
+        "country": "USA",
+        "language family": "Muskogean",
+        "num consonants": 13,
+        "num vowels": 15,
+        "num phonemes": 28,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "tʃ",
+            "f",
+            "ɬ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "o",
+            "i",
+            "ɑ"
+        ],
+        "vowel types": [
+            "nasalized",
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 7,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
         ]
     },
     {
@@ -478,6 +617,100 @@
         ]
     },
     {
+        "name": "Onondaga",
+        "student": "0a3c4127fec1d96e",
+        "netid": "3766ee372ee8792f",
+        "country": "United States",
+        "language family": "Iroquioan",
+        "num consonants": 10,
+        "num vowels": 7,
+        "num phonemes": 17,
+        "consonants": [
+            "n",
+            "t",
+            "k",
+            "j",
+            "s",
+            "w",
+            "h",
+            "ʔ",
+            "ts"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "æ"
+        ],
+        "vowel types": [
+            "nasalized"
+        ],
+        "num consonant places": 5,
+        "num consonant manners": 5,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "CCCC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda",
+            "CCCC coda"
+        ]
+    },
+    {
+        "name": "Puyuma",
+        "student": "f3621117b12d39ea",
+        "netid": "16de941fb181f351",
+        "country": "Taiwan",
+        "language family": "Austronesian",
+        "num consonants": 18,
+        "num vowels": 4,
+        "num phonemes": 22,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "r",
+            "ɲ",
+            "ʈ"
+        ],
+        "consonant types": [
+            "uvular / retroflex / pharyngeal"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ə"
+        ],
+        "vowel types": [
+            null
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 6,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
         "name": "Qaqet",
         "student": "26cc7b853e2cc0fc",
         "netid": "89baa243c23c4135",
@@ -677,6 +910,56 @@
             "C onset",
             "CC onset",
             "C coda"
+        ]
+    },
+    {
+        "name": "Upper Necaxa Totonac",
+        "student": "b451b862416f57da",
+        "netid": "900f4dae43b7c1b6",
+        "country": "Mexico",
+        "language family": "Totonac–Tepehua",
+        "num consonants": 17,
+        "num vowels": 5,
+        "num phonemes": 22,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "p",
+            "w",
+            "ŋ",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "ɲ",
+            "ts",
+            "x",
+            "ɾ",
+            "ɻ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 6,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
         ]
     },
     {
