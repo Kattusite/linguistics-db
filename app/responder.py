@@ -391,21 +391,29 @@ def mergeQueryDescs(queries, joinMode):
 
     pre = ""
     mid = ""
+    desc0 = queries[0].desc()
+    desc1 = queries[1].desc()
+
     if joinMode == UNION:
         mid = "or"
     elif joinMode == INTERSECTION:
         mid = "and"
-    elif joinMode in [A_IMPLIES_B, B_IMPLIES_A]:
+    elif joinMode == A_IMPLIES_B:
         pre = "that"
         mid = "also"
+    elif joinMode == B_IMPLIES_A:
+        pre = "that"
+        mid = "also"
+        desc0 = queries[1].desc()
+        desc1 = queries[0].desc()
     else:
         raise ValueError("generateReply() received unrecognized joinMode '%s'" % joinMode)
 
     params = {
         "pre": pre,
         "mid": mid,
-        "desc0": queries[0].desc(),
-        "desc1": queries[1].desc(),
+        "desc0": desc0,
+        "desc1": desc1,
     }
 
     return "{pre} <b>{desc0}</b> {mid} <b>{desc1}</b>".format(**params).strip()
