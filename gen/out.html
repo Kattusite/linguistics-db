@@ -16,10 +16,6 @@
     <option>Morphological type:</option>
     <option>Word formation strategy:</option>
     <option>Word formation frequency:</option>
-    <option>Basic word order:</option>
-    <option>Headedness:</option>
-    <option>Case:</option>
-    <option>Agreement:</option>
   </select>
   <div class="placeholder-selector template active" type="placeholder-selector">
     Select a trait from the dropdown menu to start submitting queries!
@@ -251,58 +247,6 @@
        data-toggle="popover"
        title="<b>Select frequency</b>"
        data-content="Error loading. Sorry!">Select frequency...</a>
-  </div>
-  <div class="word-order-selector template inactive" type="word-order-selector">Contains
-    <select class="mode-selector" onchange="handleModeSelect(this)">
-      <option>at least</option>
-      <option>at most</option>
-      <option>exactly</option>
-      <option>less than</option>
-      <option>more than</option>
-      <option>not equal to</option>
-      <option>all</option>
-    </select>
-    <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
-    <a class="wo-lbox-popover uninit btn btn-outline-secondary"
-       role="button"
-       data-html="true"
-       data-toggle="popover"
-       title="<b>Select word order</b>"
-       data-content="Error loading. Sorry!">Select word order...</a>
-  </div>
-  <div class="headedness-selector template inactive" type="headedness-selector">Contains
-    <select class="mode-selector" onchange="handleModeSelect(this)">
-      <option>at least</option>
-      <option>at most</option>
-      <option>exactly</option>
-      <option>less than</option>
-      <option>more than</option>
-      <option>not equal to</option>
-      <option>all</option>
-    </select>
-    <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
-    <a class="h-lbox-popover uninit btn btn-outline-secondary"
-       role="button"
-       data-html="true"
-       data-toggle="popover"
-       title="<b>Select headedness</b>"
-       data-content="Error loading. Sorry!">Select headedness...</a>
-  </div>
-  <div class="case-selector template inactive" type="case-selector">
-    <a class="c-lbox-popover uninit btn btn-outline-secondary"
-       role="button"
-       data-html="true"
-       data-toggle="popover"
-       title="<b>Select case</b>"
-       data-content="Error loading. Sorry!">Select case...</a>
-  </div>
-  <div class="agreement-selector template inactive" type="agreement-selector">
-    <a class="a-lbox-popover uninit btn btn-outline-secondary"
-       role="button"
-       data-html="true"
-       data-toggle="popover"
-       title="<b>Select agreement</b>"
-       data-content="Error loading. Sorry!">Select agreement...</a>
   </div>
 </div>
 <!--Auto-generated template for the IPA consonant chart-->
@@ -925,58 +869,6 @@
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal affixation and other</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly isolating</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively isolating</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!--Auto-generated template for the wo-lbox-popover list selector.-->
-<div id="wo-lbox-popover-template" class="template">
-  <table>
-    <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SVO</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">SOV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VSO</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">VOS</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OVS</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">OSV</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">free</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!--Auto-generated template for the h-lbox-popover list selector.-->
-<div id="h-lbox-popover-template" class="template">
-  <table>
-    <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-initial</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">consistently head-final</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-initial</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-final</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mixed headedness</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!--Auto-generated template for the c-lbox-popover list selector.-->
-<div id="c-lbox-popover-template" class="template">
-  <table>
-    <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!--Auto-generated template for the a-lbox-popover list selector.-->
-<div id="a-lbox-popover-template" class="template">
-  <table>
-    <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
     </tbody>
   </table>
 </div>
