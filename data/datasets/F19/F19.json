@@ -95,7 +95,20 @@
             "V",
             "C onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional",
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other"
     },
     {
         "name": "Cherokee",
@@ -143,7 +156,19 @@
             "C onset",
             "CC onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "internal change",
+            "stress or tone shift"
+        ],
+        "word formation frequency": "mostly prefixing"
     },
     {
         "name": "Choctaw",
@@ -192,7 +217,18 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "suppletion"
+        ],
+        "word formation frequency": "equal prefixing and suffixing"
     },
     {
         "name": "Creek (Muskogee)",
@@ -289,7 +325,20 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing"
     },
     {
         "name": "Kurdishh",
@@ -358,7 +407,7 @@
         ]
     },
     {
-        "name": "Kuuk Thayorre",
+        "name": "Kuuk Thaayorre",
         "student": "f04474a5f78c75ff",
         "netid": "26483a1f20f0cbe8",
         "country": "Australia",
@@ -403,11 +452,24 @@
             "C coda",
             "CC coda",
             "CCC coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing"
     },
     {
         "name": "Manange",
-        "student": "0096436494b9b210",
+        "student": "4c3ecd2dc1412e10",
         "netid": "c2b3104824c98edc",
         "country": "Nepal",
         "language family": "Sino-Tibetan",
@@ -461,7 +523,19 @@
             "C onset",
             "CC onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "isolating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly isolating"
     },
     {
         "name": "Maori",
@@ -502,7 +576,18 @@
         "num consonant manners": 5,
         "syllables": [
             "C onset"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other"
     },
     {
         "name": "Nuosu",
@@ -561,7 +646,18 @@
         "syllables": [
             "C onset",
             "CC onset"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing"
     },
     {
         "name": "Nzadi",
@@ -712,7 +808,20 @@
             "CC coda",
             "CCC coda",
             "CCCC coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "root-and-pattern",
+            "internal change"
+        ],
+        "word formation frequency": "mostly prefixing"
     },
     {
         "name": "Puyuma",
@@ -760,7 +869,19 @@
             "V",
             "C onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "analytic",
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly prefixing"
     },
     {
         "name": "Qaqet",
@@ -808,7 +929,18 @@
             "C onset",
             "CC onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing"
     },
     {
         "name": "Sierra Popoluca",
@@ -962,7 +1094,20 @@
             "C onset",
             "CC onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change",
+            "suppletion",
+            "stress or tone shift"
+        ],
+        "word formation frequency": "mostly suffixing"
     },
     {
         "name": "Upper Necaxa Totonac",
@@ -1012,7 +1157,18 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing"
     },
     {
         "name": "Western Garrwa",
@@ -1054,6 +1210,17 @@
         "num consonant manners": 5,
         "syllables": [
             "C onset"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing"
     }
 ]

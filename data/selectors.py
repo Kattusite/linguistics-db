@@ -495,10 +495,10 @@ SELECTORS = [
     MORPHOLOGY,
     WORD_FORMATION,
     FORMATION,
-    WORD_ORDER,
-    HEADEDNESS,
-    CASE,
-    AGREEMENT
+    # WORD_ORDER,   # not used in F19
+    # HEADEDNESS,   # not used in F19
+    # CASE,         # not used in F19
+    # AGREEMENT     # not used in F19
 ]
 
 SELECTORS_DICT = { sel[HTML_ID] : sel for sel in SELECTORS }
