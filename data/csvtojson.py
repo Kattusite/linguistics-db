@@ -92,6 +92,10 @@ def csvToJSON(datasetName):
             print("\n======== Parsing %s with netid %s =========" % (language, id))
 
         if g_list is not None:
+
+            if GRAMMAR not in params:
+                raise KeyError("GRAMMAR parameters for this semester's survey not defined in const.py!")
+
             g_params = params[GRAMMAR]
             json_obj = convertRow(g_list, g_params, json_obj)
 
@@ -101,6 +105,10 @@ def csvToJSON(datasetName):
             json_obj[K_NUM_CONSONANT_MANNERS] = consonants.getNumMannersFromGlyphs(json_obj[K_CONSONANTS])
 
         if t_list is not None:
+
+            if TYPOLOGY not in params:
+                raise KeyError("TYPOLOGY parameters for this semester's survey not defined in const.py!")
+
             # NOTE: "Language" field may be overwritten, so if data is inconsistent on
             # spelling there will be potential issues
             t_params = params[TYPOLOGY]
