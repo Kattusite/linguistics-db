@@ -273,7 +273,19 @@
             "V",
             "C onset",
             "C coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "stress or tone shift"
+        ],
+        "word formation frequency": "equal prefixing and suffixing"
     },
     {
         "name": "Daakaka",
@@ -341,7 +353,7 @@
         "word formation frequency": "mostly suffixing"
     },
     {
-        "name": "Kurdishh",
+        "name": "Kurdish",
         "student": "5d5efb2d43faa004",
         "netid": "268c107fdd3f1061",
         "country": "Iraq, Turkey, Syria",
@@ -404,7 +416,20 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing"
     },
     {
         "name": "Kuuk Thaayorre",
@@ -708,7 +733,19 @@
         "syllables": [
             "V",
             "C onset"
-        ]
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing"
     },
     {
         "name": "Old Irish",
@@ -762,7 +799,21 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
+        ],
+        "recommend": "I needed to consult multiple grammars to gain sufficient data. This was very linguistically interesting to read, but I would not recommend this course of action if the student did not have a decent knowledge of and interest in linguistics.",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing"
     },
     {
         "name": "Onondaga",
@@ -987,7 +1038,17 @@
             "C coda",
             "CC coda",
             "CCC coda"
-        ]
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other"
     },
     {
         "name": "Tamil",
@@ -1040,7 +1101,18 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing"
     },
     {
         "name": "Tariana",
