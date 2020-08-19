@@ -488,17 +488,17 @@ SELECTORS = [
     #CONSONANT_PLACES,
     #CONSONANT_MANNERS,
     PHONEME_INVENTORY_SIZE,
-    # COMPLEX_CONSONANTS,   # not used in F19
-    # TONE,                 # not used in F19
-    # STRESS,               # not used in F19
+    COMPLEX_CONSONANTS,   # not used in F19
+    TONE,                 # not used in F19
+    STRESS,               # not used in F19
     SYLLABLES,
     MORPHOLOGY,
     WORD_FORMATION,
     FORMATION,
-    # WORD_ORDER,   # not used in F19
-    # HEADEDNESS,   # not used in F19
-    # CASE,         # not used in F19
-    # AGREEMENT     # not used in F19
+    WORD_ORDER,   # not used in F19
+    HEADEDNESS,   # not used in F19
+    CASE,         # not used in F19
+    AGREEMENT     # not used in F19
 ]
 
 SELECTORS_DICT = { sel[HTML_ID] : sel for sel in SELECTORS }

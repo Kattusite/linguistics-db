@@ -75,7 +75,7 @@
         "roundedness": "unrounded",
         "voicing": "voiced",
         "producible": true,
-        "disabled": true
+        "disabled": false
     },
     {
         "glyph": "a",
