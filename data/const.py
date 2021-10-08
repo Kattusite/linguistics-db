@@ -1,4 +1,10 @@
 # No imports from project (leaf node in any import tree)
+from typing import (
+    Dict,
+    List,
+    Optional,
+    Union,
+)
 
 """This file defines constants used throughout the program, primarily relating to
 handling different datasets and parsing datasets from the raw Google Forms CSV data.
@@ -30,7 +36,7 @@ datasetNames = [
     S19TEST,
     F17,
     S19,
-    F19
+    F19,
 ]
 
 ##############################################################################
@@ -57,14 +63,15 @@ datasetNames = [
 # Which surveys are available?
 GRAMMAR = "grammar"    # From the "Grammar Work 2" survey
 TYPOLOGY = "typology"  # From the final "Typology" survey
+SURVEYS = (GRAMMAR, TYPOLOGY)
 
 # Parameter names
 KEY = "key"
 TYPE = "type"
 INDEX = "index"
 MAPPING = "mapping"
-DICT = "dict"
-FAIL_DICT = "fail dict"
+DICT = "parse_dict"
+FAIL_LIST = "fail_list"
 # SELECTOR / PARSE_DICT / SOMETHING LIKE THAT
 
 PHONEMES = "phonemes"
@@ -311,16 +318,26 @@ D_AGREEMENT = {
 # These variables shall all be prefixed with a P_ to signify they are
 # *P*arameter specifications
 
-def P(key, type, index=None, mapping=None, dict=None, fail_dict=None):
-    p = {
-        KEY: key,
-        TYPE: type,
-        INDEX: index,
-        MAPPING: mapping,
-        DICT: dict,
-        FAIL_DICT: fail_dict
-    }
-    return {k: v for k, v in p.items() if v is not None}
+ParseDict = Dict[str, List[str]]
+FailList = List[str]
+
+class SurveySpecification:
+    def __init__(self,
+                 key: str,
+                 _type: str,
+                 index: Union[int, List[int], None] = None, # one-to-one, many-to-one, derived
+                 mapping: Optional[str] = None,             # ONE_TO_ONE, MERGE, SPLIT, None
+                 _dict: Optional[ParseDict] = None,
+                 fail_list: Optional[FailList] = None):
+        self.key = key
+        self.type = _type
+        self.index = index
+        self.mapping = mapping
+        self.parse_dict = _dict
+        self.fail_list = fail_list
+
+# A convenience because I already named them all with P
+P = SurveySpecification
 
 # Common question specifications that won't change much
 def P_NETID(index=1):
@@ -353,8 +370,8 @@ def P_PHONETIC(index=9):
     return P([K_COMPLEX_CONSONANTS, K_TONE, K_STRESS], BOOL, index, SPLIT)
 
 def P_SYLLABLE(index=10):
-    fail_dict =  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
-    return P(K_SYLLABLES, LIST, index, ONE_TO_ONE, D_SYLLABLES, fail_dict)
+    fail_list =  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
+    return P(K_SYLLABLES, LIST, index, ONE_TO_ONE, D_SYLLABLES, fail_list)
 
 # New grammar questions as of F19
 def P_COUNTRY(index=4):
@@ -380,13 +397,13 @@ def P_VOWELS_S19(index=[9,10]):
     return P(K_VOWELS, LIST, index, MERGE, PHONEMES)
 
 def P_VOWEL_TYPES_S19(index=11):
-    fail_dict = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
-    return P(K_VOWEL_TYPES, LIST, index, ONE_TO_ONE, D_VOWEL_TYPES, fail_dict)
+    fail_list = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
+    return P(K_VOWEL_TYPES, LIST, index, ONE_TO_ONE, D_VOWEL_TYPES, fail_list)
 
 # TODO: Add a default index value
 def P_CONSONANT_TYPES_F19(index):
-    fail_dict = None
-    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES, fail_dict)
+    fail_list = None
+    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES, fail_list)
 
 # Typology Parameters Fall 17:
 def P_CITATION_F17(index=4):
@@ -399,20 +416,20 @@ def P_MORPHOLOGICAL_TYPE(index=6):
     return P(K_MORPHOLOGICAL_TYPE, LIST, index, ONE_TO_ONE, D_MORPHOLOGY, None)
 
 def P_WORD_FORMATION(index=7):
-    fail_dict = ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
-    return P(K_WORD_FORMATION, LIST, index, ONE_TO_ONE, D_WORD_FORMATION_F17, fail_dict)
+    fail_list = ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
+    return P(K_WORD_FORMATION, LIST, index, ONE_TO_ONE, D_WORD_FORMATION_F17, fail_list)
 
 def P_WORD_FORMATION_FREQ(index=8):
-    fail_dict = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
-    return P(K_WORD_FORMATION_FREQ, STRING, index, ONE_TO_ONE, D_WORD_FORMATION_FREQ, fail_dict)
+    fail_list = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
+    return P(K_WORD_FORMATION_FREQ, STRING, index, ONE_TO_ONE, D_WORD_FORMATION_FREQ, fail_list)
 
 def P_WORD_ORDER(index=9):
-    fail_dict = ["free", "S", "V", "O"]
-    return P(K_WORD_ORDER, LIST, index, ONE_TO_ONE, D_WORD_ORDER, fail_dict)
+    fail_list = ["free", "S", "V", "O"]
+    return P(K_WORD_ORDER, LIST, index, ONE_TO_ONE, D_WORD_ORDER, fail_list)
 
 def P_HEADEDNESS(index=10):
-    fail_dict = ["head", "initial", "final", "most", "consistent", "mixed"]
-    return P(K_HEADEDNESS, LIST, index, ONE_TO_ONE, D_HEADEDNESS, fail_dict)
+    fail_list = ["head", "initial", "final", "most", "consistent", "mixed"]
+    return P(K_HEADEDNESS, LIST, index, ONE_TO_ONE, D_HEADEDNESS, fail_list)
 
 def P_AGREEMENT(index=11):
     return P(K_AGREEMENT, STRING, index, ONE_TO_ONE, D_AGREEMENT, None)
@@ -526,6 +543,7 @@ PARAMS = {
 # Constants across typology/grammar
 NETID = 1
 NAME  = 2
+LANGUAGE = 3
 HASH_SIZE = 16
 # NOTE: 16 may be too high (not anonymous enough)
 # - shorter hashes <=6 or 7 give better anonymity properties, but increase risk of
