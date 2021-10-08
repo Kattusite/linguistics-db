@@ -83,8 +83,27 @@ def get_glyph_list(s: str, phonemes: List[Glyph] = phonemes.GLYPHS) -> List[Glyp
 
         `phonemes` serves as the canonical list of which phonemes are considered valid.
     """
-    s = s.replace(const.PHONEME_DELIMITER, '')                              # /p/ -> p
-    glyphs = [glyph.strip() for glyph in s.split(const.INNER_DELIMITER)]    # p;t;k -> ['p','t','k']
+    # Note: some of the strings have "extra" information besides just the glyph,
+    # such as: "including dental, alveolar, or postalveolar"
+
+    # "/p/ ;/t/ (including dental, ...);/k/" -> ["/p/", "/t/ (incl...)", "/k/"]
+    raw_glyphs = [glyph.strip() for glyph in s.split(const.INNER_DELIMITER)]
+
+    # Remove selections like "None of the above"
+    raw_glyphs = list(filter(lambda s: "None" not in s, raw_glyphs))
+
+    # ["/p/", "/t/ (incl...)", "/k/"] -> [<match (/p/)>, <match (/t/)>, match (/k/)]
+    # match at least one and at most 5 consecutive characters enclosed in /./
+    # This isn't a perfect heuristic but should come close.
+    matches = [re.search('/(.{1,5})/', g) for g in raw_glyphs]
+
+    # If any glyphs weren't enclosed in /./ we cannot continue, as
+    # there's a good chance the format of the data has changed.
+    if not all(matches):
+        raise ValueError("Survey contained phoneme without surrounding slashes: %s" % raw_glyphs)
+
+    # [<match (/p/), ...] -> ['p', 't', 'k']
+    glyphs = [match.group(1).replace(const.PHONEME_DELIMITER, '').strip() for match in matches]
 
     # Hardcode special case conversions (/Œ/ ==> /ɶ/)
     # This is because Google Forms had trouble rendering ɶ, and Œ was a fallback
@@ -93,8 +112,16 @@ def get_glyph_list(s: str, phonemes: List[Glyph] = phonemes.GLYPHS) -> List[Glyp
         glyphs.append("ɶ")
 
     # Filter out any glyphs that don't appear in the canonical list
-    glyphs = list(filter(lambda g: g in phonemes, glyphs))
-    return glyphs
+    filtered_glyphs = list(filter(lambda g: g in phonemes, glyphs))
+
+    # It's OK to continue if some glyphs are filtered out;
+    # maybe we just don't care about them this semester.
+    removed_glyphs = set(glyphs).difference(set(filtered_glyphs))
+    if removed_glyphs:
+        logger.warning("Unrecognized glyphs were removed: %s", removed_glyphs)
+
+    logger.debug("get_glyph_list mapped %s --> %s", repr(s), filtered_glyphs)
+    return filtered_glyphs
 
 def parse_phrase(phrase: str, spec: const.SurveySpecification) -> Optional[str]:
     """ Distill a complex phrase written in natural english down into one of a

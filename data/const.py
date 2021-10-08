@@ -27,6 +27,7 @@ F17 = "F17"
 S19 = "S19"
 S19TEST = "S19test"
 F19 = "F19"
+F21 = "F21"
 
 # Which named datasets do we have?
 # F = Fall, S = spring, XX = year 20XX
@@ -37,6 +38,7 @@ datasetNames = [
     F17,
     S19,
     F19,
+    F21,
 ]
 
 ##############################################################################
@@ -101,6 +103,7 @@ K_NAME                  = "student"  # formerly "name"
 K_LANGUAGE              = "name"     # formerly "language"
 K_COUNTRY               = "country"
 K_LANGUAGE_FAMILY       = "language family"
+K_ENDANGERMENT_LEVEL    = "endangerment level"
 K_NUM_VOWELS            = "num vowels"
 K_NUM_CONSONANTS        = "num consonants"
 K_NUM_PHONEMES          = "num phonemes"
@@ -380,6 +383,10 @@ def P_COUNTRY(index=4):
 def P_LANGUAGE_FAMILY(index=5):
     return P(K_LANGUAGE_FAMILY, STRING, index, ONE_TO_ONE)
 
+# New grammar questions as of F21
+def P_ENDANGERMENT_LEVEL(index=6):
+    return P(K_ENDANGERMENT_LEVEL, STRING, index, ONE_TO_ONE)
+
 
 # Things that will more likely change
 # Fall 17 specific data format specification
@@ -441,6 +448,10 @@ def P_CASE(index=12):
 # Which questions should be read from the CSV files for a given dataset,
 # and how is the data stored in the corresponding CSV?
 # These specify how to convert between a CSV entry and a JSON entry
+# The order in the list determines the order in which the fields will appear
+# in the final JSON dataset.
+# The .index property of each SurveySpecification determines the order in which
+# the fields appear in the input survey CSV.
 PARAMS = {
     F17: {
         GRAMMAR: [
@@ -530,7 +541,28 @@ PARAMS = {
             P_WORD_FORMATION(6),
             P_WORD_FORMATION_FREQ(7),
         ]
-    }
+    },
+    F21: {
+        GRAMMAR: [
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_COUNTRY(4),
+            P_LANGUAGE_FAMILY(5),
+            P_ENDANGERMENT_LEVEL(6),
+            P_NUM_CONSONANTS(7),
+            P_NUM_VOWELS(8),
+            P_NUM_PHONEMES(9),
+            P_CONSONANTS_S19([10,11]),
+            P_CONSONANT_TYPES_F19(12),
+            P_VOWELS_S19([13,14]),
+            P_VOWEL_TYPES_S19(15),
+            P_NUM_CONSONANT_PLACES(),
+            P_NUM_CONSONANT_MANNERS(),
+            P_PHONETIC(16),
+            P_SYLLABLE(17)
+        ],
+    },
 }
 
 
