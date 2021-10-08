@@ -384,6 +384,7 @@
             "x",
             "v",
             "ɾ",
+            "ɭ",
             "ç",
             "ʝ",
             "ɣ",
@@ -408,7 +409,7 @@
         "vowel types": [
             null
         ],
-        "num consonant places": 10,
+        "num consonant places": 11,
         "num consonant manners": 7,
         "syllables": [
             "V",
@@ -900,7 +901,8 @@
             "ʔ",
             "r",
             "ɲ",
-            "ʈ"
+            "ʈ",
+            "ɭ"
         ],
         "consonant types": [
             "uvular / retroflex / pharyngeal"
@@ -1076,6 +1078,7 @@
             "ɖ",
             "ɳ",
             "ɻ",
+            "ɭ",
             "c"
         ],
         "consonant types": [
