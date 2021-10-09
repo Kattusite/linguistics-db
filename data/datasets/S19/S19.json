@@ -404,9 +404,7 @@
         ],
         "num consonant places": 6,
         "num consonant manners": 5,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1010,9 +1008,7 @@
         ],
         "num consonant places": 6,
         "num consonant manners": 5,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": true,
         "stress": true,
@@ -1087,9 +1083,7 @@
         ],
         "num consonant places": 7,
         "num consonant manners": 7,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1151,9 +1145,7 @@
         ],
         "num consonant places": 5,
         "num consonant manners": 6,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1219,9 +1211,7 @@
         ],
         "num consonant places": 6,
         "num consonant manners": 5,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -1426,9 +1416,7 @@
         ],
         "num consonant places": 5,
         "num consonant manners": 6,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": true,
         "tone": false,
         "stress": true,
@@ -1709,9 +1697,7 @@
         ],
         "num consonant places": 7,
         "num consonant manners": 6,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": true,
         "tone": true,
         "stress": false,
@@ -1968,9 +1954,7 @@
         ],
         "num consonant places": 7,
         "num consonant manners": 7,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -2036,9 +2020,7 @@
         ],
         "num consonant places": 7,
         "num consonant manners": 6,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,
@@ -2339,9 +2321,7 @@
         ],
         "num consonant places": 10,
         "num consonant manners": 7,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": true,
         "tone": true,
         "stress": false,
@@ -2618,9 +2598,7 @@
         ],
         "num consonant places": 5,
         "num consonant manners": 5,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": false,
         "tone": false,
         "stress": true,

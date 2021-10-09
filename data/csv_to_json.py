@@ -188,6 +188,10 @@ def parse_phrase(phrase: str, spec: const.SurveySpecification) -> Optional[str]:
     winner = winners[0] if winners else None
     logger.debug('parse_phrase mapped %s --> %s', repr(phrase), repr(winner))
 
+    # We expect this to return None for "None of the above", or similar,
+    # but usually returning None is a sign that something has gone wrong.
+    if winner is None and "None" not in phrase:
+        logger.warning('parse_phrase returned None for: %s', phrase)
     return winner
 
 class LanguageData(dict):
@@ -238,13 +242,13 @@ class LanguageData(dict):
             if spec.parse_dict and spec.parse_dict != const.PHONEMES:
                 selected_items = value.split(const.INNER_DELIMITER)
                 value = [parse_phrase(item, spec) for item in selected_items]
+
+                # Remove falsy entries from the list, such as "None of the above"
+                value = list(filter(None, value))
+
             # If the parse_dict is absent or equal to const.PHONEMES, assume it's a phoneme list.
             else:
-                # TODO: This should likely be torn out in favor of `get_glyph_list()`
-                value = value.replace(const.PHONEME_DELIMITER, "")
-                selected_items = value.split(const.INNER_DELIMITER)
-                # Trim whitespace and filter out "None of the above"
-                value = [s.strip() for s in selected_items if "None" not in s]
+                value = get_glyph_list(value)
 
         else:
             raise NotImplementedError(f'this function cannot yet handle {spec.type=}')

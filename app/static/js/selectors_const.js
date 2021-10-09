@@ -108,27 +108,13 @@ var SELECTORS_DICT = {
     "consonant-type-selector": {
         "dict": {
             "affricates": [],
-            "geminate": [
-                "geminate",
-                "long"
-            ],
-            "glottalized / non-pulmonic": [
-                "glottalized",
-                "non-pulmonic",
-                "click",
-                "ejective",
-                "implosive"
-            ],
-            "multi-place / secondary articulation": [
-                "multi-place",
-                "secondary articulation"
-            ],
-            "prenasalized": [],
-            "uvular / retroflex / pharyngeal": [
-                "uvular",
-                "retroflex",
-                "pharyngeal"
-            ]
+            "aspirated": [],
+            "clicks": [],
+            "ejectives": [],
+            "implosives": [],
+            "labialized": [],
+            "palatalized": [],
+            "velarized": []
         },
         "html id": "consonant-type-selector",
         "mode": "pick multi",
@@ -143,6 +129,37 @@ var SELECTORS_DICT = {
         ],
         "select name": "Consonant types:",
         "select what": "consonant type",
+        "type": "List"
+    },
+    "endangerment-selector": {
+        "dict": {
+            "0": [],
+            "1": [],
+            "10": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6a": [],
+            "6b": [],
+            "7": [],
+            "8a": [],
+            "8b": [],
+            "9": []
+        },
+        "html id": "endangerment-selector",
+        "mode": "pick multi",
+        "multi": true,
+        "popover prefix": "ebox-popover",
+        "property": "endangerment level",
+        "reply": "have an endangerment level that matches %s %s of %s",
+        "reply vars": [
+            "mode",
+            "k",
+            "selList"
+        ],
+        "select name": "Endangerment level:",
+        "select what": "endangerment level",
         "type": "List"
     },
     "formation-freq-selector": {

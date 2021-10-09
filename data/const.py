@@ -178,6 +178,22 @@ VALID_KEYS = set([
 
 # These variables shall all be prefixed with D_ to signify they are parse*D*icts
 
+D_ENDANGERMENT_LEVELS = {
+    "0":    [],
+    "1":    [],
+    "2":    [],
+    "3":    [],
+    "4":    [],
+    "5":    [],
+    "6a":   [],
+    "6b":   [],
+    "7":    [],
+    "8a":   [],
+    "8b":   [],
+    "9":    [],
+    "10":   [],
+}
+
 # Grammar parseDicts
 D_VOWEL_TYPES = {
     "nasalized":        [],
@@ -197,6 +213,17 @@ D_CONSONANT_TYPES = {
     "multi-place / secondary articulation": ["multi-place", "secondary articulation"],
     "geminate":                             ["geminate", "long"],
     "glottalized / non-pulmonic":           ["glottalized", "non-pulmonic", "click", "ejective", "implosive"]
+}
+
+D_CONSONANT_TYPES_F21 = {
+    "clicks":       [],
+    "implosives":   [],
+    "ejectives":    [],
+    "affricates":   [],
+    "labialized":   [],
+    "palatalized":  [],
+    "velarized":    [],
+    "aspirated":    [],
 }
 
 D_SYLLABLES = {
@@ -385,8 +412,14 @@ def P_LANGUAGE_FAMILY(index=5):
 
 # New grammar questions as of F21
 def P_ENDANGERMENT_LEVEL(index=6):
-    return P(K_ENDANGERMENT_LEVEL, STRING, index, ONE_TO_ONE)
-
+    # This question has an "Other" option so it's hard to catch everything a student
+    # might enter. Some languages will likely go without data on this one.
+    # HACK: The true type of this property is STRING, but defining it as a list
+    #       allows me to shoehorn queries for it into the "at least k" framework
+    # TODO: If I ever write a proper way to handle queries like:
+    #       "has an endangerment level of at least one of the levels [5,6,7]"
+    #       this should become a string again and be handled in that new way.
+    return P(K_ENDANGERMENT_LEVEL, LIST, index, ONE_TO_ONE, D_ENDANGERMENT_LEVELS)
 
 # Things that will more likely change
 # Fall 17 specific data format specification
@@ -411,6 +444,12 @@ def P_VOWEL_TYPES_S19(index=11):
 def P_CONSONANT_TYPES_F19(index):
     fail_list = None
     return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES, fail_list)
+
+# The possible answers changed from earlier years.
+def P_CONSONANT_TYPES_F21(index=12):
+    # We really should match everything, so this one is very broad
+    fail_list = ['ed', 'es']
+    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES_F21, fail_list)
 
 # Typology Parameters Fall 17:
 def P_CITATION_F17(index=4):
@@ -554,7 +593,7 @@ PARAMS = {
             P_NUM_VOWELS(8),
             P_NUM_PHONEMES(9),
             P_CONSONANTS_S19([10,11]),
-            P_CONSONANT_TYPES_F19(12),
+            P_CONSONANT_TYPES_F21(12),
             P_VOWELS_S19([13,14]),
             P_VOWEL_TYPES_S19(15),
             P_NUM_CONSONANT_PLACES(),

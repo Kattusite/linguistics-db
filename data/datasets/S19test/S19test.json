@@ -125,8 +125,7 @@
             "creaky",
             "pharyngealized",
             "diphthongs",
-            "triphthongs",
-            null
+            "triphthongs"
         ],
         "complex consonants": true,
         "tone": true,
@@ -156,9 +155,7 @@
         "vowels": [],
         "num consonant places": 1,
         "num consonant manners": 1,
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "complex consonants": true,
         "tone": false,
         "stress": false,

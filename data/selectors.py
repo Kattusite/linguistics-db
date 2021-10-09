@@ -83,6 +83,20 @@ PLACEHOLDER = {
     BOOL_BODY: "Select a trait from the dropdown menu to start submitting queries!"
 }
 
+ENDANGERMENT = {
+    SELECT_NAME: "Endangerment level:",
+    DICT: const.D_ENDANGERMENT_LEVELS,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have an endangerment level that matches %s %s of %s",
+    REPLY_VARS: ["mode", "k", "selList"],
+    HTML_ID: "endangerment-selector",
+    POPOVER_PREFIX: "ebox-popover",
+    SELECT_WHAT: "endangerment level",
+    PROPERTY: const.K_ENDANGERMENT_LEVEL,
+    TYPE: const.LIST,
+}
+
 CONSONANT = {
     SELECT_NAME: "Contains consonant:",
     DICT: None,
@@ -228,6 +242,20 @@ VOWEL_TYPES = {
 CONSONANT_TYPES = {
     SELECT_NAME: "Consonant types:",
     DICT: const.D_CONSONANT_TYPES,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have %s %s of %s consonants",
+    REPLY_VARS: ["mode", "k", "selList"],
+    HTML_ID: "consonant-type-selector",
+    POPOVER_PREFIX: "ct-lbox-popover",
+    SELECT_WHAT: "consonant type",
+    PROPERTY: const.K_CONSONANT_TYPES,
+    TYPE: const.LIST,
+}
+
+CONSONANT_TYPES_F21 = {
+    SELECT_NAME: "Consonant types:",
+    DICT: const.D_CONSONANT_TYPES_F21,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s consonants",
@@ -475,18 +503,20 @@ METACLASS = {
 # selector dropdown on the site.
 SELECTORS = [
     PLACEHOLDER,
+    ENDANGERMENT,
     IPA_CONSONANT,
     IPA_VOWEL,
-    # CONSONANT,
-    # VOWEL,
+    # CONSONANT,  # replaced by IPA_CONSONANT
+    # VOWEL,      # replaced by IPA_VOWEL
     METACLASS,
     CONSONANT_CLASS,
     VOWEL_CLASS,
     CONSONANT_ARTICULATION,
     VOWEL_TYPES,
-    CONSONANT_TYPES,
-    #CONSONANT_PLACES,
-    #CONSONANT_MANNERS,
+    #CONSONANT_TYPES,     # replaced in F21
+    CONSONANT_TYPES_F21,
+    #CONSONANT_PLACES,    # replaced by CONSONANT_ARTICULATION
+    #CONSONANT_MANNERS,   # replaced by CONSONANT_ARTICULATION
     PHONEME_INVENTORY_SIZE,
     COMPLEX_CONSONANTS,   # not used in F19
     TONE,                 # not used in F19

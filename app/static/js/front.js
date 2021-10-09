@@ -12,7 +12,8 @@ var REMEMBER_LIST_STATE = false;
 
 // Which dataset should we use for queries?
 // var DATASET = "F17"
-var DATASET = "S19";
+// var DATASET = "S19";
+var DATASET = "F21";
 
 // COLORS
 var DANGER  = "alert-danger";

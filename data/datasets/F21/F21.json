@@ -5,7 +5,9 @@
         "netid": "47c75b257b4996c2",
         "country": "Oman",
         "language family": "Afro-Asiatic",
-        "endangerment level": "8b",
+        "endangerment level": [
+            "8b"
+        ],
         "num consonants": 26,
         "num vowels": 16,
         "num phonemes": 42,
@@ -35,7 +37,7 @@
             "ɣ"
         ],
         "consonant types": [
-            "glottalized / non-pulmonic"
+            "ejectives"
         ],
         "vowels": [
             "e",
@@ -67,7 +69,9 @@
         "netid": "446afe9485814472",
         "country": "Turkey has the largest Domari speaking population, but speakers are spread across the middle east and North Africa.",
         "language family": "Indo-European",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 34,
         "num vowels": 14,
         "num phonemes": 48,
@@ -121,9 +125,7 @@
             "ɔ",
             "ɑ"
         ],
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "num consonant places": 10,
         "num consonant manners": 7,
         "complex consonants": true,
@@ -142,7 +144,9 @@
         "netid": "e3d0797a4962a807",
         "country": "Canada (BC)",
         "language family": "Salish",
-        "endangerment level": "8a",
+        "endangerment level": [
+            "8a"
+        ],
         "num consonants": 36,
         "num vowels": 16,
         "num phonemes": 52,
@@ -168,9 +172,9 @@
             "χ"
         ],
         "consonant types": [
-            "glottalized / non-pulmonic",
+            "ejectives",
             "affricates",
-            null
+            "labialized"
         ],
         "vowels": [
             "i",
@@ -204,7 +208,9 @@
         "netid": "a4abcd84e941fc3a",
         "country": "Brazil",
         "language family": "Arawan",
-        "endangerment level": "7",
+        "endangerment level": [
+            "7"
+        ],
         "num consonants": 11,
         "num vowels": 4,
         "num phonemes": 15,
@@ -221,18 +227,14 @@
             "ɸ",
             "ɟ"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "e",
             "i",
             "ɐ",
             "ɤ"
         ],
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "num consonant places": 6,
         "num consonant manners": 4,
         "complex consonants": false,
@@ -249,7 +251,9 @@
         "netid": "f9be1e019ca6893f",
         "country": "China",
         "language family": "Sino-Tibetan",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 24,
         "num vowels": 18,
         "num phonemes": 42,
@@ -277,7 +281,7 @@
         ],
         "consonant types": [
             "affricates",
-            null
+            "aspirated"
         ],
         "vowels": [
             "o",
@@ -308,7 +312,9 @@
         "netid": "45e0d7865bbf58b9",
         "country": "Santa Isabel, Solomon Islands",
         "language family": "Austronesian",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 22,
         "num vowels": 5,
         "num phonemes": 27,
@@ -332,9 +338,7 @@
             "v",
             "ɣ"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "a",
             "e",
@@ -342,9 +346,7 @@
             "i",
             "u"
         ],
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "num consonant places": 6,
         "num consonant manners": 6,
         "complex consonants": false,
@@ -362,7 +364,9 @@
         "netid": "a87d7beaebf27483",
         "country": "Iran, Iraq, Turkey, Syria",
         "language family": "Indo-European",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 31,
         "num vowels": 9,
         "num phonemes": 40,
@@ -401,7 +405,7 @@
         ],
         "consonant types": [
             "affricates",
-            null
+            "velarized"
         ],
         "vowels": [
             "a",
@@ -414,9 +418,7 @@
             "ɪ",
             "ɔ"
         ],
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "num consonant places": 11,
         "num consonant manners": 9,
         "complex consonants": true,
@@ -437,7 +439,9 @@
         "netid": "f2cfc47d16d837d4",
         "country": "Bhutan",
         "language family": "Sino-Tibetan",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 28,
         "num vowels": 11,
         "num phonemes": 39,
@@ -469,7 +473,7 @@
         ],
         "consonant types": [
             "affricates",
-            null
+            "aspirated"
         ],
         "vowels": [
             "e",
@@ -500,7 +504,9 @@
         "netid": "38f207a85af0abf8",
         "country": "India",
         "language family": "North Dravidian",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 34,
         "num vowels": 25,
         "num phonemes": 59,
@@ -539,7 +545,7 @@
         ],
         "consonant types": [
             "affricates",
-            null
+            "aspirated"
         ],
         "vowels": [
             "a",
@@ -574,7 +580,9 @@
         "netid": "a94d0990ee6fe308",
         "country": "Australia",
         "language family": "Pama-Nyungan",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 16,
         "num vowels": 10,
         "num phonemes": 26,
@@ -594,9 +602,7 @@
             "ɻ",
             "c"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "a",
             "e",
@@ -626,7 +632,9 @@
         "netid": "40cc4076c949554a",
         "country": "China",
         "language family": "Sino-Tibetan",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 29,
         "num vowels": 21,
         "num phonemes": 50,
@@ -662,7 +670,7 @@
         ],
         "consonant types": [
             "affricates",
-            null
+            "aspirated"
         ],
         "vowels": [
             "e",
@@ -694,7 +702,9 @@
         "netid": "fc7fa8e2b0df6f3b",
         "country": "New Zealand",
         "language family": "Austronesian",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 10,
         "num vowels": 22,
         "num phonemes": 32,
@@ -710,9 +720,7 @@
             "f",
             "ɾ"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "a",
             "e",
@@ -740,7 +748,9 @@
         "netid": "8e964f19dbbe5d6a",
         "country": "Taiwan",
         "language family": "Austronesian",
-        "endangerment level": "8a",
+        "endangerment level": [
+            "8a"
+        ],
         "num consonants": 18,
         "num vowels": 4,
         "num phonemes": 22,
@@ -764,18 +774,14 @@
             "ɖ",
             "ɭ"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "a",
             "i",
             "u",
             "ə"
         ],
-        "vowel types": [
-            null
-        ],
+        "vowel types": [],
         "num consonant places": 7,
         "num consonant manners": 6,
         "complex consonants": false,
@@ -793,7 +799,9 @@
         "netid": "ff0a6a6e88870a79",
         "country": "Malaysia (Malay peninsula)",
         "language family": "Austroasiatic",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 32,
         "num vowels": 20,
         "num phonemes": 52,
@@ -821,7 +829,7 @@
             "c"
         ],
         "consonant types": [
-            null
+            "aspirated"
         ],
         "vowels": [
             "e",
@@ -854,7 +862,9 @@
         "netid": "f8822ca4bfbd55b8",
         "country": "Egypt",
         "language family": "Afro-asiatic",
-        "endangerment level": "6a",
+        "endangerment level": [
+            "6a"
+        ],
         "num consonants": 30,
         "num vowels": 12,
         "num phonemes": 42,
@@ -880,7 +890,7 @@
             "ʕ"
         ],
         "consonant types": [
-            null
+            "labialized"
         ],
         "vowels": [
             "a",
@@ -914,7 +924,9 @@
         "netid": "f971ebb5bd7978bc",
         "country": "The United States, Ute tribe",
         "language family": "Uto-Aztecan",
-        "endangerment level": "6b",
+        "endangerment level": [
+            "6b"
+        ],
         "num consonants": 18,
         "num vowels": 18,
         "num phonemes": 36,
@@ -938,9 +950,7 @@
             "χ",
             "ʁ"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "a",
             "e",
@@ -972,7 +982,7 @@
         "netid": "e4747812fb6b3b6f",
         "country": "Nepal",
         "language family": "Sino-Tibetan",
-        "endangerment level": "My grammar says it is endangered",
+        "endangerment level": [],
         "num consonants": 32,
         "num vowels": 11,
         "num phonemes": 43,
@@ -1001,9 +1011,9 @@
             "ɖ"
         ],
         "consonant types": [
-            "glottalized / non-pulmonic",
+            "implosives",
             "affricates",
-            null
+            "aspirated"
         ],
         "vowels": [
             "a",
@@ -1036,7 +1046,9 @@
         "netid": "3a360033acbec561",
         "country": "Australia",
         "language family": "Australian",
-        "endangerment level": "8a",
+        "endangerment level": [
+            "8a"
+        ],
         "num consonants": 17,
         "num vowels": 11,
         "num phonemes": 28,
@@ -1059,9 +1071,7 @@
             "ɟ",
             "ʎ"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "e",
             "i",
@@ -1094,7 +1104,9 @@
         "netid": "d0da7ae49ba57256",
         "country": "China",
         "language family": "Hmong-Mien",
-        "endangerment level": "6a",
+        "endangerment level": [
+            "6a"
+        ],
         "num consonants": 65,
         "num vowels": 15,
         "num phonemes": 80,
@@ -1120,9 +1132,9 @@
         ],
         "consonant types": [
             "affricates",
-            null,
-            null,
-            null
+            "labialized",
+            "palatalized",
+            "aspirated"
         ],
         "vowels": [
             "a",
@@ -1153,7 +1165,9 @@
         "netid": "e85df41f4d673f19",
         "country": "Australia",
         "language family": "Pama–Nyungan",
-        "endangerment level": "10",
+        "endangerment level": [
+            "10"
+        ],
         "num consonants": 16,
         "num vowels": 10,
         "num phonemes": 26,
@@ -1173,9 +1187,7 @@
             "ɹ",
             "c"
         ],
-        "consonant types": [
-            null
-        ],
+        "consonant types": [],
         "vowels": [
             "i",
             "u",

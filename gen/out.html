@@ -3,6 +3,7 @@
 <div class="alert alert-info trait-div" id="trait-div-template" role="alert">
   <select class="trait-selector template" type=trait-selector onchange="handleTraitSelect(this)">
     <option>Select trait...</option>
+    <option>Endangerment level:</option>
     <option>Contains consonant:</option>
     <option>Contains vowel:</option>
     <option>Contains metaclass:</option>
@@ -26,6 +27,24 @@
   </select>
   <div class="placeholder-selector template active" type="placeholder-selector">
     Select a trait from the dropdown menu to start submitting queries!
+  </div>
+  <div class="endangerment-selector template inactive" type="endangerment-selector">Contains
+    <select class="mode-selector" onchange="handleModeSelect(this)">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+      <option>all</option>
+    </select>
+    <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
+    <a class="ebox-popover uninit btn btn-outline-secondary"
+       role="button"
+       data-html="true"
+       data-toggle="popover"
+       title="<b>Select endangerment level</b>"
+       data-content="Error loading. Sorry!">Select endangerment level...</a>
   </div>
   <div class="ipa-consonant-selector template inactive" type="ipa-consonant-selector">Contains
     <select class="mode-selector" onchange="handleModeSelect(this)">
@@ -316,6 +335,27 @@
        title="<b>Select agreement</b>"
        data-content="Error loading. Sorry!">Select agreement...</a>
   </div>
+</div>
+
+<!--Auto-generated template for the ebox-popover list selector.-->
+<div id="ebox-popover-template" class="template">
+  <table>
+    <tbody>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">0</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">1</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">2</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">3</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">4</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">5</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">6a</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">6b</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">7</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">8a</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">8b</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">9</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">10</td></tr>
+    </tbody>
+  </table>
 </div>
 <!--Auto-generated template for the IPA consonant chart-->
 <div id="ipacbox-popover-template" class="template" style="position: relative;">
@@ -849,12 +889,14 @@
 <div id="ct-lbox-popover-template" class="template">
   <table>
     <tbody>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">uvular / retroflex / pharyngeal</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">clicks</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">implosives</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">ejectives</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">affricates</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">prenasalized</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">multi-place / secondary articulation</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">geminate</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">glottalized / non-pulmonic</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">labialized</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">palatalized</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">velarized</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">aspirated</td></tr>
     </tbody>
   </table>
 </div>
