@@ -61,6 +61,24 @@
             "C onset",
             "CC onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "root-and-pattern"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": [
+            "SVO",
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -136,6 +154,23 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional",
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "suppletion"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -200,6 +235,26 @@
             "C coda",
             "CC coda",
             "CCC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "internal change",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -243,6 +298,26 @@
         "syllables": [
             "V",
             "C onset"
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SVO",
+            "OSV"
+        ],
+        "headedness": [
+            "mostly head-final"
         ]
     },
     {
@@ -304,6 +379,22 @@
         "syllables": [
             "V",
             "C onset"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "isolating"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly non-affixal",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -356,6 +447,22 @@
             "V",
             "C onset",
             "CC onset"
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "exclusively suffixing",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -431,6 +538,23 @@
             "C coda",
             "CC coda",
             "CCC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "infixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -496,10 +620,29 @@
             "C onset",
             "CC onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "internal change",
+            "suppletion",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
-        "name": "Kurukh",
+        "name": "Kurux",
         "student": "9ce0e5557251ba48",
         "netid": "38f207a85af0abf8",
         "country": "India",
@@ -572,6 +715,23 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -624,6 +784,23 @@
             "C coda",
             "CC coda",
             "CCC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -694,6 +871,24 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -740,11 +935,28 @@
         "syllables": [
             "V",
             "C onset"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
         "name": "Puyuma",
-        "student": "5cac6cbccecee26d",
+        "student": "25f4b8245d0ad54d",
         "netid": "8e964f19dbbe5d6a",
         "country": "Taiwan",
         "language family": "Austronesian",
@@ -791,6 +1003,23 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly prefixing",
+        "word order": [
+            "VOS"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -854,11 +1083,29 @@
         "syllables": [
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "equal affixation and other",
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
         "name": "Siwi Berber",
-        "student": "87fd09f073a37189",
+        "student": "e1a52563add02426",
         "netid": "f8822ca4bfbd55b8",
         "country": "Egypt",
         "language family": "Afro-asiatic",
@@ -916,6 +1163,27 @@
             "C coda",
             "CC coda",
             "CCC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional",
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly prefixing",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -974,6 +1242,22 @@
             "C onset",
             "CC onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -1038,6 +1322,23 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
         ]
     },
     {
@@ -1096,6 +1397,23 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation"
+        ],
+        "word formation frequency": "equal prefixing and suffixing",
+        "word order": [
+            "SVO",
+            "VOS",
+            "OVS"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -1157,6 +1475,23 @@
         "syllables": [
             "V",
             "C onset"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "isolating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly prefixing",
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -1207,6 +1542,23 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": "mostly suffixing",
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
         ]
     }
 ]

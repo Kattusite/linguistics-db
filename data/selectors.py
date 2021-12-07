@@ -527,8 +527,8 @@ SELECTORS = [
     FORMATION,
     WORD_ORDER,   # not used in F19
     HEADEDNESS,   # not used in F19
-    CASE,         # not used in F19
-    AGREEMENT     # not used in F19
+    # CASE,         # not used in F19, F21
+    # AGREEMENT     # not used in F19, F21
 ]
 
 SELECTORS_DICT = { sel[HTML_ID] : sel for sel in SELECTORS }

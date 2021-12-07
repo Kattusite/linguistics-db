@@ -122,8 +122,6 @@
         <option>Word formation frequency:</option>
         <option>Basic word order:</option>
         <option>Headedness:</option>
-        <option>Case:</option>
-        <option>Agreement:</option>
       </select>
       <div class="placeholder-selector template active" type="placeholder-selector">
         Select a trait from the dropdown menu to start submitting queries!
@@ -418,22 +416,6 @@
            data-toggle="popover"
            title="<b>Select headedness</b>"
            data-content="Error loading. Sorry!">Select headedness...</a>
-      </div>
-      <div class="case-selector template inactive" type="case-selector">
-        <a class="c-lbox-popover uninit btn btn-outline-secondary"
-           role="button"
-           data-html="true"
-           data-toggle="popover"
-           title="<b>Select case</b>"
-           data-content="Error loading. Sorry!">Select case...</a>
-      </div>
-      <div class="agreement-selector template inactive" type="agreement-selector">
-        <a class="a-lbox-popover uninit btn btn-outline-secondary"
-           role="button"
-           data-html="true"
-           data-toggle="popover"
-           title="<b>Select agreement</b>"
-           data-content="Error loading. Sorry!">Select agreement...</a>
       </div>
     </div>
     
@@ -1107,30 +1089,6 @@
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-initial</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mostly head-final</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mixed headedness</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the c-lbox-popover list selector.-->
-    <div id="c-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!--Auto-generated template for the a-lbox-popover list selector.-->
-    <div id="a-lbox-popover-template" class="template">
-      <table>
-        <tbody>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">none</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">ergative/absolutive</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">nominative/accusative</td></tr>
-          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">other</td></tr>
         </tbody>
       </table>
     </div>

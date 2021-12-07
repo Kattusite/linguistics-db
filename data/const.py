@@ -601,6 +601,17 @@ PARAMS = {
             P_PHONETIC(16),
             P_SYLLABLE(17)
         ],
+        TYPOLOGY: [
+            P_LANGUAGE(),
+            P_NAME(),
+            P_NETID(),
+            P_RECOMMEND(4),
+            P_MORPHOLOGICAL_TYPE(5),
+            P_WORD_FORMATION(6),
+            P_WORD_FORMATION_FREQ(7),
+            P_WORD_ORDER(8),
+            P_HEADEDNESS(9),
+        ]
     },
 }
 
