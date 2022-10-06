@@ -57,9 +57,12 @@ var SELECTORS_DICT = {
             "aspirated": [],
             "clicks": [],
             "ejectives": [],
+            "glottalized": [],
             "implosives": [],
             "labialized": [],
             "palatalized": [],
+            "pharyngealized": [],
+            "pre-nasalized": [],
             "velarized": []
         },
         "html id": "consonant-type-selector",
@@ -825,17 +828,26 @@ var SELECTORS_DICT = {
         "select name": "Select trait..."
     },
     "stress-selector": {
-        "bool body": "Predictable Stress",
-        "dict": null,
+        "dict": {
+            "predictable": [],
+            "some": [],
+            "unpredictable": []
+        },
         "html id": "stress-selector",
-        "mode": "boolean",
-        "multi": null,
-        "popover prefix": null,
-        "property": "stress",
-        "reply": "have stress",
-        "reply vars": null,
-        "select name": "Has stress",
-        "select what": null,
+        "mode": "pick one",
+        "multi": false,
+        "popover prefix": "ss-lbox-popover",
+        "property": {
+            "predictable": "predictable stress",
+            "some": "stress",
+            "unpredictable": "unpredictable stress"
+        },
+        "reply": "have %s stress",
+        "reply vars": [
+            "sel"
+        ],
+        "select name": "Has stress:",
+        "select what": "predictability",
         "type": "Bool"
     },
     "syllable-selector": {

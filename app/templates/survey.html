@@ -109,7 +109,7 @@
         <option>Phoneme inventory size:</option>
         <option>Has complex consonants</option>
         <option>Has tone</option>
-        <option>Has stress</option>
+        <option>Has stress:</option>
         <option>Allows syllable structure:</option>
         <option>Morphological type:</option>
         <option>Word formation strategy:</option>
@@ -311,7 +311,12 @@
         Tone (Including "Pitch Accent")
       </div>
       <div class="stress-selector template inactive" type="stress-selector">
-        Predictable Stress
+        <a class="ss-lbox-popover uninit btn btn-outline-secondary"
+           role="button"
+           data-html="true"
+           data-toggle="popover"
+           title="<b>Select predictability</b>"
+           data-content="Error loading. Sorry!">Select predictability...</a>
       </div>
       <div class="syllable-selector template inactive" type="syllable-selector">Contains
         <select class="mode-selector" onchange="handleModeSelect(this)">
@@ -973,6 +978,9 @@
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">palatalized</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">velarized</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">aspirated</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">glottalized</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">pharyngealized</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">pre-nasalized</td></tr>
         </tbody>
       </table>
     </div>
@@ -984,6 +992,17 @@
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">consonants</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">vowels</td></tr>
           <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">phonemes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!--Auto-generated template for the ss-lbox-popover list selector.-->
+    <div id="ss-lbox-popover-template" class="template">
+      <table>
+        <tbody>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">some</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">predictable</td></tr>
+          <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">unpredictable</td></tr>
         </tbody>
       </table>
     </div>
