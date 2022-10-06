@@ -200,19 +200,19 @@ class List(Query):
         ls defines the list on which the mode and k operate; e.g. "at least K of
         ls=[a,b,c,...]". """
 
-        if mode not in [ EQ, NEQ, GT, LT, GEQ, LEQ, ALL ]:
-            raise InvalidModeError("'%s' is not a valid mode for list queries!" % mode)
+        if mode not in (EQ, NEQ, GT, LT, GEQ, LEQ, ALL):
+            raise InvalidModeError(f"'{mode}' is not a valid mode for list queries!")
 
-        if type(k) != type(0):
-            raise TypeError("'%s' is not a valid integer K for list queries!" % k)
+        if not isinstance(k, int):
+            raise TypeError(f"'{k}' is not a valid integer K for list queries!")
 
-        if type(ls) != type([]):
-            raise TypeError("'%s' is not a valid list for list queries!" % ls)
+        if not isinstance(ls, list):
+            raise TypeError(f"'{ls}' is not a valid list for list queries!")
 
         # Special case: allow lists of properties to signify "meta" properties
         # that are a concatenation of several other existing properties
-        if type(property) != type("") and type(property) != type([]):
-            raise TypeError("'%s' is not a valid property for list queries!" % property)
+        if not isinstance(property, str) and not isinstance(property, list):
+            raise TypeError(f"'{property}' is not a valid property for list queries!")
 
         self.property = property
         self.mode = mode
@@ -235,7 +235,7 @@ class List(Query):
         Lang = tinydb.Query()
 
         # Special case for "meta" properties consisting of several concatenated properties
-        if type(self.property) == type([]):
+        if isinstance(self.property, list):
             return self.metaquery(db)
 
         matches =  db.search(Lang[self.property].test(self.test))
@@ -254,8 +254,8 @@ class List(Query):
         aggregate list.
         """
 
-        if type(self.property) != type([]):
-            raise TypeError("List metaqueries must have property of type list (not %s)" % type(self.property))
+        if not isinstance(self.property, list):
+            raise TypeError(f"List metaqueries must have property of type list (not {type(self.property)})")
 
         # This is an ugly & potentially inefficient solution but it works
         allLangs = [Language(a) for a in db.all()]
@@ -305,13 +305,13 @@ class Num(Query):
         Can be read as 'Does property have a value of <comparison mode> k?'"""
 
         if mode not in [ EQ, NEQ, GT, LT, LEQ, GEQ ]:
-            raise InvalidModeError("'%s' is not a valid mode for numerical queries!" % mode)
+            raise InvalidModeError(f"'{mode}' is not a valid mode for numerical queries!")
 
-        if type(k) != type(0):
-            raise TypeError("'%s' is not a valid integer K for numerical queries!" % k)
+        if not isinstance(k, int):
+            raise TypeError(f"'{k}' is not a valid integer K for numerical queries!")
 
-        if type(property) != type(""):
-            raise TypeError("'%s' is not a valid property for numerical queries!" % property)
+        if not isinstance(property, str):
+            raise TypeError(f"'{property}' is not a valid property for numerical queries!")
 
         self.mode = mode
         self.k = k
@@ -353,13 +353,13 @@ class String(Query):
         if mode is None:
             mode = EQ
 
-        if mode not in [ EQ, NEQ ]:
+        if mode not in (EQ, NEQ):
             raise InvalidModeError("'%s' is not a valid mode for string queries!" % mode)
 
-        if type(value) != type(""):
+        if not isinstance(value, str):
             raise TypeError("'%s' is not a valid value for string queries!" % value)
 
-        if type(property) != type(""):
+        if not isinstance(property, str):
             raise TypeError("'%s' is not a valid property for string queries!" % property)
 
         self.mode = mode
@@ -402,11 +402,24 @@ class Bool(Query):
         if value is None:
             value = True
 
-        if type(value) != type(True):
-            raise TypeError("%s is not a valid value for a boolean query" % value)
+        # Special case: We allow for the actual property we want to query
+        #   to be selected from a dict.
+        #   In this case, `property` is a dict mapping user selections to
+        #   their underlying properties, and `value` is the actual user selection.
+        # For example:
+        #   value = 'some'
+        #   property = {'some': 'stress', 'predictable': 'predictable stress', ...}
+        if isinstance(value, str) and isinstance(property, dict):
+            if value not in property:
+                raise ValueError(f'property dict did not contain selected value "{value}": {property}')
+            property = property[value]
+            value = True
 
-        if type(property) != type(""):
-            raise TypeError()
+        if not isinstance(value, bool):
+            raise TypeError(f"{value} is not a valid value for a boolean query")
+
+        if not isinstance(property, str):
+            raise TypeError(f"{property} is not a valid property for a boolean query")
 
         self.property = property
         self.value = value

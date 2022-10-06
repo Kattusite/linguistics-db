@@ -271,6 +271,20 @@ CONSONANT_TYPES_F21 = {
     TYPE: ValueType.LIST.value,
 }
 
+CONSONANT_TYPES_F22 = {
+    SELECT_NAME: "Consonant types:",
+    DICT: D.CONSONANT_TYPES_F22,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "have %s %s of %s consonants",
+    REPLY_VARS: ["mode", "k", "selList"],
+    HTML_ID: "consonant-type-selector",
+    POPOVER_PREFIX: "ct-lbox-popover",
+    SELECT_WHAT: "consonant type",
+    PROPERTY: JsonKey.CONSONANT_TYPES.value,
+    TYPE: ValueType.LIST.value,
+}
+
 PHONEME_INVENTORY_SIZE = {
     SELECT_NAME: "Phoneme inventory size:",
     DICT: { "consonants": [], "vowels": [], "phonemes": [] },
@@ -327,6 +341,27 @@ STRESS = {
     POPOVER_PREFIX: None,
     SELECT_WHAT: None,
     PROPERTY: JsonKey.STRESS.value,
+    TYPE: ValueType.BOOL.value,
+}
+
+STRESS_F22 = {
+    SELECT_NAME: "Has stress:",
+    DICT: {'some': [], 'predictable': [], 'unpredictable': []},
+    MULTI: False,
+    MODE: PICK_ONE,
+    REPLY: "have %s stress",
+    REPLY_VARS: ["sel"],
+    HTML_ID: "stress-selector",
+    POPOVER_PREFIX: "ss-lbox-popover",
+    SELECT_WHAT: "predictability",
+    # HACK: This is a total hack; nobody else does this.
+    # This is a dict mapping from the dropdown item that the user has selected
+    # to the property that should be queried in that case.
+    PROPERTY: {
+        'some': JsonKey.STRESS.value,
+        'predictable': JsonKey.PREDICTABLE_STRESS.value,
+        'unpredictable': JsonKey.UNPREDICTABLE_STRESS.value,
+    },
     TYPE: ValueType.BOOL.value,
 }
 
@@ -518,13 +553,15 @@ SELECTORS = [
     CONSONANT_ARTICULATION,
     VOWEL_TYPES,
     #CONSONANT_TYPES,     # replaced in F21
-    CONSONANT_TYPES_F21,
+    #CONSONANT_TYPES_F21, # expanded in F22
+    CONSONANT_TYPES_F22,
     #CONSONANT_PLACES,    # replaced by CONSONANT_ARTICULATION
     #CONSONANT_MANNERS,   # replaced by CONSONANT_ARTICULATION
     PHONEME_INVENTORY_SIZE,
     COMPLEX_CONSONANTS,   # not used in F19
     TONE,                 # not used in F19
-    STRESS,               # not used in F19
+    # STRESS,             # not used in F19, expanded in F22
+    STRESS_F22,
     SYLLABLES,
     MORPHOLOGY,
     WORD_FORMATION,
