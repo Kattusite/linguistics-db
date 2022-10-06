@@ -49,7 +49,7 @@ from typing import (
 )
 
 from data import const
-from data.const import Datasets, JsonKey, Mappings, Semesters, Surveys, ValueType
+from data.const import Datasets, FuzzySearchTerms, JsonKey, Mappings, Semesters, Surveys, ValueType
 
 import phonemes
 
@@ -396,22 +396,82 @@ class LanguageData(dict):
 
     def process_one_to_many_mapping(self, row: List[str], spec: const.SurveySpecification) -> Datapoint:
         """ Process a one-to-many mapping in which a single column in the CSV is split
-            across multiple JSON keys. Return the datapoints to be added to self. """
-        assert_type(spec.json_key, list)
+        across multiple JSON keys. Return the datapoints to be added to self.
+
+        One-to-many mappings are currently only implemented for BOOL types.
+
+        For one-to-many BOOL mappings, there are two modes of operation:
+
+        1. Simple Mode:
+            In simple mode, `spec.json_key` must be a list of JsonKey objects,
+            and `spec.fuzzy_search_terms` must be `None`.
+
+            In this mode, we will check each key to see whether that key appears
+            in the text of any of the selected items in this entry on this row.
+
+            If so, a value of `True` will be stored for that key; otherwise `False`.
+
+        2. Advanced Mode:
+            In advanced mode, `spec.fuzzy_search_terms` must be a `FuzzySearchTerm`,
+            and `spec.json_key` must be `None`.
+
+            In this mode, we will check each candidate key of `fuzzy_search_terms`
+            to see if any of the selected items in this entry on this row fuzzily
+            match that candidate key, according to `fuzzy_match_phrase`.
+
+            If so, a value of `True` will be stored for that key; otherwise `False`.
+        """
         assert_type(spec.index, int)
 
-        # JsonKey is an enum, so we need to pull out the str values
-        keys = [json_key.value for json_key in spec.json_key]
+        if spec.json_key is None and spec.fuzzy_search_terms is None:
+            raise TypeError('process_one_to_many_mapping requires a json_key or fuzzy_search_terms')
+
+        if spec.json_key is not None and spec.fuzzy_search_terms is not None:
+            raise TypeError('process_one_to_many_mapping cannot accept both a json_key and fuzzy_search_terms')
 
         # Currently this method is only used to pull each of a list of checkboxes into their own bools.
         selected_items = row[spec.index].strip().split(const.INNER_DELIMITER)
 
         if spec.value_type == ValueType.BOOL:
-            # Set a key's value to True if that key appears in the text of any selected item.
-            # This is quick and dirty but it works (so far...)
-            # e.g. "tone" appears in ['The language has tone ...', 'The language has complex consonants']
-            ret = {key: any(key in text for text in selected_items)
-                        for key in keys}
+            if spec.fuzzy_search_terms is None:
+                assert_type(spec.json_key, list)
+                # JsonKey is an enum, so we need to pull out the str values
+                keys = [json_key.value for json_key in spec.json_key]
+
+                # In simple mode, we just need to set a key's value to True if that key appears
+                # in the text of any selected item. This is quick and dirty but often works.
+                # e.g. "tone" appears in ['The language has tone ...', 'The language has complex consonants']
+                ret = {key: any(key in text for text in selected_items)
+                            for key in keys}
+            else:
+                assert_type(spec.fuzzy_search_terms, FuzzySearchTerms)
+                keys = list(spec.fuzzy_search_terms.candidates())
+                # In advanced mode, we do something similar, but use `fuzzy_match_phrase`
+                # to determine which candidate keys appear in the selected items.
+                def is_key_in_selected_items(key: str) -> bool:
+                    for text in selected_items:
+                        match = fuzzy_match_phrase(text, spec)
+                        if key == match:
+                            return True
+
+                        # HACK: Special case: Allow backwards compatibility for stress before F22.
+                        # Before F22, all "stress" was "predictable stress". D.PHONETIC has entries
+                        # for both "stress" and "predictable stress", the latter is always a better
+                        # match since it's a longer search term.
+                        # Thus, when `key` is "stress", the match will be "predictable stress",
+                        # which we'd still like to count as a kind of "stress". In F22 and later,
+                        # the same goes for "unpredictable stress".
+                        # A more general solution would be great, but lots of work for little gain.
+                        if key == const.K.STRESS.value:
+                            equivalents = (
+                                const.K.PREDICTABLE_STRESS.value,
+                                const.K.UNPREDICTABLE_STRESS.value
+                            )
+                            if match in equivalents:
+                                return True
+                    return False
+
+                ret = {key: is_key_in_selected_items(key) for key in keys}
         else:
             raise NotImplementedError(f'this function cannot yet handle {spec.value_type=}')
 

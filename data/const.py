@@ -6,6 +6,7 @@ from typing import (
     Iterable,
     List,
     Mapping,
+    Optional,
     Union,
 )
 
@@ -38,6 +39,7 @@ class Datasets(enum.Enum):
     S19TEST = "S19test"
     F19 = "F19"
     F21 = "F21"
+    F22 = "F22"
 
     @classmethod
     def names(cls) -> Iterable[str]:
@@ -139,7 +141,12 @@ class JsonKey(enum.Enum):
     HAS_2_PLUS_MANNERS    = "2+ manners"  # deprecated
     COMPLEX_CONSONANTS    = "complex consonants"
     TONE                  = "tone"
+    # NOTE: Before F22, STRESS was the only kind of stress -- it indicated "predictable stress".
+    #   In F22 a new option was added for "unpredictable stress".
+    #   Now STRESS is a derived value, true if either kind of stress appears.
     STRESS                = "stress"
+    PREDICTABLE_STRESS    = "predictable stress"
+    UNPREDICTABLE_STRESS  = "unpredictable stress"
     SYLLABLES             = "syllables"
 
     CITATION              = "citation"
@@ -250,6 +257,37 @@ class AllFuzzySearchTerms:
         "palatalized":  [],
         "velarized":    [],
         "aspirated":    [],
+    })
+
+    CONSONANT_TYPES_F22 = FuzzySearchTerms({
+        "clicks":           [],
+        "implosives":       [],
+        "ejectives":        [],
+        "affricates":       [],
+        "labialized":       [],
+        "palatalized":      [],
+        "velarized":        [],
+        "aspirated":        [],
+        "glottalized":      [],
+        "pharyngealized":   [],
+        "pre-nasalized":    [],
+    })
+
+    PHONETIC = FuzzySearchTerms({
+        K.COMPLEX_CONSONANTS.value:     [],
+        K.TONE.value:                   [],
+        K.STRESS.value:                 [],
+        # Before F22, there was only one "stress" option,
+        # and it specifically indicated "predictable stress".
+        K.PREDICTABLE_STRESS.value:     ['stress is predictable', 'stress is mostly predictable'],
+    })
+
+    PHONETIC_F22 = FuzzySearchTerms({
+        K.COMPLEX_CONSONANTS.value:     [],
+        K.TONE.value:                   [],
+        K.STRESS.value:                 [],
+        K.PREDICTABLE_STRESS.value:     ['mostly predictable'],
+        K.UNPREDICTABLE_STRESS.value:   ['not predictably'],
     })
 
     SYLLABLES = FuzzySearchTerms({
@@ -368,19 +406,19 @@ class SurveySpecification:
     """ A SurveySpecification specifies all the information necessary to extract
     responses to one (or many) survey questions into one (or many) JSON values. """
 
-    json_key: JsonKey
+    json_key: Optional[JsonKey]
     """ The JSON key(s) under which the results of this survey question should be stored. """
 
     value_type: ValueType
     """ The data type of the JSON value(s) which will be extracted from this survey question. """
 
-    index: Union[int, List[int], None] = None
+    index: Optional[Union[int, List[int]]] = None
     """ The index(es) in the survey CSV which will be extracted to fill a JSON value.
     For one-to-one mappings, this is a single int.
     For many-to-one, it is a list of ints.
     For derived values, it is None (no field in the CSV directly includes this info). """
 
-    mapping: Mappings = None
+    mapping: Optional[Mappings] = None
     """ The kind of mapping from survey questions to JSON fields
     ONE_TO_ONE: One survey question fills one JSON field.
     MERGE: Many survey questions fill one JSON field.
@@ -388,11 +426,11 @@ class SurveySpecification:
     None: One or more JSON fields are derived from other data.
     """
 
-    fuzzy_search_terms: FuzzySearchTerms = None
+    fuzzy_search_terms: Optional[FuzzySearchTerms] = None
     """ A mapping from candidate matches to search terms for that candidate.
     See docstring in `fuzzy_match_phrase()`. """
 
-    poisoned_search_terms: List[SearchTerm] = None
+    poisoned_search_terms: Optional[List[SearchTerm]] = None
     """ A list of search terms which indicate a false negative if matched.
     See docstring in `fuzzy_match_phrase()`. """
 
@@ -453,8 +491,16 @@ class SurveySpecifications:
 
     @staticmethod
     def PHONETIC(index=9):
-        keys = [K.COMPLEX_CONSONANTS, K.TONE, K.STRESS]
-        return Spec(keys, T.BOOL, index, M.SPLIT)
+        keys = None
+        poisoned_search_terms = ['stress']
+        return Spec(keys, T.BOOL, index, M.SPLIT, D.PHONETIC, poisoned_search_terms)
+
+    # F22 adds "unpredictable stress"; previously only "predictable stress" was present.
+    @staticmethod
+    def PHONETIC_F22(index=9):
+        keys = None
+        poisoned_search_terms = ['stress']
+        return Spec(keys, T.BOOL, index, M.SPLIT, D.PHONETIC_F22, poisoned_search_terms)
 
     @staticmethod
     def SYLLABLE(index=10):
@@ -518,6 +564,13 @@ class SurveySpecifications:
         # We really should match everything, so this one is very broad
         poisoned_search_terms = ['ed', 'es']
         return Spec(K.CONSONANT_TYPES, T.LIST, index, M.ONE_TO_ONE, D.CONSONANT_TYPES_F21, poisoned_search_terms)
+
+    # The possible answers changed from earlier years.
+    @staticmethod
+    def CONSONANT_TYPES_F22(index=12):
+        # We really should match everything, so this one is very broad
+        poisoned_search_terms = ['ed', 'es']
+        return Spec(K.CONSONANT_TYPES, T.LIST, index, M.ONE_TO_ONE, D.CONSONANT_TYPES_F22, poisoned_search_terms)
 
     # Typology Parameters Fall 17:
     @staticmethod
@@ -699,6 +752,27 @@ PARAMS = {
             P.HEADEDNESS(9),
         ]
     },
+    Semesters.F22: {
+        Surveys.GRAMMAR: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.COUNTRY(4),
+            P.LANGUAGE_FAMILY(5),
+            P.ENDANGERMENT_LEVEL(6),
+            P.NUM_CONSONANTS(7),
+            P.NUM_VOWELS(8),
+            P.NUM_PHONEMES(9),
+            P.CONSONANTS_S19([10,11]),
+            P.CONSONANT_TYPES_F22(12),
+            P.VOWELS_S19([13,14]),
+            P.VOWEL_TYPES_S19(15),
+            P.NUM_CONSONANT_PLACES(),
+            P.NUM_CONSONANT_MANNERS(),
+            P.PHONETIC_F22(16),
+            P.SYLLABLE(17),
+        ],
+    }
 }
 
 
