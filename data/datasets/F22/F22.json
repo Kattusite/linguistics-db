@@ -1,0 +1,1144 @@
+[
+    {
+        "name": "Baba Malay",
+        "student": "857a719623a3d7f6",
+        "netid": "f2c4fddf1e3a14af",
+        "country": "Malaysia and Singapore",
+        "language family": "Austronesian-based contact language + Sinitic substrate",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 19,
+        "num vowels": 8,
+        "num phonemes": 27,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "tʃ",
+            "dʒ",
+            "ɾ"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "ɛ",
+            "ɔ"
+        ],
+        "vowel types": [],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Breton",
+        "student": "ba4b2663a2340868",
+        "netid": "3fa0cdcbed9b6b48",
+        "country": "France (Lower Brittany)",
+        "language family": "Indo-European",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 30,
+        "num vowels": 11,
+        "num phonemes": 41,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʃ",
+            "f",
+            "r",
+            "ɲ",
+            "z",
+            "x",
+            "v",
+            "ʒ",
+            "c",
+            "ɟ",
+            "ç",
+            "ʎ",
+            "ɣ",
+            "ʁ",
+            "ɦ"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "y",
+            "ø",
+            "ɛ",
+            "œ",
+            "aᶠ",
+            "ɔ",
+            "ɑ"
+        ],
+        "vowel types": [],
+        "num consonant places": 9,
+        "num consonant manners": 6,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda"
+        ]
+    },
+    {
+        "name": "Cavineña",
+        "student": "5f37ddf2a74084d3",
+        "netid": "ccb97fd941772e76",
+        "country": "Bolivia",
+        "language family": "Pano-Tacanan",
+        "endangerment level": [
+            "6b"
+        ],
+        "num consonants": 20,
+        "num vowels": 4,
+        "num phonemes": 24,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "w",
+            "h",
+            "b",
+            "d",
+            "ɲ",
+            "ts",
+            "ɹ",
+            "c",
+            "ʎ"
+        ],
+        "consonant types": [
+            "affricates",
+            "labialized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "ɯ"
+        ],
+        "vowel types": [],
+        "num consonant places": 6,
+        "num consonant manners": 6,
+        "complex consonants": true,
+        "tone": true,
+        "stress": false,
+        "predictable stress": false,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset"
+        ]
+    },
+    {
+        "name": "Cherokee",
+        "student": "29aa52a3501fdabc",
+        "netid": "9243390ad32543c2",
+        "country": "What is now the United States.",
+        "language family": "iroquoian",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 23,
+        "num vowels": 42,
+        "num phonemes": 65,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "l",
+            "w",
+            "h",
+            "d",
+            "g",
+            "ʔ",
+            "tʃ",
+            "ts",
+            "dʒ",
+            "ɮ"
+        ],
+        "consonant types": [
+            "affricates",
+            "labialized",
+            "palatalized",
+            "velarized",
+            "aspirated",
+            "glottalized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ʌ"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "complex consonants": true,
+        "tone": true,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset"
+        ]
+    },
+    {
+        "name": "Choctaw",
+        "student": "2e5e6bff5a16aa56",
+        "netid": "a2bb3fbd0ffdaa52",
+        "country": "United States",
+        "language family": "Muskogean",
+        "endangerment level": [
+            "6b"
+        ],
+        "num consonants": 16,
+        "num vowels": 9,
+        "num phonemes": 25,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "f",
+            "ɬ"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "a",
+            "o",
+            "i"
+        ],
+        "vowel types": [
+            "nasalized",
+            "long"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 7,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Hamar",
+        "student": "5f69178970c44790",
+        "netid": "351cbc22970352cf",
+        "country": "Ethiopia",
+        "language family": "Afro-asiatic",
+        "endangerment level": [
+            "6a"
+        ],
+        "num consonants": 26,
+        "num vowels": 19,
+        "num phonemes": 45,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "r",
+            "ɲ",
+            "z",
+            "dʒ",
+            "x",
+            "q",
+            "ɦ"
+        ],
+        "consonant types": [
+            "implosives",
+            "ejectives",
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɛ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 7,
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "predictable stress": false,
+        "unpredictable stress": true,
+        "syllables": [
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Jarawara",
+        "student": "4309408410882739",
+        "netid": "a602bad9a7c5d4c5",
+        "country": "Brazil",
+        "language family": "Arawá",
+        "endangerment level": [
+            "6b"
+        ],
+        "num consonants": 12,
+        "num vowels": 4,
+        "num phonemes": 16,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "l",
+            "w",
+            "h",
+            "b",
+            "ʔ",
+            "ɸ",
+            "ɟ"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "ɤ"
+        ],
+        "vowel types": [],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "complex consonants": false,
+        "tone": false,
+        "stress": false,
+        "predictable stress": false,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset"
+        ]
+    },
+    {
+        "name": "Jingulu",
+        "student": "10d0afdab7bd0542",
+        "netid": "2feed8ec1034a677",
+        "country": "Australia",
+        "language family": "Non-Pama-Nyungan",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 17,
+        "num vowels": 6,
+        "num phonemes": 23,
+        "consonants": [
+            "n",
+            "m",
+            "k",
+            "j",
+            "l",
+            "w",
+            "b",
+            "d",
+            "ŋ",
+            "r",
+            "ɲ",
+            "ɖ",
+            "ɳ",
+            "ɻ",
+            "ɭ",
+            "ɟ",
+            "ʎ"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "a",
+            "i",
+            "u"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 5,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "C onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Kotiria (Wanano)",
+        "student": "75bd81153be9d023",
+        "netid": "63b2288f5be57020",
+        "country": "Brazil and Colombia",
+        "language family": "Tukanoan",
+        "endangerment level": [
+            "6b"
+        ],
+        "num consonants": 14,
+        "num vowels": 6,
+        "num phonemes": 20,
+        "consonants": [
+            "t",
+            "k",
+            "s",
+            "p",
+            "h",
+            "b",
+            "g",
+            "tʃ",
+            "pʰ",
+            "tʰ",
+            "kʰ"
+        ],
+        "consonant types": [
+            "affricates",
+            "labialized",
+            "palatalized",
+            "velarized",
+            "aspirated",
+            "glottalized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ʉ"
+        ],
+        "vowel types": [],
+        "num consonant places": 5,
+        "num consonant manners": 4,
+        "complex consonants": false,
+        "tone": true,
+        "stress": true,
+        "predictable stress": false,
+        "unpredictable stress": true,
+        "syllables": [
+            "C onset"
+        ]
+    },
+    {
+        "name": "Lopit",
+        "student": "b8cdd39cdc724276",
+        "netid": "f78d206106f045e0",
+        "country": "Republic of South Sudan",
+        "language family": "Nilo-Saharan",
+        "endangerment level": [
+            "6a"
+        ],
+        "num consonants": 27,
+        "num vowels": 48,
+        "num phonemes": 75,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "f",
+            "r",
+            "ɲ",
+            "x",
+            "ɾ",
+            "c"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɛ",
+            "ɪ",
+            "ʊ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "diphthongs"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "complex consonants": false,
+        "tone": true,
+        "stress": false,
+        "predictable stress": false,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "May",
+        "student": "fcb0995ae8071093",
+        "netid": "b7b9f0cb949b284f",
+        "country": "Vietnam and Southern Laos",
+        "language family": "Austro-Asiatic",
+        "endangerment level": [
+            "7"
+        ],
+        "num consonants": 24,
+        "num vowels": 17,
+        "num phonemes": 41,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "p",
+            "l",
+            "w",
+            "h",
+            "ŋ",
+            "ʔ",
+            "ɲ",
+            "pʰ",
+            "tʰ",
+            "kʰ",
+            "β",
+            "ʈ",
+            "ɽ"
+        ],
+        "consonant types": [
+            "implosives",
+            "labialized",
+            "palatalized",
+            "velarized",
+            "aspirated",
+            "glottalized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "u",
+            "ɯ",
+            "ɛ",
+            "ɤ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "diphthongs"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "complex consonants": true,
+        "tone": true,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "C onset",
+            "CC onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Murui",
+        "student": "85fd23a2e41049ee",
+        "netid": "f638dba20df75051",
+        "country": "United States",
+        "language family": "Witotoan",
+        "endangerment level": [
+            "6b"
+        ],
+        "num consonants": 16,
+        "num vowels": 17,
+        "num phonemes": 33,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "p",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ɲ",
+            "ɸ",
+            "β",
+            "θ",
+            "ɾ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ɨ",
+            "ɛ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 6,
+        "num consonant manners": 4,
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset"
+        ]
+    },
+    {
+        "name": "Musqueam",
+        "student": "3e2e80565a0123c6",
+        "netid": "10be9a113fdb083e",
+        "country": "Canada",
+        "language family": "Salish",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 39,
+        "num vowels": 9,
+        "num phonemes": 48,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "ʃ",
+            "ʔ",
+            "tʃ",
+            "f",
+            "ts",
+            "x",
+            "θ",
+            "ɬ",
+            "q",
+            "χ"
+        ],
+        "consonant types": [
+            "affricates",
+            "labialized",
+            "glottalized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "u",
+            "ə"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 10,
+        "num consonant manners": 7,
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "predictable stress": false,
+        "unpredictable stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "CCC onset",
+            "CCCC onset",
+            "C coda",
+            "CC coda",
+            "CCC coda",
+            "CCCC coda"
+        ]
+    },
+    {
+        "name": "Patwin",
+        "student": "dc5aec05393875d0",
+        "netid": "b7ee1e5a136d83a8",
+        "country": "United States (by land)",
+        "language family": "Wintuan",
+        "endangerment level": [
+            "8b"
+        ],
+        "num consonants": 24,
+        "num vowels": 10,
+        "num phonemes": 34,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "ʔ",
+            "tʃ",
+            "r",
+            "pʰ",
+            "tʰ",
+            "kʰ",
+            "ɬ"
+        ],
+        "consonant types": [
+            "aspirated",
+            "glottalized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u"
+        ],
+        "vowel types": [
+            "long"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 9,
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "C onset"
+        ]
+    },
+    {
+        "name": "Puyuma",
+        "student": "f2bea9e823791660",
+        "netid": "c302d97ffa0c1fda",
+        "country": "Taiwan",
+        "language family": "Austronesian",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 18,
+        "num vowels": 4,
+        "num phonemes": 22,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "r",
+            "ʈ",
+            "ɖ",
+            "ɭ"
+        ],
+        "consonant types": [],
+        "vowels": [
+            "a",
+            "i",
+            "u",
+            "ə"
+        ],
+        "vowel types": [],
+        "num consonant places": 7,
+        "num consonant manners": 6,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Sarazi",
+        "student": "c6005d0f90fa50e0",
+        "netid": "38038f7d64be59c1",
+        "country": "India",
+        "language family": "Indo-European",
+        "endangerment level": [
+            "6a"
+        ],
+        "num consonants": 37,
+        "num vowels": 25,
+        "num phonemes": 62,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʃ",
+            "tʃ",
+            "r",
+            "z",
+            "ts",
+            "dʒ",
+            "pʰ",
+            "bʰ",
+            "tʰ",
+            "dʰ",
+            "ʈʰ",
+            "ɖʰ",
+            "kʰ",
+            "gʰ",
+            "dz",
+            "ʈ",
+            "ɖ",
+            "ɳ",
+            "ɽ"
+        ],
+        "consonant types": [
+            "affricates",
+            "aspirated"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "ə",
+            "ɪ",
+            "ʊ"
+        ],
+        "vowel types": [
+            "nasalized",
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 8,
+        "num consonant manners": 9,
+        "complex consonants": true,
+        "tone": false,
+        "stress": false,
+        "predictable stress": false,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda",
+            "CC coda"
+        ]
+    },
+    {
+        "name": "Tamashek (Tuareg of Mali)",
+        "student": "4ccca2d748f48ae9",
+        "netid": "922a750c5c243a2e",
+        "country": "Mali",
+        "language family": "Afro-Asiatic",
+        "endangerment level": [
+            "5"
+        ],
+        "num consonants": 25,
+        "num vowels": 7,
+        "num phonemes": 32,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʃ",
+            "tʃ",
+            "f",
+            "r",
+            "ɲ",
+            "z",
+            "ʒ",
+            "χ",
+            "ʁ"
+        ],
+        "consonant types": [
+            "affricates",
+            "palatalized",
+            "pharyngealized"
+        ],
+        "vowels": [
+            "e",
+            "o",
+            "i",
+            "u",
+            "ə",
+            "æ",
+            "ɑ"
+        ],
+        "vowel types": [],
+        "num consonant places": 9,
+        "num consonant manners": 7,
+        "complex consonants": true,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Vurës",
+        "student": "607d8c5598497729",
+        "netid": "2b33ed6534ea63c7",
+        "country": "Vanuatu",
+        "language family": "Austronesian",
+        "endangerment level": [
+            "6a"
+        ],
+        "num consonants": 15,
+        "num vowels": 9,
+        "num phonemes": 24,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "s",
+            "l",
+            "w",
+            "b",
+            "d",
+            "ŋ",
+            "r",
+            "β",
+            "ɣ"
+        ],
+        "consonant types": [
+            "pre-nasalized"
+        ],
+        "vowels": [
+            "o",
+            "i",
+            "y",
+            "ø",
+            "ɛ",
+            "œ",
+            "aᶠ",
+            "ɔ"
+        ],
+        "vowel types": [
+            "diphthongs"
+        ],
+        "num consonant places": 4,
+        "num consonant manners": 6,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": true,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ]
+    },
+    {
+        "name": "Xong",
+        "student": "4103f6e568b80bee",
+        "netid": "a649b61d864fb71b",
+        "country": "Southwestern China",
+        "language family": "The Miao-Yao (also called Hmong-Mien) language family",
+        "endangerment level": [
+            "6a"
+        ],
+        "num consonants": 65,
+        "num vowels": 14,
+        "num phonemes": 79,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "h",
+            "ŋ",
+            "f",
+            "z",
+            "ts",
+            "pʰ",
+            "tʰ",
+            "kʰ",
+            "qʰ",
+            "ʋ",
+            "q"
+        ],
+        "consonant types": [
+            "affricates",
+            "palatalized",
+            "aspirated",
+            "pre-nasalized"
+        ],
+        "vowels": [
+            "a",
+            "o",
+            "i",
+            "u",
+            "ɛ",
+            "aᶠ",
+            "ɤ"
+        ],
+        "vowel types": [
+            "nasalized",
+            "diphthongs"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 7,
+        "complex consonants": false,
+        "tone": true,
+        "stress": false,
+        "predictable stress": false,
+        "unpredictable stress": false,
+        "syllables": [
+            "C onset"
+        ]
+    }
+]
