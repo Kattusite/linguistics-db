@@ -48,7 +48,10 @@ from typing import (
     Union,
 )
 
-from data import const, phonemes
+from data import const
+from data.const import Datasets, JsonKey, Mappings, Semesters, Surveys, ValueType
+
+import phonemes
 
 # e.g. {'consonants': ['p', 't', 'k']}
 # Note: the type imposes no restriction on the number of keys,
@@ -68,7 +71,7 @@ logger = logging.getLogger('csv_to_json')
 
 def assert_type(x: Any, expected: Type) -> None:
     """ Raise a ValueError if x is not of the expected type. """
-    if type(x) != expected:
+    if not isinstance(x, expected):
         raise ValueError(f'Argument must have type {expected} not {type(x)} ({x})')
 
 ################################################################################
@@ -79,9 +82,9 @@ Glyph = str
 
 def get_glyph_list(s: str, phonemes: List[Glyph] = phonemes.GLYPHS) -> List[Glyph]:
     """ Given s, a CSV-formatted field consisting of many concatenated phonemes,
-        split the list apart and return a list of the phoneme glyphs it contains.
+    split the list apart and return a list of the phoneme glyphs it contains.
 
-        `phonemes` serves as the canonical list of which phonemes are considered valid.
+    `phonemes` serves as the canonical list of which phonemes are considered valid.
     """
     # Note: some of the strings have "extra" information besides just the glyph,
     # such as: "including dental, alveolar, or postalveolar"
@@ -123,75 +126,168 @@ def get_glyph_list(s: str, phonemes: List[Glyph] = phonemes.GLYPHS) -> List[Glyp
     logger.debug("get_glyph_list mapped %s --> %s", repr(s), filtered_glyphs)
     return filtered_glyphs
 
-def parse_phrase(phrase: str, spec: const.SurveySpecification) -> Optional[str]:
-    """ Distill a complex phrase written in natural english down into one of a
-        predefined set of strings, and return that predefined string.
+def fuzzy_match_phrase(phrase: str, spec: const.SurveySpecification) -> Optional[str]:
+    """ Fuzzily match a phrase written in natural English against a predefined
+    set of strings, and return the predefined string that is the closest match.
 
-        Operates according to a set of fuzzy matching rules determined by
-        the parse_dict and fail_list attributes of the provided spec.
+    The fuzzy matching process follows a set of rules described below,
+    governed by configuration specified in `spec.fuzzy_search_terms` and
+    `spec.poisoned_search_terms`.
 
-        Each key in parse_dict maps to a list of "search terms".
-        For each search term, we compute a score equal to the length of the
-        longest common substring between the phrase and search term.
-        Each key inherits the score of its highest-scoring search term,
-        and the highest-scoring key is declared the winner and returned.
+    `spec.fuzzy_search_terms`:
+        The keys of `spec.fuzzy_search_terms` define the set of possible
+        "candidate" matches that may be returned. This function's goal is
+        to return the candidate which is most "similar" to `phrase`.
 
-        As syntactic sugar, a key is allowed to define an empty list of search
-        terms, in which case the key itself will be offered as a search term.
-        This is almost entirely a way to save typing when defining parse_dicts.
+        Each value of `spec.fuzzy_search_terms` is a list of "search terms"
+        associated with that candidate. We consider `phrase` to be "similar" to a
+        candidate if `phrase` is similar to any of that candidate's search terms.
 
-        The returned value will always be one of the keys of parse_dict.
-        If two keys tie, this function will raise an error, as this indicates
-        the parse_dict is ambiguous, and this algorithm cannot resolve that scenario.
+        As syntactic sugar, a candidate may map to an empty list of search terms.
+        In this case, the candidate itself is offered as a search term. This is
+        purely a convenience, to save typing when defining `fuzzy_search_terms`.
 
-        fail_list is used as a primitive canary to guard against subtle
-        changes to survey questions.
+        An example `fuzzy_search_terms` might look like this:
 
-        If no key earns any points, the function will check each entry in
-        fail_list to determine if it appears in the phrase. If it does,
-        the function will raise an error indicating that it believes it
-        *should* have found a match, but was unable to. If fail list is not
-        provided, or there is no match, return None.
+        spec.fuzzy_search_terms = {
+            'berry':        ['acai berry',  'blueberry',    'cranberry', ...],
+            'fruit':        ['apple',       'banana',       'cherry', ...],
+            'vegetable':    ['artichoke',   'broccoli',     'carrot', ...],
+        }
 
-        The motivation is that if the program detects unfamiliar or ambiguous
-        situations that it knows it *should* be able to handle, it fails
-        immediately to alert the programmer. """
+        If `phrase` is similar to 'apple', 'banana', or 'cherry', we consider
+        `phrase` to be similar to 'fruit' as well. If `phrase` is more similar
+        to 'fruit' than any other candidate, 'fruit' is the most similar match,
+        and we will return it.
 
-    def generate_score_for_search_term(search_term: str, haystack: str) -> int:
-        """ Return the score for a single search term against a given haystack. """
+
+    `spec.poisoned_search_terms`:
+        Our fuzzy matching scheme is not perfect, and false negatives may occur;
+        that is -- cases where we expect we should have found some candidate match
+        that is similar to `phrase`, but we actually found none.
+        `poisoned_search_terms` acts as a safeguard against these false negatives.
+
+        Often, this scenario arises when the exact wording of survey questions or
+        answers changes from year to year. These changes may make it so that a
+        phrase that *would* have found a match in a past semester no longer does
+        in a more recent semester, which would result in a false negative.
+
+        The intention is that the poisoned search terms act as a basic canary;
+        if `phrase` matches a poisoned search term, but does not match any of the
+        fuzzy search terms, we can infer that a false negative has occurred:
+        `phrase` was familiar enough that we know we *should* have been able to
+        find a matching candidate for it, but for whatever reason we couldn't
+        actually identify a suitable match.
+
+        Usually this indicates that `spec.fuzzy_search_terms` is out of sync with
+        the current semester's survey questions, and the remedy is to tailor this
+        semester's fuzzy search terms more closely to the actual survey.
+
+        An example `poisoned_search_terms` might look like this:
+
+        spec.poisoned_search_terms = [
+            'berry',
+            'melon',
+        ]
+
+        If `phrase` was similar to "berry" or "melon", but we were unable to match
+        `phrase` to either the "berry" or "fruit" candidate, something's likely
+        gone wrong, even if we're not sure exactly what.
+
+        If we can't tell that "strawberry" matches "berry", or "watermelon" matches
+        fruit, maybe we need to take a closer look at refining the fuzzy search terms.
+
+
+    Similarity:
+        Let's rigorously define "similarity" as an integer indicating how closely
+        a phrase matches a particular candidate (and its search terms).
+
+        Similarity between `phrase` and a search term is defined as the length of
+        the search term, if the search term is a substring of `phrase`, or else 0.
+
+        Similarity between `phrase` and a candidate is defined as the maximum
+        similarity between `phrase` and any of the candidate's search terms.
+
+        To determine a match for a given `phrase`, we will find the similarity
+        score of that phrase with each candidate. Often there is just one
+        candidate with a nonzero similarity score; such cases are "unambiguous".
+        If multiple candidates have nonzero similarity scores, but one unique
+        candidate has the highest score, there is a "minor ambiguity".
+        In either case, the candidate with the highest score is crowned the winner
+        and returned.
+
+        If multiple candidates each equally score the highest similarity, there's
+        a tie, also known as a "severe ambiguity". The fuzzy algorithm is unable
+        to resolve severe ambiguities, so an error is raised.
+
+        If no candidates score any similarity points, no match was found.
+        If `phrase` has a non-zero similarity to any poisoned search term, we
+        assume a false positive has occurred and return an error.
+        Otherwise, return `None` as the matching candidate.
+
+        Example:
+            phrase = "black cherry"
+            similarities = {
+                "berry":     {'acai berry': 0,  'blueberry': 0,    'cranberry': 0},
+                "fruit":     {'apple': 0,       'banana': 0,       'cherry': 6},
+                "vegetable": {'artichoke': 0,   'broccoli': 0,     'carrot': 0},
+            }
+            match = "fruit"     # 'cherry' was the most similar search term.
+
+        WIP: Some day, we could use a slightly more refined definition of similarity
+            between a phrase and a search term: the length of the longest common
+            substring shared between `phrase` and that search term.
+
+        If we were to use this definition, we'd get slightly different numbers:
+
+        Example:
+            phrase = "black cherry"
+            similarities = {
+                "berry":     {'acai berry': 4,  'blueberry': 4,    'cranberry': 4},
+                "fruit":     {'apple': 1,       'banana': 1,       'cherry': 6},
+                "vegetable": {'artichoke': 2,   'broccoli': 1,     'carrot': 2},
+            }
+            match = "fruit"     # 'cherry' was the most similar search term.
+
+    NOTE: If this function does not raise an error, it will always return
+        either `None`, or a candidate from `spec.fuzzy_search_terms.keys()`.
+    """
+
+    def get_search_term_similarity(search_term: str, haystack: str) -> int:
+        """ Return the similarity score for a single search term against a given haystack. """
         return len(search_term) if search_term.lower() in haystack.lower() else 0
 
-    def generate_score_for_key(key: str, spec: const.SurveySpecification, haystack: str) -> int:
-        """ Return the highest score achieved by any of key's search terms. """
+    def get_candidate_similarity(candidate: str, spec: const.SurveySpecification, haystack: str) -> int:
+        """ Return the highest score achieved by any of the candidate's search terms. """
         # The key itself is a search term if no others are provided (shorthand to save typing)
-        search_terms = spec.parse_dict.get(key) or [key]
-        return max(generate_score_for_search_term(term, haystack) for term in search_terms)
+        search_terms = spec.fuzzy_search_terms.get(candidate) or [candidate]
+        return max(get_search_term_similarity(term, haystack) for term in search_terms)
 
-    keys = spec.parse_dict.keys()
-    scores = {key: generate_score_for_key(key, spec, phrase) for key in keys}
+    candidates = spec.fuzzy_search_terms.candidates()
+    scores = {candidate: get_candidate_similarity(candidate, spec, phrase) for candidate in candidates}
     max_score = max(scores.values())
 
     # Compute candidates for debugging, and to filter out entries with score 0.
     # This prevents all search terms from having a tie at 0 points.
     candidates = {key: score for key, score in scores.items() if score > 0}
     if len(candidates) > 1:
-        logger.debug('Minor parse_phrase ambiguity: "%s" could be any of: %s', phrase, candidates)
+        logger.debug('Minor fuzzy_match_phrase ambiguity: "%s" could be any of: %s', phrase, candidates)
 
     winners = [key for key, score in candidates.items() if score == max_score]
     if len(winners) > 1:
-        raise RuntimeError(f'Severe parse_phrase ambiguity! "{phrase}" could be any of: {winners}')
+        raise RuntimeError(f'Severe fuzzy_match_phrase ambiguity! "{phrase}" could be any of: {winners}')
 
-    # If nothing won, check the fail list to see if we should abort.
-    if not winners and spec.fail_list and any(f in phrase for f in spec.fail_list):
-        raise RuntimeError(f'parse_phrase triggered fail-safe! "{phrase}" matched: {spec.fail_list}')
+    # If nothing won, check the poisoned search terms to see if we should abort.
+    if not winners and spec.poisoned_search_terms and any(f in phrase for f in spec.poisoned_search_terms):
+        raise RuntimeError(f'fuzzy_match_phrase triggered fail-safe! "{phrase}" matched: {spec.poisoned_search_terms}')
 
     winner = winners[0] if winners else None
-    logger.debug('parse_phrase mapped %s --> %s', repr(phrase), repr(winner))
+    logger.debug('fuzzy_match_phrase mapped %s --> %s', repr(phrase), repr(winner))
 
     # We expect this to return None for "None of the above", or similar,
     # but usually returning None is a sign that something has gone wrong.
     if winner is None and "None" not in phrase:
-        logger.warning('parse_phrase returned None for: %s', phrase)
+        logger.warning('fuzzy_match_phrase returned None for: %s', phrase)
     return winner
 
 class LanguageData(dict):
@@ -208,69 +304,81 @@ class LanguageData(dict):
             extracting and returning a new Datapoint to be merged into self.
         """
 
+
+
         # Add a placeholder key to the language data to keep output nicely ordered.
-        if spec.type == const.PLACEHOLDER:
-            return {spec.key: const.PLACEHOLDER} # to be overwritten later.
+        if spec.value_type == ValueType.PLACEHOLDER:
+            # JsonKey is an enum, so we need to extract the str value
+            key = spec.json_key.value
+            return {key: ValueType.PLACEHOLDER} # to be overwritten later.
 
         handlers = {
-            const.ONE_TO_ONE:   self.process_one_to_one_mapping,
-            const.SPLIT:        self.process_one_to_many_mapping,
-            const.MERGE:        self.process_many_to_one_mapping,
+            Mappings.ONE_TO_ONE:   self.process_one_to_one_mapping,
+            Mappings.SPLIT:        self.process_one_to_many_mapping,
+            Mappings.MERGE:        self.process_many_to_one_mapping,
         }
         return handlers[spec.mapping](row, spec)
+
 
     def process_one_to_one_mapping(self, row: List[str], spec: const.SurveySpecification) -> Datapoint:
         """ Process a one-to-one mapping in which a single column in the CSV maps
             to a single JSON key. Return the datapoints to be added to self. """
-        assert_type(spec.key, str)
+        assert_type(spec.json_key, JsonKey)
         assert_type(spec.index, int)
+
+        # JsonKey is an enum, so we need to extract the str value.
+        key = spec.json_key.value
 
         # Get the single field from the CSV
         value = row[spec.index].strip()
 
-        if spec.type == const.NUM:
+        if spec.value_type == ValueType.NUM:
             value = int(value)
 
-        elif spec.type == const.STRING:
-            # If there's a parse_dict, we need to do more advanced processing
+        elif spec.value_type == ValueType.STRING:
+            # If there's a fuzzy_search_terms, we need to do more advanced processing
             # Otherwise it's good as-is.
-            if spec.parse_dict:
-                value = parse_phrase(value, spec)
+            if spec.fuzzy_search_terms:
+                value = fuzzy_match_phrase(value, spec)
 
-        elif spec.type == const.LIST:
-            # If there's a parse_dict, parse each item individually
-            if spec.parse_dict and spec.parse_dict != const.PHONEMES:
+        elif spec.value_type == ValueType.LIST:
+            # If there's a fuzzy_search_terms, parse each item individually
+            if spec.fuzzy_search_terms and spec.fuzzy_search_terms != const.PHONEMES:
                 selected_items = value.split(const.INNER_DELIMITER)
-                value = [parse_phrase(item, spec) for item in selected_items]
+                value = [fuzzy_match_phrase(item, spec) for item in selected_items]
 
                 # Remove falsy entries from the list, such as "None of the above"
                 value = list(filter(None, value))
 
-            # If the parse_dict is absent or equal to const.PHONEMES, assume it's a phoneme list.
+            # If fuzzy_search_terms is absent or equal to const.PHONEMES, assume it's a phoneme list.
             else:
                 value = get_glyph_list(value)
 
         else:
-            raise NotImplementedError(f'this function cannot yet handle {spec.type=}')
+            raise NotImplementedError(f'this function cannot yet handle {spec.value_type=}')
 
-        return {spec.key: value}
+        return {key: value}
+
 
     def process_many_to_one_mapping(self, row: List[str], spec: const.SurveySpecification) -> Datapoint:
         """ Process a many-to-one mapping in which multiple columns in the CSV are
             merged into a single JSON key. Return the datapoints to be added to self. """
-        assert_type(spec.key, str)
+        assert_type(spec.json_key, JsonKey)
         assert_type(spec.index, list)
+
+        # JsonKey is an enum, so we need to get the str value
+        key = spec.json_key.value
 
         # Currently this method is only used to combine multiple phoneme lists
         # into a larger phoneme list.
-        if spec.type == const.LIST:
-            assert spec.parse_dict in (None, const.PHONEMES), "this function cannot handle non-phoneme lists"
+        if spec.value_type == ValueType.LIST:
+            assert spec.fuzzy_search_terms in (None, const.PHONEMES), "this function cannot handle non-phoneme lists"
 
             # Append to the existing list of phonemes if one exists; start a new one otherwise.
             # TODO: Would there ever be an existing one??
-            ret = {spec.key: self.get(spec.key, [])}
-            if ret[spec.key]:
-                logger.debug('many_to_one (%s) found existing entry: %s', spec.key, ret[spec.key])
+            ret = {key: self.get(key, [])}
+            if ret[key]:
+                logger.debug('many_to_one (%s) found existing entry: %s', key, ret[key])
                 # I'm pretty sure there'd never be a case where this can happen, and I want to remove
                 # the logic for it, so I'm adding this exception here so I notice if it ever does.
                 # It's not *bad* if this exception comes up, it should be fine, but I'm just surprised.
@@ -278,30 +386,34 @@ class LanguageData(dict):
                 raise NotImplementedError("I assumed this case would be impossible. Figure out why it's not and remove this error.")
             for index in spec.index:
                 selected_items = row[index]
-                ret[spec.key] += get_glyph_list(selected_items, phonemes.GLYPHS)
+                ret[key] += get_glyph_list(selected_items, phonemes.GLYPHS)
 
         else:
-            raise NotImplementedError(f'this function cannot yet handle {spec.type=}')
+            raise NotImplementedError(f'this function cannot yet handle {spec.value_type=}')
 
         return ret
+
 
     def process_one_to_many_mapping(self, row: List[str], spec: const.SurveySpecification) -> Datapoint:
         """ Process a one-to-many mapping in which a single column in the CSV is split
             across multiple JSON keys. Return the datapoints to be added to self. """
-        assert_type(spec.key, list)
+        assert_type(spec.json_key, list)
         assert_type(spec.index, int)
+
+        # JsonKey is an enum, so we need to pull out the str values
+        keys = [json_key.value for json_key in spec.json_key]
 
         # Currently this method is only used to pull each of a list of checkboxes into their own bools.
         selected_items = row[spec.index].strip().split(const.INNER_DELIMITER)
 
-        if spec.type == const.BOOL:
+        if spec.value_type == ValueType.BOOL:
             # Set a key's value to True if that key appears in the text of any selected item.
             # This is quick and dirty but it works (so far...)
             # e.g. "tone" appears in ['The language has tone ...', 'The language has complex consonants']
             ret = {key: any(key in text for text in selected_items)
-                        for key in spec.key}
+                        for key in keys}
         else:
-            raise NotImplementedError(f'this function cannot yet handle {spec.type=}')
+            raise NotImplementedError(f'this function cannot yet handle {spec.value_type=}')
 
         return ret
 
@@ -315,7 +427,7 @@ class LanguageData(dict):
         logger.info('----- Parsing %s with netid %s -----',
                     row[const.LANGUAGE], row[const.NETID])
 
-        data = cls()
+        data: 'LanguageData' = cls()
 
         # Extract all raw data from the row
         # Each spec represents a datapoint to be extracted from this row.
@@ -331,10 +443,12 @@ class LanguageData(dict):
         #  e.g. counting # of manners, # of places)
 
         # Only derive consonant counts for the grammar survey, not the typology survey
-        if const.K_CONSONANTS in data:
-            consonant_glyphs = data[const.K_CONSONANTS]
-            data[const.K_NUM_CONSONANT_MANNERS] = phonemes.consonants.getNumMannersFromGlyphs(consonant_glyphs)
-            data[const.K_NUM_CONSONANT_PLACES] = phonemes.consonants.getNumPlacesFromGlyphs(consonant_glyphs)
+        # NOTE: Convert all enums to strs
+        consonants_key = JsonKey.CONSONANTS.value
+        if consonants_key in data:
+            consonant_glyphs = data[consonants_key]
+            data[JsonKey.NUM_CONSONANT_MANNERS.value] = phonemes.consonants.getNumMannersFromGlyphs(consonant_glyphs)
+            data[JsonKey.NUM_CONSONANT_PLACES.value] = phonemes.consonants.getNumPlacesFromGlyphs(consonant_glyphs)
 
         return data
 
@@ -357,7 +471,11 @@ class Dataset:
         self.languages = list(languages)
 
         # Sort from A-Z by language name, then student / netid hashes.
-        self.languages.sort(key=operator.itemgetter(const.K_LANGUAGE, const.K_NAME, const.K_NETID))
+        language_key = JsonKey.LANGUAGE.value
+        name_key = JsonKey.NAME.value
+        netid_key = JsonKey.NETID.value
+        self.languages.sort(key=operator.itemgetter(language_key, name_key, netid_key))
+
 
     @classmethod
     def from_semester(cls: 'Dataset', semester: str) -> 'Dataset':
@@ -376,6 +494,9 @@ class Dataset:
         # For test datasets, use the specs of the corresponding non-test dataset.
         _semester = semester.replace("test", "")
 
+        # The dict is keyed by Semesters enum, but `_semester` is a str; convert it.
+        _semester = Semesters(_semester)
+
         # If we haven't defined a format spec for this semester we won't know
         # how to process any of its data. Don't even attempt to continue.
         if _semester not in const.PARAMS:
@@ -386,11 +507,11 @@ class Dataset:
 
         # Merge in grammar data first, followed by typology data.
         # It's not guaranteed we'll have both for each language.
-        for survey in const.SURVEYS:
-            path = get_path(semester, survey)
+        for survey in Surveys:
+            path = get_path(semester, survey.value)
             if not path.exists():
                 logger.warning('%s semester: no anon CSV found for %s survey. Continuing without it...',
-                               semester, survey)
+                               semester, survey.value)
                 continue
 
             with open(path, 'r', newline='', encoding='utf-8') as f:
@@ -403,7 +524,8 @@ class Dataset:
                 # Merge data from this survey into any other data we
                 # may have for the same language from other surveys.
                 try:
-                    netid = language_data[const.K_NETID]
+                    netid_key = JsonKey.NETID.value
+                    netid = language_data[netid_key]
                 except KeyError:
                     raise KeyError('language_data had no netid field: %s' % language_data)
                 existing_data = netid_to_language_data[netid]
@@ -426,10 +548,12 @@ class Dataset:
         # all we really care about are the values.
         return cls(netid_to_language_data.values())
 
+
     def dump(self, path: Union[str, pathlib.Path]):
         """ Dump the contents of this Dataset to a JSON file at the provided path. """
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(self.languages, f, sort_keys=False, ensure_ascii=False, indent=4)
+
 
 ################################################################################
 #                               Preprocessing
@@ -447,11 +571,12 @@ def str_hash(s: str) -> str:
     # The risk of collisions should still be negligible.
     return hashlib.sha3_256(b).hexdigest()[:const.HASH_SIZE]
 
+
 def anonymize_semester_data(semester: str) -> None:
     """ Convert the given semester's "unanon" CSV files to "anon" ones.
         Log a warning and return gracefully if an "unanon" file doesn't exist. """
     logger.info('Anonymizing semester data...')
-    for survey in const.SURVEYS:
+    for survey in Surveys.names():
         path = get_path(semester, survey, anonymized=False)
         if not path.exists():
             logger.info('%s semester: no unanon CSV found for %s survey. Continuing without it...',
@@ -476,6 +601,7 @@ def anonymize_semester_data(semester: str) -> None:
                 row[const.NAME] = str_hash(row[const.NAME])
                 writer.writerow(row)
 
+
 ################################################################################
 #                               Main Processing
 ################################################################################
@@ -493,6 +619,7 @@ def get_log_level(verbosity: int) -> int:
     verbosity = max(verbosity, 0)
     return levels[verbosity]
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--verbosity', action='count', default=0,
@@ -504,7 +631,7 @@ def main():
     logger.setLevel(get_log_level(args.verbosity))
 
     # If no semesters requested, process all known semesters, skipping test data.
-    semesters: List[str] = args.semesters or const.datasetNames
+    semesters: List[str] = args.semesters or Datasets.names()
 
     # Datasets whose names begin with "_" are for testing only.
     # Exclude them from the conversion process.
@@ -525,4 +652,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

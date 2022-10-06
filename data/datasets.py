@@ -28,7 +28,7 @@ from . import const
 
 # See data/const.py for relevant constants (e.g. dataset names)
 DATASET_PATH = const.DATASET_PATH
-datasetNames = const.datasetNames
+datasetNames = const.Datasets.names()
 
 # The datasets themselves, uninitialized until needed
 datasets = None
@@ -42,7 +42,7 @@ def datasetFilename(dataset):
 def databaseFilename(dataset):
     return DATASET_PATH.format(dataset, "%s.db" % dataset)
 
-def initDatabases():
+def initDatabases() -> None:
     """Initialize the databases for this application"""
     global databases
 
@@ -54,7 +54,7 @@ def initDatabases():
         dataset: tinydb.TinyDB(databaseFilename(dataset), encoding="utf-8") for dataset in datasetNames
     }
 
-def getDatabase(name):
+def getDatabase(name) -> tinydb.TinyDB:
     """Return the database whose name is the one specified, if it exists"""
     # A bit of a hack: generate databases only the first time they are requested
     # See note at top of file

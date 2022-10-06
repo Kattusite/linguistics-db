@@ -1,8 +1,6 @@
-from . import app, querier, query, responder
-# from lingdb.exceptions import QuorumError
-from data import const
-from flask import render_template, redirect, request, url_for, flash
-import json, traceback
+from flask import render_template, redirect, request
+
+from . import app, querier, responder
 
 @app.route("/", methods = ["GET", "POST"])
 def main():

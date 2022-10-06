@@ -3,7 +3,7 @@ from collections.abc import Sequence
 
 import tinydb
 
-from data import const
+from data.const import ValueType
 from .language import Language
 
 class InvalidModeError(ValueError):
@@ -17,10 +17,10 @@ class InvalidModeError(ValueError):
 # e.g. for numbers: "has a {property} {mode} {k}"
 # e.g. for bools : "has {property} equal to {value}"
 
-LIST    = const.LIST
-NUM     = const.NUM
-STRING  = const.STRING
-BOOL    = const.BOOL
+LIST    = ValueType.LIST.value
+NUM     = ValueType.NUM.value
+STRING  = ValueType.STRING.value
+BOOL    = ValueType.BOOL.value
 ALWAYS  = "Always"
 NEVER   = "Never"
 
@@ -177,6 +177,15 @@ class Query:
             params["ls"] = ", ".join(params["ls"])
 
         return self.descStr.format(**params)
+
+    def query(self, db) -> Matches:
+        """Execute this query on the specified database, returning the status code
+        and results.
+
+        Results will be returned as a list of Match objects.
+        For String queries, the cause will be the specific string value of
+        the relevant property for the matching language."""
+        raise NotImplementedError('concrete Query implementations should override query()')
 
 class List(Query):
     """Query.List is a class defining the properties of a list based query from

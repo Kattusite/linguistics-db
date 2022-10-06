@@ -15,7 +15,7 @@
 #        for this field should be described in plain english
 #        E.G. "contain at least one of %s" where %s is [p,t,k]
 # REPLY_VARS:  Describes what variables are needed to fill the format string
-#              E.G. a list of strings, a single const.STRING, a mode const.STRING, a k-value
+#              E.G. a list of strings, a single ValueType.STRING, a mode ValueType.STRING, a k-value
 # FUNCTION: A function in the language class that is used to query for this trait.
 #           e.g. Language.matchConsonants
 # BOOL_BODY: Some representation of what content goes in the selector div
@@ -40,7 +40,11 @@
 
 from phonemes import metaclasses
 # from lingdb.language import Language
-from . import const
+from .const import (
+    D,
+    JsonKey,
+    ValueType,
+)
 
 # Dictionary keys
 NAME            = "name"
@@ -85,7 +89,7 @@ PLACEHOLDER = {
 
 ENDANGERMENT = {
     SELECT_NAME: "Endangerment level:",
-    DICT: const.D_ENDANGERMENT_LEVELS,
+    DICT: D.ENDANGERMENT_LEVELS,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have an endangerment level that matches %s %s of %s",
@@ -93,8 +97,8 @@ ENDANGERMENT = {
     HTML_ID: "endangerment-selector",
     POPOVER_PREFIX: "ebox-popover",
     SELECT_WHAT: "endangerment level",
-    PROPERTY: const.K_ENDANGERMENT_LEVEL,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.ENDANGERMENT_LEVEL.value,
+    TYPE: ValueType.LIST.value,
 }
 
 CONSONANT = {
@@ -107,8 +111,8 @@ CONSONANT = {
     HTML_ID: "consonant-selector",
     POPOVER_PREFIX: "cbox-popover",
     SELECT_WHAT: "consonants",
-    PROPERTY: const.K_CONSONANTS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.CONSONANTS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 IPA_CONSONANT = {
@@ -121,8 +125,8 @@ IPA_CONSONANT = {
     HTML_ID: "ipa-consonant-selector",
     POPOVER_PREFIX: "ipacbox-popover",
     SELECT_WHAT: "consonants",
-    PROPERTY: const.K_CONSONANTS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.CONSONANTS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 CONSONANT_CLASS = {
@@ -135,8 +139,8 @@ CONSONANT_CLASS = {
     HTML_ID: "consonant-class-selector",
     POPOVER_PREFIX: "ccbox-popover",
     SELECT_WHAT: "natural classes",
-    PROPERTY: const.K_CONSONANTS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.CONSONANTS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 VOWEL = {
@@ -149,8 +153,8 @@ VOWEL = {
     HTML_ID: "vowel-selector",
     POPOVER_PREFIX: "vbox-popover",
     SELECT_WHAT: "vowels",
-    PROPERTY: const.K_VOWELS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.VOWELS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 IPA_VOWEL = {
@@ -163,8 +167,8 @@ IPA_VOWEL = {
     HTML_ID: "ipa-vowel-selector",
     POPOVER_PREFIX: "ipavbox-popover",
     SELECT_WHAT: "vowels",
-    PROPERTY: const.K_VOWELS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.VOWELS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 VOWEL_CLASS = {
@@ -177,8 +181,8 @@ VOWEL_CLASS = {
     HTML_ID: "vowel-class-selector",
     POPOVER_PREFIX: "vcbox-popover",
     SELECT_WHAT: "natural classes",
-    PROPERTY: const.K_VOWELS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.VOWELS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 CONSONANT_PLACES = {
@@ -192,8 +196,8 @@ CONSONANT_PLACES = {
     HTML_ID: "consonant-places-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None,
-    PROPERTY: const.K_3_PLUS_PLACES,
-    TYPE: const.BOOL,
+    PROPERTY: JsonKey.HAS_3_PLUS_PLACES.value,
+    TYPE: ValueType.BOOL.value,
 }
 
 CONSONANT_MANNERS = {
@@ -207,8 +211,8 @@ CONSONANT_MANNERS = {
     HTML_ID: "consonant-manners-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None,
-    PROPERTY: const.K_2_PLUS_MANNERS,
-    TYPE: const.BOOL,
+    PROPERTY: JsonKey.HAS_2_PLUS_MANNERS.value,
+    TYPE: ValueType.BOOL.value,
 }
 
 CONSONANT_ARTICULATION = {
@@ -222,12 +226,12 @@ CONSONANT_ARTICULATION = {
     POPOVER_PREFIX: "ca-lbox-popover",
     SELECT_WHAT: "articulation type",
     PROPERTY: "num consonant {value}", # WARNING: This is not currently supported - need some way to decide which to query
-    TYPE: const.NUM,
+    TYPE: ValueType.NUM.value,
 }
 
 VOWEL_TYPES = {
     SELECT_NAME: "Vowel types:",
-    DICT: const.D_VOWEL_TYPES,
+    DICT: D.VOWEL_TYPES,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s vowels",
@@ -235,13 +239,13 @@ VOWEL_TYPES = {
     HTML_ID: "vowel-type-selector",
     POPOVER_PREFIX: "vt-lbox-popover",
     SELECT_WHAT: "vowel type",
-    PROPERTY: const.K_VOWEL_TYPES,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.VOWEL_TYPES.value,
+    TYPE: ValueType.LIST.value,
 }
 
 CONSONANT_TYPES = {
     SELECT_NAME: "Consonant types:",
-    DICT: const.D_CONSONANT_TYPES,
+    DICT: D.CONSONANT_TYPES,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s consonants",
@@ -249,13 +253,13 @@ CONSONANT_TYPES = {
     HTML_ID: "consonant-type-selector",
     POPOVER_PREFIX: "ct-lbox-popover",
     SELECT_WHAT: "consonant type",
-    PROPERTY: const.K_CONSONANT_TYPES,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.CONSONANT_TYPES.value,
+    TYPE: ValueType.LIST.value,
 }
 
 CONSONANT_TYPES_F21 = {
     SELECT_NAME: "Consonant types:",
-    DICT: const.D_CONSONANT_TYPES_F21,
+    DICT: D.CONSONANT_TYPES_F21,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s consonants",
@@ -263,8 +267,8 @@ CONSONANT_TYPES_F21 = {
     HTML_ID: "consonant-type-selector",
     POPOVER_PREFIX: "ct-lbox-popover",
     SELECT_WHAT: "consonant type",
-    PROPERTY: const.K_CONSONANT_TYPES,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.CONSONANT_TYPES.value,
+    TYPE: ValueType.LIST.value,
 }
 
 PHONEME_INVENTORY_SIZE = {
@@ -278,7 +282,7 @@ PHONEME_INVENTORY_SIZE = {
     POPOVER_PREFIX: "pi-lbox-popover",
     SELECT_WHAT: "phoneme type",
     PROPERTY: "num {value}", # WARNING: This is not currently supported - need some way to decide which to query
-    TYPE: const.NUM,
+    TYPE: ValueType.NUM.value,
 }
 
 COMPLEX_CONSONANTS = {
@@ -292,8 +296,8 @@ COMPLEX_CONSONANTS = {
     HTML_ID: "complex-consonants-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None,
-    PROPERTY: const.K_COMPLEX_CONSONANTS,
-    TYPE: const.BOOL,
+    PROPERTY: JsonKey.COMPLEX_CONSONANTS.value,
+    TYPE: ValueType.BOOL.value,
 }
 
 TONE = {
@@ -307,8 +311,8 @@ TONE = {
     HTML_ID: "tone-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None,
-    PROPERTY: const.K_TONE,
-    TYPE: const.BOOL,
+    PROPERTY: JsonKey.TONE.value,
+    TYPE: ValueType.BOOL.value,
 }
 
 STRESS = {
@@ -322,13 +326,13 @@ STRESS = {
     HTML_ID: "stress-selector",
     POPOVER_PREFIX: None,
     SELECT_WHAT: None,
-    PROPERTY: const.K_STRESS,
-    TYPE: const.BOOL,
+    PROPERTY: JsonKey.STRESS.value,
+    TYPE: ValueType.BOOL.value,
 }
 
 SYLLABLES = {
     SELECT_NAME: "Allows syllable structure:",
-    DICT: const.D_SYLLABLES,
+    DICT: D.SYLLABLES,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of the syllable structures %s",
@@ -336,13 +340,13 @@ SYLLABLES = {
     HTML_ID: "syllable-selector",
     POPOVER_PREFIX: "s-lbox-popover",
     SELECT_WHAT: "syllables",
-    PROPERTY: const.K_SYLLABLES,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.SYLLABLES.value,
+    TYPE: ValueType.LIST.value,
 }
 
 MORPHOLOGY = {
     SELECT_NAME: "Morphological type:",
-    DICT: const.D_MORPHOLOGY,
+    DICT: D.MORPHOLOGY,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of the morphological types %s",
@@ -350,13 +354,13 @@ MORPHOLOGY = {
     HTML_ID: "morphological-selector",
     POPOVER_PREFIX: "m-lbox-popover",
     SELECT_WHAT: "morphological type",
-    PROPERTY: const.K_MORPHOLOGICAL_TYPE,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.MORPHOLOGICAL_TYPE.value,
+    TYPE: ValueType.LIST.value,
 }
 
 WORD_FORMATION = {
     SELECT_NAME: "Word formation strategy:",
-    DICT: const.D_WORD_FORMATION_S19,
+    DICT: D.WORD_FORMATION_S19,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "use %s %s of %s to form words",
@@ -364,8 +368,8 @@ WORD_FORMATION = {
     HTML_ID: "word-formation-selector",
     POPOVER_PREFIX: "wf-lbox-popover",
     SELECT_WHAT: "word formation",
-    PROPERTY: const.K_WORD_FORMATION,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.WORD_FORMATION.value,
+    TYPE: ValueType.LIST.value,
 }
 
 # These two dicts are now deprecated. Delete once sure they aren't needed.
@@ -394,7 +398,7 @@ FORMATION_MODE = {
 
 FORMATION = {
     SELECT_NAME: "Word formation frequency:",
-    DICT: const.D_WORD_FORMATION_FREQ,
+    DICT: D.WORD_FORMATION_FREQ,
     MULTI: False,
     MODE: PICK_ONE,
     REPLY: "use %s strategies to form words",
@@ -402,13 +406,13 @@ FORMATION = {
     HTML_ID: "formation-freq-selector",
     POPOVER_PREFIX: "ff-lbox-popover",
     SELECT_WHAT: "frequency",
-    PROPERTY: const.K_WORD_FORMATION_FREQ,
-    TYPE: const.STRING, #TODO Double check this is a string not a list
+    PROPERTY: JsonKey.WORD_FORMATION_FREQ.value,
+    TYPE: ValueType.STRING.value, #TODO Double check this is a string not a list
 }
 
 WORD_ORDER = {
     SELECT_NAME: "Basic word order:",
-    DICT: const.D_WORD_ORDER,
+    DICT: D.WORD_ORDER,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "have %s %s of %s word orders",
@@ -416,8 +420,8 @@ WORD_ORDER = {
     HTML_ID: "word-order-selector",
     POPOVER_PREFIX: "wo-lbox-popover",
     SELECT_WHAT: "word order",
-    PROPERTY: const.K_WORD_ORDER,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.WORD_ORDER.value,
+    TYPE: ValueType.LIST.value,
 }
 
 # The following two dicts are now deprecated. Remove once sure not needed
@@ -445,7 +449,7 @@ HEADEDNESS_MODE = {
 # of all legal combinations of the corresponding freq/mode dicts
 HEADEDNESS = {
     SELECT_NAME: "Headedness:",
-    DICT: const.D_HEADEDNESS,
+    DICT: D.HEADEDNESS,
     MULTI: True,
     MODE: PICK_MULTI,
     REPLY: "are %s %s of %s",
@@ -453,13 +457,13 @@ HEADEDNESS = {
     HTML_ID: "headedness-selector",
     POPOVER_PREFIX: "h-lbox-popover",
     SELECT_WHAT: "headedness",
-    PROPERTY: const.K_HEADEDNESS,
-    TYPE: const.LIST,
+    PROPERTY: JsonKey.HEADEDNESS.value,
+    TYPE: ValueType.LIST.value,
 }
 
 CASE = {
     SELECT_NAME: "Case:",
-    DICT: const.D_CASE,
+    DICT: D.CASE,
     MULTI: False,
     MODE: PICK_ONE,
     REPLY: "have %s case",
@@ -467,13 +471,13 @@ CASE = {
     HTML_ID: "case-selector",
     POPOVER_PREFIX: "c-lbox-popover",
     SELECT_WHAT: "case",
-    PROPERTY: const.K_CASE,
-    TYPE: const.STRING,
+    PROPERTY: JsonKey.CASE.value,
+    TYPE: ValueType.STRING.value,
 }
 
 AGREEMENT = {
     SELECT_NAME: "Agreement:",
-    DICT: const.D_AGREEMENT,
+    DICT: D.AGREEMENT,
     MULTI: False,
     MODE: PICK_ONE,
     REPLY: "have %s agreement",
@@ -481,8 +485,8 @@ AGREEMENT = {
     HTML_ID: "agreement-selector",
     POPOVER_PREFIX: "a-lbox-popover",
     SELECT_WHAT: "agreement",
-    PROPERTY: const.K_AGREEMENT,
-    TYPE: const.STRING,
+    PROPERTY: JsonKey.AGREEMENT.value,
+    TYPE: ValueType.STRING.value,
 }
 
 METACLASS = {
@@ -495,8 +499,8 @@ METACLASS = {
     HTML_ID: "metaclass-selector",
     POPOVER_PREFIX: "mc-lbox-popover",
     SELECT_WHAT: "metaclasses",
-    PROPERTY: [const.K_CONSONANTS, const.K_VOWELS], # TODO: This is an inferred type and can't be used normally
-    TYPE: const.LIST,
+    PROPERTY: [JsonKey.CONSONANTS.value, JsonKey.VOWELS.value], # TODO: This is an inferred type and can't be used normally
+    TYPE: ValueType.LIST.value,
 }
 
 # The order of this list determines the order in which traits will appear in the

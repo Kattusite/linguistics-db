@@ -1,11 +1,11 @@
 import json
+from typing import Iterable, List
 import tinydb
 
 from collections import Counter
 
-from . import query as Query
-from . import language
-from data import const, selectors, datasets
+from . import query as querylib
+from data import selectors, datasets
 from phonemes import vowels, consonants, metaclasses
 
 """Querier.py defines the functions needed to take in a POST request from the
@@ -20,7 +20,7 @@ QUORUM_THRESHOLD = 0.5
 class QuorumError(RuntimeError):
     pass
 
-def dbFromRequest(request):
+def dbFromRequest(request) -> tinydb.TinyDB:
     """Given an XHR request from the frontend, return the TinyDB instance that
     contains the dataset the request is looking for"""
     form = request.form
@@ -28,7 +28,7 @@ def dbFromRequest(request):
     return datasets.getDatabase(dataset)
 
 
-def queriesFromRequest(request):
+def queriesFromRequest(request) -> List[querylib.Query]:
     """Given an XHR request from the frontend, return a list of Query objects,
     one for each query specified in the XHR request"""
 
@@ -74,7 +74,7 @@ def queriesFromRequest(request):
         # Get required data from selector
         selector = selectors.SELECTORS_DICT[trait]
 
-        type = selector[selectors.TYPE]
+        type_ = selector[selectors.TYPE]
         property = selector[selectors.PROPERTY]
 
         # Some traits are special, and have parameterized properties.
@@ -94,18 +94,20 @@ def queriesFromRequest(request):
 
         # Call the appropriate constructor for a query of the given type
         query = None
-        if type == Query.LIST:
-            query = Query.List(property, mode, k, ls, desc=desc)
-        elif type == Query.NUM:
-            query = Query.Num(property, mode, k, desc=desc)
-        elif type == Query.STRING:
-            query = Query.String(property, mode, value, desc=desc)
-        elif type == Query.BOOL:
-            query = Query.Bool(property, value, desc=desc)
-        elif type == Query.ALWAYS:
-            query = Query.Always()
-        elif type == Query.NEVER:
-            query = Query.Never()
+        if type_ == querylib.LIST:
+            query = querylib.List(property, mode, k, ls, desc=desc)
+        elif type_ == querylib.NUM:
+            query = querylib.Num(property, mode, k, desc=desc)
+        elif type_ == querylib.STRING:
+            query = querylib.String(property, mode, value, desc=desc)
+        elif type_ == querylib.BOOL:
+            query = querylib.Bool(property, value, desc=desc)
+        elif type_ == querylib.ALWAYS:
+            query = querylib.Always()
+        elif type_ == querylib.NEVER:
+            query = querylib.Never()
+        else:
+            raise ValueError(f'Unrecognized Query type: {type_}')
 
         queries.append(query)
 
@@ -124,12 +126,12 @@ def queriesFromRequest(request):
 
 
 
-def handleQueries(queries, db):
+def handleQueries(queries: Iterable[querylib.Query], db):
     """Execute each query in queries and return a list of Matches objects indicating
     the results of running all queries."""
     return [handleQuery(q, db) for q in queries]
 
-def handleQuery(query, db):
+def handleQuery(query: querylib.Query, db):
     """handleQuery will run a single query from the frontend against the DB,
     returning the status code and results.
     Results will be a tuple consisting of first the entire JSON of the language
@@ -137,6 +139,8 @@ def handleQuery(query, db):
     that were responsible for satisfying the query.
     E.g. If we asked for a language with at least three consonants, we would
     return all the consonants in that language as the second tuple entry."""
+    if not isinstance(query, querylib.Query):
+        raise TypeError(f"handleQuery() only accepts Query objects, not: {type(query)}")
 
     results = query.query(db)
 

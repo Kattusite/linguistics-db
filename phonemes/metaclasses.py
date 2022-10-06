@@ -1,3 +1,11 @@
+""" The metaclasses module has nothing to do with metaclasses in the Python sense.
+In hindsight, this was a terrible name.
+
+We use "metaclasses" to refer to higher-order groupings of phonemes.
+The idea is closely related to the linguistics concept of "natural classes",
+though we don't (necessarily) stick to the linguistically rigorous definition.
+"""
+
 from . import consonants, vowels, phonemes, utils
 
 # ref. https://en.wikipedia.org/wiki/Distinctive_feature

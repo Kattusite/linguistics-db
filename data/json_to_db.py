@@ -17,8 +17,8 @@ from typing import (
 
 from tinydb import TinyDB
 
-from data import const
 from data import datasets
+from data.const import Datasets
 
 def convert(semester: str):
     """The first command line argument should be the name of the dataset to
@@ -55,7 +55,7 @@ def main():
 
     # If no semesters requested, process all known semesters.
     # HMM?: For some reason we don't skip test semesters here...
-    semesters: List[str] = args.semesters or const.datasetNames
+    semesters: List[str] = args.semesters or Datasets.names()
 
     # Convert each file CSV -> JSON and write it to disk.
     for semester in semesters:

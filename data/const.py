@@ -1,8 +1,11 @@
 # No imports from project (leaf node in any import tree)
+import dataclasses
+import enum
+
 from typing import (
-    Dict,
+    Iterable,
     List,
-    Optional,
+    Mapping,
     Union,
 )
 
@@ -13,476 +16,559 @@ This file (and with any luck only this file) will need to be updated any
 time significant changes are made to the survey questions or format.
 """
 
-##############################################################################
-#                            Dataset constants                               #
-##############################################################################
+################################################################################
+#                            Dataset constants
+################################################################################
 # Where is a dataset named {0} located, relative to the project root?
 DATASET_PATH = "data/datasets/{0}/{1}"
 
 # Dataset Constants
-TEST  = "_test"
-TEST2 = "_test2"
+class Datasets(enum.Enum):
+    """ Which named datasets do we have?
+    F = Fall, S = Spring, XX = year (20XX)
+    """
 
-F17 = "F17"
-S19 = "S19"
-S19TEST = "S19test"
-F19 = "F19"
-F21 = "F21"
+    # Test datasets
+    TEST  = "_test"
+    TEST2 = "_test2"
 
-# Which named datasets do we have?
-# F = Fall, S = spring, XX = year 20XX
-datasetNames = [
-    TEST,
-    TEST2,
-    S19TEST,
-    F17,
-    S19,
-    F19,
-    F21,
-]
+    # Semester datasets
+    F17 = "F17"
+    S19 = "S19"
+    S19TEST = "S19test"
+    F19 = "F19"
+    F21 = "F21"
 
-##############################################################################
-#                          csvtojson constants                               #
-##############################################################################
+    @classmethod
+    def names(cls) -> Iterable[str]:
+        """ Return an iterable of the names of all known datasets. """
+        return [val.value for val in cls.__members__.values()]
 
-# Remove the Q_ prefixes once old vars are removed
-
-# Valid types:
-# Text:             Read in the field as text, as-is, without additional processing
-# Mult. Choice :    Read in the field and split it by INNER_DELIMITER
-# Single Choice:    Compare against a list of known choices
-# Booleans:         Several binary (yes/no) traits in a single multiple choice question
-
-# Edit: scrap those and make "string", "list", "num", "bool"
-
-# mapping: whether there are several lists contributing to the same data point
-# one to one = one question on survey, one key in JSON
-# split = one question on survey, many keys in JSON;
-# merge = many questions on survey, one key in JSON;
-
-# or alternatively:
+# alias for clarity
+Semesters = Datasets
 
 # Which surveys are available?
-GRAMMAR = "grammar"    # From the "Grammar Work 2" survey
-TYPOLOGY = "typology"  # From the final "Typology" survey
-SURVEYS = (GRAMMAR, TYPOLOGY)
+class Surveys(enum.Enum):
+    """ Which surveys are available?
+    - GRAMMAR: The first survey of the semester (phonology, phonemes, articulation)
+    - TYPOLOGY: The second survey of the semester (morphology, word formation)
 
-# Parameter names
-KEY = "key"
-TYPE = "type"
-INDEX = "index"
-MAPPING = "mapping"
-DICT = "parse_dict"
-FAIL_LIST = "fail_list"
-# SELECTOR / PARSE_DICT / SOMETHING LIKE THAT
+    NOTE: The names `GRAMMAR` and `TYPOLOGY` are not very descriptive;
+        they linger for historical reasons, since the original names of the surveys
+        happened to include the words "GRAMMAR" and "TYPOLOGY".
+    """
+    GRAMMAR = "grammar"    # From the "Grammar Work 2" survey
+    TYPOLOGY = "typology"  # From the final "Typology" survey
 
-PHONEMES = "phonemes"
+    @classmethod
+    def names(cls) -> Iterable[str]:
+        """ Return an iterable of the names of all known surveys. """
+        return [val.value for val in cls.__members__.values()]
 
-# Possible types
-STRING = "String"                   # Value will be a string
-BOOL = "Bool"                       # Value will be a bool
-NUM = "Num"                         # Value will be a number (so far must be int)
-LIST = "List"                       # Value will be a list
-PLACEHOLDER = "placeholder"         # Value will be set by someone else (derived fields like # manners)
-# HASH = "hash" # tbd.. maybe can use?
+
+################################################################################
+#                    ValueType and Mappings constants
+################################################################################
+
+# Possible value types
+class ValueType(enum.Enum):
+    """ The data type of a JSON value. """
+    # NOTE: We would just use the builtin types `str`, `bool`, etc.
+    #   but we serialize these to JSON in some of our API calls
+
+    STRING = "String"
+    """ Value will be a str. """
+
+    BOOL = "Bool"
+    """ Value will be a bool. """
+
+    NUM = "Num"
+    """ Value will be a number. (right now this means only `int). """
+
+    LIST = "List"
+    """ Value will be a list. """
+
+    PLACEHOLDER = "placeholder"
+    """ Value will be set by someone else (e.g. derived values like "number of manners"). """
+
+    # HASH = "hash" # tbd.. maybe can use?
+    # """ Not yet implemented. Value will be a str hash of some underlying str. """
+
+# alias to save typing:
+# T for Type
+T = ValueType
 
 # Possible mappings
-ONE_TO_ONE = "one to one"
-SPLIT = "split"
-MERGE = "merge"
+class Mappings(enum.Enum):
+    """ The possible mapping relationships from survey questions to JSON values. """
+    ONE_TO_ONE = "one to one"
+    """ One survey question will fill one JSON field. """
 
-######################################################
-#   JSON Keys
-######################################################
-# These variables shall all be prefixed with K_ to indicate they are *K*eys
+    SPLIT = "split"
+    """ One survey question will be split apart to fill many JSON fields. """
 
-# Possible keys for JSON entry for each language
+    MERGE = "merge"
+    """ Many survey questions will be merged to fill a single JSON field. """
 
-K_NETID                 = "netid"
-K_NAME                  = "student"  # formerly "name"
-K_LANGUAGE              = "name"     # formerly "language"
-K_COUNTRY               = "country"
-K_LANGUAGE_FAMILY       = "language family"
-K_ENDANGERMENT_LEVEL    = "endangerment level"
-K_NUM_VOWELS            = "num vowels"
-K_NUM_CONSONANTS        = "num consonants"
-K_NUM_PHONEMES          = "num phonemes"
-K_CONSONANTS            = "consonants"
-K_VOWELS                = "vowels"
-K_NUM_CONSONANT_PLACES  = "num consonant places" # note diff than orig
-K_NUM_CONSONANT_MANNERS = "num consonant manners"
-K_VOWEL_TYPES           = "vowel types"
-K_CONSONANT_TYPES       = "consonant types"
-K_3_PLUS_PLACES         = "3+ places"   # deprecated
-K_2_PLUS_MANNERS        = "2+ manners"  # deprecated
-K_COMPLEX_CONSONANTS    = "complex consonants"
-K_TONE                  = "tone"
-K_STRESS                = "stress"
-K_SYLLABLES             = "syllables"
+# alias to save typing:
+# M for Mappings
+M = Mappings
 
-K_CITATION              = "citation"
-K_RECOMMEND             = "recommend"
-K_MORPHOLOGICAL_TYPE    = "morphological type"
-K_WORD_FORMATION        = "word formation"
-K_WORD_FORMATION_FREQ   = "word formation frequency"
-K_WORD_ORDER            = "word order"
-K_HEADEDNESS            = "headedness"
-K_CASE                  = "case"
-K_AGREEMENT             = "agreement"
+################################################################################
+#                                JSON Keys
+################################################################################
 
-# List of all possible legal keys for a language object.
-# Used for validation in language.py
-VALID_KEYS = set([
-    K_NETID,
-    K_NAME,
-    K_LANGUAGE,
-    K_COUNTRY,
-    K_LANGUAGE_FAMILY,
-    K_NUM_VOWELS,
-    K_NUM_CONSONANTS,
-    K_NUM_PHONEMES,
-    K_CONSONANTS,
-    K_VOWELS,
-    K_NUM_CONSONANT_PLACES,
-    K_NUM_CONSONANT_MANNERS,
-    K_VOWEL_TYPES,
-    K_CONSONANT_TYPES,
-    K_3_PLUS_PLACES,
-    K_2_PLUS_MANNERS,
-    K_COMPLEX_CONSONANTS,
-    K_TONE,
-    K_STRESS,
-    K_SYLLABLES,
+class JsonKey(enum.Enum):
+    """ Possible keys in the JSON entry for each language. """
+    NETID                 = "netid"
+    NAME                  = "student"  # formerly "name"
+    LANGUAGE              = "name"     # formerly "language"
+    COUNTRY               = "country"
+    LANGUAGE_FAMILY       = "language family"
+    ENDANGERMENT_LEVEL    = "endangerment level"
+    NUM_VOWELS            = "num vowels"
+    NUM_CONSONANTS        = "num consonants"
+    NUM_PHONEMES          = "num phonemes"
+    CONSONANTS            = "consonants"
+    VOWELS                = "vowels"
+    NUM_CONSONANT_PLACES  = "num consonant places" # note diff than orig
+    NUM_CONSONANT_MANNERS = "num consonant manners"
+    VOWEL_TYPES           = "vowel types"
+    CONSONANT_TYPES       = "consonant types"
+    HAS_3_PLUS_PLACES     = "3+ places"   # deprecated
+    HAS_2_PLUS_MANNERS    = "2+ manners"  # deprecated
+    COMPLEX_CONSONANTS    = "complex consonants"
+    TONE                  = "tone"
+    STRESS                = "stress"
+    SYLLABLES             = "syllables"
 
-    K_CITATION,
-    K_RECOMMEND,
-    K_MORPHOLOGICAL_TYPE,
-    K_WORD_FORMATION,
-    K_WORD_FORMATION_FREQ,
-    K_WORD_ORDER,
-    K_HEADEDNESS,
-    K_CASE,
-    K_AGREEMENT,
-])
+    CITATION              = "citation"
+    RECOMMEND             = "recommend"
+    MORPHOLOGICAL_TYPE    = "morphological type"
+    WORD_FORMATION        = "word formation"
+    WORD_FORMATION_FREQ   = "word formation frequency"
+    WORD_ORDER            = "word order"
+    HEADEDNESS            = "headedness"
+    CASE                  = "case"
+    AGREEMENT             = "agreement"
 
+# alias to save typing
+# K for Key
+K = JsonKey
 
-##################################################
-#   PARSEDICT DEFINITIONS
-##################################################
-# This is where parseDicts (to be used in csvtojson.py) will be defined
-# For other types of parsedicts, that are possible referring to derived types
-# or data that is *only* relevant for autogen.py and specifying selectors
-# for the frontend, they will be defined directly in selectors.py
-# To reiterate, these parseDicts are ONLY the ones that will actually need
-# to be passed to the parsePhrase() function at some point in csvtojson.py
+################################################################################
+#                               FuzzySearchTerms
+################################################################################
+# This is where FuzzySearchTerms (to be used in `fuzzy_match_phrase`) will be defined.
+# Previously these objects were named `parseDicts`.
+# There are some similar data structures defined directly in selectors.py;
+# the dicts defined in that file possibly refer to derived types, or to some
+# data that is *only* relevant for autogen.py and specifying frontend selectors.
 
-# These variables shall all be prefixed with D_ to signify they are parse*D*icts
+# The FuzzySearchTerms below are the ONLY dicts of this kind that will ever
+# need to be passed to `fuzzy_match_phrase()`.
 
-D_ENDANGERMENT_LEVELS = {
-    "0":    [],
-    "1":    [],
-    "2":    [],
-    "3":    [],
-    "4":    [],
-    "5":    [],
-    "6a":   [],
-    "6b":   [],
-    "7":    [],
-    "8a":   [],
-    "8b":   [],
-    "9":    [],
-    "10":   [],
-}
+Candidate = str
+SearchTerm = str
 
-# Grammar parseDicts
-D_VOWEL_TYPES = {
-    "nasalized":        [],
-    "long":             [],
-    "voiceless":        [],
-    "breathy":          [],
-    "creaky":           [],
-    "pharyngealized":   [],
-    "diphthongs":       [],
-    "triphthongs":      []
-}
+PHONEMES = "phonemes"
+""" A special value that can be used in place of a FuzzySearchTerms object.
 
-D_CONSONANT_TYPES = {
-    "uvular / retroflex / pharyngeal":      ["uvular", "retroflex", "pharyngeal"],
-    "affricates":                           [],
-    "prenasalized":                         [],
-    "multi-place / secondary articulation": ["multi-place", "secondary articulation"],
-    "geminate":                             ["geminate", "long"],
-    "glottalized / non-pulmonic":           ["glottalized", "non-pulmonic", "click", "ejective", "implosive"]
-}
+If this value is passed, we'll assume that the list of possible values is the list
+of known phonemes.
+"""
 
-D_CONSONANT_TYPES_F21 = {
-    "clicks":       [],
-    "implosives":   [],
-    "ejectives":    [],
-    "affricates":   [],
-    "labialized":   [],
-    "palatalized":  [],
-    "velarized":    [],
-    "aspirated":    [],
-}
+# TODO: Should we rename `FuzzySearchTerms` to `FuzzySearchCandidate` to keep it singular?
+class FuzzySearchTerms(dict, Mapping[Candidate, List[SearchTerm]]):
+    """ A hybrid class, both defining FuzzySearchTerms, and acting as a namespace
+    to contain several instances thereof. See docstring of `fuzzy_match_phrase()`. """
 
-D_SYLLABLES = {
-    "V":            ["V", "onsetless and codaless"],
-    "C onset":      ["CV", "single onset"],
-    "CC onset":     ["CCV", "two onset"],
-    "CCC onset":    ["CCCV", "three onset"],
-    "CCCC onset":   ["CCCCV", "four onset"],
-    "CCCCC onset":  ["CCCCCV", "five onset"],
-    "CCCCCC+ onset":["CCCCCCV", "CCCCCCV+", "six onset", "six or more onset"],
-    "C coda":       ["CVC", "VC", "single coda"], # formerly CVC, not "VC"
-    "CC coda":      ["VCC", "two coda"],
-    "CCC coda":     ["VCCC", "three coda"],
-    "CCCC coda":    ["VCCCC", "four coda"],
-    "CCCCC coda":   ["VCCCCC", "five coda"],
-    "CCCCCC+ coda": ["VCCCCCC", "VCCCCCC+", "six coda", "six or more coda"],
-}
+    def __init__(self, d: dict):
+        super().__init__(d)
 
-# Typology parseDicts
-D_MORPHOLOGY = {
-    "isolating": [],
-    "analytic": ["analytic", "not isolating"], # this is a toughie
-    "fusional": [],
-    "agglutinating": [],
-    "polysynthetic": []
-}
+    def candidates(self) -> Iterable[str]:
+        """ Return the possible candidate matches. """
+        return self.keys()
 
-D_WORD_FORMATION_F17 = {
-    "affixation": ["affixation", "prefixation or suffixation"],
-    "suffixation": [],
-    "prefixation": [],
-    "infixation": [],
-    "compounding": [],
-    "root-and-pattern": [],
-    "internal change": [],
-    "suppletion": [],
-    "stress or tone shift": [],
-    "reduplication": [],
-    "conversion": [],
-    "purely isolating": ["none", "purely isolating"]
-}
+    def search_terms(self, candidate: str) -> Iterable[str]:
+        """ Return the search terms associated with a particular candidate match. """
+        return self[candidate]
 
-D_WORD_FORMATION_S19 = {
-    # "affixation": ["affixation", "prefixation or suffixation"], # obsolete as of s19
-    "suffixation": [],
-    "prefixation": [],
-    "infixation": [],
-    "compounding": [],
-    "root-and-pattern": [],
-    "internal change": [],
-    "suppletion": [],
-    "stress or tone shift": [],
-    "reduplication": [],
-    "conversion": [],
-    "purely isolating": ["none", "purely isolating"]
-}
+# Group all of the named instances of this class under a namespace.
+class AllFuzzySearchTerms:
+    """ A namespace grouping all named instances of FuzzySearchTerms. """
+    # TODO: I think we could achieve this with a single class with a custom
+    #   metaclass, but that sounds a lot more finnicky than just using the
+    #   second class.
+    # Almost nobody besides `AllFuzzySearchTerms` ever refers to `FuzzySearchTerms`
+    # by name, so we could almost make it a nested class if we wanted, but that would
+    # make it harder to use in type annotations, so we don't do that.
 
-# not thoroughly tested
-D_WORD_FORMATION_FREQ = {
-    "exclusively suffixing": [],
-    "mostly suffixing": [],
-    "exclusively prefixing": [],
-    "mostly prefixing": [],
-    "equal prefixing and suffixing": ["prefixing and suffixing"],
-    "exclusively non-affixal": [],
-    "mostly non-affixal": [],
-    "equal affixation and other": ["affixation and other"],
-    "mostly isolating": [],
-    "exclusively isolating": ["exclusively isolating", "purely isolating"]
-}
+    # For the Grammar survey
+    ENDANGERMENT_LEVELS = FuzzySearchTerms({
+        "0":    [],
+        "1":    [],
+        "2":    [],
+        "3":    [],
+        "4":    [],
+        "5":    [],
+        "6a":   [],
+        "6b":   [],
+        "7":    [],
+        "8a":   [],
+        "8b":   [],
+        "9":    [],
+        "10":   [],
+    })
 
-D_WORD_ORDER = {
-    "SVO": [],
-    "SOV": [],
-    "VSO": [],
-    "VOS": [],
-    "OVS": [],
-    "OSV": [],
-    # "multiple": ["more than one", "multiple", "several"],
-    "free":     ["no basic", "none", "free"]
-}
+    VOWEL_TYPES = FuzzySearchTerms({
+        "nasalized":        [],
+        "long":             [],
+        "voiceless":        [],
+        "breathy":          [],
+        "creaky":           [],
+        "pharyngealized":   [],
+        "diphthongs":       [],
+        "triphthongs":      []
+    })
 
-# not thoroughly tested
-D_HEADEDNESS = {
-    "consistently head-initial": [],
-    "consistently head-final": [],
-    "mostly head-initial": [],
-    "mostly head-final": [],
-    "mixed headedness": []
-}
+    CONSONANT_TYPES = FuzzySearchTerms({
+        "uvular / retroflex / pharyngeal":      ["uvular", "retroflex", "pharyngeal"],
+        "affricates":                           [],
+        "prenasalized":                         [],
+        "multi-place / secondary articulation": ["multi-place", "secondary articulation"],
+        "geminate":                             ["geminate", "long"],
+        "glottalized / non-pulmonic":           ["glottalized", "non-pulmonic", "click", "ejective", "implosive"]
+    })
 
-D_CASE = {
-    "none": ["doesn't have", "none"],
-    "ergative/absolutive": [],
-    "nominative/accusative": [],
-    "other": ["other", "some other", "other sort"]
-}
+    CONSONANT_TYPES_F21 = FuzzySearchTerms({
+        "clicks":       [],
+        "implosives":   [],
+        "ejectives":    [],
+        "affricates":   [],
+        "labialized":   [],
+        "palatalized":  [],
+        "velarized":    [],
+        "aspirated":    [],
+    })
 
-D_AGREEMENT = {
-    "none": ["doesn't have", "none"],
-    "ergative/absolutive": [],
-    "nominative/accusative": [],
-    "other": ["other", "some other", "other sort"]
-}
+    SYLLABLES = FuzzySearchTerms({
+        "V":            ["V", "onsetless and codaless"],
+        "C onset":      ["CV", "single onset"],
+        "CC onset":     ["CCV", "two onset"],
+        "CCC onset":    ["CCCV", "three onset"],
+        "CCCC onset":   ["CCCCV", "four onset"],
+        "CCCCC onset":  ["CCCCCV", "five onset"],
+        "CCCCCC+ onset":["CCCCCCV", "CCCCCCV+", "six onset", "six or more onset"],
+        "C coda":       ["CVC", "VC", "single coda"], # formerly CVC, not "VC"
+        "CC coda":      ["VCC", "two coda"],
+        "CCC coda":     ["VCCC", "three coda"],
+        "CCCC coda":    ["VCCCC", "four coda"],
+        "CCCCC coda":   ["VCCCCC", "five coda"],
+        "CCCCCC+ coda": ["VCCCCCC", "VCCCCCC+", "six coda", "six or more coda"],
+    })
 
-##################################################
-# PARAMETER SPECIFICATIONS
-##################################################
-# These are the specifications for parameters that need to be read in and
-# converted in csvtojson.py.
+    # For the Typology survey
+    MORPHOLOGY = FuzzySearchTerms({
+        "isolating": [],
+        "analytic": ["analytic", "not isolating"], # this is a toughie
+        "fusional": [],
+        "agglutinating": [],
+        "polysynthetic": []
+    })
 
-# These are defined as functions that take in arguments and construct the
-# right parameters for a given semester.
-# This is useful because the survey doesn't change much from semester to semester,
-# but the order in which questions are asked might change, so we leave index as
-# a parameter.
-# NOTE: It's tempting to try to extract the indices from the position
-# at which each P_XXX appears in the list for a given semester, but this is
-# not possible. Some indices aren't integers (e.g. lists of integers, or None)
-# so this scheme wouldn't be flexible enough for our needs.
+    WORD_FORMATION_F17 = FuzzySearchTerms({
+        "affixation": ["affixation", "prefixation or suffixation"],
+        "suffixation": [],
+        "prefixation": [],
+        "infixation": [],
+        "compounding": [],
+        "root-and-pattern": [],
+        "internal change": [],
+        "suppletion": [],
+        "stress or tone shift": [],
+        "reduplication": [],
+        "conversion": [],
+        "purely isolating": ["none", "purely isolating"]
+    })
 
-# These variables shall all be prefixed with a P_ to signify they are
-# *P*arameter specifications
+    WORD_FORMATION_S19 = FuzzySearchTerms({
+        # "affixation": ["affixation", "prefixation or suffixation"], # obsolete as of s19
+        "suffixation": [],
+        "prefixation": [],
+        "infixation": [],
+        "compounding": [],
+        "root-and-pattern": [],
+        "internal change": [],
+        "suppletion": [],
+        "stress or tone shift": [],
+        "reduplication": [],
+        "conversion": [],
+        "purely isolating": ["none", "purely isolating"]
+    })
 
-ParseDict = Dict[str, List[str]]
-FailList = List[str]
+    # not thoroughly tested
+    WORD_FORMATION_FREQ = FuzzySearchTerms({
+        "exclusively suffixing": [],
+        "mostly suffixing": [],
+        "exclusively prefixing": [],
+        "mostly prefixing": [],
+        "equal prefixing and suffixing": ["prefixing and suffixing"],
+        "exclusively non-affixal": [],
+        "mostly non-affixal": [],
+        "equal affixation and other": ["affixation and other"],
+        "mostly isolating": [],
+        "exclusively isolating": ["exclusively isolating", "purely isolating"]
+    })
 
+    WORD_ORDER = FuzzySearchTerms({
+        "SVO": [],
+        "SOV": [],
+        "VSO": [],
+        "VOS": [],
+        "OVS": [],
+        "OSV": [],
+        # "multiple": ["more than one", "multiple", "several"],
+        "free":     ["no basic", "none", "free"]
+    })
+
+    # not thoroughly tested
+    HEADEDNESS = FuzzySearchTerms({
+        "consistently head-initial": [],
+        "consistently head-final": [],
+        "mostly head-initial": [],
+        "mostly head-final": [],
+        "mixed headedness": []
+    })
+
+    CASE = FuzzySearchTerms({
+        "none": ["doesn't have", "none"],
+        "ergative/absolutive": [],
+        "nominative/accusative": [],
+        "other": ["other", "some other", "other sort"]
+    })
+
+    AGREEMENT = FuzzySearchTerms({
+        "none": ["doesn't have", "none"],
+        "ergative/absolutive": [],
+        "nominative/accusative": [],
+        "other": ["other", "some other", "other sort"]
+    })
+
+# Alias to save typing
+# D for "Dict" (a historical name, since a FuzzySearchTerm is an instance of dict)
+D = AllFuzzySearchTerms
+
+################################################################################
+#                           Survey Specifications
+################################################################################
+
+@dataclasses.dataclass
 class SurveySpecification:
-    def __init__(self,
-                 key: str,
-                 _type: str,
-                 index: Union[int, List[int], None] = None, # one-to-one, many-to-one, derived
-                 mapping: Optional[str] = None,             # ONE_TO_ONE, MERGE, SPLIT, None
-                 _dict: Optional[ParseDict] = None,
-                 fail_list: Optional[FailList] = None):
-        self.key = key
-        self.type = _type
-        self.index = index
-        self.mapping = mapping
-        self.parse_dict = _dict
-        self.fail_list = fail_list
+    """ A SurveySpecification specifies all the information necessary to extract
+    responses to one (or many) survey questions into one (or many) JSON values. """
 
-# A convenience because I already named them all with P
-P = SurveySpecification
+    json_key: JsonKey
+    """ The JSON key(s) under which the results of this survey question should be stored. """
 
-# Common question specifications that won't change much
-def P_NETID(index=1):
-    # replace STRING with a new HASH type?
-    return P(K_NETID, STRING, index, ONE_TO_ONE)
+    value_type: ValueType
+    """ The data type of the JSON value(s) which will be extracted from this survey question. """
 
-def P_NAME(index=2):
-    # replace STRING with a new HASH type?
-    return P(K_NAME, STRING, index, ONE_TO_ONE)
+    index: Union[int, List[int], None] = None
+    """ The index(es) in the survey CSV which will be extracted to fill a JSON value.
+    For one-to-one mappings, this is a single int.
+    For many-to-one, it is a list of ints.
+    For derived values, it is None (no field in the CSV directly includes this info). """
 
-def P_LANGUAGE(index=3):
-    return P(K_LANGUAGE, STRING, index, ONE_TO_ONE)
+    mapping: Mappings = None
+    """ The kind of mapping from survey questions to JSON fields
+    ONE_TO_ONE: One survey question fills one JSON field.
+    MERGE: Many survey questions fill one JSON field.
+    SPLIT: One survey question fills many JSON fields.
+    None: One or more JSON fields are derived from other data.
+    """
 
-def P_NUM_CONSONANTS(index=4):
-    return P(K_NUM_CONSONANTS, NUM, index, ONE_TO_ONE)
+    fuzzy_search_terms: FuzzySearchTerms = None
+    """ A mapping from candidate matches to search terms for that candidate.
+    See docstring in `fuzzy_match_phrase()`. """
 
-def P_NUM_VOWELS(index=5):
-    return P(K_NUM_VOWELS, NUM, index, ONE_TO_ONE)
+    poisoned_search_terms: List[SearchTerm] = None
+    """ A list of search terms which indicate a false negative if matched.
+    See docstring in `fuzzy_match_phrase()`. """
 
-def P_NUM_PHONEMES(index=6):
-    return P(K_NUM_PHONEMES, NUM, index, ONE_TO_ONE)
+# Alias to save typing:
+Spec = SurveySpecification
 
-def P_NUM_CONSONANT_PLACES():
-    return P(K_NUM_CONSONANT_PLACES, PLACEHOLDER)
+class SurveySpecifications:
+    """ A simple namespace to contain `SurveySpecification` producer functions.
 
-def P_NUM_CONSONANT_MANNERS():
-    return P(K_NUM_CONSONANT_MANNERS, PLACEHOLDER)
+    Note that these are defined as functions that take in arguments and construct
+    an appropriate SurveySpecification for the given semester.
 
-def P_PHONETIC(index=9):
-    return P([K_COMPLEX_CONSONANTS, K_TONE, K_STRESS], BOOL, index, SPLIT)
+    This is useful because the survey specifications don't change much from semester
+    to semester, but the order in which questions are asked might change, so it's
+    handy to leave `index` as a parameter to allow easy re-ordering.
 
-def P_SYLLABLE(index=10):
-    fail_list =  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
-    return P(K_SYLLABLES, LIST, index, ONE_TO_ONE, D_SYLLABLES, fail_list)
+    NOTE: It's tempting to try to infer the indices automatically for a particular
+        semester by inspecting the index at which a particular SurveySpecification
+        appears in the list of specs for that semester. However, this is impossible.
+        Some indices aren't even integers (e.g. lists of integers, or None),
+        so this scheme wouldn't be flexible enough for our needs.
+    """
 
-# New grammar questions as of F19
-def P_COUNTRY(index=4):
-    return P(K_COUNTRY, STRING, index, ONE_TO_ONE)
+    # Common question specifications that won't change much
+    @staticmethod
+    def NETID(index=1):
+        # TODO: replace STRING with a new HASH type?
+        return Spec(K.NETID, T.STRING, index, M.ONE_TO_ONE)
 
-def P_LANGUAGE_FAMILY(index=5):
-    return P(K_LANGUAGE_FAMILY, STRING, index, ONE_TO_ONE)
+    @staticmethod
+    def NAME(index=2):
+        # TODO: replace STRING with a new HASH type?
+        return Spec(K.NAME, T.STRING, index, M.ONE_TO_ONE)
 
-# New grammar questions as of F21
-def P_ENDANGERMENT_LEVEL(index=6):
-    # This question has an "Other" option so it's hard to catch everything a student
-    # might enter. Some languages will likely go without data on this one.
-    # HACK: The true type of this property is STRING, but defining it as a list
-    #       allows me to shoehorn queries for it into the "at least k" framework
-    # TODO: If I ever write a proper way to handle queries like:
-    #       "has an endangerment level of at least one of the levels [5,6,7]"
-    #       this should become a string again and be handled in that new way.
-    return P(K_ENDANGERMENT_LEVEL, LIST, index, ONE_TO_ONE, D_ENDANGERMENT_LEVELS)
+    @staticmethod
+    def LANGUAGE(index=3):
+        return Spec(K.LANGUAGE, T.STRING, index, M.ONE_TO_ONE)
 
-# Things that will more likely change
-# Fall 17 specific data format specification
-def P_CONSONANTS_F17(index=7):
-    return P(K_CONSONANTS, LIST, index, ONE_TO_ONE, PHONEMES)
+    @staticmethod
+    def NUM_CONSONANTS(index=4):
+        return Spec(K.NUM_CONSONANTS, T.NUM, index, M.ONE_TO_ONE)
 
-def P_VOWELS_F17(index=8):
-    return P(K_VOWELS, LIST, index, ONE_TO_ONE, PHONEMES)
+    @staticmethod
+    def NUM_VOWELS(index=5):
+        return Spec(K.NUM_VOWELS, T.NUM, index, M.ONE_TO_ONE)
 
-# Spring 19 specific format specification
-def P_CONSONANTS_S19(index=[7,8]):
-    return P(K_CONSONANTS, LIST, index, MERGE, PHONEMES)
+    @staticmethod
+    def NUM_PHONEMES(index=6):
+        return Spec(K.NUM_PHONEMES, T.NUM, index, M.ONE_TO_ONE)
 
-def P_VOWELS_S19(index=[9,10]):
-    return P(K_VOWELS, LIST, index, MERGE, PHONEMES)
+    @staticmethod
+    def NUM_CONSONANT_PLACES():
+        return Spec(K.NUM_CONSONANT_PLACES, T.PLACEHOLDER)
 
-def P_VOWEL_TYPES_S19(index=11):
-    fail_list = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
-    return P(K_VOWEL_TYPES, LIST, index, ONE_TO_ONE, D_VOWEL_TYPES, fail_list)
+    @staticmethod
+    def NUM_CONSONANT_MANNERS():
+        return Spec(K.NUM_CONSONANT_MANNERS, T.PLACEHOLDER)
 
-# TODO: Add a default index value
-def P_CONSONANT_TYPES_F19(index):
-    fail_list = None
-    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES, fail_list)
+    @staticmethod
+    def PHONETIC(index=9):
+        keys = [K.COMPLEX_CONSONANTS, K.TONE, K.STRESS]
+        return Spec(keys, T.BOOL, index, M.SPLIT)
 
-# The possible answers changed from earlier years.
-def P_CONSONANT_TYPES_F21(index=12):
-    # We really should match everything, so this one is very broad
-    fail_list = ['ed', 'es']
-    return P(K_CONSONANT_TYPES, LIST, index, ONE_TO_ONE, D_CONSONANT_TYPES_F21, fail_list)
+    @staticmethod
+    def SYLLABLE(index=10):
+        poisoned_search_terms =  ["CV", "V", "VC"]  # Should not be hardcoded, move to selectors?
+        return Spec(K.SYLLABLES, T.LIST, index, M.ONE_TO_ONE, D.SYLLABLES, poisoned_search_terms)
 
-# Typology Parameters Fall 17:
-def P_CITATION_F17(index=4):
-    return P(K_CITATION, STRING, index, ONE_TO_ONE)
+    # New grammar questions as of F19
+    @staticmethod
+    def COUNTRY(index=4):
+        return Spec(K.COUNTRY, T.STRING, index, M.ONE_TO_ONE)
 
-def P_RECOMMEND(index=5):
-    return P(K_RECOMMEND, STRING, index, ONE_TO_ONE)
+    @staticmethod
+    def LANGUAGE_FAMILY(index=5):
+        return Spec(K.LANGUAGE_FAMILY, T.STRING, index, M.ONE_TO_ONE)
 
-def P_MORPHOLOGICAL_TYPE(index=6):
-    return P(K_MORPHOLOGICAL_TYPE, LIST, index, ONE_TO_ONE, D_MORPHOLOGY, None)
+    # New grammar questions as of F21
+    @staticmethod
+    def ENDANGERMENT_LEVEL(index=6):
+        # This question has an "Other" option so it's hard to catch everything a student
+        # might enter. Some languages will likely go without data on this one.
+        # HACK: The true type of this property is T.STRING, but defining it as a list
+        #       allows me to shoehorn queries for it into the "at least k" framework
+        # TODO: If I ever write a proper way to handle queries like:
+        #       "has an endangerment level of at least one of the levels [5,6,7]"
+        #       this should become a string again and be handled in that new way.
+        return Spec(K.ENDANGERMENT_LEVEL, T.LIST, index, M.ONE_TO_ONE, D.ENDANGERMENT_LEVELS)
 
-def P_WORD_FORMATION(index=7):
-    fail_list = ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
-    return P(K_WORD_FORMATION, LIST, index, ONE_TO_ONE, D_WORD_FORMATION_F17, fail_list)
+    # Things that will more likely change
+    # Fall 17 specific data format specification
+    @staticmethod
+    def CONSONANTS_F17(index=7):
+        return Spec(K.CONSONANTS, T.LIST, index, M.ONE_TO_ONE, PHONEMES)
 
-def P_WORD_FORMATION_FREQ(index=8):
-    fail_list = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
-    return P(K_WORD_FORMATION_FREQ, STRING, index, ONE_TO_ONE, D_WORD_FORMATION_FREQ, fail_list)
+    @staticmethod
+    def VOWELS_F17(index=8):
+        return Spec(K.VOWELS, T.LIST, index, M.ONE_TO_ONE, PHONEMES)
 
-def P_WORD_ORDER(index=9):
-    fail_list = ["free", "S", "V", "O"]
-    return P(K_WORD_ORDER, LIST, index, ONE_TO_ONE, D_WORD_ORDER, fail_list)
+    # Spring 19 specific format specification
+    @staticmethod
+    def CONSONANTS_S19(index=[7,8]):
+        return Spec(K.CONSONANTS, T.LIST, index, M.MERGE, PHONEMES)
 
-def P_HEADEDNESS(index=10):
-    fail_list = ["head", "initial", "final", "most", "consistent", "mixed"]
-    return P(K_HEADEDNESS, LIST, index, ONE_TO_ONE, D_HEADEDNESS, fail_list)
+    @staticmethod
+    def VOWELS_S19(index=[9,10]):
+        return Spec(K.VOWELS, T.LIST, index, M.MERGE, PHONEMES)
 
-def P_AGREEMENT(index=11):
-    return P(K_AGREEMENT, STRING, index, ONE_TO_ONE, D_AGREEMENT, None)
+    @staticmethod
+    def VOWEL_TYPES_S19(index=11):
+        poisoned_search_terms = ["phthong", "vowel"] # Should not be hardcoded, move to selectors?
+        return Spec(K.VOWEL_TYPES, T.LIST, index, M.ONE_TO_ONE, D.VOWEL_TYPES, poisoned_search_terms)
 
-def P_CASE(index=12):
-    return P(K_CASE, STRING, index, ONE_TO_ONE, D_CASE, None)
+    # TODO: Add a default index value
+    @staticmethod
+    def CONSONANT_TYPES_F19(index):
+        poisoned_search_terms = None
+        return Spec(K.CONSONANT_TYPES, T.LIST, index, M.ONE_TO_ONE, D.CONSONANT_TYPES, poisoned_search_terms)
 
+    # The possible answers changed from earlier years.
+    @staticmethod
+    def CONSONANT_TYPES_F21(index=12):
+        # We really should match everything, so this one is very broad
+        poisoned_search_terms = ['ed', 'es']
+        return Spec(K.CONSONANT_TYPES, T.LIST, index, M.ONE_TO_ONE, D.CONSONANT_TYPES_F21, poisoned_search_terms)
+
+    # Typology Parameters Fall 17:
+    @staticmethod
+    def CITATION_F17(index=4):
+        return Spec(K.CITATION, T.STRING, index, M.ONE_TO_ONE)
+
+    @staticmethod
+    def RECOMMEND(index=5):
+        return Spec(K.RECOMMEND, T.STRING, index, M.ONE_TO_ONE)
+
+    @staticmethod
+    def MORPHOLOGICAL_TYPE(index=6):
+        return Spec(K.MORPHOLOGICAL_TYPE, T.LIST, index, M.ONE_TO_ONE, D.MORPHOLOGY, None)
+
+    @staticmethod
+    def WORD_FORMATION(index=7):
+        poisoned_search_terms = ["ion", "change", "root", "isolat"] # XXXat(ion), (isolat)ing
+        return Spec(K.WORD_FORMATION, T.LIST, index, M.ONE_TO_ONE, D.WORD_FORMATION_F17, poisoned_search_terms)
+
+    @staticmethod
+    def WORD_FORMATION_FREQ(index=8):
+        poisoned_search_terms = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
+        return Spec(K.WORD_FORMATION_FREQ, T.STRING, index, M.ONE_TO_ONE, D.WORD_FORMATION_FREQ, poisoned_search_terms)
+
+    @staticmethod
+    def WORD_ORDER(index=9):
+        poisoned_search_terms = ["free", "S", "V", "O"]
+        return Spec(K.WORD_ORDER, T.LIST, index, M.ONE_TO_ONE, D.WORD_ORDER, poisoned_search_terms)
+
+    @staticmethod
+    def HEADEDNESS(index=10):
+        poisoned_search_terms = ["head", "initial", "final", "most", "consistent", "mixed"]
+        return Spec(K.HEADEDNESS, T.LIST, index, M.ONE_TO_ONE, D.HEADEDNESS, poisoned_search_terms)
+
+    @staticmethod
+    def AGREEMENT(index=11):
+        return Spec(K.AGREEMENT, T.STRING, index, M.ONE_TO_ONE, D.AGREEMENT, None)
+
+    @staticmethod
+    def CASE(index=12):
+        return Spec(K.CASE, T.STRING, index, M.ONE_TO_ONE, D.CASE, None)
+
+# Alias to save typing
+# P for sPecification
+# (no, just kidding... it's P for Parameter, which was the historical name)
+P = SurveySpecifications
+
+
+################################################################################
+#                   SurveySpecifications for each Semester
+################################################################################
 
 # Which questions should be read from the CSV files for a given dataset,
 # and how is the data stored in the corresponding CSV?
@@ -492,135 +578,145 @@ def P_CASE(index=12):
 # The .index property of each SurveySpecification determines the order in which
 # the fields appear in the input survey CSV.
 PARAMS = {
-    F17: {
-        GRAMMAR: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_NUM_CONSONANTS(),
-            P_NUM_VOWELS(),
-            P_NUM_PHONEMES(),
-            P_CONSONANTS_F17(),
-            P_VOWELS_F17(),
-            P_NUM_CONSONANT_PLACES(),
-            P_NUM_CONSONANT_MANNERS(),
-            P_PHONETIC(9),
-            P_SYLLABLE(10)
+    Semesters.F17: {
+        Surveys.GRAMMAR: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.NUM_CONSONANTS(),
+            P.NUM_VOWELS(),
+            P.NUM_PHONEMES(),
+            P.CONSONANTS_F17(),
+            P.VOWELS_F17(),
+            P.NUM_CONSONANT_PLACES(),
+            P.NUM_CONSONANT_MANNERS(),
+            P.PHONETIC(9),
+            P.SYLLABLE(10)
         ],
-        TYPOLOGY: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_CITATION_F17(4),
-            P_RECOMMEND(5),
-            P_MORPHOLOGICAL_TYPE(6),
-            P_WORD_FORMATION(7),
-            P_WORD_FORMATION_FREQ(8),
-            P_WORD_ORDER(9),
-            P_HEADEDNESS(10),
-            P_AGREEMENT(11),
-            P_CASE(12)
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.CITATION_F17(4),
+            P.RECOMMEND(5),
+            P.MORPHOLOGICAL_TYPE(6),
+            P.WORD_FORMATION(7),
+            P.WORD_FORMATION_FREQ(8),
+            P.WORD_ORDER(9),
+            P.HEADEDNESS(10),
+            P.AGREEMENT(11),
+            P.CASE(12)
         ]
     },
-    S19: {
-        GRAMMAR: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_NUM_CONSONANTS(),
-            P_NUM_VOWELS(),
-            P_NUM_PHONEMES(),
-            P_CONSONANTS_S19(),
-            P_VOWELS_S19(),
-            P_NUM_CONSONANT_PLACES(),
-            P_NUM_CONSONANT_MANNERS(),
-            P_VOWEL_TYPES_S19(),
-            P_PHONETIC(12),
-            P_SYLLABLE(13)
+    Semesters.S19: {
+        Surveys.GRAMMAR: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.NUM_CONSONANTS(),
+            P.NUM_VOWELS(),
+            P.NUM_PHONEMES(),
+            P.CONSONANTS_S19(),
+            P.VOWELS_S19(),
+            P.NUM_CONSONANT_PLACES(),
+            P.NUM_CONSONANT_MANNERS(),
+            P.VOWEL_TYPES_S19(),
+            P.PHONETIC(12),
+            P.SYLLABLE(13)
         ],
-        TYPOLOGY: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_RECOMMEND(4),
-            P_MORPHOLOGICAL_TYPE(5),
-            P_WORD_FORMATION(6),
-            P_WORD_FORMATION_FREQ(7),
-            P_WORD_ORDER(8),
-            P_HEADEDNESS(9),
-            P_AGREEMENT(10),
-            P_CASE(11)
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.RECOMMEND(4),
+            P.MORPHOLOGICAL_TYPE(5),
+            P.WORD_FORMATION(6),
+            P.WORD_FORMATION_FREQ(7),
+            P.WORD_ORDER(8),
+            P.HEADEDNESS(9),
+            P.AGREEMENT(10),
+            P.CASE(11)
         ]
     },
-    F19: {
-        GRAMMAR: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_COUNTRY(4),
-            P_LANGUAGE_FAMILY(5),
-            P_NUM_CONSONANTS(6),
-            P_NUM_VOWELS(7),
-            P_NUM_PHONEMES(8),
-            P_CONSONANTS_S19([9,10]),
-            P_CONSONANT_TYPES_F19(11),
-            P_VOWELS_S19([12,13]),
-            P_VOWEL_TYPES_S19(14),
-            P_NUM_CONSONANT_PLACES(),
-            P_NUM_CONSONANT_MANNERS(),
-            # P_PHONETIC(15), # !!!!
-            P_SYLLABLE(15)
+    Semesters.F19: {
+        Surveys.GRAMMAR: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.COUNTRY(4),
+            P.LANGUAGE_FAMILY(5),
+            P.NUM_CONSONANTS(6),
+            P.NUM_VOWELS(7),
+            P.NUM_PHONEMES(8),
+            P.CONSONANTS_S19([9,10]),
+            P.CONSONANT_TYPES_F19(11),
+            P.VOWELS_S19([12,13]),
+            P.VOWEL_TYPES_S19(14),
+            P.NUM_CONSONANT_PLACES(),
+            P.NUM_CONSONANT_MANNERS(),
+            # P.PHONETIC(15), # !!!!
+            P.SYLLABLE(15)
         ],
-        TYPOLOGY: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_RECOMMEND(4),
-            P_MORPHOLOGICAL_TYPE(5),
-            P_WORD_FORMATION(6),
-            P_WORD_FORMATION_FREQ(7),
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.RECOMMEND(4),
+            P.MORPHOLOGICAL_TYPE(5),
+            P.WORD_FORMATION(6),
+            P.WORD_FORMATION_FREQ(7),
         ]
     },
-    F21: {
-        GRAMMAR: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_COUNTRY(4),
-            P_LANGUAGE_FAMILY(5),
-            P_ENDANGERMENT_LEVEL(6),
-            P_NUM_CONSONANTS(7),
-            P_NUM_VOWELS(8),
-            P_NUM_PHONEMES(9),
-            P_CONSONANTS_S19([10,11]),
-            P_CONSONANT_TYPES_F21(12),
-            P_VOWELS_S19([13,14]),
-            P_VOWEL_TYPES_S19(15),
-            P_NUM_CONSONANT_PLACES(),
-            P_NUM_CONSONANT_MANNERS(),
-            P_PHONETIC(16),
-            P_SYLLABLE(17)
+    Semesters.F21: {
+        Surveys.GRAMMAR: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.COUNTRY(4),
+            P.LANGUAGE_FAMILY(5),
+            P.ENDANGERMENT_LEVEL(6),
+            P.NUM_CONSONANTS(7),
+            P.NUM_VOWELS(8),
+            P.NUM_PHONEMES(9),
+            P.CONSONANTS_S19([10,11]),
+            P.CONSONANT_TYPES_F21(12),
+            P.VOWELS_S19([13,14]),
+            P.VOWEL_TYPES_S19(15),
+            P.NUM_CONSONANT_PLACES(),
+            P.NUM_CONSONANT_MANNERS(),
+            P.PHONETIC(16),
+            P.SYLLABLE(17)
         ],
-        TYPOLOGY: [
-            P_LANGUAGE(),
-            P_NAME(),
-            P_NETID(),
-            P_RECOMMEND(4),
-            P_MORPHOLOGICAL_TYPE(5),
-            P_WORD_FORMATION(6),
-            P_WORD_FORMATION_FREQ(7),
-            P_WORD_ORDER(8),
-            P_HEADEDNESS(9),
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.RECOMMEND(4),
+            P.MORPHOLOGICAL_TYPE(5),
+            P.WORD_FORMATION(6),
+            P.WORD_FORMATION_FREQ(7),
+            P.WORD_ORDER(8),
+            P.HEADEDNESS(9),
         ]
     },
 }
 
 
-##############################################################################
-#                          csvtojson constants (old)                         #
-##############################################################################
+################################################################################
+#                               CSV Formatting
+################################################################################
+
+ROW_DELIMITER = "\n"    # delimits rows (might need carriage return?)
+COL_DELIMITER = ","     # delimits columns within a row
+INNER_DELIMITER = ";"   # delimits lists within a column
+PHONEME_DELIMITER = "/" # Used on either side of a phoneme (e.g. /d/ --> d)
+
+
+################################################################################
+#                         Legacy csvtojson constants
+################################################################################
 # In general, avoid using these constants. Use the newer parameter definitions
-# above.
+# above wherever possible.
 
 # Constants across typology/grammar
 NETID = 1
@@ -632,93 +728,3 @@ HASH_SIZE = 16
 # - collisions (8 seem too high also)
 # - note that anonymity is less critical than guaranteed correctness for this
 # application so higher values are OK
-
-# CSV format
-ROW_DELIMITER = "\n"    # delimits rows (might need carriage return?)
-COL_DELIMITER = ","     # delimits columns within a row
-INNER_DELIMITER = ";"   # delimits lists within a column
-PHONEME_DELIMITER = "/" # Used on either side of a phoneme (e.g. /d/ --> d)
-
-# The indices into the G_STR array corresponding to each attribute's name
-G_TIME            = 0
-G_NETID           = 1
-G_NAME            = 2
-G_LANGUAGE        = 3
-G_NUM_CONSONANTS  = 4
-G_NUM_VOWELS      = 5
-G_NUM_PHONEMES    = 6
-G_CONSONANTS      = 7
-G_VOWELS          = 8
-G_PHONETIC        = 9
-G_SYLLABLES       = 10
-
-#G_P_3PLUS_PLACES       = 11
-#G_P_2PLUS_MANNERS      = 12
-G_P_COMPLEX_CONSONANTS = 13
-G_P_TONE               = 14
-G_P_STRESS             = 15
-
-G_NUM_PLACES  = 16
-G_NUM_MANNERS = 17
-
-#The strings to be added as fields in the JSON blob
-G_STR = [
-    "time",             # G_TIME
-    "netid",            # G_NETID
-    "student",          # G_NAME
-    "name",             # G_LANGUAGE
-    "num consonants",   # G_NUM_CONSONANTS
-    "num vowels",       # G_NUM_VOWELS
-    "num phonemes",     # G_NUM_PHONEMES
-    "consonants",       # G_CONSONANTS
-    "vowels",           # G_VOWELS
-    "phonetic",         # G_PHONETIC
-    "syllables",        # G_SYLLABLE
-    "3+ places",
-    "2+ manners",
-    "complex consonants",
-    "tone",
-    "stress",
-    "consonant places",
-    "consonant manners"
-]
-
-# The strings to be searched for in the raw CSV data for phonetic properties
-G_P_STR = [
-    "three places of articulation",
-    "two manners of articulation",
-    "complex consonants",
-    "tone",
-    "stress"
-]
-
-T_TIME            = 0
-T_NETID           = 1
-T_NAME            = 2
-T_LANGUAGE        = 3
-T_CITATION        = 4
-T_RECOMMEND       = 5
-T_MORPHOLOGY      = 6
-T_WORD_FORMATION  = 7
-T_FORMATION_FREQ  = 8
-T_WORD_ORDER      = 9
-T_HEADEDNESS      = 10
-T_AGREEMENT       = 11
-T_CASE            = 12
-
-#GRAMMAR_HEADERS as string
-T_STR = [
-    "time",
-    "netid",
-    "student",
-    "name",
-    "citation",
-    "recommend",
-    "morphological type",
-    "word formation",
-    "word formation frequency",
-    "word order",
-    "headedness",
-    "agreement",
-    "case"
-]
