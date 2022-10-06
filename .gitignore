@@ -1,6 +1,9 @@
-app/__pycache__
-app/app/__pycache__
-app/phonemes/__pycache__
+# Ignore pycache files
+**/__pycache__
+**/*.pyc
+
+# Ignore virtual env
 venv/
-*.pyc
+
+# Ignore random scripts
 ttk.py
