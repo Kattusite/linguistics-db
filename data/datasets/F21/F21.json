@@ -57,6 +57,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -149,6 +150,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -227,6 +229,7 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "C onset",
             "CC onset",
@@ -295,6 +298,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset"
@@ -376,6 +380,7 @@
         "complex consonants": false,
         "tone": true,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset"
@@ -443,6 +448,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -531,6 +537,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -615,6 +622,7 @@
         "complex consonants": false,
         "tone": true,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -709,6 +717,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -778,6 +787,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -867,6 +877,7 @@
         "complex consonants": true,
         "tone": true,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -932,6 +943,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset"
@@ -999,6 +1011,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -1080,6 +1093,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "C onset",
             "C coda"
@@ -1156,6 +1170,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -1238,6 +1253,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -1316,6 +1332,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -1391,6 +1408,7 @@
         "complex consonants": false,
         "tone": false,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -1472,6 +1490,7 @@
         "complex consonants": false,
         "tone": true,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V",
             "C onset"
@@ -1538,6 +1557,7 @@
         "complex consonants": false,
         "tone": true,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",

@@ -130,6 +130,7 @@
         "complex consonants": true,
         "tone": true,
         "stress": true,
+        "predictable stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -159,6 +160,7 @@
         "complex consonants": true,
         "tone": false,
         "stress": false,
+        "predictable stress": false,
         "syllables": [
             "V"
         ]
