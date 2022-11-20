@@ -359,6 +359,45 @@ class AllFuzzySearchTerms:
         "exclusively isolating": ["exclusively isolating", "purely isolating"]
     })
 
+    # Replaced WORD_FORMATION_FREQ in F22
+    AFFIXATION_FREQ = FuzzySearchTerms({
+        "exclusively suffixing": [],
+        "mostly suffixing": [],
+        "exclusively prefixing": [],
+        "mostly prefixing": [],
+        "equal prefixing and suffixing": ["prefixing and suffixing"],
+        "uses little or no affixation": ["none"],
+    })
+
+    # Replaced WORD_FORMATION_FREQ in F22
+    NON_AFFIXATION_FREQ = FuzzySearchTerms({
+        "exclusively non-affixal": ["all word-formation"],
+        "mostly non-affixal": ["most word-formation"],
+        "equal affixation and other": ["affixation and other"],
+        "mostly isolating": [],
+        "no non-affixal": ['no non-affixational']
+    })
+
+    FUNCTIONAL_MORPHOLOGY = FuzzySearchTerms({
+        "nominalizers": [],
+        "verbalizers": [],
+        "(in)transitivity": [],
+        "associated motion": [],
+        "low aspect": [],
+        "voice": [],
+        "natural gender": [],
+        "diminutive / augmentative": [],
+        "high aspect": [],
+        "tense": [],
+        "mood": [],
+        "agreement": [],
+        "number": ["number (sg, pl, dual)"],
+        "grammatical gender": [],
+        "definiteness": [],
+        "case": [],
+        "possessor marking": [],
+    })
+
     WORD_ORDER = FuzzySearchTerms({
         "SVO": [],
         "SOV": [],
