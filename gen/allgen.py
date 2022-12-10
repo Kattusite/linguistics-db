@@ -1,5 +1,10 @@
 # Generate all of the tables needed for front.html, in order
 #
+# If you ever find yourself thinking you should make changes to this file,
+# it's probably time to rewrite this part of the project (using React?)
+#
+#       https://xkcd.com/1421/
+#
 # Usage:
 #   From cmd line in project root: (type in cmd after $)
 #        > linguistics-db/ $ set PYTHONIOENCODING=utf-8

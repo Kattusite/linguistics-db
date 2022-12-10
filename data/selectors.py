@@ -407,31 +407,7 @@ WORD_FORMATION = {
     TYPE: ValueType.LIST.value,
 }
 
-# These two dicts are now deprecated. Delete once sure they aren't needed.
-# The following two dicts are not meant for use as selectors. They are for
-# parsePhrase only
-FORMATION_FREQ = {
-    DICT: {
-        "exclusively" : ["exclusive", "purely"],
-        "mostly": ["mostly"],
-        "equal": ["equal ","even ","mix "]
-    },
-    MULTI: False
-}
-
-FORMATION_MODE = {
-    DICT: {
-        "prefixing and suffixing":  ["prefixing and suffixing"],
-        "affixation and other":     ["affixation and other"],
-        "suffixing":                ["suffixing"],
-        "prefixing":                ["prefixing"],
-        "non-affixal":              ["non-affixal"],
-        "isolating":                ["isolating"]
-    },
-    MULTI: False
-}
-
-FORMATION = {
+WORD_FORMATION_FREQ = {
     SELECT_NAME: "Word formation frequency:",
     DICT: D.WORD_FORMATION_FREQ,
     MULTI: False,
@@ -442,7 +418,53 @@ FORMATION = {
     POPOVER_PREFIX: "ff-lbox-popover",
     SELECT_WHAT: "frequency",
     PROPERTY: JsonKey.WORD_FORMATION_FREQ.value,
-    TYPE: ValueType.STRING.value, #TODO Double check this is a string not a list
+    TYPE: ValueType.STRING.value,
+}
+
+# New in F22, replacing WORD_FORMATION_FREQ
+AFFIXATION_FREQ = {
+    SELECT_NAME: "Prefixation vs. suffixation frequency:",
+    DICT: D.AFFIXATION_FREQ,
+    MULTI: False,
+    MODE: PICK_ONE,
+    REPLY: "use %s to form words",
+    REPLY_VARS: ["sel"],
+    HTML_ID: "affixal-freq-selector",
+    POPOVER_PREFIX: "af-lbox-popover",
+    SELECT_WHAT: "frequency",
+    PROPERTY: JsonKey.AFFIXATION_FREQ.value,
+    TYPE: ValueType.STRING.value,
+}
+
+# New in F22, replacing WORD_FORMATION_FREQ
+NON_AFFIXATION_FREQ = {
+    # This is the same SELECT_NAME as WORD_FORMATION_FREQ, but the two are different.
+    SELECT_NAME: "Word formation frequency:",
+    DICT: D.NON_AFFIXATION_FREQ,
+    MULTI: False,
+    MODE: PICK_ONE,
+    REPLY: "use %s strategies to form words",
+    REPLY_VARS: ["sel"],
+    HTML_ID: "nonaffixal-freq-selector",
+    POPOVER_PREFIX: "nf-lbox-popover",
+    SELECT_WHAT: "frequency",
+    PROPERTY: JsonKey.NON_AFFIXATION_FREQ.value,
+    TYPE: ValueType.STRING.value,
+}
+
+# New in F22
+FUNCTIONAL_MORPHOLOGY = {
+    SELECT_NAME: "Functional morphology:",
+    DICT: D.FUNCTIONAL_MORPHOLOGY,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "use %s %s of the following functional morphologies: %s",
+    REPLY_VARS: ["mode", "k", "selList"],
+    HTML_ID: "functional-morphology-selector",
+    POPOVER_PREFIX: "fm-lbox-popover",
+    SELECT_WHAT: "morphology",
+    PROPERTY: JsonKey.FUNCTIONAL_MORPHOLOGY.value,
+    TYPE: ValueType.LIST.value,
 }
 
 WORD_ORDER = {
@@ -565,7 +587,10 @@ SELECTORS = [
     SYLLABLES,
     MORPHOLOGY,
     WORD_FORMATION,
-    FORMATION,
+    # WORD_FORMATION_FREQ,    # replaced in F22 by AFFIXATION_FREQ, NON_AFFIXATION_FREQ
+    AFFIXATION_FREQ,
+    NON_AFFIXATION_FREQ,
+    FUNCTIONAL_MORPHOLOGY,
     WORD_ORDER,   # not used in F19
     HEADEDNESS,   # not used in F19
     # CASE,         # not used in F19, F21

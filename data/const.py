@@ -378,7 +378,7 @@ class AllFuzzySearchTerms:
         "exclusively prefixing": [],
         "mostly prefixing": [],
         "equal prefixing and suffixing": ["prefixing and suffixing"],
-        "uses little or no affixation": ["no (or VERY little) affixation"],
+        "little or no affixation": ["no (or VERY little) affixation"],
     })
 
     # Replaced WORD_FORMATION_FREQ in F22
