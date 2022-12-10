@@ -30,6 +30,7 @@
 
 import argparse
 from collections import defaultdict
+from collections.abc import Sequence
 import csv
 import hashlib
 import json
@@ -222,7 +223,7 @@ def fuzzy_match_phrase(phrase: str, spec: const.SurveySpecification) -> Optional
 
         If no candidates score any similarity points, no match was found.
         If `phrase` has a non-zero similarity to any poisoned search term, we
-        assume a false positive has occurred and return an error.
+        assume a false negative has occurred and return an error.
         Otherwise, return `None` as the matching candidate.
 
         Example:
@@ -279,7 +280,12 @@ def fuzzy_match_phrase(phrase: str, spec: const.SurveySpecification) -> Optional
 
     # If nothing won, check the poisoned search terms to see if we should abort.
     if not winners and spec.poisoned_search_terms and any(f in phrase for f in spec.poisoned_search_terms):
-        raise RuntimeError(f'fuzzy_match_phrase triggered fail-safe! "{phrase}" matched: {spec.poisoned_search_terms}')
+        raise RuntimeError(
+            f'fuzzy_match_phrase triggered fail-safe!\n'
+            f'   Phrase:                  {phrase!r}\n'
+            f'   Poisoned Search Terms:   {spec.poisoned_search_terms}\n'
+            f'   Candidates:              {spec.fuzzy_search_terms.candidates()}\n'
+        )
 
     winner = winners[0] if winners else None
     logger.debug('fuzzy_match_phrase mapped %s --> %s', repr(phrase), repr(winner))
@@ -364,18 +370,18 @@ class LanguageData(dict):
         """ Process a many-to-one mapping in which multiple columns in the CSV are
             merged into a single JSON key. Return the datapoints to be added to self. """
         assert_type(spec.json_key, JsonKey)
-        assert_type(spec.index, list)
+        assert_type(spec.index, Sequence)
 
         # JsonKey is an enum, so we need to get the str value
         key = spec.json_key.value
 
-        # Currently this method is only used to combine multiple phoneme lists
-        # into a larger phoneme list.
+        # Currently this method is only used to either:
+        #   A) combine multiple phoneme lists into a larger phoneme list
+        #   B) combine multiple single fields into a list of fields (e.g. word formation frequencies)
         if spec.value_type == ValueType.LIST:
-            assert spec.fuzzy_search_terms in (None, const.PHONEMES), "this function cannot handle non-phoneme lists"
 
-            # Append to the existing list of phonemes if one exists; start a new one otherwise.
-            # TODO: Would there ever be an existing one??
+            # If an existing list exists, append to it. Otherwise start a new one.
+            # NOTE: AFAIK There should never be an existing one, but let's handle it anyway.
             ret = {key: self.get(key, [])}
             if ret[key]:
                 logger.debug('many_to_one (%s) found existing entry: %s', key, ret[key])
@@ -384,11 +390,26 @@ class LanguageData(dict):
                 # It's not *bad* if this exception comes up, it should be fine, but I'm just surprised.
                 # If it raises, figure out why and replace the error with an explanatory comment.
                 raise NotImplementedError("I assumed this case would be impossible. Figure out why it's not and remove this error.")
-            for index in spec.index:
-                selected_items = row[index]
-                ret[key] += get_glyph_list(selected_items, phonemes.GLYPHS)
 
-        else:
+            # Case A: Combining phoneme lists
+            if spec.fuzzy_search_terms == const.PHONEMES:
+                for index in spec.index:
+                    selected_items = row[index]
+                    ret[key] += get_glyph_list(selected_items, phonemes.GLYPHS)
+
+            # Case B: Combining multiple single fields
+            else:
+                # Fuzzy match each index, and merge results
+                for index in spec.index:
+                    # NOTE: For now, I'm assuming that each `value` is a single selected string,
+                    #   not a list of selections. It should be easy enough to support multiple selections
+                    #   later if we want; see the ONE_TO_ONE case for LISTs.
+                    value = row[index].strip()
+                    selected_item = fuzzy_match_phrase(value, spec)
+                    ret[key].append(selected_item)
+
+        # I haven't needed to implement this case yet.
+        else: # spec.value_type != ValueType.LIST
             raise NotImplementedError(f'this function cannot yet handle {spec.value_type=}')
 
         return ret
@@ -434,7 +455,7 @@ class LanguageData(dict):
 
         if spec.value_type == ValueType.BOOL:
             if spec.fuzzy_search_terms is None:
-                assert_type(spec.json_key, list)
+                assert_type(spec.json_key, Sequence)
                 # JsonKey is an enum, so we need to pull out the str values
                 keys = [json_key.value for json_key in spec.json_key]
 

@@ -154,6 +154,9 @@ class JsonKey(enum.Enum):
     MORPHOLOGICAL_TYPE    = "morphological type"
     WORD_FORMATION        = "word formation"
     WORD_FORMATION_FREQ   = "word formation frequency"
+    AFFIXATION_FREQ       = "affixal word formation frequency"
+    NON_AFFIXATION_FREQ   = "non-affixal word formation frequency"
+    FUNCTIONAL_MORPHOLOGY = "functional morphology"
     WORD_ORDER            = "word order"
     HEADEDNESS            = "headedness"
     CASE                  = "case"
@@ -192,6 +195,15 @@ class FuzzySearchTerms(dict, Mapping[Candidate, List[SearchTerm]]):
 
     def __init__(self, d: dict):
         super().__init__(d)
+
+    def __or__(self, other: "FuzzySearchTerms"):
+        """ Merge this FuzzySearchTerms with another FuzzySearchTerms """
+        # Right now I don't have any cases where the keys should overlap.
+        # As a sanity check, raise an error if a key would be clobbered.
+        conflicting_keys = set(self.keys()).intersection(set(other.keys()))
+        if conflicting_keys:
+            raise ValueError(f"Cannot merge FuzzySearchTerms with conflicting search terms for candidates: {conflicting_keys}")
+        return FuzzySearchTerms({**self, **other})
 
     def candidates(self) -> Iterable[str]:
         """ Return the possible candidate matches. """
@@ -357,6 +369,51 @@ class AllFuzzySearchTerms:
         "equal affixation and other": ["affixation and other"],
         "mostly isolating": [],
         "exclusively isolating": ["exclusively isolating", "purely isolating"]
+    })
+
+    # Replaced WORD_FORMATION_FREQ in F22
+    AFFIXATION_FREQ = FuzzySearchTerms({
+        "exclusively suffixing": [],
+        "mostly suffixing": [],
+        "exclusively prefixing": [],
+        "mostly prefixing": [],
+        "equal prefixing and suffixing": ["prefixing and suffixing"],
+        "uses little or no affixation": ["no (or VERY little) affixation"],
+    })
+
+    # Replaced WORD_FORMATION_FREQ in F22
+    NON_AFFIXATION_FREQ = FuzzySearchTerms({
+        "exclusively non-affixal": ["all word-formation involves non-affixal"],
+        "mostly non-affixal": ["most word-formation involves non-affixal"],
+        "equal affixation and other": ["equal mix of affixation and non-affixal"],
+        "mostly affixal": ["most word-formation involves affixation"],
+        "no non-affixal": ['no non-affixal'],
+        "mostly isolating": [],
+    })
+
+    # For backwards compatibility, let's still include a "WORD_FORMATION_FREQ" field,
+    # derived from the two new survey questions.
+    WORD_FORMATION_FREQ_F22 = AFFIXATION_FREQ | NON_AFFIXATION_FREQ
+
+    # New in F22
+    FUNCTIONAL_MORPHOLOGY = FuzzySearchTerms({
+        "nominalizers": [],
+        "verbalizers": [],
+        "(in)transitivity": [],
+        "associated motion": [],
+        "low aspect": [],
+        "voice": [],
+        "natural gender": [],
+        "diminutive / augmentative": [],
+        "high aspect": [],
+        "tense": [],
+        "mood": [],
+        "agreement": [],
+        "number": ["number (sg, pl, dual)"],
+        "grammatical gender": [],
+        "definiteness": [],
+        "case": [],
+        "possessor marking": [],
     })
 
     WORD_ORDER = FuzzySearchTerms({
@@ -540,11 +597,11 @@ class SurveySpecifications:
 
     # Spring 19 specific format specification
     @staticmethod
-    def CONSONANTS_S19(index=[7,8]):
+    def CONSONANTS_S19(index=(7,8)):
         return Spec(K.CONSONANTS, T.LIST, index, M.MERGE, PHONEMES)
 
     @staticmethod
-    def VOWELS_S19(index=[9,10]):
+    def VOWELS_S19(index=(9,10)):
         return Spec(K.VOWELS, T.LIST, index, M.MERGE, PHONEMES)
 
     @staticmethod
@@ -594,6 +651,28 @@ class SurveySpecifications:
     def WORD_FORMATION_FREQ(index=8):
         poisoned_search_terms = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolating"]
         return Spec(K.WORD_FORMATION_FREQ, T.STRING, index, M.ONE_TO_ONE, D.WORD_FORMATION_FREQ, poisoned_search_terms)
+
+    # Build the legacy WORD_FORMATION_FREQ field from the new affixation/non-affixation variants
+    # (for backwards compatibility)
+    @staticmethod
+    def WORD_FORMATION_FREQ_F22(index=(7,8)):
+        poisoned_search_terms = ["exclusive", "most", "equal", "prefix", "suffix", "affix", "isolat", "even mix", "none",]
+        return Spec(K.WORD_FORMATION_FREQ, T.LIST, index, M.MERGE, D.WORD_FORMATION_FREQ_F22, poisoned_search_terms)
+
+    @staticmethod
+    def AFFIXATION_FREQ(index=7):
+        poisoned_search_terms = ["affix", "prefix", "suffix", "even mix", "none"]
+        return Spec(K.AFFIXATION_FREQ, T.STRING, index, M.ONE_TO_ONE, D.AFFIXATION_FREQ, poisoned_search_terms)
+
+    @staticmethod
+    def NON_AFFIXATION_FREQ(index=8):
+        poisoned_search_terms = ["formation", "isolat", "affix"]
+        return Spec(K.NON_AFFIXATION_FREQ, T.STRING, index, M.ONE_TO_ONE, D.NON_AFFIXATION_FREQ, poisoned_search_terms)
+
+    @staticmethod
+    def FUNCTIONAL_MORPHOLOGY(index=9):
+        poisoned_search_terms = ["izer", "ive", "ivity", "al", "aspect"]
+        return Spec(K.FUNCTIONAL_MORPHOLOGY, T.LIST, index, M.ONE_TO_ONE, D.FUNCTIONAL_MORPHOLOGY, poisoned_search_terms)
 
     @staticmethod
     def WORD_ORDER(index=9):
@@ -772,6 +851,25 @@ PARAMS = {
             P.PHONETIC_F22(16),
             P.SYLLABLE(17),
         ],
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            # P.PUBLISHER_AND_AUTHOR(4) # I don't actually have a field for this, but it's in the survey.
+            P.RECOMMEND(5),
+            P.MORPHOLOGICAL_TYPE(6),
+            P.WORD_FORMATION(7),
+            # Note: In F22, P.WORD_FORMATION_FREQ split into two.
+            # We keep a modification of the original for backwards compatibility,
+            # so that the "word formation frequency" field still exists.
+            # We also keep the two new fields separately to support new queries.
+            P.WORD_FORMATION_FREQ_F22([8,9]),
+            P.AFFIXATION_FREQ(8),
+            P.NON_AFFIXATION_FREQ(9),
+            P.FUNCTIONAL_MORPHOLOGY(10),
+            P.WORD_ORDER(11),
+            P.HEADEDNESS(12),
+        ]
     }
 }
 
