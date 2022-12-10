@@ -19,7 +19,9 @@
     <option>Allows syllable structure:</option>
     <option>Morphological type:</option>
     <option>Word formation strategy:</option>
+    <option>Prefixation vs. suffixation frequency:</option>
     <option>Word formation frequency:</option>
+    <option>Functional morphology:</option>
     <option>Basic word order:</option>
     <option>Headedness:</option>
   </select>
@@ -278,13 +280,39 @@
        title="<b>Select word formation</b>"
        data-content="Error loading. Sorry!">Select word formation...</a>
   </div>
-  <div class="formation-freq-selector template inactive" type="formation-freq-selector">
-    <a class="ff-lbox-popover uninit btn btn-outline-secondary"
+  <div class="affixal-freq-selector template inactive" type="affixal-freq-selector">
+    <a class="af-lbox-popover uninit btn btn-outline-secondary"
        role="button"
        data-html="true"
        data-toggle="popover"
        title="<b>Select frequency</b>"
        data-content="Error loading. Sorry!">Select frequency...</a>
+  </div>
+  <div class="nonaffixal-freq-selector template inactive" type="nonaffixal-freq-selector">
+    <a class="nf-lbox-popover uninit btn btn-outline-secondary"
+       role="button"
+       data-html="true"
+       data-toggle="popover"
+       title="<b>Select frequency</b>"
+       data-content="Error loading. Sorry!">Select frequency...</a>
+  </div>
+  <div class="functional-morphology-selector template inactive" type="functional-morphology-selector">Contains
+    <select class="mode-selector" onchange="handleModeSelect(this)">
+      <option>at least</option>
+      <option>at most</option>
+      <option>exactly</option>
+      <option>less than</option>
+      <option>more than</option>
+      <option>not equal to</option>
+      <option>all</option>
+    </select>
+    <input class="k-selector" type="number" size="2" placeholder="e.g. 1" value="1" min=0 max=999 step=1> of
+    <a class="fm-lbox-popover uninit btn btn-outline-secondary"
+       role="button"
+       data-html="true"
+       data-toggle="popover"
+       title="<b>Select morphology</b>"
+       data-content="Error loading. Sorry!">Select morphology...</a>
   </div>
   <div class="word-order-selector template inactive" type="word-order-selector">Contains
     <select class="mode-selector" onchange="handleModeSelect(this)">
@@ -966,8 +994,8 @@
   </table>
 </div>
 
-<!--Auto-generated template for the ff-lbox-popover list selector.-->
-<div id="ff-lbox-popover-template" class="template">
+<!--Auto-generated template for the af-lbox-popover list selector.-->
+<div id="af-lbox-popover-template" class="template">
   <table>
     <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively suffixing</td></tr>
@@ -975,11 +1003,46 @@
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively prefixing</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly prefixing</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal prefixing and suffixing</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">little or no affixation</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Auto-generated template for the nf-lbox-popover list selector.-->
+<div id="nf-lbox-popover-template" class="template">
+  <table>
+    <tbody>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively non-affixal</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly non-affixal</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">equal affixation and other</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly affixal</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">no non-affixal</td></tr>
       <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">mostly isolating</td></tr>
-      <tr><td class="lbox-label" onclick="handleLboxLabel(this, false)">exclusively isolating</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Auto-generated template for the fm-lbox-popover list selector.-->
+<div id="fm-lbox-popover-template" class="template">
+  <table>
+    <tbody>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">nominalizers</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">verbalizers</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">(in)transitivity</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">associated motion</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">low aspect</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">voice</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">natural gender</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">diminutive / augmentative</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">high aspect</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">tense</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">mood</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">agreement</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">number</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">grammatical gender</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">definiteness</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">case</td></tr>
+      <tr><td class="lbox-label" onclick="handleLboxLabel(this, true)">possessor marking</td></tr>
     </tbody>
   </table>
 </div>
