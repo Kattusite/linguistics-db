@@ -423,7 +423,7 @@ WORD_FORMATION_FREQ = {
 
 # New in F22, replacing WORD_FORMATION_FREQ
 AFFIXATION_FREQ = {
-    SELECT_NAME: "Prefixation vs. suffixation frequency:",
+    SELECT_NAME: "Affixation frequency:",
     DICT: D.AFFIXATION_FREQ,
     MULTI: False,
     MODE: PICK_ONE,

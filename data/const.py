@@ -385,10 +385,10 @@ class AllFuzzySearchTerms:
     NON_AFFIXATION_FREQ = FuzzySearchTerms({
         "exclusively non-affixal": ["all word-formation involves non-affixal"],
         "mostly non-affixal": ["most word-formation involves non-affixal"],
-        "equal affixation and other": ["equal mix of affixation and non-affixal"],
+        "equal affixal and non-affixal": ["equal mix of affixation and non-affixal"],
         "mostly affixal": ["most word-formation involves affixation"],
-        "no non-affixal": ['no non-affixal'],
-        "mostly isolating": [],
+        "exclusively affixal": ['no non-affixal'],
+        "little or no complex word formation": ["mostly isolating"],
     })
 
     # For backwards compatibility, let's still include a "WORD_FORMATION_FREQ" field,
