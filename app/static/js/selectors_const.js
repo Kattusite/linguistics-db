@@ -22,7 +22,7 @@ var SELECTORS_DICT = {
         "reply vars": [
             "sel"
         ],
-        "select name": "Prefixation vs. suffixation frequency:",
+        "select name": "Affixation frequency:",
         "select what": "frequency",
         "type": "String"
     },
@@ -831,21 +831,23 @@ var SELECTORS_DICT = {
     },
     "nonaffixal-freq-selector": {
         "dict": {
-            "equal affixation and other": [
+            "equal affixal and non-affixal": [
                 "equal mix of affixation and non-affixal"
+            ],
+            "exclusively affixal": [
+                "no non-affixal"
             ],
             "exclusively non-affixal": [
                 "all word-formation involves non-affixal"
             ],
+            "little or no complex word formation": [
+                "mostly isolating"
+            ],
             "mostly affixal": [
                 "most word-formation involves affixation"
             ],
-            "mostly isolating": [],
             "mostly non-affixal": [
                 "most word-formation involves non-affixal"
-            ],
-            "no non-affixal": [
-                "no non-affixal"
             ]
         },
         "html id": "nonaffixal-freq-selector",

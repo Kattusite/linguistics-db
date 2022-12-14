@@ -1017,10 +1017,10 @@
         ],
         "word formation frequency": [
             "little or no affixation",
-            "mostly isolating"
+            "little or no complex word formation"
         ],
         "affixal word formation frequency": "little or no affixation",
-        "non-affixal word formation frequency": "mostly isolating",
+        "non-affixal word formation frequency": "little or no complex word formation",
         "functional morphology": [
             "nominalizers",
             "verbalizers",
@@ -1210,10 +1210,10 @@
         ],
         "word formation frequency": [
             "mostly suffixing",
-            "equal affixation and other"
+            "equal affixal and non-affixal"
         ],
         "affixal word formation frequency": "mostly suffixing",
-        "non-affixal word formation frequency": "equal affixation and other",
+        "non-affixal word formation frequency": "equal affixal and non-affixal",
         "functional morphology": [
             "nominalizers",
             "verbalizers",
@@ -1307,10 +1307,10 @@
         ],
         "word formation frequency": [
             "exclusively suffixing",
-            "equal affixation and other"
+            "equal affixal and non-affixal"
         ],
         "affixal word formation frequency": "exclusively suffixing",
-        "non-affixal word formation frequency": "equal affixation and other",
+        "non-affixal word formation frequency": "equal affixal and non-affixal",
         "functional morphology": [
             "nominalizers",
             "verbalizers",
@@ -1611,10 +1611,10 @@
         ],
         "word formation frequency": [
             "equal prefixing and suffixing",
-            "equal affixation and other"
+            "equal affixal and non-affixal"
         ],
         "affixal word formation frequency": "equal prefixing and suffixing",
-        "non-affixal word formation frequency": "equal affixation and other",
+        "non-affixal word formation frequency": "equal affixal and non-affixal",
         "functional morphology": [
             "nominalizers",
             "verbalizers",
@@ -1705,10 +1705,10 @@
         ],
         "word formation frequency": [
             "mostly prefixing",
-            "mostly isolating"
+            "little or no complex word formation"
         ],
         "affixal word formation frequency": "mostly prefixing",
-        "non-affixal word formation frequency": "mostly isolating",
+        "non-affixal word formation frequency": "little or no complex word formation",
         "functional morphology": [
             "nominalizers",
             "verbalizers",
@@ -1801,10 +1801,10 @@
         ],
         "word formation frequency": [
             "exclusively prefixing",
-            "equal affixation and other"
+            "equal affixal and non-affixal"
         ],
         "affixal word formation frequency": "exclusively prefixing",
-        "non-affixal word formation frequency": "equal affixation and other",
+        "non-affixal word formation frequency": "equal affixal and non-affixal",
         "functional morphology": [
             "nominalizers",
             "natural gender",
