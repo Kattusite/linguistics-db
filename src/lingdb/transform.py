@@ -9,7 +9,10 @@ from typing import (
 )
 
 from .language import Language
-from .types import T, V
+
+
+T = TypeVar('T')
+V = TypeVar('V')
 
 
 """
@@ -47,6 +50,7 @@ NOTE:
 """
 
 
+# TODO: Probably delete Transformable in favor of Query, etc.
 class Transformable:
     """A mix-in class that makes an object able to be transformed.
 
@@ -74,11 +78,13 @@ class Transformable:
     """
 
     def apply(self):
-        """"""
+        """Apply a transformation."""
 
     def suppose(self):
-        """A variant of `apply()` that updates the evaluation but not the rationale."""
+        """Apply a transformation, updating the evaluation but not the rationale."""
 
+
+# spell-checker:ignore hsilgn aeiou
 # pylint: disable=pointless-string-statement
 """
 
@@ -157,7 +163,7 @@ TODO: Right now, we "freeze" only a single value -- the "context"
 
 
 Okay, so what would it look like to try and run multiple queries against a language set?
-(e.g. to run implicational univesals, like:
+(e.g. to run implicational universals, like:
     "languages that have Geq(5) vowels" and "languages that have Geq(5) consonants"
 )
 
@@ -173,7 +179,7 @@ BAD
 LanguageSet
     .apply(GetConsonants)
     .freeze()
-    .apply(Geq(5))      # if this is a predicate, we can assume the previous one is a freeze(), I think...
+    .apply(Geq(5)) # if this is a predicate, I think we can assume the previous one is a freeze()...
     .filter()
     .apply(GetVowels)
     .freeze()
@@ -187,11 +193,11 @@ Instead we want more like:
 LanguageSet.applyAll([
     Query           # some dummy "identity" placeholder
         .apply(GetConsonants)
-        .apply(Geq(5))          # since this is a predicate, it's implied that this forces a freeze()
+        .apply(Geq(5))        # since this is a predicate, it's implied that this forces a freeze()
         .filter(),
     Query
         .apply(GetVowels)
-        .apply(Geq(5))          # for convenience Geq works on both Collections and ints
+        .apply(Geq(5))        # for convenience Geq works on both Collections and ints
         .filter()
 ])
 
@@ -228,19 +234,19 @@ might ask about the data.
 # pylint: enable=pointless-string-statement
 
 
-
-
 class Transformation(ABC, Generic[T, V]):
-    """A Transformer transforms an input into an arbitrary value.
+    """A Transformation transforms an input into an arbitrary value.
 
     These are completely general, and can do literally anything.
     """
 
     def __init__(self, contributes_to_rationale: bool):
+        """Initialize the Transformation."""
         self.contributes_to_rationale = contributes_to_rationale
 
     @abstractmethod
     def __call__(self, arg: T) -> V:
+        """Execute the transformation on the provided argument and return the result."""
         raise NotImplementedError()
 
 
@@ -254,14 +260,17 @@ class Extractor(Transformation):
         - Language -> name
         - Language -> has stress in that language?
     """
+
     # TODO: Does it make sense to have an Extractor at all?
     #   Why not just stick to transformers?
 
     def __init__(self, contributes_to_rationale: bool = True):
+        """Initialize the Extractor."""
         super().__init__(contributes_to_rationale)
 
     @abstractmethod
     def __call__(self, language: Language) -> Any:
+        """Execute the transformation on the provided Language and return the result."""
         raise NotImplementedError()
 
 
@@ -279,10 +288,12 @@ class Predicate(Transformation):
     """
 
     def __init__(self, contributes_to_rationale: bool = False):
+        """Initialize the Predicate."""
         super().__init__(contributes_to_rationale)
 
     @abstractmethod
     def __call__(self, x: Any) -> bool:
+        """Execute the transformation on the provided argument and return the bool result."""
         raise NotImplementedError()
 
 
@@ -290,18 +301,16 @@ class Predicate(Transformation):
 #                               Concrete examples
 ################################################################################
 
-T = TypeVar('T')
-
-
 class Get(Extractor):
     """An Extractor that gets a named field from a language."""
 
     def __init__(self, attr: str, contributes_to_rationale: bool = True):
-        """"""
+        """Initialize a Get Extractor."""
         super().__init__(contributes_to_rationale)
         self.attr = attr
 
     def __call__(self, language: Language) -> Any:
+        """Execute the Get Extractor."""
         return getattr(language, self.attr)
 
 
@@ -312,23 +321,35 @@ GetEndangermentLevel = Get('endangerment_level')
 
 
 class Length(Transformation):
+    """A Transformation that returns the length of a Collection."""
+
     def __call__(self, x: Collection) -> int:
+        """Return the length of the input collection."""
         return len(x)
 
 
 class Contains(Predicate):
+    """A Predicate that returns True if a Collection contains an element."""
+
     def __init__(self, needle: Any, contributes_to_rationale: bool = False):
+        """Initialize the Predicate."""
         super().__init__(contributes_to_rationale)
         self.needle = needle
 
     def __call__(self, x: Collection) -> bool:
+        """Return True if the argument contains the desired element."""
         return self.needle in x
 
 
 class Intersection(Transformation):
+    """Return a new Collection equal to the intersection of a Collection with another."""
+
     def __init__(self, elements: Collection[T], contributes_to_rationale: bool):
+        """Initialize the Transformation."""
         super().__init__(contributes_to_rationale)
-        self.elements = set(elements)
+        self.elements = elements
 
     def __call__(self, x: Collection[T]) -> Collection[T]:
-        return self.elements.intersection(x)
+        """Return a new collection containing only those elements in both collections."""
+        # Preserve ordering of elements; avoid set()
+        return [el for el in x if el in self.elements]
