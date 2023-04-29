@@ -1,9 +1,24 @@
 """The language module defines a Language and LanguageSet."""
 
-from collections import UserDict
-from collections.abc import Mapping
 import json
-from typing import Any, Dict, Iterable, Iterator, List, Optional
+
+from collections.abc import Mapping
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    Iterable,
+    Iterator,
+    List,
+    Optional,
+)
+
+from lingdb.utils import ValueMapping
+
+if TYPE_CHECKING:
+    from _typeshed import StrPath
+else:
+    StrPath = 'StrPath'
 
 
 class Phoneme(str):
@@ -115,17 +130,20 @@ class Language:
         return f'Language({json.dumps(self._data, indent=4, ensure_ascii=False)})'
 
 
-class LanguageSet(UserDict, Mapping[str, Language]):
+# TODO: It's a terrible idea to make this almost-a-mapping-but-not-quite.
+#   Just make it a Collection with a __getitem__
+class LanguageSet(ValueMapping[str, Language]):
     """A collection of several Language objects.
 
-    The collection should be treated as immutable.
-    It behaves like an Iterable[Language], but it is also indexable by the language name.
+    The collection is immutable and must not contain duplicates.
 
-    The collection should not contain duplicates.
+    The collection behaves just like a Mapping[str, Language], with two key differences:
+    - __iter__ iterates over the values instead of the keys.
+    - __contains__ checks membership in either the keys or the values.
     """
 
     @classmethod
-    def from_json(cls, filename: str) -> 'LanguageSet':
+    def from_json(cls, filename: StrPath) -> 'LanguageSet':
         """Create a new LanguageSet by loading it from a JSON file."""
         with open(filename, 'r', encoding='utf-8') as f:
             languages_data = json.load(f)
@@ -136,13 +154,11 @@ class LanguageSet(UserDict, Mapping[str, Language]):
         """Initialize a LanguageSet from the provided `languages`."""
         # We might get an arbitrary iterable. Convert to a list for safety.
         self._languages = list(languages)
+        super().__init__({language.name: language for language in self._languages})
 
         # Forbid duplicate Language entries
-        if len(set(self._languages)) != len(self._languages):
+        if len(self._languages) != len(self._languages):
             raise ValueError('A LanguageSet may not contain duplicate Language objects')
-
-        # Call the UserDict constructor to create the name -> Language mapping.
-        super().__init__({language.name: language for language in self._languages})
 
     def __repr__(self):
         """Return a string representation of this LanguageSet."""
@@ -153,20 +169,3 @@ class LanguageSet(UserDict, Mapping[str, Language]):
         """Return a string representation of this LanguageSet."""
         lang_strs = ', '.join(str(lang) for lang in self._languages)
         return f'<LanguageSet: {{{lang_strs}}}>'
-
-    def __iter__(self) -> Iterator[Language]:
-        """Return an iterator over the languages in this LanguageSet."""
-        return iter(self.values())
-
-    def __setitem__(self, key: str, item: Language) -> None:
-        """Raise an error, because LanguageSet is immutable."""
-        raise NotImplementedError('LanguageSet objects are immutable')
-
-    def __delitem__(self, key: str) -> None:
-        """Raise an error, because LanguageSet is immutable."""
-        raise NotImplementedError('LanguageSet objects are immutable')
-
-
-DATASETS = '../../data/datasets'
-
-F22 = LanguageSet.from_json(f'{DATASETS}/F22/F22.json')
