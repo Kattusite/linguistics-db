@@ -2,7 +2,7 @@
 
 import json
 
-from collections.abc import Mapping
+from collections.abc import Collection
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -13,7 +13,7 @@ from typing import (
     Optional,
 )
 
-from lingdb.utils import ValueMapping
+from lingdb.utils import MappedCollection
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
@@ -132,14 +132,10 @@ class Language:
 
 # TODO: It's a terrible idea to make this almost-a-mapping-but-not-quite.
 #   Just make it a Collection with a __getitem__
-class LanguageSet(ValueMapping[str, Language]):
-    """A collection of several Language objects.
+class LanguageSet(MappedCollection[str, Language]):
+    """A Collection of unique Language objects that supports getting Language objects by name.
 
     The collection is immutable and must not contain duplicates.
-
-    The collection behaves just like a Mapping[str, Language], with two key differences:
-    - __iter__ iterates over the values instead of the keys.
-    - __contains__ checks membership in either the keys or the values.
     """
 
     @classmethod
@@ -152,12 +148,14 @@ class LanguageSet(ValueMapping[str, Language]):
 
     def __init__(self, languages: Iterable[Language]):
         """Initialize a LanguageSet from the provided `languages`."""
-        # We might get an arbitrary iterable. Convert to a list for safety.
-        self._languages = list(languages)
-        super().__init__({language.name: language for language in self._languages})
+        # We might get an arbitrary iterable. Convert to a tuple for safety.
+        self._languages = tuple(languages)
+        self._languages_dict = {language.name: language for language in self._languages}
+
+        super().__init__(self._languages_dict)
 
         # Forbid duplicate Language entries
-        if len(self._languages) != len(self._languages):
+        if len(self._languages) != len(self._languages_dict):
             raise ValueError('A LanguageSet may not contain duplicate Language objects')
 
     def __repr__(self):
