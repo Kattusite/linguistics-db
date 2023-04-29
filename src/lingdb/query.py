@@ -2,8 +2,8 @@
 
 from typing import Collection, List, Union
 
-from .language import Language, LanguageSet
-from .transform import Transformation
+from lingdb.language import Language, LanguageSet
+from lingdb.transform import Transformation
 
 
 _PrimitiveContextType = Union[str, int, float, bool]

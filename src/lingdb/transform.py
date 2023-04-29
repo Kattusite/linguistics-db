@@ -8,7 +8,7 @@ from typing import (
     TypeVar,
 )
 
-from .language import Language
+from lingdb.language import Language
 
 
 T = TypeVar('T')
@@ -48,40 +48,6 @@ NOTE:
             (instead of returning the literal value and then back-computing the rationale,
             we could return an object that simultaneously tracks the value and rationale together.)
 """
-
-
-# TODO: Probably delete Transformable in favor of Query, etc.
-class Transformable:
-    """A mix-in class that makes an object able to be transformed.
-
-    Each Transformable tracks two values:
-        - the current evaluation of the value
-        - the current rationale
-            (which may provide more meaningful context if the value's been heavily processed)
-
-    Some operations are not worthy of being "considered" by the rationale.
-    Once one operation in the chain is not worthy of consideration, all future
-    transformations in the chain are also not worthy of consideration.
-    # TODO: Any cases where we want to switch back?
-    #   How would that even be defined? The evaluation / rationale would be out of sync.
-
-    Operations not worthy of consideration are generally small logical operations,
-    like "is not empty", or "has a size less than 5". In these cases, if we were to
-    update the rationale, we'd squash the entire transformation chain down to something
-    with a comparatively low information content, like a bool.
-
-    There are some other things it tracks too:
-        - its predecessor Transformable (creating a linked list)
-        - a flag indicating whether any previous entry in the chain was unworthy
-            of consideration for the rationale.
-            (if any ancestors were unworthy, all descendants must be too)
-    """
-
-    def apply(self):
-        """Apply a transformation."""
-
-    def suppose(self):
-        """Apply a transformation, updating the evaluation but not the rationale."""
 
 
 # spell-checker:ignore hsilgn aeiou
@@ -240,10 +206,6 @@ class Transformation(ABC, Generic[T, V]):
     These are completely general, and can do literally anything.
     """
 
-    def __init__(self, contributes_to_rationale: bool):
-        """Initialize the Transformation."""
-        self.contributes_to_rationale = contributes_to_rationale
-
     @abstractmethod
     def __call__(self, arg: T) -> V:
         """Execute the transformation on the provided argument and return the result."""
@@ -264,10 +226,6 @@ class Extractor(Transformation):
     # TODO: Does it make sense to have an Extractor at all?
     #   Why not just stick to transformers?
 
-    def __init__(self, contributes_to_rationale: bool = True):
-        """Initialize the Extractor."""
-        super().__init__(contributes_to_rationale)
-
     @abstractmethod
     def __call__(self, language: Language) -> Any:
         """Execute the transformation on the provided Language and return the result."""
@@ -287,10 +245,6 @@ class Predicate(Transformation):
         -
     """
 
-    def __init__(self, contributes_to_rationale: bool = False):
-        """Initialize the Predicate."""
-        super().__init__(contributes_to_rationale)
-
     @abstractmethod
     def __call__(self, x: Any) -> bool:
         """Execute the transformation on the provided argument and return the bool result."""
@@ -304,9 +258,8 @@ class Predicate(Transformation):
 class Get(Extractor):
     """An Extractor that gets a named field from a language."""
 
-    def __init__(self, attr: str, contributes_to_rationale: bool = True):
+    def __init__(self, attr: str):
         """Initialize a Get Extractor."""
-        super().__init__(contributes_to_rationale)
         self.attr = attr
 
     def __call__(self, language: Language) -> Any:
@@ -320,7 +273,7 @@ GetNumConsonants = Get('num_consonants')
 GetEndangermentLevel = Get('endangerment_level')
 
 
-class Length(Transformation):
+class _Length(Transformation):
     """A Transformation that returns the length of a Collection."""
 
     def __call__(self, x: Collection) -> int:
@@ -328,12 +281,14 @@ class Length(Transformation):
         return len(x)
 
 
+Length = _Length()
+
+
 class Contains(Predicate):
     """A Predicate that returns True if a Collection contains an element."""
 
-    def __init__(self, needle: Any, contributes_to_rationale: bool = False):
+    def __init__(self, needle: Any):
         """Initialize the Predicate."""
-        super().__init__(contributes_to_rationale)
         self.needle = needle
 
     def __call__(self, x: Collection) -> bool:
@@ -344,9 +299,8 @@ class Contains(Predicate):
 class Intersection(Transformation):
     """Return a new Collection equal to the intersection of a Collection with another."""
 
-    def __init__(self, elements: Collection[T], contributes_to_rationale: bool):
+    def __init__(self, elements: Collection[T]):
         """Initialize the Transformation."""
-        super().__init__(contributes_to_rationale)
         self.elements = elements
 
     def __call__(self, x: Collection[T]) -> Collection[T]:
