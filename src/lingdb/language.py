@@ -2,14 +2,17 @@
 
 import json
 
+from enum import StrEnum
 from typing import (
     TYPE_CHECKING,
-    Any,
-    Dict,
     Iterable,
+    Iterator,
     List,
-    Optional,
+    Mapping,
+    Required,
+    TypedDict,
 )
+from lingdb.types import DatapointValue, Phoneme
 
 from lingdb.utils import MappedCollection
 
@@ -19,98 +22,223 @@ else:
     StrPath = 'StrPath'
 
 
-class Phoneme(str):
-    """A Phoneme represents a phoneme in a natural language, plus the glyph used to write it."""
+class DatapointKey(StrEnum):
+    """A DatapointKey represents the name of a single datapoint in a language."""
+
+    # TODO: Some of the JSON keys have spaces and hyphens, etc in them.
+    #   Let's replace all of them with underscores for consistency.
+    #   This will require updating the CSV to JSON code (const.py?)
+
+    NAME = 'name'
+
+    STUDENT = 'student'
+    NETID = 'netid'
+
+    COUNTRY = 'country'
+    LANGUAGE_FAMILY = 'language_family'
+    ENDANGERMENT = 'endangerment_level'
+
+    NUM_CONSONANTS = 'num_consonants'
+    NUM_VOWELS = 'num_vowels'
+    NUM_PHONEMES = 'num_phonemes'
+
+    CONSONANTS = 'consonants'
+    CONSONANT_TYPES = 'consonant_types'
+    VOWELS = 'vowels'
+    VOWEL_TYPES = 'vowel_types'
+
+    # Deprecated
+    HAS_3_PLUS_PLACES = '3+_consonant_places'
+    HAS_2_PLUS_MANNERS = '2+_consonant_manners'
+
+    NUM_CONSONANT_PLACES = 'num_consonant_places'
+    NUM_CONSONANT_MANNERS = 'num_consonant_manners'
+
+    COMPLEX_CONSONANTS = 'complex_consonants'
+    TONE = 'tone'
+
+    # NOTE: Before F22, STRESS was the only kind of stress -- it indicated "predictable stress".
+    #   In F22 a new option was added for "unpredictable stress".
+    #   Now STRESS is a derived value, true if either kind of stress appears.
+    STRESS = 'stress'
+    PREDICTABLE_STRESS = 'predictable_stress'
+    UNPREDICTABLE_STRESS = 'unpredictable_stress'
+
+    SYLLABLES = 'syllables'
+
+    RECOMMEND = 'recommend'
+
+    MORPHOLOGICAL_TYPE = 'morphological_type'
+    WORD_FORMATION = 'word_formation'
+    WORD_FORMATION_FREQUENCY = 'word_formation_frequency'
+    AFFIXAL_WORD_FORMATION_FREQUENCY = 'affixal_word_formation_frequency'
+    NONAFFIXAL_WORD_FORMATION_FREQUENCY = 'nonaffixal_word_formation_frequency'
+
+    FUNCTIONAL_MORPHOLOGY = 'functional_morphology'
+    WORD_ORDER = 'word_order'
+    HEADEDNESS = 'headedness'
+
+    AGREEMENT = 'agreement'
+    CASE = 'case'
 
 
-class Datapoint:
-    """A single named property of a language."""
+# BUG: We'd like to able to re-use the keys from DatapointKey, but that's not yet supported.
+# For now, just copy-paste the above list, and find & replace "\w+ = "
+# See https://github.com/python/mypy/issues/4128
+#
+# BUG: When accessing members of the TypedDict using the StrEnum members as keys,
+#   you must attach an extra .value:
+#       GOOD:       data[DatapointKey.NAME.value]
+#       BAD:        data[DatapointKey.NAME]
+# Because we're using a StrEnum, I don't think this should be necessary,
+# but if you get rid of it, mypy complains:
+#   TypedDict "DatapointDict" has no key "NAME"  [typeddict-item]mypy(error)
 
-    def __init__(self, key: str, value: Any) -> None:
-        """Initialize a Datapoint."""
-        self.key = key
-        self.value = value
+DatapointDict = TypedDict('DatapointDict', {
+    'name': Required[str],
 
-        self.type = type(value)
-        """The type of this datapoint's value.
+    'student': Required[str],
+    'netid': Required[str],
 
-        One of:
-            PRIMITIVE = str | int | float | bool
-            COLLECTION = List[PRIMITIVE]
-            TYPES = PRIMITIVE | COLLECTION
-        """
+    'country': str,
+    'language_family': str,
+    'endangerment_level': str,
 
-    # TODO: This feels like a bridge too far.
+    'num_consonants': int,
+    'num_vowels': int,
+    'num_phonemes': int,
+
+    'consonants': List[Phoneme],
+    'consonant_types': List[str],
+    'vowels': List[Phoneme],
+    'vowel_types': List[str],
+
+    # Deprecated
+    '3+_consonant_places': bool,
+    '2+_consonant_manners': bool,
+
+    'num_consonant_places': int,
+    'num_consonant_manners': int,
+
+    'complex_consonants': bool,
+    'tone': bool,
+
+    # NOTE: Before F22, STRESS was the only kind of stress -- it indicated "predictable stress".
+    #   In F22 a new option was added for "unpredictable stress".
+    #   Now STRESS is a derived value, true if either kind of stress appears.
+    'stress': bool,
+    'predictable_stress': bool,
+    'unpredictable_stress': bool,
+
+    'syllables': List[str],
+
+    'recommend': str,
+
+    'morphological_type': List[str],
+    'word_formation': List[str],
+    'word_formation_frequency': List[str],
+    'affixal_word_formation_frequency': str,
+    'nonaffixal_word_formation_frequency': str,
+
+    'functional_morphology': List[str],
+    'word_order': List[str],
+    'headedness': List[str],
+
+    'agreement': str,
+    'case': str,
+}, total=False)
 
 
-# TODO: Language is not currently immutable.
-#   It should be a dataclass.
-class Language:
+class Language(Mapping[DatapointKey, DatapointValue]):
     """A Language consists of a collection of Datapoints.
 
     A Language should be treated as immutable.
     """
 
-    def __init__(
-        self,
-        data: Dict,
-    ) -> None:
-        """Initialize a Language from the provided data."""
-        name: Optional[str] = data.get('name')
+    def __init__(self, data: DatapointDict) -> None:
+        """Initialize a Language from the provided DatapointDict."""
+        # The name, student, and netid are required to uniquely identify the language.
+        try:
+            self.name = data[DatapointKey.NAME.value]
+            self.student = data[DatapointKey.STUDENT.value]
+            self.netid = data[DatapointKey.NETID.value]
+            # Also reject falsy values (i.e. empty strings or None)
+            if not self.name or not self.student or not self.netid:
+                raise ValueError('A Language must have a non-empty name, student, and netid.')
+        except (KeyError, ValueError) as exc:
+            raise ValueError('A Language must be given a name, student, and netid.') from exc
 
-        # Everything will be very painful later on if we allow languages not to have a name.
-        if not name:
-            raise ValueError('A Language must be given a name')
+        # NOTE: All the rest of these are defined mostly for better IDE support.
+        #   The custom __getattr__ will pick them up regardless of whether they are
+        #   defined here, but if they are, they will show up in IDE completions.
+        self.recommend = data.get(DatapointKey.RECOMMEND.value)
 
-        self.name: str = name
+        self.country = data.get(DatapointKey.COUNTRY.value)
+        self.language_family = data.get(DatapointKey.LANGUAGE_FAMILY.value)
+        self.endangerment_level = data.get(DatapointKey.ENDANGERMENT.value)
 
-        self.student: Optional[str] = data.get('student')
-        self.netid: Optional[str] = data.get('netid')
-        self.recommend: Optional[str] = data.get('recommend')
+        self.num_consonants = data.get(DatapointKey.NUM_CONSONANTS.value)
+        self.num_vowels = data.get(DatapointKey.NUM_VOWELS.value)
+        self.num_phonemes = data.get(DatapointKey.NUM_PHONEMES.value)
 
-        self.country: Optional[str] = data.get('country')
-        self.language_family: Optional[str] = data.get('language family')
-        self.endangerment_level: Optional[str] = data.get('endangerment level')
+        self.consonants = data.get(DatapointKey.CONSONANTS.value)
+        self.consonant_types = data.get(DatapointKey.CONSONANT_TYPES.value)
+        self.vowels = data.get(DatapointKey.VOWELS.value)
+        self.vowel_types = data.get(DatapointKey.VOWEL_TYPES.value)
 
-        self.num_consonants: Optional[int] = data.get('num consonants')
-        self.num_vowels: Optional[int] = data.get('num vowels')
-        self.num_phonemes: Optional[str] = data.get('num phonemes')
+        self.num_consonant_places = data.get(DatapointKey.NUM_CONSONANT_PLACES.value)
+        self.num_consonant_manners = data.get(DatapointKey.NUM_CONSONANT_MANNERS.value)
 
-        self.consonants: Optional[List[Phoneme]] = data.get('consonants')
-        self.consonant_types: Optional[List[str]] = data.get('consonant types')
-        self.vowels: Optional[List[Phoneme]] = data.get('vowels')
-        self.vowel_types: Optional[List[Phoneme]] = data.get('vowel types')
+        self.complex_consonants = data.get(DatapointKey.COMPLEX_CONSONANTS.value)
+        self.tone = data.get(DatapointKey.TONE.value)
+        self.stress = data.get(DatapointKey.STRESS.value)
+        self.predictable_stress = data.get(DatapointKey.PREDICTABLE_STRESS.value)
+        self.unpredictable_stress = data.get(DatapointKey.UNPREDICTABLE_STRESS.value)
 
-        self.num_consonant_places: Optional[int] = data.get('num consonant places')
-        self.num_consonant_manners: Optional[int] = data.get('num consonant manners')
+        self.syllables = data.get(DatapointKey.SYLLABLES.value)
+        self.morphological_type = data.get(DatapointKey.MORPHOLOGICAL_TYPE.value)
 
-        self.complex_consonants: Optional[bool] = data.get('complex consonants')
-        self.tone: Optional[bool] = data.get('tone')
-        self.stress: Optional[bool] = data.get('stress')
-        self.predictable_stress: Optional[bool] = data.get('predictable stress')
-        self.unpredictable_stress: Optional[bool] = data.get('unpredictable stress')
+        # pylint: disable=line-too-long
+        self.word_formation = data.get(DatapointKey.WORD_FORMATION.value)
+        self.word_formation_frequency = data.get(DatapointKey.WORD_FORMATION_FREQUENCY.value)
+        self.affixal_word_formation_frequency = data.get(DatapointKey.AFFIXAL_WORD_FORMATION_FREQUENCY.value)  # noqa: E501
+        self.nonaffixal_word_formation_frequency = data.get(DatapointKey.NONAFFIXAL_WORD_FORMATION_FREQUENCY.value)  # noqa: E501
+        # pylint: enable=line-too-long
 
-        self.syllables: Optional[List[str]] = data.get('syllables')
-        self.morphological_type: Optional[List[str]] = data.get('morphological type')
-
-        self.word_formation: Optional[List[str]] = data.get('word formation')
-        self.word_formation_frequency: Optional[List[str]] = data.get('word formation frequency')
-        self.affixal_word_formation_frequency: Optional[str] = data.get(
-            'affixal word formation frequency')
-        self.nonaffixal_word_formation_frequency: Optional[str] = data.get(
-            'non-affixal word formation frequency')
-
-        self.functional_morphology: Optional[List[str]] = data.get('functional morphology')
-        self.word_order: Optional[List[str]] = data.get('word order')
-        self.headedness: Optional[List[str]] = data.get('headedness')
+        self.functional_morphology = data.get(DatapointKey.FUNCTIONAL_MORPHOLOGY.value)
+        self.word_order = data.get(DatapointKey.WORD_ORDER.value)
+        self.headedness = data.get(DatapointKey.HEADEDNESS.value)
 
         self._data = data
 
-    def __getattr__(self, name: str) -> Any:
-        """Get the named attribute of this Language."""
+    def __iter__(self) -> Iterator[DatapointKey]:
+        """Return an iterator over the datapoint keys in this language."""
+        for key in self._data.keys():
+            yield DatapointKey(key)
+
+    def __len__(self) -> int:
+        """Return the number of datapoints in this language."""
+        return len(self._data)
+
+    def __getattr__(self, name: DatapointKey) -> DatapointValue:
+        """Get the named datapoint value of this Language.
+
+        Raises:
+            KeyError if the named datapoint does not exist for this language.
+        """
         if name in self._data:
-            return self._data[name]
+            return self._data[name.value]
         raise AttributeError(f'{self} has no attribute {name!r}')
+
+    def __getitem__(self, name: DatapointKey) -> DatapointValue:
+        """Get the named datapoint value of this Language.
+
+        Raises:
+            KeyError if the named datapoint does not exist for this language.
+        """
+        # Similar to __getattr__, but there's no chance of seeing any other entries in __dict__.
+        # Raises a KeyError if the field isn't recognized, just like an ordinary dict.
+        return self._data[name.value]
 
     def __hash__(self) -> int:
         """Return a hash of this Language."""

@@ -9,21 +9,15 @@ from typing import (
 
 from lingdb.language import Language, LanguageSet
 from lingdb.transform import Transformation
+from lingdb.types import DatapointValue
 
 
-_PrimitiveContextType = Union[str, int, float, bool]
-
-Context = Union[_PrimitiveContextType, List[_PrimitiveContextType]]
+Context = DatapointValue
 """Any type that can be returned in a QueryResult as the Context for a single Language.
 
-Context is a more specific piece of information about a language.
+Context is a more specific piece of information extracted from a Language.
 
 NOTE: An entire Language itself is not a valid kind of context. It must be more specific than that.
-
-Defined by:
-    PRIMITIVE := str, int, float, bool
-    COLLECTION := List[PRIMITIVE]
-    CONTEXT := PRIMITIVE COLLECTION
 """
 
 ContextSet = Sequence[Context]

@@ -1,9 +1,9 @@
 """The dataset module contains helpers for loading datasets from JSON."""
 
+from enum import StrEnum
 from pathlib import Path
 
 from lingdb.language import LanguageSet
-from lingdb.utils import StrEnum
 
 
 DATASETS_PATH = Path(__file__).parent.parent / 'data' / 'datasets'
