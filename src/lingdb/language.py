@@ -36,7 +36,7 @@ class DatapointKey(StrEnum):
 
     COUNTRY = 'country'
     LANGUAGE_FAMILY = 'language_family'
-    ENDANGERMENT = 'endangerment_level'
+    ENDANGERMENT_LEVEL = 'endangerment_level'
 
     NUM_CONSONANTS = 'num_consonants'
     NUM_VOWELS = 'num_vowels'
@@ -175,7 +175,7 @@ class Language(Mapping[DatapointKey, DatapointValue]):
 
         self.country = data.get(DatapointKey.COUNTRY.value)
         self.language_family = data.get(DatapointKey.LANGUAGE_FAMILY.value)
-        self.endangerment_level = data.get(DatapointKey.ENDANGERMENT.value)
+        self.endangerment_level = data.get(DatapointKey.ENDANGERMENT_LEVEL.value)
 
         self.num_consonants = data.get(DatapointKey.NUM_CONSONANTS.value)
         self.num_vowels = data.get(DatapointKey.NUM_VOWELS.value)
