@@ -171,6 +171,12 @@
                             // it's not an arbitrary string compare anyway.
                     Int Geq 5 -> Int Geq 5 // we can keep the int one as-is.
 
+                How about instead of using + as a separator I just use ; ?
+                That seems like it would never appear in a str input, so we can just
+                take the presence of ; as evidence the argument is a list.
+
+                That lets us keep our Geq overloading, too.
+
 
 
         Maybe worth taking a step back and asking if this entire strategy is wise.
