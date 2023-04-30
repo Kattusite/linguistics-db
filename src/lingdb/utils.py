@@ -2,7 +2,7 @@
 
 from collections.abc import Collection
 
-from typing import Generic, Iterator, Mapping, Optional, TypeVar
+from typing import Generic, Iterator, Mapping, Optional, TypeVar, Union
 
 
 KT = TypeVar('KT')
@@ -30,5 +30,5 @@ class MappedCollection(Generic[KT, VT], Collection[VT]):
     def __getitem__(self, key: KT) -> VT:
         return self._mapping[key]
 
-    def get(self, key: KT) -> Optional[VT]:
-        return self._mapping.get(key)
+    def get(self, key: KT, default: Optional[DT] = None) -> Union[VT, Optional[DT]]:
+        return self._mapping.get(key, default=default)
