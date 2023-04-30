@@ -128,8 +128,6 @@ class Language:
         return f'Language({json.dumps(self._data, indent=4, ensure_ascii=False)})'
 
 
-# TODO: It's a terrible idea to make this almost-a-mapping-but-not-quite.
-#   Just make it a Collection with a __getitem__
 class LanguageSet(MappedCollection[str, Language]):
     """A Collection of unique Language objects that supports getting Language objects by name.
 
