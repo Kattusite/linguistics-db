@@ -1,6 +1,7 @@
 """A collection of various Python utilities."""
 
 from collections.abc import Collection
+from enum import Enum
 from typing import (
     Generic,
     Iterator,
@@ -16,6 +17,13 @@ from typing import (
 KT = TypeVar('KT')
 DT = TypeVar('DT')
 VT = TypeVar('VT')
+
+
+class StrEnum(str, Enum):
+    """An Enum that is also a str."""
+
+    def __str__(self):
+        return str(self.value)
 
 
 class MappedCollection(Generic[KT, VT], Collection[VT]):
