@@ -291,9 +291,9 @@ class Contains(Predicate):
         """Initialize the Predicate."""
         self.needle = needle
 
-    def __call__(self, x: Collection) -> bool:
+    def __call__(self, haystack: Collection) -> bool:
         """Return True if the argument contains the desired element."""
-        return self.needle in x
+        return self.needle in haystack
 
 
 class Intersection(Transformation):
