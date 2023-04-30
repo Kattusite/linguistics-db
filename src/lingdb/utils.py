@@ -1,8 +1,16 @@
 """A collection of various Python utilities."""
 
 from collections.abc import Collection
-
-from typing import Generic, Iterator, Mapping, Optional, TypeVar, Union
+from typing import (
+    Generic,
+    Iterator,
+    List,
+    Mapping,
+    Optional,
+    TypeVar,
+    Union,
+    overload,
+)
 
 
 KT = TypeVar('KT')
@@ -27,8 +35,32 @@ class MappedCollection(Generic[KT, VT], Collection[VT]):
     def __len__(self) -> int:
         return len(self._mapping)
 
+    @overload
+    def __getitem__(self, key: int) -> VT:
+        pass
+
+    @overload
+    def __getitem__(self, key: slice) -> List[VT]:  # type: ignore[misc]
+        pass
+
+    @overload
     def __getitem__(self, key: KT) -> VT:
+        pass
+
+    def __getitem__(self, key: Union[KT, int, slice]):
+        # Also allow indexing by an ordinary int or slice
+        # HACK: Creating a temp list every time is kinda janky, but it makes the logic easier.
+        if isinstance(key, (int, slice)):
+            return list(self._mapping.values())[key]
         return self._mapping[key]
 
+    @overload
+    def get(self, key: KT) -> Optional[VT]:
+        pass
+
+    @overload
     def get(self, key: KT, default: Optional[DT] = None) -> Union[VT, Optional[DT]]:
+        pass
+
+    def get(self, key: KT, default: Optional[DT] = None):
         return self._mapping.get(key, default=default)

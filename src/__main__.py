@@ -21,8 +21,9 @@ from lingdb.query import Query
 query = (
     Query()
     .apply(GetConsonants)
-    .apply(Length)
+    .apply(Intersection('ptkbdg'))
     .extract_context()
+    .apply(Length)
 )
 
 DATASETS = Path(__file__).parent.parent / 'data' / 'datasets'

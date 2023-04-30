@@ -95,8 +95,10 @@ class Language:
 
         self.word_formation: Optional[List[str]] = data.get('word formation')
         self.word_formation_frequency: Optional[List[str]] = data.get('word formation frequency')
-        self.affixal_word_formation_frequency: Optional[str] = data.get('affixal word formation frequency')
-        self.nonaffixal_word_formation_frequency: Optional[str] = data.get('non-affixal word formation frequency')
+        self.affixal_word_formation_frequency: Optional[str] = data.get(
+            'affixal word formation frequency')
+        self.nonaffixal_word_formation_frequency: Optional[str] = data.get(
+            'non-affixal word formation frequency')
 
         self.functional_morphology: Optional[List[str]] = data.get('functional morphology')
         self.word_order: Optional[List[str]] = data.get('word order')

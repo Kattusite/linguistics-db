@@ -1,6 +1,11 @@
 """The query module represents queries that can be applied to sets of languages."""
 
-from typing import Collection, List, Union
+from typing import (
+    List,
+    Sequence,
+    Union,
+)
+
 
 from lingdb.language import Language, LanguageSet
 from lingdb.transform import Transformation
@@ -21,15 +26,13 @@ Defined by:
     CONTEXT := PRIMITIVE COLLECTION
 """
 
-ContextSet = Collection[Context]
+ContextSet = Sequence[Context]
 """A collection containing one Context for each Language in a LanguageSet."""
 
 Result = Union[Context, Language]
 """Either a raw Language, or a piece of Context about a Language."""
 
-# NOTE: In theory, it's redundant to include `Collection[Result]` and `ContextSet`.
-#   But right now List[Language] and `LanguageSet`
-ResultSet = Union[ContextSet, LanguageSet, Collection[Result]]
+ResultSet = Union[ContextSet, LanguageSet]
 """Either a raw LanguageSet, or a ContextSet with one context for each language in a LanguageSet."""
 
 History = List
@@ -68,6 +71,27 @@ class QueryResult:
         # The list starts empty because no context is captured until specifically requested.
         self.contexts: List[ContextSet] = []
         """A list of all sets of context extracted during request processing, if any."""
+
+    def __str__(self) -> str:
+        """Return a string representation of this object."""
+
+        def truncate(items: ResultSet, max_items: int = 5) -> str:
+            """Show only the first N results from a list to avoid spam."""
+            if len(items) < max_items:
+                return str(items)
+            items_str = ', '.join(str(item) for item in items[:max_items])
+            return f'[{items_str}, ...]'
+
+        result_set = truncate(self.result_set)
+        contexts = [truncate(context) for context in self.contexts]
+
+        return f'<{len(self.result_set)} results: {result_set}, contexts={contexts}>'
+
+    def __repr__(self) -> str:
+        """Return a string representation of this object."""
+        param_names = ('language_set', 'result_set', 'contexts')
+        params = ', '.join(f'{param}={getattr(self, param)}' for param in param_names)
+        return f'{self.__class__.__name__}({params})'
 
     ############################################################################
     #                               Properties
