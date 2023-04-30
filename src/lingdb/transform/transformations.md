@@ -82,6 +82,13 @@ What about new ones I'd have _liked_ to add?
 - x InRange Int,Int
     - includes endpoints
 
+How about Compare / InRange for endangerment levels?
+- x InRange EndangermentLevel,EndangermentLevel
+    - endangerment level in [4, 6b]
+    - need to create some custom type / mixin for comparable, maybe?
+    - Could just subclass str and then define a:
+        - x InRange Str,Str
+
 # Graphs
 
 We might want to filter our dataset a bit first, and then extract an arbitrary data field.

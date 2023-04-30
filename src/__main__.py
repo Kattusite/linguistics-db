@@ -8,11 +8,14 @@ from pathlib import Path
 from lingdb.language import (
     LanguageSet,
 )
-from lingdb.transform import (  # noqa: W0611
+from lingdb.transform.extractors import (  # noqa: W0611
     GetConsonants,
     GetName,
     GetNumConsonants,
     GetEndangermentLevel,
+)
+
+from lingdb.transform.transformations import (  # noqa: W0611
     Intersection,
     Length,
 )

@@ -1,20 +1,3 @@
-"""The transformer module defines the Transformer class and some friends."""
-
-from abc import ABC, abstractmethod
-from typing import (
-    Any,
-    Collection,
-    Generic,
-    TypeVar,
-)
-
-from lingdb.language import Language
-
-
-T = TypeVar('T')
-V = TypeVar('V')
-
-
 """
 NOTE:
     It'd be convenient to be able to chain transformers:
@@ -48,7 +31,6 @@ NOTE:
             (instead of returning the literal value and then back-computing the rationale,
             we could return an object that simultaneously tracks the value and rationale together.)
 """
-
 
 # spell-checker:ignore hsilgn aeiou
 # pylint: disable=pointless-string-statement
@@ -198,112 +180,3 @@ might ask about the data.
 
 """
 # pylint: enable=pointless-string-statement
-
-
-class Transformation(ABC, Generic[T, V]):
-    """A Transformation transforms an input into an arbitrary value.
-
-    These are completely general, and can do literally anything.
-    """
-
-    @abstractmethod
-    def __call__(self, arg: T) -> V:
-        """Execute the transformation on the provided argument and return the result."""
-        raise NotImplementedError()
-
-
-class Extractor(Transformation):
-    """An Extractor is a transformer that pulls out a value directly from a Language.
-
-    Extractors generally do not do any "analysis".
-
-    Examples:
-        - Language -> list of consonants in that language
-        - Language -> name
-        - Language -> has stress in that language?
-    """
-
-    # TODO: Does it make sense to have an Extractor at all?
-    #   Why not just stick to transformers?
-
-    @abstractmethod
-    def __call__(self, language: Language) -> Any:
-        """Execute the transformation on the provided Language and return the result."""
-        raise NotImplementedError()
-
-
-class Predicate(Transformation):
-    """A Predicate is a special transformer that always outputs a bool.
-
-    It is excluded from consideration when building the rationale explaining
-    why a language was or was not included in a LanguageSet.
-
-    It is usually used for the final check; e.g.
-        - greater than 3?
-        - contains the element "p"
-        - equals "bar"
-        -
-    """
-
-    @abstractmethod
-    def __call__(self, x: Any) -> bool:
-        """Execute the transformation on the provided argument and return the bool result."""
-        raise NotImplementedError()
-
-
-################################################################################
-#                               Concrete examples
-################################################################################
-
-class Get(Extractor):
-    """An Extractor that gets a named field from a language."""
-
-    def __init__(self, attr: str):
-        """Initialize a Get Extractor."""
-        self.attr = attr
-
-    def __call__(self, language: Language) -> Any:
-        """Execute the Get Extractor."""
-        return getattr(language, self.attr)
-
-
-GetName = Get('name')
-GetConsonants = Get('consonants')
-GetNumConsonants = Get('num_consonants')
-GetEndangermentLevel = Get('endangerment_level')
-
-
-class _Length(Transformation):
-    """A Transformation that returns the length of a Collection."""
-
-    def __call__(self, x: Collection) -> int:
-        """Return the length of the input collection."""
-        return len(x)
-
-
-Length = _Length()
-
-
-class Contains(Predicate):
-    """A Predicate that returns True if a Collection contains an element."""
-
-    def __init__(self, needle: Any):
-        """Initialize the Predicate."""
-        self.needle = needle
-
-    def __call__(self, haystack: Collection) -> bool:
-        """Return True if the argument contains the desired element."""
-        return self.needle in haystack
-
-
-class Intersection(Transformation):
-    """Return a new Collection equal to the intersection of a Collection with another."""
-
-    def __init__(self, elements: Collection[T]):
-        """Initialize the Transformation."""
-        self.elements = elements
-
-    def __call__(self, x: Collection[T]) -> Collection[T]:
-        """Return a new collection containing only those elements in both collections."""
-        # Preserve ordering of elements; avoid set()
-        return [el for el in x if el in self.elements]
