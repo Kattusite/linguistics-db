@@ -48,7 +48,7 @@ GetName = Get(DatapointKey.NAME)
 
 GetCountry = Get(DatapointKey.COUNTRY)
 GetLanguageFamily = Get(DatapointKey.LANGUAGE_FAMILY)
-GetEndangerment = Get(DatapointKey.ENDANGERMENT_LEVEL)
+GetEndangermentLevel = Get(DatapointKey.ENDANGERMENT_LEVEL)
 
 GetNumConsonants = Get(DatapointKey.NUM_CONSONANTS)
 GetNumVowels = Get(DatapointKey.NUM_VOWELS)
