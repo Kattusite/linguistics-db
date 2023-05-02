@@ -10,9 +10,9 @@ from lingdb.language import (
 )
 from lingdb.transform.extractors import (  # noqa: W0611
     GetConsonants,
+    GetEndangermentLevel,
     GetName,
     GetNumConsonants,
-    GetEndangermentLevel,
 )
 
 from lingdb.transform.transformations import (  # noqa: W0611
