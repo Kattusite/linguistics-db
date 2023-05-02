@@ -12,7 +12,7 @@ design UI elements and a backend encoding for the transformation chain.
 
 - x ContainedIn Collection
     - has an endangerment level in [1,2,3]
-    - has a headednesss of one of [mixed, head-initial, head-final]
+    - has a headedness of one of [mixed, head-initial, head-final]
     - a special case of the below:
         x Intersection(Collection) Geq 1
 - x Intersection(Collection) Compare Int
@@ -54,7 +54,7 @@ design UI elements and a backend encoding for the transformation chain.
 
 ## Others
 
-Those are the currently supported qureies.
+Those are the currently supported queries.
 What about new ones I'd have _liked_ to add?
 
 - x Equals Str
