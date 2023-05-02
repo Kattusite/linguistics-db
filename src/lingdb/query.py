@@ -1,8 +1,13 @@
 """The query module represents queries that can be applied to sets of languages."""
 
+from itertools import zip_longest
 from typing import (
+    Any,
+    Dict,
     List,
+    Optional,
     Sequence,
+    Type,
     Union,
 )
 
@@ -33,6 +38,7 @@ History = List
 """A historical collection tracking all past values of an attribute."""
 
 
+# TODO: Move to lingdb.query.result
 class QueryResult:
     """A QueryResult is the output produced by a Query.
 
@@ -86,6 +92,29 @@ class QueryResult:
         param_names = ('language_set', 'result_set', 'contexts')
         params = ', '.join(f'{param}={getattr(self, param)}' for param in param_names)
         return f'{self.__class__.__name__}({params})'
+
+    def serializable(self) -> Dict[str, Any]:
+        """Return a json-serializable representation of this QueryResult."""
+        language_names = [language.name for language in self.language_set]
+
+        result_set = self.result_set
+        if isinstance(result_set, LanguageSet):
+            result_set = [language.name for language in result_set]
+
+        # Convert [(1,2,3), (a,b,c)] -> [(1,a), (2,b), (3,c)]
+        context_lists = list(zip(*self.contexts))
+        return {
+            language: {'result': result, 'contexts': context_list}
+            for language, result, context_list
+            in zip_longest(language_names, result_set, context_lists, fillvalue=tuple())
+        }
+
+        # NOTE: Alternatively we could return the parallel lists version:
+        # return {
+        #     'language_set': [language.name for language in self.language_set],
+        #     'result_set': result_set,
+        #     'contexts': self.contexts,
+        # }
 
     ############################################################################
     #                               Properties
@@ -162,6 +191,7 @@ class QueryResult:
         self.language_set = new_language_set
 
 
+# TODO: Move to lingdb.query.directives
 class QueryDirective:
     """QueryDirective acts a special processor directive, triggering special Query behavior.
 
@@ -179,8 +209,23 @@ class ExtractContext(QueryDirective):
     """ExtractContext is a QueryDirective signaling a Query should extract context."""
 
 
+# TODO: Rename to FilterLanguages?
 class FilterLanguageSet(QueryDirective):
     """FilterLanguageSet is a QueryDirective signaling a Query should filter its LanguageSet."""
+
+
+def get_query_directive(name: str) -> Optional[Type[QueryDirective]]:
+    """Return the QueryDirective class of the given name, or None if that name is unrecognized."""
+    matching_subclasses = [
+        subclass for subclass in QueryDirective.__subclasses__()
+        if subclass.__name__ == name
+    ]
+    if len(matching_subclasses) > 1:
+        # TODO Log
+        raise KeyError(f'More than one subclass named {name} was found: {matching_subclasses}')
+    if len(matching_subclasses) == 1:
+        return matching_subclasses[0]
+    return None
 
 
 # spell-checker:ignore ptkbdg
@@ -208,7 +253,10 @@ class Query:
         """Initialize an empty query, with no transformations."""
         self.transformations: List[Union[Transformation, QueryDirective]] = []
 
-    def apply(self, transformation: Transformation[Result, Result]) -> 'Query':
+    def apply(
+        self,
+        transformation: Union[Transformation[Result, Result], QueryDirective],
+    ) -> 'Query':
         """Apply the provided transformation to this chain.
 
         Returns:

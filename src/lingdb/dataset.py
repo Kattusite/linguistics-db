@@ -2,17 +2,21 @@
 
 from enum import StrEnum
 from pathlib import Path
+from typing import List
 
 from lingdb.language import LanguageSet
 
 
-DATASETS_PATH = Path(__file__).parent.parent / 'data' / 'datasets'
+DATASETS_PATH = Path(__file__).parent.parent.parent / 'data' / 'datasets'
 
 
 class Datasets(StrEnum):
     """The names of all datasets from current and past semesters.
 
     Datasets can be loaded from their JSON files with the .load() method.
+
+    NOTE: The order in which datasets are defined here is significant;
+        the last defined dataset will be the one returned by `latest()`.
     """
 
     # Test datasets
@@ -47,4 +51,8 @@ class Datasets(StrEnum):
         filepath = DATASETS_PATH / self / f'{self}.json'
         return LanguageSet.from_json(filepath)
 
-
+    @classmethod
+    def latest(cls) -> 'Datasets':
+        """Load the latest Dataset from its associated JSON file."""
+        datasets: List[Datasets] = list(cls.__members__.values())
+        return datasets[-1]

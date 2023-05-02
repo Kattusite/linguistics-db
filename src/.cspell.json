@@ -12,7 +12,8 @@
         "lingdb",
         "metaclasses",
         "netid",
-        "nonaffixal"
+        "nonaffixal",
+        "werkzeug"
     ],
     "flagWords": []
 }
