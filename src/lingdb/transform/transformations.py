@@ -2,9 +2,10 @@
 
 from abc import ABC, abstractmethod
 from typing import (
-    Any,
     Collection,
+    Dict,
     Generic,
+    Optional,
     TypeVar,
 )
 
@@ -23,6 +24,35 @@ class Transformation(ABC, Generic[T, V]):
     def __call__(self, arg: T) -> V:
         """Execute the transformation on the provided argument and return the result."""
         raise NotImplementedError()
+
+
+class MultiplexingTransformation(Transformation[T, V]):
+    """An Transformation that delegates to some other one, based on the supplied argument."""
+
+    @abstractmethod
+    def _transformations(self) -> Dict[str, Transformation]:
+        """Return the transformations to multiplex between, keyed by a str name."""
+        raise NotImplementedError()
+
+    @abstractmethod
+    def _default_transformation(self) -> Transformation:
+        """Return the transformation to be used by default.
+
+        This will be used if the requested transformation is None or not found.
+        """
+        raise NotImplementedError()
+
+    def __init__(self, transformation_name: Optional[str] = None):
+        """Initialize this multiplexer to use the named transformation."""
+        self.transformation_name = transformation_name
+        if transformation_name is None or transformation_name not in self._transformations():
+            self.transformation = self._default_transformation()
+        else:
+            self.transformation = self._transformations()[transformation_name]
+
+    def __call__(self, arg: T) -> V:
+        """Apply this extractor to the input Language."""
+        return self.transformation.__call__(arg)
 
 
 ################################################################################

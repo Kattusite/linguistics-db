@@ -1,9 +1,53 @@
 """The types module defines a collection of types that are useful for type hinting."""
 
+from enum import StrEnum
+
 from typing import (
     List,
     Union,
+    cast,
 )
+
+
+class OrderedStr(StrEnum):
+    """An OrderedStr is a StrEnum with custom comparisons defined for sorting.
+
+    Given two members of this class, A and B, A < B if A was defined before B in the enum.
+    """
+
+    def __lt__(self, other: object) -> bool:
+        """Return True if self was defined earlier than other in this OrderedStr."""
+        cls = self.__class__
+        members: 'List[OrderedStr]' = list(cls.__members__.values())
+
+        # For sanity, do not support comparison with arbitrary strs not part of the enum.
+        if self not in members or other not in members:
+            return NotImplemented
+
+        other = cast(OrderedStr, other)
+        return members.index(self) < members.index(other)
+
+
+class EndangermentLevel(OrderedStr):
+    """An endangerment level that a language may have.
+
+    NOTE: We'd like to name the levels just 0, 1, 2, ... but integers are not valid identifiers,
+        so we prefix each name with an "L" to indicate "Level".
+    """
+
+    L0      = '0'      # noqa: E221
+    L1      = '1'      # noqa: E221
+    L2      = '2'      # noqa: E221
+    L3      = '3'      # noqa: E221
+    L4      = '4'      # noqa: E221
+    L5      = '5'      # noqa: E221
+    L6A     = '6a'     # noqa: E221
+    L6B     = '6b'     # noqa: E221
+    L7      = '7'      # noqa: E221
+    L8A     = '8a'     # noqa: E221
+    L8B     = '8b'     # noqa: E221
+    L9      = '9'      # noqa: E221
+    L10     = '10'     # noqa: E221
 
 
 class Phoneme(str):

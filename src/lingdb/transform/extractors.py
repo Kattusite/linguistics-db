@@ -3,11 +3,12 @@
 from abc import abstractmethod
 from typing import (
     Any,
+    Dict,
 )
 
 from lingdb.language import Language, DatapointKey
 
-from .transformations import Transformation
+from .transformations import MultiplexingTransformation, Transformation
 
 
 class Extractor(Transformation):
@@ -44,45 +45,84 @@ class Get(Extractor):
 
 
 GetName = Get(DatapointKey.NAME)
-GetConsonants = Get(DatapointKey.CONSONANTS)
+
+GetCountry = Get(DatapointKey.COUNTRY)
+GetLanguageFamily = Get(DatapointKey.LANGUAGE_FAMILY)
+GetEndangerment = Get(DatapointKey.ENDANGERMENT_LEVEL)
+
 GetNumConsonants = Get(DatapointKey.NUM_CONSONANTS)
-GetEndangermentLevel = Get(DatapointKey.ENDANGERMENT_LEVEL)
+GetNumVowels = Get(DatapointKey.NUM_VOWELS)
+GetNumPhonemes = Get(DatapointKey.NUM_PHONEMES)
 
-# Get
+GetConsonants = Get(DatapointKey.CONSONANTS)
+GetConsonantTypes = Get(DatapointKey.CONSONANT_TYPES)
+GetVowels = Get(DatapointKey.VOWELS)
+GetVowelTypes = Get(DatapointKey.VOWEL_TYPES)
 
-# GetName
+GetNumConsonantPlaces = Get(DatapointKey.NUM_CONSONANT_PLACES)
+GetNumConsonantManners = Get(DatapointKey.NUM_CONSONANT_MANNERS)
 
-# GetCountry
-# GetLanguageFamily
-# GetEndangerment
+HasComplexConsonants = Get(DatapointKey.COMPLEX_CONSONANTS)
+HasTone = Get(DatapointKey.TONE)
 
-# GetNumConsonants
-# GetNumVowels
-# GetNumPhonemes
+# HasAnyStress looks up the literal "stress" key in the language.
+HasAnyStress = Get(DatapointKey.STRESS)
+HasPredictableStress = Get(DatapointKey.PREDICTABLE_STRESS)
+HasUnpredictableStress = Get(DatapointKey.UNPREDICTABLE_STRESS)
 
-# GetConsonants
-# GetConsonantTypes
-# GetVowels
-# GetVowelTypes
+GetSyllables = Get(DatapointKey.SYLLABLES)
 
-# GetNumConsonantPlaces
-# GetNumConsonantManners
+GetRecommend = Get(DatapointKey.RECOMMEND)
 
-# HasComplexConsonants
-# HasTone
-# HasStress('any', 'predictable', 'unpredictable')
+GetMorphologicalType = Get(DatapointKey.MORPHOLOGICAL_TYPE)
 
-# GetSyllables
+GetWordFormation = Get(DatapointKey.WORD_FORMATION)
 
-# GetRecommend
+# GetAnyWordFormationFrequency looks up the literal "word_formation_frequency" key in the language.
+GetAnyWordFormationFrequency = Get(DatapointKey.WORD_FORMATION_FREQUENCY)
+GetAffixalWordFormationFrequency = Get(DatapointKey.AFFIXAL_WORD_FORMATION_FREQUENCY)
+GetNonaffixalWordFormationFrequency = Get(DatapointKey.NONAFFIXAL_WORD_FORMATION_FREQUENCY)
 
-# GetMorphologicalType
-# GetWordFormation
-# GetWordFormationFrequency('any', 'affixal', 'non-affixal')
+GetFunctionalMorphology = Get(DatapointKey.FUNCTIONAL_MORPHOLOGY)
+GetWordOrder = Get(DatapointKey.WORD_ORDER)
+GetHeadedness = Get(DatapointKey.HEADEDNESS)
 
-# GetFunctionalMorphology
-# GetWordOrder
-# GetHeadedness
+GetAgreement = Get(DatapointKey.AGREEMENT)
+GetCase = Get(DatapointKey.CASE)
 
-# GetAgreement
-# GetCase
+
+################################################################################
+#                             Multiplexing Extractors
+################################################################################
+
+MultiplexingExtractor = MultiplexingTransformation[Language, Any]
+
+
+# HasStress accepts a string ('any', 'predictable', 'unpredictable')
+# and then delegates to the appropriate specific extractor above.
+class HasStress(MultiplexingExtractor):
+    """An Extractor for a specific kind of stress, supplied as an argument."""
+
+    def _extractors(self) -> Dict[str, Extractor]:
+        return {
+            'any': HasAnyStress,
+            'predictable': HasPredictableStress,
+            'unpredictable': HasUnpredictableStress,
+        }
+
+    def _default_extractor(self) -> Extractor:
+        return HasAnyStress
+
+
+class HasWordFormationFrequency(MultiplexingExtractor):
+    """An Extractor for a specific kind of word formation frequency, supplied as an argument."""
+
+    def _extractors(self) -> Dict[str, Extractor]:
+        return {
+            'any': GetAnyWordFormationFrequency,
+            'affixal': GetAffixalWordFormationFrequency,
+            'nonaffixal': GetNonaffixalWordFormationFrequency,
+        }
+
+    def _default_extractor(self) -> Extractor:
+        return GetAnyWordFormationFrequency
