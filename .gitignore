@@ -3,6 +3,7 @@
 **/*.pyc
 
 # Ignore virtual env
+.venv/
 venv/
 
 # Ignore random scripts
