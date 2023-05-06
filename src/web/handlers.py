@@ -8,16 +8,23 @@ from typing import (
     Any,
     Dict,
     List,
+    NoReturn,
     Tuple,
     Union,
 )
 from flask import Request
 from werkzeug.datastructures import ImmutableOrderedMultiDict, MultiDict
+from werkzeug.exceptions import (
+    BadRequest,
+    InternalServerError,
+)
+
 from lingdb.dataset import Dataset
 from lingdb.language import LanguageSet
 
 from lingdb.query import Query, QueryResult, get_query_directive
 from lingdb.transform import get_transformation, Transformation
+from web.exceptions import FailedLoadingDataset, NoSuchDataset
 
 
 # The order of parameters is important, so we use an OrderedMultiDict
@@ -125,19 +132,19 @@ class LanguageHandler:
 
         try:
             return Dataset(value)
-        except ValueError:
+        except ValueError as err:
             # TODO: Log
             # A named Dataset was requested, but no Dataset by that name could be found.
-            return default_dataset
+            raise NoSuchDataset(value) from err
 
     def _get_language_set(self, dataset: Dataset) -> LanguageSet:
         """Get the LanguageSet that should be used as the starting point for this Query."""
         try:
             return self.datasets[dataset]
-        except KeyError:
+        except KeyError as err:
             # TODO: Log
             # A named Dataset was requested, but no Dataset by that name could be found.
-            return self.latest_dataset
+            raise FailedLoadingDataset(dataset) from err
 
     def _parse_token_value(self, token: Token) -> Any:
         """Parse the value of `token` into some appropriate type, then return it.
@@ -242,8 +249,8 @@ class LanguageHandler:
         """Execute a single query against the provided dataset and return the result."""
         return query.evaluate(dataset)
 
-    def handle(self, request: Request) -> Serializable:
-        """Handle an incoming request by executing the zero or more queries contained within it."""
+    def _handle(self, request: Request) -> Serializable:
+        """Attempt to handle a request, without doing any error handling."""
         # Pre-process the query parameters
         args = request.args
         all_tokens = self._extract_tokens(args)
@@ -278,3 +285,23 @@ class LanguageHandler:
         ]
 
         return response
+
+    def _handle_error(self, request: Request, err: Exception) -> NoReturn:
+        """Attempt to handle any error that might arise while handling a request."""
+
+        # TODO: It'd probably be more natural just to make `NoSuchDataset` subclass `HTTPException`.
+
+        if isinstance(err, NoSuchDataset):
+            raise BadRequest(description=str(err))
+
+        if isinstance(err, FailedLoadingDataset):
+            raise InternalServerError(description=str(err))
+
+        raise err
+
+    def handle(self, request: Request) -> Serializable:
+        """Handle an incoming request by executing the zero or more queries contained within it."""
+        try:
+            return self._handle(request)
+        except Exception as err:
+            return self._handle_error(request, err)
