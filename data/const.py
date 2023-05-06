@@ -126,38 +126,38 @@ class JsonKey(enum.Enum):
     NAME                  = "student"  # formerly "name"
     LANGUAGE              = "name"     # formerly "language"
     COUNTRY               = "country"
-    LANGUAGE_FAMILY       = "language family"
-    ENDANGERMENT_LEVEL    = "endangerment level"
-    NUM_VOWELS            = "num vowels"
-    NUM_CONSONANTS        = "num consonants"
-    NUM_PHONEMES          = "num phonemes"
+    LANGUAGE_FAMILY       = "language_family"
+    ENDANGERMENT_LEVEL    = "endangerment_level"
+    NUM_VOWELS            = "num_vowels"
+    NUM_CONSONANTS        = "num_consonants"
+    NUM_PHONEMES          = "num_phonemes"
     CONSONANTS            = "consonants"
     VOWELS                = "vowels"
-    NUM_CONSONANT_PLACES  = "num consonant places" # note diff than orig
-    NUM_CONSONANT_MANNERS = "num consonant manners"
-    VOWEL_TYPES           = "vowel types"
-    CONSONANT_TYPES       = "consonant types"
-    HAS_3_PLUS_PLACES     = "3+ places"   # deprecated
-    HAS_2_PLUS_MANNERS    = "2+ manners"  # deprecated
-    COMPLEX_CONSONANTS    = "complex consonants"
+    NUM_CONSONANT_PLACES  = "num_consonant_places" # note diff than orig
+    NUM_CONSONANT_MANNERS = "num_consonant_manners"
+    VOWEL_TYPES           = "vowel_types"
+    CONSONANT_TYPES       = "consonant_types"
+    HAS_3_PLUS_PLACES     = "3+_consonant_places"   # deprecated
+    HAS_2_PLUS_MANNERS    = "2+_consonant_manners"  # deprecated
+    COMPLEX_CONSONANTS    = "complex_consonants"
     TONE                  = "tone"
     # NOTE: Before F22, STRESS was the only kind of stress -- it indicated "predictable stress".
     #   In F22 a new option was added for "unpredictable stress".
     #   Now STRESS is a derived value, true if either kind of stress appears.
     STRESS                = "stress"
-    PREDICTABLE_STRESS    = "predictable stress"
-    UNPREDICTABLE_STRESS  = "unpredictable stress"
+    PREDICTABLE_STRESS    = "predictable_stress"
+    UNPREDICTABLE_STRESS  = "unpredictable_stress"
     SYLLABLES             = "syllables"
 
     CITATION              = "citation"
     RECOMMEND             = "recommend"
-    MORPHOLOGICAL_TYPE    = "morphological type"
-    WORD_FORMATION        = "word formation"
-    WORD_FORMATION_FREQ   = "word formation frequency"
-    AFFIXATION_FREQ       = "affixal word formation frequency"
-    NON_AFFIXATION_FREQ   = "non-affixal word formation frequency"
-    FUNCTIONAL_MORPHOLOGY = "functional morphology"
-    WORD_ORDER            = "word order"
+    MORPHOLOGICAL_TYPE    = "morphological_type"
+    WORD_FORMATION        = "word_formation"
+    WORD_FORMATION_FREQ   = "word_formation frequency"
+    AFFIXATION_FREQ       = "affixal_word_formation_frequency"
+    NON_AFFIXATION_FREQ   = "nonaffixal_word_formation_frequency"
+    FUNCTIONAL_MORPHOLOGY = "functional_morphology"
+    WORD_ORDER            = "word_order"
     HEADEDNESS            = "headedness"
     CASE                  = "case"
     AGREEMENT             = "agreement"
@@ -286,18 +286,18 @@ class AllFuzzySearchTerms:
     })
 
     PHONETIC = FuzzySearchTerms({
-        K.COMPLEX_CONSONANTS.value:     [],
-        K.TONE.value:                   [],
-        K.STRESS.value:                 [],
+        K.COMPLEX_CONSONANTS.value:     ['complex consonants'],
+        K.TONE.value:                   ['tone'],
+        K.STRESS.value:                 ['stress'],
         # Before F22, there was only one "stress" option,
         # and it specifically indicated "predictable stress".
         K.PREDICTABLE_STRESS.value:     ['stress is predictable', 'stress is mostly predictable'],
     })
 
     PHONETIC_F22 = FuzzySearchTerms({
-        K.COMPLEX_CONSONANTS.value:     [],
-        K.TONE.value:                   [],
-        K.STRESS.value:                 [],
+        K.COMPLEX_CONSONANTS.value:     ['complex consonants'],
+        K.TONE.value:                   ['tone'],
+        K.STRESS.value:                 ['stress'],
         K.PREDICTABLE_STRESS.value:     ['mostly predictable'],
         K.UNPREDICTABLE_STRESS.value:   ['not predictably'],
     })

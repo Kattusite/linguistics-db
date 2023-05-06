@@ -4,13 +4,13 @@
         "student": "2d4259d47841c902",
         "netid": "47c75b257b4996c2",
         "country": "Oman",
-        "language family": "Afro-Asiatic",
-        "endangerment level": [
+        "language_family": "Afro-Asiatic",
+        "endangerment_level": [
             "8b"
         ],
-        "num consonants": 26,
-        "num vowels": 16,
-        "num phonemes": 42,
+        "num_consonants": 26,
+        "num_vowels": 16,
+        "num_phonemes": 42,
         "consonants": [
             "n",
             "t",
@@ -36,7 +36,7 @@
             "ɮ",
             "ɣ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "ejectives"
         ],
         "vowels": [
@@ -48,33 +48,33 @@
             "ɛ",
             "aᶠ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long",
             "diphthongs"
         ],
-        "num consonant places": 9,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 9,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
             "root-and-pattern"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SVO",
             "VSO"
         ],
@@ -87,13 +87,13 @@
         "student": "5c673cb2c0ee3003",
         "netid": "446afe9485814472",
         "country": "Turkey has the largest Domari speaking population, but speakers are spread across the middle east and North Africa.",
-        "language family": "Indo-European",
-        "endangerment level": [
+        "language_family": "Indo-European",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 34,
-        "num vowels": 14,
-        "num phonemes": 48,
+        "num_consonants": 34,
+        "num_vowels": 14,
+        "num_phonemes": 48,
         "consonants": [
             "n",
             "t",
@@ -125,7 +125,7 @@
             "ħ",
             "ʕ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates"
         ],
         "vowels": [
@@ -144,13 +144,13 @@
             "ɔ",
             "ɑ"
         ],
-        "vowel types": [],
-        "num consonant places": 10,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "vowel_types": [],
+        "num_consonant_places": 10,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -158,17 +158,17 @@
             "CC coda"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "suppletion"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -180,13 +180,13 @@
         "student": "90bbbbd2341237b4",
         "netid": "e3d0797a4962a807",
         "country": "Canada (BC)",
-        "language family": "Salish",
-        "endangerment level": [
+        "language_family": "Salish",
+        "endangerment_level": [
             "8a"
         ],
-        "num consonants": 36,
-        "num vowels": 16,
-        "num phonemes": 52,
+        "num_consonants": 36,
+        "num_vowels": 16,
+        "num_phonemes": 52,
         "consonants": [
             "n",
             "t",
@@ -208,7 +208,7 @@
             "q",
             "χ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "ejectives",
             "affricates",
             "labialized"
@@ -220,16 +220,16 @@
             "ɛ",
             "ɑ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long",
             "diphthongs"
         ],
-        "num consonant places": 9,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 9,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "CC onset",
@@ -240,11 +240,11 @@
             "CCC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -252,8 +252,8 @@
             "internal change",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "VSO"
         ],
         "headedness": [
@@ -265,13 +265,13 @@
         "student": "2f2179e1eb711de2",
         "netid": "a4abcd84e941fc3a",
         "country": "Brazil",
-        "language family": "Arawan",
-        "endangerment level": [
+        "language_family": "Arawan",
+        "endangerment_level": [
             "7"
         ],
-        "num consonants": 11,
-        "num vowels": 4,
-        "num phonemes": 15,
+        "num_consonants": 11,
+        "num_vowels": 4,
+        "num_phonemes": 15,
         "consonants": [
             "n",
             "t",
@@ -285,38 +285,38 @@
             "ɸ",
             "ɟ"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "e",
             "i",
             "ɐ",
             "ɤ"
         ],
-        "vowel types": [],
-        "num consonant places": 6,
-        "num consonant manners": 4,
-        "complex consonants": false,
+        "vowel_types": [],
+        "num_consonant_places": 6,
+        "num_consonant_manners": 4,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "internal change",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO",
             "OSV"
         ],
@@ -329,13 +329,13 @@
         "student": "b48bd244e6cfe2fc",
         "netid": "f9be1e019ca6893f",
         "country": "China",
-        "language family": "Sino-Tibetan",
-        "endangerment level": [
+        "language_family": "Sino-Tibetan",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 24,
-        "num vowels": 18,
-        "num phonemes": 42,
+        "num_consonants": 24,
+        "num_vowels": 18,
+        "num_phonemes": 42,
         "consonants": [
             "n",
             "t",
@@ -358,7 +358,7 @@
             "kʰ",
             "ɣ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates",
             "aspirated"
         ],
@@ -371,31 +371,31 @@
             "aᶠ",
             "ɤ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "diphthongs",
             "triphthongs"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 7,
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 7,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "isolating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly non-affixal",
-        "word order": [
+        "word_formation frequency": "mostly non-affixal",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -407,13 +407,13 @@
         "student": "9ab858277bf42bb5",
         "netid": "45e0d7865bbf58b9",
         "country": "Santa Isabel, Solomon Islands",
-        "language family": "Austronesian",
-        "endangerment level": [
+        "language_family": "Austronesian",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 22,
-        "num vowels": 5,
-        "num phonemes": 27,
+        "num_consonants": 22,
+        "num_vowels": 5,
+        "num_phonemes": 27,
         "consonants": [
             "n",
             "t",
@@ -434,7 +434,7 @@
             "v",
             "ɣ"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "a",
             "e",
@@ -442,29 +442,29 @@
             "i",
             "u"
         ],
-        "vowel types": [],
-        "num consonant places": 6,
-        "num consonant manners": 6,
-        "complex consonants": false,
+        "vowel_types": [],
+        "num_consonant_places": 6,
+        "num_consonant_manners": 6,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
             "CC onset"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -476,13 +476,13 @@
         "student": "1dcaf0583cc359da",
         "netid": "a87d7beaebf27483",
         "country": "Iran, Iraq, Turkey, Syria",
-        "language family": "Indo-European",
-        "endangerment level": [
+        "language_family": "Indo-European",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 31,
-        "num vowels": 9,
-        "num phonemes": 40,
+        "num_consonants": 31,
+        "num_vowels": 9,
+        "num_phonemes": 40,
         "consonants": [
             "n",
             "t",
@@ -516,7 +516,7 @@
             "ħ",
             "ʕ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates",
             "velarized"
         ],
@@ -531,13 +531,13 @@
             "ɪ",
             "ɔ"
         ],
-        "vowel types": [],
-        "num consonant places": 11,
-        "num consonant manners": 9,
-        "complex consonants": true,
+        "vowel_types": [],
+        "num_consonant_places": 11,
+        "num_consonant_manners": 9,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -547,17 +547,17 @@
             "CCC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "infixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -569,13 +569,13 @@
         "student": "d38d32f9d0c5ea15",
         "netid": "f2cfc47d16d837d4",
         "country": "Bhutan",
-        "language family": "Sino-Tibetan",
-        "endangerment level": [
+        "language_family": "Sino-Tibetan",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 28,
-        "num vowels": 11,
-        "num phonemes": 39,
+        "num_consonants": 28,
+        "num_vowels": 11,
+        "num_phonemes": 39,
         "consonants": [
             "n",
             "t",
@@ -602,7 +602,7 @@
             "ɹ",
             "ç"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates",
             "aspirated"
         ],
@@ -614,15 +614,15 @@
             "y",
             "ɐ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "diphthongs"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 7,
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 7,
+        "complex_consonants": false,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -630,10 +630,10 @@
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "internal change",
@@ -641,8 +641,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -654,13 +654,13 @@
         "student": "9ce0e5557251ba48",
         "netid": "38f207a85af0abf8",
         "country": "India",
-        "language family": "North Dravidian",
-        "endangerment level": [
+        "language_family": "North Dravidian",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 34,
-        "num vowels": 25,
-        "num phonemes": 59,
+        "num_consonants": 34,
+        "num_vowels": 25,
+        "num_phonemes": 59,
         "consonants": [
             "n",
             "t",
@@ -694,7 +694,7 @@
             "ɖ",
             "ɽ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates",
             "aspirated"
         ],
@@ -707,17 +707,17 @@
             "ə",
             "ɐ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "nasalized",
             "long",
             "diphthongs"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 8,
-        "complex consonants": false,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 8,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -726,17 +726,17 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "analytic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -748,13 +748,13 @@
         "student": "4f189b8944a6a6f6",
         "netid": "a94d0990ee6fe308",
         "country": "Australia",
-        "language family": "Pama-Nyungan",
-        "endangerment level": [
+        "language_family": "Pama-Nyungan",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 16,
-        "num vowels": 10,
-        "num phonemes": 26,
+        "num_consonants": 16,
+        "num_vowels": 10,
+        "num_phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -771,7 +771,7 @@
             "ɻ",
             "c"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "a",
             "e",
@@ -779,15 +779,15 @@
             "i",
             "u"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -796,17 +796,17 @@
             "CCC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -818,13 +818,13 @@
         "student": "d9be822960ababf3",
         "netid": "40cc4076c949554a",
         "country": "China",
-        "language family": "Sino-Tibetan",
-        "endangerment level": [
+        "language_family": "Sino-Tibetan",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 29,
-        "num vowels": 21,
-        "num phonemes": 50,
+        "num_consonants": 29,
+        "num_vowels": 21,
+        "num_phonemes": 50,
         "consonants": [
             "n",
             "t",
@@ -855,7 +855,7 @@
             "χ",
             "ʁ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates",
             "aspirated"
         ],
@@ -868,34 +868,34 @@
             "y",
             "aᶠ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "diphthongs",
             "triphthongs"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -907,13 +907,13 @@
         "student": "e1d95fa0f39d757c",
         "netid": "fc7fa8e2b0df6f3b",
         "country": "New Zealand",
-        "language family": "Austronesian",
-        "endangerment level": [
+        "language_family": "Austronesian",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 10,
-        "num vowels": 22,
-        "num phonemes": 32,
+        "num_consonants": 10,
+        "num_vowels": 22,
+        "num_phonemes": 32,
         "consonants": [
             "n",
             "t",
@@ -926,7 +926,7 @@
             "f",
             "ɾ"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "a",
             "e",
@@ -934,32 +934,32 @@
             "i",
             "u"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long",
             "diphthongs"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "analytic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "VSO"
         ],
         "headedness": [
@@ -971,13 +971,13 @@
         "student": "25f4b8245d0ad54d",
         "netid": "8e964f19dbbe5d6a",
         "country": "Taiwan",
-        "language family": "Austronesian",
-        "endangerment level": [
+        "language_family": "Austronesian",
+        "endangerment_level": [
             "8a"
         ],
-        "num consonants": 18,
-        "num vowels": 4,
-        "num phonemes": 22,
+        "num_consonants": 18,
+        "num_vowels": 4,
+        "num_phonemes": 22,
         "consonants": [
             "n",
             "t",
@@ -998,37 +998,37 @@
             "ɖ",
             "ɭ"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "a",
             "i",
             "u",
             "ə"
         ],
-        "vowel types": [],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "complex consonants": false,
+        "vowel_types": [],
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "VOS"
         ],
         "headedness": [
@@ -1040,13 +1040,13 @@
         "student": "9a192689f24e8f5c",
         "netid": "ff0a6a6e88870a79",
         "country": "Malaysia (Malay peninsula)",
-        "language family": "Austroasiatic",
-        "endangerment level": [
+        "language_family": "Austroasiatic",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 32,
-        "num vowels": 20,
-        "num phonemes": 52,
+        "num_consonants": 32,
+        "num_vowels": 20,
+        "num_phonemes": 52,
         "consonants": [
             "n",
             "t",
@@ -1070,7 +1070,7 @@
             "kʰ",
             "c"
         ],
-        "consonant types": [
+        "consonant_types": [
             "aspirated"
         ],
         "vowels": [
@@ -1085,32 +1085,32 @@
             "ɔ",
             "ɒ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "nasalized"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -1122,13 +1122,13 @@
         "student": "e1a52563add02426",
         "netid": "f8822ca4bfbd55b8",
         "country": "Egypt",
-        "language family": "Afro-asiatic",
-        "endangerment level": [
+        "language_family": "Afro-asiatic",
+        "endangerment_level": [
             "6a"
         ],
-        "num consonants": 30,
-        "num vowels": 12,
-        "num phonemes": 42,
+        "num_consonants": 30,
+        "num_vowels": 12,
+        "num_phonemes": 42,
         "consonants": [
             "n",
             "t",
@@ -1150,7 +1150,7 @@
             "ʁ",
             "ʕ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "labialized"
         ],
         "vowels": [
@@ -1161,16 +1161,16 @@
             "u",
             "ə"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long",
             "pharyngealized"
         ],
-        "num consonant places": 9,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 9,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -1180,12 +1180,12 @@
             "CCC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
@@ -1193,8 +1193,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -1206,13 +1206,13 @@
         "student": "56643df0dea5e2cd",
         "netid": "f971ebb5bd7978bc",
         "country": "The United States, Ute tribe",
-        "language family": "Uto-Aztecan",
-        "endangerment level": [
+        "language_family": "Uto-Aztecan",
+        "endangerment_level": [
             "6b"
         ],
-        "num consonants": 18,
-        "num vowels": 18,
-        "num phonemes": 36,
+        "num_consonants": 18,
+        "num_vowels": 18,
+        "num_phonemes": 36,
         "consonants": [
             "n",
             "t",
@@ -1233,7 +1233,7 @@
             "χ",
             "ʁ"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "a",
             "e",
@@ -1245,31 +1245,31 @@
             "ø",
             "æ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1281,11 +1281,11 @@
         "student": "6f42214328e4950b",
         "netid": "e4747812fb6b3b6f",
         "country": "Nepal",
-        "language family": "Sino-Tibetan",
-        "endangerment level": [],
-        "num consonants": 32,
-        "num vowels": 11,
-        "num phonemes": 43,
+        "language_family": "Sino-Tibetan",
+        "endangerment_level": [],
+        "num_consonants": 32,
+        "num_vowels": 11,
+        "num_phonemes": 43,
         "consonants": [
             "n",
             "t",
@@ -1310,7 +1310,7 @@
             "ʈ",
             "ɖ"
         ],
-        "consonant types": [
+        "consonant_types": [
             "implosives",
             "affricates",
             "aspirated"
@@ -1323,16 +1323,16 @@
             "u",
             "ʌ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long",
             "diphthongs"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 8,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 8,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -1341,17 +1341,17 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1363,13 +1363,13 @@
         "student": "34a7fefff6da11be",
         "netid": "3a360033acbec561",
         "country": "Australia",
-        "language family": "Australian",
-        "endangerment level": [
+        "language_family": "Australian",
+        "endangerment_level": [
             "8a"
         ],
-        "num consonants": 17,
-        "num vowels": 11,
-        "num phonemes": 28,
+        "num_consonants": 17,
+        "num_vowels": 11,
+        "num_phonemes": 28,
         "consonants": [
             "n",
             "m",
@@ -1389,7 +1389,7 @@
             "ɟ",
             "ʎ"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "e",
             "i",
@@ -1400,15 +1400,15 @@
             "ʊ",
             "ɔ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -1417,15 +1417,15 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SVO",
             "VOS",
             "OVS"
@@ -1439,13 +1439,13 @@
         "student": "e195f967a8245cdb",
         "netid": "d0da7ae49ba57256",
         "country": "China",
-        "language family": "Hmong-Mien",
-        "endangerment level": [
+        "language_family": "Hmong-Mien",
+        "endangerment_level": [
             "6a"
         ],
-        "num consonants": 65,
-        "num vowels": 15,
-        "num phonemes": 80,
+        "num_consonants": 65,
+        "num_vowels": 15,
+        "num_phonemes": 80,
         "consonants": [
             "n",
             "t",
@@ -1466,7 +1466,7 @@
             "ʋ",
             "q"
         ],
-        "consonant types": [
+        "consonant_types": [
             "affricates",
             "labialized",
             "palatalized",
@@ -1481,32 +1481,32 @@
             "ɤ",
             "ɑ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "nasalized",
             "diphthongs"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "isolating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -1518,13 +1518,13 @@
         "student": "f37c27febbec66c2",
         "netid": "e85df41f4d673f19",
         "country": "Australia",
-        "language family": "Pama–Nyungan",
-        "endangerment level": [
+        "language_family": "Pama–Nyungan",
+        "endangerment_level": [
             "10"
         ],
-        "num consonants": 16,
-        "num vowels": 10,
-        "num phonemes": 26,
+        "num_consonants": 16,
+        "num_vowels": 10,
+        "num_phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -1541,7 +1541,7 @@
             "ɹ",
             "c"
         ],
-        "consonant types": [],
+        "consonant_types": [],
         "vowels": [
             "i",
             "u",
@@ -1549,32 +1549,32 @@
             "aᶠ",
             "ɔ"
         ],
-        "vowel types": [
+        "vowel_types": [
             "long"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [

@@ -3,9 +3,9 @@
         "name": "Abkhaz",
         "student": "0c414a2c5cc88f0c",
         "netid": "6162df382d1373b1",
-        "num consonants": 47,
-        "num vowels": 2,
-        "num phonemes": 49,
+        "num_consonants": 47,
+        "num_vowels": 2,
+        "num_phonemes": 49,
         "consonants": [
             "n",
             "t",
@@ -28,12 +28,12 @@
             "a",
             "ə"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -43,10 +43,10 @@
         ],
         "citation": "Chirikba, V. A. Abkhaz. München: LINCOM, 2003.",
         "recommend": "It's a tiny grammar, so it's very concise (almost too concise and dense, if you ask me) so if the student has a linguistics background then it should be fine",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -54,8 +54,8 @@
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [],
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [],
         "headedness": [
             "consistently head-final"
         ],
@@ -66,9 +66,9 @@
         "name": "Aguaruna",
         "student": "1c25b5dd9f0ee945",
         "netid": "3a332436fb15cbe0",
-        "num consonants": 15,
-        "num vowels": 8,
-        "num phonemes": 23,
+        "num_consonants": 15,
+        "num_vowels": 8,
+        "num_phonemes": 23,
         "consonants": [
             "n",
             "t",
@@ -90,12 +90,12 @@
             "u",
             "ɨ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -103,17 +103,17 @@
         ],
         "citation": "A Grammar of Aguaruna (Iiniá Chicham), Simon E Overall, De Gruyter Mouton, 2015.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -126,9 +126,9 @@
         "name": "Apurinã",
         "student": "11ee4a3294a67cdf",
         "netid": "04df888e819f734f",
-        "num consonants": 15,
-        "num vowels": 20,
-        "num phonemes": 35,
+        "num_consonants": 15,
+        "num_vowels": 20,
+        "num_phonemes": 35,
         "consonants": [
             "n",
             "t",
@@ -149,30 +149,30 @@
             "u",
             "ɨ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V"
         ],
         "citation": "(The Language Of The Apurinã People of Brazil, Sidney Da Silva Facundes, SUNY Buffalo, 2000)",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "compounding"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -185,9 +185,9 @@
         "name": "Arapaho",
         "student": "c5c909266d31eb70",
         "netid": "f21c069ced49f432",
-        "num consonants": 12,
-        "num vowels": 12,
-        "num phonemes": 24,
+        "num_consonants": 12,
+        "num_vowels": 12,
+        "num_phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -202,12 +202,12 @@
             "x"
         ],
         "vowels": [],
-        "num consonant places": 7,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -216,11 +216,11 @@
         ],
         "citation": "Cowell, A., & Moss Sr, A. (2008). The Arapaho Language. University Press of Colorado.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -230,8 +230,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -244,9 +244,9 @@
         "name": "Berbice Dutch Creole",
         "student": "e8c2547bfb77ebec",
         "netid": "c6c9166077c13539",
-        "num consonants": 13,
-        "num vowels": 6,
-        "num phonemes": 19,
+        "num_consonants": 13,
+        "num_vowels": 6,
+        "num_phonemes": 19,
         "consonants": [
             "n",
             "t",
@@ -267,12 +267,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 4,
-        "num consonant manners": 4,
-        "complex consonants": false,
+        "num_consonant_places": 4,
+        "num_consonant_manners": 4,
+        "complex_consonants": false,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -282,18 +282,18 @@
         ],
         "citation": "Kouwenberg, Silva. (1994). A grammar of Berbice Dutch Creole. Berlin: Mouton de Gruyter.",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -306,9 +306,9 @@
         "name": "Chalcatongo Mixtec",
         "student": "ec0da0ca6589e605",
         "netid": "b9fea6da80862c8b",
-        "num consonants": 16,
-        "num vowels": 12,
-        "num phonemes": 28,
+        "num_consonants": 16,
+        "num_vowels": 12,
+        "num_phonemes": 28,
         "consonants": [
             "n",
             "t",
@@ -332,12 +332,12 @@
             "u",
             "ɨ"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -345,10 +345,10 @@
         ],
         "citation": "\"A Grammar of Chalcatongo Mixtec,\" Monica Macaulay. University of California Press, 1996.",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "analytic"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -357,8 +357,8 @@
             "stress or tone shift",
             "conversion"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "VSO"
         ],
         "headedness": [
@@ -371,9 +371,9 @@
         "name": "Choctaw",
         "student": "1ab2ffe373bd579a",
         "netid": "bbff32a2110db751",
-        "num consonants": 16,
-        "num vowels": 9,
-        "num phonemes": 25,
+        "num_consonants": 16,
+        "num_vowels": 9,
+        "num_phonemes": 25,
         "consonants": [
             "n",
             "t",
@@ -393,12 +393,12 @@
             "o",
             "i"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -407,18 +407,18 @@
         ],
         "citation": "A Choctaw Reference Grammar, George Aaron Broadwell, 2006, University of Nebraska Press",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "infixation",
             "stress or tone shift"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -431,9 +431,9 @@
         "name": "Comanche",
         "student": "0ac03ead4aef3910",
         "netid": "0c857638971e4899",
-        "num consonants": 12,
-        "num vowels": 6,
-        "num phonemes": 18,
+        "num_consonants": 12,
+        "num_vowels": 6,
+        "num_phonemes": 18,
         "consonants": [
             "n",
             "t",
@@ -455,12 +455,12 @@
             "u",
             "ɨ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -468,10 +468,10 @@
         ],
         "citation": "A grammar of Comanche, Jean Ormandy Charney",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -479,8 +479,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -493,9 +493,9 @@
         "name": "Creek",
         "student": "c0e934e396d9b970",
         "netid": "1873cb349b522d8f",
-        "num consonants": 13,
-        "num vowels": 15,
-        "num phonemes": 28,
+        "num_consonants": 13,
+        "num_vowels": 15,
+        "num_phonemes": 28,
         "consonants": [
             "n",
             "t",
@@ -510,12 +510,12 @@
             "f"
         ],
         "vowels": [],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda",
@@ -527,9 +527,9 @@
         "name": "Crow",
         "student": "72abe0a538f7dbdb",
         "netid": "a775cace3c3c7cda",
-        "num consonants": 11,
-        "num vowels": 5,
-        "num phonemes": 16,
+        "num_consonants": 11,
+        "num_vowels": 5,
+        "num_phonemes": 16,
         "consonants": [
             "n",
             "t",
@@ -549,12 +549,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 4,
-        "complex consonants": true,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 4,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -564,14 +564,14 @@
         ],
         "citation": "Graczyk, R. (2007). A grammar of Crow. Lincoln: Univ. of Nebraska Press.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -584,9 +584,9 @@
         "name": "Cupeño",
         "student": "ae0d19729b6f811a",
         "netid": "58275fc1b36a7a18",
-        "num consonants": 21,
-        "num vowels": 12,
-        "num phonemes": 33,
+        "num_consonants": 21,
+        "num_vowels": 12,
+        "num_phonemes": 33,
         "consonants": [
             "n",
             "t",
@@ -613,12 +613,12 @@
             "u",
             "ə"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -626,10 +626,10 @@
         ],
         "citation": "Hill, Jane H. A Grammar of Cupeño. Vol. 136, University of California Publications, 2006.",
         "recommend": "No, my grammar was hard to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -638,8 +638,8 @@
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -652,9 +652,9 @@
         "name": "Daakaka",
         "student": "549cc11d1d1bcb77",
         "netid": "1f68a3c992a1a6b8",
-        "num consonants": 18,
-        "num vowels": 14,
-        "num phonemes": 32,
+        "num_consonants": 18,
+        "num_vowels": 14,
+        "num_phonemes": 32,
         "consonants": [
             "n",
             "t",
@@ -680,12 +680,12 @@
             "u",
             "ə"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -694,19 +694,19 @@
         ],
         "citation": "Von Prince, Kilu. 2015. A Grammar of Daakaka. Walter de Gruyter: Germany.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "isolating",
             "fusional",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -719,9 +719,9 @@
         "name": "Evenki",
         "student": "619b68f2e8314e4b",
         "netid": "e5673f0a3458f544",
-        "num consonants": 18,
-        "num vowels": 13,
-        "num phonemes": 31,
+        "num_consonants": 18,
+        "num_vowels": 13,
+        "num_phonemes": 31,
         "consonants": [
             "n",
             "m",
@@ -744,12 +744,12 @@
             "o",
             "ɯ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -757,15 +757,15 @@
         ],
         "citation": "Evenki, Igor Nedjalkov, Routledge, 1997.",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -778,9 +778,9 @@
         "name": "Hainan Cham",
         "student": "09027b4607c67529",
         "netid": "33130919376ab910",
-        "num consonants": 19,
-        "num vowels": 18,
-        "num phonemes": 37,
+        "num_consonants": 19,
+        "num_vowels": 18,
+        "num_phonemes": 37,
         "consonants": [
             "n",
             "t",
@@ -805,12 +805,12 @@
             "u",
             "ə"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "C coda",
@@ -818,19 +818,19 @@
         ],
         "citation": "Thurgood, Graham, Thurgood, Ela, and Fengxiang, Li. 2014. A Grammatical Sketch of Hainan Cham : History, Contact, and Phonology. Boston: De Gruyter.",
         "recommend": "No, my grammar was hard to work with",
-        "morphological type": [
+        "morphological_type": [
             "isolating",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly isolating",
-        "word order": [
+        "word_formation frequency": "mostly isolating",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -843,9 +843,9 @@
         "name": "Hualapai",
         "student": "2383d96a2b8eb66b",
         "netid": "f3740991ee95165b",
-        "num consonants": 24,
-        "num vowels": 16,
-        "num phonemes": 30,
+        "num_consonants": 24,
+        "num_vowels": 16,
+        "num_phonemes": 30,
         "consonants": [
             "n",
             "t",
@@ -869,12 +869,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -885,10 +885,10 @@
         ],
         "citation": "Watahomigie, L., Bender, J., Watahomigie, P., Sr., & Yamamoto, A. Y. (2001). Hualapai Reference Grammar (Endangered Languages of the Pacific Rim). Osaka, Japan: Faculty of Informatics, Osaka Gakuin University.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -898,8 +898,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -912,9 +912,9 @@
         "name": "Ingush",
         "student": "14a0f61491b3fed1",
         "netid": "a6c4ac6f129e2927",
-        "num consonants": 39,
-        "num vowels": 23,
-        "num phonemes": 62,
+        "num_consonants": 39,
+        "num_vowels": 23,
+        "num_phonemes": 62,
         "consonants": [
             "n",
             "t",
@@ -947,12 +947,12 @@
             "ɨ",
             "ʌ"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda",
@@ -960,18 +960,18 @@
         ],
         "citation": "Ingush grammar, Nichols, Johanna. Berkeley, Calif.: University of California Press, 2011",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "suppletion",
             "stress or tone shift"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -984,9 +984,9 @@
         "name": "Jingulu",
         "student": "5f48ec4bcaca4bf6",
         "netid": "f92ce16eaf07d117",
-        "num consonants": 17,
-        "num vowels": 3,
-        "num phonemes": 20,
+        "num_consonants": 17,
+        "num_vowels": 3,
+        "num_phonemes": 20,
         "consonants": [
             "n",
             "m",
@@ -1005,12 +1005,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda",
@@ -1018,18 +1018,18 @@
         ],
         "citation": "Pensalfini, Robert J. A Grammar of Jingulu: An Aboriginal Language of the Northern Territory. Pacific Linguistics, 2003.",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "infixation",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -1042,9 +1042,9 @@
         "name": "Kabardian",
         "student": "9bfc93dcd4e6b896",
         "netid": "80ffecf5d511138f",
-        "num consonants": 24,
-        "num vowels": 2,
-        "num phonemes": 26,
+        "num_consonants": 24,
+        "num_vowels": 2,
+        "num_phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -1072,12 +1072,12 @@
             "a",
             "ə"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -1086,18 +1086,18 @@
         ],
         "citation": "A Grammar of the Kabardian Language, John Colarusso, London: University of Calgary Press, 1992)",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "compounding"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1110,9 +1110,9 @@
         "name": "Kawaiisu",
         "student": "821e5ede46d4f41d",
         "netid": "aad0769f02b2c0f8",
-        "num consonants": 26,
-        "num vowels": 12,
-        "num phonemes": 38,
+        "num_consonants": 26,
+        "num_vowels": 12,
+        "num_phonemes": 38,
         "consonants": [
             "n",
             "t",
@@ -1144,12 +1144,12 @@
             "ə",
             "ɯ"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -1158,10 +1158,10 @@
         ],
         "citation": "Zigmond, Maurice L, et al. Kawaiisu: A Grammar and Dictionary with Texts. Edited by Pamela Munro, vol. 119, University of California Press, 1991.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -1170,8 +1170,8 @@
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [],
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [],
         "headedness": [
             "mostly head-final"
         ],
@@ -1182,9 +1182,9 @@
         "name": "Kotiria",
         "student": "16202a8436c1b4e8",
         "netid": "2f5a7eef6fcdb503",
-        "num consonants": 14,
-        "num vowels": 6,
-        "num phonemes": 20,
+        "num_consonants": 14,
+        "num_vowels": 6,
+        "num_phonemes": 20,
         "consonants": [
             "t",
             "k",
@@ -1206,29 +1206,29 @@
             "u",
             "ʉ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 4,
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 4,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V"
         ],
         "citation": "Stenzel, Kristine. 2013. A Reference Grammar of Kotiria (Wanano). Lincoln and London: University of Nebraska Press",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "suppletion"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1241,9 +1241,9 @@
         "name": "Kukama-Kukamaria",
         "student": "24fedf1cee659f28",
         "netid": "279d5bde60343a16",
-        "num consonants": 11,
-        "num vowels": 5,
-        "num phonemes": 16,
+        "num_consonants": 11,
+        "num_vowels": 5,
+        "num_phonemes": 16,
         "consonants": [
             "n",
             "t",
@@ -1262,12 +1262,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -1279,9 +1279,9 @@
         "name": "Kulina",
         "student": "335e384f69dd0078",
         "netid": "e550c0d494dfa934",
-        "num consonants": 16,
-        "num vowels": 4,
-        "num phonemes": 20,
+        "num_consonants": 16,
+        "num_vowels": 4,
+        "num_phonemes": 20,
         "consonants": [
             "n",
             "t",
@@ -1298,30 +1298,30 @@
             "o",
             "i"
         ],
-        "num consonant places": 4,
-        "num consonant manners": 4,
-        "complex consonants": false,
+        "num_consonant_places": 4,
+        "num_consonant_manners": 4,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V"
         ],
         "citation": "A Grammar of Kulina, Stefan Dienst, De Gruyter Mouton, 2014",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1334,9 +1334,9 @@
         "name": "Manchu",
         "student": "6cc69c08a039a952",
         "netid": "a2498e5fce977d5f",
-        "num consonants": 19,
-        "num vowels": 7,
-        "num phonemes": 26,
+        "num_consonants": 19,
+        "num_vowels": 7,
+        "num_phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -1362,12 +1362,12 @@
             "u",
             "ə"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -1375,18 +1375,18 @@
         ],
         "citation": "Gorelova, L. M. (2002). Manchu grammar. Leiden: Brill.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1399,9 +1399,9 @@
         "name": "Marquesan",
         "student": "14b455c21dc05bd0",
         "netid": "920e02995fe8808f",
-        "num consonants": 11,
-        "num vowels": 10,
-        "num phonemes": 21,
+        "num_consonants": 11,
+        "num_vowels": 10,
+        "num_phonemes": 21,
         "consonants": [
             "n",
             "t",
@@ -1422,29 +1422,29 @@
             "i",
             "u"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V"
         ],
         "citation": "Cablitz, Gabriele H. Marquesan a Grammar of Space. W. De Gruyter, 2006.",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "VSO"
         ],
         "headedness": [
@@ -1457,9 +1457,9 @@
         "name": "Osage",
         "student": "5036e582ef33c219",
         "netid": "38808baed6493393",
-        "num consonants": 27,
-        "num vowels": 8,
-        "num phonemes": 35,
+        "num_consonants": 27,
+        "num_vowels": 8,
+        "num_phonemes": 35,
         "consonants": [
             "n",
             "t",
@@ -1479,12 +1479,12 @@
             "i",
             "y"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -1492,18 +1492,18 @@
         ],
         "citation": "Quintero, Carolyn. Osage Grammar. Lincoln: University of Nebraska Press, 2004.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1516,9 +1516,9 @@
         "name": "Pipil",
         "student": "30f76ebcd27ab674",
         "netid": "f51a75e184b301c3",
-        "num consonants": 20,
-        "num vowels": 10,
-        "num phonemes": 30,
+        "num_consonants": 20,
+        "num_vowels": 10,
+        "num_phonemes": 30,
         "consonants": [
             "n",
             "t",
@@ -1546,12 +1546,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "complex consonants": false,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -1560,18 +1560,18 @@
         ],
         "citation": "Campbell, Lyle. The Pipil Language of El Salvador. Berlin: Mouton, 1985.",
         "recommend": "No, my grammar was hard to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "VOS"
         ],
         "headedness": [
@@ -1584,9 +1584,9 @@
         "name": "Pipil",
         "student": "e97305ba6a33d4e7",
         "netid": "9d088aeccbe3e211",
-        "num consonants": 21,
-        "num vowels": 10,
-        "num phonemes": 31,
+        "num_consonants": 21,
+        "num_vowels": 10,
+        "num_phonemes": 31,
         "consonants": [
             "n",
             "t",
@@ -1615,12 +1615,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "V",
@@ -1629,10 +1629,10 @@
         ],
         "citation": "The Pipil Language of El Salvador, Lyle Campbell, Mouton, 1985",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
@@ -1641,8 +1641,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "VOS"
         ],
         "headedness": [
@@ -1655,9 +1655,9 @@
         "name": "Pite Saami",
         "student": "adcb380a67cfffce",
         "netid": "1a93c6fc556aba49",
-        "num consonants": 43,
-        "num vowels": 9,
-        "num phonemes": 52,
+        "num_consonants": 43,
+        "num_vowels": 9,
+        "num_phonemes": 52,
         "consonants": [
             "n",
             "t",
@@ -1684,12 +1684,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda",
@@ -1700,11 +1700,11 @@
         ],
         "citation": "Wilbur, J. (2014). A grammar of Pite Saami. Berlin: Language Science Press.",
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
@@ -1712,8 +1712,8 @@
             "suppletion",
             "stress or tone shift"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -1726,9 +1726,9 @@
         "name": "Tommo So",
         "student": "6a3dc4cb364dda43",
         "netid": "bce34d9805c00c74",
-        "num consonants": 17,
-        "num vowels": 17,
-        "num phonemes": 34,
+        "num_consonants": 17,
+        "num_vowels": 17,
+        "num_phonemes": 34,
         "consonants": [
             "n",
             "t",
@@ -1753,12 +1753,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -1766,10 +1766,10 @@
         ],
         "citation": "A Grammar of Tommo So, Laura McPherson, Walter de Gruyter GmbH (Berlin/Boston), 2013",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
@@ -1780,8 +1780,8 @@
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1794,9 +1794,9 @@
         "name": "Tundra Nenets",
         "student": "a886199cf92bb54b",
         "netid": "a925b88c4f824d07",
-        "num consonants": 16,
-        "num vowels": 7,
-        "num phonemes": 23,
+        "num_consonants": 16,
+        "num_vowels": 7,
+        "num_phonemes": 23,
         "consonants": [
             "n",
             "t",
@@ -1820,30 +1820,30 @@
             "u",
             "ə"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 6,
-        "complex consonants": true,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 6,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda"
         ],
         "citation": "Nikolaeva, Irina. 2014. A Grammar of Tundra Nenets. Walter de Gruyter GmbH: Berlin/ Boston.",
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
             "internal change",
             "suppletion"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1856,9 +1856,9 @@
         "name": "Wangkajunga",
         "student": "4ed54259ce23c4e5",
         "netid": "bbd8052519800c13",
-        "num consonants": 17,
-        "num vowels": 3,
-        "num phonemes": 20,
+        "num_consonants": 17,
+        "num_vowels": 3,
+        "num_phonemes": 20,
         "consonants": [
             "n",
             "t",
@@ -1876,22 +1876,22 @@
             "i",
             "u"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 4,
-        "complex consonants": false,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 4,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda"
         ],
         "citation": "Jones, Barbara. 2011. A grammar of Wangkajunga: a language of the Great Sandy Desert. Canberra: Pacific Linguistics at the Australian National University.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
@@ -1899,8 +1899,8 @@
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1913,9 +1913,9 @@
         "name": "Wardaman",
         "student": "37146ca9f3ea6da0",
         "netid": "e3be87372a860719",
-        "num consonants": 17,
-        "num vowels": 5,
-        "num phonemes": 22,
+        "num_consonants": 17,
+        "num_vowels": 5,
+        "num_phonemes": 22,
         "consonants": [
             "n",
             "m",
@@ -1933,12 +1933,12 @@
             "a",
             "i"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -1950,17 +1950,17 @@
         ],
         "citation": "Merlan, Francesca. A Grammar of Wardaman: a Language of the Northern Territory of Australia. Mouton De Gruyter, 1994.",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "prefixation",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -1973,9 +1973,9 @@
         "name": "Warrongo",
         "student": "ad92c6c64ee0d68f",
         "netid": "ce0f31e997fab73a",
-        "num consonants": 17,
-        "num vowels": 7,
-        "num phonemes": 24,
+        "num_consonants": 17,
+        "num_vowels": 7,
+        "num_phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -1996,12 +1996,12 @@
             "i",
             "u"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "complex consonants": false,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "V",
@@ -2012,18 +2012,18 @@
         ],
         "citation": "A Grammar of Warrongo, Tasaku, Tsunoda, De Gruyter, 2011-12-23",
         "recommend": "My grammar was great in that the EBook was very organized, but I feel that having a hard copy on hand would have been very nice. (I didn't see one in the libraries)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -2036,9 +2036,9 @@
         "name": "Yuki",
         "student": "4d0ca1eb4712c93c",
         "netid": "56b4f673eab08ab0",
-        "num consonants": 23,
-        "num vowels": 6,
-        "num phonemes": 29,
+        "num_consonants": 23,
+        "num_vowels": 6,
+        "num_phonemes": 29,
         "consonants": [
             "n",
             "t",
@@ -2059,12 +2059,12 @@
             "u",
             "ʌ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "complex consonants": true,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "C coda",
@@ -2072,16 +2072,16 @@
         ],
         "citation": "Yuki Grammar: With Sketches of Huchnom and Coast Yuki, Uldis Balodis, University of California Publications, 2016",
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "affixation",
             "suffixation",
             "compounding"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [],
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [],
         "headedness": [
             "consistently head-final"
         ],

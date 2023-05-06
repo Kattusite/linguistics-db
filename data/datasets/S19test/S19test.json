@@ -3,9 +3,9 @@
         "name": "All",
         "student": "05f1beb3f3f3b8cb",
         "netid": "4d339ddb8e8dd3cf",
-        "num consonants": 999,
-        "num vowels": 999,
-        "num phonemes": 999,
+        "num_consonants": 999,
+        "num_vowels": 999,
+        "num_phonemes": 999,
         "consonants": [
             "n",
             "t",
@@ -115,9 +115,9 @@
             "ɒ",
             "ɶ"
         ],
-        "num consonant places": 12,
-        "num consonant manners": 10,
-        "vowel types": [
+        "num_consonant_places": 12,
+        "num_consonant_manners": 10,
+        "vowel_types": [
             "nasalized",
             "long",
             "voiceless",
@@ -127,10 +127,10 @@
             "diphthongs",
             "triphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -147,20 +147,20 @@
         "name": "None",
         "student": "5fabb09715050a3d",
         "netid": "2e634b914ee70722",
-        "num consonants": 0,
-        "num vowels": 0,
-        "num phonemes": 0,
+        "num_consonants": 0,
+        "num_vowels": 0,
+        "num_phonemes": 0,
         "consonants": [
             "v"
         ],
         "vowels": [],
-        "num consonant places": 1,
-        "num consonant manners": 1,
-        "vowel types": [],
-        "complex consonants": true,
+        "num_consonant_places": 1,
+        "num_consonant_manners": 1,
+        "vowel_types": [],
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V"
         ]

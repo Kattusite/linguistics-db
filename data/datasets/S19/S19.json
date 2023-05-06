@@ -3,9 +3,9 @@
         "name": "Aguaruna",
         "student": "7ce0cf60039d68ed",
         "netid": "60ecbeff6022767b",
-        "num consonants": 15,
-        "num vowels": 11,
-        "num phonemes": 26,
+        "num_consonants": 15,
+        "num_vowels": 11,
+        "num_phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -29,33 +29,33 @@
             "u",
             "ɨ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "nasalized",
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -68,9 +68,9 @@
         "name": "Anong",
         "student": "5bd47effc0226456",
         "netid": "c6d59748cd9551cf",
-        "num consonants": 47,
-        "num vowels": 45,
-        "num phonemes": 92,
+        "num_consonants": 47,
+        "num_vowels": 45,
+        "num_phonemes": 92,
         "consonants": [
             "n",
             "t",
@@ -117,17 +117,17 @@
             "ɐ",
             "ʊ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 8,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 8,
+        "vowel_types": [
             "nasalized",
             "diphthongs",
             "triphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -136,19 +136,19 @@
             "C coda"
         ],
         "recommend": "Yes, my grammar was nice to work with. There are some inconsistencies though (e.g. the syntax section states that Anong is SOV but on page 78 it says Anong is SVO word order).",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -161,9 +161,9 @@
         "name": "Arapaho",
         "student": "00062e1b23a2a2a0",
         "netid": "fa6c1f39227d52a9",
-        "num consonants": 12,
-        "num vowels": 16,
-        "num phonemes": 28,
+        "num_consonants": 12,
+        "num_vowels": 16,
+        "num_phonemes": 28,
         "consonants": [
             "n",
             "t",
@@ -182,16 +182,16 @@
             "ʊ",
             "ɔ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "long",
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -199,11 +199,11 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -211,8 +211,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -225,9 +225,9 @@
         "name": "Bangime",
         "student": "9ddba3e576be2e0d",
         "netid": "f063cab997da29ca",
-        "num consonants": 22,
-        "num vowels": 28,
-        "num phonemes": 50,
+        "num_consonants": 22,
+        "num_vowels": 28,
+        "num_phonemes": 50,
         "consonants": [
             "n",
             "m",
@@ -257,26 +257,26 @@
             "ɔ",
             "ɑ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 8,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 8,
+        "vowel_types": [
             "nasalized",
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "CC onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
@@ -284,8 +284,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly non-affixal",
-        "word order": [
+        "word_formation frequency": "mostly non-affixal",
+        "word_order": [
             "SVO",
             "SOV"
         ],
@@ -299,9 +299,9 @@
         "name": "Bardi",
         "student": "4c981ae1deffd93d",
         "netid": "341dc9f921db159b",
-        "num consonants": 17,
-        "num vowels": 7,
-        "num phonemes": 24,
+        "num_consonants": 17,
+        "num_vowels": 7,
+        "num_phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -330,18 +330,18 @@
             "ɔ",
             "ɑ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "nasalized",
             "long",
             "voiceless",
             "diphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -352,12 +352,12 @@
             "CCCC coda"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -366,8 +366,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -380,9 +380,9 @@
         "name": "Berbice Dutch Creole",
         "student": "2ffcf8bc09a1e935",
         "netid": "6072bb113d3578e1",
-        "num consonants": 14,
-        "num vowels": 6,
-        "num phonemes": 20,
+        "num_consonants": 14,
+        "num_vowels": 6,
+        "num_phonemes": 20,
         "consonants": [
             "n",
             "t",
@@ -407,13 +407,13 @@
             "u",
             "ɛ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -421,18 +421,18 @@
             "C coda"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "suppletion",
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -445,9 +445,9 @@
         "name": "Bilinarra",
         "student": "ab56e65da30e203a",
         "netid": "ad09179460bfaf3b",
-        "num consonants": 23,
-        "num vowels": 3,
-        "num phonemes": 26,
+        "num_consonants": 23,
+        "num_vowels": 3,
+        "num_phonemes": 26,
         "consonants": [
             "n",
             "t",
@@ -474,30 +474,30 @@
             "ɐ",
             "ʊ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "reduplication"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -510,9 +510,9 @@
         "name": "Domari",
         "student": "8891734ad4fa6d34",
         "netid": "ef7abcc70e45a779",
-        "num consonants": 34,
-        "num vowels": 14,
-        "num phonemes": 48,
+        "num_consonants": 34,
+        "num_vowels": 14,
+        "num_phonemes": 48,
         "consonants": [
             "n",
             "t",
@@ -561,34 +561,34 @@
             "ɔ",
             "ɑ"
         ],
-        "num consonant places": 10,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 10,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "long",
             "pharyngealized"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "analytic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
             "suppletion",
             "stress or tone shift"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO",
             "VSO"
         ],
@@ -602,9 +602,9 @@
         "name": "Emai",
         "student": "6342f227aa730562",
         "netid": "a9a13527e03f2b16",
-        "num consonants": 28,
-        "num vowels": 12,
-        "num phonemes": 40,
+        "num_consonants": 28,
+        "num_vowels": 12,
+        "num_phonemes": 40,
         "consonants": [
             "n",
             "t",
@@ -642,33 +642,33 @@
             "ɛ",
             "ɔ"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 8,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "nasalized"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -681,9 +681,9 @@
         "name": "Gayo",
         "student": "2ffea8992986a0fd",
         "netid": "52fbd8cf08c20587",
-        "num consonants": 23,
-        "num vowels": 13,
-        "num phonemes": 36,
+        "num_consonants": 23,
+        "num_vowels": 13,
+        "num_phonemes": 36,
         "consonants": [
             "n",
             "t",
@@ -718,28 +718,28 @@
             "ɤ",
             "ɔ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "nasalized",
             "voiceless",
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -747,8 +747,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SVO",
             "VSO"
         ],
@@ -762,9 +762,9 @@
         "name": "Goemai",
         "student": "aa216d1c14c49f05",
         "netid": "082412a9ff7bb9bf",
-        "num consonants": 28,
-        "num vowels": 11,
-        "num phonemes": 39,
+        "num_consonants": 28,
+        "num_vowels": 11,
+        "num_phonemes": 39,
         "consonants": [
             "n",
             "t",
@@ -801,25 +801,25 @@
             "ʉ",
             "ɔ"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "long"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Maybe (The grammar was OK to work with, but the organization wasn't the most well-aligned with the topics we covered, and there were some complicated language features)",
-        "morphological type": [
+        "morphological_type": [
             "isolating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -827,8 +827,8 @@
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly isolating",
-        "word order": [
+        "word_formation frequency": "mostly isolating",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -841,9 +841,9 @@
         "name": "Hainan Cham",
         "student": "75d57221c8114240",
         "netid": "8376dfec4d7e2298",
-        "num consonants": 19,
-        "num vowels": 19,
-        "num phonemes": 38,
+        "num_consonants": 19,
+        "num_vowels": 19,
+        "num_phonemes": 38,
         "consonants": [
             "n",
             "m",
@@ -872,33 +872,33 @@
             "u",
             "ə"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "long",
             "diphthongs",
             "triphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -911,9 +911,9 @@
         "name": "Jahai",
         "student": "0eda54a17aa43ff5",
         "netid": "bc13397ac7f70cc8",
-        "num consonants": 20,
-        "num vowels": 16,
-        "num phonemes": 36,
+        "num_consonants": 20,
+        "num_vowels": 16,
+        "num_phonemes": 36,
         "consonants": [
             "n",
             "t",
@@ -945,25 +945,25 @@
             "ɛ",
             "ɔ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "nasalized"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "isolating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -971,8 +971,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -985,9 +985,9 @@
         "name": "Jingulu",
         "student": "d9060e2bda3a6e41",
         "netid": "0172a6cdc6b99d5f",
-        "num consonants": 18,
-        "num vowels": 10,
-        "num phonemes": 28,
+        "num_consonants": 18,
+        "num_vowels": 10,
+        "num_phonemes": 28,
         "consonants": [
             "n",
             "m",
@@ -1019,13 +1019,13 @@
             "æ",
             "ɔ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -1036,17 +1036,17 @@
             "CCCC coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -1059,9 +1059,9 @@
         "name": "Kawaiisu",
         "student": "fae8bde4d944594e",
         "netid": "566f9d8af046e159",
-        "num consonants": 25,
-        "num vowels": 7,
-        "num phonemes": 32,
+        "num_consonants": 25,
+        "num_vowels": 7,
+        "num_phonemes": 32,
         "consonants": [
             "n",
             "t",
@@ -1095,30 +1095,30 @@
             "ɨ",
             "ɯ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
             "CCC onset"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1131,9 +1131,9 @@
         "name": "Kilmeri",
         "student": "f3328481e71d30b1",
         "netid": "5d83f5a13f45acdf",
-        "num consonants": 12,
-        "num vowels": 8,
-        "num phonemes": 20,
+        "num_consonants": 12,
+        "num_vowels": 8,
+        "num_phonemes": 20,
         "consonants": [
             "n",
             "m",
@@ -1158,13 +1158,13 @@
             "ʊ",
             "ɔ"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 6,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 6,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -1172,18 +1172,18 @@
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "suppletion",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1196,9 +1196,9 @@
         "name": "Kokota",
         "student": "9e543bae63e5e98c",
         "netid": "c87a3cffd87252d3",
-        "num consonants": 22,
-        "num vowels": 5,
-        "num phonemes": 27,
+        "num_consonants": 22,
+        "num_vowels": 5,
+        "num_phonemes": 27,
         "consonants": [
             "n",
             "t",
@@ -1225,30 +1225,30 @@
             "i",
             "u"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "CC onset"
         ],
         "recommend": "No, my grammar was hard to work with",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -1261,9 +1261,9 @@
         "name": "Kulina",
         "student": "a212fd6b583b3f7e",
         "netid": "b259490ef3ec6258",
-        "num consonants": 16,
-        "num vowels": 4,
-        "num phonemes": 20,
+        "num_consonants": 16,
+        "num_vowels": 4,
+        "num_phonemes": 20,
         "consonants": [
             "n",
             "t",
@@ -1295,34 +1295,34 @@
             "ɨ",
             "ɛ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "nasalized",
             "long",
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1335,9 +1335,9 @@
         "name": "Magar",
         "student": "b9d1942e85d0f05f",
         "netid": "16970d0d38ee6355",
-        "num consonants": 37,
-        "num vowels": 10,
-        "num phonemes": 47,
+        "num_consonants": 37,
+        "num_vowels": 10,
+        "num_phonemes": 47,
         "consonants": [
             "n",
             "t",
@@ -1366,15 +1366,15 @@
             "u",
             "ʌ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -1383,18 +1383,18 @@
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1407,9 +1407,9 @@
         "name": "Maia",
         "student": "27f339afcd5f7c05",
         "netid": "53e2e183e0682e34",
-        "num consonants": 14,
-        "num vowels": 5,
-        "num phonemes": 19,
+        "num_consonants": 14,
+        "num_vowels": 5,
+        "num_phonemes": 19,
         "consonants": [
             "n",
             "t",
@@ -1433,13 +1433,13 @@
             "ɛ",
             "ɔ"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 6,
-        "vowel types": [],
-        "complex consonants": true,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 6,
+        "vowel_types": [],
+        "complex_consonants": true,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -1447,18 +1447,18 @@
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly non-affixal",
-        "word order": [
+        "word_formation frequency": "mostly non-affixal",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1471,9 +1471,9 @@
         "name": "Majhi",
         "student": "5f197a94c2715841",
         "netid": "fe394f8bdaf89302",
-        "num consonants": 29,
-        "num vowels": 13,
-        "num phonemes": 42,
+        "num_consonants": 29,
+        "num_vowels": 13,
+        "num_phonemes": 42,
         "consonants": [
             "n",
             "t",
@@ -1506,31 +1506,31 @@
             "u",
             "ɜ"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 8,
-        "vowel types": [
+        "num_consonant_places": 5,
+        "num_consonant_manners": 8,
+        "vowel_types": [
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "CC onset"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO",
             "SOV"
         ],
@@ -1544,9 +1544,9 @@
         "name": "Manchu",
         "student": "44dc5bf2b58c8be0",
         "netid": "d8705294429726b3",
-        "num consonants": 19,
-        "num vowels": 17,
-        "num phonemes": 36,
+        "num_consonants": 19,
+        "num_vowels": 17,
+        "num_phonemes": 36,
         "consonants": [
             "n",
             "t",
@@ -1574,32 +1574,32 @@
             "ə",
             "ʊ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "diphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "analytic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "SOV",
             "OSV"
         ],
@@ -1613,9 +1613,9 @@
         "name": "Mongsen Ao",
         "student": "0c243d50084437da",
         "netid": "08d2c67b1da3ebec",
-        "num consonants": 27,
-        "num vowels": 5,
-        "num phonemes": 32,
+        "num_consonants": 27,
+        "num_vowels": 5,
+        "num_phonemes": 32,
         "consonants": [
             "n",
             "t",
@@ -1642,15 +1642,15 @@
             "u",
             "ə"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "creaky"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -1658,10 +1658,10 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
@@ -1669,8 +1669,8 @@
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1683,9 +1683,9 @@
         "name": "Mungbam",
         "student": "d581196874465b42",
         "netid": "dfe5c05840384b32",
-        "num consonants": 23,
-        "num vowels": 11,
-        "num phonemes": 34,
+        "num_consonants": 23,
+        "num_vowels": 11,
+        "num_phonemes": 34,
         "consonants": [
             "n",
             "t",
@@ -1718,13 +1718,13 @@
             "ɨ",
             "ɛ"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "vowel types": [],
-        "complex consonants": true,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "vowel_types": [],
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -1734,18 +1734,18 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "analytic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -1758,9 +1758,9 @@
         "name": "Neverver",
         "student": "0a9c3c46d0ed8990",
         "netid": "2c83fbe3e7315f08",
-        "num consonants": 26,
-        "num vowels": 8,
-        "num phonemes": 34,
+        "num_consonants": 26,
+        "num_vowels": 8,
+        "num_phonemes": 34,
         "consonants": [
             "n",
             "t",
@@ -1783,33 +1783,33 @@
             "i",
             "u"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 5,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "fusional"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly prefixing",
-        "word order": [
+        "word_formation frequency": "mostly prefixing",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -1822,9 +1822,9 @@
         "name": "Onondaga",
         "student": "3cc638e85f4d269f",
         "netid": "36d0386b42c9f436",
-        "num consonants": 10,
-        "num vowels": 7,
-        "num phonemes": 17,
+        "num_consonants": 10,
+        "num_vowels": 7,
+        "num_phonemes": 17,
         "consonants": [
             "t",
             "k",
@@ -1840,15 +1840,15 @@
             "æ",
             "ɑ"
         ],
-        "num consonant places": 3,
-        "num consonant manners": 2,
-        "vowel types": [
+        "num_consonant_places": 3,
+        "num_consonant_manners": 2,
+        "vowel_types": [
             "nasalized"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "CC onset",
@@ -1858,15 +1858,15 @@
             "CCCC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -1879,9 +1879,9 @@
         "name": "Osage",
         "student": "1a2c1803f93f7156",
         "netid": "872b0c5a7ac7c37f",
-        "num consonants": 31,
-        "num vowels": 8,
-        "num phonemes": 39,
+        "num_consonants": 31,
+        "num_vowels": 8,
+        "num_phonemes": 39,
         "consonants": [
             "n",
             "t",
@@ -1910,32 +1910,32 @@
             "u",
             "ɑ"
         ],
-        "num consonant places": 8,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 8,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "nasalized",
             "long"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "CC onset"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -1948,9 +1948,9 @@
         "name": "Pendau",
         "student": "01941da20ee2074d",
         "netid": "e09c678d855f7236",
-        "num consonants": 19,
-        "num vowels": 5,
-        "num phonemes": 24,
+        "num_consonants": 19,
+        "num_vowels": 5,
+        "num_phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -1979,31 +1979,31 @@
             "i",
             "u"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 7,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 7,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SVO",
             "VOS"
         ],
@@ -2017,9 +2017,9 @@
         "name": "Puyuma",
         "student": "b2b275b335b276fe",
         "netid": "5b2330c5dd994529",
-        "num consonants": 18,
-        "num vowels": 4,
-        "num phonemes": 22,
+        "num_consonants": 18,
+        "num_vowels": 4,
+        "num_phonemes": 22,
         "consonants": [
             "n",
             "t",
@@ -2046,31 +2046,31 @@
             "u",
             "ə"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "VOS"
         ],
         "headedness": [
@@ -2083,9 +2083,9 @@
         "name": "Qiang",
         "student": "c082c6bad7b33ff5",
         "netid": "440095b751008753",
-        "num consonants": 37,
-        "num vowels": 24,
-        "num phonemes": 61,
+        "num_consonants": 37,
+        "num_vowels": 24,
+        "num_phonemes": 61,
         "consonants": [
             "n",
             "t",
@@ -2122,16 +2122,16 @@
             "u",
             "ə"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 7,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "diphthongs",
             "triphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -2140,19 +2140,19 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -2165,9 +2165,9 @@
         "name": "Semelai",
         "student": "7fded5bf05a81b40",
         "netid": "4221c184650541ae",
-        "num consonants": 32,
-        "num vowels": 20,
-        "num phonemes": 52,
+        "num_consonants": 32,
+        "num_vowels": 20,
+        "num_phonemes": 52,
         "consonants": [
             "n",
             "t",
@@ -2203,25 +2203,25 @@
             "aᶠ",
             "ɒ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "nasalized"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": false,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -2229,8 +2229,8 @@
             "reduplication",
             "conversion"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SVO",
             "VSO",
             "VOS"
@@ -2245,9 +2245,9 @@
         "name": "Sierra Popoluca",
         "student": "9174469e28c00715",
         "netid": "67ccf39f9d3cf421",
-        "num consonants": 12,
-        "num vowels": 12,
-        "num phonemes": 24,
+        "num_consonants": 12,
+        "num_vowels": 12,
+        "num_phonemes": 24,
         "consonants": [
             "n",
             "t",
@@ -2270,15 +2270,15 @@
             "ɘ",
             "ɔ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -2287,17 +2287,17 @@
             "CCC coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "equal affixation and other",
-        "word order": [
+        "word_formation frequency": "equal affixation and other",
+        "word_order": [
             "SVO"
         ],
         "headedness": [
@@ -2310,9 +2310,9 @@
         "name": "Tamashek",
         "student": "8cc2b7ef95a03d4b",
         "netid": "d06f8e59347f7c8d",
-        "num consonants": 33,
-        "num vowels": 7,
-        "num phonemes": 40,
+        "num_consonants": 33,
+        "num_vowels": 7,
+        "num_phonemes": 40,
         "consonants": [
             "n",
             "t",
@@ -2351,24 +2351,24 @@
             "ə",
             "æ"
         ],
-        "num consonant places": 10,
-        "num consonant manners": 7,
-        "vowel types": [],
-        "complex consonants": true,
+        "num_consonant_places": 10,
+        "num_consonant_manners": 7,
+        "vowel_types": [],
+        "complex_consonants": true,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "C onset",
             "C coda",
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -2379,8 +2379,8 @@
             "stress or tone shift",
             "conversion"
         ],
-        "word formation frequency": "mostly non-affixal",
-        "word order": [
+        "word_formation frequency": "mostly non-affixal",
+        "word_order": [
             "VSO"
         ],
         "headedness": [
@@ -2393,9 +2393,9 @@
         "name": "Tommo So",
         "student": "2d0a7c8d5db94ec5",
         "netid": "82f515bbb46c586e",
-        "num consonants": 17,
-        "num vowels": 17,
-        "num phonemes": 34,
+        "num_consonants": 17,
+        "num_vowels": 17,
+        "num_phonemes": 34,
         "consonants": [
             "n",
             "t",
@@ -2423,16 +2423,16 @@
             "ɛ",
             "ɔ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 6,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 6,
+        "vowel_types": [
             "nasalized",
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": false,
-        "predictable stress": false,
+        "predictable_stress": false,
         "syllables": [
             "V",
             "C onset",
@@ -2441,19 +2441,19 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV"
         ],
         "headedness": [
@@ -2466,9 +2466,9 @@
         "name": "Tundra Nenets",
         "student": "739a5c0492e368dc",
         "netid": "2652c4f323e63c60",
-        "num consonants": 26,
-        "num vowels": 10,
-        "num phonemes": 36,
+        "num_consonants": 26,
+        "num_vowels": 10,
+        "num_phonemes": 36,
         "consonants": [
             "n",
             "t",
@@ -2501,30 +2501,30 @@
             "ə",
             "æ"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 7,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 7,
+        "vowel_types": [
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "suppletion"
         ],
-        "word formation frequency": "exclusively suffixing",
-        "word order": [
+        "word_formation frequency": "exclusively suffixing",
+        "word_order": [
             "SOV",
             "OSV"
         ],
@@ -2538,9 +2538,9 @@
         "name": "Wangkajunga",
         "student": "1986e91d4bf39560",
         "netid": "a1667f10a46fedec",
-        "num consonants": 17,
-        "num vowels": 6,
-        "num phonemes": 23,
+        "num_consonants": 17,
+        "num_vowels": 6,
+        "num_phonemes": 23,
         "consonants": [
             "n",
             "t",
@@ -2565,15 +2565,15 @@
             "i",
             "u"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "CC onset",
@@ -2581,18 +2581,18 @@
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -2605,9 +2605,9 @@
         "name": "Wardaman",
         "student": "73d77337b8a0dc74",
         "netid": "b985ef274b6a6e0b",
-        "num consonants": 17,
-        "num vowels": 5,
-        "num phonemes": 22,
+        "num_consonants": 17,
+        "num_vowels": 5,
+        "num_phonemes": 22,
         "consonants": [
             "n",
             "m",
@@ -2632,31 +2632,31 @@
             "i",
             "u"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "vowel types": [],
-        "complex consonants": false,
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "vowel_types": [],
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
             "CC onset"
         ],
         "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -2669,9 +2669,9 @@
         "name": "Warrongo",
         "student": "68a81f78d4e9f438",
         "netid": "a4732f20cc6a639f",
-        "num consonants": 13,
-        "num vowels": 4,
-        "num phonemes": 17,
+        "num_consonants": 13,
+        "num_vowels": 4,
+        "num_phonemes": 17,
         "consonants": [
             "n",
             "m",
@@ -2692,15 +2692,15 @@
             "u",
             "aᶠ"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "long"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -2709,17 +2709,17 @@
             "C coda"
         ],
         "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "compounding",
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -2732,9 +2732,9 @@
         "name": "Yimas",
         "student": "6f65402a9150c21e",
         "netid": "7c74f93736568198",
-        "num consonants": 12,
-        "num vowels": 6,
-        "num phonemes": 18,
+        "num_consonants": 12,
+        "num_vowels": 6,
+        "num_phonemes": 18,
         "consonants": [
             "n",
             "t",
@@ -2753,15 +2753,15 @@
             "u",
             "ɨ"
         ],
-        "num consonant places": 5,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 5,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "diphthongs"
         ],
-        "complex consonants": false,
+        "complex_consonants": false,
         "tone": false,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "V",
             "C onset",
@@ -2770,19 +2770,19 @@
             "CC coda"
         ],
         "recommend": "My answer is maybe, for a student with linguistics background. I took LIN 201, and I still found the grammar difficult to understand at times. I can't imagine how a student who is brand new to linguistics would understand it (unless they take the time to read it cover to cover). It is also quite long (~500 pages), so it was hard to know if I covered all of the essential topics in my wikipedia page.",
-        "morphological type": [
+        "morphological_type": [
             "fusional",
             "polysynthetic"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "compounding",
             "suppletion",
             "reduplication"
         ],
-        "word formation frequency": "equal prefixing and suffixing",
-        "word order": [
+        "word_formation frequency": "equal prefixing and suffixing",
+        "word_order": [
             "free"
         ],
         "headedness": [
@@ -2795,9 +2795,9 @@
         "name": "Yuki",
         "student": "ec94447ea1ca4bab",
         "netid": "bdf6a8e08642bca6",
-        "num consonants": 25,
-        "num vowels": 8,
-        "num phonemes": 33,
+        "num_consonants": 25,
+        "num_vowels": 8,
+        "num_phonemes": 33,
         "consonants": [
             "n",
             "t",
@@ -2818,26 +2818,26 @@
             "i",
             "u"
         ],
-        "num consonant places": 6,
-        "num consonant manners": 5,
-        "vowel types": [
+        "num_consonant_places": 6,
+        "num_consonant_manners": 5,
+        "vowel_types": [
             "nasalized",
             "diphthongs"
         ],
-        "complex consonants": true,
+        "complex_consonants": true,
         "tone": true,
         "stress": true,
-        "predictable stress": true,
+        "predictable_stress": true,
         "syllables": [
             "C onset",
             "C coda",
             "CC coda"
         ],
         "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
+        "morphological_type": [
             "agglutinating"
         ],
-        "word formation": [
+        "word_formation": [
             "suffixation",
             "prefixation",
             "infixation",
@@ -2846,8 +2846,8 @@
             "stress or tone shift",
             "reduplication"
         ],
-        "word formation frequency": "mostly suffixing",
-        "word order": [
+        "word_formation frequency": "mostly suffixing",
+        "word_order": [
             "SOV",
             "OSV"
         ],
