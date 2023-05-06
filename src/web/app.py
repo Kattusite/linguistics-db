@@ -10,6 +10,7 @@ from web.handlers import LanguageHandler
 
 # Allow UTF-8 characters in JSON replies
 DefaultJSONProvider.ensure_ascii = False
+DefaultJSONProvider.sort_keys = False
 
 app = Flask(__name__)
 
