@@ -45,6 +45,10 @@ class Dataset(StrEnum):
     F22 = "F22"
     """The Fall 2022 dataset."""
 
+    def is_test(self) -> bool:
+        """Return True if this dataset is for testing use only."""
+        return 'test' in self.value
+
     def load(self) -> LanguageSet:
         """Load the Dataset from its associated JSON file."""
         # e.g. $DATASETS_PATH/F22/F22.json

@@ -29,6 +29,9 @@ Valid datasets include:
 - F21
 - F22
 
+A current list of available datasets may be obtained by issuing a `GET /datasets` request.
+
+This request does not accept any special query parameters.
 
 ### Query Specification
 

@@ -6,6 +6,7 @@ from flask import (
 )
 from flask.json.provider import DefaultJSONProvider
 
+from lingdb.dataset import Dataset
 from web.handlers import LanguageHandler
 
 # Allow UTF-8 characters in JSON replies
@@ -34,3 +35,8 @@ language_handler = LanguageHandler()
 def languages():
     """Return information about the requested set of languages as a JSON API response."""
     return language_handler.handle(request)
+
+@app.route('/datasets')
+def datasets():
+    """Return a list of the available language datasets."""
+    return [dataset for dataset in Dataset if not dataset.is_test()]
