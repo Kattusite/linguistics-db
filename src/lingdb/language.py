@@ -32,9 +32,8 @@ LOGGER = logging.getLogger(__name__)
 class DatapointKey(StrEnum):
     """A DatapointKey represents the name of a single datapoint in a language."""
 
-    # TODO: Some of the JSON keys have spaces and hyphens, etc in them.
-    #   Let's replace all of them with underscores for consistency.
-    #   This will require updating the CSV to JSON code (const.py?)
+    # TODO: This duplicates some legacy csv_to_json code.
+    #   Let's revise that csv_to_json code to use these constants instead.
 
     NAME = 'name'
 
