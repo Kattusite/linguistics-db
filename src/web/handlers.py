@@ -24,7 +24,11 @@ from lingdb.language import LanguageSet
 
 from lingdb.query import Query, QueryResult, get_query_directive
 from lingdb.transform import get_transformation, Transformation
-from web.exceptions import FailedLoadingDataset, NoSuchDataset
+from web.exceptions import (
+    FailedLoadingDataset,
+    NoSuchDataset,
+    UnrecognizedToken,
+)
 
 
 # The order of parameters is important, so we use an OrderedMultiDict
@@ -238,10 +242,7 @@ class LanguageHandler:
                 continue
 
             # Everything else is unrecognized. Treat the request as malformed, and raise an error.
-            # TODO: Implement me.
-            # TODO: Ensure that we raise an exception with the appropriate HTTP status code.
-            # TODO: Find better error type. custom MalformedRequestError? flask error? ...?
-            raise ValueError(f'token {i} was unrecognized: {key}={value}')
+            raise UnrecognizedToken(key=key, value=value, i=i)
 
         return query
 
@@ -291,7 +292,7 @@ class LanguageHandler:
 
         # TODO: It'd probably be more natural just to make `NoSuchDataset` subclass `HTTPException`.
 
-        if isinstance(err, NoSuchDataset):
+        if isinstance(err, (NoSuchDataset, UnrecognizedToken)):
             raise BadRequest(description=str(err))
 
         if isinstance(err, FailedLoadingDataset):
