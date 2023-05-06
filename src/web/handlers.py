@@ -249,11 +249,15 @@ class LanguageHandler:
         all_tokens = self._extract_tokens(args)
         query_specs = self._extract_query_specs(all_tokens)
 
-        # TODO: Special case: if no queries were provided, just return the requested dataset.
-        # TODO: If a Dataset= Token was provided, `query_specs` can't be totally empty.
-        #   So there's two special cases:
-        #       one for no query params at all ==> return self.latest_dataset
-        #       one for a query with just a Dataset token ==> handle like a normal query.
+        # Special case: if no queries were provided, just return the full latest dataset.
+        if not query_specs:
+            query_spec = (
+                ('Dataset', Dataset.latest().value),
+            )
+            query_specs = (query_spec,)
+
+        # NOTE: If the only Token provided was a Dataset=, we just dump the corresponding dataset.
+        #   This case is already handled correctly by `_build_query()`; no need to special case it.
 
         # Execute the request
         query_results: List[QueryResult] = []

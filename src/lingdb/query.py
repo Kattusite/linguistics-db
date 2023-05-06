@@ -99,7 +99,7 @@ class QueryResult:
 
         result_set = self.result_set
         if isinstance(result_set, LanguageSet):
-            result_set = [language.name for language in result_set]
+            result_set = [language.serializable() for language in result_set]
 
         # Convert [(1,2,3), (a,b,c)] -> [(1,a), (2,b), (3,c)]
         context_lists = list(zip(*self.contexts))

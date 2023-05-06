@@ -257,6 +257,10 @@ class Language(Mapping[DatapointKey, DatapointValue]):
         """Return a string representation of this Language."""
         return f'Language({json.dumps(self._data, indent=4, ensure_ascii=False)})'
 
+    def serializable(self):
+        """Return a serializable version of this Language."""
+        return self._data
+
 
 class LanguageSet(MappedCollection[str, Language]):
     """A Collection of unique Language objects that supports getting Language objects by name.
