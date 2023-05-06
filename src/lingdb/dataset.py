@@ -10,7 +10,7 @@ from lingdb.language import LanguageSet
 DATASETS_PATH = Path(__file__).parent.parent.parent / 'data' / 'datasets'
 
 
-class Datasets(StrEnum):
+class Dataset(StrEnum):
     """The names of all datasets from current and past semesters.
 
     Datasets can be loaded from their JSON files with the .load() method.
@@ -52,7 +52,7 @@ class Datasets(StrEnum):
         return LanguageSet.from_json(filepath)
 
     @classmethod
-    def latest(cls) -> 'Datasets':
-        """Load the latest Dataset from its associated JSON file."""
-        datasets: List[Datasets] = list(cls.__members__.values())
+    def latest(cls) -> 'Dataset':
+        """Return the latest (i.e. most recently defined) Dataset."""
+        datasets: List[Dataset] = list(cls.__members__.values())
         return datasets[-1]

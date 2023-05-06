@@ -103,11 +103,11 @@ class QueryResult:
 
         # Convert [(1,2,3), (a,b,c)] -> [(1,a), (2,b), (3,c)]
         context_lists = list(zip(*self.contexts))
-        return {
-            language: {'result': result, 'contexts': context_list}
+        return [
+            {'language': language, 'result': result, 'contexts': context_list}
             for language, result, context_list
             in zip_longest(language_names, result_set, context_lists, fillvalue=tuple())
-        }
+        ]
 
         # NOTE: Alternatively we could return the parallel lists version:
         # return {

@@ -13,7 +13,7 @@ from typing import (
 )
 from flask import Request
 from werkzeug.datastructures import ImmutableOrderedMultiDict, MultiDict
-from lingdb.dataset import Datasets
+from lingdb.dataset import Dataset
 from lingdb.language import LanguageSet
 
 from lingdb.query import Query, QueryResult, get_query_directive
@@ -55,8 +55,8 @@ class LanguageHandler:
 
     def __init__(self) -> None:
         # Load in datasets once to avoid repeated work.
-        self.datasets: Dict[Datasets, LanguageSet] = {}
-        for dataset in Datasets:
+        self.datasets: Dict[Dataset, LanguageSet] = {}
+        for dataset in Dataset:
             # If we fail to import a dataset, try importing the others anyway.
             try:
                 self.datasets[dataset] = dataset.load()
@@ -66,7 +66,7 @@ class LanguageHandler:
                 #   Add more as we find them.
                 print(f'Failed to load dataset {dataset}: {exc}')
 
-        self.latest_dataset = self.datasets[Datasets.latest()]
+        self.latest_dataset = self.datasets[Dataset.latest()]
 
     def _extract_tokens(self, query_params: MultiDict) -> Sequence[Token]:
         """Extract a Sequence[Token] from the provided query params."""
@@ -109,22 +109,32 @@ class LanguageHandler:
 
         return query_specs
 
-    def _get_initial_dataset(self, query_spec: QuerySpec) -> LanguageSet:
-        """Get the LanguageSet that should be used as the starting point for this Query."""
-
+    def _get_initial_dataset(self, query_spec: QuerySpec) -> Dataset:
+        """Get the Dataset that should be used as the starting point for this Query."""
         # If no Dataset token is provided, use the latest dataset by default.
+        default_dataset = Dataset.latest()
+
         tokens = query_spec
         if not tokens:
-            return self.latest_dataset
+            return default_dataset
 
         # If a Dataset token appears anywhere in the query_spec, it must come first.
         key, value = tokens[0]
         if key != 'Dataset':
-            return self.latest_dataset
+            return default_dataset
 
         try:
-            return self.datasets[Datasets(value)]
-        except (KeyError, ValueError):
+            return Dataset(value)
+        except ValueError:
+            # TODO: Log
+            # A named Dataset was requested, but no Dataset by that name could be found.
+            return default_dataset
+
+    def _get_language_set(self, dataset: Dataset) -> LanguageSet:
+        """Get the LanguageSet that should be used as the starting point for this Query."""
+        try:
+            return self.datasets[dataset]
+        except KeyError:
             # TODO: Log
             # A named Dataset was requested, but no Dataset by that name could be found.
             return self.latest_dataset
@@ -178,7 +188,7 @@ class LanguageHandler:
         Raises:
             KeyError if a token's key does not correspond to any valid Transformation.
         """
-        q = Query()
+        query = Query()
 
         # TODO: Implement me
         for i, token in enumerate(query_spec):
@@ -192,7 +202,7 @@ class LanguageHandler:
             FoundQueryDirective = get_query_directive(key)  # pylint: disable=invalid-name
             if FoundQueryDirective is not None:
                 # NOTE: Right now no QueryDirective subclass accepts any args, so we ignore value.
-                q.apply(FoundQueryDirective())
+                query.apply(FoundQueryDirective())
                 continue
 
             # Then, check if this key corresponds to a transformation.
@@ -203,12 +213,12 @@ class LanguageHandler:
             if FoundTransformation is not None:
                 if isinstance(FoundTransformation, Transformation):
                     # If it's already an instance, we just apply it to the query as-is.
-                    q.apply(FoundTransformation)
+                    query.apply(FoundTransformation)
                     continue
                 elif issubclass(FoundTransformation, Transformation):
                     # If it's just a type, we need to instantiate it, passing `arg` as an argument.
                     arg = self._parse_token_value(token)
-                    q.apply(FoundTransformation(arg))
+                    query.apply(FoundTransformation(arg))
                     continue
                 else:
                     # TODO: Unexpected. Log & raise error
@@ -226,7 +236,7 @@ class LanguageHandler:
             # TODO: Find better error type. custom MalformedRequestError? flask error? ...?
             raise ValueError(f'token {i} was unrecognized: {key}={value}')
 
-        return q
+        return query
 
     def _execute_query(self, query: Query, dataset: LanguageSet) -> QueryResult:
         """Execute a single query against the provided dataset and return the result."""
@@ -249,9 +259,18 @@ class LanguageHandler:
         query_results: List[QueryResult] = []
         for query_spec in query_specs:
             initial_dataset = self._get_initial_dataset(query_spec)
+            initial_language_set = self._get_language_set(initial_dataset)
             query = self._build_query(query_spec)
-            query_result = self._execute_query(query, initial_dataset)
+            query_result = self._execute_query(query, initial_language_set)
             query_results.append(query_result)
 
         # Prepare the results to be sent back to the client
-        return [query_result.serializable() for query_result in query_results]
+        response = [
+            {
+                'dataset': initial_dataset,
+                'query_tokens': dict(query_spec),
+                'results': query_result.serializable(),
+            } for query_result, query_spec in zip(query_results, query_specs)
+        ]
+
+        return response
