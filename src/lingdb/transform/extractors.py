@@ -41,8 +41,13 @@ class Get(Extractor):
 
     def __call__(self, language: Language) -> Any:
         """Execute the Get Extractor."""
-        return getattr(language, self.attr)
+        # If the attr appears exactly as named, fetch and return it.
+        if hasattr(language, self.attr):
+            return getattr(language, self.attr)
 
+        # In case a student issues a Get= request with an attr name that isn't *quiiite* right,
+        # let's try to be a little bit forgiving.
+        return getattr(language, self.attr.lower())
 
 GetName = Get(DatapointKey.NAME)
 
