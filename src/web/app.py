@@ -4,9 +4,12 @@ from flask import (
     Flask,
     request,
 )
+from flask.json.provider import DefaultJSONProvider
 
 from web.handlers import LanguageHandler
 
+# Allow UTF-8 characters in JSON replies
+DefaultJSONProvider.ensure_ascii = False
 
 app = Flask(__name__)
 
