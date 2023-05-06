@@ -1,10 +1,14 @@
 """The language module defines a Language and LanguageSet."""
 
+from collections import defaultdict
 import json
+import logging
 
 from enum import StrEnum
+import string
 from typing import (
     TYPE_CHECKING,
+    Dict,
     Iterable,
     Iterator,
     List,
@@ -20,6 +24,9 @@ if TYPE_CHECKING:
     from _typeshed import StrPath
 else:
     StrPath = 'StrPath'
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 class DatapointKey(StrEnum):
@@ -280,9 +287,74 @@ class LanguageSet(MappedCollection[str, Language]):
         """Initialize a LanguageSet from the provided `languages`."""
         # We might get an arbitrary iterable. Convert to a tuple for safety.
         self._languages = tuple(languages)
-        self._languages_dict = {language.name: language for language in self._languages}
+
+        # If the language set contains multiple languages by the same name,
+        # it might be that multiple students all chose the same language.
+        # (For example, "Pipil" appears twice in the F17 data.)
+
+        # In this case, append a unique letter to the end of each language entry:
+        #   - ("Pipil", "Pipil") -> ("Pipil A", "Pipil B")
+
+        # TODO: This solution is not very robust.
+        #   It does not assign the letters 'A', 'B', in a way that is globally stable;
+        #   it's determined solely by the order of the language in the input list.
+        #   So if students found some way to change the order of the list,
+        #   (or to filter the list to drop one of the duplicates),
+        #   it's possible the "A" and "B" labels might switch places or disappear.
+        # However, it works well enough if we're working with just a single dataset,
+        # which is 99% of the typical use cases.
+
+        # TODO: This approach doesn't modify the languages themselves, which still
+        #   display with the exact same name. It only changes their keys in the LanguageSet.
+        #   This might lead to confusing results in API calls or the UI.
+
+        # TODO: This wacky 'Language A' / 'Language B' logic is almost entirely useless right now.
+        #   The 'A'/'B' name isn't exposed anywhere in the API or UI since the language itself isn't
+        #   modified in any way. So this logic would have been equivalent to just modifying
+        #   __getitem__ to not return a result (or return a list of results, ...) if there were
+        #   multiple languages for that name...
+        #   This is starting to look like a werkzeug MultiDict with extra steps.
+
+        self._languages_dict: Dict[str, Language] = {}
+        already_seen_languages: Dict[str, List[Language]] = defaultdict(list)
+
+        def register_new_alias(language: Language, letter: str):
+            """Register a new alias of `language`, appending `letter` as an identifier."""
+            alias_name = f'{language.name} {letter}'
+
+            LOGGER.warning('Aliasing duplicate language %s to %s', language.name, alias_name)
+
+            # Insert this alias
+            self._languages_dict[alias_name] = language
+
+            # Weird special case: In theory, the new alias could conflict with a *different*
+            #   language whose name was already very similar to this one.
+            #   So we add this new alias name to the seen set as well.
+            already_seen_languages[alias_name].append(language)
+
+        for language in self._languages:
+            other_languages_with_this_name = already_seen_languages[language.name]
+
+            # Special case: If this is the first dupe of a language, pop the original language
+            #   (e.g. Pipil) to replace it with an annotated version (e.g. Pipil A).
+            #   We must do this before adding e.g. Pipil B if we want to preserve ordering.
+            if len(other_languages_with_this_name) == 1:
+                orig_language = self._languages_dict.pop(language.name)
+                register_new_alias(orig_language, 'A')
+
+            # Now add this new dupe of the language to the dict and seen set.
+            if len(other_languages_with_this_name) >= 1:
+                letter = string.ascii_uppercase[len(other_languages_with_this_name)]
+                register_new_alias(language, letter)
+
+            else:
+                # This is the first time we've seen this language -- just add it
+                self._languages_dict[language.name] = language
+                already_seen_languages[language.name].append(language)
 
         super().__init__(self._languages_dict)
+
+
 
         # Forbid duplicate Language entries
         if len(self._languages) != len(self._languages_dict):
