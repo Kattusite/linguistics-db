@@ -40,6 +40,7 @@ class Datasets(enum.Enum):
     F19 = "F19"
     F21 = "F21"
     F22 = "F22"
+    F23 = "F23"
 
     @classmethod
     def names(cls) -> Iterable[str]:
@@ -870,7 +871,28 @@ PARAMS = {
             P.WORD_ORDER(11),
             P.HEADEDNESS(12),
         ]
-    }
+    },
+    Semesters.F23: {
+        Surveys.GRAMMAR: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            P.COUNTRY(4),
+            P.LANGUAGE_FAMILY(5),
+            P.ENDANGERMENT_LEVEL(6),
+            P.NUM_CONSONANTS(7),
+            P.NUM_VOWELS(8),
+            P.NUM_PHONEMES(9),
+            P.CONSONANTS_S19([10,11]),
+            P.CONSONANT_TYPES_F22(12),
+            P.VOWELS_S19([13,14]),
+            P.VOWEL_TYPES_S19(15),
+            P.NUM_CONSONANT_PLACES(),
+            P.NUM_CONSONANT_MANNERS(),
+            P.PHONETIC_F22(16),
+            P.SYLLABLE(17),
+        ],
+    },
 }
 
 
