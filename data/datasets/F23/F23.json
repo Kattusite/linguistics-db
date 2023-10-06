@@ -1100,9 +1100,7 @@
             "dʒ"
         ],
         "consonant types": [
-            "affricates",
-            "palatalized",
-            "glottalized"
+            "affricates"
         ],
         "vowels": [
             "a",
@@ -1119,7 +1117,7 @@
         ],
         "num consonant places": 7,
         "num consonant manners": 6,
-        "complex consonants": true,
+        "complex consonants": false,
         "tone": true,
         "stress": true,
         "predictable stress": true,
@@ -1127,8 +1125,7 @@
         "syllables": [
             "V",
             "C onset",
-            "CC onset",
-            "CC coda"
+            "C coda"
         ]
     },
     {
