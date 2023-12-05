@@ -139,25 +139,17 @@ var SELECTORS_DICT = {
     },
     "functional-morphology-selector": {
         "dict": {
-            "(in)transitivity": [],
-            "agreement": [],
-            "associated motion": [],
-            "case": [],
-            "definiteness": [],
-            "diminutive / augmentative": [],
-            "grammatical gender": [],
-            "high aspect": [],
-            "low aspect": [],
-            "mood": [],
-            "natural gender": [],
-            "nominalizers": [],
-            "number": [
-                "number (sg, pl, dual)"
+            "nominal inflectionals": [
+                "nominal inflectional"
             ],
-            "possessor marking": [],
-            "tense": [],
-            "verbalizers": [],
-            "voice": []
+            "nominalizers": [],
+            "other verbal derivationals": [
+                "other verbal derivational"
+            ],
+            "verbal inflectionals": [
+                "verbal inflectional"
+            ],
+            "verbalizers": []
         },
         "html id": "functional-morphology-selector",
         "mode": "pick multi",
