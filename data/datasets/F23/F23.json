@@ -1585,65 +1585,6 @@
         ]
     },
     {
-        "name": "Tommo So",
-        "student": "08d911ac84da302e",
-        "netid": "ad2de6d771a75c97",
-        "country": "Mali",
-        "language family": "Niger-Congo",
-        "endangerment level": [
-            "6a"
-        ],
-        "num consonants": 17,
-        "num vowels": 17,
-        "num phonemes": 34,
-        "consonants": [
-            "n",
-            "t",
-            "m",
-            "k",
-            "j",
-            "s",
-            "p",
-            "l",
-            "w",
-            "h",
-            "b",
-            "d",
-            "g",
-            "ŋ",
-            "ɲ",
-            "dʒ"
-        ],
-        "consonant types": [
-            "affricates"
-        ],
-        "vowels": [
-            "a",
-            "e",
-            "o",
-            "i",
-            "u",
-            "ɛ",
-            "ɔ"
-        ],
-        "vowel types": [
-            "nasalized",
-            "long"
-        ],
-        "num consonant places": 7,
-        "num consonant manners": 6,
-        "complex consonants": false,
-        "tone": true,
-        "stress": true,
-        "predictable stress": true,
-        "unpredictable stress": false,
-        "syllables": [
-            "V",
-            "C onset",
-            "C coda"
-        ]
-    },
-    {
         "name": "Ute",
         "student": "b25b0c9ceab59eb4",
         "netid": "6c5793859d1932c6",
