@@ -588,7 +588,7 @@ class Dataset:
 
         # Merge in grammar data first, followed by typology data.
         # It's not guaranteed we'll have both for each language.
-        for survey in Surveys:
+        for i, survey in enumerate(Surveys):
             path = get_path(semester, survey.value)
             if not path.exists():
                 logger.warning('%s semester: no anon CSV found for %s survey. Continuing without it...',
@@ -609,6 +609,15 @@ class Dataset:
                     netid = language_data[netid_key]
                 except KeyError:
                     raise KeyError('language_data had no netid field: %s' % language_data)
+
+                # It's weird if a netid submitted data for the second survey but not the first.
+                # It may end up being perfectly fine (e.g. a student joins the class late), but
+                # just in case, log a warning.
+                if i > 0 and netid not in netid_to_language_data:
+                    language_key = JsonKey.LANGUAGE.value
+                    language = language_data[language_key]
+                    logger.warning('netid %s (lang: %s) did not submit data for earlier survey', netid, language)
+
                 existing_data = netid_to_language_data[netid]
 
                 # Warn if any old data is being clobbered by new (non-identical) data.
