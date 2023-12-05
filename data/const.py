@@ -417,6 +417,15 @@ class AllFuzzySearchTerms:
         "possessor marking": [],
     })
 
+    # Significantly changed options in F23
+    FUNCTIONAL_MORPHOLOGY_F23 = FuzzySearchTerms({
+        "nominalizers": [],
+        "verbalizers": [],
+        "other verbal derivationals": ["other verbal derivational"],  # e.g. causative, applicative, passive, reflexive, ...
+        "verbal inflectionals": ["verbal inflectional"],  # e.g. tense, aspect, mood, ...
+        "nominal inflectionals": ["nominal inflectional"],  # e.g. case, number, gender, ...
+    })
+
     WORD_ORDER = FuzzySearchTerms({
         "SVO": [],
         "SOV": [],
@@ -676,6 +685,11 @@ class SurveySpecifications:
         return Spec(K.FUNCTIONAL_MORPHOLOGY, T.LIST, index, M.ONE_TO_ONE, D.FUNCTIONAL_MORPHOLOGY, poisoned_search_terms)
 
     @staticmethod
+    def FUNCTIONAL_MORPHOLOGY_F23(index=9):
+        poisoned_search_terms = ["izer", "ive", "ivity", "al", "aspect"]
+        return Spec(K.FUNCTIONAL_MORPHOLOGY, T.LIST, index, M.ONE_TO_ONE, D.FUNCTIONAL_MORPHOLOGY_F23, poisoned_search_terms)
+
+    @staticmethod
     def WORD_ORDER(index=9):
         poisoned_search_terms = ["free", "S", "V", "O"]
         return Spec(K.WORD_ORDER, T.LIST, index, M.ONE_TO_ONE, D.WORD_ORDER, poisoned_search_terms)
@@ -892,6 +906,25 @@ PARAMS = {
             P.PHONETIC_F22(16),
             P.SYLLABLE(17),
         ],
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            # P.PUBLISHER_AND_AUTHOR(4) # I don't actually have a field for this, but it's in the survey.
+            P.RECOMMEND(5),
+            P.MORPHOLOGICAL_TYPE(6),
+            P.WORD_FORMATION(7),
+            # Note: In F22, P.WORD_FORMATION_FREQ split into two.
+            # We keep a modification of the original for backwards compatibility,
+            # so that the "word formation frequency" field still exists.
+            # We also keep the two new fields separately to support new queries.
+            P.WORD_FORMATION_FREQ_F22([8,9]),
+            P.AFFIXATION_FREQ(8),
+            P.NON_AFFIXATION_FREQ(9),
+            P.FUNCTIONAL_MORPHOLOGY_F23(10),
+            P.WORD_ORDER(11),
+            P.HEADEDNESS(12),
+        ]
     },
 }
 

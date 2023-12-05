@@ -1,0 +1,10 @@
+- one of the possible survey answers contains a semicolon, which is meant to be a csv delimiter.
+  Miraculously, it turns out this doesn't break anything.
+  Google forms treats it as one extra "checked" checkbox for that question, since the semicolon
+  is used as a delimiter between selected options.
+
+  However, since the first half of the option matches just fine without the second half,
+  and the second half doesn't spuriously match any other search term, we're A-OK.
+
+  The checkbox option was:
+    Polysynthetic (= expresses whole sentence meanings in complex words; most sentences have words with 5+ morphemes)

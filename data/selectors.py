@@ -467,6 +467,21 @@ FUNCTIONAL_MORPHOLOGY = {
     TYPE: ValueType.LIST.value,
 }
 
+# Significant changes to the possible options in F23
+FUNCTIONAL_MORPHOLOGY_F23 = {
+    SELECT_NAME: "Functional morphology:",
+    DICT: D.FUNCTIONAL_MORPHOLOGY_F23,
+    MULTI: True,
+    MODE: PICK_MULTI,
+    REPLY: "use %s %s of the following functional morphologies: %s",
+    REPLY_VARS: ["mode", "k", "selList"],
+    HTML_ID: "functional-morphology-selector",
+    POPOVER_PREFIX: "fm-lbox-popover",
+    SELECT_WHAT: "morphology",
+    PROPERTY: JsonKey.FUNCTIONAL_MORPHOLOGY.value,
+    TYPE: ValueType.LIST.value,
+}
+
 WORD_ORDER = {
     SELECT_NAME: "Basic word order:",
     DICT: D.WORD_ORDER,
@@ -590,7 +605,8 @@ SELECTORS = [
     # WORD_FORMATION_FREQ,    # replaced in F22 by AFFIXATION_FREQ, NON_AFFIXATION_FREQ
     AFFIXATION_FREQ,
     NON_AFFIXATION_FREQ,
-    FUNCTIONAL_MORPHOLOGY,
+    # FUNCTIONAL_MORPHOLOGY,
+    FUNCTIONAL_MORPHOLOGY_F23,
     WORD_ORDER,   # not used in F19
     HEADEDNESS,   # not used in F19
     # CASE,         # not used in F19, F21
