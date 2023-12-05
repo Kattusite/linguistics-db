@@ -80,9 +80,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SVO"
@@ -167,9 +167,9 @@
         "affixal word formation frequency": "mostly suffixing",
         "non-affixal word formation frequency": "mostly affixal",
         "functional morphology": [
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "free"
@@ -250,9 +250,9 @@
         "affixal word formation frequency": "mostly prefixing",
         "non-affixal word formation frequency": "mostly affixal",
         "functional morphology": [
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "free"
@@ -342,9 +342,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SOV"
@@ -439,8 +439,8 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SVO",
@@ -518,9 +518,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "free"
@@ -606,9 +606,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SOV"
@@ -693,9 +693,9 @@
         "non-affixal word formation frequency": "little or no complex word formation",
         "functional morphology": [
             "nominalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SVO"
@@ -777,9 +777,9 @@
         "non-affixal word formation frequency": "mostly affixal",
         "functional morphology": [
             "nominalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SOV"
@@ -948,9 +948,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SVO",
@@ -1053,7 +1053,7 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "verbal inflectionals"
+            "verbal inflection"
         ],
         "word order": [
             "SOV",
@@ -1146,7 +1146,7 @@
         "non-affixal word formation frequency": "mostly affixal",
         "functional morphology": [
             "nominalizers",
-            "nominal inflectionals"
+            "nominal inflection"
         ],
         "word order": [
             "SOV"
@@ -1221,9 +1221,9 @@
         "non-affixal word formation frequency": "mostly affixal",
         "functional morphology": [
             "nominalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SVO"
@@ -1307,7 +1307,7 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals"
+            "other verbal derivation"
         ],
         "word order": [
             "VSO"
@@ -1396,9 +1396,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "free"
@@ -1480,8 +1480,8 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals"
+            "other verbal derivation",
+            "verbal inflection"
         ],
         "word order": [
             "VOS"
@@ -1573,9 +1573,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "free"
@@ -1657,9 +1657,9 @@
         "non-affixal word formation frequency": "mostly affixal",
         "functional morphology": [
             "nominalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SOV"
@@ -1733,9 +1733,9 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "other verbal derivationals",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "OSV"
@@ -1922,8 +1922,8 @@
         "functional morphology": [
             "nominalizers",
             "verbalizers",
-            "verbal inflectionals",
-            "nominal inflectionals"
+            "verbal inflection",
+            "nominal inflection"
         ],
         "word order": [
             "SOV"

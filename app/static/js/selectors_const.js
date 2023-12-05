@@ -139,16 +139,10 @@ var SELECTORS_DICT = {
     },
     "functional-morphology-selector": {
         "dict": {
-            "nominal inflectionals": [
-                "nominal inflectional"
-            ],
+            "nominal inflection": [],
             "nominalizers": [],
-            "other verbal derivationals": [
-                "other verbal derivational"
-            ],
-            "verbal inflectionals": [
-                "verbal inflectional"
-            ],
+            "other verbal derivation": [],
+            "verbal inflection": [],
             "verbalizers": []
         },
         "html id": "functional-morphology-selector",
