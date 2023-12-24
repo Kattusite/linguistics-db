@@ -5,5 +5,6 @@
 - shiny  (cool graphing support)
 - django
 - jinja
+- fastapi
 
 ##
