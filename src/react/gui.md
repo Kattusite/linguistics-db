@@ -161,8 +161,20 @@ Patwin
 
 Note that if a language appears in one column, it's at the same height in every column.
 
+What if instead, I just list all the languages once, and have check boxes for "has stress"
+or "consonants":
 
+Breton    ✔    p, t
+Choctaw   ✔    -
+Hamar     ✔    -
+Jingulu   ✔    p, t, k
+Patwin    ✖    -
+Sarazi    ✖    p
 
+Will this make it harder for students to answer questions like:
+"Which languages have at least 1 of p, t, k?", since now they have to scan across the list?
+
+Maybe provide a toggle to switch between the views.
 
 ## Other stuff
 
@@ -170,7 +182,10 @@ Note that if a language appears in one column, it's at the same height in every 
 - Should be some way to encode the query in the URL so you can link others to your results.
 - e.g. if you link to /lingdb?Query&HasStress it will show you a single query for languages that have stress
   - stretch goal: add a shorthand for succinct urls that are shorter than just listing all params.
+    - shouldn't be too bad; could do something like pick a single char for each query type,
+      or convert them to a numeric value and b64 encode it.
 - Add some way to store current set of queries in local storage so they survive a page reload.
+  - Note that if we update the URL to match the list of queries, we get this for free
 - Should be able to select the dataset being queried.
 - Need some sort of res
 
