@@ -947,6 +947,25 @@ PARAMS = {
             P.PHONETIC_F22(16),
             P.SYLLABLE(17),
         ],
+        Surveys.TYPOLOGY: [
+            P.LANGUAGE(),
+            P.NAME(),
+            P.NETID(),
+            # P.PUBLISHER_AND_AUTHOR(4) # I don't actually have a field for this, but it's in the survey.
+            P.RECOMMEND(5),
+            P.MORPHOLOGICAL_TYPE(6),
+            P.WORD_FORMATION(7),
+            # Note: In F22, P.WORD_FORMATION_FREQ split into two.
+            # We keep a modification of the original for backwards compatibility,
+            # so that the "word formation frequency" field still exists.
+            # We also keep the two new fields separately to support new queries.
+            P.WORD_FORMATION_FREQ_F22([8,9]),
+            P.AFFIXATION_FREQ(8),
+            P.NON_AFFIXATION_FREQ(9),
+            P.FUNCTIONAL_MORPHOLOGY_F23(10),
+            P.WORD_ORDER(11),
+            P.HEADEDNESS(12),
+        ]
     }
 }
 
