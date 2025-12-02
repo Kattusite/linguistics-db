@@ -1,95 +1,5 @@
 [
     {
-        "name": "Aftab",
-        "student": "43201786c31cc1f7",
-        "netid": "dec250c2a2568248",
-        "country": "Eastern Indonesia, Pantar and Alor Island",
-        "language family": "non-Austronesian Papuan Language",
-        "endangerment level": [
-            "6a"
-        ],
-        "num consonants": 20,
-        "num vowels": 8,
-        "num phonemes": 28,
-        "consonants": [
-            "n",
-            "t",
-            "m",
-            "k",
-            "j",
-            "s",
-            "p",
-            "l",
-            "w",
-            "h",
-            "b",
-            "d",
-            "g",
-            "ŋ",
-            "ʔ",
-            "r",
-            "v",
-            "ɸ",
-            "q",
-            "ħ"
-        ],
-        "consonant types": [
-            "glottalized",
-            "pharyngealized"
-        ],
-        "vowels": [
-            "a",
-            "e",
-            "i",
-            "u",
-            "ɔ",
-            "ɑ"
-        ],
-        "vowel types": [
-            "long",
-            "diphthongs"
-        ],
-        "num consonant places": 9,
-        "num consonant manners": 6,
-        "complex consonants": false,
-        "tone": false,
-        "stress": true,
-        "predictable stress": false,
-        "unpredictable stress": true,
-        "syllables": [
-            "V",
-            "C onset",
-            "C coda"
-        ],
-        "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
-            "isolating",
-            "analytic"
-        ],
-        "word formation": [
-            "suffixation",
-            "prefixation",
-            "compounding",
-            "reduplication"
-        ],
-        "word formation frequency": [
-            "exclusively prefixing",
-            "little or no complex word formation"
-        ],
-        "affixal word formation frequency": "exclusively prefixing",
-        "non-affixal word formation frequency": "little or no complex word formation",
-        "functional morphology": [
-            "nominalizers",
-            "other verbal derivation"
-        ],
-        "word order": [
-            "SOV"
-        ],
-        "headedness": [
-            "consistently head-final"
-        ]
-    },
-    {
         "name": "Alto Perené",
         "student": "76ada40e5abc0fb7",
         "netid": "ea4086725dce2259",
@@ -179,7 +89,7 @@
         ]
     },
     {
-        "name": "Assyrian Neo-Aramaic",
+        "name": "Assyrian Neo-Aramaic (Urmi Dialect)",
         "student": "0d07c1c280ee2449",
         "netid": "f5ce3b05df32e19e",
         "country": "Urmi, Iran",
@@ -810,39 +720,6 @@
     {
         "name": "Jejueo",
         "student": "6c8548e56c9e5e50",
-        "netid": "0133531771b9982d",
-        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
-        "morphological type": [
-            "agglutinating",
-            "polysynthetic"
-        ],
-        "word formation": [
-            "suffixation",
-            "compounding"
-        ],
-        "word formation frequency": [
-            "mostly suffixing",
-            "mostly affixal"
-        ],
-        "affixal word formation frequency": "mostly suffixing",
-        "non-affixal word formation frequency": "mostly affixal",
-        "functional morphology": [
-            "nominalizers",
-            "other verbal derivation",
-            "verbal inflection",
-            "nominal inflection"
-        ],
-        "word order": [
-            "SOV",
-            "OSV"
-        ],
-        "headedness": [
-            "consistently head-final"
-        ]
-    },
-    {
-        "name": "Jejueo",
-        "student": "6c8548e56c9e5e50",
         "netid": "01869d93cd99f98a",
         "country": "South Korea",
         "language family": "Koreanic",
@@ -899,6 +776,34 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV",
+            "OSV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -1531,7 +1436,7 @@
         ]
     },
     {
-        "name": "Onondaga Language",
+        "name": "Onondaga",
         "student": "4ef441c803e57efb",
         "netid": "6897420641083d51",
         "country": "Canada, United States",
@@ -1789,7 +1694,7 @@
         ]
     },
     {
-        "name": "Puyuma (Nanwang Dialect)",
+        "name": "Puyuma (Nanwang dialect)",
         "student": "48069ed8a878c604",
         "netid": "489afca6d9b14ed1",
         "country": "Southeastern Taiwan",
@@ -2080,42 +1985,6 @@
         "name": "Skolt Saami",
         "student": "de827bc38003ef8f",
         "netid": "3daf1050ff876a14",
-        "recommend": "Yes, my grammar was great to work with",
-        "morphological type": [
-            "fusional"
-        ],
-        "word formation": [
-            "suffixation",
-            "compounding",
-            "internal change",
-            "suppletion",
-            "conversion"
-        ],
-        "word formation frequency": [
-            "exclusively suffixing",
-            "mostly affixal"
-        ],
-        "affixal word formation frequency": "exclusively suffixing",
-        "non-affixal word formation frequency": "mostly affixal",
-        "functional morphology": [
-            "nominalizers",
-            "verbalizers",
-            "other verbal derivation",
-            "verbal inflection",
-            "nominal inflection"
-        ],
-        "word order": [
-            "SVO",
-            "SOV"
-        ],
-        "headedness": [
-            "mixed headedness"
-        ]
-    },
-    {
-        "name": "Skolt Saami",
-        "student": "de827bc38003ef8f",
-        "netid": "b87a98c0d6b6eedd",
         "country": "Finland; Russia",
         "language family": "Uralic",
         "endangerment level": [
@@ -2182,6 +2051,37 @@
             "C onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "internal change",
+            "suppletion",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "exclusively suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "exclusively suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SVO",
+            "SOV"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -2256,6 +2156,96 @@
             "other verbal derivation",
             "verbal inflection",
             "nominal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
+        ]
+    },
+    {
+        "name": "Teiwa",
+        "student": "c1464e6586cd7e0e",
+        "netid": "dec250c2a2568248",
+        "country": "Eastern Indonesia, Pantar and Alor Island",
+        "language family": "non-Austronesian Papuan Language",
+        "endangerment level": [
+            "6a"
+        ],
+        "num consonants": 20,
+        "num vowels": 8,
+        "num phonemes": 28,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "l",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "ŋ",
+            "ʔ",
+            "r",
+            "v",
+            "ɸ",
+            "q",
+            "ħ"
+        ],
+        "consonant types": [
+            "glottalized",
+            "pharyngealized"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "i",
+            "u",
+            "ɔ",
+            "ɑ"
+        ],
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 9,
+        "num consonant manners": 6,
+        "complex consonants": false,
+        "tone": false,
+        "stress": true,
+        "predictable stress": false,
+        "unpredictable stress": true,
+        "syllables": [
+            "V",
+            "C onset",
+            "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "isolating",
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "exclusively prefixing",
+            "little or no complex word formation"
+        ],
+        "affixal word formation frequency": "exclusively prefixing",
+        "non-affixal word formation frequency": "little or no complex word formation",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation"
         ],
         "word order": [
             "SOV"
