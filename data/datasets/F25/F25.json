@@ -1,16 +1,16 @@
 [
     {
-        "name": "(Kurima) Miyako",
-        "student": "b18969ce324572cb",
-        "netid": "f3c27e6f7c612e89",
-        "country": "Japan",
-        "language family": "Japonic",
+        "name": "Aftab",
+        "student": "43201786c31cc1f7",
+        "netid": "dec250c2a2568248",
+        "country": "Eastern Indonesia, Pantar and Alor Island",
+        "language family": "non-Austronesian Papuan Language",
         "endangerment level": [
-            "8a"
+            "6a"
         ],
-        "num consonants": 22,
-        "num vowels": 14,
-        "num phonemes": 36,
+        "num consonants": 20,
+        "num vowels": 8,
+        "num phonemes": 28,
         "consonants": [
             "n",
             "t",
@@ -19,43 +19,74 @@
             "j",
             "s",
             "p",
+            "l",
             "w",
             "h",
             "b",
             "d",
             "g",
-            "f",
-            "z",
+            "ŋ",
+            "ʔ",
+            "r",
             "v",
-            "ɾ"
+            "ɸ",
+            "q",
+            "ħ"
         ],
         "consonant types": [
-            "affricates"
+            "glottalized",
+            "pharyngealized"
         ],
         "vowels": [
             "a",
             "e",
-            "o",
             "i",
             "u",
-            "ɨ"
+            "ɔ",
+            "ɑ"
         ],
         "vowel types": [
             "long",
             "diphthongs"
         ],
-        "num consonant places": 7,
-        "num consonant manners": 5,
+        "num consonant places": 9,
+        "num consonant manners": 6,
         "complex consonants": false,
         "tone": false,
-        "stress": false,
+        "stress": true,
         "predictable stress": false,
-        "unpredictable stress": false,
+        "unpredictable stress": true,
         "syllables": [
             "V",
             "C onset",
-            "CC onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "isolating",
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "exclusively prefixing",
+            "little or no complex word formation"
+        ],
+        "affixal word formation frequency": "exclusively prefixing",
+        "non-affixal word formation frequency": "little or no complex word formation",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -114,10 +145,41 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
-        "name": "Assyrian Neo-Aramaic (Urmi Dialect)",
+        "name": "Assyrian Neo-Aramaic",
         "student": "0d07c1c280ee2449",
         "netid": "f5ce3b05df32e19e",
         "country": "Urmi, Iran",
@@ -185,6 +247,37 @@
             "CCC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "root-and-pattern",
+            "internal change",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SVO",
+            "VSO"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -249,6 +342,34 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "isolating",
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "little or no affixation",
+            "little or no complex word formation"
+        ],
+        "affixal word formation frequency": "little or no affixation",
+        "non-affixal word formation frequency": "little or no complex word formation",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation"
+        ],
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -308,6 +429,34 @@
             "C onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "exclusively suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "exclusively suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -372,6 +521,35 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Maybe, but only because he was very inconsistent with IPA and glossing, as it seemed he just combined different texts without putting them into the same format. This made the work very confusing. Also, there were at least two sections that were in the table of contents that just didn't exist, which made the work difficult as well. All in all, it was doable, it was just more difficult than it needed to be.",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "root-and-pattern",
+            "internal change"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation"
+        ],
+        "word order": [
+            "SVO",
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -422,6 +600,36 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -492,6 +700,36 @@
             "C onset",
             "CC onset",
             "CCC onset"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "analytic",
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly prefixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly prefixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -538,6 +776,68 @@
         "syllables": [
             "V",
             "C onset"
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "analytic",
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly prefixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly prefixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation"
+        ],
+        "word order": [
+            "VSO"
+        ],
+        "headedness": [
+            "consistently head-initial"
+        ]
+    },
+    {
+        "name": "Jejueo",
+        "student": "6c8548e56c9e5e50",
+        "netid": "0133531771b9982d",
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV",
+            "OSV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -652,6 +952,36 @@
             "V",
             "C onset",
             "CC onset"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "analytic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "suppletion",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation"
+        ],
+        "word order": [
+            "VSO",
+            "VOS"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -725,6 +1055,35 @@
             "C onset",
             "CC onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
         ]
     },
     {
@@ -778,6 +1137,121 @@
             "C onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly prefixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly prefixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ]
+    },
+    {
+        "name": "Kurima Miyako",
+        "student": "b18969ce324572cb",
+        "netid": "f3c27e6f7c612e89",
+        "country": "Japan",
+        "language family": "Japonic",
+        "endangerment level": [
+            "8a"
+        ],
+        "num consonants": 22,
+        "num vowels": 14,
+        "num phonemes": 36,
+        "consonants": [
+            "n",
+            "t",
+            "m",
+            "k",
+            "j",
+            "s",
+            "p",
+            "w",
+            "h",
+            "b",
+            "d",
+            "g",
+            "f",
+            "z",
+            "v",
+            "ɾ"
+        ],
+        "consonant types": [
+            "affricates"
+        ],
+        "vowels": [
+            "a",
+            "e",
+            "o",
+            "i",
+            "u",
+            "ɨ"
+        ],
+        "vowel types": [
+            "long",
+            "diphthongs"
+        ],
+        "num consonant places": 7,
+        "num consonant manners": 5,
+        "complex consonants": false,
+        "tone": false,
+        "stress": false,
+        "predictable stress": false,
+        "unpredictable stress": false,
+        "syllables": [
+            "V",
+            "C onset",
+            "CC onset",
+            "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "exclusively suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "exclusively suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -840,6 +1314,38 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "analytic",
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change",
+            "stress or tone shift",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly non-affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly non-affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mostly head-initial"
         ]
     },
     {
@@ -899,6 +1405,38 @@
             "C onset",
             "CC onset",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "suppletion",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "VSO",
+            "OSV"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -961,11 +1499,40 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "exclusively suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "exclusively suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV",
+            "free"
+        ],
+        "headedness": [
+            "mostly head-final"
         ]
     },
     {
-        "name": "Onondaga",
-        "student": "5a5e94ec070aa7b5",
+        "name": "Onondaga Language",
+        "student": "4ef441c803e57efb",
         "netid": "6897420641083d51",
         "country": "Canada, United States",
         "language family": "Iroquoian languages",
@@ -1014,6 +1581,33 @@
             "CC onset",
             "CCC onset",
             "CCCC onset"
+        ],
+        "recommend": "Maybe (e.g., perhaps only for a student with a linguistics background)",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "free"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
@@ -1077,6 +1671,32 @@
             "V",
             "C onset",
             "CC onset"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding"
+        ],
+        "word formation frequency": [
+            "mostly prefixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly prefixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -1137,10 +1757,39 @@
             "C onset",
             "CC onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "internal change"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly non-affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly non-affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV",
+            "OSV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
-        "name": "Puyuma (Nanwang dialect)",
+        "name": "Puyuma (Nanwang Dialect)",
         "student": "48069ed8a878c604",
         "netid": "489afca6d9b14ed1",
         "country": "Southeastern Taiwan",
@@ -1190,10 +1839,39 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation"
+        ],
+        "word order": [
+            "VOS"
+        ],
+        "headedness": [
+            "consistently head-initial"
         ]
     },
     {
-        "name": "Qiang",
+        "name": "Qiang (Northern Dialect)",
         "student": "16b05e0b3cc5e286",
         "netid": "efa5a36ce1e9b777",
         "country": "China",
@@ -1267,6 +1945,35 @@
             "CC onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "mostly suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -1334,6 +2041,75 @@
         "syllables": [
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "analytic",
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "infixation",
+            "compounding",
+            "stress or tone shift",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "mostly prefixing",
+            "mostly non-affixal"
+        ],
+        "affixal word formation frequency": "mostly prefixing",
+        "non-affixal word formation frequency": "mostly non-affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection"
+        ],
+        "word order": [
+            "SVO",
+            "VSO",
+            "VOS"
+        ],
+        "headedness": [
+            "mostly head-initial"
+        ]
+    },
+    {
+        "name": "Skolt Saami",
+        "student": "de827bc38003ef8f",
+        "netid": "3daf1050ff876a14",
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional"
+        ],
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "internal change",
+            "suppletion",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "exclusively suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "exclusively suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SVO",
+            "SOV"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -1457,69 +2233,35 @@
             "CC onset",
             "C coda",
             "CC coda"
-        ]
-    },
-    {
-        "name": "Teiwa",
-        "student": "c1464e6586cd7e0e",
-        "netid": "dec250c2a2568248",
-        "country": "Eastern Indonesia, Pantar and Alor Island",
-        "language family": "non-Austronesian Papuan Language",
-        "endangerment level": [
-            "6a"
         ],
-        "num consonants": 20,
-        "num vowels": 8,
-        "num phonemes": 28,
-        "consonants": [
-            "n",
-            "t",
-            "m",
-            "k",
-            "j",
-            "s",
-            "p",
-            "l",
-            "w",
-            "h",
-            "b",
-            "d",
-            "g",
-            "ŋ",
-            "ʔ",
-            "r",
-            "v",
-            "ɸ",
-            "q",
-            "ħ"
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "fusional",
+            "polysynthetic"
         ],
-        "consonant types": [
-            "glottalized",
-            "pharyngealized"
+        "word formation": [
+            "suffixation",
+            "compounding",
+            "reduplication"
         ],
-        "vowels": [
-            "a",
-            "e",
-            "i",
-            "u",
-            "ɔ",
-            "ɑ"
+        "word formation frequency": [
+            "exclusively suffixing",
+            "equal affixal and non-affixal"
         ],
-        "vowel types": [
-            "long",
-            "diphthongs"
+        "affixal word formation frequency": "exclusively suffixing",
+        "non-affixal word formation frequency": "equal affixal and non-affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
         ],
-        "num consonant places": 9,
-        "num consonant manners": 6,
-        "complex consonants": false,
-        "tone": false,
-        "stress": true,
-        "predictable stress": false,
-        "unpredictable stress": true,
-        "syllables": [
-            "V",
-            "C onset",
-            "C coda"
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "consistently head-final"
         ]
     },
     {
@@ -1575,6 +2317,33 @@
             "C onset",
             "C coda",
             "CC coda"
+        ],
+        "recommend": "Yes, my grammar was great to work with",
+        "morphological type": [
+            "agglutinating"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "reduplication",
+            "conversion"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SVO"
+        ],
+        "headedness": [
+            "mixed headedness"
         ]
     },
     {
@@ -1624,6 +2393,35 @@
             "V",
             "C onset",
             "C coda"
+        ],
+        "recommend": "Yes, my grammar was fine to work with (even if not perfect)",
+        "morphological type": [
+            "polysynthetic"
+        ],
+        "word formation": [
+            "suffixation",
+            "prefixation",
+            "compounding",
+            "reduplication"
+        ],
+        "word formation frequency": [
+            "equal prefixing and suffixing",
+            "mostly affixal"
+        ],
+        "affixal word formation frequency": "equal prefixing and suffixing",
+        "non-affixal word formation frequency": "mostly affixal",
+        "functional morphology": [
+            "nominalizers",
+            "verbalizers",
+            "other verbal derivation",
+            "verbal inflection",
+            "nominal inflection"
+        ],
+        "word order": [
+            "SOV"
+        ],
+        "headedness": [
+            "mostly head-final"
         ]
     }
 ]
