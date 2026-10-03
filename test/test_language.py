@@ -1,6 +1,6 @@
 import unittest
 
-from app.language import Language, InvalidDataError
+from lingdb.app.language import Language, InvalidDataError
 
 # Limited dataset, but has all required components
 data1 = {

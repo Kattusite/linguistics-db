@@ -1,6 +1,7 @@
 import unittest
 
-from app import querier, query
+from lingdb.app import query
+from lingdb.app import querier
 
 payload = """[
     {

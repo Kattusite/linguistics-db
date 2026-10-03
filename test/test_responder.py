@@ -1,7 +1,8 @@
 import unittest
 
-from app import responder, query
+from lingdb.app import responder
 
+from lingdb.app import query
 import tinydb
 
 # Bogus data for testing

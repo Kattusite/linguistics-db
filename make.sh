@@ -1,1 +1,1 @@
-uv run -m data -v && uv run -m gen && uv run app.py
+uv run data -v && uv run gen && uv run lingdb

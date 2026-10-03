@@ -4,6 +4,8 @@
 
 # Ignore virtual env
 venv/
+venv-win/
+venv-unix/
 .venv/
 
 # Ignore random scripts

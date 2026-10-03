@@ -1,6 +1,6 @@
 import unittest
 
-from app import query
+from lingdb.app import query
 
 import tinydb
 
