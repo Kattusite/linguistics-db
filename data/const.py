@@ -23,10 +23,16 @@ time significant changes are made to the survey questions or format.
 # Where is a dataset named {0} located, relative to the project root?
 DATASET_PATH = "data/datasets/{0}/{1}"
 
+
+LATEST = "latest"
+"""A special dataset reference that always resolves to the most recently-added dataset."""
+
 # Dataset Constants
 class Datasets(enum.Enum):
     """ Which named datasets do we have?
     F = Fall, S = Spring, XX = year (20XX)
+
+    Defined chronologically, such that the last enum listed is always the most recent.
     """
 
     # Test datasets
@@ -49,6 +55,10 @@ class Datasets(enum.Enum):
     def names(cls) -> Iterable[str]:
         """ Return an iterable of the names of all known datasets. """
         return [val.value for val in cls.__members__.values()]
+
+    @classmethod
+    def latest(cls) -> "Datasets":
+        return list(cls)[-1]
 
 # alias for clarity
 Semesters = Datasets

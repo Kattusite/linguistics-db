@@ -13,7 +13,7 @@ var REMEMBER_LIST_STATE = false;
 // Which dataset should we use for queries?
 // var DATASET = "F17"
 // var DATASET = "S19";
-var DATASET = "F26";
+var DATASET = "latest";  // always default to the most recently-added data
 
 // COLORS
 var DANGER  = "alert-danger";

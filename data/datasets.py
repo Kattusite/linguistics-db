@@ -61,6 +61,10 @@ def getDatabase(name) -> tinydb.TinyDB:
     if not databases:
         initDatabases()
 
+    # If the caller requested the latest dataset, resolve that to the actual latest dataset.
+    if name == const.LATEST:
+        name = const.Datasets.latest().value
+
     return databases[name]
 
 def initDatasets():
