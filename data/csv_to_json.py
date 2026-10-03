@@ -339,7 +339,24 @@ class LanguageData(dict):
         value = row[spec.index].strip()
 
         if spec.value_type == ValueType.NUM:
-            value = int(value)
+            try:
+                value = int(value)
+            except ValueError as e:
+                orig_value = value  # for logging
+
+                # Some fields allow free-form non-integer text.
+                # So you might get an answer like "12 (extra explanation text)"
+                # We can't catch everything, but re-check if the first token is an integer.
+                split = value.split()
+                if not split:
+                    raise ValueError("expected an int, but got only whitespace") from e
+                first = split[0]
+                # if it's _still_ not recognizable as an int, just raise the ValueError.
+                # it'll probably need manual intervention to figure out what the value is.
+                value = int(first)
+
+                logger.warning("one_to_one (%s) expected an int. assuming %s from: %r", key, value, orig_value)
+
 
         elif spec.value_type == ValueType.STRING:
             # If there's a fuzzy_search_terms, we need to do more advanced processing
