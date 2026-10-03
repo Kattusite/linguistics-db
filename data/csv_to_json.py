@@ -127,6 +127,61 @@ def get_glyph_list(s: str, phonemes: List[Glyph] = phonemes.GLYPHS) -> List[Glyp
     logger.debug("get_glyph_list mapped %s --> %s", repr(s), filtered_glyphs)
     return filtered_glyphs
 
+class FuzzyError(RuntimeError):
+    """Any error that occurs during the fuzzy-matching process."""
+
+    def _bulleted_list(self, title: str, items: list[str]) -> str:
+        bullets = [f"  - {item!r}" for item in items]
+        lines = [title, *bullets]
+        return "\n".join(lines)
+
+class FailSafeError(FuzzyError):
+    """A fail-safe was triggered during fuzzy matching.
+    
+    We failed to find any matches for the target phrase, even though the phrase
+    contained some of the poisoned search terms, which indicates that we should
+    have been able to identify some match.
+    """
+
+    def __init__(self, phrase: str, poisoned_terms: list[str], candidate_matches: list[str]) -> None:
+        self.phrase = phrase
+        self.poisoned_terms = poisoned_terms
+        self.candidate_matches = candidate_matches
+
+        msg = self._build_message()
+        super().__init__(msg)
+
+    def _build_message(self) -> str:
+        lines = [
+            "fuzzy_match_phrase failed to find an overall match, but a poisoned term did match!",
+            self._bulleted_list("Phrase being matched:", [self.phrase]),
+            self._bulleted_list("Poisoned search terms:", self.poisoned_terms),
+            self._bulleted_list("Candidate matches:", self.candidate_matches),
+        ]
+        return "\n\n".join(lines)
+
+class AmbiguousMatchError(FuzzyError):
+    """Two candidate matches had equal similarity, and we can't decide between them."""
+
+    def __init__(self, phrase: str, winners: list[str], winning_score: int) -> None:
+        self.phrase = phrase
+        self.winners = winners
+        self.winning_score = winning_score
+
+        msg = self._build_message()
+        super().__init__(msg)
+
+    def _build_message(self) -> str:
+        lines = [
+            "Two candidate matches had equal similarity, and we can't decide betwen them.",
+            self._bulleted_list("Phrase being matched:", [self.phrase]),
+            self._bulleted_list("Winning score", [self.winning_score]),
+            self._bulleted_list("Candidate matches:", self.winners),
+        ]
+
+        return "\n\n".join(lines)
+
+
 def fuzzy_match_phrase(phrase: str, spec: const.SurveySpecification) -> Optional[str]:
     """ Fuzzily match a phrase written in natural English against a predefined
     set of strings, and return the predefined string that is the closest match.
@@ -276,15 +331,18 @@ def fuzzy_match_phrase(phrase: str, spec: const.SurveySpecification) -> Optional
 
     winners = [key for key, score in candidates.items() if score == max_score]
     if len(winners) > 1:
-        raise RuntimeError(f'Severe fuzzy_match_phrase ambiguity! "{phrase}" could be any of: {winners}')
+        raise AmbiguousMatchError(
+            phrase=phrase,
+            winners=winners,
+            winning_score=max_score,
+        )
 
     # If nothing won, check the poisoned search terms to see if we should abort.
     if not winners and spec.poisoned_search_terms and any(f in phrase for f in spec.poisoned_search_terms):
-        raise RuntimeError(
-            f'fuzzy_match_phrase triggered fail-safe!\n'
-            f'   Phrase:                  {phrase!r}\n'
-            f'   Poisoned Search Terms:   {spec.poisoned_search_terms}\n'
-            f'   Candidates:              {spec.fuzzy_search_terms.candidates()}\n'
+        raise FailSafeError(
+            phrase=phrase,
+            poisoned_terms=spec.poisoned_search_terms,
+            candidate_matches=spec.fuzzy_search_terms.candidates(),
         )
 
     winner = winners[0] if winners else None
