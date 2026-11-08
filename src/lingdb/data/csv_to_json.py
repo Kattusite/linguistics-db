@@ -716,7 +716,7 @@ class Dataset:
 
     def dump(self, path: Union[str, pathlib.Path]):
         """ Dump the contents of this Dataset to a JSON file at the provided path. """
-        with open(path, 'w', encoding='utf-8') as f:
+        with open(path, 'w', newline='\n', encoding='utf-8') as f:
             json.dump(self.languages, f, sort_keys=False, ensure_ascii=False, indent=4)
 
 
@@ -756,7 +756,7 @@ def anonymize_semester_data(semester: str) -> None:
 
         path = get_path(semester, survey)
         with open(path, 'w', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
+            writer = csv.writer(f, lineterminator='\n')
 
             # Write the first row as-is, since it's just headers.
             writer.writerow(rows[0])
