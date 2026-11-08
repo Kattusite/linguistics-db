@@ -16,7 +16,7 @@ def splice(template, content, output, startAnchor, endAnchor):
     # template, content, output are all filenames / paths
     fTemplate = open(template, "r", encoding="utf-8")
     fContent  = open(content, "r", encoding="utf-8")
-    fOutput   = open(output, "w", encoding="utf-8")
+    fOutput   = open(output, "w", encoding="utf-8", newline="\n")
 
     replacing = False # Am I currently replacing?
     for templateLine in fTemplate:
